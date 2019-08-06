@@ -2,12 +2,13 @@ import React from "react";
 import Link from "next/link";
 import Head from "next/head";
 import Nav from "../components/nav";
-import "../code_bucket/styles/css_reset.scss";
+
 
 const Home = () => (
   <div>
     <Head>
       <title>Home</title>
+      <link href="static/styles/css_reset.css" rel="stylesheet" />
     </Head>
 
     <Nav />
