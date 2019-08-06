@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "env": {
+    "API_KEY": "@api-key",
+    "TEST": "@test"
+  }
+}
