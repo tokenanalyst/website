@@ -11,7 +11,7 @@ const Home = () => (
 
     <Nav />
 
-    <div className="hero">
+    {/* <div className="hero">
       <h1 className="title">Welcome to Next.js!</h1>
       <p className="description">
         To get started, edit <code>pages/index.js</code> and save to reload.
@@ -37,7 +37,7 @@ const Home = () => (
           </a>
         </Link>
       </div>
-    </div>
+    </div> */}
 
     <style jsx>{`
       .hero {
@@ -68,6 +68,7 @@ const Home = () => (
         text-align: left;
         text-decoration: none;
         color: #434343;
+        background-color: red;
         border: 1px solid #9b9b9b;
       }
       .card:hover {
@@ -83,6 +84,11 @@ const Home = () => (
         padding: 12px 0 0;
         font-size: 13px;
         color: #333;
+      }
+      @media only screen and (max-width: 600px) {
+        .card {
+          background-color: pink;
+        }
       }
     `}</style>
   </div>

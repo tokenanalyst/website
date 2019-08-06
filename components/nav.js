@@ -1,56 +1,69 @@
-import React from 'react'
-import Link from 'next/link'
+import React, { useState } from "react";
+import Link from "next/link";
 
 const links = [
-  { href: 'https://zeit.co/now', label: 'ZEIT' },
-  { href: 'https://github.com/zeit/next.js', label: 'GitHub' }
+  { href: "", label: "Exchange Flows" },
+  { href: "", label: "Bitcoin" },
+  { href: "", label: "Ethereum" }
 ].map(link => {
-  link.key = `nav-link-${link.href}-${link.label}`
-  return link
-})
+  link.key = `nav-link-${link.href}-${link.label}`;
+  return link;
+});
 
-const Nav = () => (
-  <nav>
-    <ul>
-      <li>
-        <Link href='/'>
-          <a>Home</a>
-        </Link>
-      </li>
-      {links.map(({ key, href, label }) => (
-        <li key={key}>
-          <a href={href}>{label}</a>
-        </li>
-      ))}
-    </ul>
+const Nav = () => {
+  const [selected, setIsSelected] = useState(0);
+
+  return (
+    <div>
+      <div className="container">
+        {links.map(({ key, href, label }) => (
+          <NavItem
+            key={key}
+            href={href}
+            label={label}
+            isSelected={selected === key}
+            onClick={() => setIsSelected(key)}
+          />
+        ))}
+      </div>
+
+      <style jsx>{`
+        .container {
+          display: flex;
+          flex-direction: row;
+          text-align: left;
+          padding-top: 20px;
+          padding-left: 20px;
+        }
+        @media only screen and (max-width: 600px) {
+          .container {
+            flex-direction: column;
+          }
+        }
+      `}</style>
+    </div>
+  );
+};
+
+const NavItem = ({ href, label, isSelected, onClick }) => (
+  <div className="container">
+    <span className="nav-item" onClick={onClick}>
+      {label}
+    </span>
 
     <style jsx>{`
-      :global(body) {
-        margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, Avenir Next, Avenir,
-          Helvetica, sans-serif;
+      .container {
+        padding-bottom: 10px;
+        max-width: 200px;
       }
-      nav {
-        text-align: center;
-      }
-      ul {
-        display: flex;
-        justify-content: space-between;
-      }
-      nav > ul {
-        padding: 4px 16px;
-      }
-      li {
-        display: flex;
-        padding: 6px 8px;
-      }
-      a {
-        color: #067df7;
-        text-decoration: none;
-        font-size: 13px;
+      .nav-item {
+        color: white;
+        padding-top: 30px;
+        background-color: ${isSelected ? "pink" : "green"};
+        padding: 10px;
       }
     `}</style>
-  </nav>
-)
+  </div>
+);
 
-export default Nav
+export default Nav;
