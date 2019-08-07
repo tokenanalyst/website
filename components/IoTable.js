@@ -101,7 +101,6 @@ export function IoTable() {
           return {
             onClick: () => {
               const { token, exchange } = rowInfo.original;
-              console.log(`Navigating to /${token}/${exchange}`);
               router.push(`/exchange/${token}/${exchange}`);
             }
           };
