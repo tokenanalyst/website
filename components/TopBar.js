@@ -7,11 +7,7 @@ const logo_desktop='../static/img/logo_desktop.png';
 
 const TopBar = () => {
 //  const [selected, setIsSelected] = useState(0);
-//console.log('navigator', navigator);
-//console.log('document', document);
 
-//console.log(window.screen.availWidth);
-//console.log(window.screen.availHeight);
   return (
     <div>
       <div className="topbar">
