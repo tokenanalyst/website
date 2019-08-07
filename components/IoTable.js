@@ -5,7 +5,6 @@ import "../node_modules/react-table/react-table.css";
 
 import axios from "axios";
 
-const DATA_WINDOWS = ["24h", "7d", "30d"];
 const ACCESSORS = {
   usd: {
     inflow: "inflow_usd_sum",
@@ -21,10 +20,9 @@ const ACCESSORS = {
   }
 };
 
-export function IoTable() {
+export function IoTable({ dataWindow }) {
   const router = useRouter();
   const [data, setData] = useState([]);
-  const [dataWindow, setDataWindow] = useState("24h");
   const [units, setUnits] = useState("usd");
 
   useEffect(() => {
@@ -84,23 +82,6 @@ export function IoTable() {
 
   return (
     <div className="container">
-      <div className="data-window-container">
-        <div className="data-windows">
-          {DATA_WINDOWS.map(dw => (
-            <span className="data-window" onClick={() => setDataWindow(dw)}>
-              <span
-                className={
-                  dw === dataWindow
-                    ? "data-window-active"
-                    : "data-window-inactive"
-                }
-              >
-                {dw.toUpperCase()}
-              </span>
-            </span>
-          ))}
-        </div>
-      </div>
       <div className="information-header">
         <span>{dataWindow} Exchange On-chain Inflows/Outflows</span>
         <span className="information-icon">
@@ -137,27 +118,6 @@ export function IoTable() {
           padding: 30px 80px;
         }
         .information-icon {
-          opacity: 0.2;
-        }
-        .data-window-container {
-          padding: 10px;
-        }
-        .data-windows {
-          display: flex;
-          justify-content: space-around;
-          padding-top: 10px;
-          padding-bottom: 10px;
-        }
-        .data-window {
-          font-weight: bold;
-          padding-left: 5px;
-          padding-right: 5px;
-          cursor: pointer;
-        }
-        .data-window-active {
-          opacity: 1;
-        }
-        .data-window-inactive {
           opacity: 0.2;
         }
         @media only screen and (max-width: 600px) {

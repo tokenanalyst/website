@@ -1,71 +1,75 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Head from "next/head";
 import Nav from "../components/nav";
 import { IoTable } from "../components/IoTable";
 
-const Home = () => (
-  <div>
-    <Head>
-      <title>Home</title>
-      <link href="static/styles/css_reset.css" rel="stylesheet" />
-    </Head>
+const DATA_WINDOWS = ["24h", "7d", "30d"];
 
-    <IoTable />
+const SubNav = ({ dataWindow, setDataWindow }) => {
+  return (
+    <div className="data-window-container">
+      <div className="data-windows">
+        {DATA_WINDOWS.map(dw => (
+          <span className="data-window" onClick={() => setDataWindow(dw)}>
+            <span
+              className={
+                dw === dataWindow
+                  ? "data-window-active"
+                  : "data-window-inactive"
+              }
+            >
+              {dw.toUpperCase()}
+            </span>
+          </span>
+        ))}
+      </div>
+      <style jsx>{`
+        .data-window-container {
+          padding: 10px;
+          border-bottom: 1px solid rgb(203, 203, 203);
 
-    <style jsx>{`
-      .hero {
-        width: 100%;
-        color: #333;
-      }
-      .title {
-        margin: 0;
-        width: 100%;
-        padding-top: 80px;
-        line-height: 1.15;
-        font-size: 48px;
-      }
-      .title,
-      .description {
-        text-align: center;
-      }
-      .row {
-        max-width: 880px;
-        margin: 80px auto 40px;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-      }
-      .card {
-        padding: 18px 18px 24px;
-        width: 220px;
-        text-align: left;
-        text-decoration: none;
-        color: #434343;
-        background-color: red;
-        border: 1px solid #9b9b9b;
-      }
-      .card:hover {
-        border-color: #067df7;
-      }
-      .card h3 {
-        margin: 0;
-        color: #067df7;
-        font-size: 18px;
-      }
-      .card p {
-        margin: 0;
-        padding: 12px 0 0;
-        font-size: 13px;
-        color: #333;
-      }
-      @media only screen and (max-width: 600px) {
-        .card {
-          background-color: pink;
+          position: fixed;
+          top: 20px;
+          width: 100%;
+          z-index: 100;
         }
-      }
-    `}</style>
-  </div>
-);
+        .data-windows {
+          display: flex;
+          justify-content: space-around;
+          padding-top: 10px;
+          padding-bottom: 10px;
+        }
+        .data-window {
+          font-weight: bold;
+          padding-left: 5px;
+          padding-right: 5px;
+          cursor: pointer;
+        }
+        .data-window-active {
+          opacity: 1;
+        }
+        .data-window-inactive {
+          opacity: 0.2;
+        }
+      `}</style>
+    </div>
+  );
+};
+
+const Home = () => {
+  const [dataWindow, setDataWindow] = useState(DATA_WINDOWS[0]);
+  return (
+    <div>
+      <Head>
+        <title>Home</title>
+        <link href="static/styles/css_reset.css" rel="stylesheet" />
+      </Head>
+
+      <SubNav dataWindow={dataWindow} setDataWindow={setDataWindow} />
+      <IoTable dataWindow={dataWindow} />
+    </div>
+  );
+};
 
 export default Home;
