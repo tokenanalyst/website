@@ -69,6 +69,8 @@ const TopBar = () => {
       </div>
 
       <style jsx>{`
+        li { cursor: pointer; }
+        
         .topbar {
           display: flex;
           flex-direction: row;
