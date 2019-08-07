@@ -2,16 +2,19 @@ import React from "react";
 import Link from "next/link";
 import Head from "next/head";
 import Nav from "../components/nav";
+import TopBar from "../components/TopBar";
 
 
 const Home = () => (
   <div>
+
     <Head>
       <title>Home</title>
       <link href="static/styles/css_reset.css" rel="stylesheet" />
     </Head>
 
-    <Nav />
+    <TopBar/>
+    {/* <Nav /> */}
 
     {/* <div className="hero">
       <h1 className="title">Welcome to Next.js!</h1>
