@@ -6,13 +6,13 @@ import "../node_modules/react-table/react-table.css";
 import axios from "axios";
 
 const ACCESSORS = {
-  usd: {
+  USD: {
     inflow: "inflow_usd_sum",
     inflowChange: "inflow_usd_sum_pct_change",
     outflow: "outflow_usd_sum",
     outflowChange: "outflow_usd_sum_pct_change"
   },
-  crypto: {
+  BTC: {
     inflow: "inflow_sum",
     inflowChange: "inflow_sum_pct_change",
     outflow: "outflow_sum",
@@ -20,10 +20,9 @@ const ACCESSORS = {
   }
 };
 
-export function IoTable({ dataWindow }) {
+export function IoTable({ dataWindow, units }) {
   const router = useRouter();
   const [data, setData] = useState([]);
-  const [units, setUnits] = useState("usd");
 
   useEffect(() => {
     const getApiResult = async () => {
@@ -46,7 +45,12 @@ export function IoTable({ dataWindow }) {
     {
       Header: () => <span style={{ fontWeight: "bold" }}>Inflow</span>,
       accessor: ACCESSORS[units].inflow,
-      Cell: ({ value }) => <span>${value || "0"}</span>,
+      Cell: ({ value }) => (
+        <span>
+          {units === "USD" ? "$" : ""}
+          {value || "0"}
+        </span>
+      ),
       filterable: false
     },
     {
@@ -63,7 +67,12 @@ export function IoTable({ dataWindow }) {
       Header: () => <span style={{ fontWeight: "bold" }}>Outflow</span>,
       accessor: ACCESSORS[units].outflow,
       filterable: false,
-      Cell: ({ value }) => <span>${value || "0"}</span>
+      Cell: ({ value }) => (
+        <span>
+          {units === "USD" ? "$" : ""}
+          {value || "0"}
+        </span>
+      )
     },
     {
       Header: () => <span style={{ fontWeight: "bold" }}>Outflow Change</span>,
@@ -83,7 +92,7 @@ export function IoTable({ dataWindow }) {
   return (
     <div className="container">
       <div className="information-header">
-        <span>{dataWindow} Exchange On-chain Inflows/Outflows</span>
+        <span>{dataWindow} Inflows/Outflows</span>
         <span className="information-icon">
           <img src="/static/svg/information.svg" />
         </span>
@@ -110,10 +119,12 @@ export function IoTable({ dataWindow }) {
       <style jsx>{`
         .container {
           margin: 20px;
+          padding-top: 30px;
         }
         .information-header {
           display: flex;
           justify-content: space-between;
+          align-items: center;
           font-weight: bold;
           padding: 30px 80px;
         }
