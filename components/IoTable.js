@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ReactTable from "react-table";
 import { useRouter } from "next/router";
+import numeral from "numeral";
 import "../node_modules/react-table/react-table.css";
 
 import axios from "axios";
@@ -20,6 +21,17 @@ const ACCESSORS = {
   }
 };
 
+const coinImages = {
+  Binance: "binance.png",
+  Bitfinex: "bitfinex.png",
+  Bitmex: "bitmex.png",
+  Bitstamp: "bitstamp.png",
+  Bittrex: "bittrex.png",
+  Kraken: "kraken.png",
+  Kucoin: "kucoin.png",
+  Poloniex: "poloniex.png"
+};
+
 export function IoTable({ dataWindow, units }) {
   const router = useRouter();
   const [data, setData] = useState([]);
@@ -36,7 +48,16 @@ export function IoTable({ dataWindow, units }) {
   const columns = [
     {
       Header: () => <span style={{ fontWeight: "bold" }}>Exchange</span>,
-      accessor: "exchange"
+      accessor: "exchange",
+      Cell: ({ value }) => (
+        <span style={{ display: "flex", alignItems: "center" }}>
+          <img
+            style={{ height: "16px", width: "16px", paddingRight: "5px" }}
+            src={`/static/png/${coinImages[value]}`}
+          />
+          {value}
+        </span>
+      )
     },
     {
       Header: () => <span style={{ fontWeight: "bold" }}>Token</span>,
@@ -48,7 +69,7 @@ export function IoTable({ dataWindow, units }) {
       Cell: ({ value }) => (
         <span>
           {units === "USD" ? "$" : ""}
-          {value || "0"}
+          {numeral(value).format("0,0") || "0"}
         </span>
       ),
       filterable: false
@@ -70,7 +91,7 @@ export function IoTable({ dataWindow, units }) {
       Cell: ({ value }) => (
         <span>
           {units === "USD" ? "$" : ""}
-          {value || "0"}
+          {numeral(value).format("0,0") || "0"}
         </span>
       )
     },
