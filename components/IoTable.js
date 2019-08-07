@@ -6,11 +6,26 @@ import "../node_modules/react-table/react-table.css";
 import axios from "axios";
 
 const DATA_WINDOWS = ["24h", "7d", "30d"];
+const ACCESSORS = {
+  usd: {
+    inflow: "inflow_usd_sum",
+    inflowChange: "inflow_usd_sum_pct_change",
+    outflow: "outflow_usd_sum",
+    outflowChange: "outflow_usd_sum_pct_change"
+  },
+  crypto: {
+    inflow: "inflow_sum",
+    inflowChange: "inflow_sum_pct_change",
+    outflow: "outflow_sum",
+    outflowChange: "outflow_sum_pct_change"
+  }
+};
 
 export function IoTable() {
   const router = useRouter();
   const [data, setData] = useState([]);
   const [dataWindow, setDataWindow] = useState("24h");
+  const [units, setUnits] = useState("usd");
 
   useEffect(() => {
     const getApiResult = async () => {
@@ -32,12 +47,14 @@ export function IoTable() {
     },
     {
       Header: () => <span style={{ fontWeight: "bold" }}>Inflow</span>,
-      accessor: "inflow_sum",
-      Cell: ({ value }) => <span>${value || "0"}</span>
+      accessor: ACCESSORS[units].inflow,
+      Cell: ({ value }) => <span>${value || "0"}</span>,
+      filterable: false
     },
     {
       Header: () => <span style={{ fontWeight: "bold" }}>Inflow Change</span>,
-      accessor: "inflow_sum_pct_change",
+      accessor: ACCESSORS[units].inflowChange,
+      filterable: false,
       Cell: ({ value }) => (
         <span style={{ color: value < 0 ? "#fa4e96" : "#3fcdab" }}>
           {value || "0.00"}%
@@ -46,12 +63,14 @@ export function IoTable() {
     },
     {
       Header: () => <span style={{ fontWeight: "bold" }}>Outflow</span>,
-      accessor: "outflow_sum",
+      accessor: ACCESSORS[units].outflow,
+      filterable: false,
       Cell: ({ value }) => <span>${value || "0"}</span>
     },
     {
       Header: () => <span style={{ fontWeight: "bold" }}>Outflow Change</span>,
-      accessor: "outflow_sum_pct_change",
+      accessor: ACCESSORS[units].outflowChange,
+      filterable: false,
       Cell: ({ value }) => (
         <span style={{ color: value < 0 ? "#fa4e96" : "#3fcdab" }}>
           {value || "0.00"}%
@@ -61,10 +80,12 @@ export function IoTable() {
   ];
 
   return (
-    <div>
+    <div className="container">
       <div className="information-header">
         <span>{dataWindow} Exchange On-chain Inflows/Outflows</span>
-        <img src="/static/svg/information.svg" />
+        <span className="information-icon">
+          <img src="/static/svg/information.svg" />
+        </span>
       </div>
       <div className="data-window-container">
         <div className="data-windows">
@@ -86,7 +107,7 @@ export function IoTable() {
       <ReactTable
         data={data.filter(datum => datum.window === dataWindow)}
         columns={columns}
-        defaultSorted={[{ id: "inflow_sum", desc: true }]}
+        defaultSorted={[{ id: ACCESSORS[units].inflow, desc: true }]}
         noDataText="Loading data..."
         className="-highlight"
         defaultPageSize={25}
@@ -98,14 +119,21 @@ export function IoTable() {
             }
           };
         }}
+        filterable={true}
       />
 
       <style jsx>{`
+        .container {
+          margin: 20px;
+        }
         .information-header {
           display: flex;
           justify-content: space-between;
           font-weight: bold;
           padding: 30px 80px;
+        }
+        .information-icon {
+          opacity: 0.2;
         }
         .data-window-container {
           padding: 10px;
@@ -127,6 +155,11 @@ export function IoTable() {
         }
         .data-window-inactive {
           opacity: 0.2;
+        }
+        @media only screen and (max-width: 600px) {
+          .information-header {
+            padding: 30px 30px;
+          }
         }
       `}</style>
     </div>
