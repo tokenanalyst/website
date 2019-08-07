@@ -17,9 +17,11 @@ const TopBar = () => {
     openMenu (!menuIsOpen);
   }
 
-  const DARK = '#212121';
-  const LIGHT = '#efefef';
-  const COLOR = '#b3e5fc';
+  const HAMBURGER_COLOR = '#efefef';
+
+  const TRANSITION_DUR = '0.3s';
+  const FULL_HAMBURGER_SIZE = '50px';
+  const REDUCED_HAMBURGER_SIZE = '4px';
 
   return (
     <div>
@@ -74,11 +76,11 @@ const TopBar = () => {
         <div 
           onClick={ toggleOpenMenu }
           className={ menuIsOpen ? 
-            "btn2 menu_open":
-            "btn2" 
+            "hamburger_wrapper menu_open":
+            "hamburger_wrapper" 
           }
         >
-          <div className="icon"></div>
+          <div className="hamburger"></div>
         </div>
       </div>
 
@@ -158,62 +160,71 @@ const TopBar = () => {
           display: ${ ( seeSubContact || _seeSubContact ) ? '' : 'none' };
         }
 
+
+
         /* ============  HAMBURGER MENU ============ */
 
 
-        .btn2{
-          width: 55px;
-          height: 55px;
-          transition-duration: 0.5s;
-          display:none;
+        .hamburger_wrapper{
+          width: ${FULL_HAMBURGER_SIZE};
+          height: ${FULL_HAMBURGER_SIZE};
+          display: none;
+
+          transition-duration: ${TRANSITION_DUR};
         }
 
-        .btn2:hover {
+        .hamburger_wrapper:hover {
           cursor: pointer;
         }
 
 
-        .btn2 .icon {
-          transition-duration: 0.5s;
+        .hamburger {
           position: absolute;
-          width: 55px;
-          height: 4px;
           top: 30px;
-          background-color: ${LIGHT};
+          width: ${FULL_HAMBURGER_SIZE};
+          height: ${REDUCED_HAMBURGER_SIZE};
+          
+          transition-duration: ${TRANSITION_DUR};
+          background-color: ${HAMBURGER_COLOR};
         }
             
 
-
-        .btn2 .icon:before {
-          transition-duration: 0.5s;
+        .hamburger:before {
           position: absolute;
-          width: 55px;
-          height: 4px;
-          background-color: ${LIGHT};
-          content: "";
           top: -20px;
-        }
+          width: ${FULL_HAMBURGER_SIZE};
+          height: ${REDUCED_HAMBURGER_SIZE};
+          
+          transition-duration: ${TRANSITION_DUR};
+          background-color: ${HAMBURGER_COLOR};
 
-        .btn2 .icon:after {
-          transition-duration: 0.5s;
-          position: absolute;
-          width: 55px;
-          height: 4px;
-          background-color: ${LIGHT};
           content: "";
-          top: 20px;
         }
 
-        .menu_open .icon {
-          transition-duration: 0.5s;
+
+        .hamburger:after {
+          position: absolute;
+          top: 20px;
+          width: ${FULL_HAMBURGER_SIZE};
+          height: ${REDUCED_HAMBURGER_SIZE};
+          
+          transition-duration: ${TRANSITION_DUR};
+          background-color: ${HAMBURGER_COLOR};
+          
+          content: "";
+        }
+
+        
+        .menu_open .hamburger {
+          transition-duration: ${TRANSITION_DUR};
           background: transparent;
         }
 
-        .menu_open .icon:before {
+        .menu_open .hamburger:before {
           transform: rotateZ(45deg) scaleX(1.25) translate(13px, 13px);
         }
 
-        .menu_open .icon:after {
+        .menu_open .hamburger:after {
           transform: rotateZ(-45deg) scaleX(1.25) translate(12px, -12px);
         }
 
@@ -255,7 +266,7 @@ const TopBar = () => {
             display: inline;
           }
 
-          .btn2 {
+          .hamburger_wrapper {
             display: inline;
           }
          }
