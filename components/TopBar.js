@@ -6,7 +6,10 @@ const logo_mobile='../static/img/logo_mobile.png';
 const logo_desktop='../static/img/logo_desktop.png';
 
 const TopBar = () => {
-//  const [selected, setIsSelected] = useState(0);
+  const [seeSubAbout, showSublinkAbout] = useState(false);
+  const [_seeSubAbout, _showSublinkAbout] = useState(false);
+  const [seeSubContact, showSublinkContact] = useState(false);
+  const [_seeSubContact, _showSublinkContact] = useState(false);
 
   return (
     <div>
@@ -22,11 +25,14 @@ const TopBar = () => {
 
           <li 
             id="link-about"
-          >About Us 
+            onMouseEnter={ () => { showSublinkAbout(true)} }
+            onMouseLeave={ () => { showSublinkAbout(false)} }
+            >About Us 
 
             <div 
               id="below-link-about" 
-              onMouseEnter={ (evt) => {}}
+              onMouseEnter={ () => { _showSublinkAbout(true)} }
+              onMouseLeave={ () => { _showSublinkAbout(false)} }
             >
               <ul className="links">
                 <li>About</li>
@@ -37,11 +43,14 @@ const TopBar = () => {
 
           <li
             id="link-contact"
-          >Contact
+            onMouseEnter={ () => { showSublinkContact(true)} }
+            onMouseLeave={ () => { showSublinkContact(false)} }
+            >Contact
 
             <div 
               id="below-link-contact"
-              onMouseEnter={ (evt) => {}}
+              onMouseEnter={ () => { _showSublinkContact(true)} }
+              onMouseLeave={ () => { _showSublinkContact(false)} }
             >
               <ul className="links">
                 <li>Follow Us</li>
@@ -118,13 +127,19 @@ const TopBar = () => {
         #below-link-contact {
           width: 5em;
           background: black;
-          //display:none
+          position: absolute;
+          top: 1.6em;   
+          border-top: 1px solid green;
+          padding-top: 0.5em;     
+          padding-bottom: 0.3em;     
         }
 
-        #below-link-about,
+        #below-link-about {
+          display: ${ ( seeSubAbout || _seeSubAbout ) ? '' : 'none' };
+        }
+
         #below-link-contact {
-          position: absolute;
-          top: 2em;
+          display: ${ ( seeSubContact || _seeSubContact ) ? '' : 'none' };
         }
 
 
