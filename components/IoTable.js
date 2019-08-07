@@ -62,10 +62,11 @@ export function IoTable() {
 
   return (
     <div>
+      <div className="information-header">
+        <span>{dataWindow} Exchange On-chain Inflows/Outflows</span>
+        <img src="/static/svg/information.svg" />
+      </div>
       <div className="data-window-container">
-        <div className="data-window-title">
-          {dataWindow} Exchange On-chain Inflows/Outflows
-        </div>
         <div className="data-windows">
           {DATA_WINDOWS.map(dw => (
             <span className="data-window" onClick={() => setDataWindow(dw)}>
@@ -100,11 +101,14 @@ export function IoTable() {
       />
 
       <style jsx>{`
+        .information-header {
+          display: flex;
+          justify-content: space-between;
+          font-weight: bold;
+          padding: 30px 80px;
+        }
         .data-window-container {
           padding: 10px;
-        }
-        .data-window-title {
-          padding-bottom: 10px;
         }
         .data-windows {
           display: flex;
