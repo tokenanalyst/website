@@ -15,12 +15,12 @@ const TopBar = () => {
         <img className="logo logo-mobile" src={logo_mobile} />
 
         <ul className="links links-desktop">
-          <li>A</li>
-          <li>A</li>
-          <li>A</li>
-          <li>A</li>
-          <li>A</li>
-          <li>A</li>
+          <li>Home</li>
+          <li>Research</li>
+          <li>Pricing</li>
+          <li>API</li>
+          <li>About Us </li>
+          <li>Contact</li>
         </ul>
 
         <span className="links links-mobile">LINKS-MOBILE</span>
@@ -31,6 +31,7 @@ const TopBar = () => {
           display: flex;
           flex-direction: row;
           justify-content: space-between;
+          align-items: center;
 
           position: fixed;
           height: 60px;
@@ -54,11 +55,21 @@ const TopBar = () => {
         /* ============  LINKS ============ */
 
         .links {
-          color: white;
+          color: #999;
+        }
+
+        .links-desktop > li {
+          display: inline-block;
+          
+          margin-right: 2em;
+          font-family: DIN Alternate Medium,sans-serif;
+          font-weight: 400;
+          font-size: 1rem;
+          line-height: 1.6;
         }
 
         .links-mobile {
-          display:none
+          display:none;
         }
 
         /* ============ switch to mobile ============ */
