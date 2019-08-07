@@ -11,6 +11,16 @@ const TopBar = () => {
   const [seeSubContact, showSublinkContact] = useState(false);
   const [_seeSubContact, _showSublinkContact] = useState(false);
 
+  const [menuIsOpen, openMenu] = useState(false);
+
+  const toggleOpenMenu = () => {
+    openMenu (!menuIsOpen);
+  }
+
+  const DARK = '#212121';
+  const LIGHT = '#efefef';
+  const COLOR = '#b3e5fc';
+
   return (
     <div>
       <div className="topbar">
@@ -61,11 +71,15 @@ const TopBar = () => {
           </li>
         </ul>
 
-
-
-
-
-        <span className="links links-mobile">LINKS-MOBILE</span>
+        <div 
+          onClick={ toggleOpenMenu }
+          className={ menuIsOpen ? 
+            "btn2 menu_open":
+            "btn2" 
+          }
+        >
+          <div className="icon"></div>
+        </div>
       </div>
 
       <style jsx>{`
@@ -144,6 +158,83 @@ const TopBar = () => {
           display: ${ ( seeSubContact || _seeSubContact ) ? '' : 'none' };
         }
 
+        /* ============  HAMBURGER MENU ============ */
+
+
+        .btn2{
+          width: 55px;
+          height: 55px;
+          transition-duration: 0.5s;
+          display:none;
+        }
+
+        .btn2:hover {
+          cursor: pointer;
+        }
+
+
+        .btn2 .icon {
+          transition-duration: 0.5s;
+          position: absolute;
+          width: 55px;
+          height: 4px;
+          top: 30px;
+          background-color: ${LIGHT};
+        }
+            
+
+
+        .btn2 .icon:before {
+          transition-duration: 0.5s;
+          position: absolute;
+          width: 55px;
+          height: 4px;
+          background-color: ${LIGHT};
+          content: "";
+          top: -20px;
+        }
+
+        .btn2 .icon:after {
+          transition-duration: 0.5s;
+          position: absolute;
+          width: 55px;
+          height: 4px;
+          background-color: ${LIGHT};
+          content: "";
+          top: 20px;
+        }
+
+        .menu_open .icon {
+          transition-duration: 0.5s;
+          background: transparent;
+        }
+
+        .menu_open .icon:before {
+          transform: rotateZ(45deg) scaleX(1.25) translate(13px, 13px);
+        }
+
+        .menu_open .icon:after {
+          transform: rotateZ(-45deg) scaleX(1.25) translate(12px, -12px);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -161,6 +252,10 @@ const TopBar = () => {
           }
 
           .links-mobile {
+            display: inline;
+          }
+
+          .btn2 {
             display: inline;
           }
          }
