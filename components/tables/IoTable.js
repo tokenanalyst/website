@@ -94,6 +94,8 @@ export const IoTable = ({ dataWindow, units }) => {
     getApiResult();
   }, []);
 
+  // ACCESSORS DYNAMICALLY CHANGE BASED ON UNITS ONLY SO MEMOISED COLUMN CREATION
+
   useMemo(() => {
     columns = [
       {
