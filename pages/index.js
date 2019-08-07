@@ -1,9 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import Head from "next/head";
-import Nav from "../components/nav";
-import { IoTable } from "../components/IoTable";
-import { SubNav } from "../components/SubNav";
 
 const Home = () => {
   return (
@@ -20,6 +17,7 @@ const Home = () => {
         .link {
           margin: 20px;
           color: green;
+          padding-top: 20px;
         }
       `}</style>
     </div>

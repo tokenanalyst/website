@@ -5,7 +5,7 @@ export const SubNav = ({ dataWindow, setDataWindow, units, setUnits }) => {
     <div className="container">
       <div className="options">
         {DATA_WINDOWS.map(dw => (
-          <span className="option" onClick={() => setDataWindow(dw)}>
+          <span key={dw} className="option" onClick={() => setDataWindow(dw)}>
             <span
               className={
                 dw === dataWindow ? "option-active" : "option-inactive"
@@ -18,7 +18,7 @@ export const SubNav = ({ dataWindow, setDataWindow, units, setUnits }) => {
       </div>
       <div className="options">
         {UNITS.map(unit => (
-          <span className="option" onClick={() => setUnits(unit)}>
+          <span key={unit} className="option" onClick={() => setUnits(unit)}>
             <span
               className={unit === units ? "option-active" : "option-inactive"}
             >
