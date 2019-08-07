@@ -5,11 +5,7 @@ import Nav from "../components/nav";
 import { IoTable } from "../components/IoTable";
 import { SubNav } from "../components/SubNav";
 
-import { DATA_WINDOWS, UNITS } from "../constants/filters";
-
 const Home = () => {
-  const [dataWindow, setDataWindow] = useState(DATA_WINDOWS[0]);
-  const [units, setUnits] = useState(UNITS[0]);
   return (
     <div>
       <Head>
@@ -17,13 +13,15 @@ const Home = () => {
         <link href="static/styles/css_reset.css" rel="stylesheet" />
       </Head>
 
-      <SubNav
-        dataWindow={dataWindow}
-        setDataWindow={setDataWindow}
-        units={units}
-        setUnits={setUnits}
-      />
-      <IoTable dataWindow={dataWindow} units={units} />
+      <Link href="/exchange">
+        <a className="link">Go to exchange page</a>
+      </Link>
+      <style jsx>{`
+        .link {
+          margin: 20px;
+          color: green;
+        }
+      `}</style>
     </div>
   );
 };
