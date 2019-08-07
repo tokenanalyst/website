@@ -33,11 +33,7 @@ export function IoTable() {
     {
       Header: () => <span style={{ fontWeight: "bold" }}>Inflow</span>,
       accessor: "inflow_sum",
-      Cell: ({ value }) => (
-        <span style={{ color: value < 0 ? "#fa4e96" : "#3fcdab" }}>
-          ${value || "0"}
-        </span>
-      )
+      Cell: ({ value }) => <span>${value || "0"}</span>
     },
     {
       Header: () => <span style={{ fontWeight: "bold" }}>Inflow Change</span>,
@@ -51,11 +47,7 @@ export function IoTable() {
     {
       Header: () => <span style={{ fontWeight: "bold" }}>Outflow</span>,
       accessor: "outflow_sum",
-      Cell: ({ value }) => (
-        <span style={{ color: value < 0 ? "#fa4e96" : "#3fcdab" }}>
-          ${value || "0"}
-        </span>
-      )
+      Cell: ({ value }) => <span>${value || "0"}</span>
     },
     {
       Header: () => <span style={{ fontWeight: "bold" }}>Outflow Change</span>,
