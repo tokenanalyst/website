@@ -79,14 +79,11 @@ export function IoTable() {
     }
   ];
 
+  const filterCaseInsensitive = ({ id, value }, row) =>
+    row[id] ? row[id].toLowerCase().includes(value.toLowerCase()) : true;
+
   return (
     <div className="container">
-      <div className="information-header">
-        <span>{dataWindow} Exchange On-chain Inflows/Outflows</span>
-        <span className="information-icon">
-          <img src="/static/svg/information.svg" />
-        </span>
-      </div>
       <div className="data-window-container">
         <div className="data-windows">
           {DATA_WINDOWS.map(dw => (
@@ -104,11 +101,17 @@ export function IoTable() {
           ))}
         </div>
       </div>
+      <div className="information-header">
+        <span>{dataWindow} Exchange On-chain Inflows/Outflows</span>
+        <span className="information-icon">
+          <img src="/static/svg/information.svg" />
+        </span>
+      </div>
       <ReactTable
         data={data.filter(datum => datum.window === dataWindow)}
         columns={columns}
         defaultSorted={[{ id: ACCESSORS[units].inflow, desc: true }]}
-        noDataText="Loading data..."
+        noDataText="No results"
         className="-highlight"
         defaultPageSize={25}
         getTrProps={(_, rowInfo) => {
@@ -120,6 +123,7 @@ export function IoTable() {
           };
         }}
         filterable={true}
+        defaultFilterMethod={filterCaseInsensitive}
       />
 
       <style jsx>{`
