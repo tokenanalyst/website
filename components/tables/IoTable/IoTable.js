@@ -6,9 +6,7 @@ import axios from "axios";
 
 import { AmountCell, ChangeCell, ExchangeCell, HeaderCell } from "./renderers";
 import { TABLE_DATA } from "./data";
-
-const filterCaseInsensitive = ({ id, value }, row) =>
-  row[id] ? row[id].toLowerCase().includes(value.toLowerCase()) : true;
+import { filterCaseInsensitive } from "./helpers";
 
 export const IoTable = ({ dataWindow, units }) => {
   const router = useRouter();
@@ -81,14 +79,12 @@ export const IoTable = ({ dataWindow, units }) => {
         noDataText="No results"
         className="-highlight"
         defaultPageSize={25}
-        getTrProps={(_, rowInfo) => {
-          return {
-            onClick: () => {
-              const { token, exchange } = rowInfo.original;
-              router.push(`/exchange/${token}/${exchange}`);
-            }
-          };
-        }}
+        getTrProps={(_, rowInfo) => ({
+          onClick: () => {
+            const { token, exchange } = rowInfo.original;
+            router.push(`/exchange/${token}/${exchange}`);
+          }
+        })}
         filterable={true}
         defaultFilterMethod={filterCaseInsensitive}
       />
