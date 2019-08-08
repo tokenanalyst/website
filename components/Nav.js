@@ -36,13 +36,13 @@ const Nav = () => {
           <li>API</li>
 
           <li 
-            id="link-about"
+            className="link-about"
             onMouseEnter={ () => { showSublinkAbout(true)} }
             onMouseLeave={ () => { showSublinkAbout(false)} }
             >About Us 
 
             <div 
-              id="below-link-about" 
+              className="below-link-about" 
               onMouseEnter={ () => { _showSublinkAbout(true)} }
               onMouseLeave={ () => { _showSublinkAbout(false)} }
             >
@@ -54,13 +54,13 @@ const Nav = () => {
           </li>
 
           <li
-            id="link-contact"
+            className="link-contact"
             onMouseEnter={ () => { showSublinkContact(true)} }
             onMouseLeave={ () => { showSublinkContact(false)} }
             >Contact
 
             <div 
-              id="below-link-contact"
+              className="below-link-contact"
               onMouseEnter={ () => { _showSublinkContact(true)} }
               onMouseLeave={ () => { _showSublinkContact(false)} }
             >
@@ -134,15 +134,15 @@ const Nav = () => {
           display:none;
         }
 
-        #link-about,
-        #link-contact {
+        .link-about,
+        .link-contact {
           position: relative;
         }
 
         /* ============  SUBLINKS (DESKTOP) ============ */
 
-        #below-link-about,
-        #below-link-contact {
+        .below-link-about,
+        .below-link-contact {
           width: 5em;
           background: black;
           position: absolute;
@@ -152,11 +152,11 @@ const Nav = () => {
           padding-bottom: 0.3em;     
         }
 
-        #below-link-about {
+        .below-link-about {
           display: ${ ( seeSubAbout || _seeSubAbout ) ? '' : 'none' };
         }
 
-        #below-link-contact {
+        .below-link-contact {
           display: ${ ( seeSubContact || _seeSubContact ) ? '' : 'none' };
         }
 
