@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import Link from "next/link";
 
-const mobile_breakpoint = '815px';
 const logo_mobile='../static/img/logo_mobile.png';
 const logo_desktop='../static/img/logo_desktop.png';
+
+import { mobile_breakpoint } from '../bucket/styles/mediaquery.js';
 
 const Nav = () => {
   const [seeSubAbout, showSublinkAbout] = useState(false);
