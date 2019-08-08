@@ -9,6 +9,15 @@ export const Layout = ({ children }) => (
       <link href="static/styles/css_reset.css" rel="stylesheet" />
     </Head>
     <Nav />
-    {children}
+    <div className="page">
+      {children}
+    </div>
+    <style jsx>{`
+        .page {
+            margin-left: 10px;
+            margin-right: 10px;
+            padding-top: 60px;
+        }    
+    `}</style>
   </div>
 );

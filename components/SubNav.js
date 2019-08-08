@@ -39,6 +39,7 @@ export const SubNav = ({ dataWindow, setDataWindow, units, setUnits }) => {
           z-index: 100;
           display: flex;
           justify-content: space-between;
+          margin-left: -10px;
         }
         .options {
           display: flex;

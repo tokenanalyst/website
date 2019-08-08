@@ -65,7 +65,7 @@ export const IoTable = ({ dataWindow, units }) => {
   }, units);
 
   return (
-    <div className="container">
+    <>
       <div className="information-header">
         <span>{dataWindow} Inflows/Outflows</span>
         <span className="information-icon">
@@ -90,9 +90,6 @@ export const IoTable = ({ dataWindow, units }) => {
       />
 
       <style jsx>{`
-        .container {
-          padding-top: 100px;
-        }
         .information-header {
           display: flex;
           justify-content: space-between;
@@ -109,6 +106,6 @@ export const IoTable = ({ dataWindow, units }) => {
           }
         }
       `}</style>
-    </div>
+    </>
   );
 };
