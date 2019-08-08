@@ -12,6 +12,20 @@ const Home = () => (
     </Head>
 
     <Nav/>
+	
+    <Link href="/exchange">
+      <a className="link">Go to exchange page</a>
+    </Link>
+
+
+    <style jsx>{`
+      .link {
+        margin: 20px;
+        color: green;
+        padding-top: 20px;
+      }
+    `}</style>
+
   </div>
 );
 
