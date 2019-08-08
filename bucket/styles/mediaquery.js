@@ -1,3 +1,3 @@
 export default {
-  mobile_breakpoint : '815px';
+  mobile_breakpoint : '815px'
 }
