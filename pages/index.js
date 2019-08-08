@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Head from "next/head";
-import TopBar from "../components/TopBar";
+import Nav from "../components/Nav";
 
 
 const Home = () => (
@@ -11,7 +11,7 @@ const Home = () => (
       <link href="static/styles/css_reset.css" rel="stylesheet" />
     </Head>
 
-    <TopBar/>
+    <Nav/>
   </div>
 );
 

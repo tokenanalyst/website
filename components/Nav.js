@@ -5,7 +5,7 @@ const mobile_breakpoint = '815px';
 const logo_mobile='../static/img/logo_mobile.png';
 const logo_desktop='../static/img/logo_desktop.png';
 
-const TopBar = () => {
+const Nav = () => {
   const [seeSubAbout, showSublinkAbout] = useState(false);
   const [_seeSubAbout, _showSublinkAbout] = useState(false);
   const [seeSubContact, showSublinkContact] = useState(false);
@@ -25,7 +25,7 @@ const TopBar = () => {
 
   return (
     <div>
-      <div className="topbar">
+      <div className="navbar">
         <img className="logo logo-desktop" src={logo_desktop} />
         <img className="logo logo-mobile" src={logo_mobile} />
 
@@ -87,7 +87,7 @@ const TopBar = () => {
       <style jsx>{`
         li { cursor: pointer; }
         
-        .topbar {
+        .navbar {
           display: flex;
           flex-direction: row;
           justify-content: space-between;
@@ -256,4 +256,4 @@ const TopBar = () => {
   );
 };
 
-export default TopBar;
+export default Nav;
