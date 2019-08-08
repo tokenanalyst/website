@@ -152,6 +152,7 @@ const Nav = () => {
           margin-bottom: 60px;
 
           background-color: black;
+          z-index: 101;
         }
 
         /* ============ LOGO ============ */
