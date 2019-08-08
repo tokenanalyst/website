@@ -3,7 +3,6 @@ import Link from "next/link";
 import Head from "next/head";
 import Nav from "../components/Nav";
 
-
 const Home = () => (
   <div>
     <Head>
@@ -11,7 +10,7 @@ const Home = () => (
       <link href="static/styles/css_reset.css" rel="stylesheet" />
     </Head>
 
-    <Nav/>
+    {/* <Nav/> */}
 	
     <Link href="/exchange">
       <a className="link">Go to exchange page</a>
