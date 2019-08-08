@@ -112,7 +112,7 @@ const TopBar = () => {
         }
 
 
-        /* ============  LINKS ============ */
+        /* ============  LINKS (DESKTOP) ============ */
 
         .links {
           color: #999;
@@ -139,7 +139,7 @@ const TopBar = () => {
           position: relative;
         }
 
-        /* ============  SUBLINKS ============ */
+        /* ============  SUBLINKS (DESKTOP) ============ */
 
         #below-link-about,
         #below-link-contact {
@@ -162,7 +162,7 @@ const TopBar = () => {
 
 
 
-        /* ============  HAMBURGER MENU ============ */
+        /* ============  HAMBURGER MENU (MOBILE) ============ */
 
 
         .hamburger_wrapper{
@@ -229,26 +229,6 @@ const TopBar = () => {
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         /* ============ switch to mobile ============ */
 
         @media only screen and (max-width: ${mobile_breakpoint} ) {
@@ -270,7 +250,6 @@ const TopBar = () => {
             display: inline;
           }
          }
-         
 
       `}</style>
     </div>
