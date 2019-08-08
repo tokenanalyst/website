@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import Link from "next/link";
-
-const logo_mobile='../static/img/logo_mobile.png';
-const logo_desktop='../static/img/logo_desktop.png';
-
 import { mobile_breakpoint } from '../bucket/styles/mediaquery.js';
+
+const LOGO_MOBILE = '../static/img/logo_mobile.png';
+const LOGO_DESKTOP = '../static/img/logo_desktop.png';
+
+const TRANSITION_DUR = '0.3s';
+const HAMBURGER_COLOR = '#efefef';
+const FULL_HAMBURGER_SIZE = '50px';
+const REDUCED_HAMBURGER_SIZE = '4px';
 
 const Nav = () => {
   const [seeSubAbout, showSublinkAbout] = useState(false);
@@ -18,17 +22,11 @@ const Nav = () => {
     openMenu (!menuIsOpen);
   }
 
-  const HAMBURGER_COLOR = '#efefef';
-
-  const TRANSITION_DUR = '0.3s';
-  const FULL_HAMBURGER_SIZE = '50px';
-  const REDUCED_HAMBURGER_SIZE = '4px';
-
   return (
     <div>
       <div className="navbar">
-        <img className="logo logo-desktop" src={logo_desktop} />
-        <img className="logo logo-mobile" src={logo_mobile} />
+        <img className="logo logo-desktop" src= {LOGO_DESKTOP} />
+        <img className="logo logo-mobile" src= {LOGO_MOBILE} />
 
         <ul className="links links-desktop">
           <li>Home</li>
@@ -40,7 +38,8 @@ const Nav = () => {
             className="link-about"
             onMouseEnter={ () => { showSublinkAbout(true)} }
             onMouseLeave={ () => { showSublinkAbout(false)} }
-            >About Us 
+          >
+            About Us 
 
             <div 
               className="below-link-about" 
@@ -58,7 +57,8 @@ const Nav = () => {
             className="link-contact"
             onMouseEnter={ () => { showSublinkContact(true)} }
             onMouseLeave={ () => { showSublinkContact(false)} }
-            >Contact
+          >
+            Contact
 
             <div 
               className="below-link-contact"
