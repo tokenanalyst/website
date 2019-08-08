@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { IoTable } from "../components/tables/IoTable";
+import { IoTable } from "../components/tables/IoTable/IoTable";
 import { SubNav } from "../components/SubNav";
 import { DATA_WINDOWS, UNITS } from "../constants/filters";
 
