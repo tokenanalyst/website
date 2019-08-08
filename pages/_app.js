@@ -12,9 +12,9 @@ class MyApp extends App {
     return (
       <Container>
         <Analytics>
-          {/* <Layout> */}
+          <Layout>
             <Component {...pageProps} />
-          {/* </Layout> */}
+          </Layout>
         </Analytics>
       </Container>
     )

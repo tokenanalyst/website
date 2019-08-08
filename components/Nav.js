@@ -2,17 +2,16 @@ import React, { useState } from "react";
 import Link from "next/link";
 //import { mobile_breakpoint } from '../bucket/styles/mediaquery.js';
 
-const LOGO_MOBILE = '../static/img/logo_mobile.png';
-const LOGO_DESKTOP = '../static/img/logo_desktop.png';
-const mobile_breakpoint = '815px';
+const LOGO_MOBILE = "../static/img/logo_mobile.png";
+const LOGO_DESKTOP = "../static/img/logo_desktop.png";
+const mobile_breakpoint = "815px";
 
-const TRANSITION_DUR = '0.3s';
-const HAMBURGER_COLOR = '#efefef';
-const FULL_HAMBURGER_SIZE = '50px';
-const REDUCED_HAMBURGER_SIZE = '4px';
+const TRANSITION_DUR = "0.3s";
+const HAMBURGER_COLOR = "#efefef";
+const FULL_HAMBURGER_SIZE = "50px";
+const REDUCED_HAMBURGER_SIZE = "4px";
 
 const Nav = () => {
-
   const [menuIsOpen, openMenu] = useState(false);
 
   const [seeDropdown, showNavDropdown] = useState({
@@ -22,16 +21,16 @@ const Nav = () => {
     navItemContact: false
   });
 
-
   const toggleOpenMenu = () => {
-    openMenu (!menuIsOpen);
-  }
+    openMenu(!menuIsOpen);
+  };
 
   return (
-    <div>
+    // <div>
+    <>
       <div className="navbar">
-        <img className="logo logo-desktop" src= {LOGO_DESKTOP} />
-        <img className="logo logo-mobile" src= {LOGO_MOBILE} />
+        <img className="logo logo-desktop" src={LOGO_DESKTOP} />
+        <img className="logo logo-mobile" src={LOGO_MOBILE} />
 
         <ul className="links links-desktop">
           <li>Home</li>
@@ -39,39 +38,35 @@ const Nav = () => {
           <li>Pricing</li>
           <li>API</li>
 
-          <li 
+          <li
             className="link-about"
-            onMouseEnter={ () => { 
-              showNavDropdown( seeDropdown => ({
+            onMouseEnter={() => {
+              showNavDropdown(seeDropdown => ({
                 ...seeDropdown,
                 navAbout: true
-              }))
+              }));
             }}
-
-            onMouseLeave={ () => { 
-              showNavDropdown( seeDropdown => ({
+            onMouseLeave={() => {
+              showNavDropdown(seeDropdown => ({
                 ...seeDropdown,
                 navAbout: false
-              }))
+              }));
             }}
           >
-            About Us 
-
-            <div 
-              className="below-link-about" 
-              
-              onMouseEnter= {() => {
-                showNavDropdown( seeDropdown => ({
+            About Us
+            <div
+              className="below-link-about"
+              onMouseEnter={() => {
+                showNavDropdown(seeDropdown => ({
                   ...seeDropdown,
                   navItemAbout: true
-                }))
+                }));
               }}
-
-              onMouseLeave= {() => {
-                showNavDropdown( seeDropdown => ({
+              onMouseLeave={() => {
+                showNavDropdown(seeDropdown => ({
                   ...seeDropdown,
                   navItemAbout: false
-                }))
+                }));
               }}
             >
               <ul className="links">
@@ -83,38 +78,33 @@ const Nav = () => {
 
           <li
             className="link-contact"
-
-            onMouseEnter={ () => { 
-              showNavDropdown( seeDropdown => ({
+            onMouseEnter={() => {
+              showNavDropdown(seeDropdown => ({
                 ...seeDropdown,
                 navContact: true
-              }))
+              }));
             }}
-
-            onMouseLeave={ () => { 
-              showNavDropdown( seeDropdown => ({
+            onMouseLeave={() => {
+              showNavDropdown(seeDropdown => ({
                 ...seeDropdown,
                 navContact: false
-              }))
+              }));
             }}
           >
             Contact
-
-            <div 
+            <div
               className="below-link-contact"
-
-              onMouseEnter= {() => {
-                showNavDropdown( seeDropdown => ({
+              onMouseEnter={() => {
+                showNavDropdown(seeDropdown => ({
                   ...seeDropdown,
                   navItemContact: true
-                }))
+                }));
               }}
-
-              onMouseLeave= {() => {
-                showNavDropdown( seeDropdown => ({
+              onMouseLeave={() => {
+                showNavDropdown(seeDropdown => ({
                   ...seeDropdown,
                   navItemContact: false
-                }))
+                }));
               }}
             >
               <ul className="links">
@@ -126,20 +116,21 @@ const Nav = () => {
           </li>
         </ul>
 
-        <div 
-          onClick={ toggleOpenMenu }
-          className={ menuIsOpen ? 
-            "hamburger_wrapper menu_open":
-            "hamburger_wrapper" 
+        <div
+          onClick={toggleOpenMenu}
+          className={
+            menuIsOpen ? "hamburger_wrapper menu_open" : "hamburger_wrapper"
           }
         >
-          <div className="hamburger"></div>
+          <div className="hamburger" />
         </div>
       </div>
 
       <style jsx>{`
-        li { cursor: pointer; }
-        
+        li {
+          cursor: pointer;
+        }
+
         .navbar {
           display: flex;
           flex-direction: row;
@@ -165,7 +156,6 @@ const Nav = () => {
           display: none;
         }
 
-
         /* ============  LINKS (DESKTOP) ============ */
 
         .links {
@@ -173,7 +163,7 @@ const Nav = () => {
         }
 
         .links > li {
-          font-family: DIN Alternate Medium,sans-serif;
+          font-family: DIN Alternate Medium, sans-serif;
           font-weight: 400;
           font-size: 1rem;
           line-height: 1.6;
@@ -185,7 +175,7 @@ const Nav = () => {
         }
 
         .links-mobile {
-          display:none;
+          display: none;
         }
 
         .link-about,
@@ -200,26 +190,27 @@ const Nav = () => {
           width: 5em;
           background: black;
           position: absolute;
-          top: 1.6em;   
+          top: 1.6em;
           border-top: 1px solid green;
-          padding-top: 0.5em;     
-          padding-bottom: 0.3em;     
+          padding-top: 0.5em;
+          padding-bottom: 0.3em;
         }
 
         .below-link-about {
-          display: ${ ( seeDropdown.navAbout || seeDropdown.navItemAbout ) ? '' : 'none' };
+          display: ${seeDropdown.navAbout || seeDropdown.navItemAbout
+            ? ""
+            : "none"};
         }
 
         .below-link-contact {
-          display: ${ ( seeDropdown.navContact || seeDropdown.navItemContact ) ? '' : 'none' };
+          display: ${seeDropdown.navContact || seeDropdown.navItemContact
+            ? ""
+            : "none"};
         }
-
-
 
         /* ============  HAMBURGER MENU (MOBILE) ============ */
 
-
-        .hamburger_wrapper{
+        .hamburger_wrapper {
           width: ${FULL_HAMBURGER_SIZE};
           height: ${FULL_HAMBURGER_SIZE};
           display: none;
@@ -231,44 +222,40 @@ const Nav = () => {
           cursor: pointer;
         }
 
-
         .hamburger {
           position: absolute;
           top: 30px;
           width: ${FULL_HAMBURGER_SIZE};
           height: ${REDUCED_HAMBURGER_SIZE};
-          
+
           transition-duration: ${TRANSITION_DUR};
           background-color: ${HAMBURGER_COLOR};
         }
-            
 
         .hamburger:before {
           position: absolute;
           top: -20px;
           width: ${FULL_HAMBURGER_SIZE};
           height: ${REDUCED_HAMBURGER_SIZE};
-          
+
           transition-duration: ${TRANSITION_DUR};
           background-color: ${HAMBURGER_COLOR};
 
           content: "";
         }
-
 
         .hamburger:after {
           position: absolute;
           top: 20px;
           width: ${FULL_HAMBURGER_SIZE};
           height: ${REDUCED_HAMBURGER_SIZE};
-          
+
           transition-duration: ${TRANSITION_DUR};
           background-color: ${HAMBURGER_COLOR};
-          
+
           content: "";
         }
 
-        
         .menu_open .hamburger {
           transition-duration: ${TRANSITION_DUR};
           background: transparent;
@@ -282,10 +269,9 @@ const Nav = () => {
           transform: rotateZ(-45deg) scaleX(1.25) translate(12px, -12px);
         }
 
-
         /* ============ switch to mobile ============ */
 
-        @media only screen and (max-width: ${mobile_breakpoint} ) {
+        @media only screen and (max-width: ${mobile_breakpoint}) {
           .logo-desktop,
           .links-desktop {
             display: none;
@@ -303,10 +289,9 @@ const Nav = () => {
           .hamburger_wrapper {
             display: inline;
           }
-         }
-
+        }
       `}</style>
-    </div>
+    </>
   );
 };
 

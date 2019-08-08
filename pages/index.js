@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import Head from "next/head";
-import Nav from "../components/Nav";
 
 const Home = () => (
   <div>
@@ -10,12 +9,9 @@ const Home = () => (
       <link href="static/styles/css_reset.css" rel="stylesheet" />
     </Head>
 
-    {/* <Nav/> */}
-	
     <Link href="/exchange">
       <a className="link">Go to exchange page</a>
     </Link>
-
 
     <style jsx>{`
       .link {
@@ -24,7 +20,6 @@ const Home = () => (
         padding-top: 20px;
       }
     `}</style>
-
   </div>
 );
 
