@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import { IoTable } from "../components/tables/IoTable";
+import Nav from "../components/Nav";
 import { SubNav } from "../components/SubNav";
 import { DATA_WINDOWS, UNITS } from "../constants/filters";
 
@@ -10,6 +11,7 @@ const Exchange = () => {
 
   return (
     <>
+      <Nav/>
       <SubNav
         dataWindow={dataWindow}
         setDataWindow={setDataWindow}

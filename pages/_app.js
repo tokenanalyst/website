@@ -1,6 +1,5 @@
 import React from 'react'
 import App, { Container } from 'next/app'
-import ReactGA from 'react-ga';
 
 import { Layout } from '../components/Layout';
 import { Analytics } from '../components/Analytics';
@@ -13,9 +12,9 @@ class MyApp extends App {
     return (
       <Container>
         <Analytics>
-          <Layout>
+          {/* <Layout> */}
             <Component {...pageProps} />
-          </Layout>
+          {/* </Layout> */}
         </Analytics>
       </Container>
     )

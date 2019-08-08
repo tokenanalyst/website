@@ -32,7 +32,7 @@ export const SubNav = ({ dataWindow, setDataWindow, units, setUnits }) => {
           padding: 10px;
           border-bottom: 1px solid rgb(203, 203, 203);
           position: fixed;
-          top: 0;
+          top: 75px;
           width: 100%;
           height: 30px;
           background-color: #ffffff;
