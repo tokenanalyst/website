@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import Link from "next/link";
-import { mobile_breakpoint } from '../bucket/styles/mediaquery.js';
+//import { mobile_breakpoint } from '../bucket/styles/mediaquery.js';
 
 const LOGO_MOBILE = '../static/img/logo_mobile.png';
 const LOGO_DESKTOP = '../static/img/logo_desktop.png';
+const mobile_breakpoint = '815px';
 
 const TRANSITION_DUR = '0.3s';
 const HAMBURGER_COLOR = '#efefef';
