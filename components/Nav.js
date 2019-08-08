@@ -12,12 +12,16 @@ const FULL_HAMBURGER_SIZE = '50px';
 const REDUCED_HAMBURGER_SIZE = '4px';
 
 const Nav = () => {
-  const [seeSubAbout, showSublinkAbout] = useState(false);
-  const [_seeSubAbout, _showSublinkAbout] = useState(false);
-  const [seeSubContact, showSublinkContact] = useState(false);
-  const [_seeSubContact, _showSublinkContact] = useState(false);
 
   const [menuIsOpen, openMenu] = useState(false);
+
+  const [seeDropdown, showNavDropdown] = useState({
+    navAbout: false,
+    navItemAbout: false,
+    navContact: false,
+    navItemContact: false
+  });
+
 
   const toggleOpenMenu = () => {
     openMenu (!menuIsOpen);
@@ -37,15 +41,38 @@ const Nav = () => {
 
           <li 
             className="link-about"
-            onMouseEnter={ () => { showSublinkAbout(true)} }
-            onMouseLeave={ () => { showSublinkAbout(false)} }
+            onMouseEnter={ () => { 
+              showNavDropdown( seeDropdown => ({
+                ...seeDropdown,
+                navAbout: true
+              }))
+            }}
+
+            onMouseLeave={ () => { 
+              showNavDropdown( seeDropdown => ({
+                ...seeDropdown,
+                navAbout: false
+              }))
+            }}
           >
             About Us 
 
             <div 
               className="below-link-about" 
-              onMouseEnter={ () => { _showSublinkAbout(true)} }
-              onMouseLeave={ () => { _showSublinkAbout(false)} }
+              
+              onMouseEnter= {() => {
+                showNavDropdown( seeDropdown => ({
+                  ...seeDropdown,
+                  navItemAbout: true
+                }))
+              }}
+
+              onMouseLeave= {() => {
+                showNavDropdown( seeDropdown => ({
+                  ...seeDropdown,
+                  navItemAbout: false
+                }))
+              }}
             >
               <ul className="links">
                 <li>About</li>
@@ -56,15 +83,39 @@ const Nav = () => {
 
           <li
             className="link-contact"
-            onMouseEnter={ () => { showSublinkContact(true)} }
-            onMouseLeave={ () => { showSublinkContact(false)} }
+
+            onMouseEnter={ () => { 
+              showNavDropdown( seeDropdown => ({
+                ...seeDropdown,
+                navContact: true
+              }))
+            }}
+
+            onMouseLeave={ () => { 
+              showNavDropdown( seeDropdown => ({
+                ...seeDropdown,
+                navContact: false
+              }))
+            }}
           >
             Contact
 
             <div 
               className="below-link-contact"
-              onMouseEnter={ () => { _showSublinkContact(true)} }
-              onMouseLeave={ () => { _showSublinkContact(false)} }
+
+              onMouseEnter= {() => {
+                showNavDropdown( seeDropdown => ({
+                  ...seeDropdown,
+                  navItemContact: true
+                }))
+              }}
+
+              onMouseLeave= {() => {
+                showNavDropdown( seeDropdown => ({
+                  ...seeDropdown,
+                  navItemContact: false
+                }))
+              }}
             >
               <ul className="links">
                 <li>Follow Us</li>
@@ -155,11 +206,11 @@ const Nav = () => {
         }
 
         .below-link-about {
-          display: ${ ( seeSubAbout || _seeSubAbout ) ? '' : 'none' };
+          display: ${ ( seeDropdown.navAbout || seeDropdown.navItemAbout ) ? '' : 'none' };
         }
 
         .below-link-contact {
-          display: ${ ( seeSubContact || _seeSubContact ) ? '' : 'none' };
+          display: ${ ( seeDropdown.navContact || seeDropdown.navItemContact ) ? '' : 'none' };
         }
 
 
