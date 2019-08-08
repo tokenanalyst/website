@@ -91,8 +91,7 @@ export const IoTable = ({ dataWindow, units }) => {
 
       <style jsx>{`
         .container {
-          margin: 20px;
-          padding-top: 30px;
+          padding-top: 100px;
         }
         .information-header {
           display: flex;
