@@ -19,8 +19,8 @@ export const TABLE_DATA = {
     exchange: "Exchange",
     token: "Token",
     inflow: "Inflow",
-    inflowChange: "Inflow Change",
+    inflowChange: "Change",
     outflow: "Outflow",
-    outflowChange: "Outflow Change"
+    outflowChange: "Change"
   }
 };
