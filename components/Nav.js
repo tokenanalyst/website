@@ -66,7 +66,7 @@ const Nav = () => {
         >
           About Us
           <div
-            className="below-link-about"
+            className="navitem below-link-about"
             onMouseEnter={() => {
               showNavDropdown(seeDropdown => ({
                 ...seeDropdown,
@@ -109,7 +109,7 @@ const Nav = () => {
         >
           Contact
           <div
-            className="below-link-contact"
+            className="navitem below-link-contact"
             onMouseEnter={() => {
               showNavDropdown(seeDropdown => ({
                 ...seeDropdown,
@@ -196,7 +196,7 @@ const Nav = () => {
           color: #999;
         }
 
-        .links > li,
+        .links li,
         .links a {
           font-family: DIN Alternate Medium, sans-serif;
           font-weight: 400;
@@ -204,12 +204,15 @@ const Nav = () => {
           line-height: 1.6;
           color: #999;
           text-decoration: none;
+          display: inline-block;
+          margin-right: 2em;   
+          
+
         }
 
-        .links-desktop > li,
-        .links-desktop > a {
-          display: inline-block;
-          margin-right: 2em;
+        .links li:hover,
+        .links a:hover {
+          color: #fff;
         }
 
         .links-mobile {
@@ -225,14 +228,18 @@ const Nav = () => {
 
         /* ============  SUBLINKS (DESKTOP) ============ */
 
-        .below-link-about,
-        .below-link-contact {
-          width: 5em;
-          background: black;
+        .navitem {
           position: absolute;
+          width: 8em;
           top: 1.6em;
-          padding-top: 0.5em;
+
+          padding-top: 1em;
           padding-bottom: 0.3em;
+          padding-left: 1em;
+          padding-right: 1em;
+          border-radius: 4px;
+
+          background: black;
         }
 
         .below-link-about {
