@@ -41,7 +41,7 @@ export const TokenSnapshot = ({
             <div className="sparkline-row">
               <span className="sub-header">{flow.label}</span>
               <span className="sparkline">
-                <Sparklines data={[4, 6, 2, 9, 3, 7, 6, 3]}>
+                <Sparklines data={flow.sparkline}>
                   <SparklinesLine
                     style={{ strokeWidth: 6, fill: "none", width: 200 }}
                     color={

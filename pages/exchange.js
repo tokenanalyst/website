@@ -7,7 +7,7 @@ import { underSubNav } from "../bucket/styles/styles";
 import { TokenSnapshotWidget } from "../components/TokenSnapshotWidget";
 
 const Exchange = () => {
-  const [dataWindow, setDataWindow] = useState(DATA_WINDOWS[0]);
+  const [dataWindow, setDataWindow] = useState(DATA_WINDOWS[2]);
   const [units, setUnits] = useState(UNITS[0]);
 
   return (

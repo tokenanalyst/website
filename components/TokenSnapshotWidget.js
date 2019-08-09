@@ -3,6 +3,8 @@ import axios from "axios";
 
 import { TokenSnapshot } from "./TokenSnapshot";
 
+import { DATA_WINDOWS } from "../constants/filters";
+
 export const TokenSnapshotWidget = ({ dataWindow, units }) => {
   const [data, setData] = useState(null);
 
@@ -23,34 +25,45 @@ export const TokenSnapshotWidget = ({ dataWindow, units }) => {
       <div className="container">
         {data &&
           Object.keys(data).map(token => (
-            <div className="token-snapshot">
-              <TokenSnapshot
-                token={data[token].token.token}
-                tokenValue={data[token].token.price}
-                tokenValueChange={data[token].token.price_pct_change}
-                key={token}
-                flows={[
-                  {
-                    label: "Inflow",
-                    change:
-                      data[token].values[`data-window-${dataWindow}`]
-                        .inflow_usd_sum_pct_change,
-                    value:
-                      data[token].values[`data-window-${dataWindow}`]
-                        .inflow_usd_sum
-                  },
-                  {
-                    label: "Outflow",
-                    change:
-                      data[token].values[`data-window-${dataWindow}`]
-                        .outflow_usd_sum_pct_change,
-                    value:
-                      data[token].values[`data-window-${dataWindow}`]
-                        .outflow_usd_sum
-                  }
-                ]}
-              />
-            </div>
+            <>
+              <div className="token-snapshot">
+                <TokenSnapshot
+                  token={data[token].token.token}
+                  tokenValue={data[token].token.price}
+                  tokenValueChange={data[token].token.price_pct_change}
+                  key={token}
+                  flows={[
+                    {
+                      label: "Inflow",
+                      change:
+                        data[token].values[`data-window-${dataWindow}`]
+                          .inflow_usd_sum_pct_change,
+                      value:
+                        data[token].values[`data-window-${dataWindow}`]
+                          .inflow_usd_sum,
+                      sparkline: project(
+                        dataWindow,
+                        data[token].sparklines.inflow
+                      )
+                    },
+                    {
+                      label: "Outflow",
+                      change:
+                        data[token].values[`data-window-${dataWindow}`]
+                          .outflow_usd_sum_pct_change,
+                      value:
+                        data[token].values[`data-window-${dataWindow}`]
+                          .outflow_usd_sum,
+                      sparkline: project(
+                        dataWindow,
+                        data[token].sparklines.inflow
+                      )
+                    }
+                  ]}
+                />
+              </div>
+              <Separator />
+            </>
           ))}
       </div>
       <style jsx>{`
@@ -79,11 +92,25 @@ const Separator = () => (
     <style jsx>{`
       .separator {
         border: solid 0.5px rgba(151, 151, 151, 0.15);
-        margin-left: 30px;
-        margin-right: 30px;
+        margin-left: 20px;
+        margin-right: 15px;
         margin-top: 10px;
         margin-bottom: 10px;
+      }
+      @media only screen and (max-width: 800px) {
+        .separator {
+          visibility: hidden;
+        }
       }
     `}</style>
   </div>
 );
+
+const project = (dataWindow, sparkline) => {
+  const length = sparkline.length;
+  return {
+    [DATA_WINDOWS[0]]: sparkline.slice(length - 2, length),
+    [DATA_WINDOWS[1]]: sparkline.slice(length - 7, length),
+    [DATA_WINDOWS[2]]: sparkline
+  }[dataWindow];
+};
