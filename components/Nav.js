@@ -28,8 +28,22 @@ const Nav = () => {
 
   return (
     <div className="navbar">
-      <img className="logo logo-desktop" src={LOGO_DESKTOP} />
-      <img className="logo logo-mobile" src={LOGO_MOBILE} />
+
+      <Link href="/" >
+        <img 
+          className="logo logo-desktop" 
+          src={LOGO_DESKTOP} 
+          onClick={() => Router.push('/index')}  
+        />
+      </Link>
+
+      <Link href="/" >
+        <img 
+          className="logo logo-mobile" 
+          src={LOGO_MOBILE} 
+          onClick={() => Router.push('/index')}  
+        />
+      </Link>
 
       <ul className="links links-desktop">
 
@@ -209,6 +223,7 @@ const Nav = () => {
 
         .logo {
           margin-left: 16px;
+          cursor: pointer;
         }
 
         .logo-desktop {
