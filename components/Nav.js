@@ -163,11 +163,19 @@ const Nav = () => {
         /* ============ LOGO ============ */
 
         .logo {
-          height: 60px;
+          margin-left: 16px;
+        }
+
+        .logo-desktop {
+          width: 180px;
+          height: 36px;
         }
 
         .logo-mobile {
           display: none;
+
+          width: 50px;
+          height: 50px;
         }
 
         /* ============  LINKS (DESKTOP) ============ */
@@ -209,7 +217,6 @@ const Nav = () => {
           background: black;
           position: absolute;
           top: 1.6em;
-          border-top: 1px solid green;
           padding-top: 0.5em;
           padding-bottom: 0.3em;
         }
@@ -297,7 +304,6 @@ const Nav = () => {
 
           .logo-mobile {
             display: inline;
-            height: 93%;
           }
 
           .links-mobile {
