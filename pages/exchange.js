@@ -19,7 +19,7 @@ const Exchange = () => {
         setUnits={setUnits}
       />
       <div className="under-sub-nav">
-        <TokenSnapshotWidget />
+        <TokenSnapshotWidget dataWindow={dataWindow} units={units} />
         <IoTable dataWindow={dataWindow} units={units} />
       </div>
       <style jsx>{underSubNav}</style>

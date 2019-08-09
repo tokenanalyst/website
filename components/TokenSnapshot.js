@@ -5,8 +5,7 @@ export const TokenSnapshot = ({
   token,
   tokenValue,
   tokenValueChange,
-  inflowValue,
-  inflowChange
+  flows
 }) => (
   <>
     <div className="container">
@@ -14,34 +13,78 @@ export const TokenSnapshot = ({
       <div className="top-row">
         <span className="token-value">${tokenValue}</span>
         <span>
-          <img src="/static/svg/down.svg" />
-          <span className="token-value-change">{tokenValueChange}%</span>
+          <img
+            src={
+              tokenValueChange < 0
+                ? "/static/svg/down.svg"
+                : tokenValueChange > 0
+                ? "/static/svg/up.svg"
+                : "/static/svg/nochange.svg"
+            }
+          />
+          <span
+            className={
+              tokenValueChange > 0
+                ? "change-positive"
+                : tokenValueChange < 0
+                ? "change-negative"
+                : "change-neutral"
+            }
+          >
+            {tokenValueChange}%
+          </span>
         </span>
       </div>
-      <div>
+      {flows.map(flow => (
         <div className="section">
-          <div className="sparkline-row">
-            <span className="sub-header">Inflow</span>
-            <span className="sparkline">
-              <Sparklines data={[4, 6, 2, 9, 3, 7, 6, 3]}>
-                <SparklinesLine
-                  style={{ strokeWidth: 6, fill: "none", width: 200 }}
-                  // color={getIndicator(inflowChange).hex}
+          <>
+            <div className="sparkline-row">
+              <span className="sub-header">{flow.label}</span>
+              <span className="sparkline">
+                <Sparklines data={[4, 6, 2, 9, 3, 7, 6, 3]}>
+                  <SparklinesLine
+                    style={{ strokeWidth: 6, fill: "none", width: 200 }}
+                    color={
+                      flow.change > 0
+                        ? "#3fcdab"
+                        : flow.change < 0
+                        ? "#fa4e96"
+                        : "#0fd491"
+                    }
+                  />
+                </Sparklines>
+              </span>
+            </div>
+          </>
+          <>
+            <div className="row">
+              <span>
+                <img
+                  src={
+                    flow.change < 0
+                      ? "/static/svg/down.svg"
+                      : flow.change > 0
+                      ? "/static/svg/up.svg"
+                      : "/static/svg/nochange.svg"
+                  }
                 />
-              </Sparklines>
-            </span>
-          </div>
+                <span
+                  className={
+                    flow.change > 0
+                      ? "change-positive"
+                      : flow.change < 0
+                      ? "change-negative"
+                      : "change-neutral"
+                  }
+                >
+                  {flow.change}%
+                </span>
+              </span>
+              <span className="token-flow-value">${flow.value}</span>
+            </div>
+          </>
         </div>
-        <div className="section">
-          <div className="row">
-            <span>
-              <img src="/static/svg/down.svg" />
-              <span className="token-flow-change">{inflowChange}%</span>
-            </span>
-            <span className="token-flow-value">${inflowValue}</span>
-          </div>
-        </div>
-      </div>
+      ))}
     </div>
     <style jsx>{`
       .container {
@@ -51,27 +94,38 @@ export const TokenSnapshot = ({
       .header {
         font-size: 32px;
         font-weight: bold;
+        padding-bottom: 30px;
       }
       .top-row {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        align-items: center;
+        border-bottom: solid 1px rgba(151, 151, 151, 0.15);
+        padding-bottom: 10px;
       }
       .token-value {
-        font-size: 24px;
+        font-size: 20px;
         opacity: 0.4;
       }
-      .token-value-change {
+      .change-negative {
         color: #fa4e96;
       }
+      .change-positive {
+        color: #3fcdab;
+      }
+      .change-neutral {
+        color: #0fd491;
+      }
       .section {
-        padding-top: 10px;
-        padding-bottom: 10px;
+        padding-top: 20px;
       }
       .row {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        border-bottom: solid 1px rgba(151, 151, 151, 0.15);
+        padding-bottom: 20px;
       }
       .sub-header {
         font-size: 18px;
