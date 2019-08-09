@@ -1,3 +1,7 @@
-import css from 'styled-jsx/css'
+import css from "styled-jsx/css";
 
-export const underSubNav = css`.under-sub-nav { padding-top: 40px }`
+export const underSubNav = css`
+  .under-sub-nav {
+    padding-top: 60px;
+  }
+`;
