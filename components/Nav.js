@@ -13,20 +13,17 @@ const FULL_HAMBURGER_SIZE = "24px";
 const REDUCED_HAMBURGER_SIZE = "3px";
 
 const Nav = () => {
-  const [menuIsOpen, openMenu] = useState(false);
+  const [mobileMenuOpen, showMobileMenu] = useState(false);
 
   const [seeDropdown, showNavDropdown] = useState({
     navAbout: false,
     navItemAbout: false,
     navContact: false,
     navItemContact: false,
-
-    navMobile: false,
-    navItemMobile: false,
   });
 
-  const toggleOpenMenu = () => {
-    openMenu(!menuIsOpen);
+  const toggleMobileMenu = () => {
+    showMobileMenu(!mobileMenuOpen);
   };
 
   return (
@@ -144,43 +141,16 @@ const Nav = () => {
       </ul>
 
       <div
-        onClick={toggleOpenMenu}
+        onClick={toggleMobileMenu}
         className={
-          menuIsOpen ? 
+          mobileMenuOpen ? 
             "links links-mobile menu_open" : 
             "links links-mobile"
         }
-
-        onMouseEnter={() => {
-          showNavDropdown(seeDropdown => ({
-            ...seeDropdown,
-            navMobile: true
-          }));
-        }}
-        onMouseLeave={() => {
-          showNavDropdown(seeDropdown => ({
-            ...seeDropdown,
-            navMobile: false
-          }));
-        }}
       >
         <div className="hamburger" />
 
-        <div
-            className="navitem below-link-hamburger"
-            onMouseEnter={() => {
-              showNavDropdown(seeDropdown => ({
-                ...seeDropdown,
-                navItemMobile: true
-              }));
-            }}
-            onMouseLeave={() => {
-              showNavDropdown(seeDropdown => ({
-                ...seeDropdown,
-                navItemMobile: false
-              }));
-            }}
-          >
+        <div className="navitem below-link-hamburger">
             <ul className="links">
 
               <Link href="/" >
@@ -400,7 +370,7 @@ const Nav = () => {
         .below-link-hamburger {
           left: -5em;
 
-          display: ${seeDropdown.navMobile || seeDropdown.navItemMobile
+          display: ${mobileMenuOpen
             ? ""
             : "none"};
         }
