@@ -26,105 +26,103 @@ const Nav = () => {
   };
 
   return (
-    // <div>
-    <>
-      <div className="navbar">
-        <img className="logo logo-desktop" src={LOGO_DESKTOP} />
-        <img className="logo logo-mobile" src={LOGO_MOBILE} />
+    <div className="navbar">
+      <img className="logo logo-desktop" src={LOGO_DESKTOP} />
+      <img className="logo logo-mobile" src={LOGO_MOBILE} />
 
-        <ul className="links links-desktop">
-          <li>Home</li>
-          <li>Research</li>
-          <li>Pricing</li>
-          <li>API</li>
+      <ul className="links links-desktop">
+        <li>Home</li>
+        <li>Research</li>
+        <li>Pricing</li>
+        <li>API</li>
 
-          <li
-            className="link-about"
-            onMouseEnter={() => {
-              showNavDropdown(seeDropdown => ({
-                ...seeDropdown,
-                navAbout: true
-              }));
-            }}
-            onMouseLeave={() => {
-              showNavDropdown(seeDropdown => ({
-                ...seeDropdown,
-                navAbout: false
-              }));
-            }}
-          >
-            About Us
-            <div
-              className="below-link-about"
-              onMouseEnter={() => {
-                showNavDropdown(seeDropdown => ({
-                  ...seeDropdown,
-                  navItemAbout: true
-                }));
-              }}
-              onMouseLeave={() => {
-                showNavDropdown(seeDropdown => ({
-                  ...seeDropdown,
-                  navItemAbout: false
-                }));
-              }}
-            >
-              <ul className="links">
-                <li>About</li>
-                <li>FAQ</li>
-              </ul>
-            </div>
-          </li>
-
-          <li
-            className="link-contact"
-            onMouseEnter={() => {
-              showNavDropdown(seeDropdown => ({
-                ...seeDropdown,
-                navContact: true
-              }));
-            }}
-            onMouseLeave={() => {
-              showNavDropdown(seeDropdown => ({
-                ...seeDropdown,
-                navContact: false
-              }));
-            }}
-          >
-            Contact
-            <div
-              className="below-link-contact"
-              onMouseEnter={() => {
-                showNavDropdown(seeDropdown => ({
-                  ...seeDropdown,
-                  navItemContact: true
-                }));
-              }}
-              onMouseLeave={() => {
-                showNavDropdown(seeDropdown => ({
-                  ...seeDropdown,
-                  navItemContact: false
-                }));
-              }}
-            >
-              <ul className="links">
-                <li>Follow Us</li>
-                <li>Telegram</li>
-                <li>Contact</li>
-              </ul>
-            </div>
-          </li>
-        </ul>
-
-        <div
-          onClick={toggleOpenMenu}
-          className={
-            menuIsOpen ? "hamburger_wrapper menu_open" : "hamburger_wrapper"
-          }
+        <li
+          className="link-about"
+          onMouseEnter={() => {
+            showNavDropdown(seeDropdown => ({
+              ...seeDropdown,
+              navAbout: true
+            }));
+          }}
+          onMouseLeave={() => {
+            showNavDropdown(seeDropdown => ({
+              ...seeDropdown,
+              navAbout: false
+            }));
+          }}
         >
-          <div className="hamburger" />
-        </div>
+          About Us
+          <div
+            className="below-link-about"
+            onMouseEnter={() => {
+              showNavDropdown(seeDropdown => ({
+                ...seeDropdown,
+                navItemAbout: true
+              }));
+            }}
+            onMouseLeave={() => {
+              showNavDropdown(seeDropdown => ({
+                ...seeDropdown,
+                navItemAbout: false
+              }));
+            }}
+          >
+            <ul className="links">
+              <li>About</li>
+              <li>FAQ</li>
+            </ul>
+          </div>
+        </li>
+
+        <li
+          className="link-contact"
+          onMouseEnter={() => {
+            showNavDropdown(seeDropdown => ({
+              ...seeDropdown,
+              navContact: true
+            }));
+          }}
+          onMouseLeave={() => {
+            showNavDropdown(seeDropdown => ({
+              ...seeDropdown,
+              navContact: false
+            }));
+          }}
+        >
+          Contact
+          <div
+            className="below-link-contact"
+            onMouseEnter={() => {
+              showNavDropdown(seeDropdown => ({
+                ...seeDropdown,
+                navItemContact: true
+              }));
+            }}
+            onMouseLeave={() => {
+              showNavDropdown(seeDropdown => ({
+                ...seeDropdown,
+                navItemContact: false
+              }));
+            }}
+          >
+            <ul className="links">
+              <li>Follow Us</li>
+              <li>Telegram</li>
+              <li>Contact</li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+
+      <div
+        onClick={toggleOpenMenu}
+        className={
+          menuIsOpen ? "hamburger_wrapper menu_open" : "hamburger_wrapper"
+        }
+      >
+        <div className="hamburger" />
       </div>
+    
 
       <style jsx>{`
         li {
@@ -291,7 +289,7 @@ const Nav = () => {
           }
         }
       `}</style>
-    </>
+    </div>
   );
 };
 
