@@ -303,6 +303,10 @@ const Nav = () => {
           background: black;
         }
 
+        .navitem > .links > a {
+          width: 100%;
+        }
+
         .below-link-about {
           display: ${seeDropdown.navAbout || seeDropdown.navItemAbout
             ? ""
