@@ -32,13 +32,22 @@ const Nav = () => {
       <img className="logo logo-mobile" src={LOGO_MOBILE} />
 
       <ul className="links links-desktop">
-        <li>Home</li>
-        <li>Research</li>
-        <li>Pricing</li>
-        <Link href="/pricing" >
-          <a onClick={() => Router.push('/pricing')} >Go to pricing page</a>
+
+        <Link href="/" >
+          <a onClick={() => Router.push('/index')} >Home</a>
         </Link>
-        <li>API</li>
+
+        <Link href="/research" >
+          <a onClick={() => Router.push('/research')} >Research</a>
+        </Link>
+
+        <Link href="/pricing" >
+          <a onClick={() => Router.push('/pricing')} >Pricing</a>
+        </Link>
+
+        <Link href="/api" >
+          <a onClick={() => Router.push('/api')} >API</a>
+        </Link>
 
         <li
           className="link-about"
@@ -72,7 +81,10 @@ const Nav = () => {
             }}
           >
             <ul className="links">
-              <li>About</li>
+              <Link href="/about" >
+                <a onClick={() => Router.push('/about')} >About Us</a>
+              </Link>
+
               <li>FAQ</li>
             </ul>
           </div>
