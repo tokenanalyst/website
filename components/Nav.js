@@ -7,7 +7,7 @@ const LOGO_MOBILE = "../static/img/logo_mobile.png";
 const LOGO_DESKTOP = "../static/img/logo_desktop.png";
 const mobile_breakpoint = "815px";
 
-const TRANSITION_DUR = "0.3s";
+const TRANSITION_DUR = "0.2s";
 const HAMBURGER_COLOR = "#efefef";
 const FULL_HAMBURGER_SIZE = "24px";
 const REDUCED_HAMBURGER_SIZE = "3px";
@@ -296,11 +296,11 @@ const Nav = () => {
         }
 
         .menu_open .hamburger:before {
-          transform: rotateZ(45deg) scaleX(1.25) translate(13px, 13px);
+          transform: rotateZ(45deg) scaleX(1.25) translate(3px, 10px);
         }
-
+        
         .menu_open .hamburger:after {
-          transform: rotateZ(-45deg) scaleX(1.25) translate(12px, -12px);
+          transform: rotateZ(-45deg) scaleX(1.25) translate(3px, -10px);
         }
 
         /* ============ switch to mobile ============ */
