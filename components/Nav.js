@@ -85,7 +85,9 @@ const Nav = () => {
                 <a onClick={() => Router.push('/about')} >About Us</a>
               </Link>
 
-              <li>FAQ</li>
+              <Link href="/about" >
+                <a onClick={() => Router.push('/about')} >FAQ</a>
+              </Link>
             </ul>
           </div>
         </li>
@@ -122,9 +124,17 @@ const Nav = () => {
             }}
           >
             <ul className="links">
-              <li>Follow Us</li>
-              <li>Telegram</li>
-              <li>Contact</li>
+              <Link href="/about" >
+                <a onClick={() => Router.push('/about')} >Follow Us</a>
+              </Link>
+
+              <Link href="/about" >
+                <a onClick={() => Router.push('/about')} >Telegram</a>
+              </Link>
+
+              <Link href="/about" >
+                <a onClick={() => Router.push('/about')} >Contact</a>
+              </Link>
             </ul>
           </div>
         </li>
