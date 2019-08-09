@@ -19,7 +19,10 @@ const Nav = () => {
     navAbout: false,
     navItemAbout: false,
     navContact: false,
-    navItemContact: false
+    navItemContact: false,
+
+    navMobile: false,
+    navItemMobile: false,
   });
 
   const toggleOpenMenu = () => {
@@ -147,8 +150,68 @@ const Nav = () => {
             "links links-mobile menu_open" : 
             "links links-mobile"
         }
+
+        onMouseEnter={() => {
+          showNavDropdown(seeDropdown => ({
+            ...seeDropdown,
+            navMobile: true
+          }));
+        }}
+        onMouseLeave={() => {
+          showNavDropdown(seeDropdown => ({
+            ...seeDropdown,
+            navMobile: false
+          }));
+        }}
       >
         <div className="hamburger" />
+
+        <div
+            className="navitem below-link-hamburger"
+            onMouseEnter={() => {
+              showNavDropdown(seeDropdown => ({
+                ...seeDropdown,
+                navItemMobile: true
+              }));
+            }}
+            onMouseLeave={() => {
+              showNavDropdown(seeDropdown => ({
+                ...seeDropdown,
+                navItemMobile: false
+              }));
+            }}
+          >
+            <ul className="links">
+
+              <Link href="/" >
+                <a onClick={() => Router.push('/index')} >Home</a>
+              </Link>
+
+              <Link href="/about" >
+                <a onClick={() => Router.push('/about')} >About</a>
+              </Link>
+
+              <Link href="/pricing" >
+                <a onClick={() => Router.push('/pricing')} >Pricing</a>
+              </Link>
+
+              <Link href="/faq" >
+                <a onClick={() => Router.push('/faq')} >FAQ</a>
+              </Link>
+
+              <Link href="/contact" >
+                <a onClick={() => Router.push('/contact')} >Contact</a>
+              </Link>
+
+              <Link href="/research" >
+                <a onClick={() => Router.push('/research')} >Research</a>
+              </Link>
+
+              <Link href="/api" >
+                <a onClick={() => Router.push('/api')} >API</a>
+              </Link>
+            </ul>
+          </div>
       </div>
     
 
@@ -331,6 +394,15 @@ const Nav = () => {
         
         .menu_open .hamburger:after {
           transform: rotateZ(-45deg) scaleX(1.25) translate(3px, -10px);
+        }
+
+        
+        .below-link-hamburger {
+          left: -5em;
+
+          display: ${seeDropdown.navMobile || seeDropdown.navItemMobile
+            ? ""
+            : "none"};
         }
 
         /* ============ switch to mobile ============ */
