@@ -242,8 +242,9 @@ const Nav = () => {
 
         .navitem {
           position: absolute;
-          width: 8em;
+          width: 5.6em;
           top: 1.6em;
+          left: -1.5em;
 
           padding-top: 1em;
           padding-bottom: 0.3em;
