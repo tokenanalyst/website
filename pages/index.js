@@ -7,6 +7,7 @@ const Home = () => (
     <Head>
       <title>Home</title>
       <link href="static/styles/css_reset.css" rel="stylesheet" />
+      <link href="static/styles/fonts/fonts.css" rel="stylesheet" />
     </Head>
 
     <Link href="/exchange">

@@ -1,0 +1,50 @@
+@font-face {
+  font-family: "DIN Alternate";
+  src: url("DINAlternate-Regular.woff2") format("woff2"),
+    url("DINAlternate-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "DIN Alternate Medium";
+  src: url("DINAlternate-Medium.woff2") format("woff2"),
+    url("DINAlternate-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Work Sans";
+  src: url("WorkSans-Bold.otf") format("opentype");
+  font-weight: bold;
+  font-style: bold;
+}
+
+@font-face {
+  font-family: "Work Sans";
+  src: url("WorkSans-Light.otf") format("opentype");
+  font-weight: lighter;
+  font-style: lighter;
+}
+
+@font-face {
+  font-family: "Work Sans";
+  src: url("WorkSans-Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SpaceGrotesk";
+  src: url("SpaceGrotesk-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SpaceGrotesk";
+  src: url("SpaceGrotesk-Bold.otf") format("opentype");
+  font-weight: bold;
+  font-style: normal;
+}
