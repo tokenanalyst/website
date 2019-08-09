@@ -9,8 +9,8 @@ const mobile_breakpoint = "815px";
 
 const TRANSITION_DUR = "0.3s";
 const HAMBURGER_COLOR = "#efefef";
-const FULL_HAMBURGER_SIZE = "50px";
-const REDUCED_HAMBURGER_SIZE = "4px";
+const FULL_HAMBURGER_SIZE = "24px";
+const REDUCED_HAMBURGER_SIZE = "3px";
 
 const Nav = () => {
   const [menuIsOpen, openMenu] = useState(false);
@@ -133,7 +133,9 @@ const Nav = () => {
       <div
         onClick={toggleOpenMenu}
         className={
-          menuIsOpen ? "hamburger_wrapper menu_open" : "hamburger_wrapper"
+          menuIsOpen ? 
+            "links links-mobile menu_open" : 
+            "links links-mobile"
         }
       >
         <div className="hamburger" />
@@ -202,6 +204,8 @@ const Nav = () => {
 
         .links-mobile {
           display: none;
+
+          margin-right: 20px;
         }
 
         .link-about,
@@ -235,23 +239,26 @@ const Nav = () => {
 
         /* ============  HAMBURGER MENU (MOBILE) ============ */
 
-        .hamburger_wrapper {
+        .links-mobile {
           width: ${FULL_HAMBURGER_SIZE};
           height: ${FULL_HAMBURGER_SIZE};
           display: none;
 
+          position: relative;
+
           transition-duration: ${TRANSITION_DUR};
         }
 
-        .hamburger_wrapper:hover {
+        .links-mobile:hover {
           cursor: pointer;
         }
 
         .hamburger {
-          position: absolute;
-          top: 30px;
+          position: relative;
           width: ${FULL_HAMBURGER_SIZE};
           height: ${REDUCED_HAMBURGER_SIZE};
+          border-radius: 1px;
+
 
           transition-duration: ${TRANSITION_DUR};
           background-color: ${HAMBURGER_COLOR};
@@ -259,25 +266,27 @@ const Nav = () => {
 
         .hamburger:before {
           position: absolute;
-          top: -20px;
+          top: -10px;
           width: ${FULL_HAMBURGER_SIZE};
           height: ${REDUCED_HAMBURGER_SIZE};
+          border-radius: 1px;
 
           transition-duration: ${TRANSITION_DUR};
           background-color: ${HAMBURGER_COLOR};
-
+          
           content: "";
         }
 
         .hamburger:after {
           position: absolute;
-          top: 20px;
+          top: 10px;
           width: ${FULL_HAMBURGER_SIZE};
           height: ${REDUCED_HAMBURGER_SIZE};
+          border-radius: 1px;
 
           transition-duration: ${TRANSITION_DUR};
           background-color: ${HAMBURGER_COLOR};
-
+          
           content: "";
         }
 
@@ -307,12 +316,11 @@ const Nav = () => {
           }
 
           .links-mobile {
-            display: inline;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
           }
 
-          .hamburger_wrapper {
-            display: inline;
-          }
         }
       `}</style>
     </div>
