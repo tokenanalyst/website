@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
+import Router from 'next/router';
 //import { mobile_breakpoint } from '../bucket/styles/mediaquery.js';
 
 const LOGO_MOBILE = "../static/img/logo_mobile.png";
@@ -34,6 +35,9 @@ const Nav = () => {
         <li>Home</li>
         <li>Research</li>
         <li>Pricing</li>
+        <Link href="/pricing" >
+          <a onClick={() => Router.push('/pricing')} >Go to pricing page</a>
+        </Link>
         <li>API</li>
 
         <li
@@ -160,14 +164,18 @@ const Nav = () => {
           color: #999;
         }
 
-        .links > li {
+        .links > li,
+        .links a {
           font-family: DIN Alternate Medium, sans-serif;
           font-weight: 400;
           font-size: 1rem;
           line-height: 1.6;
+          color: #999;
+          text-decoration: none;
         }
 
-        .links-desktop > li {
+        .links-desktop > li,
+        .links-desktop > a {
           display: inline-block;
           margin-right: 2em;
         }
