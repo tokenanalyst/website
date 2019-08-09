@@ -7,6 +7,7 @@ export const Layout = ({ children }) => (
     <Head>
       <title>Token Analyst</title>
       <link href="static/styles/css_reset.css" rel="stylesheet" />
+      <link href="static/styles/fonts/fonts.css" rel="stylesheet" />
     </Head>
     <Nav />
     {children}
