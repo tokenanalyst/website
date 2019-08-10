@@ -11,7 +11,7 @@ const HAMBURGER_COLOR = "#efefef";
 const FULL_HAMBURGER_SIZE = "50px";
 const REDUCED_HAMBURGER_SIZE = "4px";
 
-const Nav = () => {
+export const Nav = () => {
   const [menuIsOpen, openMenu] = useState(false);
 
   const [seeDropdown, showNavDropdown] = useState({
@@ -294,5 +294,3 @@ const Nav = () => {
     </>
   );
 };
-
-export default Nav;

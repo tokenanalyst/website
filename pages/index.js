@@ -3,16 +3,11 @@ import Link from "next/link";
 import Head from "next/head";
 
 const Home = () => (
-  <div>
-    <Link href="/exchange">
-      <a className="link">Go to exchange page</a>
-    </Link>
-
+  <div className="container">
+    Navigate to /exchange
     <style jsx>{`
-      .link {
-        margin: 20px;
-        color: green;
-        padding-top: 20px;
+      .container {
+        padding: 100px;
       }
     `}</style>
   </div>

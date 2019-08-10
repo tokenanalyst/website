@@ -1,4 +1,4 @@
-import { DATA_WINDOWS, UNITS } from "../constants/filters";
+import { DATA_WINDOWS, UNITS } from "../../constants/filters";
 
 export const SubNav = ({ dataWindow, setDataWindow, units, setUnits }) => {
   return (

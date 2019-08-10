@@ -3,8 +3,8 @@ import axios from "axios";
 
 import { TokenSnapshot } from "./TokenSnapshot";
 
-import { DATA_WINDOWS } from "../constants/filters";
-import { TOKEN_NAMES } from "../constants/token-names";
+import { DATA_WINDOWS } from "../../../constants/filters";
+import { TOKEN_NAMES } from "../../../constants/token-names";
 
 export const TokenSnapshotWidget = ({ dataWindow, units }) => {
   const [data, setData] = useState(null);
