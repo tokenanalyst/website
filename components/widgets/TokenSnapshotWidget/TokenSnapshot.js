@@ -16,7 +16,6 @@ export const TokenSnapshot = ({
           ${numeral(tokenValue).format("0,0")}
         </span>
         <span>
-          {console.log(tokenValueChange)}
           <img
             src={
               tokenValueChange < 0
@@ -40,8 +39,8 @@ export const TokenSnapshot = ({
         </span>
       </div>
       <div className="shadow" />
-      {flows.map(flow => (
-        <div className="section">
+      {flows.map((flow, index) => (
+        <div className="section" key={index}>
           <>
             <div className="sparkline-row">
               <span className="sub-header">{flow.label}</span>
