@@ -25,12 +25,13 @@ export const TokenSnapshotWidget = ({ dataWindow, units }) => {
       <div className="container">
         {data &&
           Object.keys(data).map((token, index) => (
-            <div key={token}>
+            <>
               <div className="token-snapshot">
                 <TokenSnapshot
                   token={TOKEN_NAMES[data[token].token.token]}
                   tokenValue={data[token].token.price}
                   tokenValueChange={data[token].token.price_pct_change}
+                  key={token}
                   flows={[
                     {
                       label: "Inflow",
@@ -62,7 +63,7 @@ export const TokenSnapshotWidget = ({ dataWindow, units }) => {
                 />
               </div>
               {Object.keys(data).length - 1 != index && <Separator />}
-            </div>
+            </>
           ))}
       </div>
       <style jsx>{`
