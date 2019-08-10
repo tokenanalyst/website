@@ -4,11 +4,6 @@ import Head from "next/head";
 
 const Home = () => (
   <div>
-    <Head>
-      <title>Home</title>
-      <link href="static/styles/css_reset.css" rel="stylesheet" />
-    </Head>
-
     <Link href="/exchange">
       <a className="link">Go to exchange page</a>
     </Link>

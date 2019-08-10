@@ -41,7 +41,7 @@ export const TokenSnapshotWidget = ({ dataWindow, units }) => {
                       value:
                         data[token].values[`data-window-${dataWindow}`]
                           .inflow_usd_sum,
-                      sparkline: project(
+                      sparkline: getSparklineWindow(
                         dataWindow,
                         data[token].sparklines.inflow
                       )
@@ -54,9 +54,9 @@ export const TokenSnapshotWidget = ({ dataWindow, units }) => {
                       value:
                         data[token].values[`data-window-${dataWindow}`]
                           .outflow_usd_sum,
-                      sparkline: project(
+                      sparkline: getSparklineWindow(
                         dataWindow,
-                        data[token].sparklines.inflow
+                        data[token].sparklines.outflow
                       )
                     }
                   ]}
@@ -106,7 +106,7 @@ const Separator = () => (
   </div>
 );
 
-const project = (dataWindow, sparkline) => {
+const getSparklineWindow = (dataWindow, sparkline) => {
   const length = sparkline.length;
   return {
     [DATA_WINDOWS[0]]: sparkline.slice(length - 2, length),
