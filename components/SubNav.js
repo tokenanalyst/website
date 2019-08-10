@@ -29,6 +29,7 @@ export const SubNav = ({ dataWindow, setDataWindow, units, setUnits }) => {
       </div>
       <style jsx>{`
         .container {
+          font-family: DIN Alternate;
           padding: 10px;
           border-bottom: 1px solid rgb(203, 203, 203);
           position: fixed;

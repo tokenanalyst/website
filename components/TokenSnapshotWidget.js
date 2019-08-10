@@ -4,6 +4,7 @@ import axios from "axios";
 import { TokenSnapshot } from "./TokenSnapshot";
 
 import { DATA_WINDOWS } from "../constants/filters";
+import { TOKEN_NAMES } from "../constants/token-names";
 
 export const TokenSnapshotWidget = ({ dataWindow, units }) => {
   const [data, setData] = useState(null);
@@ -28,7 +29,7 @@ export const TokenSnapshotWidget = ({ dataWindow, units }) => {
             <>
               <div className="token-snapshot">
                 <TokenSnapshot
-                  token={data[token].token.token}
+                  token={TOKEN_NAMES[data[token].token.token]}
                   tokenValue={data[token].token.price}
                   tokenValueChange={data[token].token.price_pct_change}
                   key={token}
@@ -68,6 +69,7 @@ export const TokenSnapshotWidget = ({ dataWindow, units }) => {
       </div>
       <style jsx>{`
         .container {
+          font-family: DIN Alternate Medium;
           display: flex;
           flex-direction: row;
           flex-wrap: wrap;
