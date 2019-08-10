@@ -16,6 +16,7 @@ export const TokenSnapshot = ({
           ${numeral(tokenValue).format("0,0")}
         </span>
         <span>
+          {console.log(tokenValueChange)}
           <img
             src={
               tokenValueChange < 0
@@ -120,7 +121,8 @@ export const TokenSnapshot = ({
         color: #3fcdab;
       }
       .change-neutral {
-        color: #0fd491;
+        color: #4a4a4a;
+        opacity: 0.4;
       }
       .section {
         padding-top: 20px;
