@@ -69,7 +69,7 @@ export const TokenSnapshotWidget = ({ dataWindow, units }) => {
       </div>
       <style jsx>{`
         .container {
-          font-family: DIN Alternate Medium;
+          font-family: Space Grotesk;
           display: flex;
           flex-direction: row;
           flex-wrap: wrap;
@@ -79,7 +79,7 @@ export const TokenSnapshotWidget = ({ dataWindow, units }) => {
         .token-snapshot {
           padding: 5px;
         }
-        @media only screen and (max-width: 800px) {
+        @media only screen and (max-width: 768px) {
           .container {
             flex-direction: column;
           }
@@ -99,7 +99,7 @@ const Separator = () => (
         margin-top: 10px;
         margin-bottom: 10px;
       }
-      @media only screen and (max-width: 800px) {
+      @media only screen and (max-width: 768px) {
         .separator {
           visibility: hidden;
         }

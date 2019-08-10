@@ -1,5 +1,6 @@
 import React from "react";
 import { Sparklines, SparklinesLine } from "react-sparklines";
+import numeral from "numeral";
 
 export const TokenSnapshot = ({
   token,
@@ -11,7 +12,9 @@ export const TokenSnapshot = ({
     <div className="container">
       <div className="header">{token}</div>
       <div className="top-row">
-        <span className="token-value">${tokenValue}</span>
+        <span className="token-value">
+          ${numeral(tokenValue).format("0,0")}
+        </span>
         <span>
           <img
             src={
@@ -31,10 +34,11 @@ export const TokenSnapshot = ({
                 : "change-neutral"
             }
           >
-            {tokenValueChange}%
+            {tokenValueChange.toFixed(2)}%
           </span>
         </span>
       </div>
+      <div className="shadow" />
       {flows.map(flow => (
         <div className="section">
           <>
@@ -77,10 +81,12 @@ export const TokenSnapshot = ({
                       : "change-neutral"
                   }
                 >
-                  {flow.change}%
+                  {flow.change.toFixed(2)}%
                 </span>
               </span>
-              <span className="token-flow-value">${flow.value}</span>
+              <span className="token-flow-value">
+                ${numeral(flow.value).format("0.0a")}
+              </span>
             </div>
           </>
         </div>
@@ -101,7 +107,6 @@ export const TokenSnapshot = ({
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        border-bottom: solid 1px rgba(151, 151, 151, 0.15);
         padding-bottom: 10px;
       }
       .token-value {
@@ -146,9 +151,18 @@ export const TokenSnapshot = ({
       .token-flow-value {
         font-weight: bold;
       }
-      @media only screen and (max-width: 800px) {
+      @media only screen and (max-width: 768px) {
         .container {
           min-width: 100%;
+        }
+        .shadow {
+          height: 4px;
+          box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.05);
+          margin-left: -20px;
+          margin-right: -20px;
+        }
+        .header {
+          padding-bottom: 5px;
         }
       }
     `}</style>
