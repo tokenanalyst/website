@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 
 import { IoTable } from "../components/tables/IoTable";
-import { SubNav } from "../components/SubNav";
+import { SubNav } from "../components/navs";
 import { DATA_WINDOWS, UNITS } from "../constants/filters";
+import { underSubNav } from "../constants/styles/common-styled-jsx";
+import { TokenSnapshotWidget } from "../components/widgets/TokenSnapshotWidget";
 
 const Exchange = () => {
-  const [dataWindow, setDataWindow] = useState(DATA_WINDOWS[0]);
+  const [dataWindow, setDataWindow] = useState(DATA_WINDOWS[2]);
   const [units, setUnits] = useState(UNITS[0]);
 
   return (
@@ -16,7 +18,11 @@ const Exchange = () => {
         units={units}
         setUnits={setUnits}
       />
-      <IoTable dataWindow={dataWindow} units={units} />
+      <div className="under-sub-nav">
+        <TokenSnapshotWidget dataWindow={dataWindow} units={units} />
+        <IoTable dataWindow={dataWindow} units={units} />
+      </div>
+      <style jsx>{underSubNav}</style>
     </>
   );
 };

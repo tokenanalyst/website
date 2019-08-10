@@ -1,14 +1,23 @@
 import React from "react";
-import Nav from "../components/Nav";
+import { Nav } from "./navs";
 import Head from "next/head";
 
 export const Layout = ({ children }) => (
   <div className="layout">
     <Head>
       <title>Token Analyst</title>
+      <link rel="shortcut icon" href="static/favicon.ico" />
       <link href="static/styles/css_reset.css" rel="stylesheet" />
+      <link href="static/fonts/fonts.css" rel="stylesheet" />
     </Head>
     <Nav />
-    {children}
+    <div className="page">{children}</div>
+    <style jsx>{`
+      .page {
+        margin-left: 10px;
+        margin-right: 10px;
+        padding-top: 60px;
+      }
+    `}</style>
   </div>
 );

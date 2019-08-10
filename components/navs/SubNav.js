@@ -1,4 +1,4 @@
-import { DATA_WINDOWS, UNITS } from "../constants/filters";
+import { DATA_WINDOWS, UNITS } from "../../constants/filters";
 
 export const SubNav = ({ dataWindow, setDataWindow, units, setUnits }) => {
   return (
@@ -29,6 +29,7 @@ export const SubNav = ({ dataWindow, setDataWindow, units, setUnits }) => {
       </div>
       <style jsx>{`
         .container {
+          font-family: DIN Alternate;
           padding: 10px;
           border-bottom: 1px solid rgb(203, 203, 203);
           position: fixed;
@@ -39,6 +40,7 @@ export const SubNav = ({ dataWindow, setDataWindow, units, setUnits }) => {
           z-index: 100;
           display: flex;
           justify-content: space-between;
+          margin-left: -10px;
         }
         .options {
           display: flex;
