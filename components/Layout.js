@@ -6,9 +6,9 @@ export const Layout = ({ children }) => (
   <div className="layout">
     <Head>
       <title>Token Analyst</title>
-      <link rel="shortcut icon" href="static/favicon.ico" />
-      <link href="static/styles/css_reset.css" rel="stylesheet" />
-      <link href="static/fonts/fonts.css" rel="stylesheet" />
+      <link rel="shortcut icon" href="/static/favicon.ico" />
+      <link href="/static/styles/css_reset.css" rel="stylesheet" />
+      <link href="/static/fonts/fonts.css" rel="stylesheet" />
     </Head>
     <Nav />
     <div className="page">{children}</div>
