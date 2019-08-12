@@ -5,7 +5,7 @@ import { DATA_WINDOWS } from "../../../constants/filters";
 import { TOKEN_NAMES } from "../../../constants/token-names";
 import { useApi } from "../../../custom-hooks";
 
-export const TokenSnapshotWidget = ({ dataWindow, units }) => {
+export const TokenSnapshotWidget = ({ dataWindow }) => {
   const data = useApi("/api/latest-exchange-flows?tokens=BTC,ETH,USDC,DAI");
 
   return (

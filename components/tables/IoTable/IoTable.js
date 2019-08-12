@@ -85,6 +85,7 @@ export const IoTable = ({ dataWindow, units }) => {
           })}
           filterable={true}
           defaultFilterMethod={filterCaseInsensitive}
+          style={{ cursor: "pointer" }}
         />
       )}
 
@@ -102,7 +103,7 @@ export const IoTable = ({ dataWindow, units }) => {
         .information-icon {
           opacity: 0.2;
         }
-        @media only screen and (max-width: 600px) {
+        @media only screen and (max-width: 768px) {
           .information-header {
             padding: 30px 30px;
           }
