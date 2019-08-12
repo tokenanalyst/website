@@ -69,6 +69,7 @@ const Exchange = () => {
             <div>Outflow Volume Last 24h</div>
           </div>
         </div>
+        <div className="shadow" />
         <div className="container">
           <div className="item">
             <div className="chart">
@@ -89,6 +90,7 @@ const Exchange = () => {
               )}
             </div>
           </div>
+          <div className="shadow" />
           <Separator />
           <div className="item">
             <div className="chart">
@@ -109,6 +111,7 @@ const Exchange = () => {
               )}
             </div>
           </div>
+          <div className="shadow" />
           <Separator />
           <div className="item">
             <div className="chart">
@@ -129,6 +132,7 @@ const Exchange = () => {
               )}
             </div>
           </div>
+          <div className="shadow" />
           <Separator />
           <div className="item">
             <div className="chart">
@@ -149,6 +153,7 @@ const Exchange = () => {
               )}
             </div>
           </div>
+          <div className="shadow" />
         </div>
         <div className="sub-container">
           <div className="chart">
@@ -233,6 +238,16 @@ const Exchange = () => {
             padding-bottom: 20px;
           }
           @media only screen and (max-width: 768px) {
+            .banner-container {
+              flex-direction: column;
+              border-bottom: none;
+            }
+            .shadow {
+              height: 4px;
+              box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.05);
+              margin-left: -20px;
+              margin-right: -20px;
+            }
             .container {
               padding: 10px;
               flex-direction: column;

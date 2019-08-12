@@ -7,6 +7,7 @@ export const Analytics = ({ children }) => {
     ReactGA.initialize("UA-000000-01");
     const handleRouteChange = () => {
       ReactGA.pageview(Router.asPath);
+      window.scrollTo({ top: 0 });
     };
 
     Router.events.on("routeChangeComplete", handleRouteChange);
