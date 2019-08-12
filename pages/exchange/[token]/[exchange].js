@@ -4,6 +4,8 @@ import axios from "axios";
 import { useRouter } from "next/router";
 
 import { useApi } from "../../../custom-hooks";
+import { EXCHANGE_IMAGES } from "../../../constants/image-paths";
+import { route } from "next-server/dist/server/router";
 
 const Chart = dynamic(() => import("../../../components/Chart"), {
   ssr: false
@@ -38,7 +40,35 @@ const Exchange = () => {
   return (
     <>
       <div>
-        <div className="top-banner">Exchange</div>
+        <div className="banner-container">
+          <div className="banner-item">
+            <img
+              style={{ width: "40px", height: "40px" }}
+              src={`/static/png/${EXCHANGE_IMAGES[router.query.exchange]}`}
+            />
+            <span className="banner-header">
+              {router.query.exchange} [{router.query.token}]
+            </span>
+          </div>
+          <Separator />
+          <div className="banner-item">
+            <div>
+              <span className="flow-value">20.4M</span>
+              <img src="/static/svg/up.svg" />
+              <span className="flow-change-positive">20.6%</span>
+            </div>
+            <div>Inflow Volume Last 24h</div>
+          </div>
+          <Separator />
+          <div className="banner-item">
+            <div>
+              <span className="flow-value">16.4M</span>
+              <img src="/static/svg/down.svg" />
+              <span className="flow-change-negative">-16.6%</span>
+            </div>
+            <div>Outflow Volume Last 24h</div>
+          </div>
+        </div>
         <div className="container">
           <div className="item">
             <div className="chart">
@@ -143,6 +173,37 @@ const Exchange = () => {
           </div>
         </div>
         <style jsx>{`
+          .banner-container {
+            border-bottom: solid 1px rgba(151, 151, 151, 0.15);
+            padding-top: 40px;
+            padding-bottom: 40px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+          }
+          .banner-item {
+            font-family: Space Grotesk;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          }
+          .banner-header {
+            padding-left: 10px;
+            font-size: 32px;
+          }
+          .flow-value {
+            font-size: 24px;
+            padding-right: 10px;
+          }
+          .flow-change-positive {
+            padding-left: 5px;
+            color: #0fd491;
+          }
+          .flow-change-negative {
+            padding-left: 5px;
+            color: #fa4e96;
+          }
           .container {
             font-family: Space Grotesk;
             padding: 20px;

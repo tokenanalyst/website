@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { createChart } from "lightweight-charts";
 
-const Chart = ({ title1, data, title2, data2, width = 275, height = 300 }) => {
+const Chart = ({ title1, data, title2, data2, width = 275, height = 250 }) => {
   const chartRef = useRef(null);
   useEffect(() => {
     const chart = createChart(chartRef.current, {
