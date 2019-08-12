@@ -15,7 +15,10 @@ const Exchange = () => {
   const [dataSet, setDataSet] = useState(null);
 
   const apiResponse = useApi(
-    `/api/exchange-metrics?token=BTC&exchange=Binance`
+    `/api/exchange-metrics?token=${router.query.token}&exchange=${
+      router.query.exchange
+    }`,
+    [router.query]
   );
 
   useEffect(() => {
@@ -85,20 +88,20 @@ const Exchange = () => {
                 setDataSet([
                   {
                     series: "line",
-                    title: "Blah",
+                    title: "New",
                     chartValues: toSingleValues(
-                      apiResponse.outflow.txnCount,
+                      apiResponse.outflow.addressCount,
                       "date",
-                      "number_of_txns"
+                      "number_of_entity_sending_addresses"
                     )
                   },
                   {
                     series: "area",
-                    title: "Rah",
+                    title: "Totes",
                     chartValues: toSingleValues(
-                      apiResponse.inflow.txnCount,
+                      apiResponse.inflow.addressCount,
                       "date",
-                      "number_of_txns"
+                      "number_of_entity_receiving_addresses"
                     )
                   }
                 ])

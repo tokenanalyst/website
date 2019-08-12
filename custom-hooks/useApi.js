@@ -1,17 +1,24 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-export const useApi = url => {
+export const useApi = (url, dependencies) => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    const getApiResult = async () => {
-      const apiResult = await axios.get(url);
-      setData(apiResult.data.ta_response);
-    };
+    if (
+      !dependencies ||
+      !dependencies.some(
+        dependency => dependency === undefined || dependency === null
+      )
+    ) {
+      const getApiResult = async () => {
+        const apiResult = await axios.get(url);
+        setData(apiResult.data.ta_response);
+      };
 
-    getApiResult();
-  }, []);
+      getApiResult();
+    }
+  }, dependencies || []);
 
   return data;
 };
