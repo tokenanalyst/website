@@ -1,40 +1,47 @@
 import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
-import axios from "axios";
 import { useRouter } from "next/router";
 
 import { useApi } from "../../../custom-hooks";
 import { EXCHANGE_IMAGES } from "../../../constants/image-paths";
+import { toSingleValues } from "../../../components/charts/mapper-functions";
 
-const Chart = dynamic(() => import("../../../components/Chart"), {
+const Chart = dynamic(() => import("../../../components/charts/Chart"), {
   ssr: false
 });
 
 const Exchange = () => {
   const router = useRouter();
-  const [data, setData] = useState(null);
-  const [data2, setData2] = useState(null);
+  const [dataSet, setDataSet] = useState(null);
+
+  const apiResponse = useApi(
+    `/api/exchange-metrics?token=BTC&exchange=Binance`
+  );
 
   useEffect(() => {
-    const getApiResult = async () => {
-      console.log(router.query);
-      const apiResult = await axios.get(
-        `https://api.tokenanalyst.io/analytics/last?job=${router.query.token.toLowerCase()}_${
-          router.query.exchange
-        }_outflow_txn_count_30day_v5&format=json`
-      );
-      setData(apiResult.data);
-
-      const apiResult2 = await axios.get(
-        `https://api.tokenanalyst.io/analytics/last?job=${router.query.token.toLowerCase()}_${
-          router.query.exchange
-        }_inflow_txn_count_30day_v5&format=json`
-      );
-      setData2(apiResult2.data);
-    };
-
-    getApiResult();
-  }, []);
+    if (apiResponse) {
+      setDataSet([
+        {
+          series: "area",
+          title: "Blah",
+          chartValues: toSingleValues(
+            apiResponse.outflow.txnCount,
+            "date",
+            "number_of_txns"
+          )
+        },
+        {
+          series: "line",
+          title: "Rah",
+          chartValues: toSingleValues(
+            apiResponse.inflow.txnCount,
+            "date",
+            "number_of_txns"
+          )
+        }
+      ]);
+    }
+  }, [apiResponse]);
 
   return (
     <>
@@ -69,111 +76,36 @@ const Exchange = () => {
           </div>
         </div>
         <div className="shadow" />
-        <div className="container">
-          <div className="item">
-            <div className="chart">
-              <div className="header">Number of Senders</div>
-              {data && data2 && (
-                <Chart
-                  title1="Inflow"
-                  data={data.map(d => ({
-                    time: d.date,
-                    value: d.number_of_txns
-                  }))}
-                  title2="Outflow"
-                  data2={data2.map(d => ({
-                    time: d.date,
-                    value: d.number_of_txns
-                  }))}
-                />
-              )}
-            </div>
-          </div>
-          <div className="shadow" />
-          <Separator />
-          <div className="item">
-            <div className="chart">
-              <div className="header">Number of Transactions</div>
-              {data && data2 && (
-                <Chart
-                  title1="Inflow"
-                  data={data.map(d => ({
-                    time: d.date,
-                    value: d.number_of_txns
-                  }))}
-                  title2="Outflow"
-                  data2={data2.map(d => ({
-                    time: d.date,
-                    value: d.number_of_txns
-                  }))}
-                />
-              )}
-            </div>
-          </div>
-          <div className="shadow" />
-          <Separator />
-          <div className="item">
-            <div className="chart">
-              <div className="header">Average value of Transactions (BTC)</div>
-              {data && data2 && (
-                <Chart
-                  title1="Inflow"
-                  data={data.map(d => ({
-                    time: d.date,
-                    value: d.number_of_txns
-                  }))}
-                  title2="Outflow"
-                  data2={data2.map(d => ({
-                    time: d.date,
-                    value: d.number_of_txns
-                  }))}
-                />
-              )}
-            </div>
-          </div>
-          <div className="shadow" />
-          <Separator />
-          <div className="item">
-            <div className="chart">
-              <div className="header">Average value of Transactions (USD)</div>
-              {data && data2 && (
-                <Chart
-                  title1="Inflow"
-                  data={data.map(d => ({
-                    time: d.date,
-                    value: d.number_of_txns
-                  }))}
-                  title2="Outflow"
-                  data2={data2.map(d => ({
-                    time: d.date,
-                    value: d.number_of_txns
-                  }))}
-                />
-              )}
-            </div>
-          </div>
-          <div className="shadow" />
-        </div>
         <div className="sub-container">
           <div className="chart">
             <div className="header">Inflow / Outflow</div>
-            {data && data2 && (
-              <Chart
-                title1="Inflow"
-                data={data.map(d => ({
-                  time: d.date,
-                  value: d.number_of_txns
-                }))}
-                title2="Outflow"
-                data2={data2.map(d => ({
-                  time: d.date,
-                  value: d.number_of_txns
-                }))}
-                width={1400}
-                height={300}
-              />
-            )}
-            {console.log(data2)}
+            {dataSet && <Chart dataSet={dataSet} width={1400} height={600} />}
+            <button
+              onClick={() =>
+                setDataSet([
+                  {
+                    series: "line",
+                    title: "Blah",
+                    chartValues: toSingleValues(
+                      apiResponse.outflow.txnCount,
+                      "date",
+                      "number_of_txns"
+                    )
+                  },
+                  {
+                    series: "area",
+                    title: "Rah",
+                    chartValues: toSingleValues(
+                      apiResponse.inflow.txnCount,
+                      "date",
+                      "number_of_txns"
+                    )
+                  }
+                ])
+              }
+            >
+              Flip
+            </button>
           </div>
         </div>
         <style jsx>{`
