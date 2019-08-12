@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { createChart } from "lightweight-charts";
 
-const Chart = ({ title1, data, title2, data2, width = 275, height = 250 }) => {
+const Chart = ({ title1, data, title2, data2, width = 275, height = 175 }) => {
   const chartRef = useRef(null);
   useEffect(() => {
     const chart = createChart(chartRef.current, {
@@ -24,8 +24,17 @@ const Chart = ({ title1, data, title2, data2, width = 275, height = 250 }) => {
         precision: 0
       }
     });
+    const histogramSeries = chart.addHistogramSeries({
+      title: "Volume",
+      color: "red"
+    });
+    const histogramSeries2 = chart.addHistogramSeries({
+      color: "#fa4e96"
+    });
     lineSeries.setData(data);
     lineSeries2.setData(data2);
+    histogramSeries.setData(data);
+    // histogramSeries2.setData(data2);
   });
 
   return (

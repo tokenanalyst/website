@@ -5,7 +5,6 @@ import { useRouter } from "next/router";
 
 import { useApi } from "../../../custom-hooks";
 import { EXCHANGE_IMAGES } from "../../../constants/image-paths";
-import { route } from "next-server/dist/server/router";
 
 const Chart = dynamic(() => import("../../../components/Chart"), {
   ssr: false
