@@ -10,6 +10,8 @@ module.exports = async (req, res) => {
     res.status(400);
     res.send({ error: "Token and / or exchange missing" });
   } else {
+    console.log(token);
+    console.log(exchange);
     const [
       inflowTxnCountApiResponse,
       outflowTxnCountApiResponse,

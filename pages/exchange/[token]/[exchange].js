@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 
 import { useApi } from "../../../custom-hooks";
 import { EXCHANGE_IMAGES } from "../../../constants/image-paths";
-import { toSingleValues } from "../../../components/charts/mapper-functions";
+import { getExchangeDataSet } from "../../../components/charts/datasets";
 
 const Chart = dynamic(() => import("../../../components/charts/Chart"), {
   ssr: false
@@ -14,35 +14,20 @@ const Exchange = () => {
   const router = useRouter();
   const [dataSet, setDataSet] = useState(null);
 
+  // router.query has an annoying bug whereby it is initially undefined (when page refreshed or link
+  // directly navigated to) and so the API call that is dependent on it fails.
+  // Added as a dependency to the custom hook so API request only fires when the
+  // router.query's values have been populated
   const apiResponse = useApi(
     `/api/exchange-metrics?token=${router.query.token}&exchange=${
       router.query.exchange
     }`,
-    [router.query]
+    [router.query.token, router.query.exchange]
   );
 
   useEffect(() => {
     if (apiResponse) {
-      setDataSet([
-        {
-          series: "area",
-          title: "Blah",
-          chartValues: toSingleValues(
-            apiResponse.outflow.txnCount,
-            "date",
-            "number_of_txns"
-          )
-        },
-        {
-          series: "line",
-          title: "Rah",
-          chartValues: toSingleValues(
-            apiResponse.inflow.txnCount,
-            "date",
-            "number_of_txns"
-          )
-        }
-      ]);
+      setDataSet(getExchangeDataSet(apiResponse));
     }
   }, [apiResponse]);
 
@@ -85,30 +70,43 @@ const Exchange = () => {
             {dataSet && <Chart dataSet={dataSet} width={1400} height={600} />}
             <button
               onClick={() =>
-                setDataSet([
-                  {
-                    series: "line",
-                    title: "New",
-                    chartValues: toSingleValues(
-                      apiResponse.outflow.addressCount,
-                      "date",
-                      "number_of_entity_sending_addresses"
-                    )
-                  },
-                  {
-                    series: "area",
-                    title: "Totes",
-                    chartValues: toSingleValues(
-                      apiResponse.inflow.addressCount,
-                      "date",
-                      "number_of_entity_receiving_addresses"
-                    )
-                  }
-                ])
+                setDataSet(
+                  getExchangeDataSet(apiResponse).filter(
+                    x => x.title === "Inflow Address Count"
+                  )
+                )
               }
             >
               Flip
             </button>
+          </div>
+          <div>
+            <ul>
+              <li>
+                {dataSet &&
+                  dataSet.map(d => (
+                    <>
+                      {d.title}{" "}
+                      <input
+                        type="checkbox"
+                        checked={d.visible}
+                        onChange={e => {
+                          setDataSet(
+                            dataSet.reduce((acc, curr) => {
+                              console.log(curr);
+                              console.log(acc);
+                              return curr.title === d.title
+                                ? [...acc, { ...curr, visible: !curr.visible }]
+                                : [...acc, curr];
+                            }, [])
+                          );
+                        }}
+                      />
+                      <br />
+                    </>
+                  ))}
+              </li>
+            </ul>
           </div>
         </div>
         <style jsx>{`

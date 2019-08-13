@@ -2,8 +2,8 @@ import React, { useEffect, useRef } from "react";
 import { createChart } from "lightweight-charts";
 
 const CHART_FUNCS = {
-  line: "addLineSeries",
-  area: "addAreaSeries"
+  line: "addAreaSeries",
+  area: "addHistogramSeries"
 };
 
 const Chart = ({ dataSet, width, height }) => {
@@ -16,11 +16,13 @@ const Chart = ({ dataSet, width, height }) => {
     });
 
     dataSet.forEach(data => {
-      const series = chart[CHART_FUNCS[data.series]]({
-        title: data.title
-      });
-      series.setData(data.chartValues);
-    }, []);
+      if (data.visible) {
+        const series = chart[CHART_FUNCS[data.series]]({
+          title: data.title
+        });
+        series.setData(data.chartValues);
+      }
+    });
 
     return () => chart.remove();
   }, [dataSet]);
