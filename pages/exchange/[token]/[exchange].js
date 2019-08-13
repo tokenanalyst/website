@@ -66,42 +66,8 @@ const Exchange = () => {
         </div>
         <div className="shadow" />
         <div className="sub-container">
-          <div className="chart">
-            <div className="header">Inflow / Outflow</div>
-            {dataSet && (
-              <Chart
-                dataSet={dataSet}
-                seriesType={seriesType}
-                width={1400}
-                height={600}
-              />
-            )}
-          </div>
           <div>
-            {/* <ul>
-              <li> */}
-            {dataSet &&
-              dataSet.map(d => (
-                <>
-                  {d.title}{" "}
-                  <input
-                    type="checkbox"
-                    checked={d.visible}
-                    onChange={e => {
-                      setDataSet(
-                        dataSet.reduce((acc, curr) => {
-                          console.log(curr);
-                          console.log(acc);
-                          return curr.title === d.title
-                            ? [...acc, { ...curr, visible: !curr.visible }]
-                            : [...acc, curr];
-                        }, [])
-                      );
-                    }}
-                  />
-                  <br />
-                </>
-              ))}
+            <div className="header">Chart Type</div>
             {dataSet && (
               <select
                 onChange={e => {
@@ -115,6 +81,45 @@ const Exchange = () => {
                 {/* <option value="line">Line Chart</option> */}
               </select>
             )}
+          </div>
+          <div className="chart">
+            <div className="header">Inflow / Outflow</div>
+            {dataSet && (
+              <Chart
+                dataSet={dataSet}
+                seriesType={seriesType}
+                width={1000}
+                height={600}
+              />
+            )}
+          </div>
+          <div>
+            {/* <ul>
+              <li> */}
+            <div className="header">Data Points</div>
+            <select
+              onChange={e =>
+                setDataSet(
+                  dataSet.reduce(
+                    (acc, curr) =>
+                      curr.dataPoint === e.target.value
+                        ? [...acc, { ...curr, visible: true }]
+                        : [...acc, { ...curr, visible: false }],
+                    []
+                  )
+                )
+              }
+            >
+              {dataSet &&
+                dataSet
+                  .reduce(
+                    (acc, { dataPoint }) =>
+                      acc.indexOf(dataPoint) < 0 ? [...acc, dataPoint] : acc,
+                    []
+                  )
+                  .map(d => <option value={d}>{d}</option>)}
+            </select>
+            {console.log(dataSet)}
             {/* </li>
             </ul> */}
           </div>
@@ -178,6 +183,11 @@ const Exchange = () => {
             font-size: 18px;
             font-weight: bold;
             padding-bottom: 20px;
+          }
+          .checkbox {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
           }
           @media only screen and (max-width: 768px) {
             .banner-container {
