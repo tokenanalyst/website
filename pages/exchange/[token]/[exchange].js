@@ -13,6 +13,7 @@ const Chart = dynamic(() => import("../../../components/charts/Chart"), {
 const Exchange = () => {
   const router = useRouter();
   const [dataSet, setDataSet] = useState(null);
+  const [seriesType, setSeriesType] = useState("line");
 
   // router.query has an annoying bug whereby it is initially undefined (when page refreshed or link
   // directly navigated to) and so the API call that is dependent on it fails.
@@ -67,46 +68,55 @@ const Exchange = () => {
         <div className="sub-container">
           <div className="chart">
             <div className="header">Inflow / Outflow</div>
-            {dataSet && <Chart dataSet={dataSet} width={1400} height={600} />}
-            <button
-              onClick={() =>
-                setDataSet(
-                  getExchangeDataSet(apiResponse).filter(
-                    x => x.title === "Inflow Address Count"
-                  )
-                )
-              }
-            >
-              Flip
-            </button>
+            {dataSet && (
+              <Chart
+                dataSet={dataSet}
+                seriesType={seriesType}
+                width={1400}
+                height={600}
+              />
+            )}
           </div>
           <div>
-            <ul>
-              <li>
-                {dataSet &&
-                  dataSet.map(d => (
-                    <>
-                      {d.title}{" "}
-                      <input
-                        type="checkbox"
-                        checked={d.visible}
-                        onChange={e => {
-                          setDataSet(
-                            dataSet.reduce((acc, curr) => {
-                              console.log(curr);
-                              console.log(acc);
-                              return curr.title === d.title
-                                ? [...acc, { ...curr, visible: !curr.visible }]
-                                : [...acc, curr];
-                            }, [])
-                          );
-                        }}
-                      />
-                      <br />
-                    </>
-                  ))}
-              </li>
-            </ul>
+            {/* <ul>
+              <li> */}
+            {dataSet &&
+              dataSet.map(d => (
+                <>
+                  {d.title}{" "}
+                  <input
+                    type="checkbox"
+                    checked={d.visible}
+                    onChange={e => {
+                      setDataSet(
+                        dataSet.reduce((acc, curr) => {
+                          console.log(curr);
+                          console.log(acc);
+                          return curr.title === d.title
+                            ? [...acc, { ...curr, visible: !curr.visible }]
+                            : [...acc, curr];
+                        }, [])
+                      );
+                    }}
+                  />
+                  <br />
+                </>
+              ))}
+            {dataSet && (
+              <select
+                onChange={e => {
+                  console.log("change");
+                  setSeriesType(e.target.value);
+                }}
+              >
+                <option value="line">Line Chart</option>
+                <option value="area">Area Chart</option>
+                <option value="histogram">Histogram Chart</option>
+                {/* <option value="line">Line Chart</option> */}
+              </select>
+            )}
+            {/* </li>
+            </ul> */}
           </div>
         </div>
         <style jsx>{`

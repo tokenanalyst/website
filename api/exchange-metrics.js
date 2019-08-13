@@ -10,58 +10,30 @@ module.exports = async (req, res) => {
     res.status(400);
     res.send({ error: "Token and / or exchange missing" });
   } else {
-    console.log(token);
-    console.log(exchange);
     const [
       inflowTxnCountApiResponse,
-      outflowTxnCountApiResponse,
-      inflowAddressCountApiResponse,
-      outflowAddressCountApiResponse,
-      inflowAverageTxnValueResponse,
-      outflowAverageTxnValueResponse,
-      inflowTopTenTxnResponse,
-      outflowTopTenTxnResponse
+      outflowTxnCountApiResponse
     ] = await Promise.all([
       axios.get(
-        `https://api.tokenanalyst.io/analytics/last?job=${token.toLowerCase()}_${exchange}_inflow_txn_count_30day_v5&format=json`
+        `https://api.tokenanalyst.io/analytics/private/v1/exchange_flow_historical/last?key=${
+          process.env.API_KEY
+        }&format=json&token=btc&direction=inflow&exchange=binance`
       ),
       axios.get(
-        `https://api.tokenanalyst.io/analytics/last?job=${token.toLowerCase()}_${exchange}_outflow_txn_count_30day_v5&format=json`
-      ),
-      axios.get(
-        `https://api.tokenanalyst.io/analytics/last?job=${token.toLowerCase()}_${exchange}_inflow_address_count_30day_v5&format=json`
-      ),
-      axios.get(
-        `https://api.tokenanalyst.io/analytics/last?job=${token.toLowerCase()}_${exchange}_outflow_address_count_30day_v5&format=json`
-      ),
-      axios.get(
-        `https://api.tokenanalyst.io/analytics/last?job=${token.toLowerCase()}_${exchange}_inflow_average_txn_value_30day_v5&format=json`
-      ),
-      axios.get(
-        `https://api.tokenanalyst.io/analytics/last?job=${token.toLowerCase()}_${exchange}_outflow_average_txn_value_30day_v5&format=json`
-      ),
-      axios.get(
-        `https://api.tokenanalyst.io/analytics/last?job=${token.toLowerCase()}_${exchange}_inflow_top10txns_24h_rolling_v5&format=json`
-      ),
-      axios.get(
-        `https://api.tokenanalyst.io/analytics/last?job=${token.toLowerCase()}_${exchange}_outflow_top10txns_24h_rolling_v5&format=json`
+        `https://api.tokenanalyst.io/analytics/private/v1/exchange_flow_historical/last?key=${
+          process.env.API_KEY
+        }&format=json&token=btc&direction=outflow&exchange=binance`
       )
     ]);
 
     res.send({
       ta_response: {
-        inflow: {
-          txnCount: inflowTxnCountApiResponse.data,
-          addressCount: inflowAddressCountApiResponse.data,
-          averageTxnValue: inflowAverageTxnValueResponse.data,
-          topTenTxns: inflowTopTenTxnResponse.data
-        },
-        outflow: {
-          txnCount: outflowTxnCountApiResponse.data,
-          addressCount: outflowAddressCountApiResponse.data,
-          averageTxnValue: outflowAverageTxnValueResponse.data,
-          topTenTxns: outflowTopTenTxnResponse.data
-        }
+        inflow: inflowTxnCountApiResponse.data.slice(
+          inflowTxnCountApiResponse.data.length - 270
+        ),
+        outflow: outflowTxnCountApiResponse.data.slice(
+          outflowTxnCountApiResponse.data.length - 270
+        )
       }
     });
   }

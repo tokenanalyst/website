@@ -2,11 +2,12 @@ import React, { useEffect, useRef } from "react";
 import { createChart } from "lightweight-charts";
 
 const CHART_FUNCS = {
-  line: "addAreaSeries",
-  area: "addHistogramSeries"
+  line: "addLineSeries",
+  area: "addAreaSeries",
+  histogram: "addHistogramSeries"
 };
 
-const Chart = ({ dataSet, width, height }) => {
+const Chart = ({ dataSet, seriesType, width, height }) => {
   const chartRef = useRef(null);
 
   useEffect(() => {
@@ -17,7 +18,8 @@ const Chart = ({ dataSet, width, height }) => {
 
     dataSet.forEach(data => {
       if (data.visible) {
-        const series = chart[CHART_FUNCS[data.series]]({
+        const series = chart[CHART_FUNCS[seriesType]]({
+          color: data.color,
           title: data.title
         });
         series.setData(data.chartValues);
@@ -25,7 +27,7 @@ const Chart = ({ dataSet, width, height }) => {
     });
 
     return () => chart.remove();
-  }, [dataSet]);
+  }, [dataSet, seriesType]);
 
   return (
     <div className="container" ref={chartRef}>
