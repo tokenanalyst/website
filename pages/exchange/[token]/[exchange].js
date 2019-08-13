@@ -66,62 +66,70 @@ const Exchange = () => {
         </div>
         <div className="shadow" />
         <div className="sub-container">
-          <div>
-            <div className="header">Chart Type</div>
-            {dataSet && (
-              <select
-                onChange={e => {
-                  console.log("change");
-                  setSeriesType(e.target.value);
-                }}
-              >
-                <option value="line">Line Chart</option>
-                <option value="area">Area Chart</option>
-                <option value="histogram">Histogram Chart</option>
-                {/* <option value="line">Line Chart</option> */}
-              </select>
-            )}
-          </div>
           <div className="chart">
             <div className="header">Inflow / Outflow</div>
             {dataSet && (
               <Chart
                 dataSet={dataSet}
                 seriesType={seriesType}
-                width={1000}
-                height={600}
+                width={
+                  window.matchMedia("(max-width: 768px)").matches ? 300 : 1000
+                }
+                height={
+                  window.matchMedia("(max-width: 768px)").matches ? 300 : 600
+                }
               />
             )}
           </div>
-          <div>
-            {/* <ul>
-              <li> */}
-            <div className="header">Data Points</div>
-            <select
-              onChange={e =>
-                setDataSet(
-                  dataSet.reduce(
-                    (acc, curr) =>
-                      curr.dataPoint === e.target.value
-                        ? [...acc, { ...curr, visible: true }]
-                        : [...acc, { ...curr, visible: false }],
-                    []
+          <div className="controls">
+            <div className="control">
+              <div className="header">Chart Type</div>
+              {dataSet && (
+                <select
+                  onChange={e => {
+                    console.log("change");
+                    setSeriesType(e.target.value);
+                  }}
+                >
+                  <option value="line">Line Chart</option>
+                  <option value="area">Area Chart</option>
+                  <option value="histogram">Histogram Chart</option>
+                  {/* <option value="line">Line Chart</option> */}
+                </select>
+              )}
+            </div>
+            <div className="control">
+              <div className="header">Data Points</div>
+              <select
+                onChange={e =>
+                  setDataSet(
+                    dataSet.reduce(
+                      (acc, curr) => [
+                        ...acc,
+                        {
+                          ...curr,
+                          visible:
+                            curr.dataPoint === e.target.value ? true : false
+                        }
+                      ],
+                      []
+                    )
                   )
-                )
-              }
-            >
-              {dataSet &&
-                dataSet
-                  .reduce(
-                    (acc, { dataPoint }) =>
-                      acc.indexOf(dataPoint) < 0 ? [...acc, dataPoint] : acc,
-                    []
-                  )
-                  .map(d => <option value={d}>{d}</option>)}
-            </select>
-            {console.log(dataSet)}
-            {/* </li>
-            </ul> */}
+                }
+              >
+                {dataSet &&
+                  dataSet
+                    .reduce(
+                      (acc, { dataPoint }) =>
+                        acc.indexOf(dataPoint) < 0 ? [...acc, dataPoint] : acc,
+                      []
+                    )
+                    .map(d => <option value={d}>{d}</option>)}
+              </select>
+              <div className="explanation">
+                This is an explanation of the current data point
+              </div>
+            </div>
           </div>
         </div>
         <style jsx>{`
@@ -184,10 +192,17 @@ const Exchange = () => {
             font-weight: bold;
             padding-bottom: 20px;
           }
-          .checkbox {
+          .explanation {
+            padding-top: 20px;
+          }
+          .controls {
             display: flex;
-            flex-direction: row;
-            justify-content: space-between;
+            flex-direction: column;
+            padding: 30px;
+            max-width: 25%;
+          }
+          .control {
+            padding-bottom: 20px;
           }
           @media only screen and (max-width: 768px) {
             .banner-container {
@@ -203,6 +218,14 @@ const Exchange = () => {
             .container {
               padding: 10px;
               flex-direction: column;
+            }
+            .sub-container {
+              flex-direction: column;
+              align-items: center;
+            }
+            .controls {
+              flex-direction: row;
+              max-width: 100%;
             }
           }
         `}</style>
