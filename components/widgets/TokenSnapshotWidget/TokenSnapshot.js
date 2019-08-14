@@ -43,7 +43,7 @@ export const TokenSnapshot = ({
         <div className="section" key={index}>
           <>
             <div className="sparkline-row">
-              <span className="sub-header">{flow.label}</span>
+              <span className="sparkline-header">{flow.label}</span>
               <span className="sparkline">
                 <Sparklines data={flow.sparkline}>
                   <SparklinesLine
@@ -133,7 +133,7 @@ export const TokenSnapshot = ({
         border-bottom: solid 1px rgba(151, 151, 151, 0.15);
         padding-bottom: 20px;
       }
-      .sub-header {
+      .sparkline-header {
         font-size: 18px;
       }
       .sparkline-row {
@@ -145,9 +145,6 @@ export const TokenSnapshot = ({
         height: 40px;
         width: 150px;
         opacity: 1;
-      }
-      .token-flow-change {
-        color: #fa4e96;
       }
       .token-flow-value {
         font-weight: bold;
