@@ -2,10 +2,13 @@ import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { RadioGroup, Radio, Icon } from "@blueprintjs/core";
+import numeral from "numeral";
 
 import { useApi } from "../../../custom-hooks";
 import { EXCHANGE_IMAGES } from "../../../constants/image-paths";
 import { getExchangeDataSet } from "../../../components/charts/datasets";
+
+import { DATA_WINDOWS } from "../../../constants/filters";
 
 const Chart = dynamic(() => import("../../../components/charts/Chart"), {
   ssr: false
@@ -15,6 +18,7 @@ const Exchange = () => {
   const router = useRouter();
   const [dataSet, setDataSet] = useState(null);
   const [seriesType, setSeriesType] = useState("line");
+  const [overallMetrics, setOverallMetrics] = useState(null);
 
   // router.query has an annoying bug whereby it is initially undefined (when page refreshed or link
   // directly navigated to) and so the API call that is dependent on it fails.
@@ -31,42 +35,89 @@ const Exchange = () => {
   useEffect(() => {
     if (apiResponse && router.query.token) {
       setDataSet(getExchangeDataSet(apiResponse, router.query.token));
+      setOverallMetrics(
+        apiResponse.overall.find(item => item.window === DATA_WINDOWS[0])
+      );
     }
   }, [apiResponse, router.query.token]);
 
   return (
     <>
       <div>
-        <div className="banner-container">
-          <div className="banner-item">
-            <img
-              style={{ width: "40px", height: "40px" }}
-              src={`/static/png/${EXCHANGE_IMAGES[router.query.exchange]}`}
-            />
-            <span className="banner-header">
-              {router.query.exchange} [{router.query.token}]
-            </span>
-          </div>
-          <Separator />
-          <div className="banner-item">
-            <div>
-              <span className="flow-value">20.4M</span>
-              <img src="/static/svg/up.svg" />
-              <span className="flow-change-positive">20.6%</span>
+        {overallMetrics && (
+          <>
+            <div className="banner-container">
+              <div className="banner-item">
+                <img
+                  style={{ width: "40px", height: "40px" }}
+                  src={`/static/png/${EXCHANGE_IMAGES[router.query.exchange]}`}
+                />
+                <span className="banner-header">
+                  {router.query.exchange} [{router.query.token}]
+                </span>
+              </div>
+              <Separator />
+              <div className="banner-item">
+                <div>
+                  <span className="flow-value">
+                    ${numeral(overallMetrics.inflow_usd_sum).format("0.0a")}
+                  </span>
+                  <img
+                    src={
+                      overallMetrics.inflow_usd_sum_pct_change < 0
+                        ? "/static/svg/down.svg"
+                        : overallMetrics.inflow_usd_sum_pct_change > 0
+                        ? "/static/svg/up.svg"
+                        : "/static/svg/nochange.svg"
+                    }
+                  />
+                  <span
+                    className={
+                      overallMetrics.inflow_usd_sum_pct_change > 0
+                        ? "change-positive"
+                        : overallMetrics.inflow_usd_sum_pct_change < 0
+                        ? "change-negative"
+                        : "change-neutral"
+                    }
+                  >
+                    {overallMetrics.inflow_usd_sum_pct_change}%
+                  </span>
+                </div>
+                <div>Inflow Volume Last 24h</div>
+              </div>
+              <Separator />
+              <div className="banner-item">
+                <div>
+                  <span className="flow-value">
+                    ${numeral(overallMetrics.outflow_usd_sum).format("0.0a")}
+                  </span>
+                  <img
+                    src={
+                      overallMetrics.outflow_usd_sum_pct_change < 0
+                        ? "/static/svg/down.svg"
+                        : overallMetrics.outflow_usd_sum_pct_change > 0
+                        ? "/static/svg/up.svg"
+                        : "/static/svg/nochange.svg"
+                    }
+                  />
+                  <span
+                    className={
+                      overallMetrics.outflow_usd_sum_pct_change > 0
+                        ? "change-positive"
+                        : overallMetrics.outflow_usd_sum_pct_change < 0
+                        ? "change-negative"
+                        : "change-neutral"
+                    }
+                  >
+                    {overallMetrics.outflow_usd_sum_pct_change}%
+                  </span>
+                </div>
+                <div>Outflow Volume Last 24h</div>
+              </div>
             </div>
-            <div>Inflow Volume Last 24h</div>
-          </div>
-          <Separator />
-          <div className="banner-item">
-            <div>
-              <span className="flow-value">16.4M</span>
-              <img src="/static/svg/down.svg" />
-              <span className="flow-change-negative">-16.6%</span>
-            </div>
-            <div>Outflow Volume Last 24h</div>
-          </div>
-        </div>
-        <div className="shadow" />
+            <div className="shadow" />
+          </>
+        )}
         <div className="sub-container">
           <div className="chart">
             <div className="header">
@@ -80,7 +131,7 @@ const Exchange = () => {
                   window.matchMedia("(max-width: 768px)").matches ? 300 : 1000
                 }
                 height={
-                  window.matchMedia("(max-width: 768px)").matches ? 300 : 600
+                  window.matchMedia("(max-width: 768px)").matches ? 300 : 450
                 }
               />
             )}
@@ -163,11 +214,11 @@ const Exchange = () => {
             font-size: 24px;
             padding-right: 10px;
           }
-          .flow-change-positive {
+          .change-positive {
             padding-left: 5px;
             color: #0fd491;
           }
-          .flow-change-negative {
+          .change-negative {
             padding-left: 5px;
             color: #fa4e96;
           }

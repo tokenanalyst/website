@@ -1,8 +1,6 @@
 import axios from "axios";
 import url from "url";
 
-import { TOKEN_NAMES } from "../constants/token-names";
-
 module.exports = async (req, res) => {
   const urlParts = url.parse(req.url, true);
   const token = urlParts.query.token;
@@ -18,7 +16,8 @@ module.exports = async (req, res) => {
         : "https://api.tokenanalyst.io/analytics/private/v1/erc20_exchanges_flow_historical";
     const [
       inflowTxnCountApiResponse,
-      outflowTxnCountApiResponse
+      outflowTxnCountApiResponse,
+      publicApiResponse
     ] = await Promise.all([
       axios.get(
         `${UrlBase}/last?key=${
@@ -29,6 +28,9 @@ module.exports = async (req, res) => {
         `${UrlBase}/last?key=${
           process.env.API_KEY
         }&format=json&token=${token}&direction=outflow&exchange=${exchange}`
+      ),
+      axios.get(
+        `https://api.tokenanalyst.io/analytics/last?job=exchange_flows_all_tokens_v5&format=json`
       )
     ]);
 
@@ -39,6 +41,9 @@ module.exports = async (req, res) => {
         ),
         outflow: outflowTxnCountApiResponse.data.slice(
           outflowTxnCountApiResponse.data.length - 270
+        ),
+        overall: publicApiResponse.data.filter(
+          item => item.token === token && item.exchange === exchange
         )
       }
     });
