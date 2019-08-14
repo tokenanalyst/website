@@ -118,7 +118,7 @@ const Exchange = () => {
             <div className="shadow" />
           </>
         )}
-        <div className="sub-container">
+        <div className="widget-container">
           <div className="chart">
             <div className="header">
               Inflow / Outflow <Icon icon="chart" color="gray" />
@@ -136,7 +136,6 @@ const Exchange = () => {
               />
             )}
           </div>
-          {/* <Separator /> */}
           <div className="controls">
             <div className="control">
               <div className="header">Chart Type</div>
@@ -222,14 +221,7 @@ const Exchange = () => {
             padding-left: 5px;
             color: #fa4e96;
           }
-          .container {
-            font-family: Space Grotesk;
-            padding: 20px;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-around;
-          }
-          .sub-container {
+          .widget-container {
             font-family: Space Grotesk;
             padding: 20px;
             display: flex;
@@ -277,11 +269,7 @@ const Exchange = () => {
               margin-left: -20px;
               margin-right: -20px;
             }
-            .container {
-              padding: 10px;
-              flex-direction: column;
-            }
-            .sub-container {
+            .widget-container {
               flex-direction: column;
               align-items: center;
             }
