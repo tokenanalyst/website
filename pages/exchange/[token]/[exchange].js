@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
+import { RadioGroup, Radio, Icon } from "@blueprintjs/core";
 
 import { useApi } from "../../../custom-hooks";
 import { EXCHANGE_IMAGES } from "../../../constants/image-paths";
@@ -26,11 +27,12 @@ const Exchange = () => {
     [router.query.token, router.query.exchange]
   );
 
+  // Again with that damn router.query bug
   useEffect(() => {
-    if (apiResponse) {
-      setDataSet(getExchangeDataSet(apiResponse));
+    if (apiResponse && router.query.token) {
+      setDataSet(getExchangeDataSet(apiResponse, router.query.token));
     }
-  }, [apiResponse]);
+  }, [apiResponse, router.query.token]);
 
   return (
     <>
@@ -67,7 +69,9 @@ const Exchange = () => {
         <div className="shadow" />
         <div className="sub-container">
           <div className="chart">
-            <div className="header">Inflow / Outflow</div>
+            <div className="header">
+              Inflow / Outflow <Icon icon="chart" color="gray" />
+            </div>
             {dataSet && (
               <Chart
                 dataSet={dataSet}
@@ -81,22 +85,24 @@ const Exchange = () => {
               />
             )}
           </div>
+          {/* <Separator /> */}
           <div className="controls">
             <div className="control">
               <div className="header">Chart Type</div>
-              {dataSet && (
-                <select
-                  onChange={e => {
-                    console.log("change");
-                    setSeriesType(e.target.value);
-                  }}
-                >
-                  <option value="line">Line Chart</option>
-                  <option value="area">Area Chart</option>
-                  <option value="histogram">Histogram Chart</option>
-                  {/* <option value="line">Line Chart</option> */}
-                </select>
-              )}
+              <RadioGroup
+                onChange={e => setSeriesType(e.target.value)}
+                selectedValue={seriesType}
+                large
+              >
+                <Radio label="Line" value="line" />{" "}
+                <Icon icon="timeline-line-chart" color="gray" />
+                <br />
+                <Radio label="Area" value="area" />{" "}
+                <Icon icon="timeline-area-chart" color="gray" />
+                <br />
+                <Radio label="Histogram" value="histogram" />{" "}
+                <Icon icon="timeline-bar-chart" color="gray" />
+              </RadioGroup>
             </div>
             <div className="control">
               <div className="header">Data Points</div>
@@ -126,9 +132,9 @@ const Exchange = () => {
                     )
                     .map(d => <option value={d}>{d}</option>)}
               </select>
-              <div className="explanation">
+              {/* <div className="explanation">
                 This is an explanation of the current data point
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
@@ -151,6 +157,7 @@ const Exchange = () => {
           .banner-header {
             padding-left: 10px;
             font-size: 32px;
+            font-weight: bold;
           }
           .flow-value {
             font-size: 24px;
@@ -175,7 +182,7 @@ const Exchange = () => {
             font-family: Space Grotesk;
             padding: 20px;
             display: flex;
-            flex-direction: flex-center;
+            flex-direction: row;
             justify-content: space-around;
           }
           .item {
@@ -186,6 +193,8 @@ const Exchange = () => {
             flex-direction: column;
             align-items: center;
             font-weight: bold;
+            padding-left: 20px;
+            padding-right: 20px;
           }
           .header {
             font-size: 18px;
@@ -198,8 +207,10 @@ const Exchange = () => {
           .controls {
             display: flex;
             flex-direction: column;
-            padding: 30px;
-            max-width: 25%;
+            align-items: flex-start;
+            padding: 50px;
+            border: 1px solid rgba(151, 151, 151, 0.15);
+            max-height: 200px;
           }
           .control {
             padding-bottom: 20px;
@@ -225,7 +236,14 @@ const Exchange = () => {
             }
             .controls {
               flex-direction: row;
+              justify-content: space-between;
               max-width: 100%;
+              padding: 10px;
+            }
+            .control {
+              max-width: 50%;
+              padding-left: 10px;
+              padding-right: 10px;
             }
           }
         `}</style>

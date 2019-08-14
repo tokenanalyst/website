@@ -20,7 +20,8 @@ const Chart = ({ dataSet, seriesType, width, height }) => {
       if (data.visible) {
         const series = chart[CHART_FUNCS[seriesType]]({
           color: data.color,
-          title: data.title
+          title: data.title,
+          lineWidth: 4
         });
         series.setData(data.chartValues);
       }
