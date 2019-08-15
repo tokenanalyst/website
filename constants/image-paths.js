@@ -8,3 +8,8 @@ export const EXCHANGE_IMAGES = {
   Kucoin: "kucoin.png",
   Poloniex: "poloniex.png"
 };
+
+export const LOGO_IMAGES = {
+  Desktop: "logo_desktop.png",
+  Mobile: "logo_mobile.png"
+};
