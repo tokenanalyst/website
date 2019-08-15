@@ -4,8 +4,10 @@ import { useRouter } from "next/router";
 import "../../../node_modules/react-table/react-table.css";
 
 import { AmountCell, ChangeCell, ExchangeCell, HeaderCell } from "./renderers";
-import { TABLE_DATA } from "./data";
-import { filterCaseInsensitive } from "./helpers";
+import { getIoTableData } from "../../../data-sets/tables";
+import { filterCaseInsensitive } from "../helpers";
+
+const TABLE_DATA = getIoTableData();
 
 export const IoTable = ({ data, dataWindow, units }) => {
   const router = useRouter();

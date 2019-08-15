@@ -1,4 +1,4 @@
-export const TABLE_DATA = {
+export const getIoTableData = () => ({
   accessors: {
     token: "token",
     exchange: "exchange",
@@ -23,4 +23,4 @@ export const TABLE_DATA = {
     outflow: "Outflow",
     outflowChange: "Change"
   }
-};
+});
