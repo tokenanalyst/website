@@ -12,6 +12,7 @@ export const Nav = () => (
 );
 
 const MobileNav = () => {
+  const [isVisible, setIsVisible] = useState(false);
   return (
     <>
       <div className="top">
@@ -21,8 +22,43 @@ const MobileNav = () => {
               <img src={`/static/png/${LOGO_IMAGES["Mobile"]}`} width="50px" />
             </Link>
             <div className="menu-icon">
-              <Icon icon="menu" color="white" iconSize={35} />
+              <Icon
+                icon={isVisible ? "cross" : "menu"}
+                color="white"
+                iconSize={35}
+                onClick={() => setIsVisible(prev => !prev)}
+              />
             </div>
+          </div>
+        </div>
+        <div
+          className="mobile-sub-links-container"
+          onClick={() => setIsVisible(false)}
+        >
+          <Link href="/">
+            <div className="mobile-link">Home</div>
+          </Link>
+          <Link href="/about">
+            <div className="mobile-link">About</div>
+          </Link>
+          <Link href="/pricing">
+            <div className="mobile-link">Pricing</div>
+          </Link>
+          <Link href="/faq">
+            <div className="mobile-link">FAQ</div>
+          </Link>
+          <Link href="/contact">
+            <div className="mobile-link">Contact</div>
+          </Link>
+          <div className="mobile-link">
+            <a href="https://research.tokenanalyst.io/" target="_blank">
+              Research
+            </a>
+          </div>
+          <div className="mobile-link">
+            <a href="https://docs.tokenanalyst.io/#/api" target="_blank">
+              API
+            </a>
           </div>
         </div>
       </div>
@@ -47,6 +83,28 @@ const MobileNav = () => {
         }
         .menu-icon {
           padding-right: 20px;
+        }
+        .mobile-sub-links-container {
+          position: fixed;
+          color: white;
+          font-size: 18px;
+          z-index: 10000;
+          top: 60px;
+          display: flex;
+          justify-content: flex-end;
+          display: ${isVisible ? "block" : "none"};
+          background-color: black;
+          width: 100%;
+          text-align: center;
+        }
+        .mobile-link {
+          padding-top: 10px;
+          padding-bottom: 10px;
+          opacity: 0.5;
+        }
+        a {
+          color: white;
+          text-decoration: none;
         }
         @media only screen and (min-width: 769px) {
           .top {
@@ -140,10 +198,10 @@ const DesktopNav = () => {
               className="desktop-about-sub-links"
               onMouseLeave={() => collapseSubMenuDelayed("about")}
             >
-              <Link href="/">
+              <Link href="/about">
                 <div className="desktop-sub-link">About</div>
               </Link>
-              <Link href="/">
+              <Link href="/faq">
                 <div className="desktop-sub-link">FAQ</div>
               </Link>
             </div>
