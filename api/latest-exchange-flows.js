@@ -53,18 +53,26 @@ module.exports = async (req, res) => {
 
       DATA_WINDOWS.forEach(dataWindow => {
         const {
+          inflow_sum,
           inflow_usd_sum,
+          inflow_sum_pct_change,
           inflow_usd_sum_pct_change,
+          outflow_sum,
           outflow_usd_sum,
+          outflow_sum_pct_change,
           outflow_usd_sum_pct_change
         } = allExchangeFlowsAllTokensResponse.data.find(
           item => item.token === token && item.window === dataWindow
         );
 
         ta_response[token].values[`data-window-${dataWindow}`] = {
+          inflow_sum,
           inflow_usd_sum,
+          inflow_sum_pct_change,
           inflow_usd_sum_pct_change,
+          outflow_sum,
           outflow_usd_sum,
+          outflow_sum_pct_change,
           outflow_usd_sum_pct_change
         };
       });

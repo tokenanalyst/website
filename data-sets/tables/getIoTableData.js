@@ -8,7 +8,7 @@ export const getIoTableData = () => ({
       outflow: "outflow_usd_sum",
       outflowChange: "outflow_usd_sum_pct_change"
     },
-    BTC: {
+    CRYPTO: {
       inflow: "inflow_sum",
       inflowChange: "inflow_sum_pct_change",
       outflow: "outflow_sum",
