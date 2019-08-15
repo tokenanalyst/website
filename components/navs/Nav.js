@@ -76,7 +76,10 @@ export const Nav = () => {
         </div>
       </div>
       <div className="desktop-sub-links-container">
-        <div className="desktop-about-sub-link-container">
+        <div
+          className="desktop-about-sub-link-container"
+          onClick={collapseAllSubMenus}
+        >
           <div className="desktop-sub-links">
             <div
               className="desktop-about-sub-links"
@@ -91,20 +94,33 @@ export const Nav = () => {
             </div>
           </div>
         </div>
-        <div className="desktop-contact-sub-link-container">
+        <div
+          className="desktop-contact-sub-link-container"
+          onClick={collapseAllSubMenus}
+        >
           <div className="desktop-sub-links">
             <div
               className="desktop-contact-sub-links"
               onMouseLeave={() => collapseSubMenuDelayed("contact")}
             >
-              <Link href="/">
-                <div
-                  className="desktop-sub-link"
-                  onMouseOut={() => collapseSubMenuDelayed("contact")}
+              <div className="desktop-sub-link">
+                <a href="https://twitter.com/thetokenanalyst" target="_blank">
+                  Follow Us
+                </a>
+              </div>
+              <div className="desktop-sub-link">
+                <a
+                  href="https://t.me/joinchat/AAAAAEXMAvSpOZao3fRvJA"
+                  target="_blank"
                 >
+                  Telegram
+                </a>
+              </div>
+              <div className="desktop-sub-link">
+                <a href="mailto:info@tokenanalyst.io" target="_blank">
                   Contact
-                </div>
-              </Link>
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -153,7 +169,7 @@ export const Nav = () => {
           cursor: pointer;
         }
         .desktop-about-sub-link-container {
-          width: 200px;
+          width: 125px;
           background: black;
           position: fixed;
           color: white;
@@ -161,9 +177,10 @@ export const Nav = () => {
           top: 60px;
           margin-left: 470px;
           padding-left: 10px;
+          border-radius: 0px 0px 5px 5px;
         }
         .desktop-contact-sub-link-container {
-          width: 200px;
+          width: 125px;
           background: black;
           position: fixed;
           color: white;
@@ -171,26 +188,22 @@ export const Nav = () => {
           top: 60px;
           margin-left: 550px;
           padding-left: 10px;
-        }
-        .below-link-contact {
-          width: 5em;
-          background: black;
-          position: fixed;
-          top: 60px;
-          color: white;
-          z-index: 10000;
-          margin-left: 550px;
-          padding-left: 10px;
+          border-radius: 0px 0px 5px 5px;
         }
         .desktop-sub-links {
-          opacity: 0.5;
         }
         .desktop-sub-link {
           padding-top: 5px;
           padding-bottom: 5px;
+          opacity: 0.5;
+        }
+        .desktop-sub-link > a {
+          padding-left: 0px;
+          opacity: 1;
         }
         .desktop-sub-link:hover {
           cursor: pointer;
+          opacity: 1;
         }
         .desktop-about-sub-links {
           display: ${shownItems.about ? "block" : "none"};
