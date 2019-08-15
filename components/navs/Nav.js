@@ -1,9 +1,64 @@
 import React, { useState } from "react";
 import Link from "next/link";
+import { Icon } from "@blueprintjs/core";
 
 import { LOGO_IMAGES } from "../../constants/image-paths";
 
-export const Nav = () => {
+export const Nav = () => (
+  <>
+    <DesktopNav />
+    <MobileNav />
+  </>
+);
+
+const MobileNav = () => {
+  return (
+    <>
+      <div className="top">
+        <div className="container">
+          <div className="mobile">
+            <Link href="/">
+              <img src={`/static/png/${LOGO_IMAGES["Mobile"]}`} width="50px" />
+            </Link>
+            <div className="menu-icon">
+              <Icon icon="menu" color="white" iconSize={35} />
+            </div>
+          </div>
+        </div>
+      </div>
+      <style jsx>{`
+        .top {
+          font-family: DIN Alternate Medium;
+          color: white;
+        }
+        .container {
+          position: fixed;
+          background-color: black;
+          z-index: 100;
+          width: 100%;
+        }
+        .mobile {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          padding-left: 20px;
+          height: 60px;
+        }
+        .menu-icon {
+          padding-right: 20px;
+        }
+        @media only screen and (min-width: 769px) {
+          .top {
+            display: none;
+          }
+        }
+      `}</style>
+    </>
+  );
+};
+
+const DesktopNav = () => {
   const [shownItems, setShownItems] = useState({
     about: false,
     contact: false
@@ -147,8 +202,6 @@ export const Nav = () => {
         .logo-desktop {
           cursor: pointer;
         }
-        .logo-mobile {
-        }
         .desktop-links {
           display: flex;
           flex-direction: row;
@@ -210,6 +263,11 @@ export const Nav = () => {
         }
         .desktop-contact-sub-links {
           display: ${shownItems.contact ? "block" : "none"};
+        }
+        @media only screen and (max-width: 768px) {
+          .top {
+            display: none;
+          }
         }
       `}</style>
     </div>
