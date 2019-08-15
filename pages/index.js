@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { IoTable } from "../components/tables/IoTable";
-import { SubNav } from "../components/navs";
+import { FilterNav } from "../components/navs";
 import { DATA_WINDOWS, UNITS } from "../constants/filters";
 import { underSubNav } from "../constants/styles/common-styled-jsx";
 import { TokenSnapshotWidget } from "../components/widgets/TokenSnapshotWidget";
@@ -12,7 +12,7 @@ const Exchange = () => {
 
   return (
     <>
-      <SubNav
+      <FilterNav
         dataWindow={dataWindow}
         setDataWindow={setDataWindow}
         units={units}

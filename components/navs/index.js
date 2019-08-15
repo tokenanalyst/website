@@ -1,4 +1,4 @@
 import { Nav } from "./Nav";
-import { SubNav } from "./SubNav";
+import { FilterNav } from "./FilterNav";
 
-export { Nav, SubNav };
+export { Nav, FilterNav };
