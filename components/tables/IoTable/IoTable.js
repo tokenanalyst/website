@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React from "react";
 import ReactTable from "react-table";
 import { useRouter } from "next/router";
 import "../../../node_modules/react-table/react-table.css";
@@ -11,49 +11,46 @@ const TABLE_DATA = getIoTableData();
 
 export const IoTable = ({ data, dataWindow, units }) => {
   const router = useRouter();
-  const [columns, setColumns] = useState([]);
 
-  useMemo(() => {
-    setColumns([
-      {
-        Header: () => <HeaderCell value={TABLE_DATA.columnHeaders.exchange} />,
-        accessor: TABLE_DATA.accessors.exchange,
-        Cell: ({ value }) => <ExchangeCell value={value} />
-      },
-      {
-        Header: () => <HeaderCell value={TABLE_DATA.columnHeaders.token} />,
-        accessor: TABLE_DATA.accessors.token
-      },
-      {
-        Header: () => <HeaderCell value={TABLE_DATA.columnHeaders.inflow} />,
-        accessor: TABLE_DATA.accessors[units].inflow,
-        Cell: ({ value }) => <AmountCell value={value} units={units} />,
-        filterable: false
-      },
-      {
-        Header: () => (
-          <HeaderCell value={TABLE_DATA.columnHeaders.inflowChange} />
-        ),
-        accessor: TABLE_DATA.accessors[units].inflowChange,
-        Cell: ({ value }) => <ChangeCell value={value} />,
-        filterable: false
-      },
-      {
-        Header: () => <HeaderCell value={TABLE_DATA.columnHeaders.outflow} />,
-        accessor: TABLE_DATA.accessors[units].outflow,
-        Cell: ({ value }) => <AmountCell value={value} units={units} />,
-        filterable: false
-      },
-      {
-        Header: () => (
-          <HeaderCell value={TABLE_DATA.columnHeaders.outflowChange} />
-        ),
-        accessor: TABLE_DATA.accessors[units].outflowChange,
-        Cell: ({ value }) => <ChangeCell value={value} />,
-        filterable: false
-      }
-    ]);
-  }, units);
+  const getColumns = units => [
+    {
+      Header: () => <HeaderCell value={TABLE_DATA.columnHeaders.exchange} />,
+      accessor: TABLE_DATA.accessors.exchange,
+      Cell: ({ value }) => <ExchangeCell value={value} />
+    },
+    {
+      Header: () => <HeaderCell value={TABLE_DATA.columnHeaders.token} />,
+      accessor: TABLE_DATA.accessors.token
+    },
+    {
+      Header: () => <HeaderCell value={TABLE_DATA.columnHeaders.inflow} />,
+      accessor: TABLE_DATA.accessors[units].inflow,
+      Cell: ({ value }) => <AmountCell value={value} units={units} />,
+      filterable: false
+    },
+    {
+      Header: () => (
+        <HeaderCell value={TABLE_DATA.columnHeaders.inflowChange} />
+      ),
+      accessor: TABLE_DATA.accessors[units].inflowChange,
+      Cell: ({ value }) => <ChangeCell value={value} />,
+      filterable: false
+    },
+    {
+      Header: () => <HeaderCell value={TABLE_DATA.columnHeaders.outflow} />,
+      accessor: TABLE_DATA.accessors[units].outflow,
+      Cell: ({ value }) => <AmountCell value={value} units={units} />,
+      filterable: false
+    },
+    {
+      Header: () => (
+        <HeaderCell value={TABLE_DATA.columnHeaders.outflowChange} />
+      ),
+      accessor: TABLE_DATA.accessors[units].outflowChange,
+      Cell: ({ value }) => <ChangeCell value={value} />,
+      filterable: false
+    }
+  ];
 
   return (
     <div className="container">
@@ -66,7 +63,7 @@ export const IoTable = ({ data, dataWindow, units }) => {
       {data && (
         <ReactTable
           data={data.filter(datum => datum.window === dataWindow)}
-          columns={columns}
+          columns={getColumns(units)}
           defaultSorted={[
             { id: TABLE_DATA.accessors[units].inflow, desc: true }
           ]}

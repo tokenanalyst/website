@@ -14,7 +14,6 @@ const Exchange = () => {
     "/api/latest-exchange-flows?tokens=BTC,ETH,USDC,DAI"
   );
   const ioTableData = useApi("/api/exchange-io");
-
   return (
     <>
       <FilterNav
@@ -27,6 +26,7 @@ const Exchange = () => {
         <TokenSnapshotWidget
           data={tokenSnapshotWidgetData}
           dataWindow={dataWindow}
+          units={units}
         />
         <IoTable data={ioTableData} dataWindow={dataWindow} units={units} />
       </div>

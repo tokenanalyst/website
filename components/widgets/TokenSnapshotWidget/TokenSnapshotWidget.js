@@ -4,7 +4,7 @@ import { TokenSnapshot } from "./TokenSnapshot";
 import { DATA_WINDOWS } from "../../../constants/filters";
 import { TOKEN_NAMES } from "../../../constants/token-names";
 
-export const TokenSnapshotWidget = ({ data, dataWindow }) => (
+export const TokenSnapshotWidget = ({ units, data, dataWindow }) => (
   <>
     <div className="container">
       {data &&
@@ -15,15 +15,22 @@ export const TokenSnapshotWidget = ({ data, dataWindow }) => (
                 token={TOKEN_NAMES[data[token].token.token]}
                 tokenValue={data[token].token.price}
                 tokenValueChange={data[token].token.price_pct_change}
+                units={units}
                 flows={[
                   {
                     label: "Inflow",
                     change:
-                      data[token].values[`data-window-${dataWindow}`]
-                        .inflow_usd_sum_pct_change,
+                      units === "USD"
+                        ? data[token].values[`data-window-${dataWindow}`]
+                            .inflow_usd_sum_pct_change
+                        : data[token].values[`data-window-${dataWindow}`]
+                            .inflow_sum_pct_change,
                     value:
-                      data[token].values[`data-window-${dataWindow}`]
-                        .inflow_usd_sum,
+                      units === "USD"
+                        ? data[token].values[`data-window-${dataWindow}`]
+                            .inflow_usd_sum
+                        : data[token].values[`data-window-${dataWindow}`]
+                            .inflow_sum,
                     sparkline: getSparklineWindow(
                       dataWindow,
                       data[token].sparklines.inflow
@@ -32,11 +39,17 @@ export const TokenSnapshotWidget = ({ data, dataWindow }) => (
                   {
                     label: "Outflow",
                     change:
-                      data[token].values[`data-window-${dataWindow}`]
-                        .outflow_usd_sum_pct_change,
+                      units === "USD"
+                        ? data[token].values[`data-window-${dataWindow}`]
+                            .outflow_usd_sum_pct_change
+                        : data[token].values[`data-window-${dataWindow}`]
+                            .outflow_sum_pct_change,
                     value:
-                      data[token].values[`data-window-${dataWindow}`]
-                        .outflow_usd_sum,
+                      units === "USD"
+                        ? data[token].values[`data-window-${dataWindow}`]
+                            .outflow_usd_sum
+                        : data[token].values[`data-window-${dataWindow}`]
+                            .outflow_sum,
                     sparkline: getSparklineWindow(
                       dataWindow,
                       data[token].sparklines.outflow

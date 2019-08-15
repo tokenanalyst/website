@@ -6,7 +6,8 @@ export const TokenSnapshot = ({
   token,
   tokenValue,
   tokenValueChange,
-  flows
+  flows,
+  units
 }) => (
   <>
     <div className="container">
@@ -85,7 +86,8 @@ export const TokenSnapshot = ({
                 </span>
               </span>
               <span className="token-flow-value">
-                ${numeral(flow.value).format("0.0a")}
+                {units === "USD" ? "$" : ""}
+                {numeral(flow.value).format("0.0a")}
               </span>
             </div>
           </>

@@ -21,7 +21,7 @@ export const getExchangeDataSet = (response, token) => {
     {
       dataPoint: "Volume (USD)",
       direction: "outflow",
-      title: "Outflow Volume",
+      title: "Outflow Volume (USD)",
       chartValues: toSingleValueChartData(
         response.outflow,
         "date",
@@ -33,7 +33,7 @@ export const getExchangeDataSet = (response, token) => {
     {
       dataPoint: "Volume (USD)",
       direction: "inflow",
-      title: "Inflow Volume",
+      title: "Inflow Volume (USD)",
       chartValues: toSingleValueChartData(
         response.inflow,
         "date",
@@ -67,7 +67,7 @@ export const getExchangeDataSet = (response, token) => {
       color: "#3fcdab"
     },
     {
-      dataPoint: "Txn Value",
+      dataPoint: "Average Txn Value",
       direction: "outflow",
       title: "Outflow Average Txn Value (USD)",
       chartValues: toSingleValueChartData(
@@ -79,7 +79,7 @@ export const getExchangeDataSet = (response, token) => {
       color: "#fa4e96"
     },
     {
-      dataPoint: "Txn Value",
+      dataPoint: "Average Txn Value",
       direction: "inflow",
       title: "Inflow Average Txn Value (USD)",
       chartValues: toSingleValueChartData(
