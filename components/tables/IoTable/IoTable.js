@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useMemo } from "react";
 import ReactTable from "react-table";
 import { useRouter } from "next/router";
 import "../../../node_modules/react-table/react-table.css";
@@ -6,13 +6,10 @@ import "../../../node_modules/react-table/react-table.css";
 import { AmountCell, ChangeCell, ExchangeCell, HeaderCell } from "./renderers";
 import { TABLE_DATA } from "./data";
 import { filterCaseInsensitive } from "./helpers";
-import { useApi } from "../../../custom-hooks";
 
-export const IoTable = ({ dataWindow, units }) => {
+export const IoTable = ({ data, dataWindow, units }) => {
   const router = useRouter();
   const [columns, setColumns] = useState([]);
-
-  const data = useApi("/api/exchange-io");
 
   useMemo(() => {
     setColumns([

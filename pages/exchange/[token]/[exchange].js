@@ -10,7 +10,6 @@ import { SimpleChartWidget } from "../../../components/widgets/SimpleChartWidget
 const Exchange = () => {
   const router = useRouter();
   const [dataSet, setDataSet] = useState(null);
-  const [seriesType, setSeriesType] = useState("line");
   const [overallMetrics, setOverallMetrics] = useState(null);
 
   // router.query has an annoying bug whereby it is initially undefined (when page refreshed or link
