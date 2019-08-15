@@ -1,4 +1,4 @@
-import { toSingleValues } from "../mapper-functions";
+import { toSingleValueChartData } from "./mappers";
 
 export const getExchangeDataSet = (response, token) => {
   const baseDataSet = [
@@ -6,7 +6,7 @@ export const getExchangeDataSet = (response, token) => {
       dataPoint: "Volume",
       direction: "outflow",
       title: "Outflow Volume",
-      chartValues: toSingleValues(response.outflow, "date", "outflow"),
+      chartValues: toSingleValueChartData(response.outflow, "date", "outflow"),
       visible: true,
       color: "#fa4e96"
     },
@@ -14,7 +14,7 @@ export const getExchangeDataSet = (response, token) => {
       dataPoint: "Volume",
       direction: "inflow",
       title: "Inflow Volume",
-      chartValues: toSingleValues(response.inflow, "date", "inflow"),
+      chartValues: toSingleValueChartData(response.inflow, "date", "inflow"),
       visible: true,
       color: "#3fcdab"
     },
@@ -22,7 +22,11 @@ export const getExchangeDataSet = (response, token) => {
       dataPoint: "Volume (USD)",
       direction: "outflow",
       title: "Outflow Volume",
-      chartValues: toSingleValues(response.outflow, "date", "outflow_usd"),
+      chartValues: toSingleValueChartData(
+        response.outflow,
+        "date",
+        "outflow_usd"
+      ),
       visible: false,
       color: "#fa4e96"
     },
@@ -30,7 +34,11 @@ export const getExchangeDataSet = (response, token) => {
       dataPoint: "Volume (USD)",
       direction: "inflow",
       title: "Inflow Volume",
-      chartValues: toSingleValues(response.inflow, "date", "inflow_usd"),
+      chartValues: toSingleValueChartData(
+        response.inflow,
+        "date",
+        "inflow_usd"
+      ),
       visible: false,
       color: "#3fcdab"
     },
@@ -38,7 +46,11 @@ export const getExchangeDataSet = (response, token) => {
       dataPoint: "Txn Count",
       direction: "outflow",
       title: "Outflow Txn Count",
-      chartValues: toSingleValues(response.outflow, "date", "number_of_txns"),
+      chartValues: toSingleValueChartData(
+        response.outflow,
+        "date",
+        "number_of_txns"
+      ),
       visible: false,
       color: "#fa4e96"
     },
@@ -46,7 +58,11 @@ export const getExchangeDataSet = (response, token) => {
       dataPoint: "Txn Count",
       direction: "inflow",
       title: "Inflow Txn Count",
-      chartValues: toSingleValues(response.inflow, "date", "number_of_txns"),
+      chartValues: toSingleValueChartData(
+        response.inflow,
+        "date",
+        "number_of_txns"
+      ),
       visible: false,
       color: "#3fcdab"
     },
@@ -54,7 +70,7 @@ export const getExchangeDataSet = (response, token) => {
       dataPoint: "Txn Value",
       direction: "outflow",
       title: "Outflow Average Txn Value (USD)",
-      chartValues: toSingleValues(
+      chartValues: toSingleValueChartData(
         response.outflow,
         "date",
         "avg_txn_value_usd"
@@ -66,7 +82,11 @@ export const getExchangeDataSet = (response, token) => {
       dataPoint: "Txn Value",
       direction: "inflow",
       title: "Inflow Average Txn Value (USD)",
-      chartValues: toSingleValues(response.inflow, "date", "avg_txn_value_usd"),
+      chartValues: toSingleValueChartData(
+        response.inflow,
+        "date",
+        "avg_txn_value_usd"
+      ),
       visible: false,
       color: "#3fcdab"
     }
@@ -78,7 +98,7 @@ export const getExchangeDataSet = (response, token) => {
         dataPoint: "Address Count",
         direction: "outflow",
         title: "Outflow Address Count",
-        chartValues: toSingleValues(
+        chartValues: toSingleValueChartData(
           response.outflow,
           "date",
           "number_of_entity_sending_addresses"
@@ -90,7 +110,7 @@ export const getExchangeDataSet = (response, token) => {
         dataPoint: "Address Count",
         direction: "inflow",
         title: "Inflow Address Count",
-        chartValues: toSingleValues(
+        chartValues: toSingleValueChartData(
           response.inflow,
           "date",
           "number_of_entity_receiving_addresses"
