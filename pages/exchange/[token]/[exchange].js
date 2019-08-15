@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
 import { useApi } from "../../../custom-hooks";
-import { getExchangeDataSet } from "../../../components/charts/datasets";
+import { getExchangeDataSet } from "../../../data-sets/charts/getExchangeDataSet";
 import { DATA_WINDOWS } from "../../../constants/filters";
 import { ExchangeMetricsWidget } from "../../../components/widgets/ExchangeMetricsWidget";
 import { SimpleChartWidget } from "../../../components/widgets/SimpleChartWidget";
