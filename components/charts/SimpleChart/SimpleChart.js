@@ -7,7 +7,7 @@ const CHART_FUNCS = {
   histogram: "addHistogramSeries"
 };
 
-const Chart = ({ dataSet, seriesType, width, height }) => {
+export const SimpleChart = ({ dataSet, seriesType, width, height }) => {
   const chartRef = useRef(null);
 
   useEffect(() => {
@@ -45,5 +45,3 @@ const Chart = ({ dataSet, seriesType, width, height }) => {
     </div>
   );
 };
-
-export default Chart;
