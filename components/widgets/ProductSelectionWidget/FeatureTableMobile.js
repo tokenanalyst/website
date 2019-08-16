@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Icon } from "@blueprintjs/core";
 
-export const FeatureTableMobile = ({ features }) => {
+import { features } from "./data/productsData";
+
+export const FeatureTableMobile = () => {
   const [displayedTab, setDisplayedTab] = useState(0);
 
   return (

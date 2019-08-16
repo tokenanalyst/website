@@ -1,16 +1,18 @@
 import React from "react";
 import { Icon } from "@blueprintjs/core";
 
-export const FeatureTableDesktop = ({ features }) => {
+import { features } from "./data/productsData";
+
+export const FeatureTableDesktop = () => {
   return (
     <div className="container">
       <table>
-        {features.categories.map(category => (
+        {features.categories.map((category, index) => (
           <>
             <tr className="row-header">
               <td className="column-header">{category.name}</td>
               {features.columns.map(column => (
-                <td className="column-header">{column}</td>
+                <td className="column-header">{index === 0 && column}</td>
               ))}
             </tr>
             {category.items.map(item => (

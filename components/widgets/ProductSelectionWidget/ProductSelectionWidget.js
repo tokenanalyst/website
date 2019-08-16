@@ -1,8 +1,9 @@
 import React from "react";
 
 import { Product } from "./Product";
+import { products } from "./data/productsData";
 
-export const ProductSelectionWidget = ({ products }) => {
+export const ProductSelectionWidget = () => {
   return (
     <>
       <div className="container">
