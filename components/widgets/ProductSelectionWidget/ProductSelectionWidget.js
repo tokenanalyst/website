@@ -7,9 +7,14 @@ export const ProductSelectionWidget = () => {
   return (
     <>
       <div className="container">
-        {products.map(({ name, price, features }, index) => (
+        {products.map(({ name, price, features, buttonText }, index) => (
           <>
-            <Product name={name} price={price} features={features} />
+            <Product
+              name={name}
+              price={price}
+              features={features}
+              buttonText={buttonText}
+            />
             {index !== products.length - 1 && <Separator />}
           </>
         ))}

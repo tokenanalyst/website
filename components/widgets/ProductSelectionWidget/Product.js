@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Product = ({ name, price, features }) => {
+export const Product = ({ name, price, features, buttonText }) => {
   return (
     <>
       <div className="container">
@@ -18,7 +18,7 @@ export const Product = ({ name, price, features }) => {
               </div>
             ))}
           </div>
-          <div className="purchase-button">Purchase</div>
+          <div className="purchase-button">{buttonText}</div>
         </div>
       </div>
       <style jsx>{`

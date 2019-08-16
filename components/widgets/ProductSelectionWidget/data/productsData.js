@@ -2,17 +2,20 @@ export const products = [
   {
     name: "Free",
     price: "$0",
-    features: ["Fundamental Analytics", "90 Day Data", "CSV & API"]
+    features: ["Fundamental Analytics", "90 Day Data", "CSV & API"],
+    buttonText: "Purchase"
   },
   {
     name: "Hobbyist",
     price: "$199",
-    features: ["Advanced Analytics", "Full Historical Data", "CSV & API"]
+    features: ["Advanced Analytics", "Full Historical Data", "CSV & API"],
+    buttonText: "Purchase"
   },
   {
     name: "Pro",
     price: "$799",
-    features: ["Exchange Flows", "Full Historical Data", "CSV & API"]
+    features: ["Exchange Flows", "Full Historical Data", "CSV & API"],
+    buttonText: "Purchase"
   },
   {
     name: "Enterprise",
@@ -21,7 +24,8 @@ export const products = [
       "Custom Metrics",
       "Full Historical Data",
       "All Formats + Websockets"
-    ]
+    ],
+    buttonText: "Contact Us"
   }
 ];
 
