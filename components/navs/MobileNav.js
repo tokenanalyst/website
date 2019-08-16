@@ -10,7 +10,7 @@ export const MobileNav = () => {
       <div className="top">
         <div className="container">
           <div className="mobile">
-            <Link href="/">
+            <Link href="/" passHref>
               <img src={`/static/png/${LOGO_IMAGES["Mobile"]}`} width="50px" />
             </Link>
             <div className="menu-icon">
@@ -27,19 +27,19 @@ export const MobileNav = () => {
           className="mobile-sub-links-container"
           onClick={() => setIsVisible(false)}
         >
-          <Link href="/">
+          <Link href="/" passHref>
             <div className="mobile-link">Home</div>
           </Link>
-          <Link href="/">
+          <Link href="/" passHref>
             <div className="mobile-link">About</div>
           </Link>
-          <Link href="/">
+          <Link href="/" passHref>
             <div className="mobile-link">Pricing</div>
           </Link>
-          <Link href="/">
+          <Link href="/" passHref>
             <div className="mobile-link">FAQ</div>
           </Link>
-          <Link href="/">
+          <Link href="/" passHref>
             <div className="mobile-link">Contact</div>
           </Link>
           <div className="mobile-link">
