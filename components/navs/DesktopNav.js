@@ -30,7 +30,7 @@ export const DesktopNav = () => {
       <div className="container">
         <div className="desktop">
           <div className="logo-desktop">
-            <Link href="/">
+            <Link href="/" passHref>
               <img
                 src={`/static/png/${LOGO_IMAGES["Desktop"]}`}
                 width="180px"
@@ -38,13 +38,13 @@ export const DesktopNav = () => {
             </Link>
           </div>
           <div className="desktop-links">
-            <Link href="/">
+            <Link href="/" passHref>
               <div className="desktop-link">Home</div>
             </Link>
             <a href="https://research.tokenanalyst.io/" target="_blank">
               Research
             </a>
-            <Link href="/">
+            <Link href="/" passHref>
               <div className="desktop-link">Pricing</div>
             </Link>
             <a
@@ -85,10 +85,10 @@ export const DesktopNav = () => {
               className="desktop-about-sub-links"
               onMouseLeave={() => collapseSubMenuDelayed("about")}
             >
-              <Link href="/">
+              <Link href="/" passHref>
                 <div className="desktop-sub-link">About</div>
               </Link>
-              <Link href="/">
+              <Link href="/" passHref>
                 <div className="desktop-sub-link">FAQ</div>
               </Link>
             </div>

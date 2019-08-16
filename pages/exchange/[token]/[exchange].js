@@ -12,10 +12,9 @@ const Exchange = () => {
   const [dataSet, setDataSet] = useState(null);
   const [overallMetrics, setOverallMetrics] = useState(null);
 
-  // router.query has an annoying bug whereby it is initially undefined (when page refreshed or link
-  // directly navigated to) and so the API call that is dependent on it fails.
-  // Added as a dependency to the custom hook so API request only fires when the
-  // router.query's values have been populated
+  // Router query params are populated post-hydration so in order to avoid losing the static
+  // optimisation benefit we wait for the population to happen client side before accessing
+  // https://www.npmjs.com/package/next#dynamic-routing
   const apiResponse = useApi(
     `/api/exchange-metrics?token=${router.query.token}&exchange=${
       router.query.exchange
@@ -23,7 +22,6 @@ const Exchange = () => {
     [router.query.token, router.query.exchange]
   );
 
-  // Again with that damn router.query bug
   useEffect(() => {
     if (apiResponse && router.query.token) {
       setDataSet(getExchangeDataSet(apiResponse, router.query.token));
