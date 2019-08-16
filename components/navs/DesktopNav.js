@@ -44,7 +44,7 @@ export const DesktopNav = () => {
             <a href="https://research.tokenanalyst.io/" target="_blank">
               Research
             </a>
-            <Link href="/" passHref>
+            <Link href="/pricing" passHref>
               <div className="desktop-link">Pricing</div>
             </Link>
             <a
