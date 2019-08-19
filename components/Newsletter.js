@@ -20,16 +20,21 @@ export const Newsletter = () => {
     setTimeout(() => setIsShown(false), 1000);
   };
 
+  const dismiss = () => {
+    window.localStorage.setItem("newsletterDismissed", true);
+    setIsShown(false);
+  };
+
   return (
     <>
       <div className="container">
         <div className="top">
           <span className="header">Newsletter</span>
-          <span className="close" onClick={() => setIsShown(false)}>
+          <span className="close" onClick={dismiss}>
             <Icon icon="cross" color="black" iconSize={28} />
           </span>
         </div>
-        <div>
+        <div className="body">
           Our newsletter features the most recent findings, reports and updates
           to our new products.
         </div>
@@ -88,7 +93,7 @@ export const Newsletter = () => {
           align-items: center;
         }
         .field {
-          width: 200px;
+          width: 150px;
           height: 24px;
         }
         .button {
@@ -105,6 +110,9 @@ export const Newsletter = () => {
         @media only screen and (max-width: 768px) {
           .container {
             height: 150px;
+          }
+          .body {
+            max-width: 270px;
           }
           .input {
             justify-content: space-between;
