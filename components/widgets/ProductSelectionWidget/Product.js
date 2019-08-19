@@ -1,9 +1,7 @@
 import React from "react";
 import { STRIPE } from "../../../constants/stripe";
-import { useRouter } from "next/router";
 
 export const Product = ({ name, price, features, buttonText, stripePlan }) => {
-  const router = useRouter();
   return (
     <>
       <div className="container">
@@ -34,8 +32,10 @@ export const Product = ({ name, price, features, buttonText, stripePlan }) => {
                           quantity: 1
                         }
                       ],
-                      successUrl: "https://tokenanalyst.io",
-                      cancelUrl: "https://tokenanalyst.io"
+                      successUrl:
+                        "https://website-jamesrford7.tokenanalyst.now.sh/purchase-success",
+                      cancelUrl:
+                        "https://website-jamesrford7.tokenanalyst.now.sh/"
                     });
 
                     console.log(result);
