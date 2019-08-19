@@ -1,5 +1,23 @@
 import React from "react";
-import { RadioGroup, Radio, Icon } from "@blueprintjs/core";
+import { Icon } from "@blueprintjs/core";
+
+const chartTypes = [
+  {
+    type: "line",
+    label: "Line",
+    icon: "timeline-line-chart"
+  },
+  {
+    type: "area",
+    label: "Area",
+    icon: "timeline-area-chart"
+  },
+  {
+    type: "histogram",
+    label: "Histogram",
+    icon: "timeline-bar-chart"
+  }
+];
 
 export const Controls = ({
   seriesType,
@@ -11,20 +29,24 @@ export const Controls = ({
     <div className="controls">
       <div className="control">
         <div className="header">Chart Type</div>
-        <RadioGroup
-          onChange={e => setSeriesType(e.target.value)}
-          selectedValue={seriesType}
-          large
-        >
-          <Radio label="Line" value="line" />{" "}
-          <Icon icon="timeline-line-chart" color="gray" />
-          <br />
-          <Radio label="Area" value="area" />{" "}
-          <Icon icon="timeline-area-chart" color="gray" />
-          <br />
-          <Radio label="Histogram" value="histogram" />{" "}
-          <Icon icon="timeline-bar-chart" color="gray" />
-        </RadioGroup>
+        {chartTypes.map(chartType => (
+          <div className="option" onClick={() => setSeriesType(chartType.type)}>
+            <span
+              className={
+                seriesType === chartType.type ? "button-selected" : "button"
+              }
+            >
+              {chartType.label}
+            </span>
+            <span className="icon">
+              <Icon
+                icon={chartType.icon}
+                iconSize={24}
+                color={seriesType === chartType.type ? "#3fcdab" : "gray"}
+              />
+            </span>
+          </div>
+        ))}
       </div>
       <div className="control">
         <div className="header">Data Points</div>
@@ -70,6 +92,27 @@ export const Controls = ({
       }
       .control {
         padding-bottom: 20px;
+      }
+      .header {
+        padding-bottom: 10px;
+        font-weight: bold;
+      }
+      .option {
+        cursor: pointer;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+      .button {
+        margin-right: 10px;
+      }
+      .button-selected {
+        font-weight: bold;
+        border-bottom: 2px solid #3fcdab;
+        margin-right: 10px;
+      }
+      .icon {
+        padding-top: 5px;
       }
       @media only screen and (max-width: 768px) {
         .controls {

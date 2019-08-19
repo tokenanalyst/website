@@ -37,10 +37,10 @@ module.exports = async (req, res) => {
     res.send({
       ta_response: {
         inflow: inflowTxnCountApiResponse.data.slice(
-          inflowTxnCountApiResponse.data.length - 270
+          inflowTxnCountApiResponse.data.length - 30
         ),
         outflow: outflowTxnCountApiResponse.data.slice(
-          outflowTxnCountApiResponse.data.length - 270
+          outflowTxnCountApiResponse.data.length - 30
         ),
         overall: publicApiResponse.data.filter(
           item => item.token === token && item.exchange === exchange
