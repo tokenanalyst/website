@@ -1,6 +1,7 @@
 import React from "react";
-import { Nav } from "./navs";
 import Head from "next/head";
+import { Nav } from "./navs";
+import { Newsletter } from "./Newsletter";
 
 export const Layout = ({ children }) => (
   <div className="layout">
@@ -12,6 +13,7 @@ export const Layout = ({ children }) => (
       <script src="https://js.stripe.com/v3/" />
     </Head>
     <Nav />
+    <Newsletter />
     <div className="page">{children}</div>
     <style jsx>{`
       .page {
