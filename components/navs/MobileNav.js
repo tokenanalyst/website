@@ -33,7 +33,7 @@ export const MobileNav = () => {
           <Link href="/" passHref>
             <div className="mobile-link">About</div>
           </Link>
-          <Link href="/" passHref>
+          <Link href="/pricing" passHref>
             <div className="mobile-link">Pricing</div>
           </Link>
           <Link href="/" passHref>

@@ -9,6 +9,7 @@ export const Layout = ({ children }) => (
       <link rel="shortcut icon" href="/static/favicon.ico" />
       <link href="/static/styles/css_reset.css" rel="stylesheet" />
       <link href="/static/fonts/fonts.css" rel="stylesheet" />
+      <script src="https://js.stripe.com/v3/" />
     </Head>
     <Nav />
     <div className="page">{children}</div>
