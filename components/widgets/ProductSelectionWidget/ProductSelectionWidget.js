@@ -7,17 +7,20 @@ export const ProductSelectionWidget = () => {
   return (
     <>
       <div className="container">
-        {products.map(({ name, price, features, buttonText }, index) => (
-          <React.Fragment key={name}>
-            <Product
-              name={name}
-              price={price}
-              features={features}
-              buttonText={buttonText}
-            />
-            {index !== products.length - 1 && <Separator />}
-          </React.Fragment>
-        ))}
+        {products.map(
+          ({ name, price, features, buttonText, stripePlan }, index) => (
+            <React.Fragment key={name}>
+              <Product
+                name={name}
+                price={price}
+                features={features}
+                buttonText={buttonText}
+                stripePlan={stripePlan}
+              />
+              {index !== products.length - 1 && <Separator />}
+            </React.Fragment>
+          )
+        )}
       </div>
       <style jsx>{`
         .container {

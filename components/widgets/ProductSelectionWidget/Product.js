@@ -1,6 +1,9 @@
 import React from "react";
+import { STRIPE } from "../../../constants/stripe";
+import { useRouter } from "next/router";
 
-export const Product = ({ name, price, features, buttonText }) => {
+export const Product = ({ name, price, features, buttonText, stripePlan }) => {
+  const router = useRouter();
   return (
     <>
       <div className="container">
@@ -20,24 +23,25 @@ export const Product = ({ name, price, features, buttonText }) => {
           </div>
           <div
             className="purchase-button"
-            onClick={async () => {
-              const stripe = Stripe(
-                "pk_live_aEqZIEFOmn3PlXWWYaTnP9GE0077TbzveD"
-              );
+            onClick={
+              stripePlan
+                ? async () => {
+                    const stripe = Stripe(STRIPE.apiKey);
+                    const result = await stripe.redirectToCheckout({
+                      items: [
+                        {
+                          plan: stripePlan,
+                          quantity: 1
+                        }
+                      ],
+                      successUrl: "https://tokenanalyst.io",
+                      cancelUrl: "https://tokenanalyst.io"
+                    });
 
-              const result = await stripe.redirectToCheckout({
-                items: [
-                  {
-                    plan: "plan_FZwuSdyp2hRm98",
-                    quantity: 1
+                    console.log(result);
                   }
-                ],
-                successUrl: "https://tokenanalyst.io",
-                cancelUrl: "https://tokenanalyst.io"
-              });
-
-              console.log(result);
-            }}
+                : () => (window.location = "mailto:info@tokenanalyst.io")
+            }
           >
             {buttonText}
           </div>
@@ -83,6 +87,8 @@ export const Product = ({ name, price, features, buttonText }) => {
         }
         .purchase-button {
           color: white;
+          min-width: 60px;
+          text-align: center;
           background-color: #3fcdab;
           max-height: 20px;
           padding: 10px;
