@@ -11,6 +11,7 @@ export const FeatureTableMobile = () => {
       <div className="button-container">
         {features.columns.map((column, index) => (
           <span
+            key={column}
             className={index === displayedTab ? "button-selected" : "button"}
             onClick={() => setDisplayedTab(index)}
           >
@@ -19,22 +20,28 @@ export const FeatureTableMobile = () => {
         ))}
       </div>
       <table>
-        {features.categories.map(feature => (
-          <>
-            <tr className="row-header">{feature.name}</tr>
-            {feature.items.map(item => (
-              <tr>
-                <td className="feature-name">{item.name}</td>
-                <td>
-                  <Icon
-                    icon={item.entitled[displayedTab] ? "tick" : "cross"}
-                    color={item.entitled[displayedTab] ? "#3fcdab" : "#fa4e96"}
-                  />
-                </td>
+        <tbody>
+          {features.categories.map(feature => (
+            <React.Fragment key={feature.name}>
+              <tr className="row-header">
+                <td>{feature.name}</td>
               </tr>
-            ))}
-          </>
-        ))}
+              {feature.items.map(item => (
+                <tr key={item.name}>
+                  <td className="feature-name">{item.name}</td>
+                  <td>
+                    <Icon
+                      icon={item.entitled[displayedTab] ? "tick" : "cross"}
+                      color={
+                        item.entitled[displayedTab] ? "#3fcdab" : "#fa4e96"
+                      }
+                    />
+                  </td>
+                </tr>
+              ))}
+            </React.Fragment>
+          ))}
+        </tbody>
       </table>
       <style jsx>{`
         .container {

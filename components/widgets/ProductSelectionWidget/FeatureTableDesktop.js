@@ -7,31 +7,35 @@ export const FeatureTableDesktop = () => {
   return (
     <div className="container">
       <table>
-        {features.categories.map((category, index) => (
-          <>
-            <tr className="row-header">
-              <td className="column-header">{category.name}</td>
-              {features.columns.map(column => (
-                <td className="column-header">{index === 0 && column}</td>
+        <tbody>
+          {features.categories.map((category, index) => (
+            <React.Fragment key={category.name}>
+              <tr className="row-header">
+                <td className="column-header">{category.name}</td>
+                {features.columns.map(column => (
+                  <td key={column} className="column-header">
+                    {index === 0 && column}
+                  </td>
+                ))}
+              </tr>
+              {category.items.map(item => (
+                <React.Fragment key={item.name}>
+                  <tr>
+                    <td className="feature">{item.name}</td>
+                    {item.entitled.map((e, index) => (
+                      <td key={index} className="feature">
+                        <Icon
+                          icon={e ? "tick" : "cross"}
+                          color={e ? "#3fcdab" : "#fa4e96"}
+                        />
+                      </td>
+                    ))}
+                  </tr>
+                </React.Fragment>
               ))}
-            </tr>
-            {category.items.map(item => (
-              <>
-                <tr>
-                  <td className="feature">{item.name}</td>
-                  {item.entitled.map(e => (
-                    <td className="feature">
-                      <Icon
-                        icon={e ? "tick" : "cross"}
-                        color={e ? "#3fcdab" : "#fa4e96"}
-                      />
-                    </td>
-                  ))}
-                </tr>
-              </>
-            ))}
-          </>
-        ))}
+            </React.Fragment>
+          ))}
+        </tbody>
       </table>
       <style jsx>{`
         .container {

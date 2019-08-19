@@ -8,7 +8,7 @@ export const ProductSelectionWidget = () => {
     <>
       <div className="container">
         {products.map(({ name, price, features, buttonText }, index) => (
-          <>
+          <React.Fragment key={name}>
             <Product
               name={name}
               price={price}
@@ -16,7 +16,7 @@ export const ProductSelectionWidget = () => {
               buttonText={buttonText}
             />
             {index !== products.length - 1 && <Separator />}
-          </>
+          </React.Fragment>
         ))}
       </div>
       <style jsx>{`

@@ -18,7 +18,29 @@ export const Product = ({ name, price, features, buttonText }) => {
               </div>
             ))}
           </div>
-          <div className="purchase-button">{buttonText}</div>
+          <div
+            className="purchase-button"
+            onClick={async () => {
+              const stripe = Stripe(
+                "pk_live_aEqZIEFOmn3PlXWWYaTnP9GE0077TbzveD"
+              );
+
+              const result = await stripe.redirectToCheckout({
+                items: [
+                  {
+                    plan: "plan_FZwuSdyp2hRm98",
+                    quantity: 1
+                  }
+                ],
+                successUrl: "https://tokenanalyst.io",
+                cancelUrl: "https://tokenanalyst.io"
+              });
+
+              console.log(result);
+            }}
+          >
+            {buttonText}
+          </div>
         </div>
       </div>
       <style jsx>{`
@@ -65,6 +87,7 @@ export const Product = ({ name, price, features, buttonText }) => {
           max-height: 20px;
           padding: 10px;
           border-radius: 10px;
+          cursor: pointer;
         }
         @media only screen and (max-width: 768px) {
           .container {
