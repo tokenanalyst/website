@@ -27,6 +27,8 @@ export const SimpleChart = ({ dataSet, seriesType, width, height }) => {
       }
     });
 
+    chart.timeScale().fitContent();
+
     return () => chart.remove();
   }, [dataSet, seriesType]);
 
