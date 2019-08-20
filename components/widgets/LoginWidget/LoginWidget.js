@@ -39,7 +39,6 @@ export const LoginWidget = () => {
         <input
           type="text"
           className="input"
-          placeholder="email"
           onChange={e => setEmail(e.target.value)}
         />
         <div className="header">Password</div>
@@ -47,7 +46,6 @@ export const LoginWidget = () => {
           type="text"
           className="input"
           type="password"
-          placeholder="password"
           onChange={e => setPassword(e.target.value)}
         />
         <div className="login-button" onClick={login}>

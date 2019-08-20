@@ -42,7 +42,7 @@ export const ExchangeMetricsWidget = ({ overallMetrics, token, exchange }) => {
                       : "change-neutral"
                   }
                 >
-                  {overallMetrics.inflow_usd_sum_pct_change}%
+                  {overallMetrics.inflow_usd_sum_pct_change.toFixed(2)}%
                 </span>
               </div>
               <div>Inflow Volume Last 24h</div>
@@ -71,7 +71,7 @@ export const ExchangeMetricsWidget = ({ overallMetrics, token, exchange }) => {
                       : "change-neutral"
                   }
                 >
-                  {overallMetrics.outflow_usd_sum_pct_change}%
+                  {overallMetrics.outflow_usd_sum_pct_change.toFixed(2)}%
                 </span>
               </div>
               <div>Outflow Volume Last 24h</div>
