@@ -7,8 +7,8 @@ module.exports = async (req, res) => {
   const urlParts = url.parse(req.url, true);
   const token = urlParts.query.token;
   const exchange = urlParts.query.exchange;
-
-  const isMaxDaysOfData = await isAuthorised(req.cookies.apiKey);
+  const isMaxDaysOfData =
+    req.cookies.apiKey && (await isAuthorised(req.cookies.apiKey));
 
   if (!token || !exchange) {
     res.status(400);
