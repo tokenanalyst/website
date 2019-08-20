@@ -1,10 +1,14 @@
 import axios from "axios";
 import url from "url";
 
+const isAuthorised = require("./auth/isAuthorised");
+
 module.exports = async (req, res) => {
   const urlParts = url.parse(req.url, true);
   const token = urlParts.query.token;
   const exchange = urlParts.query.exchange;
+
+  const isMaxDaysOfData = await isAuthorised(req.cookies.apiKey);
 
   if (!token || !exchange) {
     res.status(400);
@@ -36,12 +40,16 @@ module.exports = async (req, res) => {
 
     res.send({
       ta_response: {
-        inflow: inflowTxnCountApiResponse.data.slice(
-          inflowTxnCountApiResponse.data.length - 30
-        ),
-        outflow: outflowTxnCountApiResponse.data.slice(
-          outflowTxnCountApiResponse.data.length - 30
-        ),
+        inflow: isMaxDaysOfData
+          ? inflowTxnCountApiResponse.data
+          : inflowTxnCountApiResponse.data.slice(
+              inflowTxnCountApiResponse.data.length - 30
+            ),
+        outflow: isMaxDaysOfData
+          ? outflowTxnCountApiResponse.data
+          : outflowTxnCountApiResponse.data.slice(
+              outflowTxnCountApiResponse.data.length - 30
+            ),
         overall: publicApiResponse.data.filter(
           item => item.token === token && item.exchange === exchange
         )

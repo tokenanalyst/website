@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Link from "next/link";
-import { LOGO_IMAGES } from "../../constants/image-paths";
 import { Icon } from "@blueprintjs/core";
+import Cookies from "js-cookie";
+
+import { LOGO_IMAGES } from "../../constants/image-paths";
+import { LoginContext } from "../../contexts/Login";
 
 export const MobileNav = () => {
+  const loginCtx = useContext(LoginContext);
+
   const [isVisible, setIsVisible] = useState(false);
   return (
     <>
@@ -52,6 +57,21 @@ export const MobileNav = () => {
               API
             </a>
           </div>
+          {loginCtx.isLoggedIn ? (
+            <div
+              className="mobile-link-login"
+              onClick={() => {
+                Cookies.remove("apiKey");
+                loginCtx.setIsLoggedIn(false);
+              }}
+            >
+              Logout
+            </div>
+          ) : (
+            <Link href="/login" passHref>
+              <div className="mobile-link-login">Login</div>
+            </Link>
+          )}
         </div>
       </div>
       <style jsx>{`
@@ -93,6 +113,12 @@ export const MobileNav = () => {
           padding-top: 10px;
           padding-bottom: 10px;
           opacity: 0.5;
+        }
+        .mobile-link-login {
+          padding-top: 10px;
+          padding-bottom: 10px;
+          opacity: 0.5;
+          color: #3fcdab;
         }
         a {
           color: white;
