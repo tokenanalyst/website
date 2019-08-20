@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Link from "next/link";
+import Cookies from "js-cookie";
 
+import { LoginContext } from "../../contexts/Login";
 import { LOGO_IMAGES } from "../../constants/image-paths";
 
 export const DesktopNav = () => {
+  const loginCtx = useContext(LoginContext);
+
   const [shownItems, setShownItems] = useState({
     about: false,
     contact: false
@@ -32,7 +36,11 @@ export const DesktopNav = () => {
           <div className="logo-desktop">
             <Link href="/" passHref>
               <img
-                src={`/static/png/${LOGO_IMAGES["Desktop"]}`}
+                src={
+                  loginCtx.isLoggedIn
+                    ? `/static/png/${LOGO_IMAGES["DesktopPro"]}`
+                    : `/static/png/${LOGO_IMAGES["Desktop"]}`
+                }
                 width="180px"
               />
             </Link>
@@ -72,6 +80,21 @@ export const DesktopNav = () => {
             >
               Contact
             </div>
+            {loginCtx.isLoggedIn ? (
+              <div
+                className="login-button"
+                onClick={() => {
+                  Cookies.remove("apiKey");
+                  loginCtx.setIsLoggedIn(false);
+                }}
+              >
+                Logout
+              </div>
+            ) : (
+              <Link href="/login" passHref>
+                <div className="login-button">Login</div>
+              </Link>
+            )}
           </div>
         </div>
       </div>
@@ -151,6 +174,7 @@ export const DesktopNav = () => {
           display: flex;
           flex-direction: row;
           justify-content: flex-start;
+          align-items: center;
           min-width: 100%;
         }
         .desktop-link,
@@ -188,8 +212,6 @@ export const DesktopNav = () => {
           padding-left: 10px;
           border-radius: 0px 0px 5px 5px;
         }
-        .desktop-sub-links {
-        }
         .desktop-sub-link {
           padding-top: 5px;
           padding-bottom: 5px;
@@ -208,6 +230,17 @@ export const DesktopNav = () => {
         }
         .desktop-contact-sub-links {
           display: ${shownItems.contact ? "block" : "none"};
+        }
+        .login-button {
+          color: white;
+          min-width: 60px;
+          text-align: center;
+          background-color: #3fcdab;
+          max-height: 20px;
+          padding: 10px;
+          border-radius: 10px;
+          cursor: pointer;
+          margin-left: 20px;
         }
         @media only screen and (max-width: 768px) {
           .top {
