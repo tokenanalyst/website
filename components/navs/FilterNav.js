@@ -1,3 +1,5 @@
+import ReactGA from "react-ga";
+
 import { DATA_WINDOWS, UNITS } from "../../constants/filters";
 
 export const FilterNav = ({ dataWindow, setDataWindow, units, setUnits }) => {
@@ -5,7 +7,18 @@ export const FilterNav = ({ dataWindow, setDataWindow, units, setUnits }) => {
     <div className="container">
       <div className="options">
         {DATA_WINDOWS.map(dw => (
-          <span key={dw} className="option" onClick={() => setDataWindow(dw)}>
+          <span
+            key={dw}
+            className="option"
+            onClick={() => {
+              setDataWindow(dw);
+              ReactGA.event({
+                category: "User",
+                action: `Filter ${dw}`,
+                label: `Time Window Filter`
+              });
+            }}
+          >
             <span
               className={
                 dw === dataWindow ? "option-active" : "option-inactive"
@@ -18,7 +31,18 @@ export const FilterNav = ({ dataWindow, setDataWindow, units, setUnits }) => {
       </div>
       <div className="options">
         {UNITS.map(unit => (
-          <span key={unit} className="option" onClick={() => setUnits(unit)}>
+          <span
+            key={unit}
+            className="option"
+            onClick={() => {
+              setUnits(unit);
+              ReactGA.event({
+                category: "User",
+                action: `Filter ${unit}`,
+                label: `Units Filter`
+              });
+            }}
+          >
             <span
               className={unit === units ? "option-active" : "option-inactive"}
             >
@@ -40,7 +64,7 @@ export const FilterNav = ({ dataWindow, setDataWindow, units, setUnits }) => {
           z-index: 100;
           display: flex;
           justify-content: space-between;
-          margin-left: -10px;
+          margin-left: -17px;
         }
         .options {
           display: flex;

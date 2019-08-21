@@ -6,6 +6,7 @@ import { DATA_WINDOWS, UNITS } from "../constants/filters";
 import { underSubNav } from "../constants/styles/common-styled-jsx";
 import { TokenSnapshotWidget } from "../components/widgets/TokenSnapshotWidget";
 import { useApi } from "../custom-hooks";
+import { LoadingSpinner } from "../components/LoadingSpinner";
 
 const Exchange = () => {
   const [dataWindow, setDataWindow] = useState(DATA_WINDOWS[2]);
@@ -23,12 +24,19 @@ const Exchange = () => {
         setUnits={setUnits}
       />
       <div className="under-sub-nav">
-        <TokenSnapshotWidget
-          data={tokenSnapshotWidgetData}
-          dataWindow={dataWindow}
-          units={units}
-        />
-        <IoTable data={ioTableData} dataWindow={dataWindow} units={units} />
+        {tokenSnapshotWidgetData && ioTableData ? (
+          <>
+            <TokenSnapshotWidget
+              data={tokenSnapshotWidgetData}
+              dataWindow={dataWindow}
+              units={units}
+            />
+
+            <IoTable data={ioTableData} dataWindow={dataWindow} units={units} />
+          </>
+        ) : (
+          <LoadingSpinner />
+        )}
       </div>
       <style jsx>{underSubNav}</style>
     </>

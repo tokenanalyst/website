@@ -6,6 +6,7 @@ import { getExchangeDataSet } from "../../../data-sets/charts/getExchangeDataSet
 import { DATA_WINDOWS } from "../../../constants/filters";
 import { ExchangeMetricsWidget } from "../../../components/widgets/ExchangeMetricsWidget";
 import { SimpleChartWidget } from "../../../components/widgets/SimpleChartWidget";
+import { LoadingSpinner } from "../../../components/LoadingSpinner";
 
 const Exchange = () => {
   const router = useRouter();
@@ -33,12 +34,18 @@ const Exchange = () => {
 
   return (
     <>
-      <ExchangeMetricsWidget
-        overallMetrics={overallMetrics}
-        token={router.query.token}
-        exchange={router.query.exchange}
-      />
-      <SimpleChartWidget dataSet={dataSet} setDataSet={setDataSet} />
+      {dataSet && overallMetrics ? (
+        <>
+          <ExchangeMetricsWidget
+            overallMetrics={overallMetrics}
+            token={router.query.token}
+            exchange={router.query.exchange}
+          />
+          <SimpleChartWidget dataSet={dataSet} setDataSet={setDataSet} />
+        </>
+      ) : (
+        <LoadingSpinner />
+      )}
     </>
   );
 };

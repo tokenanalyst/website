@@ -62,15 +62,11 @@ export const DesktopNav = () => {
             >
               API
             </a>
-            <div
-              className="desktop-link"
-              onMouseOver={() => {
-                collapseAllSubMenus();
-                setShownItems(prev => ({ ...prev, about: true }));
-              }}
-            >
-              About Us
-            </div>
+            <Link href="/about" passHref>
+              <div className="desktop-link" onMouseOver={collapseAllSubMenus}>
+                About Us
+              </div>
+            </Link>
             <div
               className="desktop-link"
               onMouseOver={() => {
@@ -109,24 +105,6 @@ export const DesktopNav = () => {
         </div>
       </div>
       <div className="desktop-sub-links-container">
-        <div
-          className="desktop-about-sub-link-container"
-          onClick={collapseAllSubMenus}
-        >
-          <div className="desktop-sub-links">
-            <div
-              className="desktop-about-sub-links"
-              onMouseLeave={() => collapseSubMenuDelayed("about")}
-            >
-              <Link href="/about" passHref>
-                <div className="desktop-sub-link">About</div>
-              </Link>
-              <Link href="/" passHref>
-                <div className="desktop-sub-link">FAQ</div>
-              </Link>
-            </div>
-          </div>
-        </div>
         <div
           className="desktop-contact-sub-link-container"
           onClick={collapseAllSubMenus}

@@ -1,5 +1,6 @@
 import React from "react";
 import { Icon } from "@blueprintjs/core";
+import ReactGA from "react-ga";
 
 const chartTypes = [
   {
@@ -30,7 +31,18 @@ export const Controls = ({
       <div className="control">
         <div className="header">Chart Type</div>
         {chartTypes.map(chartType => (
-          <div className="option" onClick={() => setSeriesType(chartType.type)}>
+          <div
+            key={chartType.type}
+            className="option"
+            onClick={() => {
+              setSeriesType(chartType.type);
+              ReactGA.event({
+                category: "User",
+                action: `Chart Type ${chartType.type}`,
+                label: `Chart Type`
+              });
+            }}
+          >
             <span
               className={
                 seriesType === chartType.type ? "button-selected" : "button"
@@ -51,7 +63,7 @@ export const Controls = ({
       <div className="control">
         <div className="header">Data Points</div>
         <select
-          onChange={e =>
+          onChange={e => {
             setDataSet(
               dataSet.reduce(
                 (acc, curr) => [
@@ -63,8 +75,13 @@ export const Controls = ({
                 ],
                 []
               )
-            )
-          }
+            );
+            ReactGA.event({
+              category: "User",
+              action: `Data Point ${e.target.value}`,
+              label: `Data Points`
+            });
+          }}
         >
           {dataSet &&
             dataSet

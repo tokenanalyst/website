@@ -61,7 +61,29 @@ export const getExchangeDataSet = (response, token) => {
       color: "#3fcdab"
     },
     {
-      dataPoint: "Average TXN Value",
+      dataPoint: "Avg. TXN Value",
+      title: "Outflow Avg. TXN Value",
+      chartValues: toSingleValueChartData(
+        response.outflow,
+        "date",
+        "avg_txn_value"
+      ),
+      visible: false,
+      color: "#fa4e96"
+    },
+    {
+      dataPoint: "Avg. TXN Value",
+      title: "Inflow Avg. TXN Value",
+      chartValues: toSingleValueChartData(
+        response.inflow,
+        "date",
+        "avg_txn_value"
+      ),
+      visible: false,
+      color: "#3fcdab"
+    },
+    {
+      dataPoint: "Avg. TXN Value (USD)",
       title: "Outflow Avg. TXN Value (USD)",
       chartValues: toSingleValueChartData(
         response.outflow,
@@ -72,7 +94,7 @@ export const getExchangeDataSet = (response, token) => {
       color: "#fa4e96"
     },
     {
-      dataPoint: "Average TXN Value",
+      dataPoint: "Avg. TXN Value (USD)",
       title: "Inflow Avg. TXN Value (USD)",
       chartValues: toSingleValueChartData(
         response.inflow,
@@ -87,8 +109,8 @@ export const getExchangeDataSet = (response, token) => {
   if (token === "BTC") {
     return baseDataSet.concat([
       {
-        dataPoint: "Address Count",
-        title: "Outflow Address Count",
+        dataPoint: "Add. Count (entity)",
+        title: "Outflow No. Sending Addresses",
         chartValues: toSingleValueChartData(
           response.outflow,
           "date",
@@ -98,12 +120,34 @@ export const getExchangeDataSet = (response, token) => {
         color: "#fa4e96"
       },
       {
-        dataPoint: "Address Count",
-        title: "Inflow Address Count",
+        dataPoint: "Add. Count (entity)",
+        title: "Inflow No. Receiving Addresses",
         chartValues: toSingleValueChartData(
           response.inflow,
           "date",
           "number_of_entity_receiving_addresses"
+        ),
+        visible: false,
+        color: "#3fcdab"
+      },
+      {
+        dataPoint: "Add. Count (non-ent.)",
+        title: "Outflow No. Receiving Addresses",
+        chartValues: toSingleValueChartData(
+          response.outflow,
+          "date",
+          "number_of_nonentity_receiving_addresses"
+        ),
+        visible: false,
+        color: "#fa4e96"
+      },
+      {
+        dataPoint: "Add. Count (non-ent.)",
+        title: "Inflow No. Sending Addresses",
+        chartValues: toSingleValueChartData(
+          response.inflow,
+          "date",
+          "number_of_nonentity_sending_addresses"
         ),
         visible: false,
         color: "#3fcdab"

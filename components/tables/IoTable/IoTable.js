@@ -16,7 +16,8 @@ export const IoTable = ({ data, dataWindow, units }) => {
     {
       Header: () => <HeaderCell value={TABLE_DATA.columnHeaders.exchange} />,
       accessor: TABLE_DATA.accessors.exchange,
-      Cell: ({ value }) => <ExchangeCell value={value} />
+      Cell: ({ value }) => <ExchangeCell value={value} />,
+      width: 150
     },
     {
       Header: () => <HeaderCell value={TABLE_DATA.columnHeaders.token} />,
@@ -26,7 +27,8 @@ export const IoTable = ({ data, dataWindow, units }) => {
       Header: () => <HeaderCell value={TABLE_DATA.columnHeaders.inflow} />,
       accessor: TABLE_DATA.accessors[units].inflow,
       Cell: ({ value }) => <AmountCell value={value} units={units} />,
-      filterable: false
+      filterable: false,
+      width: 135
     },
     {
       Header: () => (
@@ -40,7 +42,8 @@ export const IoTable = ({ data, dataWindow, units }) => {
       Header: () => <HeaderCell value={TABLE_DATA.columnHeaders.outflow} />,
       accessor: TABLE_DATA.accessors[units].outflow,
       Cell: ({ value }) => <AmountCell value={value} units={units} />,
-      filterable: false
+      filterable: false,
+      width: 150
     },
     {
       Header: () => (
@@ -56,9 +59,6 @@ export const IoTable = ({ data, dataWindow, units }) => {
     <div className="container">
       <div className="information-header">
         <span>{dataWindow} Inflows/Outflows</span>
-        <span className="information-icon">
-          <img src="/static/svg/information.svg" />
-        </span>
       </div>
       {data && (
         <ReactTable
