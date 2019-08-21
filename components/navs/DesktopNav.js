@@ -87,12 +87,22 @@ export const DesktopNav = () => {
                   Cookies.remove("apiKey");
                   loginCtx.setIsLoggedIn(false);
                 }}
+                onMouseOver={() => {
+                  collapseAllSubMenus();
+                }}
               >
                 Logout
               </div>
             ) : (
               <Link href="/login" passHref>
-                <div className="login-button">Login</div>
+                <div
+                  className="login-button"
+                  onMouseOver={() => {
+                    collapseAllSubMenus();
+                  }}
+                >
+                  Login
+                </div>
               </Link>
             )}
           </div>
@@ -108,7 +118,7 @@ export const DesktopNav = () => {
               className="desktop-about-sub-links"
               onMouseLeave={() => collapseSubMenuDelayed("about")}
             >
-              <Link href="/" passHref>
+              <Link href="/about" passHref>
                 <div className="desktop-sub-link">About</div>
               </Link>
               <Link href="/" passHref>

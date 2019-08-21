@@ -42,7 +42,9 @@ export const ExchangeMetricsWidget = ({ overallMetrics, token, exchange }) => {
                       : "change-neutral"
                   }
                 >
-                  {overallMetrics.inflow_usd_sum_pct_change.toFixed(2)}%
+                  {overallMetrics.inflow_usd_sum_pct_change &&
+                    overallMetrics.inflow_usd_sum_pct_change.toFixed(2)}
+                  %
                 </span>
               </div>
               <div>Inflow Volume Last 24h</div>
@@ -71,7 +73,9 @@ export const ExchangeMetricsWidget = ({ overallMetrics, token, exchange }) => {
                       : "change-neutral"
                   }
                 >
-                  {overallMetrics.outflow_usd_sum_pct_change.toFixed(2)}%
+                  {overallMetrics.outflow_usd_sum_pct_change &&
+                    overallMetrics.outflow_usd_sum_pct_change.toFixed(2)}
+                  %
                 </span>
               </div>
               <div>Outflow Volume Last 24h</div>
@@ -119,8 +123,6 @@ export const ExchangeMetricsWidget = ({ overallMetrics, token, exchange }) => {
               .shadow {
                 height: 4px;
                 box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.05);
-                margin-left: -20px;
-                margin-right: -20px;
               }
             }
           `}</style>

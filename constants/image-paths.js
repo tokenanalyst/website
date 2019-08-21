@@ -6,7 +6,8 @@ export const EXCHANGE_IMAGES = {
   Bittrex: "bittrex.png",
   Kraken: "kraken.png",
   Kucoin: "kucoin.png",
-  Poloniex: "poloniex.png"
+  Poloniex: "poloniex.png",
+  Okex: "okex.png"
 };
 
 export const LOGO_IMAGES = {

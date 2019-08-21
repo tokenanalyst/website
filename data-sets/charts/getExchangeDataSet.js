@@ -4,7 +4,6 @@ export const getExchangeDataSet = (response, token) => {
   const baseDataSet = [
     {
       dataPoint: "Volume",
-      direction: "outflow",
       title: "Outflow Volume",
       chartValues: toSingleValueChartData(response.outflow, "date", "outflow"),
       visible: true,
@@ -12,7 +11,6 @@ export const getExchangeDataSet = (response, token) => {
     },
     {
       dataPoint: "Volume",
-      direction: "inflow",
       title: "Inflow Volume",
       chartValues: toSingleValueChartData(response.inflow, "date", "inflow"),
       visible: true,
@@ -20,7 +18,6 @@ export const getExchangeDataSet = (response, token) => {
     },
     {
       dataPoint: "Volume (USD)",
-      direction: "outflow",
       title: "Outflow Volume (USD)",
       chartValues: toSingleValueChartData(
         response.outflow,
@@ -32,7 +29,6 @@ export const getExchangeDataSet = (response, token) => {
     },
     {
       dataPoint: "Volume (USD)",
-      direction: "inflow",
       title: "Inflow Volume (USD)",
       chartValues: toSingleValueChartData(
         response.inflow,
@@ -43,9 +39,8 @@ export const getExchangeDataSet = (response, token) => {
       color: "#3fcdab"
     },
     {
-      dataPoint: "Txn Count",
-      direction: "outflow",
-      title: "Outflow Txn Count",
+      dataPoint: "TXN Count",
+      title: "Outflow TXN Count",
       chartValues: toSingleValueChartData(
         response.outflow,
         "date",
@@ -55,9 +50,8 @@ export const getExchangeDataSet = (response, token) => {
       color: "#fa4e96"
     },
     {
-      dataPoint: "Txn Count",
-      direction: "inflow",
-      title: "Inflow Txn Count",
+      dataPoint: "TXN Count",
+      title: "Inflow TXN Count",
       chartValues: toSingleValueChartData(
         response.inflow,
         "date",
@@ -67,9 +61,8 @@ export const getExchangeDataSet = (response, token) => {
       color: "#3fcdab"
     },
     {
-      dataPoint: "Average Txn Value",
-      direction: "outflow",
-      title: "Outflow Average Txn Value (USD)",
+      dataPoint: "Average TXN Value",
+      title: "Outflow Avg. TXN Value (USD)",
       chartValues: toSingleValueChartData(
         response.outflow,
         "date",
@@ -79,9 +72,8 @@ export const getExchangeDataSet = (response, token) => {
       color: "#fa4e96"
     },
     {
-      dataPoint: "Average Txn Value",
-      direction: "inflow",
-      title: "Inflow Average Txn Value (USD)",
+      dataPoint: "Average TXN Value",
+      title: "Inflow Avg. TXN Value (USD)",
       chartValues: toSingleValueChartData(
         response.inflow,
         "date",
@@ -96,7 +88,6 @@ export const getExchangeDataSet = (response, token) => {
     return baseDataSet.concat([
       {
         dataPoint: "Address Count",
-        direction: "outflow",
         title: "Outflow Address Count",
         chartValues: toSingleValueChartData(
           response.outflow,
@@ -108,7 +99,6 @@ export const getExchangeDataSet = (response, token) => {
       },
       {
         dataPoint: "Address Count",
-        direction: "inflow",
         title: "Inflow Address Count",
         chartValues: toSingleValueChartData(
           response.inflow,
@@ -116,7 +106,7 @@ export const getExchangeDataSet = (response, token) => {
           "number_of_entity_receiving_addresses"
         ),
         visible: false,
-        colour: "#3fcdab"
+        color: "#3fcdab"
       }
     ]);
   }

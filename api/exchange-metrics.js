@@ -14,24 +14,28 @@ module.exports = async (req, res) => {
     res.status(400);
     res.send({ error: "Token and / or exchange missing" });
   } else {
-    const UrlBase =
-      token === "BTC" || token === "ETH"
-        ? "https://api.tokenanalyst.io/analytics/private/v1/exchange_flow_historical"
-        : "https://api.tokenanalyst.io/analytics/private/v1/erc20_exchanges_flow_historical";
+    let urlBase;
+    if (token === "BTC") {
+      urlBase = `https://api.tokenanalyst.io/analytics/private/v1/exchange_flow_historical`;
+    } else if (token === "ETH" || token === "USDT_OMNI") {
+      urlBase = `https://api.tokenanalyst.io/analytics/private/v1/exchange_flow_window_historical`;
+    } else {
+      urlBase = `https://api.tokenanalyst.io/analytics/private/v1/erc20_exchanges_flow_historical`;
+    }
     const [
       inflowTxnCountApiResponse,
       outflowTxnCountApiResponse,
       publicApiResponse
     ] = await Promise.all([
       axios.get(
-        `${UrlBase}/last?key=${
+        `${urlBase}/last?key=${
           process.env.API_KEY
-        }&format=json&token=${token}&direction=inflow&exchange=${exchange}`
+        }&format=json&token=${token}&direction=inflow&exchange=${exchange}&window=1d`
       ),
       axios.get(
-        `${UrlBase}/last?key=${
+        `${urlBase}/last?key=${
           process.env.API_KEY
-        }&format=json&token=${token}&direction=outflow&exchange=${exchange}`
+        }&format=json&token=${token}&direction=outflow&exchange=${exchange}&window=1d`
       ),
       axios.get(
         `https://api.tokenanalyst.io/analytics/last?job=exchange_flows_all_tokens_v5&format=json`

@@ -73,9 +73,9 @@ export const Controls = ({
                   acc.indexOf(dataPoint) < 0 ? [...acc, dataPoint] : acc,
                 []
               )
-              .map(d => (
-                <option key={d} value={d}>
-                  {d}
+              .map(optionName => (
+                <option key={optionName} value={optionName}>
+                  {optionName}
                 </option>
               ))}
         </select>

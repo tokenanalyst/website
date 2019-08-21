@@ -113,6 +113,8 @@ export const RegisterWidget = () => {
                 />
                 <span>Trader</span>
               </span>
+            </div>
+            <div className="profession">
               <span>
                 <input
                   type="checkbox"
@@ -131,6 +133,8 @@ export const RegisterWidget = () => {
                 />
                 <span>Enthusiast</span>
               </span>
+            </div>
+            <div className="profession">
               <span>
                 <input
                   type="checkbox"
@@ -149,6 +153,8 @@ export const RegisterWidget = () => {
                 />
                 <span>Researcher</span>
               </span>
+            </div>
+            <div className="profession">
               <span>
                 <input
                   type="checkbox"
