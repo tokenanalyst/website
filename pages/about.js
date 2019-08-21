@@ -9,8 +9,11 @@ const About = () => {
           decentralized economy
         </div>
         <div className="sub-header">
-          We enable investors, researchers, developers, and regulators to
-          seamlessly access and gain insights from blockchain (on-chain) data
+          We are building the one place for all your blockchain data needs.
+          <br />
+          Leading hedge-funds, traders, and researchers use our proprietary data
+          to gain unparalleled insights into what's going on in the crypto
+          markets
         </div>
         <div className="team">
           <div className="header">Meet the Team</div>
@@ -251,7 +254,7 @@ const About = () => {
         <div className="featured-in">
           <div>
             <a
-              href="https://www.bloomberg.com/news/articles/2019-05-15/bitcoin-rally-is-masking-capital-flight-from-crypto-exchanges"
+              href="https://www.bloomberg.com/news/articles/2019-08-15/bitcoin-drop-not-likely-triggered-by-scam-dump-researcher-says"
               target="_blank"
             >
               <img
@@ -287,13 +290,13 @@ const About = () => {
           </div>
           <div>
             <a
-              href="https://techcrunch.com/2018/03/22/meet-the-startups-that-pitched-at-efs-9th-demo-day-in-london/"
+              href="https://finance.yahoo.com/news/crypto-projects-promise-decentralisation-data-shows-thats-far-true-070013815.html"
               target="_blank"
             >
               <img
-                src="/static/png/featuredIn/techcrunch.png"
+                src="/static/png/featuredIn/yahoo.png"
                 className="featured-image"
-                height={45}
+                height={70}
               />
             </a>
           </div>
@@ -311,23 +314,23 @@ const About = () => {
           </div>
           <div>
             <a
-              href="https://www.producthunt.com/posts/tokenanalyst"
+              href="https://techcrunch.com/2018/03/22/meet-the-startups-that-pitched-at-efs-9th-demo-day-in-london/"
               target="_blank"
             >
               <img
-                src="/static/png/featuredIn/producthunt.png"
+                src="/static/png/featuredIn/techcrunch.png"
                 className="featured-image"
-                height={70}
+                height={45}
               />
             </a>
           </div>
           <div>
             <a
-              href="https://finance.yahoo.com/news/crypto-projects-promise-decentralisation-data-shows-thats-far-true-070013815.html"
+              href="https://www.producthunt.com/posts/tokenanalyst"
               target="_blank"
             >
               <img
-                src="/static/png/featuredIn/yahoo.png"
+                src="/static/png/featuredIn/producthunt.png"
                 className="featured-image"
                 height={70}
               />
