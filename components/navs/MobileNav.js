@@ -35,7 +35,7 @@ export const MobileNav = () => {
           <Link href="/" passHref>
             <div className="mobile-link">Home</div>
           </Link>
-          <Link href="/" passHref>
+          <Link href="/about" passHref>
             <div className="mobile-link">About</div>
           </Link>
           <Link href="/pricing" passHref>
