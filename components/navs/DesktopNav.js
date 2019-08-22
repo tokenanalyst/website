@@ -49,6 +49,11 @@ export const DesktopNav = () => {
             <Link href="/" passHref>
               <div className="desktop-link">Home</div>
             </Link>
+            <Link href="/stablecoins" passHref>
+              <div className="desktop-link" onMouseOver={collapseAllSubMenus}>
+                Stablecoins
+              </div>
+            </Link>
             <a href="https://research.tokenanalyst.io/" target="_blank">
               Research
             </a>

@@ -22,7 +22,8 @@ export const StableCoinTable = ({ tableData }) => {
     {
       Header: () => tableData.columnHeaders.volume,
       accessor: tableData.accessors.volume,
-      Cell: ({ value }) => <AmountCell value={value} />
+      Cell: ({ value }) => <AmountCell value={value} />,
+      width: 125
     },
     {
       Header: () => tableData.columnHeaders.volumeChange,
@@ -32,7 +33,8 @@ export const StableCoinTable = ({ tableData }) => {
     {
       Header: () => tableData.columnHeaders.transactions,
       accessor: tableData.accessors.transactions,
-      Cell: ({ value }) => <TransactionsCell value={value} />
+      Cell: ({ value }) => <TransactionsCell value={value} />,
+      width: 80
     },
     {
       Header: () => tableData.columnHeaders.transactionsChange,
@@ -42,7 +44,8 @@ export const StableCoinTable = ({ tableData }) => {
     {
       Header: () => tableData.columnHeaders.supply,
       accessor: tableData.accessors.supply,
-      Cell: ({ value }) => <SupplyCell value={value} />
+      Cell: ({ value }) => <SupplyCell value={value} />,
+      width: 150
     }
   ];
   return (
