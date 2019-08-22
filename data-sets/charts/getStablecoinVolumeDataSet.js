@@ -19,7 +19,7 @@ export const getStablecoinVolumeDataSet = response => [
       "volume_usd"
     ),
     visible: true,
-    color: "#ff9a00"
+    color: "#e1c699"
   },
   {
     title: "USDC",
