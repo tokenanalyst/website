@@ -22,28 +22,28 @@ export const ExchangeMetricsWidget = ({ overallMetrics, token, exchange }) => {
             <div className="banner-item">
               <div>
                 <span className="flow-value">
-                  ${numeral(overallMetrics.inflow_usd_sum).format("0.0a")}
+                  ${numeral(overallMetrics.inflowUsdSum).format("0.0a")}
                 </span>
                 <img
                   src={
-                    overallMetrics.inflow_usd_sum_pct_change < 0
+                    overallMetrics.inflowUsdSumPctChange < 0
                       ? "/static/svg/down.svg"
-                      : overallMetrics.inflow_usd_sum_pct_change > 0
+                      : overallMetrics.inflowUsdSumPctChange > 0
                       ? "/static/svg/up.svg"
                       : "/static/svg/nochange.svg"
                   }
                 />
                 <span
                   className={
-                    overallMetrics.inflow_usd_sum_pct_change > 0
+                    overallMetrics.inflowUsdSumPctChange > 0
                       ? "change-positive"
-                      : overallMetrics.inflow_usd_sum_pct_change < 0
+                      : overallMetrics.inflowUsdSumPctChange < 0
                       ? "change-negative"
                       : "change-neutral"
                   }
                 >
-                  {overallMetrics.inflow_usd_sum_pct_change &&
-                    overallMetrics.inflow_usd_sum_pct_change.toFixed(2)}
+                  {overallMetrics.inflowUsdSumPctChange &&
+                    overallMetrics.inflowUsdSumPctChange.toFixed(2)}
                   %
                 </span>
               </div>
@@ -53,28 +53,28 @@ export const ExchangeMetricsWidget = ({ overallMetrics, token, exchange }) => {
             <div className="banner-item">
               <div>
                 <span className="flow-value">
-                  ${numeral(overallMetrics.outflow_usd_sum).format("0.0a")}
+                  ${numeral(overallMetrics.outflowUsdSum).format("0.0a")}
                 </span>
                 <img
                   src={
-                    overallMetrics.outflow_usd_sum_pct_change < 0
+                    overallMetrics.outflowUsdSumPctChange < 0
                       ? "/static/svg/down.svg"
-                      : overallMetrics.outflow_usd_sum_pct_change > 0
+                      : overallMetrics.outflowUsdSumPctChange > 0
                       ? "/static/svg/up.svg"
                       : "/static/svg/nochange.svg"
                   }
                 />
                 <span
                   className={
-                    overallMetrics.outflow_usd_sum_pct_change > 0
+                    overallMetrics.outflowUsdSumPctChange > 0
                       ? "change-positive"
-                      : overallMetrics.outflow_usd_sum_pct_change < 0
+                      : overallMetrics.outflowUsdSumPctChange < 0
                       ? "change-negative"
                       : "change-neutral"
                   }
                 >
-                  {overallMetrics.outflow_usd_sum_pct_change &&
-                    overallMetrics.outflow_usd_sum_pct_change.toFixed(2)}
+                  {overallMetrics.outflowUsdSumPctChange &&
+                    overallMetrics.outflowUsdSumPctChange.toFixed(2)}
                   %
                 </span>
               </div>

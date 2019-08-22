@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 
 import { useApi } from "../../../custom-hooks";
 import { getExchangeDataSet } from "../../../data-sets/charts/getExchangeDataSet";
+import { getExchangeMetrics } from "../../../data-sets/widgets/getExchangeMetrics";
 import { DATA_WINDOWS } from "../../../constants/filters";
 import { ExchangeMetricsWidget } from "../../../components/widgets/ExchangeMetricsWidget";
 import { SimpleChartWidget } from "../../../components/widgets/SimpleChartWidget";
@@ -27,7 +28,9 @@ const Exchange = () => {
     if (apiResponse && router.query.token) {
       setDataSet(getExchangeDataSet(apiResponse, router.query.token));
       setOverallMetrics(
-        apiResponse.overall.find(item => item.window === DATA_WINDOWS[0])
+        getExchangeMetrics(
+          apiResponse.overall.find(item => item.window === DATA_WINDOWS[0])
+        )
       );
     }
   }, [apiResponse, router.query.token]);
