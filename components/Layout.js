@@ -2,6 +2,7 @@ import React from "react";
 import Head from "next/head";
 import { Nav } from "./navs";
 import { Newsletter } from "./Newsletter";
+import { Footer } from "./Footer";
 
 export const Layout = ({ children }) => (
   <div className="layout">
@@ -15,6 +16,7 @@ export const Layout = ({ children }) => (
     <Nav />
     <Newsletter />
     <div className="page">{children}</div>
+    <Footer />
     <style jsx>{`
       .page {
         margin-left: 10px;
