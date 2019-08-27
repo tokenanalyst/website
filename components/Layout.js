@@ -2,12 +2,13 @@ import React from "react";
 import Head from "next/head";
 import { Nav } from "./navs";
 import { Newsletter } from "./Newsletter";
+import { CookieBanner } from "./CookieBanner";
 import { Footer } from "./Footer";
 
 export const Layout = ({ children }) => (
   <div className="layout">
     <Head>
-      <title>Token Analyst</title>
+      <title>TokenAnalyst</title>
       <link rel="shortcut icon" href="/static/favicon.ico" />
       <link href="/static/styles/css_reset.css" rel="stylesheet" />
       <link href="/static/fonts/fonts.css" rel="stylesheet" />
@@ -15,6 +16,7 @@ export const Layout = ({ children }) => (
     </Head>
     <Nav />
     <Newsletter />
+    <CookieBanner />
     <div className="page">{children}</div>
     <Footer />
     <style jsx>{`
