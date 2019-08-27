@@ -1,4 +1,6 @@
 import React from "react";
+import ReactGA from "react-ga";
+
 import { STRIPE } from "../../../constants/stripe";
 
 export const Product = ({ name, price, features, buttonText, stripePlan }) => {
@@ -24,6 +26,11 @@ export const Product = ({ name, price, features, buttonText, stripePlan }) => {
             onClick={
               stripePlan
                 ? async () => {
+                    ReactGA.event({
+                      category: "User",
+                      action: `Plan select ${name}`,
+                      label: `Plans`
+                    });
                     const stripe = Stripe(STRIPE.apiKey);
                     const result = await stripe.redirectToCheckout({
                       items: [
@@ -37,10 +44,15 @@ export const Product = ({ name, price, features, buttonText, stripePlan }) => {
                       cancelUrl:
                         "https://website-jamesrford7.tokenanalyst.now.sh/"
                     });
-
-                    console.log(result);
                   }
-                : () => (window.location = "mailto:info@tokenanalyst.io")
+                : () => {
+                    ReactGA.event({
+                      category: "User",
+                      action: `Plan select ${name}`,
+                      label: `Plans`
+                    });
+                    window.location = "mailto:info@tokenanalyst.io";
+                  }
             }
           >
             {buttonText}

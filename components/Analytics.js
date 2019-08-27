@@ -4,7 +4,7 @@ import ReactGA from "react-ga";
 
 export const Analytics = ({ children }) => {
   useEffect(() => {
-    ReactGA.initialize("UA-000000-01");
+    ReactGA.initialize("UA-113322596-1");
     const handleRouteChange = () => {
       ReactGA.pageview(Router.asPath);
     };

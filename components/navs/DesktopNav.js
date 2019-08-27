@@ -49,6 +49,11 @@ export const DesktopNav = () => {
             <Link href="/" passHref>
               <div className="desktop-link">Home</div>
             </Link>
+            <Link href="/stablecoins" passHref>
+              <div className="desktop-link" onMouseOver={collapseAllSubMenus}>
+                Stablecoins
+              </div>
+            </Link>
             <a href="https://research.tokenanalyst.io/" target="_blank">
               Research
             </a>
@@ -62,15 +67,11 @@ export const DesktopNav = () => {
             >
               API
             </a>
-            <div
-              className="desktop-link"
-              onMouseOver={() => {
-                collapseAllSubMenus();
-                setShownItems(prev => ({ ...prev, about: true }));
-              }}
-            >
-              About Us
-            </div>
+            <Link href="/about" passHref>
+              <div className="desktop-link" onMouseOver={collapseAllSubMenus}>
+                About Us
+              </div>
+            </Link>
             <div
               className="desktop-link"
               onMouseOver={() => {
@@ -109,24 +110,6 @@ export const DesktopNav = () => {
         </div>
       </div>
       <div className="desktop-sub-links-container">
-        <div
-          className="desktop-about-sub-link-container"
-          onClick={collapseAllSubMenus}
-        >
-          <div className="desktop-sub-links">
-            <div
-              className="desktop-about-sub-links"
-              onMouseLeave={() => collapseSubMenuDelayed("about")}
-            >
-              <Link href="/about" passHref>
-                <div className="desktop-sub-link">About</div>
-              </Link>
-              <Link href="/" passHref>
-                <div className="desktop-sub-link">FAQ</div>
-              </Link>
-            </div>
-          </div>
-        </div>
         <div
           className="desktop-contact-sub-link-container"
           onClick={collapseAllSubMenus}
@@ -218,7 +201,7 @@ export const DesktopNav = () => {
           color: white;
           z-index: 10000;
           top: 60px;
-          margin-left: 550px;
+          margin-left: 655px;
           padding-left: 10px;
           border-radius: 0px 0px 5px 5px;
         }

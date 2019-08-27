@@ -47,7 +47,7 @@ export const SimpleChartWidget = ({ dataSet, setDataSet }) => {
       <style jsx>{`
         .widget-container {
           font-family: Space Grotesk;
-          padding: 20px;
+          padding: 5%;
           display: flex;
           flex-direction: row;
           justify-content: space-around;

@@ -35,17 +35,14 @@ export const MobileNav = () => {
           <Link href="/" passHref>
             <div className="mobile-link">Home</div>
           </Link>
+          <Link href="/stablecoins" passHref>
+            <div className="mobile-link">Stablecoins</div>
+          </Link>
           <Link href="/about" passHref>
             <div className="mobile-link">About</div>
           </Link>
           <Link href="/pricing" passHref>
             <div className="mobile-link">Pricing</div>
-          </Link>
-          <Link href="/" passHref>
-            <div className="mobile-link">FAQ</div>
-          </Link>
-          <Link href="/" passHref>
-            <div className="mobile-link">Contact</div>
           </Link>
           <div className="mobile-link">
             <a href="https://research.tokenanalyst.io/" target="_blank">

@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
 import { useApi } from "../../../custom-hooks";
-import { getExchangeDataSet } from "../../../data-sets/charts/getExchangeDataSet";
+import { getExchangeDataSet } from "../../../data-transformers/charts/getExchangeDataSet";
+import { getExchangeMetrics } from "../../../data-transformers/widgets/getExchangeMetrics";
 import { DATA_WINDOWS } from "../../../constants/filters";
 import { ExchangeMetricsWidget } from "../../../components/widgets/ExchangeMetricsWidget";
 import { SimpleChartWidget } from "../../../components/widgets/SimpleChartWidget";
+import { LoadingSpinner } from "../../../components/LoadingSpinner";
 
 const Exchange = () => {
   const router = useRouter();
@@ -26,19 +28,27 @@ const Exchange = () => {
     if (apiResponse && router.query.token) {
       setDataSet(getExchangeDataSet(apiResponse, router.query.token));
       setOverallMetrics(
-        apiResponse.overall.find(item => item.window === DATA_WINDOWS[0])
+        getExchangeMetrics(
+          apiResponse.overall.find(item => item.window === DATA_WINDOWS[0])
+        )
       );
     }
   }, [apiResponse, router.query.token]);
 
   return (
     <>
-      <ExchangeMetricsWidget
-        overallMetrics={overallMetrics}
-        token={router.query.token}
-        exchange={router.query.exchange}
-      />
-      <SimpleChartWidget dataSet={dataSet} setDataSet={setDataSet} />
+      {dataSet && overallMetrics ? (
+        <>
+          <ExchangeMetricsWidget
+            overallMetrics={overallMetrics}
+            token={router.query.token}
+            exchange={router.query.exchange}
+          />
+          <SimpleChartWidget dataSet={dataSet} setDataSet={setDataSet} />
+        </>
+      ) : (
+        <LoadingSpinner />
+      )}
     </>
   );
 };

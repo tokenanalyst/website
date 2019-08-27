@@ -10,6 +10,15 @@ export const EXCHANGE_IMAGES = {
   Okex: "okex.png"
 };
 
+export const COIN_IMAGES = {
+  USDT: "usdt.png",
+  DAI: "dai.png",
+  GUSD: "gusd.png",
+  PAX: "pax.png",
+  TUSD: "tusd.png",
+  USDC: "usdc.png"
+};
+
 export const LOGO_IMAGES = {
   Desktop: "logo_desktop.png",
   DesktopPro: "logo_desktop_pro.png",
