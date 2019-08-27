@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 
 import { getStableCoinTableData } from "../data-transformers/tables";
+import {
+  getStablecoinVolumeDataSet,
+  getStablecoinTransactionsDataSet
+} from "../data-transformers/charts";
 import { useApi } from "../custom-hooks";
 import { StableCoinTable } from "../components/tables/StableCoinTable";
 import { LoadingSpinner } from "../components/LoadingSpinner";
-import { getStablecoinVolumeDataSet } from "../data-transformers/charts/getStablecoinVolumeDataSet";
 
 const SimpleChart = dynamic(
   () => import("../components/charts/SimpleChart").then(mod => mod.SimpleChart),
@@ -17,8 +20,10 @@ const SimpleChart = dynamic(
 const StableCoins = () => {
   const tableApiData = useApi("/api/stablecoin-onchain-metrics");
   const volumeChartApiData = useApi("/api/stablecoin-volumes");
+  const transactionsChartApiData = useApi("/api/stablecoin-transactions");
   const [tableData, setTableData] = useState(null);
   const [volumeChartData, setVolumeChartData] = useState(null);
+  const [transactionsChartData, setTransactionsChartData] = useState(null);
 
   useEffect(() => {
     if (tableApiData) {
@@ -27,7 +32,12 @@ const StableCoins = () => {
     if (volumeChartApiData) {
       setVolumeChartData(getStablecoinVolumeDataSet(volumeChartApiData));
     }
-  }, [tableApiData, volumeChartApiData]);
+    if (transactionsChartApiData) {
+      setTransactionsChartData(
+        getStablecoinTransactionsDataSet(transactionsChartApiData)
+      );
+    }
+  }, [tableApiData, volumeChartApiData, transactionsChartApiData]);
 
   return (
     <>
@@ -35,14 +45,33 @@ const StableCoins = () => {
         <div className="container">
           <div className="header">Stablecoins</div>
           <StableCoinTable tableData={tableData} />
-          <div className="header">Volumes</div>
-          <div className="chart">
-            <SimpleChart
-              dataSet={volumeChartData}
-              seriesType="line"
-              width={1200}
-              height={400}
-            />
+          <div className="charts">
+            <div className="chart">
+              <div className="header">Volumes</div>
+              <SimpleChart
+                dataSet={volumeChartData}
+                seriesType="line"
+                width={
+                  window.matchMedia("(max-width: 768px)").matches ? 300 : 700
+                }
+                height={
+                  window.matchMedia("(max-width: 768px)").matches ? 300 : 400
+                }
+              />
+            </div>
+            <div className="chart">
+              <div className="header">Transactions</div>
+              <SimpleChart
+                dataSet={transactionsChartData}
+                seriesType="line"
+                width={
+                  window.matchMedia("(max-width: 768px)").matches ? 300 : 700
+                }
+                height={
+                  window.matchMedia("(max-width: 768px)").matches ? 300 : 400
+                }
+              />
+            </div>
           </div>
         </div>
       ) : (
@@ -60,11 +89,22 @@ const StableCoins = () => {
           padding-top: 30px;
           text-align: center;
         }
+        .charts {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-around;
+          padding-top: 20px;
+        }
         .chart {
           display: flex;
           flex-direction: column;
           align-items: center;
           padding-bottom: 20px;
+        }
+        @media only screen and (max-width: 768px) {
+          .charts {
+            flex-direction: column;
+          }
         }
       `}</style>
     </>

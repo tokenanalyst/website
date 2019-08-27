@@ -35,6 +35,9 @@ export const MobileNav = () => {
           <Link href="/" passHref>
             <div className="mobile-link">Home</div>
           </Link>
+          <Link href="/stablecoins" passHref>
+            <div className="mobile-link">Stablecoins</div>
+          </Link>
           <Link href="/about" passHref>
             <div className="mobile-link">About</div>
           </Link>
