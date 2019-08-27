@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Icon } from "@blueprintjs/core";
 import axios from "axios";
+import ReactGA from "react-ga";
 
 export const Newsletter = () => {
   const [isShown, setIsShown] = useState(false);
@@ -23,6 +24,11 @@ export const Newsletter = () => {
   const dismiss = () => {
     window.localStorage.setItem("newsletterDismissed", true);
     setIsShown(false);
+    ReactGA.event({
+      category: "User",
+      action: `Dismiss newsletter`,
+      label: `Newsletter`
+    });
   };
 
   return (

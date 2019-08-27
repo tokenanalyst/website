@@ -25,6 +25,7 @@ const Exchange = () => {
   );
 
   useEffect(() => {
+    window.scrollTo(0, 0); // Very depressing that I need this here but the page remains focused on the footer even after loading - dunno why
     if (apiResponse && router.query.token) {
       setDataSet(getExchangeDataSet(apiResponse, router.query.token));
       setOverallMetrics(

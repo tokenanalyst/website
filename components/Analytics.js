@@ -8,7 +8,6 @@ export const Analytics = ({ children }) => {
     const handleRouteChange = () => {
       ReactGA.pageview(Router.asPath);
     };
-
     Router.events.on("routeChangeComplete", handleRouteChange);
 
     return () => {
