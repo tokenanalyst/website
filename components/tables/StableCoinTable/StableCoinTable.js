@@ -56,6 +56,7 @@ export const StableCoinTable = ({ tableData }) => {
           columns={columns}
           showPagination={false}
           defaultPageSize={Object.keys(COIN_IMAGES).length}
+          className="-highlight"
         />
       </div>
       <style jsx>{`

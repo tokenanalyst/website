@@ -16,8 +16,8 @@ export const getIoTableData = () => ({
     }
   },
   columnHeaders: {
-    exchange: "Exchange",
     token: "Token",
+    exchange: "Exchange",
     inflow: "Inflow",
     inflowChange: "Change",
     outflow: "Outflow",

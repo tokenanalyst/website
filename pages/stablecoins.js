@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 
-import { getStableCoinTableData } from "../data-sets/tables";
+import { getStableCoinTableData } from "../data-transformers/tables";
 import { useApi } from "../custom-hooks";
 import { StableCoinTable } from "../components/tables/StableCoinTable";
 import { LoadingSpinner } from "../components/LoadingSpinner";
-import { getStablecoinVolumeDataSet } from "../data-sets/charts/getStablecoinVolumeDataSet";
+import { getStablecoinVolumeDataSet } from "../data-transformers/charts/getStablecoinVolumeDataSet";
 
 const SimpleChart = dynamic(
   () => import("../components/charts/SimpleChart").then(mod => mod.SimpleChart),
@@ -25,7 +25,6 @@ const StableCoins = () => {
       setTableData(getStableCoinTableData(tableApiData));
     }
     if (volumeChartApiData) {
-      console.log(getStablecoinVolumeDataSet(volumeChartApiData));
       setVolumeChartData(getStablecoinVolumeDataSet(volumeChartApiData));
     }
   }, [tableApiData, volumeChartApiData]);

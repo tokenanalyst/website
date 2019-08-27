@@ -44,8 +44,6 @@ export const Product = ({ name, price, features, buttonText, stripePlan }) => {
                       cancelUrl:
                         "https://website-jamesrford7.tokenanalyst.now.sh/"
                     });
-
-                    console.log(result);
                   }
                 : () => {
                     ReactGA.event({

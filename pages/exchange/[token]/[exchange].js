@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
 import { useApi } from "../../../custom-hooks";
-import { getExchangeDataSet } from "../../../data-sets/charts/getExchangeDataSet";
-import { getExchangeMetrics } from "../../../data-sets/widgets/getExchangeMetrics";
+import { getExchangeDataSet } from "../../../data-transformers/charts/getExchangeDataSet";
+import { getExchangeMetrics } from "../../../data-transformers/widgets/getExchangeMetrics";
 import { DATA_WINDOWS } from "../../../constants/filters";
 import { ExchangeMetricsWidget } from "../../../components/widgets/ExchangeMetricsWidget";
 import { SimpleChartWidget } from "../../../components/widgets/SimpleChartWidget";

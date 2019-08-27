@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import "../../../node_modules/react-table/react-table.css";
 
 import { AmountCell, ChangeCell, ExchangeCell, HeaderCell } from "./renderers";
-import { getIoTableData } from "../../../data-sets/tables";
+import { getIoTableData } from "../../../data-transformers/tables";
 import { filterCaseInsensitive } from "../helpers";
 
 const TABLE_DATA = getIoTableData();
