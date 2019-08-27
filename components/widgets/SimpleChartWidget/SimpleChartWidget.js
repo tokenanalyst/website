@@ -14,7 +14,7 @@ const SimpleChart = dynamic(
   }
 );
 
-export const SimpleChartWidget = ({ dataSet, setDataSet }) => {
+export const SimpleChartWidget = ({ dataSet, setDataSet, formatter }) => {
   const [seriesType, setSeriesType] = useState("line");
 
   return (
@@ -34,6 +34,7 @@ export const SimpleChartWidget = ({ dataSet, setDataSet }) => {
               height={
                 window.matchMedia("(max-width: 768px)").matches ? 300 : 450
               }
+              formatter={formatter}
             />
           )}
         </div>

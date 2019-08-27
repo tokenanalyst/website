@@ -45,7 +45,11 @@ const Exchange = () => {
             token={router.query.token}
             exchange={router.query.exchange}
           />
-          <SimpleChartWidget dataSet={dataSet} setDataSet={setDataSet} />
+          <SimpleChartWidget
+            dataSet={dataSet}
+            setDataSet={setDataSet}
+            formatter="price"
+          />
         </>
       ) : (
         <LoadingSpinner />

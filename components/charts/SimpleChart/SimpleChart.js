@@ -1,5 +1,11 @@
 import React, { useEffect, useRef } from "react";
 import { createChart } from "lightweight-charts";
+import numeral from "numeral";
+
+const FORMATTERS = {
+  price: value => numeral(value).format("$0,0.00"),
+  volume: value => numeral(value).format("0,0")
+};
 
 const CHART_FUNCS = {
   line: "addLineSeries",
@@ -7,13 +13,22 @@ const CHART_FUNCS = {
   histogram: "addHistogramSeries"
 };
 
-export const SimpleChart = ({ dataSet, seriesType, width, height }) => {
+export const SimpleChart = ({
+  dataSet,
+  seriesType,
+  width,
+  height,
+  formatter = "volume"
+}) => {
   const chartRef = useRef(null);
 
   useEffect(() => {
     const chart = createChart(chartRef.current, {
       height: height,
-      width: width
+      width: width,
+      localization: {
+        priceFormatter: FORMATTERS[formatter]
+      }
     });
 
     dataSet.forEach(data => {
