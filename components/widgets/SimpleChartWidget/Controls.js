@@ -2,19 +2,21 @@ import React from "react";
 import { Icon } from "@blueprintjs/core";
 import ReactGA from "react-ga";
 
-const chartTypes = [
+import { CHART_TYPES } from "../../../constants/chartTypes";
+
+const chartDisplay = [
   {
-    type: "line",
+    type: CHART_TYPES.line,
     label: "Line",
     icon: "timeline-line-chart"
   },
   {
-    type: "area",
+    type: CHART_TYPES.area,
     label: "Area",
     icon: "timeline-area-chart"
   },
   {
-    type: "histogram",
+    type: CHART_TYPES.histogram,
     label: "Histogram",
     icon: "timeline-bar-chart"
   }
@@ -30,7 +32,7 @@ export const Controls = ({
     <div className="controls">
       <div className="control">
         <div className="header">Chart Type</div>
-        {chartTypes.map(chartType => (
+        {chartDisplay.map(chartType => (
           <div
             key={chartType.type}
             className="option"
@@ -86,8 +88,10 @@ export const Controls = ({
           {dataSet &&
             dataSet
               .reduce(
-                (acc, { dataPoint }) =>
-                  acc.indexOf(dataPoint) < 0 ? [...acc, dataPoint] : acc,
+                (acc, { dataPoint, isAlwaysDisplayed }) =>
+                  acc.indexOf(dataPoint) < 0 && !isAlwaysDisplayed
+                    ? [...acc, dataPoint]
+                    : acc,
                 []
               )
               .map(optionName => (

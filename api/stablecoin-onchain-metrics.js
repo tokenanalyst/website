@@ -1,6 +1,15 @@
 import axios from "axios";
 
-const Stablecoins = ["USDT", "USDC", "PAX", "DAI", "TUSD", "GUSD"];
+import { STABLE_TOKENS } from "../constants/tokens";
+
+const Stablecoins = [
+  STABLE_TOKENS.USDT,
+  STABLE_TOKENS.USDC,
+  STABLE_TOKENS.PAX,
+  STABLE_TOKENS.DAI,
+  STABLE_TOKENS.TUSD,
+  STABLE_TOKENS.GUSD
+];
 
 module.exports = async (req, res) => {
   const apiResponses = Stablecoins.map(async stablecoin => [

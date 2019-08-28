@@ -75,6 +75,7 @@ export const Footer = () => {
           margin-top: 20px;
           padding: 10px;
           padding-top: 20px;
+          background-color: #f8f8f8;
         }
         .top {
           display: flex;

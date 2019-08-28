@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 import { Icon } from "@blueprintjs/core";
 
 import { Controls } from "./Controls";
+import { CHART_TYPES } from "../../../constants/chartTypes";
 
 const SimpleChart = dynamic(
   () =>
@@ -15,7 +16,7 @@ const SimpleChart = dynamic(
 );
 
 export const SimpleChartWidget = ({ dataSet, setDataSet, formatter }) => {
-  const [seriesType, setSeriesType] = useState("line");
+  const [seriesType, setSeriesType] = useState(CHART_TYPES.line);
 
   return (
     <>

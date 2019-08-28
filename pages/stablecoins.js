@@ -10,6 +10,7 @@ import { useApi } from "../custom-hooks";
 import { StableCoinTable } from "../components/tables/StableCoinTable";
 import { LoadingSpinner } from "../components/LoadingSpinner";
 
+// lightweight-charts must not be imported on the server (Bang!)
 const SimpleChart = dynamic(
   () => import("../components/charts/SimpleChart").then(mod => mod.SimpleChart),
   {
@@ -52,7 +53,7 @@ const StableCoins = () => {
                 dataSet={volumeChartData}
                 seriesType="line"
                 width={
-                  window.matchMedia("(max-width: 768px)").matches ? 300 : 700
+                  window.matchMedia("(max-width: 768px)").matches ? 300 : 650
                 }
                 height={
                   window.matchMedia("(max-width: 768px)").matches ? 300 : 400
@@ -65,7 +66,7 @@ const StableCoins = () => {
                 dataSet={transactionsChartData}
                 seriesType="line"
                 width={
-                  window.matchMedia("(max-width: 768px)").matches ? 300 : 700
+                  window.matchMedia("(max-width: 768px)").matches ? 300 : 650
                 }
                 height={
                   window.matchMedia("(max-width: 768px)").matches ? 300 : 400
