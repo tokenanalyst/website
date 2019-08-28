@@ -4,6 +4,8 @@ import ReactGA from "react-ga";
 
 import { CHART_TYPES } from "../../../constants/chartTypes";
 
+import { STABLE_TOKENS, NATIVE_TOKENS } from "../../../constants/tokens";
+
 const chartDisplay = [
   {
     type: CHART_TYPES.line,
@@ -26,41 +28,60 @@ export const Controls = ({
   seriesType,
   setSeriesType,
   dataSet,
-  setDataSet
+  setDataSet,
+  showChartTypes = true,
+  showTokens = false,
+  token,
+  setToken
 }) => (
   <>
     <div className="controls">
       <div className="control">
-        <div className="header">Chart Type</div>
-        {chartDisplay.map(chartType => (
-          <div
-            key={chartType.type}
-            className="option"
-            onClick={() => {
-              setSeriesType(chartType.type);
-              ReactGA.event({
-                category: "User",
-                action: `Chart Type ${chartType.type}`,
-                label: `Chart Type`
-              });
-            }}
-          >
-            <span
-              className={
-                seriesType === chartType.type ? "button-selected" : "button"
-              }
+        {showChartTypes && <div className="header">Chart Type</div>}
+        {showChartTypes &&
+          chartDisplay.map(chartType => (
+            <div
+              key={chartType.type}
+              className="option"
+              onClick={() => {
+                setSeriesType(chartType.type);
+                ReactGA.event({
+                  category: "User",
+                  action: `Chart Type ${chartType.type}`,
+                  label: `Chart Type`
+                });
+              }}
             >
-              {chartType.label}
-            </span>
-            <span className="icon">
-              <Icon
-                icon={chartType.icon}
-                iconSize={24}
-                color={seriesType === chartType.type ? "#3fcdab" : "gray"}
-              />
-            </span>
-          </div>
-        ))}
+              <span
+                className={
+                  seriesType === chartType.type ? "button-selected" : "button"
+                }
+              >
+                {chartType.label}
+              </span>
+              <span className="icon">
+                <Icon
+                  icon={chartType.icon}
+                  iconSize={24}
+                  color={seriesType === chartType.type ? "#3fcdab" : "gray"}
+                />
+              </span>
+            </div>
+          ))}
+      </div>
+      <div className="control">
+        <div className="header">Token</div>
+        <select
+          onChange={e => {
+            setToken(e.target.value);
+          }}
+        >
+          {[...Object.keys(STABLE_TOKENS)].map(token => (
+            <option key={token} value={token}>
+              {token}
+            </option>
+          ))}
+        </select>
       </div>
       <div className="control">
         <div className="header">Data Points</div>

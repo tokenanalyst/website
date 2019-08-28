@@ -21,6 +21,7 @@ export const LoadingSpinner = () => {
           align-items: center;
           width: 100%;
           padding: 20px;
+          min-height: 1200px;
         }
       `}</style>
     </>

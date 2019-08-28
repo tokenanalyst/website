@@ -6,16 +6,13 @@ import { Controls } from "./Controls";
 import { CHART_TYPES } from "../../../constants/chartTypes";
 
 const SimpleChart = dynamic(
-  () =>
-    import("../../../components/charts/SimpleChart").then(
-      mod => mod.SimpleChart
-    ),
+  () => import("../../charts/SimpleChart").then(mod => mod.SimpleChart),
   {
     ssr: false
   }
 );
 
-export const SimpleChartWidget = ({ dataSet, setDataSet, formatter }) => {
+export const IoChartWidget = ({ dataSet, setDataSet, formatter }) => {
   const [seriesType, setSeriesType] = useState(CHART_TYPES.line);
 
   return (
