@@ -14,14 +14,11 @@ export const Footer = () => {
             <Link href="/about">
               <a className="item">About</a>
             </Link>
-            <Link href="/stablecoins">
-              <a className="item">Stablecoins</a>
-            </Link>
-            <Link href="/compare">
-              <a className="item">Token Compare</a>
-            </Link>
             <Link href="/exchange/BTC/Binance">
               <a className="item">Latest BTC (Binance)</a>
+            </Link>
+            <Link href="/stablecoins">
+              <a className="item">Stablecoins</a>
             </Link>
           </div>
           <div className="section">
@@ -73,12 +70,12 @@ export const Footer = () => {
 
       <style jsx>{`
         .container {
-          border-top: 1px solid black;
+          border-top: 1px solid rgba(151, 151, 151, 0.15);
           font-family: Space Grotesk;
           margin-top: 20px;
           padding: 10px;
           padding-top: 20px;
-          background-color: #f8f8f8;
+          opacity: 0.6;
         }
         .top {
           display: flex;
@@ -89,7 +86,7 @@ export const Footer = () => {
           display: flex;
           flex-direction: row;
           justify-content: space-around;
-          opacity: 0.5;
+          opacity: 0.7;
           margin-top: 10px;
           padding-top: 10px;
           border-top: solid 1px rgba(151, 151, 151, 0.15);
@@ -105,6 +102,7 @@ export const Footer = () => {
         .header {
           font-size: 18px;
           padding-bottom: 15px;
+          font-weight: bold;
         }
         a {
           text-decoration: none;

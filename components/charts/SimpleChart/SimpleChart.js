@@ -16,13 +16,7 @@ const CHART_FUNCS = {
   histogram: "addHistogramSeries"
 };
 
-export const SimpleChart = ({
-  dataSet,
-  seriesType,
-  width,
-  height,
-  formatter = "volume"
-}) => {
+export const SimpleChart = ({ dataSet, seriesType, width, height }) => {
   const chartRef = useRef(null);
 
   useEffect(() => {

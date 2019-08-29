@@ -44,7 +44,7 @@ const StableCoins = () => {
     <>
       {tableData && volumeChartData ? (
         <div className="container">
-          <div className="header">Stablecoins</div>
+          <div className="header">Stablecoins (24h)</div>
           <StableCoinTable tableData={tableData} />
           <div className="charts">
             <div className="chart">

@@ -46,7 +46,7 @@ export const IoChartWidget = ({ dataSet, setDataSet, formatter }) => {
       <style jsx>{`
         .widget-container {
           font-family: Space Grotesk;
-          padding: 5%;
+          padding: 3%;
           display: flex;
           flex-direction: row;
           justify-content: space-around;
