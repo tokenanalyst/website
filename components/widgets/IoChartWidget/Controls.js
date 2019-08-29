@@ -5,6 +5,7 @@ import ReactGA from "react-ga";
 import { CHART_TYPES } from "../../../constants/chartTypes";
 
 import { STABLE_TOKENS, NATIVE_TOKENS } from "../../../constants/tokens";
+import { COIN_IMAGES } from "../../../constants/image-paths";
 
 const chartDisplay = [
   {
@@ -29,17 +30,15 @@ export const Controls = ({
   setSeriesType,
   dataSet,
   setDataSet,
-  showChartTypes = true,
-  showTokens = false,
   token,
   setToken
 }) => (
   <>
     <div className="controls">
-      <div className="control">
-        {showChartTypes && <div className="header">Chart Type</div>}
-        {showChartTypes &&
-          chartDisplay.map(chartType => (
+      {setSeriesType && (
+        <div className="control">
+          <div className="header">Chart Type</div>
+          {chartDisplay.map(chartType => (
             <div
               key={chartType.type}
               className="option"
@@ -68,21 +67,38 @@ export const Controls = ({
               </span>
             </div>
           ))}
-      </div>
-      <div className="control">
-        <div className="header">Token</div>
-        <select
-          onChange={e => {
-            setToken(e.target.value);
-          }}
-        >
-          {[...Object.keys(STABLE_TOKENS)].map(token => (
-            <option key={token} value={token}>
-              {token}
-            </option>
-          ))}
-        </select>
-      </div>
+        </div>
+      )}
+      {token && (
+        <div className="control">
+          <div className="token-control">
+            <span className="header">Token</span>
+            <img
+              src={`/static/png/coins/${COIN_IMAGES[token]}`}
+              width={26}
+              height={26}
+              className="token-icon"
+            />
+          </div>
+          <select
+            onChange={e => {
+              setToken(e.target.value);
+            }}
+            value={token}
+          >
+            {[
+              ...Object.keys(NATIVE_TOKENS),
+              ...Object.keys(STABLE_TOKENS).filter(
+                token => token !== STABLE_TOKENS.USDT_OMNI
+              )
+            ].map(token => (
+              <option key={token} value={token}>
+                {token}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
       <div className="control">
         <div className="header">Data Points</div>
         <select
@@ -135,6 +151,16 @@ export const Controls = ({
       .control {
         padding-bottom: 20px;
       }
+      .token-control {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 10px;
+      }
+      .token-icon {
+        padding-bottom: 10px;
+      }
       .header {
         padding-bottom: 10px;
         font-weight: bold;
@@ -159,7 +185,7 @@ export const Controls = ({
       @media only screen and (max-width: 768px) {
         .controls {
           flex-direction: row;
-          justify-content: space-between;
+          justify-content: center;
           max-width: 100%;
           padding: 10px;
         }

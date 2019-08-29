@@ -54,6 +54,11 @@ export const DesktopNav = () => {
                 Stablecoins
               </div>
             </Link>
+            <Link href="/compare" passHref>
+              <div className="desktop-link" onMouseOver={collapseAllSubMenus}>
+                Token Compare
+              </div>
+            </Link>
             <a href="https://research.tokenanalyst.io/" target="_blank">
               Research
             </a>

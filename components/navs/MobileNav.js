@@ -38,6 +38,9 @@ export const MobileNav = () => {
           <Link href="/stablecoins" passHref>
             <div className="mobile-link">Stablecoins</div>
           </Link>
+          <Link href="/compare" passHref>
+            <div className="mobile-link">Token Compare</div>
+          </Link>
           <Link href="/about" passHref>
             <div className="mobile-link">About</div>
           </Link>
