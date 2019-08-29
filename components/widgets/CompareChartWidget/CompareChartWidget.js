@@ -104,6 +104,7 @@ export const CompareChartWidget = ({ response }) => {
         @media only screen and (max-width: 768px) {
           .container {
             flex-direction: column;
+            align-items: center;
           }
         }
       `}</style>
