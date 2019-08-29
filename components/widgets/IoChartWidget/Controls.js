@@ -31,7 +31,8 @@ export const Controls = ({
   dataSet,
   setDataSet,
   token,
-  setToken
+  setToken,
+  borderColor
 }) => (
   <>
     <div className="controls">
@@ -100,7 +101,7 @@ export const Controls = ({
         </div>
       )}
       <div className="control">
-        <div className="header">Data Points</div>
+        <div className="data-point-header">Data Points</div>
         <select
           onChange={e => {
             setDataSet(
@@ -145,8 +146,10 @@ export const Controls = ({
         flex-direction: column;
         align-items: flex-start;
         padding: 50px;
-        border: 1px solid rgba(151, 151, 151, 0.15);
+        border: 2px solid
+          ${borderColor ? borderColor : "rgba(151, 151, 151, 0.15)"};
         max-height: 200px;
+        background-color: #f8f8f8;
       }
       .control {
         padding-bottom: 20px;
@@ -163,6 +166,11 @@ export const Controls = ({
       }
       .header {
         padding-bottom: 10px;
+        font-weight: bold;
+      }
+      .data-point-header {
+        padding-bottom: 25px;
+        padding-top: 5px;
         font-weight: bold;
       }
       .option {

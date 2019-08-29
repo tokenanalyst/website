@@ -6,7 +6,8 @@ import { CHART_TYPES } from "../../../constants/chartTypes";
 
 const FORMATTERS = {
   price: value => numeral(value).format("$0,0.00"),
-  volume: value => numeral(value).format("0,0.00")
+  volume: value => numeral(value).format("0,0.00"),
+  truncated: value => numeral(value).format("0.0a")
 };
 
 const CHART_FUNCS = {
@@ -29,7 +30,9 @@ export const SimpleChart = ({
       height: height,
       width: width,
       localization: {
-        priceFormatter: FORMATTERS[formatter]
+        priceFormatter: window.matchMedia("(max-width: 768px)").matches
+          ? FORMATTERS.truncated
+          : FORMATTERS.volume
       },
       priceScale: {
         autoScale: true,

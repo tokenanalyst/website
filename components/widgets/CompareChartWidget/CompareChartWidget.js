@@ -44,13 +44,20 @@ export const CompareChartWidget = ({ response }) => {
             showChartTypes={false}
             token={tokenLhs}
             setToken={setTokenLhs}
+            borderColor="rgba(250, 78, 150, 1)"
           />
-          <SimpleChart
-            dataSet={[...tokenDataSetRhs, ...tokenDataSetLhs]}
-            seriesType="line"
-            width={window.matchMedia("(max-width: 768px)").matches ? 300 : 1000}
-            height={window.matchMedia("(max-width: 768px)").matches ? 300 : 500}
-          />
+          <div className="chart">
+            <SimpleChart
+              dataSet={[...tokenDataSetRhs, ...tokenDataSetLhs]}
+              seriesType="line"
+              width={
+                window.matchMedia("(max-width: 768px)").matches ? 300 : 1000
+              }
+              height={
+                window.matchMedia("(max-width: 768px)").matches ? 300 : 500
+              }
+            />
+          </div>
           <Controls
             dataSet={tokenDataSetRhs}
             setDataSet={newDataSet => setTokenDataSetRhs(newDataSet)}
@@ -58,6 +65,7 @@ export const CompareChartWidget = ({ response }) => {
             showChartTypes={false}
             token={tokenRhs}
             setToken={setTokenRhs}
+            borderColor="rgba(63, 205, 171, 1)"
           />
         </div>
       )}
@@ -67,6 +75,9 @@ export const CompareChartWidget = ({ response }) => {
           display: flex;
           flex-direction: row;
           justify-content: space-around;
+        }
+        .chart {
+          padding-top: 20px;
         }
         @media only screen and (max-width: 768px) {
           .container {
