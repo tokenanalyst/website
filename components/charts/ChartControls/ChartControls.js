@@ -25,7 +25,7 @@ const chartDisplay = [
   }
 ];
 
-export const Controls = ({
+export const ChartControls = ({
   seriesType,
   setSeriesType,
   dataSet,
@@ -84,6 +84,11 @@ export const Controls = ({
           <select
             onChange={e => {
               setToken(e.target.value);
+              ReactGA.event({
+                category: "User",
+                action: `Token view ${e.target.value}`,
+                label: `Tokens`
+              });
             }}
             value={token}
           >
@@ -118,7 +123,7 @@ export const Controls = ({
             );
             ReactGA.event({
               category: "User",
-              action: `Data Point ${e.target.value}`,
+              action: `Data Point View ${e.target.value}`,
               label: `Data Points`
             });
           }}
@@ -149,7 +154,7 @@ export const Controls = ({
         border: 2px solid
           ${borderColor ? borderColor : "rgba(151, 151, 151, 0.15)"};
         max-height: 200px;
-        background-color: #f8f8f8;
+        box-shadow: 2px 3px;
       }
       .control {
         padding-bottom: 20px;

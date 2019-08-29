@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import dynamic from "next/dynamic";
 import { Icon } from "@blueprintjs/core";
 
-import { Controls } from "./Controls";
+import { ChartControls } from "../../charts/ChartControls";
 import { CHART_TYPES } from "../../../constants/chartTypes";
 
 const SimpleChart = dynamic(
@@ -36,7 +36,7 @@ export const IoChartWidget = ({ dataSet, setDataSet, formatter }) => {
             />
           )}
         </div>
-        <Controls
+        <ChartControls
           seriesType={seriesType}
           setSeriesType={setSeriesType}
           dataSet={dataSet}

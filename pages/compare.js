@@ -1,18 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useApi } from "../custom-hooks";
 
-import { getCompareDataSet } from "../data-transformers/charts/getCompareDataSet";
-import { CompareChartWidget } from "../components/widgets/CompareChartWidget/CompareChartWidget";
+import { CompareChartWidget } from "../components/widgets/CompareChartWidget";
 import { LoadingSpinner } from "../components/LoadingSpinner";
 
 const Compare = () => {
   const compareData = useApi("/api/network-data");
-
-  useEffect(() => {
-    if (compareData) {
-      console.log(getCompareDataSet(compareData, "OMG"));
-    }
-  }, [compareData]);
 
   return (
     <>

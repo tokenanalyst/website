@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 
 import { getCompareDataSet } from "../../../data-transformers/charts/getCompareDataSet";
-import { Controls } from "../IoChartWidget/Controls";
+import { ChartControls } from "../../charts/ChartControls";
 import { CHART_TYPES } from "../../../constants/chartTypes";
 import { NATIVE_TOKENS } from "../../../constants/tokens";
 
@@ -37,7 +37,7 @@ export const CompareChartWidget = ({ response }) => {
     <>
       {tokenDataSetRhs && tokenDataSetLhs && (
         <div className="container">
-          <Controls
+          <ChartControls
             dataSet={tokenDataSetLhs}
             setDataSet={newDataSet => setTokenDataSetLhs(newDataSet)}
             seriesType={CHART_TYPES.line}
@@ -58,7 +58,7 @@ export const CompareChartWidget = ({ response }) => {
               }
             />
           </div>
-          <Controls
+          <ChartControls
             dataSet={tokenDataSetRhs}
             setDataSet={newDataSet => setTokenDataSetRhs(newDataSet)}
             seriesType={CHART_TYPES.line}

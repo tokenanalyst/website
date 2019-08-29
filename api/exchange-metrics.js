@@ -48,7 +48,6 @@ module.exports = async (req, res) => {
     ]);
 
     if (isStableCoin) {
-      console.log(inflowTxnCountApiResponse.data);
       const filteredInflow = inflowTxnCountApiResponse.data.filter(
         item => item.exchange === exchange
       );
@@ -62,7 +61,7 @@ module.exports = async (req, res) => {
         ta_response: {
           inflow: isMaxDaysOfData
             ? filteredInflow
-            : filteredInflow(filteredInflow.length - 30),
+            : filteredInflow.slice(filteredInflow.length - 30),
           outflow: isMaxDaysOfData
             ? filteredOutflow
             : filteredOutflow.slice(filteredOutflow.length - 30),
