@@ -32,7 +32,8 @@ export const ChartControls = ({
   setDataSet,
   token,
   setToken,
-  borderColor
+  borderColor,
+  setDataPoint
 }) => (
   <>
     <div className="controls">
@@ -115,12 +116,13 @@ export const ChartControls = ({
                   ...acc,
                   {
                     ...curr,
-                    visible: curr.dataPoint === e.target.value ? true : false
+                    visible: curr.dataPoint === e.target.value
                   }
                 ],
                 []
               )
             );
+            setDataPoint && setDataPoint(e.target.value);
             ReactGA.event({
               category: "User",
               action: `Data Point View ${e.target.value}`,
@@ -154,7 +156,7 @@ export const ChartControls = ({
         border: 2px solid
           ${borderColor ? borderColor : "rgba(151, 151, 151, 0.15)"};
         max-height: 200px;
-        box-shadow: 2px 3px;
+        box-shadow: 3px 3px rgba(0, 0, 0, 0.3);
       }
       .control {
         padding-bottom: 20px;
