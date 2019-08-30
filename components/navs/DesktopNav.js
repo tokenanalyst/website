@@ -1,17 +1,21 @@
 import React, { useState, useContext } from "react";
 import Link from "next/link";
 import Cookies from "js-cookie";
+import { useRouter } from "next/router";
 
 import { LoginContext } from "../../contexts/Login";
 import { LOGO_IMAGES } from "../../constants/image-paths";
 
 export const DesktopNav = () => {
   const loginCtx = useContext(LoginContext);
+  const router = useRouter();
 
   const [shownItems, setShownItems] = useState({
     about: false,
     contact: false
   });
+
+  const [activeLink, setActiveLink] = useState(router.pathname);
 
   const collapseAllSubMenus = () => {
     setShownItems({
@@ -30,92 +34,120 @@ export const DesktopNav = () => {
   };
 
   return (
-    <div className="top">
-      <div className="container">
-        <div className="desktop">
-          <div className="left-side">
-            <div className="logo-desktop">
-              <Link href="/" passHref>
-                <img
-                  src={
-                    loginCtx.isLoggedIn
-                      ? `/static/png/${LOGO_IMAGES["DesktopPro"]}`
-                      : `/static/png/${LOGO_IMAGES["Desktop"]}`
-                  }
-                  width="180px"
-                />
-              </Link>
-            </div>
-            <div className="desktop-links">
-              <Link href="/" passHref>
-                <div className="desktop-link">Home</div>
-              </Link>
-              <Link href="/stablecoins" passHref>
-                <div className="desktop-link" onMouseOver={collapseAllSubMenus}>
-                  Stablecoins
-                </div>
-              </Link>
-              <Link href="/compare" passHref>
-                <div className="desktop-link" onMouseOver={collapseAllSubMenus}>
-                  Token Compare
-                </div>
-              </Link>
-              <a href="https://research.tokenanalyst.io/" target="_blank">
-                Research
-              </a>
-              <Link href="/pricing" passHref>
-                <div className="desktop-link">Pricing</div>
-              </Link>
-              <a
-                href="https://docs.tokenanalyst.io/#/api"
-                target="_blank"
+    <div className="container">
+      <div className="desktop">
+        <div className="left-side">
+          <div className="logo-desktop">
+            <Link href="/" passHref>
+              <img
+                src={
+                  loginCtx.isLoggedIn
+                    ? `/static/png/${LOGO_IMAGES["DesktopPro"]}`
+                    : `/static/png/${LOGO_IMAGES["Desktop"]}`
+                }
+                width="180px"
+                onClick={() => setActiveLink("/")}
+              />
+            </Link>
+          </div>
+          <div className="desktop-links">
+            <Link href="/" passHref>
+              <div
+                className={
+                  activeLink === "/" ? "desktop-link-active" : "desktop-link"
+                }
+                onClick={() => setActiveLink("/")}
+              >
+                Exchange Flows
+              </div>
+            </Link>
+            <Link href="/stablecoins" passHref>
+              <div
+                className={
+                  activeLink === "/stablecoins"
+                    ? "desktop-link-active"
+                    : "desktop-link"
+                }
+                onClick={() => setActiveLink("/stablecoins")}
                 onMouseOver={collapseAllSubMenus}
               >
-                API
-              </a>
-              <Link href="/about" passHref>
-                <div className="desktop-link" onMouseOver={collapseAllSubMenus}>
-                  About Us
-                </div>
-              </Link>
-              <div
-                className="desktop-link"
-                onMouseOver={() => {
-                  collapseAllSubMenus();
-                  setShownItems(prev => ({ ...prev, contact: true }));
-                }}
-              >
-                Contact
+                Stablecoins
               </div>
+            </Link>
+            <Link href="/compare" passHref>
+              <div
+                className={
+                  activeLink === "/compare"
+                    ? "desktop-link-active"
+                    : "desktop-link"
+                }
+                onMouseOver={collapseAllSubMenus}
+                onClick={() => setActiveLink("/compare")}
+              >
+                Compare
+              </div>
+            </Link>
+            <a href="https://research.tokenanalyst.io/" target="_blank">
+              Research
+            </a>
+            <Link href="/pricing" passHref>
+              <div
+                className={
+                  activeLink === "/pricing"
+                    ? "desktop-link-active"
+                    : "desktop-link"
+                }
+                onClick={() => setActiveLink("/pricing")}
+              >
+                Pricing
+              </div>
+            </Link>
+            <a
+              href="https://docs.tokenanalyst.io/#/api"
+              target="_blank"
+              onMouseOver={collapseAllSubMenus}
+            >
+              API
+            </a>
+            <div
+              className={
+                activeLink === "/about" ? "desktop-link-active" : "desktop-link"
+              }
+              onMouseOver={() => {
+                collapseAllSubMenus();
+                setShownItems(prev => ({ ...prev, contact: true }));
+              }}
+            >
+              About Us
             </div>
           </div>
-          <div className="right-side">
-            {loginCtx.isLoggedIn ? (
+        </div>
+        <div className="right-side">
+          {loginCtx.isLoggedIn ? (
+            <div
+              className="login-button"
+              onClick={() => {
+                Cookies.remove("apiKey");
+                loginCtx.setIsLoggedIn(false);
+              }}
+              onMouseOver={() => {
+                collapseAllSubMenus();
+              }}
+            >
+              Logout
+            </div>
+          ) : (
+            <Link href="/login" passHref>
               <div
                 className="login-button"
-                onClick={() => {
-                  Cookies.remove("apiKey");
-                  loginCtx.setIsLoggedIn(false);
-                }}
                 onMouseOver={() => {
                   collapseAllSubMenus();
                 }}
               >
-                Logout
+                Login
               </div>
-            ) : (
-              <Link href="/login" passHref>
-                <div
-                  className="login-button"
-                  onMouseOver={() => {
-                    collapseAllSubMenus();
-                  }}
-                >
-                  Login
-                </div>
-              </Link>
-            )}
-          </div>
+            </Link>
+          )}
         </div>
       </div>
       <div className="desktop-sub-links-container">
@@ -128,6 +160,11 @@ export const DesktopNav = () => {
               className="desktop-contact-sub-links"
               onMouseLeave={() => collapseSubMenuDelayed("contact")}
             >
+              <div className="desktop-sub-link">
+                <Link href="/about" passHref>
+                  <a onClick={() => setActiveLink("/about")}>Company</a>
+                </Link>
+              </div>
               <div className="desktop-sub-link">
                 <a href="https://twitter.com/thetokenanalyst" target="_blank">
                   Follow Us
@@ -156,6 +193,8 @@ export const DesktopNav = () => {
           color: white;
         }
         .container {
+          font-family: DIN Alternate Medium;
+          color: white;
           position: fixed;
           background-color: black;
           z-index: 100;
@@ -191,6 +230,13 @@ export const DesktopNav = () => {
           text-decoration: none;
           color: white;
         }
+        .desktop-link-active {
+          opacity: 1;
+          padding-left: 10px;
+          padding-right: 10px;
+          text-decoration: none;
+          color: white;
+        }
         .desktop-link:hover,
         a:hover {
           opacity: 1;
@@ -214,13 +260,13 @@ export const DesktopNav = () => {
           color: white;
           z-index: 10000;
           top: 60px;
-          margin-left: 785px;
+          margin-left: 728px;
           padding-left: 10px;
           border-radius: 0px 0px 5px 5px;
         }
         .desktop-sub-link {
-          padding-top: 5px;
-          padding-bottom: 5px;
+          padding-top: 10px;
+          padding-bottom: 10px;
           opacity: 0.5;
         }
         .desktop-sub-link > a {

@@ -70,6 +70,9 @@ export const IoTable = ({ data, dataWindow, units }) => {
           noDataText="No results"
           className="-highlight"
           defaultPageSize={25}
+          filterable={true}
+          defaultFilterMethod={filterCaseInsensitive}
+          style={{ cursor: "pointer" }}
           getTrProps={(_, rowInfo) => ({
             onClick: () => {
               const { token, exchange } = rowInfo.original;
@@ -77,11 +80,44 @@ export const IoTable = ({ data, dataWindow, units }) => {
                 `/exchange/[token]/[exchange]`,
                 `/exchange/${token}/${exchange}`
               );
+            },
+            style: {
+              border: "none"
             }
           })}
-          filterable={true}
-          defaultFilterMethod={filterCaseInsensitive}
-          style={{ cursor: "pointer" }}
+          getProps={() => ({
+            style: {
+              border: "none"
+            }
+          })}
+          getTdProps={() => ({
+            style: {
+              border: "none"
+            }
+          })}
+          getTheadThProps={() => {
+            return {
+              style: {
+                boxShadow: "0px",
+                border: "none"
+              }
+            };
+          }}
+          getTableProps={() => ({
+            style: {
+              border: "none"
+            }
+          })}
+          getPaginationProps={() => ({
+            style: {
+              color: "#3fcdab"
+            }
+          })}
+          getNoDataProps={() => ({
+            style: {
+              color: "#fa4e96"
+            }
+          })}
         />
       )}
 
@@ -98,6 +134,16 @@ export const IoTable = ({ data, dataWindow, units }) => {
         }
         .information-icon {
           opacity: 0.2;
+        }
+        .ReactTable {
+          border: 0px;
+          border-right: 0px;
+          border-left: 0px;
+          box-shadow: 0px;
+          color: blue;
+        }
+        .ReactTable .rt-thead.-header {
+          box-shadow: 0px;
         }
         @media only screen and (max-width: 768px) {
           .information-header {

@@ -33,16 +33,16 @@ export const MobileNav = () => {
           onClick={() => setIsVisible(false)}
         >
           <Link href="/" passHref>
-            <div className="mobile-link">Home</div>
+            <div className="mobile-link">Exchange Flows</div>
           </Link>
           <Link href="/stablecoins" passHref>
             <div className="mobile-link">Stablecoins</div>
           </Link>
           <Link href="/compare" passHref>
-            <div className="mobile-link">Token Compare</div>
+            <div className="mobile-link">Compare</div>
           </Link>
           <Link href="/about" passHref>
-            <div className="mobile-link">About</div>
+            <div className="mobile-link">Company</div>
           </Link>
           <Link href="/pricing" passHref>
             <div className="mobile-link">Pricing</div>

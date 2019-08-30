@@ -152,11 +152,10 @@ export const ChartControls = ({
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        padding: 50px;
-        border: 2px solid
+        padding: 30px;
+        border: 1px solid
           ${borderColor ? borderColor : "rgba(151, 151, 151, 0.15)"};
         max-height: 200px;
-        box-shadow: 3px 3px rgba(0, 0, 0, 0.3);
       }
       .control {
         padding-bottom: 20px;

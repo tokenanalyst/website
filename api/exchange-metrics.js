@@ -3,6 +3,8 @@ import url from "url";
 
 const isAuthorised = require("./auth/isAuthorised");
 
+const FreeAmountOfDays = 90;
+
 module.exports = async (req, res) => {
   const urlParts = url.parse(req.url, true);
   const token = urlParts.query.token;
@@ -26,7 +28,7 @@ module.exports = async (req, res) => {
       priceUrl = `https://api.tokenanalyst.io/analytics/private/v1/exchange_flow_window_historical/last?format=json&token=${token}&key=${process.env.API_KEY}&exchange=${exchange}&window=1d&direction=inflow`;
     } else {
       isStableCoin = true;
-      urlBase = `https://api.tokenanalyst.io/analytics/private/v1/erc20_exchanges_flow_historical`;
+      urlBase = `https://api.tokenanalyst.io/analytics/private/v1/erc20_exchanges_flow_window_historical`;
       priceUrl = `https://api.tokenanalyst.io/analytics/private/v1/erc20_exchanges_flow_window_historical/last?format=json&token=${token}&key=${process.env.API_KEY}&exchange=${exchange}&window=1d&direction=inflow`;
     }
     const [
@@ -57,20 +59,21 @@ module.exports = async (req, res) => {
       const filteredPrice = tokenPriceResponse.data.filter(
         item => item.exchange === exchange
       );
+
       res.send({
         ta_response: {
           inflow: isMaxDaysOfData
             ? filteredInflow
-            : filteredInflow.slice(filteredInflow.length - 30),
+            : filteredInflow.slice(filteredInflow.length - FreeAmountOfDays),
           outflow: isMaxDaysOfData
             ? filteredOutflow
-            : filteredOutflow.slice(filteredOutflow.length - 30),
+            : filteredOutflow.slice(filteredOutflow.length - FreeAmountOfDays),
           overall: publicApiResponse.data.filter(
             item => item.token === token && item.exchange === exchange
           ),
           price: isMaxDaysOfData
             ? filteredPrice
-            : filteredPrice.slice(filteredPrice.length - 30)
+            : filteredPrice.slice(filteredPrice.length - FreeAmountOfDays)
         }
       });
     } else {
@@ -79,19 +82,21 @@ module.exports = async (req, res) => {
           inflow: isMaxDaysOfData
             ? inflowTxnCountApiResponse.data
             : inflowTxnCountApiResponse.data.slice(
-                inflowTxnCountApiResponse.data.length - 30
+                inflowTxnCountApiResponse.data.length - FreeAmountOfDays
               ),
           outflow: isMaxDaysOfData
             ? outflowTxnCountApiResponse.data
             : outflowTxnCountApiResponse.data.slice(
-                outflowTxnCountApiResponse.data.length - 30
+                outflowTxnCountApiResponse.data.length - FreeAmountOfDays
               ),
           overall: publicApiResponse.data.filter(
             item => item.token === token && item.exchange === exchange
           ),
           price: isMaxDaysOfData
             ? tokenPriceResponse.data
-            : tokenPriceResponse.data.slice(tokenPriceResponse.data.length - 30)
+            : tokenPriceResponse.data.slice(
+                tokenPriceResponse.data.length - FreeAmountOfDays
+              )
         }
       });
     }
