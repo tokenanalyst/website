@@ -13,33 +13,14 @@ export const Layout = ({ children }) => (
       <link href="/static/styles/css_reset.css" rel="stylesheet" />
       <link href="/static/fonts/fonts.css" rel="stylesheet" />
       <script src="https://js.stripe.com/v3/" />
-      <script type="application/ld+json">
-    {
-      "@context": "http://schema.org",
-      "@type": "Company",
-      "url": "https://www.tokenanalyst.io",
-      "logo": "static/png/logo-og.png"
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-       "@context" : "http://schema.org",
-       "@type" : "Company",
-       "name" : "TokenAnalyst",
-       "url" : "https://www.tokenanalyst.io",
-       "sameAs" : [ "https://github.com/tokenanalyst",
-       "https://www.twitter.com/thetokenanalyst",
-       "https://www.linkedin.com/company/tokenanalyst/"]
-    }
-    </script>
 
-    <meta property="og:title" content="TokenAnalyst"/>
-    <meta property="og:site_name" content="TokenAnalyst"/>
-    <meta property="og:image" content="https://www.tokenanalyst.io/static/png/logo-og.png" />
-    <meta name="author" content="TokenAnalyst"/>
+      <meta property="og:title" content="TokenAnalyst"/>
+      <meta property="og:site_name" content="TokenAnalyst"/>
+      <meta property="og:image" content="https://www.tokenanalyst.io/static/png/logo-og.png" />
+      <meta name="author" content="TokenAnalyst"/>
 
-    <meta property="og:type" content="website" />
-    <meta property="og:description" content="We enable investors, researchers, developers, and regulators to seamlessly access and gain insights from blockchain (on-chain) data"/>
+      <meta property="og:type" content="website" />
+      <meta property="og:description" content="We enable investors, researchers, developers, and regulators to seamlessly access and gain insights from blockchain (on-chain) data"/>
     </Head>
     <Nav />
     <Newsletter />
