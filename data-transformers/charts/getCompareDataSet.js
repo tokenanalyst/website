@@ -6,7 +6,22 @@ export const getCompareDataSet = (response, token, color) => {
   const tokenData = response[token];
   const baseDataSet = [
     {
-      dataPoint: "Volume",
+      dataPoint: "Volume (USD)",
+      title: `${token} Volume (USD)`,
+      chartValues: toSingleValueChartData(
+        tokenData.volume,
+        "date",
+        token === NATIVE_TOKENS.BTC
+          ? "volume_real_usd"
+          : token === NATIVE_TOKENS.ETH
+          ? "volume_gross_usd"
+          : "volume_usd"
+      ),
+      visible: true,
+      solidColor: color
+    },
+    {
+      dataPoint: `Volume (${token})`,
       title: `${token} Volume`,
       chartValues: toSingleValueChartData(
         tokenData.volume,
@@ -14,10 +29,10 @@ export const getCompareDataSet = (response, token, color) => {
         token === NATIVE_TOKENS.BTC
           ? "volume_real"
           : token === NATIVE_TOKENS.ETH
-          ? "volume_gross_usd"
+          ? "volume_gross"
           : "volume"
       ),
-      visible: true,
+      visible: false,
       solidColor: color
     },
     {
