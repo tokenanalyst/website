@@ -98,7 +98,14 @@ export const IoTable = ({ data, dataWindow, units }) => {
           getTheadThProps={() => {
             return {
               style: {
-                boxShadow: "0px",
+                border: "none"
+              }
+            };
+          }}
+          getTheadProps={() => {
+            return {
+              style: {
+                boxShadow: "none",
                 border: "none"
               }
             };
@@ -135,16 +142,7 @@ export const IoTable = ({ data, dataWindow, units }) => {
         .information-icon {
           opacity: 0.2;
         }
-        .ReactTable {
-          border: 0px;
-          border-right: 0px;
-          border-left: 0px;
-          box-shadow: 0px;
-          color: blue;
-        }
-        .ReactTable .rt-thead.-header {
-          box-shadow: 0px;
-        }
+
         @media only screen and (max-width: 768px) {
           .information-header {
             padding: 30px 30px;

@@ -72,7 +72,14 @@ export const StableCoinTable = ({ tableData }) => {
           getTheadThProps={() => {
             return {
               style: {
-                boxShadow: "0px",
+                border: "none"
+              }
+            };
+          }}
+          getTheadProps={() => {
+            return {
+              style: {
+                boxShadow: "none",
                 border: "none"
               }
             };
