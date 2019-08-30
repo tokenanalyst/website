@@ -9,7 +9,7 @@ export const getStablecoinTransactionsDataSet = response => [
       "number_of_txns"
     ),
     visible: true,
-    color: "#75FFF9"
+    solidColor: "#75FFF9"
   },
   {
     title: "USDT_ERC20",
@@ -19,7 +19,7 @@ export const getStablecoinTransactionsDataSet = response => [
       "number_of_txns"
     ),
     visible: true,
-    color: "#e1c699"
+    solidColor: "#e1c699"
   },
   {
     title: "USDC",
@@ -29,7 +29,7 @@ export const getStablecoinTransactionsDataSet = response => [
       "number_of_txns"
     ),
     visible: true,
-    color: "#6AABFF"
+    solidColor: "#6AABFF"
   },
   {
     title: "PAX",
@@ -39,7 +39,7 @@ export const getStablecoinTransactionsDataSet = response => [
       "number_of_txns"
     ),
     visible: true,
-    color: "#FF8DA1"
+    solidColor: "#FF8DA1"
   },
   {
     title: "DAI",
@@ -49,7 +49,7 @@ export const getStablecoinTransactionsDataSet = response => [
       "number_of_txns"
     ),
     visible: true,
-    color: "#2BEFBE"
+    solidColor: "#2BEFBE"
   },
   {
     title: "TUSD",
@@ -59,7 +59,7 @@ export const getStablecoinTransactionsDataSet = response => [
       "number_of_txns"
     ),
     visible: true,
-    color: "#BDFCEE"
+    solidColor: "#BDFCEE"
   },
   {
     title: "GUSD",
@@ -69,6 +69,6 @@ export const getStablecoinTransactionsDataSet = response => [
       "number_of_txns"
     ),
     visible: true,
-    color: "#B49CF2"
+    solidColor: "#B49CF2"
   }
 ];

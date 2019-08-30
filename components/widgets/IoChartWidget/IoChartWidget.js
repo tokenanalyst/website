@@ -2,20 +2,18 @@ import React, { useState } from "react";
 import dynamic from "next/dynamic";
 import { Icon } from "@blueprintjs/core";
 
-import { Controls } from "./Controls";
+import { ChartControls } from "../../charts/ChartControls";
+import { CHART_TYPES } from "../../../constants/chartTypes";
 
 const SimpleChart = dynamic(
-  () =>
-    import("../../../components/charts/SimpleChart").then(
-      mod => mod.SimpleChart
-    ),
+  () => import("../../charts/SimpleChart").then(mod => mod.SimpleChart),
   {
     ssr: false
   }
 );
 
-export const SimpleChartWidget = ({ dataSet, setDataSet }) => {
-  const [seriesType, setSeriesType] = useState("line");
+export const IoChartWidget = ({ dataSet, setDataSet, formatter }) => {
+  const [seriesType, setSeriesType] = useState(CHART_TYPES.line);
 
   return (
     <>
@@ -34,10 +32,11 @@ export const SimpleChartWidget = ({ dataSet, setDataSet }) => {
               height={
                 window.matchMedia("(max-width: 768px)").matches ? 300 : 450
               }
+              formatter={formatter}
             />
           )}
         </div>
-        <Controls
+        <ChartControls
           seriesType={seriesType}
           setSeriesType={setSeriesType}
           dataSet={dataSet}
@@ -47,7 +46,7 @@ export const SimpleChartWidget = ({ dataSet, setDataSet }) => {
       <style jsx>{`
         .widget-container {
           font-family: Space Grotesk;
-          padding: 5%;
+          padding: 3%;
           display: flex;
           flex-direction: row;
           justify-content: space-around;

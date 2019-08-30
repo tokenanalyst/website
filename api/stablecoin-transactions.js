@@ -1,13 +1,15 @@
 import axios from "axios";
 
+import { STABLE_TOKENS } from "../constants/tokens";
+
 const Stablecoins = [
-  "USDT_OMNI",
-  "USDT_ERC20",
-  "USDC",
-  "PAX",
-  "DAI",
-  "TUSD",
-  "GUSD"
+  STABLE_TOKENS.USDT_OMNI,
+  STABLE_TOKENS.USDT_ERC20,
+  STABLE_TOKENS.USDC,
+  STABLE_TOKENS.PAX,
+  STABLE_TOKENS.DAI,
+  STABLE_TOKENS.TUSD,
+  STABLE_TOKENS.GUSD
 ];
 
 module.exports = async (req, res) => {

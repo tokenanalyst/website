@@ -2,8 +2,6 @@ import React from "react";
 import ReactTable from "react-table";
 import "../../../node_modules/react-table/react-table.css";
 
-import { COIN_IMAGES } from "../../../constants/image-paths";
-
 import {
   AmountCell,
   ChangeCell,
@@ -55,7 +53,7 @@ export const StableCoinTable = ({ tableData }) => {
           data={tableData.data}
           columns={columns}
           showPagination={false}
-          defaultPageSize={Object.keys(COIN_IMAGES).length}
+          defaultPageSize={6}
           className="-highlight"
         />
       </div>

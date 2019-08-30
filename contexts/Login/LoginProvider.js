@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 
 import { LoginContext } from "./LoginContext";
+import { COOKIES } from "../../constants/cookies";
 
 export const LoginProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    if (Cookies.get("apiKey")) setIsLoggedIn(true);
+    if (Cookies.get(COOKIES.apiKey)) setIsLoggedIn(true);
   });
 
   const value = {

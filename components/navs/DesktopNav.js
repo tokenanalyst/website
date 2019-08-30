@@ -33,54 +33,63 @@ export const DesktopNav = () => {
     <div className="top">
       <div className="container">
         <div className="desktop">
-          <div className="logo-desktop">
-            <Link href="/" passHref>
-              <img
-                src={
-                  loginCtx.isLoggedIn
-                    ? `/static/png/${LOGO_IMAGES["DesktopPro"]}`
-                    : `/static/png/${LOGO_IMAGES["Desktop"]}`
-                }
-                width="180px"
-              />
-            </Link>
-          </div>
-          <div className="desktop-links">
-            <Link href="/" passHref>
-              <div className="desktop-link">Home</div>
-            </Link>
-            <Link href="/stablecoins" passHref>
-              <div className="desktop-link" onMouseOver={collapseAllSubMenus}>
-                Stablecoins
-              </div>
-            </Link>
-            <a href="https://research.tokenanalyst.io/" target="_blank">
-              Research
-            </a>
-            <Link href="/pricing" passHref>
-              <div className="desktop-link">Pricing</div>
-            </Link>
-            <a
-              href="https://docs.tokenanalyst.io/#/api"
-              target="_blank"
-              onMouseOver={collapseAllSubMenus}
-            >
-              API
-            </a>
-            <Link href="/about" passHref>
-              <div className="desktop-link" onMouseOver={collapseAllSubMenus}>
-                About Us
-              </div>
-            </Link>
-            <div
-              className="desktop-link"
-              onMouseOver={() => {
-                collapseAllSubMenus();
-                setShownItems(prev => ({ ...prev, contact: true }));
-              }}
-            >
-              Contact
+          <div className="left-side">
+            <div className="logo-desktop">
+              <Link href="/" passHref>
+                <img
+                  src={
+                    loginCtx.isLoggedIn
+                      ? `/static/png/${LOGO_IMAGES["DesktopPro"]}`
+                      : `/static/png/${LOGO_IMAGES["Desktop"]}`
+                  }
+                  width="180px"
+                />
+              </Link>
             </div>
+            <div className="desktop-links">
+              <Link href="/" passHref>
+                <div className="desktop-link">Home</div>
+              </Link>
+              <Link href="/stablecoins" passHref>
+                <div className="desktop-link" onMouseOver={collapseAllSubMenus}>
+                  Stablecoins
+                </div>
+              </Link>
+              <Link href="/compare" passHref>
+                <div className="desktop-link" onMouseOver={collapseAllSubMenus}>
+                  Token Compare
+                </div>
+              </Link>
+              <a href="https://research.tokenanalyst.io/" target="_blank">
+                Research
+              </a>
+              <Link href="/pricing" passHref>
+                <div className="desktop-link">Pricing</div>
+              </Link>
+              <a
+                href="https://docs.tokenanalyst.io/#/api"
+                target="_blank"
+                onMouseOver={collapseAllSubMenus}
+              >
+                API
+              </a>
+              <Link href="/about" passHref>
+                <div className="desktop-link" onMouseOver={collapseAllSubMenus}>
+                  About Us
+                </div>
+              </Link>
+              <div
+                className="desktop-link"
+                onMouseOver={() => {
+                  collapseAllSubMenus();
+                  setShownItems(prev => ({ ...prev, contact: true }));
+                }}
+              >
+                Contact
+              </div>
+            </div>
+          </div>
+          <div className="right-side">
             {loginCtx.isLoggedIn ? (
               <div
                 className="login-button"
@@ -160,6 +169,10 @@ export const DesktopNav = () => {
           padding-left: 20px;
           height: 60px;
         }
+        .left-side {
+          display: flex;
+          flex-direction: row;
+        }
         .logo-desktop {
           cursor: pointer;
         }
@@ -201,7 +214,7 @@ export const DesktopNav = () => {
           color: white;
           z-index: 10000;
           top: 60px;
-          margin-left: 655px;
+          margin-left: 785px;
           padding-left: 10px;
           border-radius: 0px 0px 5px 5px;
         }
@@ -224,6 +237,9 @@ export const DesktopNav = () => {
         .desktop-contact-sub-links {
           display: ${shownItems.contact ? "block" : "none"};
         }
+        .right-side {
+          margin-right: 2%;
+        }
         .login-button {
           color: white;
           min-width: 60px;
@@ -233,7 +249,6 @@ export const DesktopNav = () => {
           padding: 10px;
           border-radius: 10px;
           cursor: pointer;
-          margin-left: 20px;
         }
         @media only screen and (max-width: 768px) {
           .top {

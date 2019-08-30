@@ -6,7 +6,7 @@ import { getExchangeDataSet } from "../../../data-transformers/charts/getExchang
 import { getExchangeMetrics } from "../../../data-transformers/widgets/getExchangeMetrics";
 import { DATA_WINDOWS } from "../../../constants/filters";
 import { ExchangeMetricsWidget } from "../../../components/widgets/ExchangeMetricsWidget";
-import { SimpleChartWidget } from "../../../components/widgets/SimpleChartWidget";
+import { IoChartWidget } from "../../../components/widgets/IoChartWidget";
 import { LoadingSpinner } from "../../../components/LoadingSpinner";
 
 const Exchange = () => {
@@ -18,9 +18,7 @@ const Exchange = () => {
   // optimisation benefit we wait for the population to happen client side before accessing
   // https://www.npmjs.com/package/next#dynamic-routing
   const apiResponse = useApi(
-    `/api/exchange-metrics?token=${router.query.token}&exchange=${
-      router.query.exchange
-    }`,
+    `/api/exchange-metrics?token=${router.query.token}&exchange=${router.query.exchange}`,
     [router.query.token, router.query.exchange]
   );
 
@@ -45,7 +43,7 @@ const Exchange = () => {
             token={router.query.token}
             exchange={router.query.exchange}
           />
-          <SimpleChartWidget dataSet={dataSet} setDataSet={setDataSet} />
+          <IoChartWidget dataSet={dataSet} setDataSet={setDataSet} />
         </>
       ) : (
         <LoadingSpinner />

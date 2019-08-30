@@ -105,6 +105,7 @@ export const ExchangeMetricsWidget = ({ overallMetrics, token, exchange }) => {
             }
             .flow-value {
               font-size: 24px;
+              opacity: 0.4;
               padding-right: 10px;
             }
             .change-positive {
