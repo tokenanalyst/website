@@ -24,6 +24,7 @@ export const Layout = ({ children }) => (
         margin-left: 10px;
         margin-right: 10px;
         padding-top: 60px;
+        min-height: 1200px;
       }
     `}</style>
   </div>
