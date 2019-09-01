@@ -1,6 +1,8 @@
 import { EXCHANGE_IMAGES } from "../../../../constants/image-paths";
 import { Icon } from "@blueprintjs/core";
 
+import { colors } from "../../../../constants/styles/colors";
+
 export const ExchangeCell = ({ value }) => (
   <span
     style={{
@@ -16,6 +18,6 @@ export const ExchangeCell = ({ value }) => (
       />
       {value}
     </span>
-    <Icon icon="chart" iconSize={12} color="#3fcdab" />
+    <Icon icon="chart" iconSize={12} color={`rgba(${colors.primaryGreen})`} />
   </span>
 );

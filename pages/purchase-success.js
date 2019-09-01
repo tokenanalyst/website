@@ -1,6 +1,8 @@
 import React from "react";
 import Link from "next/link";
 
+import { colors } from "../constants/styles/colors";
+
 const PurchaseSuccess = () => {
   return (
     <>
@@ -44,7 +46,7 @@ const PurchaseSuccess = () => {
           color: white;
           min-width: 60px;
           text-align: center;
-          background-color: #3fcdab;
+          background-color: rgba(${colors.primaryGreen});
           max-height: 20px;
           padding: 10px;
           margin: 10px;

@@ -6,6 +6,7 @@ import { COOKIES } from "../../constants/cookies";
 
 export const LoginProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loggedInAs, setLoggedInAs] = useState(null);
 
   useEffect(() => {
     if (Cookies.get(COOKIES.apiKey)) setIsLoggedIn(true);
@@ -13,7 +14,9 @@ export const LoginProvider = ({ children }) => {
 
   const value = {
     isLoggedIn,
-    setIsLoggedIn
+    setIsLoggedIn,
+    loggedInAs,
+    setLoggedInAs
   };
 
   return (

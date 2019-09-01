@@ -3,9 +3,9 @@ import { Icon } from "@blueprintjs/core";
 import ReactGA from "react-ga";
 
 import { CHART_TYPES } from "../../../constants/chartTypes";
-
 import { STABLE_TOKENS, NATIVE_TOKENS } from "../../../constants/tokens";
 import { COIN_IMAGES } from "../../../constants/image-paths";
+import { colors } from "../../../constants/styles/colors";
 
 const chartDisplay = [
   {
@@ -64,7 +64,11 @@ export const ChartControls = ({
                 <Icon
                   icon={chartType.icon}
                   iconSize={24}
-                  color={seriesType === chartType.type ? "#3fcdab" : "gray"}
+                  color={
+                    seriesType === chartType.type
+                      ? `rgba(${colors.primaryGreen})`
+                      : "gray"
+                  }
                 />
               </span>
             </div>
@@ -152,11 +156,10 @@ export const ChartControls = ({
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        padding: 50px;
-        border: 2px solid
+        padding: 30px;
+        border: 1px solid
           ${borderColor ? borderColor : "rgba(151, 151, 151, 0.15)"};
         max-height: 200px;
-        box-shadow: 3px 3px rgba(0, 0, 0, 0.3);
       }
       .control {
         padding-bottom: 20px;
@@ -191,7 +194,7 @@ export const ChartControls = ({
       }
       .button-selected {
         font-weight: bold;
-        border-bottom: 2px solid #3fcdab;
+        border-bottom: 2px solid rgba(${colors.primaryGreen});
         margin-right: 10px;
       }
       .icon {

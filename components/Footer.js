@@ -61,13 +61,8 @@ export const Footer = () => {
           <Link href="/about">
             <a>© 2019 TokenAnalyst Limited</a>
           </Link>
-          <div className="hash">
-            <div>BTC: 19WTGJFnLSKenzHK2CWmAsoFaiR3csyPHB</div>
-            <div>ETH: 0x75bd31C548547Fa76Eab314517A19E334000d8ed</div>
-          </div>
         </div>
       </div>
-
       <style jsx>{`
         .container {
           border-top: 1px solid rgba(151, 151, 151, 0.15);
@@ -94,7 +89,8 @@ export const Footer = () => {
         .section {
           display: flex;
           flex-direction: column;
-          align-items: center;
+          align-items: left;
+          padding-right: 3%;
         }
         .item {
           padding-bottom: 10px;
@@ -110,21 +106,6 @@ export const Footer = () => {
         }
         a:hover {
           opacity: 0.5;
-        }
-        @media only screen and (max-width: 768px) {
-          .top {
-            flex-direction: column;
-          }
-          .bottom {
-            flex-direction: column;
-          }
-          .section {
-            padding-top: 20px;
-          }
-          .hash {
-            font-size: 12px;
-            padding-top: 5px;
-          }
         }
       `}</style>
     </>

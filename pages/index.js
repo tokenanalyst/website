@@ -31,14 +31,31 @@ const Exchange = () => {
               dataWindow={dataWindow}
               units={units}
             />
-
-            <IoTable data={ioTableData} dataWindow={dataWindow} units={units} />
+            <div className="table">
+              <IoTable
+                data={ioTableData}
+                dataWindow={dataWindow}
+                units={units}
+              />
+            </div>
           </>
         ) : (
           <LoadingSpinner />
         )}
       </div>
       <style jsx>{underSubNav}</style>
+      <style jsx>{`
+        .table {
+          margin-left: 40px;
+          margin-right: 40px;
+        }
+        @media only screen and (max-width: 768px) {
+          .table {
+            margin-left: 5px;
+            margin-right: 5px;
+          }
+        }
+      `}</style>
     </>
   );
 };

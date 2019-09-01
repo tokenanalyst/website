@@ -3,6 +3,8 @@ import { Icon } from "@blueprintjs/core";
 import axios from "axios";
 import ReactGA from "react-ga";
 
+import { colors } from "../constants/styles/colors";
+
 export const Newsletter = () => {
   const [isShown, setIsShown] = useState(false);
   const [email, setEmail] = useState("");
@@ -46,7 +48,11 @@ export const Newsletter = () => {
         </div>
         <div className="input">
           {hasPosted ? (
-            <Icon icon="tick" color="#3fcdab" iconSize={30} />
+            <Icon
+              icon="tick"
+              color={`rgba(${colors.primaryGreen})`}
+              iconSize={30}
+            />
           ) : (
             <>
               <span className="field">
@@ -106,7 +112,7 @@ export const Newsletter = () => {
           color: white;
           min-width: 60px;
           text-align: center;
-          background-color: #3fcdab;
+          background-color: rgba(${colors.primaryGreen});
           max-height: 20px;
           padding: 10px;
           border-radius: 10px;

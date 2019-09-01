@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Icon } from "@blueprintjs/core";
 
 import { features } from "./data/productsData";
+import { colors } from "../../../constants/styles/colors";
 
 export const FeatureTableMobile = () => {
   const [displayedTab, setDisplayedTab] = useState(0);
@@ -33,7 +34,9 @@ export const FeatureTableMobile = () => {
                     <Icon
                       icon={item.entitled[displayedTab] ? "tick" : "cross"}
                       color={
-                        item.entitled[displayedTab] ? "#3fcdab" : "#fa4e96"
+                        item.entitled[displayedTab]
+                          ? `rgba(${colors.primaryGreen})`
+                          : `rgba(${colors.primaryRed})`
                       }
                     />
                   </td>
@@ -65,7 +68,7 @@ export const FeatureTableMobile = () => {
           color: black;
           max-height: 20px;
           padding: 10px;
-          border-bottom: 2px solid #3fcdab;
+          border-bottom: 2px solid rgba(${colors.primaryGreen});
           font-weight: bold;
         }
         .row-header {

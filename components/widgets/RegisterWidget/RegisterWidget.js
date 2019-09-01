@@ -5,6 +5,7 @@ import { Icon } from "@blueprintjs/core";
 import Link from "next/link";
 
 import { LoginContext } from "../../../contexts/Login";
+import { colors } from "../../../constants/styles/colors";
 
 export const RegisterWidget = () => {
   const loginCtx = useContext(LoginContext);
@@ -66,7 +67,11 @@ export const RegisterWidget = () => {
         <div className="title">Register</div>
         {hasRegistered ? (
           <>
-            <Icon icon="tick" color="#3fcdab" iconSize={48} />
+            <Icon
+              icon="tick"
+              color={`rgba(${colors.primaryGreen})`}
+              iconSize={48}
+            />
             <div className="success">Thanks for registering {name}!</div>
             <br />
             <div className="success">
@@ -201,7 +206,7 @@ export const RegisterWidget = () => {
           color: white;
           min-width: 60px;
           text-align: center;
-          background-color: #3fcdab;
+          background-color: rgba(${colors.primaryGreen});
           max-height: 20px;
           padding: 10px;
           border-radius: 10px;
@@ -209,7 +214,7 @@ export const RegisterWidget = () => {
           margin-top: 20px;
         }
         .error {
-          color: #fa4e96;
+          color: rgba(${colors.primaryRed});
           padding-top: 10px;
         }
         .profession {

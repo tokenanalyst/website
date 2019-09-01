@@ -2,6 +2,8 @@ import React from "react";
 import { Sparklines, SparklinesLine } from "react-sparklines";
 import numeral from "numeral";
 
+import { colors } from "../../../constants/styles/colors";
+
 export const TokenSnapshot = ({
   token,
   tokenValue,
@@ -51,10 +53,10 @@ export const TokenSnapshot = ({
                     style={{ strokeWidth: 6, fill: "none", width: 200 }}
                     color={
                       flow.change > 0
-                        ? "#3fcdab"
+                        ? `rgba(${colors.primaryGreen})`
                         : flow.change < 0
-                        ? "#fa4e96"
-                        : "#0fd491"
+                        ? `rgba(${colors.primaryRed})`
+                        : `rgba(${colors.neutralGrey})`
                     }
                   />
                 </Sparklines>
@@ -116,10 +118,10 @@ export const TokenSnapshot = ({
         opacity: 0.4;
       }
       .change-negative {
-        color: #fa4e96;
+        color: rgba(${colors.primaryRed});
       }
       .change-positive {
-        color: #3fcdab;
+        color: rgba(${colors.primaryGreen});
       }
       .change-neutral {
         color: #4a4a4a;

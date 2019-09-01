@@ -42,10 +42,9 @@ const StableCoins = () => {
 
   return (
     <>
-      {tableData && volumeChartData ? (
+      {tableData && volumeChartData && transactionsChartData ? (
         <div className="container">
           <div className="header">Stablecoins (24h)</div>
-          <StableCoinTable tableData={tableData} />
           <div className="charts">
             <div className="chart">
               <div className="header">Volumes</div>
@@ -74,6 +73,9 @@ const StableCoins = () => {
               />
             </div>
           </div>
+          <div className="table">
+            <StableCoinTable tableData={tableData} />
+          </div>
         </div>
       ) : (
         <LoadingSpinner />
@@ -94,7 +96,7 @@ const StableCoins = () => {
           display: flex;
           flex-direction: row;
           justify-content: space-around;
-          padding-top: 20px;
+          padding-bottom: 20px;
         }
         .chart {
           display: flex;
@@ -102,9 +104,17 @@ const StableCoins = () => {
           align-items: center;
           padding-bottom: 20px;
         }
+        .table {
+          margin-left: 40px;
+          margin-right: 40px;
+        }
         @media only screen and (max-width: 768px) {
           .charts {
             flex-direction: column;
+          }
+          .table {
+            margin-left: 5px;
+            margin-right: 5px;
           }
         }
       `}</style>

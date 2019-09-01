@@ -4,7 +4,9 @@ import { STABLE_TOKENS, NATIVE_TOKENS } from "../constants/tokens";
 
 module.exports = async (_, res) => {
   const filteredStableCoins = Object.keys(STABLE_TOKENS).filter(
-    stableCoin => stableCoin !== STABLE_TOKENS.USDT_OMNI
+    stableCoin =>
+      stableCoin !== STABLE_TOKENS.USDT_OMNI &&
+      stableCoin !== STABLE_TOKENS.USDT
   );
 
   const stableCoinApiResponses = filteredStableCoins.map(async stableCoin => [

@@ -6,6 +6,7 @@ import "../../../node_modules/react-table/react-table.css";
 import { AmountCell, ChangeCell, ExchangeCell, HeaderCell } from "./renderers";
 import { getIoTableData } from "../../../data-transformers/tables";
 import { filterCaseInsensitive } from "../helpers";
+import { colors } from "../../../constants/styles/colors";
 
 const TABLE_DATA = getIoTableData();
 
@@ -70,6 +71,9 @@ export const IoTable = ({ data, dataWindow, units }) => {
           noDataText="No results"
           className="-highlight"
           defaultPageSize={25}
+          filterable={true}
+          defaultFilterMethod={filterCaseInsensitive}
+          style={{ cursor: "pointer" }}
           getTrProps={(_, rowInfo) => ({
             onClick: () => {
               const { token, exchange } = rowInfo.original;
@@ -77,11 +81,51 @@ export const IoTable = ({ data, dataWindow, units }) => {
                 `/exchange/[token]/[exchange]`,
                 `/exchange/${token}/${exchange}`
               );
+            },
+            style: {
+              border: "none"
             }
           })}
-          filterable={true}
-          defaultFilterMethod={filterCaseInsensitive}
-          style={{ cursor: "pointer" }}
+          getProps={() => ({
+            style: {
+              border: "none"
+            }
+          })}
+          getTdProps={() => ({
+            style: {
+              border: "none"
+            }
+          })}
+          getTheadThProps={() => {
+            return {
+              style: {
+                border: "none"
+              }
+            };
+          }}
+          getTheadProps={() => {
+            return {
+              style: {
+                boxShadow: "none",
+                border: "none"
+              }
+            };
+          }}
+          getTableProps={() => ({
+            style: {
+              border: "none"
+            }
+          })}
+          getPaginationProps={() => ({
+            style: {
+              color: `rgba(${colors.primaryGreen}, 1)`
+            }
+          })}
+          getNoDataProps={() => ({
+            style: {
+              color: `rgba(${colors.primaryRed}, 1)`
+            }
+          })}
         />
       )}
 
@@ -99,6 +143,7 @@ export const IoTable = ({ data, dataWindow, units }) => {
         .information-icon {
           opacity: 0.2;
         }
+
         @media only screen and (max-width: 768px) {
           .information-header {
             padding: 30px 30px;
