@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 
 import { LoginContext } from "../../contexts/Login";
 import { LOGO_IMAGES } from "../../constants/image-paths";
+import { colors } from "../../constants/styles/colors";
 
 export const DesktopNav = () => {
   const loginCtx = useContext(LoginContext);
@@ -124,18 +125,23 @@ export const DesktopNav = () => {
         </div>
         <div className="right-side">
           {loginCtx.isLoggedIn ? (
-            <div
-              className="login-button"
-              onClick={() => {
-                Cookies.remove("apiKey");
-                loginCtx.setIsLoggedIn(false);
-              }}
-              onMouseOver={() => {
-                collapseAllSubMenus();
-              }}
-            >
-              Logout
-            </div>
+            <>
+              <span style={{ color: "white" }}>
+                Welcome, {Cookies.get("loggedInAs")}
+              </span>
+              <span
+                className="login-button"
+                onClick={() => {
+                  Cookies.remove("apiKey");
+                  loginCtx.setIsLoggedIn(false);
+                }}
+                onMouseOver={() => {
+                  collapseAllSubMenus();
+                }}
+              >
+                Logout
+              </span>
+            </>
           ) : (
             <Link href="/login" passHref>
               <div
@@ -290,11 +296,12 @@ export const DesktopNav = () => {
           color: white;
           min-width: 60px;
           text-align: center;
-          background-color: #3fcdab;
+          background-color: rgba(${colors.primaryGreen});
           max-height: 20px;
           padding: 10px;
           border-radius: 10px;
           cursor: pointer;
+          margin-left: 20px;
         }
         @media only screen and (max-width: 768px) {
           .top {

@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import Cookies from "js-cookie";
 
 import { LoginContext } from "../../../contexts/Login";
+import { colors } from "../../../constants/styles/colors";
 
 export const LoginWidget = () => {
   const router = useRouter();
@@ -22,9 +23,10 @@ export const LoginWidget = () => {
           password
         }
       );
-
       Cookies.set("apiKey", response.data.apiKey);
+      Cookies.set("loggedInAs", response.data.name);
       loginCtx.setIsLoggedIn(true);
+      loginCtx.setLoggedInAs(response.data.name);
       router.push("/");
     } catch (e) {
       setIsError(true);
@@ -84,7 +86,7 @@ export const LoginWidget = () => {
           color: white;
           min-width: 60px;
           text-align: center;
-          background-color: #3fcdab;
+          background-color: rgba(${colors.primaryGreen});
           max-height: 20px;
           padding: 10px;
           border-radius: 10px;
@@ -92,7 +94,7 @@ export const LoginWidget = () => {
           margin-top: 20px;
         }
         .error {
-          color: #fa4e96;
+          color: rgba(${colors.primaryRed}, 1);
           padding-top: 10px;
         }
         @media only screen and (max-width: 768px) {

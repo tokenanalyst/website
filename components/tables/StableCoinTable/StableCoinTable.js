@@ -2,6 +2,8 @@ import React from "react";
 import ReactTable from "react-table";
 import "../../../node_modules/react-table/react-table.css";
 
+import { colors } from "../../../constants/styles/colors";
+
 import {
   AmountCell,
   ChangeCell,
@@ -91,12 +93,12 @@ export const StableCoinTable = ({ tableData }) => {
           })}
           getPaginationProps={() => ({
             style: {
-              color: "#3fcdab"
+              color: `rgba(${colors.primaryGreen}, 1)`
             }
           })}
           getNoDataProps={() => ({
             style: {
-              color: "#fa4e96"
+              color: `rgba(${colors.primaryRed}, 1)`
             }
           })}
         />

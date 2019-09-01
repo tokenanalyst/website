@@ -5,6 +5,7 @@ import Cookies from "js-cookie";
 
 import { LOGO_IMAGES } from "../../constants/image-paths";
 import { LoginContext } from "../../contexts/Login";
+import { colors } from "../../constants/styles/colors";
 
 export const MobileNav = () => {
   const loginCtx = useContext(LoginContext);
@@ -118,7 +119,7 @@ export const MobileNav = () => {
           padding-top: 10px;
           padding-bottom: 10px;
           opacity: 0.5;
-          color: #3fcdab;
+          color: rgba(${colors.primaryGreen});
         }
         a {
           color: white;

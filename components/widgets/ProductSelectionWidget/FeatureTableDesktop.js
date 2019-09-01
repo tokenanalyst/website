@@ -2,6 +2,7 @@ import React from "react";
 import { Icon } from "@blueprintjs/core";
 
 import { features } from "./data/productsData";
+import { colors } from "../../../constants/styles/colors";
 
 export const FeatureTableDesktop = () => {
   return (
@@ -26,7 +27,11 @@ export const FeatureTableDesktop = () => {
                       <td key={index} className="feature">
                         <Icon
                           icon={e ? "tick" : "cross"}
-                          color={e ? "#3fcdab" : "#fa4e96"}
+                          color={
+                            e
+                              ? `rgba(${colors.primaryGreen})`
+                              : `rgba(${colors.primaryRed})`
+                          }
                         />
                       </td>
                     ))}

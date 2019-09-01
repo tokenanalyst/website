@@ -73,7 +73,9 @@ const StableCoins = () => {
               />
             </div>
           </div>
-          <StableCoinTable tableData={tableData} />
+          <div className="table">
+            <StableCoinTable tableData={tableData} />
+          </div>
         </div>
       ) : (
         <LoadingSpinner />
@@ -102,9 +104,17 @@ const StableCoins = () => {
           align-items: center;
           padding-bottom: 20px;
         }
+        .table {
+          margin-left: 40px;
+          margin-right: 40px;
+        }
         @media only screen and (max-width: 768px) {
           .charts {
             flex-direction: column;
+          }
+          .table {
+            margin-left: 5px;
+            margin-right: 5px;
           }
         }
       `}</style>

@@ -6,6 +6,7 @@ import "../../../node_modules/react-table/react-table.css";
 import { AmountCell, ChangeCell, ExchangeCell, HeaderCell } from "./renderers";
 import { getIoTableData } from "../../../data-transformers/tables";
 import { filterCaseInsensitive } from "../helpers";
+import { colors } from "../../../constants/styles/colors";
 
 const TABLE_DATA = getIoTableData();
 
@@ -117,12 +118,12 @@ export const IoTable = ({ data, dataWindow, units }) => {
           })}
           getPaginationProps={() => ({
             style: {
-              color: "#3fcdab"
+              color: `rgba(${colors.primaryGreen}, 1)`
             }
           })}
           getNoDataProps={() => ({
             style: {
-              color: "#fa4e96"
+              color: `rgba(${colors.primaryRed}, 1)`
             }
           })}
         />

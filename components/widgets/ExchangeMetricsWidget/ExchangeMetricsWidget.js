@@ -2,6 +2,7 @@ import React from "react";
 import numeral from "numeral";
 
 import { EXCHANGE_IMAGES } from "../../../constants/image-paths";
+import { colors } from "../../../constants/styles/colors";
 
 export const ExchangeMetricsWidget = ({ overallMetrics, token, exchange }) => {
   return (
@@ -110,11 +111,11 @@ export const ExchangeMetricsWidget = ({ overallMetrics, token, exchange }) => {
             }
             .change-positive {
               padding-left: 5px;
-              color: #0fd491;
+              color: rgba(${colors.neutralGrey});
             }
             .change-negative {
               padding-left: 5px;
-              color: #fa4e96;
+              color: rgba(${colors.primaryRed}, 1);
             }
             @media only screen and (max-width: 768px) {
               .banner-container {

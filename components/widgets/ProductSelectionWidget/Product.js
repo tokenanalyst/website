@@ -2,6 +2,7 @@ import React from "react";
 import ReactGA from "react-ga";
 
 import { STRIPE } from "../../../constants/stripe";
+import { colors } from "../../../constants/styles/colors";
 
 export const Product = ({ name, price, features, buttonText, stripePlan }) => {
   return (
@@ -101,7 +102,7 @@ export const Product = ({ name, price, features, buttonText, stripePlan }) => {
           color: white;
           min-width: 60px;
           text-align: center;
-          background-color: #3fcdab;
+          background-color: rgba(${colors.primaryGreen});
           max-height: 20px;
           padding: 10px;
           border-radius: 10px;
