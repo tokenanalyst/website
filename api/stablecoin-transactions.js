@@ -24,7 +24,7 @@ module.exports = async (req, res) => {
 
   const response = Stablecoins.map((stablecoin, index) => ({
     name: stablecoin,
-    data: results[index].data.slice(results[index].data.length - 90)
+    data: results[index].data
   }));
 
   res.send({ ta_response: response });
