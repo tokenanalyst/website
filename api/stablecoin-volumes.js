@@ -16,7 +16,9 @@ module.exports = async (req, res) => {
   const apiResponses = Stablecoins.map(
     async stablecoin =>
       await axios.get(
-        `https://api.tokenanalyst.io/analytics/last?job=${stablecoin}_volume_30day_v5&format=json`
+        stablecoin === STABLE_TOKENS.USDT_OMNI
+          ? `https://api.tokenanalyst.io/analytics/private/v1/token_volume_window_historical/last?key=${process.env.API_KEY}&format=json&token=${stablecoin}&window=1d`
+          : `https://api.tokenanalyst.io/analytics/private/v1/token_volume_historical/last?key=${process.env.API_KEY}&format=json&token=${stablecoin}&window=1d`
       )
   );
 
@@ -24,7 +26,7 @@ module.exports = async (req, res) => {
 
   const response = Stablecoins.map((stablecoin, index) => ({
     name: stablecoin,
-    data: results[index].data
+    data: results[index].data.slice(results[index].data.length - 90)
   }));
 
   res.send({ ta_response: response });
