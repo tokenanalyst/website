@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
+import { Icon } from "@blueprintjs/core";
 
 import { getStableCoinTableData } from "../data-transformers/tables";
 import {
@@ -44,10 +45,12 @@ const StableCoins = () => {
     <>
       {tableData && volumeChartData && transactionsChartData ? (
         <div className="container">
-          <div className="header">Stablecoins (24h)</div>
+          <div className="header">Stablecoins</div>
           <div className="charts">
             <div className="chart">
-              <div className="header">Volumes</div>
+              <div className="section-header">
+                Volumes <Icon icon="chart" color="gray" />
+              </div>
               <SimpleChart
                 dataSet={volumeChartData}
                 seriesType="line"
@@ -60,7 +63,9 @@ const StableCoins = () => {
               />
             </div>
             <div className="chart">
-              <div className="header">Transactions</div>
+              <div className="section-header">
+                Transactions <Icon icon="chart" color="gray" />
+              </div>
               <SimpleChart
                 dataSet={transactionsChartData}
                 seriesType="line"
@@ -73,6 +78,7 @@ const StableCoins = () => {
               />
             </div>
           </div>
+          <div className="table-section-header">24hr Stats</div>
           <div className="table">
             <StableCoinTable tableData={tableData} />
           </div>
@@ -90,27 +96,44 @@ const StableCoins = () => {
           font-weight: bold;
           padding: 20px;
           padding-top: 30px;
-          text-align: center;
+          text-align: left;
+          padding-left: 30px;
         }
         .charts {
           display: flex;
           flex-direction: row;
           justify-content: space-around;
           padding-bottom: 20px;
+          padding-top: 20px;
         }
         .chart {
           display: flex;
           flex-direction: column;
-          align-items: center;
           padding-bottom: 20px;
         }
+        .section-header {
+          font-size: 22px;
+          font-weight: bold;
+          opacity: 0.4;
+          padding-bottom: 20px;
+        }
+        .table-section-header {
+          font-size: 22px;
+          font-weight: bold;
+          opacity: 0.4;
+          padding-bottom: 20px;
+          padding-left: 30px;
+        }
         .table {
-          margin-left: 40px;
-          margin-right: 40px;
+          margin-left: 25px;
+          margin-right: 25px;
         }
         @media only screen and (max-width: 768px) {
           .charts {
             flex-direction: column;
+          }
+          .chart {
+            align-items: center;
           }
           .table {
             margin-left: 5px;

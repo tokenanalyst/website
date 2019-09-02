@@ -100,7 +100,9 @@ export const ChartControls = ({
             {[
               ...Object.keys(NATIVE_TOKENS),
               ...Object.keys(STABLE_TOKENS).filter(
-                token => token !== STABLE_TOKENS.USDT_OMNI
+                token =>
+                  token !== STABLE_TOKENS.USDT_OMNI &&
+                  token !== STABLE_TOKENS.USDT
               )
             ].map(token => (
               <option key={token} value={token}>
