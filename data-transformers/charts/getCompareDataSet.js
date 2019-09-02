@@ -71,7 +71,11 @@ export const getCompareDataSet = (response, token, color) => {
     {
       dataPoint: "Price",
       title: `${token} Price`,
-      chartValues: toSingleValueChartData(tokenData.price, "day", "price"),
+      chartValues: toSingleValueChartData(
+        tokenData.volume,
+        "date",
+        "price_usd"
+      ),
       visible: false,
       solidColor: color
     }
