@@ -139,6 +139,9 @@ const StableCoins = () => {
             margin-left: 5px;
             margin-right: 5px;
           }
+          .table-section-header {
+            padding-left: 10px;
+          }
         }
       `}</style>
     </>
