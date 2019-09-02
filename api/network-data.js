@@ -49,10 +49,10 @@ module.exports = async (_, res) => {
           : `https://api.tokenanalyst.io/analytics/private/v1/token_fees_historical/last?key=${process.env.API_KEY}&format=json&token=${nativeCoin}&limit=90`
       ),
       await axios.get(
-        `https://api.tokenanalyst.io/analytics/private/v1/token_miner_hashrate_historical/last?key=${process.env.API_KEY}&format=json&token=${nativeCoin}&limit=90`
+        `https://api.tokenanalyst.io/analytics/last?job=${nativeCoin}_miner_hashrate_30day_v5&format=json`
       ),
       await axios.get(
-        `https://api.tokenanalyst.io/analytics/private/v1/token_miner_rewards_historical/last?key=${process.env.API_KEY}&format=json&token=${nativeCoin}&limit=90`
+        `https://api.tokenanalyst.io/analytics/last?job=${nativeCoin}_miner_rewards_30day_v5&format=json`
       )
     ]
   );
