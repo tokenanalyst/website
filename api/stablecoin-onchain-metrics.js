@@ -3,7 +3,7 @@ import axios from "axios";
 import { STABLE_TOKENS } from "../constants/tokens";
 
 const Stablecoins = [
-  // STABLE_TOKENS.USDT,
+  STABLE_TOKENS.USDT_ERC20,
   STABLE_TOKENS.USDC,
   STABLE_TOKENS.PAX,
   STABLE_TOKENS.DAI,
