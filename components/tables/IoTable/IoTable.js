@@ -58,9 +58,7 @@ export const IoTable = ({ data, dataWindow, units }) => {
 
   return (
     <div className="container">
-      <div className="information-header">
-        <span>{dataWindow} Inflows/Outflows</span>
-      </div>
+      <div className="section-header">{dataWindow} Inflows/Outflows</div>
       {data && (
         <ReactTable
           data={data.filter(datum => datum.window === dataWindow)}
@@ -131,19 +129,16 @@ export const IoTable = ({ data, dataWindow, units }) => {
 
       <style jsx>{`
         .container {
-          font-family: Work Sans;
+          font-family: Space Grotesk;
         }
-        .information-header {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
+        .section-header {
+          font-size: 22px;
           font-weight: bold;
-          padding: 30px 80px;
+          opacity: 0.4;
+          padding-bottom: 20px;
+          padding-top: 20px;
+          padding-left: 5px;
         }
-        .information-icon {
-          opacity: 0.2;
-        }
-
         @media only screen and (max-width: 768px) {
           .information-header {
             padding: 30px 30px;

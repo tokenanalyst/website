@@ -46,8 +46,8 @@ const Exchange = () => {
       <style jsx>{underSubNav}</style>
       <style jsx>{`
         .table {
-          margin-left: 40px;
-          margin-right: 40px;
+          margin-left: 5px;
+          margin-right: 5px;
         }
         @media only screen and (max-width: 768px) {
           .table {

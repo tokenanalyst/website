@@ -25,7 +25,7 @@ export const LoadingSpinner = () => {
         }
         @media only screen and (max-width: 768px) {
           .spinner {
-            top: 25%;
+            top: 35%;
           }
         }
       `}</style>
