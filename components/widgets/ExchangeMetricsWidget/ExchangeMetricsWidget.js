@@ -11,17 +11,17 @@ export const ExchangeMetricsWidget = ({ overallMetrics, token, exchange }) => {
         <>
           <div className="banner-container">
             <div className="banner-logo-container">
-              <div className="banner-logo-img-container">
-                <img
-                  className="banner-banner-logo-img"
-                  src={`/static/png/${EXCHANGE_IMAGES[exchange]}`}
-                />
-              </div>
               <div className="banner-header">
                 <span className="banner-banner-header-symbol">{token}</span>
                 <span className="banner-banner-header-exchange-name">
                   {exchange}
                 </span>
+              </div>
+              <div className="banner-logo-img-container">
+                <img
+                  className="banner-banner-logo-img"
+                  src={`/static/png/${EXCHANGE_IMAGES[exchange]}`}
+                />
               </div>
             </div>
             <Separator />
@@ -99,6 +99,7 @@ export const ExchangeMetricsWidget = ({ overallMetrics, token, exchange }) => {
               height: 40px;
             }
             .banner-logo-img-container {
+              padding-left: 10px;
               flex: 1;
             }
             .banner-banner-header {
@@ -149,9 +150,10 @@ export const ExchangeMetricsWidget = ({ overallMetrics, token, exchange }) => {
               .banner-logo-container {
                 font-family: Space Grotesk;
                 display: flex;
-                flex-direction: column;
+                flex-direction: column-reverse;
                 justify-content: space-around;
                 align-items: center;
+
               }
               .banner-banner-logo-img {
                 width: 40px;
