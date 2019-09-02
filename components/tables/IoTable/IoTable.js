@@ -1,6 +1,7 @@
 import React from "react";
 import ReactTable from "react-table";
 import { useRouter } from "next/router";
+import ReactGA from "react-ga";
 import "../../../node_modules/react-table/react-table.css";
 
 import { AmountCell, ChangeCell, ExchangeCell, HeaderCell } from "./renderers";
@@ -75,6 +76,11 @@ export const IoTable = ({ data, dataWindow, units }) => {
           getTrProps={(_, rowInfo) => ({
             onClick: () => {
               const { token, exchange } = rowInfo.original;
+              ReactGA.event({
+                category: "User",
+                action: `Select IO table value ${token} ${exchange}`,
+                label: `IO table select`
+              });
               router.push(
                 `/exchange/[token]/[exchange]`,
                 `/exchange/${token}/${exchange}`
@@ -94,10 +100,25 @@ export const IoTable = ({ data, dataWindow, units }) => {
               border: "none"
             }
           })}
-          getTheadThProps={() => {
+          getTheadFilterProps={() => ({
+            onKeyUp: e =>
+              ReactGA.event({
+                category: "User",
+                action: `Filter IO table - Chars: ${e.target.value}`,
+                label: `IO table filter`
+              })
+          })}
+          getTheadThProps={(state, row, column) => {
             return {
               style: {
                 border: "none"
+              },
+              onMouseUp: () => {
+                ReactGA.event({
+                  category: "User",
+                  action: `Sort IO table: ${column.id}`,
+                  label: `IO table sort`
+                });
               }
             };
           }}
