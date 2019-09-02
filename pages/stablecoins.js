@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
-import { Icon } from "@blueprintjs/core";
 
 import { getStableCoinTableData } from "../data-transformers/tables";
 import {
@@ -10,6 +9,8 @@ import {
 import { useApi } from "../custom-hooks";
 import { StableCoinTable } from "../components/tables/StableCoinTable";
 import { LoadingSpinner } from "../components/LoadingSpinner";
+import { PageHeader } from "../components/PageHeader";
+import { PageSection } from "../components/PageSection";
 
 // lightweight-charts must not be imported on the server (Bang!)
 const SimpleChart = dynamic(
@@ -43,14 +44,14 @@ const StableCoins = () => {
 
   return (
     <>
+      <div>
+        <PageHeader text={"Stablecoins"} rightElement={<div />} />
+      </div>
       {tableData && volumeChartData && transactionsChartData ? (
         <div className="container">
-          <div className="header">Stablecoins</div>
           <div className="charts">
             <div className="chart">
-              <div className="section-header">
-                Volumes <Icon icon="chart" color="gray" />
-              </div>
+              <PageSection text={'Volumes'} />
               <SimpleChart
                 dataSet={volumeChartData}
                 seriesType="line"
@@ -63,9 +64,7 @@ const StableCoins = () => {
               />
             </div>
             <div className="chart">
-              <div className="section-header">
-                Transactions <Icon icon="chart" color="gray" />
-              </div>
+              <PageSection text={'Transactions'} />
               <SimpleChart
                 dataSet={transactionsChartData}
                 seriesType="line"
@@ -91,14 +90,6 @@ const StableCoins = () => {
         .container {
           font-family: Space Grotesk;
         }
-        .header {
-          font-size: 32px;
-          font-weight: bold;
-          padding: 20px;
-          padding-top: 30px;
-          text-align: left;
-          padding-left: 30px;
-        }
         .charts {
           display: flex;
           flex-direction: row;
@@ -109,12 +100,6 @@ const StableCoins = () => {
         .chart {
           display: flex;
           flex-direction: column;
-          padding-bottom: 20px;
-        }
-        .section-header {
-          font-size: 22px;
-          font-weight: bold;
-          opacity: 0.4;
           padding-bottom: 20px;
         }
         .table-section-header {
