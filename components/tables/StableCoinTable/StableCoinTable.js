@@ -1,5 +1,6 @@
 import React from "react";
 import ReactTable from "react-table";
+import ReactGA from "react-ga";
 import "../../../node_modules/react-table/react-table.css";
 
 import { colors } from "../../../constants/styles/colors";
@@ -83,6 +84,20 @@ export const StableCoinTable = ({ tableData }) => {
               style: {
                 boxShadow: "none",
                 border: "none"
+              }
+            };
+          }}
+          getTheadThProps={(state, row, column) => {
+            return {
+              style: {
+                border: "none"
+              },
+              onMouseUp: () => {
+                ReactGA.event({
+                  category: "User",
+                  action: `Sort Stablecoin table: ${column.id}`,
+                  label: `Stablecoin table sort`
+                });
               }
             };
           }}
