@@ -12,7 +12,7 @@ export const ExchangeMetricsWidget = ({ overallMetrics, token, exchange }) => {
           <div className="banner-container">
             <div className="banner-logo-container">
               <div className="banner-header">
-                <span className="banner-banner-header-symbol">{token}</span>
+                <span className="banner-banner-header-symbol">{token.replace("_", " ")}</span>
                 <span className="banner-banner-header-exchange-name">
                   {exchange}
                 </span>
