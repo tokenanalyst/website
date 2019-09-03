@@ -5,7 +5,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage --colors"
   },
   "dependencies": {
     "@blueprintjs/core": "^3.18.0",
@@ -24,5 +27,13 @@
     "react-sparklines": "^1.7.0",
     "react-spinners": "^0.6.0",
     "react-table": "^6.10.0"
+  },
+  "devDependencies": {
+    "@babel/core": "7.3.4",
+    "babel-jest": "24.1.0",
+    "jest": "^24.9.0",
+    "jest-extended": "^0.11.2",
+    "react-addons-test-utils": "15.6.2",
+    "react-test-renderer": "16.4.2"
   }
 }
