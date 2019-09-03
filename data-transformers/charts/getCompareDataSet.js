@@ -111,48 +111,48 @@ export const getCompareDataSet = (response, token, color) => {
         ),
         visible: false,
         solidColor: color
-      },
-      {
-        dataPoint: "Hash Rate",
-        title: `${token} Hash Rate TH/s`,
-        chartValues: toSingleValueChartData(
-          tokenData.hashrate,
-          "date",
-          "total_daily_hashrate"
-        ),
-        visible: false,
-        solidColor: color
-      },
-      {
-        dataPoint: "Miner Rewards",
-        title: `${token} Miner Rewards`,
-        chartValues: toSingleValueChartData(
-          tokenData.rewards,
-          "date",
-          "total_daily_block_reward_usd"
-        ),
-        visible: false,
-        solidColor: color
       }
+      // {
+      //   dataPoint: "Hash Rate",
+      //   title: `${token} Hash Rate TH/s`,
+      //   chartValues: toSingleValueChartData(
+      //     tokenData.hashrate,
+      //     "date",
+      //     "total_daily_hashrate"
+      //   ),
+      //   visible: false,
+      //   solidColor: color
+      // },
+      // {
+      //   dataPoint: "Miner Rewards",
+      //   title: `${token} Miner Rewards`,
+      //   chartValues: toSingleValueChartData(
+      //     tokenData.rewards,
+      //     "date",
+      //     "total_daily_block_reward_usd"
+      //   ),
+      //   visible: false,
+      //   solidColor: color
+      // }
     ]);
 
-    if (token === NATIVE_TOKENS.ETH) {
-      return nativeBaseDataSet
-        .concat([
-          {
-            dataPoint: "Uncle Rewards",
-            title: `${token} Uncle Rewards`,
-            chartValues: toSingleValueChartData(
-              tokenData.rewards,
-              "date",
-              "total_daily_uncle_reward_usd"
-            ),
-            visible: false,
-            solidColor: color
-          }
-        ])
-        .filter(data => data.dataPoint !== "Volume Change");
-    }
+    // if (token === NATIVE_TOKENS.ETH) {
+    //   return nativeBaseDataSet
+    //     .concat([
+    //       {
+    //         dataPoint: "Uncle Rewards",
+    //         title: `${token} Uncle Rewards`,
+    //         chartValues: toSingleValueChartData(
+    //           tokenData.rewards,
+    //           "date",
+    //           "total_daily_uncle_reward_usd"
+    //         ),
+    //         visible: false,
+    //         solidColor: color
+    //       }
+    //     ])
+    //     .filter(data => data.dataPoint !== "Volume Change");
+    // }
 
     return nativeBaseDataSet;
   }
