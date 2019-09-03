@@ -7,6 +7,7 @@ import { STABLE_TOKENS, NATIVE_TOKENS } from "../../../constants/tokens";
 import { COIN_IMAGES } from "../../../constants/image-paths";
 import { colors } from "../../../constants/styles/colors";
 
+
 const chartDisplay = [
   {
     type: CHART_TYPES.line,
@@ -51,13 +52,11 @@ export const ChartControls = ({
                   action: `Chart Type ${chartType.type}`,
                   label: `Chart Type`
                 });
-              }}
-            >
+              }}>
               <span
                 className={
                   seriesType === chartType.type ? "button-selected" : "button"
-                }
-              >
+                }>
                 {chartType.label}
               </span>
               <span className="icon">
@@ -95,8 +94,7 @@ export const ChartControls = ({
                 label: `Tokens`
               });
             }}
-            value={token}
-          >
+            value={token}>
             {[
               ...Object.keys(NATIVE_TOKENS),
               ...Object.keys(STABLE_TOKENS).filter(
@@ -134,8 +132,7 @@ export const ChartControls = ({
               action: `Data Point View ${e.target.value}`,
               label: `Data Points`
             });
-          }}
-        >
+          }}>
           {dataSet &&
             dataSet
               .reduce(
