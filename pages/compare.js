@@ -39,10 +39,7 @@ const Compare = () => {
     <>
       <div className="container">
         <div>
-          <PageHeader
-            text={"Token Compare"}
-            rightElement={<PricingLink />}
-          />
+          <PageHeader text={"Compare"} rightElement={<PricingLink />} />
         </div>
         {compareData ? (
           <>

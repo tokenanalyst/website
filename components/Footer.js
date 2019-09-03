@@ -107,6 +107,14 @@ export const Footer = () => {
         a:hover {
           opacity: 0.5;
         }
+        @media only screen and (max-width: 768px) {
+          .container {
+            margin-left: 10px;
+          }
+          .section {
+            padding-right: 25px;
+          }
+        }
       `}</style>
     </>
   );
