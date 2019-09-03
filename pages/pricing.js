@@ -25,20 +25,17 @@ const Pricing = () => {
             display: flex;
             flex-direction: column;
             font-family: Space Grotesk;
-             {
-              /* align-items: center; */
-            }
           }
           .header {
             font-size: 32px;
             font-weight: bold;
-            padding: 20px;
+            padding: 15px;
             padding-top: 30px;
           }
           .sub-header {
             font-size: 32px;
             font-weight: bold;
-            padding: 20px;
+            padding: 15px;
             padding-top: 30px;
             opacity: 0.3;
           }

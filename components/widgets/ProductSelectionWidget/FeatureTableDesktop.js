@@ -59,6 +59,7 @@ export const FeatureTableDesktop = () => {
           padding-right: 10%;
           padding-bottom: 5px;
           padding-top: 10px;
+          background-color: rgba(151, 151, 151, 0.15);
         }
         .feature {
           padding-left: 20px;
