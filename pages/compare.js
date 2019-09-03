@@ -15,17 +15,17 @@ const PricingLink = () => {
       <style jsx>{`
         a {
           font-family: Space Grotesk;
-          font-size: 22px;
+          font-size: 18px;
           opacity: 0.4;
-          text-decoration-style: dotted;
+          text-decoration: none;
         }
         a:visited {
           color: inherit;
-          text-decoration-style: dotted;
+          text-decoration: none;
         }
         a:hover {
           color: inherit;
-          text-decoration-style: dotted;
+          text-decoration: none;
         }
       `}</style>
     </>
