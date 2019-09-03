@@ -14,7 +14,7 @@ const Pricing = () => {
       <div className="product-widget">
         <ProductSelectionWidget />
       </div>
-      <div className="header">What you get</div>
+      <div className="sub-header">What you get</div>
       <div className="feature-table">
         <FeatureTableDesktop />
         <FeatureTableMobile />
@@ -24,12 +24,18 @@ const Pricing = () => {
           .container {
             display: flex;
             flex-direction: column;
+            font-family: Space Grotesk;
              {
               /* align-items: center; */
             }
           }
           .header {
-            font-family: Space Grotesk;
+            font-size: 32px;
+            font-weight: bold;
+            padding: 20px;
+            padding-top: 30px;
+          }
+          .sub-header {
             font-size: 32px;
             font-weight: bold;
             padding: 20px;
