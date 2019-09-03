@@ -14,11 +14,11 @@ export const Footer = () => {
             <Link href="/about">
               <a className="item">About</a>
             </Link>
-            <Link href="/exchange/BTC/Binance">
-              <a className="item">Latest BTC (Binance)</a>
-            </Link>
             <Link href="/stablecoins">
               <a className="item">Stablecoins</a>
+            </Link>
+            <Link href="/compare">
+              <a className="item">Compare</a>
             </Link>
           </div>
           <div className="section">

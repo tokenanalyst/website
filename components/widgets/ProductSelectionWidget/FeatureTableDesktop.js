@@ -51,11 +51,13 @@ export const FeatureTableDesktop = () => {
         .row-header {
           border-bottom: solid 1px rgba(151, 151, 151, 0.15);
           margin-bottom: 3px;
+          background-color: rgba(151, 151, 151, 0.15);
         }
         .column-header {
+          width: 5%;
           font-weight: bold;
           padding-left: 20px;
-          padding-right: 70px;
+          padding-right: 10%;
           padding-bottom: 5px;
           padding-top: 10px;
         }
