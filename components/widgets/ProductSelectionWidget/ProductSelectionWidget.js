@@ -27,6 +27,7 @@ export const ProductSelectionWidget = () => {
           display: flex;
           flex-direction: row;
           flex-wrap: wrap;
+          justify-content: space-between;
         }
         @media only screen and (max-width: 768px) {
           .container {
@@ -45,8 +46,6 @@ const Separator = () => (
     <style jsx>{`
       .separator {
         border: solid 0.5px rgba(151, 151, 151, 0.15);
-        margin-left: 20px;
-        margin-right: 15px;
         margin-top: 10px;
         margin-bottom: 10px;
       }

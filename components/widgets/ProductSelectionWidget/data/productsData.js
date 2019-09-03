@@ -71,8 +71,8 @@ export const features = {
           entitled: [false, true, true, true]
         },
         {
-          name: "De-fi metrics (staking, lending and more)",
-          entitled: [false, false, true, true]
+          name: "Security Metrics (hashrate, miner rewards, uncle rates)",
+          entitled: [false, true, true, true]
         }
       ]
     },

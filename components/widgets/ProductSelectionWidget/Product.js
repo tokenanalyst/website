@@ -108,7 +108,7 @@ export const Product = ({ name, price, features, buttonText, stripePlan }) => {
         }
         @media only screen and (max-width: 768px) {
           .container {
-            padding: 10px;
+            padding: 5px;
             min-width: 95%;
           }
           .feature {
