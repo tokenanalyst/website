@@ -13,6 +13,19 @@ export const Layout = ({ children }) => (
       <link href="/static/styles/css_reset.css" rel="stylesheet" />
       <link href="/static/fonts/fonts.css" rel="stylesheet" />
       <script src="https://js.stripe.com/v3/" />
+      <meta
+        name="description"
+        content="TokenAnalyst is the leading provider of real-time and historical blockchain data. Our offering includes on-chain inflow and outflow from exchanges and low-latency alerts on significant transactions."
+      />
+      <meta
+        name="keywords"
+        content="blockchain, bitcoin, ethereum, data, on-chain, streaming, alerts, bots, trading"
+      />
+      <meta property="og:type" content="website" />
+      <meta
+        property="og:description"
+        content="TokenAnalyst is the leading provider of real-time and historical blockchain data. Our offering includes on-chain inflow and outflow from exchanges and low-latency alerts on significant transactions."
+      />
     </Head>
     <Nav />
     <Newsletter />
