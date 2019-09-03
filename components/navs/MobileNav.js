@@ -8,7 +8,7 @@ import { LOGO_IMAGES } from "../../constants/image-paths";
 import { LoginContext } from "../../contexts/Login";
 import { colors } from "../../constants/styles/colors";
 
-const setLinkActive = (pathName, link) =>
+export const setLinkActive = (pathName, link) =>
   pathName === link ? "mobile-link-active" : "mobile-link";
 
 export const MobileNav = () => {
@@ -71,7 +71,6 @@ export const MobileNav = () => {
             </div>
           </Link>
           <Link href="/pricing" passHref>
-            {/* <div className="mobile-link">Pricing</div> */}
             <div
               className={
                 setLinkActive(router.pathname,"/pricing")
