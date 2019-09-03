@@ -100,17 +100,11 @@ export const ExchangeMetricsWidget = ({ overallMetrics, token, exchange }) => {
             }
             .banner-logo-img-container {
               padding-left: 10px;
-              flex: 1;
-            }
-            .banner-banner-header {
-              flex: 1;
             }
             .banner-banner-header-symbol {
               font-weight: 700;
-              flex: 1;
             }
             .banner-banner-header-exchange-name {
-              flex: 1;
               padding-left: 10px;
               opacity: 0.4;
             }

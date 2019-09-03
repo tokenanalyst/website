@@ -27,8 +27,6 @@ const PricingLink = () => {
           color: inherit;
           text-decoration-style: dotted;
         }
-        @media only screen and (max-width: 768px) {
-        }
       `}</style>
     </>
   );
@@ -43,7 +41,7 @@ const Compare = () => {
         <div>
           <PageHeader
             text={"Token Compare"}
-            rightElement={<PricingLink></PricingLink>}
+            rightElement={<PricingLink />}
           />
         </div>
         {compareData ? (
