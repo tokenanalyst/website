@@ -16,7 +16,9 @@ module.exports = async (req, res) => {
   const apiResponses = Stablecoins.map(
     async stablecoin =>
       await axios.get(
-        `https://api.tokenanalyst.io/analytics/private/v1/token_count_historical/last?key=${process.env.API_KEY}&format=json&token=${stablecoin}&limit=90`
+        stablecoin === STABLE_TOKENS.USDT_OMNI
+          ? `https://api.tokenanalyst.io/analytics/private/v1/token_count_window_historical/last?key=${process.env.API_KEY}&format=json&token=${stablecoin}&limit=90&window=1d`
+          : `https://api.tokenanalyst.io/analytics/private/v1/token_count_historical/last?key=${process.env.API_KEY}&format=json&token=${stablecoin}&limit=90`
       )
   );
 
