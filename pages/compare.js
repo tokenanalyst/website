@@ -1,8 +1,36 @@
 import React from "react";
 import { useApi } from "../custom-hooks";
+import Link from "next/link";
 
 import { CompareChartWidget } from "../components/widgets/CompareChartWidget";
 import { LoadingSpinner } from "../components/LoadingSpinner";
+import { PageHeader } from "../components/PageHeader";
+
+const PricingLink = () => {
+  return (
+    <>
+      <Link href="/pricing">
+        <a className="price-link">Get more data</a>
+      </Link>
+      <style jsx>{`
+        a {
+          font-family: Space Grotesk;
+          font-size: 22px;
+          opacity: 0.4;
+          text-decoration-style: dotted;
+        }
+        a:visited {
+          color: inherit;
+          text-decoration-style: dotted;
+        }
+        a:hover {
+          color: inherit;
+          text-decoration-style: dotted;
+        }
+      `}</style>
+    </>
+  );
+};
 
 const Compare = () => {
   const compareData = useApi("/api/network-data");
@@ -10,9 +38,14 @@ const Compare = () => {
   return (
     <>
       <div className="container">
+        <div>
+          <PageHeader
+            text={"Token Compare"}
+            rightElement={<PricingLink />}
+          />
+        </div>
         {compareData ? (
           <>
-            <div className="header">Token Compare</div>
             <CompareChartWidget response={compareData} />
           </>
         ) : (
