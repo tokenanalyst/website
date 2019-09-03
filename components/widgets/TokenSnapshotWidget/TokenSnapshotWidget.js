@@ -68,7 +68,7 @@ export const TokenSnapshotWidget = ({ units, data, dataWindow }) => (
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        justify-content: space-around;
+        justify-content: space-between;
         padding: 5px;
       }
       .token-snapshot {

@@ -137,7 +137,7 @@ const About = () => {
             <div className="member">
               <img
                 className="image"
-                src="/static/png/team/cesar.jpg"
+                src="/static/png/team/Cesar.png"
                 height={200}
                 width={200}
               />
