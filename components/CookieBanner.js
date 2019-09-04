@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Icon } from "@blueprintjs/core";
 import ReactGA from "react-ga";
+
+import { colors } from "../constants/styles/colors";
 
 export const CookieBanner = () => {
   const [isShown, setIsShown] = useState(false);
@@ -27,7 +28,7 @@ export const CookieBanner = () => {
         <div className="top">
           <span className="header">Cookies</span>
           <span className="close" onClick={dismiss}>
-            <Icon icon="cross" color="black" iconSize={28} />
+            <img src="/static/svg/cross.svg" className="icon" />
           </span>
         </div>
         <div className="body">
@@ -38,7 +39,7 @@ export const CookieBanner = () => {
         .container {
           font-family: Space Grotesk;
           position: fixed;
-          bottom: 142px;
+          bottom: 223px;
           height: 50px;
           background-color: white;
           width: 100%;
@@ -56,15 +57,22 @@ export const CookieBanner = () => {
         .header {
           font-size: 24px;
           font-weight: bold;
+          border-bottom: 3px solid rgba(${colors.primaryGreen});
+          margin-bottom: 10px;
         }
         .close {
           margin-right: 40px;
           cursor: pointer;
+          opacity: 0.3;
+        }
+        .icon {
+          height: 28;
+          width: 28;
         }
         @media only screen and (max-width: 768px) {
           .container {
             height: 80px;
-            bottom: 192px;
+            bottom: 223px;
           }
           .body {
             max-width: 270px;
