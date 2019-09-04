@@ -36,7 +36,6 @@ export const LoginWidget = () => {
   return (
     <>
       <div className="container">
-        <div className="title">Login</div>
         <div className="header">Email</div>
         <input
           type="text"
@@ -60,10 +59,6 @@ export const LoginWidget = () => {
       <style jsx>{`
         .container {
           font-family: Space Grotesk;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
           padding: 30px;
         }
         .title {
@@ -72,14 +67,17 @@ export const LoginWidget = () => {
           padding-bottom: 30px;
         }
         .header {
-          font-size: 24px;
-          padding: 20px;
+          font-size: 16px;
+          text-align: left;
+          padding-top: 10px;
+          padding-bottom: 10px;
         }
         .input {
           height: 24px;
           width: 300px;
           border: none;
-          border-bottom: 1px solid black;
+          border-bottom: 1px solid
+            rgba(${isError ? colors.primaryRed : "00, 00, 00"});
           font-size: 18px;
         }
         .login-button {
@@ -96,10 +94,14 @@ export const LoginWidget = () => {
         .error {
           color: rgba(${colors.primaryRed}, 1);
           padding-top: 10px;
+          text-align: center;
         }
         @media only screen and (max-width: 768px) {
           .input {
             width: 200px;
+          }
+          .error {
+            max-width: 200px;
           }
         }
       `}</style>
