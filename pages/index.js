@@ -66,7 +66,7 @@ const Exchange = () => {
           opacity: 0.4;
           padding-bottom: 20px;
           padding-top: 20px;
-          padding-left: 5px;
+          padding-left: 10px;
         }
         .spinner {
           height: 296px;

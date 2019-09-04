@@ -120,7 +120,7 @@ export const MobileNav = () => {
           flex-direction: row;
           justify-content: space-between;
           align-items: center;
-          padding-left: 20px;
+          padding-left: 10px;
           height: 60px;
         }
         .menu-icon {
