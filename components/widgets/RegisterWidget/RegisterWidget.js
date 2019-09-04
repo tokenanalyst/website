@@ -64,7 +64,6 @@ export const RegisterWidget = () => {
   return (
     <>
       <div className="container">
-        <div className="title">Register</div>
         {hasRegistered ? (
           <>
             <Icon
@@ -179,10 +178,6 @@ export const RegisterWidget = () => {
       <style jsx>{`
         .container {
           font-family: Space Grotesk;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
           padding: 30px;
           flex-wrap: wrap;
         }
@@ -192,14 +187,16 @@ export const RegisterWidget = () => {
           padding-bottom: 30px;
         }
         .header {
-          font-size: 24px;
-          padding: 20px;
+          font-size: 16px;
+          padding-top: 10px;
+          padding-bottom: 10px;
         }
         .input {
           height: 24px;
           width: 300px;
           border: none;
-          border-bottom: 1px solid black;
+          border-bottom: 1px solid
+            rgba(${errorText ? colors.primaryRed : "00, 00, 00"});
           font-size: 18px;
         }
         .button {
@@ -216,12 +213,14 @@ export const RegisterWidget = () => {
         .error {
           color: rgba(${colors.primaryRed});
           padding-top: 10px;
+          max-width: 300px;
+          text-align: center;
         }
         .profession {
           display: flex;
           flex-direction: row;
           justify-content: space-between;
-          padding-top: 10px;
+          padding-top: 15px;
           width: 250px;
         }
         @media only screen and (max-width: 768px) {
@@ -230,6 +229,9 @@ export const RegisterWidget = () => {
           }
           .profession {
             width: 200px;
+          }
+          .error {
+            max-width: 200px;
           }
         }
       `}</style>
