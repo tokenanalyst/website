@@ -248,6 +248,31 @@ const About = () => {
                 </a>
               </div>
             </div>
+            <div className="member">
+              <img
+                className="image"
+                src="/static/png/team/David.png"
+                height={200}
+                width={200}
+              />
+              <div className="details">
+                <div className="name">David Fava</div>
+                <a href="https://twitter.com/no_dave" target="blank">
+                  <img
+                    className="social-icons"
+                    src="/static/png/twitter.png"
+                    width={20}
+                  />
+                </a>
+                <a href="https://www.linkedin.com/in/favadavid/" target="blank">
+                  <img
+                    className="social-icons"
+                    src="/static/png/linkedin.png"
+                    width={20}
+                  />
+                </a>
+              </div>
+            </div>
           </div>
           <div className="header">Featured in:</div>
         </div>
