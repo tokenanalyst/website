@@ -59,7 +59,6 @@ export const IoTable = ({ data, dataWindow, units }) => {
 
   return (
     <div className="container">
-      <div className="section-header">{dataWindow} Inflows/Outflows</div>
       {data && (
         <ReactTable
           data={data.filter(datum => datum.window === dataWindow)}

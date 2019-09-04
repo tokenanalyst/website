@@ -16,12 +16,16 @@ export const LoadingSpinner = () => {
       </div>
       <style jsx>{`
         .spinner {
-          position: fixed;
+           {
+            /* position: fixed;
           top: 50%;
           left: 50%;
           margin-top: -50px;
           margin-left: -35px;
-          min-height: 1200px;
+          min-height: 1200px; */
+          }
+          padding: 50px;
+          text-align: center;
         }
         @media only screen and (max-width: 768px) {
           .spinner {

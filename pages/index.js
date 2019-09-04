@@ -24,30 +24,52 @@ const Exchange = () => {
         setUnits={setUnits}
       />
       <div className="under-sub-nav">
-        {tokenSnapshotWidgetData && ioTableData ? (
-          <>
+        <>
+          <div className="section-header">At a glance</div>
+          {tokenSnapshotWidgetData ? (
             <TokenSnapshotWidget
               data={tokenSnapshotWidgetData}
               dataWindow={dataWindow}
               units={units}
             />
-            <div className="table">
+          ) : (
+            <div className="spinner">
+              <LoadingSpinner />
+            </div>
+          )}
+          <div className="table">
+            <div className="section-header">{dataWindow} Inflows/Outflows</div>
+            {ioTableData ? (
               <IoTable
                 data={ioTableData}
                 dataWindow={dataWindow}
                 units={units}
               />
-            </div>
-          </>
-        ) : (
-          <LoadingSpinner />
-        )}
+            ) : (
+              <div className="spinner">
+                <LoadingSpinner />
+              </div>
+            )}
+          </div>
+        </>
       </div>
       <style jsx>{underSubNav}</style>
       <style jsx>{`
         .table {
           margin-left: 5px;
           margin-right: 5px;
+        }
+        .section-header {
+          font-family: Space Grotesk;
+          font-size: 22px;
+          font-weight: bold;
+          opacity: 0.4;
+          padding-bottom: 20px;
+          padding-top: 20px;
+          padding-left: 5px;
+        }
+        .spinner {
+          height: 296px;
         }
         @media only screen and (max-width: 768px) {
           .table {
