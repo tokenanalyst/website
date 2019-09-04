@@ -11,13 +11,13 @@ module.exports = async (_, res) => {
 
   const stableCoinApiResponses = filteredStableCoins.map(async stableCoin => [
     await axios.get(
-      `https://api.tokenanalyst.io/analytics/private/v1/token_volume_historical/last?key=${process.env.API_KEY}&format=json&token=${stableCoin}&limit=90`
+      `https://api.tokenanalyst.io/analytics/private/v1/token_volume_historical/last?key=${process.env.API_KEY}&format=json&token=${stableCoin}&limit=30`
     ),
     await axios.get(
-      `https://api.tokenanalyst.io/analytics/private/v1/token_count_historical/last?key=${process.env.API_KEY}&format=json&token=${stableCoin}&limit=90`
+      `https://api.tokenanalyst.io/analytics/private/v1/token_count_historical/last?key=${process.env.API_KEY}&format=json&token=${stableCoin}&limit=30`
     ),
     await axios.get(
-      `https://api.tokenanalyst.io/analytics/private/v1/token_active_address_historical/last?key=${process.env.API_KEY}&format=json&token=${stableCoin}&limit=90`
+      `https://api.tokenanalyst.io/analytics/private/v1/token_active_address_historical/last?key=${process.env.API_KEY}&format=json&token=${stableCoin}&limit=30`
     )
   ]);
 
@@ -25,28 +25,28 @@ module.exports = async (_, res) => {
     async nativeCoin => [
       await axios.get(
         nativeCoin === NATIVE_TOKENS.BTC
-          ? `https://api.tokenanalyst.io/analytics/private/v1/token_volume_window_historical/last?key=${process.env.API_KEY}&format=json&token=${nativeCoin}&window=1d&limit=90`
-          : `https://api.tokenanalyst.io/analytics/private/v1/token_volume_historical/last?key=${process.env.API_KEY}&format=json&token=${nativeCoin}&limit=90`
+          ? `https://api.tokenanalyst.io/analytics/private/v1/token_volume_window_historical/last?key=${process.env.API_KEY}&format=json&token=${nativeCoin}&window=1d&limit=30`
+          : `https://api.tokenanalyst.io/analytics/private/v1/token_volume_historical/last?key=${process.env.API_KEY}&format=json&token=${nativeCoin}&limit=30`
       ),
       await axios.get(
         nativeCoin === NATIVE_TOKENS.BTC
-          ? `https://api.tokenanalyst.io/analytics/private/v1/token_count_window_historical/last?key=${process.env.API_KEY}&format=json&token=${nativeCoin}&window=1d&limit=90`
-          : `https://api.tokenanalyst.io/analytics/private/v1/token_count_historical/last?key=${process.env.API_KEY}&format=json&token=${nativeCoin}&limit=90`
+          ? `https://api.tokenanalyst.io/analytics/private/v1/token_count_window_historical/last?key=${process.env.API_KEY}&format=json&token=${nativeCoin}&window=1d&limit=30`
+          : `https://api.tokenanalyst.io/analytics/private/v1/token_count_historical/last?key=${process.env.API_KEY}&format=json&token=${nativeCoin}&limit=30`
       ),
       await axios.get(
         nativeCoin === NATIVE_TOKENS.BTC
-          ? `https://api.tokenanalyst.io/analytics/private/v1/token_active_address_window_historical/last?key=${process.env.API_KEY}&format=json&token=${nativeCoin}&window=1d&limit=90`
-          : `https://api.tokenanalyst.io/analytics/private/v1/token_active_address_historical/last?key=${process.env.API_KEY}&format=json&token=${nativeCoin}&limit=90`
+          ? `https://api.tokenanalyst.io/analytics/private/v1/token_active_address_window_historical/last?key=${process.env.API_KEY}&format=json&token=${nativeCoin}&window=1d&limit=30`
+          : `https://api.tokenanalyst.io/analytics/private/v1/token_active_address_historical/last?key=${process.env.API_KEY}&format=json&token=${nativeCoin}&limit=30`
       ),
       await axios.get(
         nativeCoin === NATIVE_TOKENS.BTC
-          ? `https://api.tokenanalyst.io/analytics/private/v1/token_nvt_window_historical/last?key=${process.env.API_KEY}&format=json&token=${nativeCoin}&window=1d&limit=90`
-          : `https://api.tokenanalyst.io/analytics/private/v1/token_nvt_historical/last?key=${process.env.API_KEY}&format=json&token=${nativeCoin}&limit=90`
+          ? `https://api.tokenanalyst.io/analytics/private/v1/token_nvt_window_historical/last?key=${process.env.API_KEY}&format=json&token=${nativeCoin}&window=1d&limit=30`
+          : `https://api.tokenanalyst.io/analytics/private/v1/token_nvt_historical/last?key=${process.env.API_KEY}&format=json&token=${nativeCoin}&limit=30`
       ),
       await axios.get(
         nativeCoin === NATIVE_TOKENS.BTC
-          ? `https://api.tokenanalyst.io/analytics/private/v1/token_fees_window_historical/last?key=${process.env.API_KEY}&format=json&token=${nativeCoin}&window=1d&limit=90`
-          : `https://api.tokenanalyst.io/analytics/private/v1/token_fees_historical/last?key=${process.env.API_KEY}&format=json&token=${nativeCoin}&limit=90`
+          ? `https://api.tokenanalyst.io/analytics/private/v1/token_fees_window_historical/last?key=${process.env.API_KEY}&format=json&token=${nativeCoin}&window=1d&limit=30`
+          : `https://api.tokenanalyst.io/analytics/private/v1/token_fees_historical/last?key=${process.env.API_KEY}&format=json&token=${nativeCoin}&limit=30`
       ),
       await axios.get(
         `https://api.tokenanalyst.io/analytics/last?job=${nativeCoin}_miner_hashrate_30day_v5&format=json`
