@@ -28,7 +28,7 @@ export const CookieBanner = () => {
         <div className="top">
           <span className="header">Cookies</span>
           <span className="close" onClick={dismiss}>
-            <img src="/static/svg/cross.svg" height={28} width={28} />
+            <img src="/static/svg/cross.svg" className="icon" />
           </span>
         </div>
         <div className="body">
@@ -64,6 +64,10 @@ export const CookieBanner = () => {
           margin-right: 40px;
           cursor: pointer;
           opacity: 0.3;
+        }
+        .icon {
+          height: 28;
+          width: 28;
         }
         @media only screen and (max-width: 768px) {
           .container {

@@ -6,7 +6,7 @@ import ReactGA from "react-ga";
 import { colors } from "../constants/styles/colors";
 
 export const Newsletter = () => {
-  const [isShown, setIsShown] = useState(false);
+  const [isShown, setIsShown] = useState(true);
   const [email, setEmail] = useState("");
   const [hasPosted, setHasPosted] = useState(false);
 
@@ -39,7 +39,7 @@ export const Newsletter = () => {
         <div className="top">
           <span className="header">Newsletter</span>
           <span className="close" onClick={dismiss}>
-            <img src="/static/svg/cross.svg" height={28} width={28} />
+            <img src="/static/svg/cross.svg" className="icon" />
           </span>
         </div>
         <div className="shadow" />
@@ -135,6 +135,10 @@ export const Newsletter = () => {
           border-radius: 10px;
           cursor: pointer;
           margin-top: 10px;
+        }
+        .icon {
+          height: 28;
+          width: 28;
         }
         @media only screen and (max-width: 768px) {
           .container {
