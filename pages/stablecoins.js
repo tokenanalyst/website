@@ -47,11 +47,11 @@ const StableCoins = () => {
       <div>
         <PageHeader text={"Stablecoins"} rightElement={<div />} />
       </div>
-      {tableData && volumeChartData && transactionsChartData ? (
-        <div className="container">
-          <div className="charts">
-            <div className="chart">
-              <PageSection text={'Volumes'} />
+      <div className="container">
+        <div className="charts">
+          <div className="chart">
+            <PageSection text={"Volumes"} />
+            {volumeChartData ? (
               <SimpleChart
                 dataSet={volumeChartData}
                 seriesType="line"
@@ -62,9 +62,15 @@ const StableCoins = () => {
                   window.matchMedia("(max-width: 768px)").matches ? 300 : 400
                 }
               />
-            </div>
-            <div className="chart">
-              <PageSection text={'Transactions'} />
+            ) : (
+              <div className="spinner">
+                <LoadingSpinner />
+              </div>
+            )}
+          </div>
+          <div className="chart">
+            <PageSection text={"Transactions"} />
+            {transactionsChartData ? (
               <SimpleChart
                 dataSet={transactionsChartData}
                 seriesType="line"
@@ -75,16 +81,22 @@ const StableCoins = () => {
                   window.matchMedia("(max-width: 768px)").matches ? 300 : 400
                 }
               />
-            </div>
-          </div>
-          <div className="table-section-header">24hr Stats</div>
-          <div className="table">
-            <StableCoinTable tableData={tableData} />
+            ) : (
+              <div className="spinner">
+                <LoadingSpinner />
+              </div>
+            )}
           </div>
         </div>
-      ) : (
-        <LoadingSpinner />
-      )}
+        <div className="table">
+          <div className="table-section-header">24hr Stats</div>
+          {tableData ? (
+            <StableCoinTable tableData={tableData} />
+          ) : (
+            <LoadingSpinner />
+          )}
+        </div>
+      </div>
       <div />
       <style jsx>{`
         .container {
@@ -108,6 +120,10 @@ const StableCoins = () => {
           opacity: 0.4;
           padding-bottom: 20px;
           padding-left: 30px;
+        }
+        .spinner {
+          height: 400px;
+          width: 650px;
         }
         .table {
           margin-left: 25px;
