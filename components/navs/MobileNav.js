@@ -37,44 +37,30 @@ export const MobileNav = () => {
         </div>
         <div
           className="mobile-sub-links-container"
-          onClick={() => setIsVisible(false)}>
+          onClick={() => setIsVisible(false)}
+        >
           <Link href="/" passHref>
-            <div
-              className={
-                setLinkActive(router.pathname,"/")
-              }>
+            <div className={setLinkActive(router.pathname, "/")}>
               Exchange Flows
             </div>
           </Link>
           <Link href="/stablecoins" passHref>
-            <div
-              className={
-                setLinkActive(router.pathname,"/stablecoins")
-              }>
+            <div className={setLinkActive(router.pathname, "/stablecoins")}>
               Stablecoins
             </div>
           </Link>
           <Link href="/compare" passHref>
-            <div
-              className={
-                setLinkActive(router.pathname,"/compare")
-              }>
+            <div className={setLinkActive(router.pathname, "/compare")}>
               Compare
             </div>
           </Link>
           <Link href="/about" passHref>
-            <div
-              className={
-                setLinkActive(router.pathname,"/about")
-              }>
+            <div className={setLinkActive(router.pathname, "/about")}>
               Company
             </div>
           </Link>
           <Link href="/pricing" passHref>
-            <div
-              className={
-                setLinkActive(router.pathname,"/pricing")
-              }>
+            <div className={setLinkActive(router.pathname, "/pricing")}>
               Pricing
             </div>
           </Link>
@@ -90,16 +76,17 @@ export const MobileNav = () => {
           </div>
           {loginCtx.isLoggedIn ? (
             <div
-              className="mobile-link-login"
+              className="mobile-link"
               onClick={() => {
                 Cookies.remove("apiKey");
                 loginCtx.setIsLoggedIn(false);
-              }}>
+              }}
+            >
               Logout
             </div>
           ) : (
             <Link href="/login" passHref>
-              <div className="mobile-link-login">Login</div>
+              <div className="mobile-link">Login</div>
             </Link>
           )}
         </div>
@@ -153,12 +140,6 @@ export const MobileNav = () => {
           padding-bottom: 10px;
           text-decoration: none;
           color: white;
-        }
-        .mobile-link-login {
-          padding-top: 10px;
-          padding-bottom: 10px;
-          opacity: 0.5;
-          color: rgba(${colors.primaryGreen});
         }
         a {
           opacity: 1;
