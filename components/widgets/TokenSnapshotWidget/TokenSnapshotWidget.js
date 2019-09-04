@@ -1,8 +1,13 @@
+import PropTypes from "prop-types";
 import React from "react";
 
 import { TokenSnapshot } from "./TokenSnapshot";
 import { DATA_WINDOWS } from "../../../constants/filters";
 import { TOKEN_NAMES } from "../../../constants/token-names";
+import { Separator } from "./Separator";
+
+const renderSeparatorIfNotFirstSnapshot = (data, index) =>
+  Object.keys(data).length - 1 !== index && <Separator />;
 
 export const TokenSnapshotWidget = ({ units, data, dataWindow }) => (
   <>
@@ -58,7 +63,7 @@ export const TokenSnapshotWidget = ({ units, data, dataWindow }) => (
                 ]}
               />
             </div>
-            {Object.keys(data).length - 1 != index && <Separator />}
+            {renderSeparatorIfNotFirstSnapshot(data, index)}
           </React.Fragment>
         ))}
     </div>
@@ -83,24 +88,11 @@ export const TokenSnapshotWidget = ({ units, data, dataWindow }) => (
   </>
 );
 
-const Separator = () => (
-  <div className="separator">
-    <style jsx>{`
-      .separator {
-        border: solid 0.5px rgba(151, 151, 151, 0.15);
-        margin-left: 20px;
-        margin-right: 15px;
-        margin-top: 10px;
-        margin-bottom: 10px;
-      }
-      @media only screen and (max-width: 768px) {
-        .separator {
-          visibility: hidden;
-        }
-      }
-    `}</style>
-  </div>
-);
+TokenSnapshotWidget.propTypes = {
+  data: PropTypes.objectOf(PropTypes.object).isRequired,
+  dataWindow: PropTypes.string.isRequired,
+  units: PropTypes.string.isRequired
+};
 
 const getSparklineWindow = (dataWindow, sparkline) => {
   const length = sparkline.length;
