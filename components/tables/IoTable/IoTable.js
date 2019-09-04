@@ -136,7 +136,9 @@ export const IoTable = ({ data, dataWindow, units }) => {
           })}
           getPaginationProps={() => ({
             style: {
-              color: `rgba(${colors.primaryGreen}, 1)`
+              color: `rgba(${colors.primaryGreen}, 1)`,
+              boxShadow: "none",
+              border: "none"
             }
           })}
           getNoDataProps={() => ({
