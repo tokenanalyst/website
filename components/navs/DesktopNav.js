@@ -7,6 +7,9 @@ import { LoginContext } from "../../contexts/Login";
 import { LOGO_IMAGES } from "../../constants/image-paths";
 import { colors } from "../../constants/styles/colors";
 
+export const setLinkActive = (pathName, link) =>
+  pathName === link ? "desktop-link-active" : "desktop-link";
+
 export const DesktopNav = () => {
   const loginCtx = useContext(LoginContext);
   const router = useRouter();
@@ -50,35 +53,21 @@ export const DesktopNav = () => {
           </div>
           <div className="desktop-links">
             <Link href="/" passHref>
-              <div
-                className={
-                  router.pathname === "/"
-                    ? "desktop-link-active"
-                    : "desktop-link"
-                }>
+              <div className={setLinkActive(router.pathname, "/")}>
                 Exchange Flows
               </div>
             </Link>
             <Link href="/stablecoins" passHref>
               <div
-                className={
-                  router.pathname === "/stablecoins"
-                    ? "desktop-link-active"
-                    : "desktop-link"
-                }
+                className={setLinkActive(router.pathname, "/stablecoins")}
                 onMouseOver={collapseAllSubMenus}>
                 Stablecoins
               </div>
             </Link>
             <Link href="/compare" passHref>
               <div
-                className={
-                  router.pathname === "/compare"
-                    ? "desktop-link-active"
-                    : "desktop-link"
-                }
-                onMouseOver={collapseAllSubMenus}
-              >
+                className={setLinkActive(router.pathname, "/compare")}
+                onMouseOver={collapseAllSubMenus}>
                 Compare
               </div>
             </Link>
@@ -86,12 +75,7 @@ export const DesktopNav = () => {
               Research
             </a>
             <Link href="/pricing" passHref>
-              <div
-                className={
-                  router.pathname === "/pricing"
-                    ? "desktop-link-active"
-                    : "desktop-link"
-                }>
+              <div className={setLinkActive(router.pathname, "/pricing")}>
                 Pricing
               </div>
             </Link>
@@ -102,11 +86,7 @@ export const DesktopNav = () => {
               API
             </a>
             <div
-              className={
-                router.pathname === "/about"
-                  ? "desktop-link-active"
-                  : "desktop-link"
-              }
+              className={setLinkActive(router.pathname, "/about")}
               onMouseOver={() => {
                 collapseAllSubMenus();
                 setShownItems(prev => ({ ...prev, contact: true }));

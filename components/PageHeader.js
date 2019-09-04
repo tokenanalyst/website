@@ -18,11 +18,31 @@ export const PageHeader = ({ text, rightElement }) => {
           font-size: 32px;
           font-weight: bold;
           text-align: left;
-          flex: 1;
         }
         .right-element {
-          flex: 1;
           text-align: right;
+          margin-top: auto;
+          margin-bottom: auto;
+          margin-left: auto;
+        }
+        @media only screen and (max-width: 768px) {
+          .container {
+            font-family: Space Grotesk;
+            display: flex;
+            padding: 30px;
+            flex-direction: column;
+          }
+          .text {
+            font-size: 32px;
+            font-weight: bold;
+            text-align: center;
+          }
+          .right-element {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: auto;
+            margin-left: unset;
+          }
         }
       `}</style>
     </>

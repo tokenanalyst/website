@@ -2,15 +2,21 @@ import React, { useState, useContext } from "react";
 import Link from "next/link";
 import { Icon } from "@blueprintjs/core";
 import Cookies from "js-cookie";
+import { useRouter } from "next/router";
 
 import { LOGO_IMAGES } from "../../constants/image-paths";
 import { LoginContext } from "../../contexts/Login";
 import { colors } from "../../constants/styles/colors";
 
+export const setLinkActive = (pathName, link) =>
+  pathName === link ? "mobile-link-active" : "mobile-link";
+
 export const MobileNav = () => {
   const loginCtx = useContext(LoginContext);
+  const router = useRouter();
 
   const [isVisible, setIsVisible] = useState(false);
+
   return (
     <>
       <div className="top">
@@ -31,22 +37,46 @@ export const MobileNav = () => {
         </div>
         <div
           className="mobile-sub-links-container"
-          onClick={() => setIsVisible(false)}
-        >
+          onClick={() => setIsVisible(false)}>
           <Link href="/" passHref>
-            <div className="mobile-link">Exchange Flows</div>
+            <div
+              className={
+                setLinkActive(router.pathname,"/")
+              }>
+              Exchange Flows
+            </div>
           </Link>
           <Link href="/stablecoins" passHref>
-            <div className="mobile-link">Stablecoins</div>
+            <div
+              className={
+                setLinkActive(router.pathname,"/stablecoins")
+              }>
+              Stablecoins
+            </div>
           </Link>
           <Link href="/compare" passHref>
-            <div className="mobile-link">Compare</div>
+            <div
+              className={
+                setLinkActive(router.pathname,"/compare")
+              }>
+              Compare
+            </div>
           </Link>
           <Link href="/about" passHref>
-            <div className="mobile-link">Company</div>
+            <div
+              className={
+                setLinkActive(router.pathname,"/about")
+              }>
+              Company
+            </div>
           </Link>
           <Link href="/pricing" passHref>
-            <div className="mobile-link">Pricing</div>
+            <div
+              className={
+                setLinkActive(router.pathname,"/pricing")
+              }>
+              Pricing
+            </div>
           </Link>
           <div className="mobile-link">
             <a href="https://research.tokenanalyst.io/" target="_blank">
@@ -64,8 +94,7 @@ export const MobileNav = () => {
               onClick={() => {
                 Cookies.remove("apiKey");
                 loginCtx.setIsLoggedIn(false);
-              }}
-            >
+              }}>
               Logout
             </div>
           ) : (
@@ -110,10 +139,20 @@ export const MobileNav = () => {
           width: 100%;
           text-align: center;
         }
-        .mobile-link {
+        .mobile-link,
+        a {
+          opacity: 0.5;
           padding-top: 10px;
           padding-bottom: 10px;
-          opacity: 0.5;
+          text-decoration: none;
+          color: white;
+        }
+        .mobile-link-active {
+          opacity: 1;
+          padding-top: 10px;
+          padding-bottom: 10px;
+          text-decoration: none;
+          color: white;
         }
         .mobile-link-login {
           padding-top: 10px;
@@ -122,8 +161,11 @@ export const MobileNav = () => {
           color: rgba(${colors.primaryGreen});
         }
         a {
+          opacity: 1;
           color: white;
           text-decoration: none;
+          padding-top: 10px;
+          padding-bottom: 10px;
         }
         @media only screen and (min-width: 769px) {
           .top {

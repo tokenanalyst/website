@@ -11,6 +11,7 @@ import { StableCoinTable } from "../components/tables/StableCoinTable";
 import { LoadingSpinner } from "../components/LoadingSpinner";
 import { PageHeader } from "../components/PageHeader";
 import { PageSection } from "../components/PageSection";
+import { PricingLink } from "../components/PricingLink";
 
 // lightweight-charts must not be imported on the server (Bang!)
 const SimpleChart = dynamic(
@@ -45,7 +46,7 @@ const StableCoins = () => {
   return (
     <>
       <div>
-        <PageHeader text={"Stablecoins"} rightElement={<div />} />
+        <PageHeader text={"Stablecoins"} rightElement={<PricingLink />} />
       </div>
       <div className="container">
         <div className="charts">

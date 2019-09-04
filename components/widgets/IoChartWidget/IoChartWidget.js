@@ -4,6 +4,7 @@ import { Icon } from "@blueprintjs/core";
 
 import { ChartControls } from "../../charts/ChartControls";
 import { CHART_TYPES } from "../../../constants/chartTypes";
+import { PricingLink } from "../../../components/PricingLink";
 
 const SimpleChart = dynamic(
   () => import("../../charts/SimpleChart").then(mod => mod.SimpleChart),
@@ -36,12 +37,17 @@ export const IoChartWidget = ({ dataSet, setDataSet, formatter }) => {
             />
           )}
         </div>
-        <ChartControls
-          seriesType={seriesType}
-          setSeriesType={setSeriesType}
-          dataSet={dataSet}
-          setDataSet={setDataSet}
-        />
+        <div>
+          <ChartControls
+            seriesType={seriesType}
+            setSeriesType={setSeriesType}
+            dataSet={dataSet}
+            setDataSet={setDataSet}
+          />
+          <div className="pricing-link">
+            <PricingLink />
+          </div>
+        </div>
       </div>
       <style jsx>{`
         .widget-container {
@@ -63,6 +69,10 @@ export const IoChartWidget = ({ dataSet, setDataSet, formatter }) => {
           font-size: 18px;
           font-weight: bold;
           padding-bottom: 20px;
+        }
+        .pricing-link {
+          padding-top: 30px;
+          text-align: center;
         }
         @media only screen and (max-width: 768px) {
           .widget-container {
