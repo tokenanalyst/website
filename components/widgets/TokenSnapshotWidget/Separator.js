@@ -4,7 +4,7 @@ export const Separator = () => (
   <div className="separator">
     <style jsx>{`
       .separator {
-        border: solid 0.5px rgba(151, 151, 151, 0.15);
+        border-right: solid 1px rgba(151,151,151,0.15);
         margin-left: 20px;
         margin-right: 15px;
         margin-top: 10px;
@@ -12,7 +12,7 @@ export const Separator = () => (
       }
       @media only screen and (max-width: 768px) {
         .separator {
-          border: solid 0.5px rgba(151, 151, 151, 0.15);
+          border-right: solid 1px rgba(151,151,151,0.15);
           margin-left: 20px;
           margin-right: 15px;
           margin-top: 5px;
