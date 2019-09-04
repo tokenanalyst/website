@@ -39,9 +39,10 @@ export const Newsletter = () => {
         <div className="top">
           <span className="header">Newsletter</span>
           <span className="close" onClick={dismiss}>
-            <Icon icon="cross" color="black" iconSize={28} />
+            <img src="/static/svg/cross.svg" height={28} width={28} />
           </span>
         </div>
+        <div className="shadow" />
         <div className="body">
           Our newsletter features the most recent findings, reports and updates
           to our new products.
@@ -55,18 +56,19 @@ export const Newsletter = () => {
             />
           ) : (
             <>
-              <span className="field">
+              <div className="field">
+                <div className="field-header">Your Email</div>
                 <input
                   type="text"
-                  placeholder="email"
-                  className="field"
+                  className="field-input"
                   value={email}
                   onChange={e => setEmail(e.target.value)}
+                  placeholder="famoustrader@bitmex.org"
                 />
-              </span>
-              <span className="button" onClick={register}>
-                Subscribe
-              </span>
+                <div className="button" onClick={register}>
+                  Sign up
+                </div>
+              </div>
             </>
           )}
         </div>
@@ -76,7 +78,7 @@ export const Newsletter = () => {
           font-family: Space Grotesk;
           position: fixed;
           bottom: 0px;
-          height: 100px;
+          height: 180px;
           background-color: white;
           width: 100%;
           z-index: 10000;
@@ -93,10 +95,13 @@ export const Newsletter = () => {
         .header {
           font-size: 24px;
           font-weight: bold;
+          border-bottom: 3px solid rgba(${colors.primaryGreen});
+          margin-bottom: 10px;
         }
         .close {
           margin-right: 40px;
           cursor: pointer;
+          opacity: 0.3;
         }
         .input {
           display: flex;
@@ -108,27 +113,51 @@ export const Newsletter = () => {
           width: 150px;
           height: 24px;
         }
+        .field-header {
+          font-weight: bold;
+          opacity: 0.4;
+          padding-bottom: 5px;
+        }
+        .field-input {
+          opacity: 0.5;
+          font-style: italic;
+          padding: 10px;
+          min-width: 300px;
+          box-shadow: inset 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+        }
         .button {
           color: white;
-          min-width: 60px;
+          min-width: 135px;
           text-align: center;
           background-color: rgba(${colors.primaryGreen});
           max-height: 20px;
           padding: 10px;
           border-radius: 10px;
           cursor: pointer;
-          margin-left: 30px;
+          margin-top: 10px;
         }
         @media only screen and (max-width: 768px) {
           .container {
-            height: 150px;
+            height: 180px;
+          }
+          .top {
+            padding-bottom: 10px;
           }
           .body {
             max-width: 270px;
+            padding-top: 20px;
+            display: none;
           }
           .input {
             justify-content: space-between;
             margin-right: 40px;
+          }
+          .shadow {
+            height: 4px;
+            border-bottom: solid 1px rgba(151, 151, 151, 0.15);
+            box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.05);
+            margin-left: -20px;
+            margin-right: -20px;
           }
         }
       `}</style>
