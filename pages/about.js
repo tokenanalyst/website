@@ -248,6 +248,8 @@ const About = () => {
                 </a>
               </div>
             </div>
+          </div>
+          <div className="members">
             <div className="member">
               <img
                 className="image"
