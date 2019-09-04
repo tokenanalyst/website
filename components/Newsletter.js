@@ -6,7 +6,7 @@ import ReactGA from "react-ga";
 import { colors } from "../constants/styles/colors";
 
 export const Newsletter = () => {
-  const [isShown, setIsShown] = useState(true);
+  const [isShown, setIsShown] = useState(false);
   const [email, setEmail] = useState("");
   const [hasPosted, setHasPosted] = useState(false);
 
