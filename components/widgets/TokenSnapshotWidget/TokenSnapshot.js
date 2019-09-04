@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React from "react";
 import { Sparklines, SparklinesLine } from "react-sparklines";
 import numeral from "numeral";
@@ -35,8 +36,7 @@ export const TokenSnapshot = ({
                 : tokenValueChange < 0
                 ? "change-negative"
                 : "change-neutral"
-            }
-          >
+            }>
             {tokenValueChange.toFixed(2)}%
           </span>
         </span>
@@ -46,8 +46,8 @@ export const TokenSnapshot = ({
         <div className="section" key={index}>
           <>
             <div className="sparkline-row">
-              <span className="sparkline-header">{flow.label}</span>
-              <span className="sparkline">
+              <div className="sparkline-header">{flow.label}</div>
+              <div className="sparkline">
                 <Sparklines data={flow.sparkline}>
                   <SparklinesLine
                     style={{ strokeWidth: 6, fill: "none", width: 200 }}
@@ -60,12 +60,12 @@ export const TokenSnapshot = ({
                     }
                   />
                 </Sparklines>
-              </span>
+              </div>
             </div>
           </>
           <>
             <div className="row">
-              <span>
+              <div className="token-flow-variation">
                 <img
                   src={
                     flow.change < 0
@@ -82,15 +82,14 @@ export const TokenSnapshot = ({
                       : flow.change < 0
                       ? "change-negative"
                       : "change-neutral"
-                  }
-                >
+                  }>
                   {flow.change.toFixed(2)}%
                 </span>
-              </span>
-              <span className="token-flow-value">
+              </div>
+              <div className="token-flow-value">
                 {units === "USD" ? "$" : ""}
                 {numeral(flow.value).format("0.0a")}
-              </span>
+              </div>
             </div>
           </>
         </div>
@@ -138,6 +137,7 @@ export const TokenSnapshot = ({
         padding-bottom: 20px;
       }
       .sparkline-header {
+        font-weight: 700;
         font-size: 18px;
       }
       .sparkline-row {
@@ -150,16 +150,43 @@ export const TokenSnapshot = ({
         width: 150px;
         opacity: 1;
       }
+      .token-flow-variation {
+        text-align: left;
+      }
       .token-flow-value {
-        font-weight: bold;
+        text-align: left;
+        width: 150px;
       }
       @media only screen and (max-width: 768px) {
         .container {
           min-width: 100%;
         }
+        .sparkline-header {
+          font-weight: 700;
+          font-size: 18px;
+          width: 50%;
+        }
+        .token-flow-variation {
+          text-align: left;
+        }
+        .token-flow-value {
+          text-align: left;
+          width: 150px;
+        }
+        .row {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          border-bottom: solid 1px rgba(151, 151, 151, 0.15);
+          padding-bottom: 20px;
+          margin-left: -20px;
+          margin-right: -20px;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
         .shadow {
           height: 4px;
-          box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.05);
+          box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.08);
           margin-left: -20px;
           margin-right: -20px;
         }
@@ -170,3 +197,11 @@ export const TokenSnapshot = ({
     `}</style>
   </>
 );
+
+TokenSnapshot.propTypes = {
+  token: PropTypes.string.isRequired,
+  tokenValue: PropTypes.number.isRequired,
+  tokenValueChange: PropTypes.number.isRequired,
+  flows: PropTypes.arrayOf(PropTypes.object),
+  units: PropTypes.string.isRequired
+};
