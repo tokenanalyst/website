@@ -57,7 +57,11 @@ const StableCoins = () => {
                 dataSet={volumeChartData}
                 seriesType="line"
                 width={
-                  window.matchMedia("(max-width: 768px)").matches ? 300 : 650
+                  window.matchMedia("(max-width: 768px)").matches
+                    ? 300
+                    : window.matchMedia("(min-width: 1920px)").matches
+                    ? 850
+                    : 650
                 }
                 height={
                   window.matchMedia("(max-width: 768px)").matches ? 300 : 400
@@ -76,7 +80,11 @@ const StableCoins = () => {
                 dataSet={transactionsChartData}
                 seriesType="line"
                 width={
-                  window.matchMedia("(max-width: 768px)").matches ? 300 : 650
+                  window.matchMedia("(max-width: 768px)").matches
+                    ? 300
+                    : window.matchMedia("(min-width: 1920px)").matches
+                    ? 850
+                    : 650
                 }
                 height={
                   window.matchMedia("(max-width: 768px)").matches ? 300 : 400
@@ -90,7 +98,7 @@ const StableCoins = () => {
           </div>
         </div>
         <div className="table">
-          <div className="table-section-header">24hr Stats</div>
+          <PageSection text={"24 hr stats"} />
           {tableData ? (
             <StableCoinTable tableData={tableData} />
           ) : (
@@ -106,9 +114,8 @@ const StableCoins = () => {
         .charts {
           display: flex;
           flex-direction: row;
-          justify-content: space-around;
-          padding-bottom: 20px;
-          padding-top: 20px;
+          justify-content: space-between;
+          padding: 13px;
         }
         .chart {
           display: flex;
@@ -127,8 +134,7 @@ const StableCoins = () => {
           width: 650px;
         }
         .table {
-          margin-left: 25px;
-          margin-right: 25px;
+          padding: 13px;
         }
         @media only screen and (max-width: 768px) {
           .charts {
