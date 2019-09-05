@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import React from "react";
 import { Icon } from "@blueprintjs/core";
 import ReactGA from "react-ga";
@@ -80,8 +81,7 @@ export const ChartControls = ({
             <span className="header">Token</span>
             <img
               src={`/static/png/coins/${COIN_IMAGES[token]}`}
-              width={26}
-              height={26}
+
               className="token-icon"
             />
           </div>
@@ -172,6 +172,8 @@ export const ChartControls = ({
       }
       .token-icon {
         padding-bottom: 10px;
+        width: 26px;
+        height: 26px;
       }
       .header {
         padding-bottom: 10px;
@@ -215,3 +217,14 @@ export const ChartControls = ({
     `}</style>
   </>
 );
+
+ChartControls.ChartControls = {
+  seriesType: PropTypes.string.isRequired,
+  setSeriesType: PropTypes.func.isRequired,
+  dataSet: PropTypes.arrayOf(PropTypes.object).isRequired,
+  setDataSet: PropTypes.func.isRequired,
+  token: PropTypes.string.isRequired,
+  setToken: PropTypes.func.isRequired,
+  borderColor:PropTypes.string.isRequired,
+  setDataPoint: PropTypes.func.isRequired,
+}

@@ -41,3 +41,8 @@ export const NATIVE_TOKENS = {
   BTC: "BTC",
   ETH: "ETH"
 };
+
+export const CURRENCIES = {
+  USD: "USD",
+  EUR: "EUR",
+};
