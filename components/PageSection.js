@@ -6,14 +6,13 @@ export const PageSection = ({ text }) => {
   return (
     <>
       <div className="container">
-        <div className="text">
-          {text} <Icon icon="chart" color="gray" />
-        </div>
+        <div className="text">{text}</div>
       </div>
       <style jsx>{`
         .container {
           font-family: Space Grotesk;
           display: flex;
+          padding: 5px;
           padding-bottom: 20px;
         }
         .text {
