@@ -8,6 +8,7 @@ import { AmountCell, ChangeCell, ExchangeCell, HeaderCell } from "./renderers";
 import { getIoTableData } from "../../../data-transformers/tables";
 import { filterCaseInsensitive } from "../helpers";
 import { colors } from "../../../constants/styles/colors";
+import { NextButton } from "./ui/NextButton";
 
 const TABLE_DATA = getIoTableData();
 
@@ -57,10 +58,17 @@ export const IoTable = ({ data, dataWindow, units }) => {
     }
   ];
 
+  const RenderPreviousButton = props => {
+    console.log(props);
+    return <div onClick={props.onClick}>Previous</div>;
+  };
+
   return (
     <div className="container">
       {data && (
         <ReactTable
+          PreviousComponent={RenderPreviousButton}
+          NextComponent={NextButton}
           data={data.filter(datum => datum.window === dataWindow)}
           columns={getColumns(units)}
           defaultSorted={[

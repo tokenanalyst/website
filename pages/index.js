@@ -26,7 +26,7 @@ const Exchange = () => {
       <div className="under-sub-nav">
         <>
           <div className="section-header">At a glance</div>
-          {tokenSnapshotWidgetData ? (
+          {/* {tokenSnapshotWidgetData ? (
             <TokenSnapshotWidget
               data={tokenSnapshotWidgetData}
               dataWindow={dataWindow}
@@ -36,7 +36,7 @@ const Exchange = () => {
             <div className="spinner">
               <LoadingSpinner />
             </div>
-          )}
+          )} */}
           <div className="section-header">{dataWindow} Inflows/Outflows</div>
           <div className="table">
             {ioTableData ? (
