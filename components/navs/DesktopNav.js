@@ -60,14 +60,16 @@ export const DesktopNav = () => {
             <Link href="/stablecoins" passHref>
               <div
                 className={setLinkActive(router.pathname, "/stablecoins")}
-                onMouseOver={collapseAllSubMenus}>
+                onMouseOver={collapseAllSubMenus}
+              >
                 Stablecoins
               </div>
             </Link>
             <Link href="/compare" passHref>
               <div
                 className={setLinkActive(router.pathname, "/compare")}
-                onMouseOver={collapseAllSubMenus}>
+                onMouseOver={collapseAllSubMenus}
+              >
                 Compare
               </div>
             </Link>
@@ -82,7 +84,8 @@ export const DesktopNav = () => {
             <a
               href="https://docs.tokenanalyst.io/#/api"
               target="_blank"
-              onMouseOver={collapseAllSubMenus}>
+              onMouseOver={collapseAllSubMenus}
+            >
               API
             </a>
             <div
@@ -90,7 +93,8 @@ export const DesktopNav = () => {
               onMouseOver={() => {
                 collapseAllSubMenus();
                 setShownItems(prev => ({ ...prev, contact: true }));
-              }}>
+              }}
+            >
               About Us
             </div>
           </div>
@@ -109,7 +113,8 @@ export const DesktopNav = () => {
                 }}
                 onMouseOver={() => {
                   collapseAllSubMenus();
-                }}>
+                }}
+              >
                 Logout
               </span>
             </>
@@ -119,7 +124,8 @@ export const DesktopNav = () => {
                 className="login-button"
                 onMouseOver={() => {
                   collapseAllSubMenus();
-                }}>
+                }}
+              >
                 Login
               </div>
             </Link>
@@ -129,11 +135,13 @@ export const DesktopNav = () => {
       <div className="desktop-sub-links-container">
         <div
           className="desktop-contact-sub-link-container"
-          onClick={collapseAllSubMenus}>
+          onClick={collapseAllSubMenus}
+        >
           <div className="desktop-sub-links">
             <div
               className="desktop-contact-sub-links"
-              onMouseLeave={() => collapseSubMenuDelayed("contact")}>
+              onMouseLeave={() => collapseSubMenuDelayed("contact")}
+            >
               <div className="desktop-sub-link">
                 <Link href="/about" passHref>
                   <a>Company</a>
@@ -147,7 +155,8 @@ export const DesktopNav = () => {
               <div className="desktop-sub-link">
                 <a
                   href="https://t.me/joinchat/AAAAAEXMAvSpOZao3fRvJA"
-                  target="_blank">
+                  target="_blank"
+                >
                   Telegram
                 </a>
               </div>

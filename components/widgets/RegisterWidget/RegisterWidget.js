@@ -177,7 +177,7 @@ export const RegisterWidget = () => {
       </div>
       <style jsx>{`
         .container {
-          font-family: Space Grotesk;
+          font-family: Open Sans;
           padding: 30px;
           flex-wrap: wrap;
         }

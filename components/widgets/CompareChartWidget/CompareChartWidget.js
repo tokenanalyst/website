@@ -93,7 +93,7 @@ export const CompareChartWidget = ({ response }) => {
       )}
       <style jsx>{`
         .container {
-          font-family: Space Grotesk;
+          font-family: Open Sans;
           display: flex;
           flex-direction: row;
           justify-content: space-around;

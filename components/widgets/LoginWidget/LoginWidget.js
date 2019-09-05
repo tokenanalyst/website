@@ -58,7 +58,7 @@ export const LoginWidget = () => {
       </div>
       <style jsx>{`
         .container {
-          font-family: Space Grotesk;
+          font-family: Open Sans;
           padding: 30px;
         }
         .title {

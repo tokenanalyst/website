@@ -53,7 +53,7 @@ export const FilterNav = ({ dataWindow, setDataWindow, units, setUnits }) => {
       </div>
       <style jsx>{`
         .container {
-          font-family: DIN Alternate;
+          font-family: Open Sans;
           padding: 10px;
           border-bottom: 1px solid rgb(203, 203, 203);
           position: fixed;

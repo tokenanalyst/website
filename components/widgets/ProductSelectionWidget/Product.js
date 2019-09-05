@@ -60,7 +60,7 @@ export const Product = ({ name, price, features, buttonText, stripePlan }) => {
       </div>
       <style jsx>{`
         .container {
-          font-family: Space Grotesk;
+          font-family: Open Sans;
           display: flex;
           flex-direction: column;
           min-width: 300px;
@@ -69,6 +69,7 @@ export const Product = ({ name, price, features, buttonText, stripePlan }) => {
           padding: 10px;
         }
         .header {
+          font-family: Space Grotesk;
           display: flex;
           flex-direction: row;
           justify-content: space-between;

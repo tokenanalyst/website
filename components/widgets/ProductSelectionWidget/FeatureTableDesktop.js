@@ -44,7 +44,7 @@ export const FeatureTableDesktop = () => {
       </table>
       <style jsx>{`
         .container {
-          font-family: Space Grotesk;
+          font-family: Open Sans;
           font-size: 18px;
           line-height: 24px;
         }

@@ -69,7 +69,6 @@ export const TokenSnapshotWidget = ({ units, data, dataWindow }) => (
     </div>
     <style jsx>{`
       .container {
-        font-family: Space Grotesk;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;

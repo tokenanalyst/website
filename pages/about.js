@@ -368,11 +368,12 @@ const About = () => {
       <style jsx>
         {`
           .container {
-            font-family: Space Grotesk;
+            font-family: Open Sans;
             text-align: center;
             padding-top: 20px;
           }
           .header {
+            font-family: Space Grotesk;
             font-size: 24px;
             font-weight: bold;
             padding-top: 20px;
