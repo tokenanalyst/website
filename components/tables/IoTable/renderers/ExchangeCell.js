@@ -1,4 +1,5 @@
 import { EXCHANGE_IMAGES } from "../../../../constants/image-paths";
+import { EXCHANGE_NAMES } from "../../../../constants/exchanges";
 import { Icon } from "@blueprintjs/core";
 
 import { colors } from "../../../../constants/styles/colors";
@@ -16,7 +17,7 @@ export const ExchangeCell = ({ value }) => (
         style={{ height: "16px", width: "20px", paddingRight: "5px" }}
         src={`/static/png/${EXCHANGE_IMAGES[value]}`}
       />
-      {value}
+      {EXCHANGE_NAMES[value]}
     </span>
     <Icon icon="chart" iconSize={12} color={`rgba(${colors.primaryGreen})`} />
   </span>

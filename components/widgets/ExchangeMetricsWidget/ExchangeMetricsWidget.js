@@ -2,6 +2,7 @@ import React from "react";
 import numeral from "numeral";
 
 import { EXCHANGE_IMAGES } from "../../../constants/image-paths";
+import { EXCHANGE_NAMES } from "../../../constants/exchanges";
 import { colors } from "../../../constants/styles/colors";
 
 export const ExchangeMetricsWidget = ({ overallMetrics, token, exchange }) => {
@@ -16,7 +17,7 @@ export const ExchangeMetricsWidget = ({ overallMetrics, token, exchange }) => {
                   {token.replace("_", " ")}
                 </span>
                 <span className="banner-banner-header-exchange-name">
-                  {exchange}
+                  {EXCHANGE_NAMES[exchange]}
                 </span>
               </div>
               <div className="banner-logo-img-container">
