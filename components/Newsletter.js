@@ -19,6 +19,11 @@ export const Newsletter = () => {
   const register = async () => {
     await axios.post("https://api.tokenanalyst.io/newsletter", { email });
     setHasPosted(true);
+    ReactGA.event({
+      category: "User",
+      action: `Subscribe newsletter`,
+      label: `Newsletter`
+    });
     window.localStorage.setItem("newsletterDismissed", true);
     setTimeout(() => setIsShown(false), 1000);
   };
