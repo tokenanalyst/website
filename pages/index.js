@@ -37,8 +37,8 @@ const Exchange = () => {
               <LoadingSpinner />
             </div>
           )}
+          <div className="section-header">{dataWindow} Inflows/Outflows</div>
           <div className="table">
-            <div className="section-header">{dataWindow} Inflows/Outflows</div>
             {ioTableData ? (
               <IoTable
                 data={ioTableData}
