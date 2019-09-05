@@ -9,6 +9,6 @@ export const ChangeCell = ({ value }) => (
           : `rgba(${colors.primaryGreen}, 1)`
     }}
   >
-    {(value && value.toFixed(2)) || "0.00"}%
+    {(value && Number(value).toFixed(2)) || "0.00"}%
   </span>
 );
