@@ -60,12 +60,12 @@ export const SimpleChart = ({ dataSet, seriesType, width, height }) => {
 
     chart.timeScale().fitContent();
 
-    chart.subscribeCrosshairMove(param => {
+    chart.subscribeCrosshairMove(({ seriesPrices }) => {
       setTooltips(
-        allSeries.map(series => ({
-          title: series.title,
-          value: param.seriesPrices.get(series.series),
-          color: series.color
+        allSeries.map(({ title, series, color }) => ({
+          title,
+          value: seriesPrices.get(series),
+          color
         }))
       );
     });
@@ -77,14 +77,14 @@ export const SimpleChart = ({ dataSet, seriesType, width, height }) => {
     <div className="container" ref={chartRef}>
       <div className="tooltip">
         <table>
-          {tooltips.map(tooltip =>
-            tooltip.value ? (
+          {tooltips.map(({ title, value, color }) =>
+            value ? (
               <tr>
-                <td style={{ color: tooltip.color }}>{tooltip.title}</td>
+                <td style={{ color }}>{title}</td>
                 <td className="value">
                   {window.matchMedia("(max-width: 768px)").matches
-                    ? numeral(tooltip.value).format("0.0a")
-                    : numeral(tooltip.value).format("0,0.00")}
+                    ? numeral(value).format("0.0a")
+                    : numeral(value).format("0,0.00")}
                 </td>
               </tr>
             ) : (
