@@ -1,9 +1,18 @@
 import { toSingleValueChartData } from "./mappers";
 
-import { STABLE_TOKENS, NATIVE_TOKENS } from "../../constants/tokens";
+import {
+  STABLE_TOKENS,
+  NATIVE_TOKENS,
+  CURRENCIES
+} from "../../constants/tokens";
 import { CHART_TYPES } from "../../constants/chartTypes";
 
+const formatTokenSymbol = rawSymbol => rawSymbol.replace("_", " ");
+
 export const getExchangeDataSet = (response, token) => {
+  const USDSymbol = formatTokenSymbol(CURRENCIES.USD);
+  const tokenSymbol = formatTokenSymbol(token);
+
   const baseDataSet = [
     {
       dataPoint: "Price",
@@ -19,8 +28,8 @@ export const getExchangeDataSet = (response, token) => {
       isAlwaysDisplayed: true
     },
     {
-      dataPoint: "Volume",
-      title: "Outflow Volume",
+      dataPoint: `Volume (${tokenSymbol})`,
+      title: `Outflow Volume (${tokenSymbol})`,
       chartValues: toSingleValueChartData(response.outflow, "date", "outflow"),
       visible: true,
       solidColor: "rgba(250, 78, 150, 1)",
@@ -28,8 +37,8 @@ export const getExchangeDataSet = (response, token) => {
       bottomColor: "rgba(250, 78, 150, 0.04)"
     },
     {
-      dataPoint: "Volume",
-      title: "Inflow Volume",
+      dataPoint: `Volume (${tokenSymbol})`,
+      title: `Inflow Volume (${tokenSymbol})`,
       chartValues: toSingleValueChartData(response.inflow, "date", "inflow"),
       visible: true,
       solidColor: "rgba(63, 205, 171, 1)",
@@ -37,8 +46,8 @@ export const getExchangeDataSet = (response, token) => {
       bottomColor: "rgba(63, 205, 171, 0.04)"
     },
     {
-      dataPoint: "Volume (USD)",
-      title: "Outflow Volume (USD)",
+      dataPoint: `Volume (${USDSymbol})`,
+      title: `Outflow Volume (${USDSymbol})`,
       chartValues: toSingleValueChartData(
         response.outflow,
         "date",
@@ -50,8 +59,8 @@ export const getExchangeDataSet = (response, token) => {
       bottomColor: "rgba(250, 78, 150, 0.04)"
     },
     {
-      dataPoint: "Volume (USD)",
-      title: "Inflow Volume (USD)",
+      dataPoint: `Volume (${USDSymbol})`,
+      title: `Inflow Volume (${USDSymbol})`,
       chartValues: toSingleValueChartData(
         response.inflow,
         "date",
@@ -89,8 +98,8 @@ export const getExchangeDataSet = (response, token) => {
       bottomColor: "rgba(63, 205, 171, 0.04)"
     },
     {
-      dataPoint: "Avg. TXN Value",
-      title: "Outflow Avg. TXN Value",
+      dataPoint: `Avg. TXN Value (${tokenSymbol})`,
+      title: `Outflow Avg. TXN Value (${tokenSymbol})`,
       chartValues: toSingleValueChartData(
         response.outflow,
         "date",
@@ -102,8 +111,8 @@ export const getExchangeDataSet = (response, token) => {
       bottomColor: "rgba(250, 78, 150, 0.04)"
     },
     {
-      dataPoint: "Avg. TXN Value",
-      title: "Inflow Avg. TXN Value",
+      dataPoint: `Avg. TXN Value (${tokenSymbol})`,
+      title: `Inflow Avg. TXN Value (${tokenSymbol})`,
       chartValues: toSingleValueChartData(
         response.inflow,
         "date",
@@ -115,8 +124,8 @@ export const getExchangeDataSet = (response, token) => {
       bottomColor: "rgba(63, 205, 171, 0.04)"
     },
     {
-      dataPoint: "Avg. TXN Value (USD)",
-      title: "Outflow Avg. TXN Value (USD)",
+      dataPoint: `Avg. TXN Value (${USDSymbol})`,
+      title: `Outflow Avg. TXN Value (${USDSymbol})`,
       chartValues: toSingleValueChartData(
         response.outflow,
         "date",
@@ -128,8 +137,8 @@ export const getExchangeDataSet = (response, token) => {
       bottomColor: "rgba(250, 78, 150, 0.04)"
     },
     {
-      dataPoint: "Avg. TXN Value (USD)",
-      title: "Inflow Avg. TXN Value (USD)",
+      dataPoint: `Avg. TXN Value (${USDSymbol})`,
+      title: `Inflow Avg. TXN Value (${USDSymbol})`,
       chartValues: toSingleValueChartData(
         response.inflow,
         "date",
