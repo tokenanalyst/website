@@ -12,7 +12,8 @@ export const PageHeader = ({ text, rightElement }) => {
         .container {
           font-family: Space Grotesk;
           display: flex;
-          padding: 30px;
+          padding: 15px;
+          padding-top: 30px;
         }
         .text {
           font-size: 32px;
