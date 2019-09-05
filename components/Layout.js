@@ -22,19 +22,20 @@ export const Layout = ({ children }) => (
         content="blockchain, bitcoin, ethereum, data, on-chain, streaming, alerts, bots, trading"
       />
       <meta property="og:title" content="TokenAnalyst" />
+      <meta property="og:type" content="website" />
       <meta property="og:url" content="https://www.tokenanalyst.io/" />
       <meta
         property="og:description"
         content="TokenAnalyst is the leading provider of real-time and historical blockchain data."
       />
-      <meta property="og:image" content="https://www.tokenanalyst.io/static/png/logo_mobile.png" />
+      <meta property="og:image" content="https://www.tokenanalyst.io/static/png/logo-open-graph.png" />
       <meta
         property="og:image:secure_url"
-        content="https://www.tokenanalyst.io/static/png/logo_mobile.png"
+        content="https://www.tokenanalyst.io/static/png/logo-open-graph.png"
       />
       <meta property="og:image:type" content="image/png" />
-      <meta property="og:image:width" content="512" />
-      <meta property="og:image:height" content="512" />
+      <meta property="og:image:width" content="600" />
+      <meta property="og:image:height" content="315" />
       <meta
         property="og:image:alt"
         content="TokenAnalyst is the leading provider of real-time and historical blockchain data."
