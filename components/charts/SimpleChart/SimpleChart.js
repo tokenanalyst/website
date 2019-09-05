@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { createChart } from "lightweight-charts";
 import numeral from "numeral";
 
@@ -19,6 +19,8 @@ const CHART_FUNCS = {
 export const SimpleChart = ({ dataSet, seriesType, width, height }) => {
   const chartRef = useRef(null);
 
+  const [tooltips, setTooltips] = useState([]);
+
   useEffect(() => {
     const chart = createChart(chartRef.current, {
       height: height,
@@ -34,8 +36,9 @@ export const SimpleChart = ({ dataSet, seriesType, width, height }) => {
       }
     });
 
-    dataSet.forEach(data => {
-      if (data.visible || data.isAlwaysDisplayed) {
+    const allSeries = dataSet
+      .filter(data => data.visible || data.isAlwaysDisplayed)
+      .map(data => {
         const series = chart[
           data.chartType ? CHART_FUNCS[data.chartType] : CHART_FUNCS[seriesType]
         ]({
@@ -52,18 +55,62 @@ export const SimpleChart = ({ dataSet, seriesType, width, height }) => {
           crosshairMarkerRadius: 5
         });
         series.setData(data.chartValues);
-      }
-    });
+        return { series, title: data.title, color: data.solidColor };
+      });
 
     chart.timeScale().fitContent();
+
+    chart.subscribeCrosshairMove(({ seriesPrices }) => {
+      setTooltips(
+        allSeries.map(({ title, series, color }) => ({
+          title,
+          value: seriesPrices.get(series),
+          color
+        }))
+      );
+    });
 
     return () => chart.remove();
   }, [dataSet, seriesType]);
 
   return (
     <div className="container" ref={chartRef}>
+      <div className="tooltip">
+        <table>
+          {tooltips.map(({ title, value, color }) =>
+            value ? (
+              <tr>
+                <td style={{ color }}>{title}</td>
+                <td className="value">
+                  {window.matchMedia("(max-width: 768px)").matches
+                    ? numeral(value).format("0.0a")
+                    : numeral(value).format("0,0.00")}
+                </td>
+              </tr>
+            ) : (
+              <tr />
+            )
+          )}
+        </table>
+      </div>
       <style jsx>{`
         .container {
+          font-family: Open Sans;
+          position: relative;
+        }
+        .tooltip {
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 10;
+          font-weight: normal;
+          line-height: 20px;
+          font-size: 14px;
+          padding: 10px;
+        }
+        .value {
+          text-align: right;
+          padding-left: 5px;
         }
         @media only screen and (max-width: 768px) {
           .container {

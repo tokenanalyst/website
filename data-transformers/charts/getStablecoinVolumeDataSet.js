@@ -9,7 +9,7 @@ export const getStablecoinVolumeDataSet = response => [
       "volume_usd"
     ),
     visible: true,
-    solidColor: "#75FFF9"
+    solidColor: "#00CECE"
   },
   {
     title: "USDT_ERC20",
@@ -59,7 +59,7 @@ export const getStablecoinVolumeDataSet = response => [
       "volume_usd"
     ),
     visible: true,
-    solidColor: "#BDFCEE"
+    solidColor: "#008080"
   },
   {
     title: "GUSD",
