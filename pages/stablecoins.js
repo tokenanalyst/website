@@ -109,7 +109,7 @@ const StableCoins = () => {
       <div />
       <style jsx>{`
         .container {
-          font-family: Space Grotesk;
+          font-family: Work Sans;
         }
         .charts {
           display: flex;

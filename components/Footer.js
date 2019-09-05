@@ -66,7 +66,7 @@ export const Footer = () => {
       <style jsx>{`
         .container {
           border-top: 1px solid rgba(151, 151, 151, 0.15);
-          font-family: Space Grotesk;
+          font-family: Open Sans;
           margin-top: 20px;
           padding: 10px;
           padding-top: 20px;

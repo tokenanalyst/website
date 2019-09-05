@@ -48,7 +48,7 @@ export const FeatureTableMobile = () => {
       </table>
       <style jsx>{`
         .container {
-          font-family: Space Grotesk;
+          font-family: Open Sans;
           line-height: 24px;
           margin-left: 10px;
           margin-right: 10px;

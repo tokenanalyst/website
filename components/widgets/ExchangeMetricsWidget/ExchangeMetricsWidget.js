@@ -12,7 +12,9 @@ export const ExchangeMetricsWidget = ({ overallMetrics, token, exchange }) => {
           <div className="banner-container">
             <div className="banner-logo-container">
               <div className="banner-header">
-                <span className="banner-banner-header-symbol">{token.replace("_", " ")}</span>
+                <span className="banner-banner-header-symbol">
+                  {token.replace("_", " ")}
+                </span>
                 <span className="banner-banner-header-exchange-name">
                   {exchange}
                 </span>
@@ -46,7 +48,8 @@ export const ExchangeMetricsWidget = ({ overallMetrics, token, exchange }) => {
                       : overallMetrics.inflowUsdSumPctChange < 0
                       ? "change-negative"
                       : "change-neutral"
-                  }>
+                  }
+                >
                   {overallMetrics.inflowUsdSumPctChange &&
                     overallMetrics.inflowUsdSumPctChange.toFixed(2)}
                   %
@@ -76,7 +79,8 @@ export const ExchangeMetricsWidget = ({ overallMetrics, token, exchange }) => {
                       : overallMetrics.outflowUsdSumPctChange < 0
                       ? "change-negative"
                       : "change-neutral"
-                  }>
+                  }
+                >
                   {overallMetrics.outflowUsdSumPctChange &&
                     overallMetrics.outflowUsdSumPctChange.toFixed(2)}
                   %
@@ -118,7 +122,7 @@ export const ExchangeMetricsWidget = ({ overallMetrics, token, exchange }) => {
               align-items: center;
             }
             .banner-item {
-              font-family: Space Grotesk;
+              font-family: Open Sans;
               display: flex;
               flex-direction: column;
             }
@@ -147,7 +151,6 @@ export const ExchangeMetricsWidget = ({ overallMetrics, token, exchange }) => {
                 flex-direction: column-reverse;
                 justify-content: space-around;
                 align-items: center;
-
               }
               .banner-banner-logo-img {
                 width: 40px;

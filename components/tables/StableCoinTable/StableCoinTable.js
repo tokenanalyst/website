@@ -120,7 +120,7 @@ export const StableCoinTable = ({ tableData }) => {
       </div>
       <style jsx>{`
         .container {
-          font-family: Space Grotesk;
+          font-family: Open Sans;
         }
       `}</style>
     </>
