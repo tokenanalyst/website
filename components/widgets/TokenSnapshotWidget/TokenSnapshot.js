@@ -99,10 +99,12 @@ export const TokenSnapshot = ({
     </div>
     <style jsx>{`
       .container {
+        font-family: Open Sans;
         min-width: 300px;
         max-width: 300px;
       }
       .header {
+        font-family: Space Grotesk;
         font-size: 32px;
         font-weight: bold;
         padding-bottom: 30px;

@@ -151,7 +151,7 @@ export const IoTable = ({ data, dataWindow, units }) => {
 
       <style jsx>{`
         .container {
-          font-family: Space Grotesk;
+          font-family: Open Sans;
         }
         .section-header {
           font-size: 22px;

@@ -25,7 +25,7 @@ const Compare = () => {
       </div>
       <style jsx>{`
         .container {
-          font-family: Space Grotesk;
+          font-family: Open Sans;
         }
         .header {
           font-size: 32px;
