@@ -18,7 +18,7 @@ export const NextButton = ({ onClick, disabled }) => {
           align-items: center;
           height: 100%;
           justify-content: flex-end;
-          ${disabled ? `opacity: 0.1;` : ""}
+          opacity: ${disabled ? 0.1 : 1}
         }
         .text {
           color: black;
@@ -34,7 +34,7 @@ export const NextButton = ({ onClick, disabled }) => {
           align-items: center;
           height: 100%;
           justify-content: flex-end;
-          ${disabled ? `opacity: 0.1;` : ""}
+          opacity: ${disabled ? 0.1 : 1}
         }
           .text {
             display: none;
