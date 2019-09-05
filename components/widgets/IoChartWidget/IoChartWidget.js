@@ -28,7 +28,11 @@ export const IoChartWidget = ({ dataSet, setDataSet, formatter }) => {
               dataSet={dataSet}
               seriesType={seriesType}
               width={
-                window.matchMedia("(max-width: 768px)").matches ? 300 : 1000
+                window.matchMedia("(max-width: 768px)").matches
+                  ? 300
+                  : window.matchMedia("(min-width: 1920px)").matches
+                  ? 1400
+                  : 1000
               }
               height={
                 window.matchMedia("(max-width: 768px)").matches ? 300 : 450
