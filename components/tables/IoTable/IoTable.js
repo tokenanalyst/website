@@ -8,7 +8,7 @@ import { AmountCell, ChangeCell, ExchangeCell, HeaderCell } from "./renderers";
 import { getIoTableData } from "../../../data-transformers/tables";
 import { filterCaseInsensitive } from "../helpers";
 import { colors } from "../../../constants/styles/colors";
-import { NextButton } from "./ui/NextButton";
+import {NextButton, PreviousButton } from './ui'
 
 const TABLE_DATA = getIoTableData();
 
@@ -58,16 +58,11 @@ export const IoTable = ({ data, dataWindow, units }) => {
     }
   ];
 
-  const RenderPreviousButton = props => {
-    console.log(props);
-    return <div onClick={props.onClick}>Previous</div>;
-  };
-
   return (
     <div className="container">
       {data && (
         <ReactTable
-          PreviousComponent={RenderPreviousButton}
+          PreviousComponent={PreviousButton}
           NextComponent={NextButton}
           data={data.filter(datum => datum.window === dataWindow)}
           columns={getColumns(units)}
@@ -144,9 +139,11 @@ export const IoTable = ({ data, dataWindow, units }) => {
           })}
           getPaginationProps={() => ({
             style: {
-              color: `rgba(${colors.primaryGreen}, 1)`,
+              color: `black`,
               boxShadow: "none",
-              border: "none"
+              border: "none",
+              textTransform: 'uppercase',
+              fontSize: '14px'
             }
           })}
           getNoDataProps={() => ({

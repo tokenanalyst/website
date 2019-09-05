@@ -1,15 +1,15 @@
 import PropTypes from "prop-types";
 import { Icon } from "@blueprintjs/core";
 
-export const NextButton = ({ onClick, disabled }) => {
+export const PreviousButton = ({ onClick, disabled }) => {
   return (
     <>
       <div className="container">
-        <div className="text" onClick={disabled ? () => null : onClick}>
-          NEXT
-        </div>
         <div className="icon" onClick={disabled ? () => null : onClick}>
-          <Icon icon="chevron-right" iconSize={18} />
+          <Icon icon="chevron-left" iconSize={18} />
+        </div>
+        <div className="text" onClick={disabled ? () => null : onClick}>
+          PREVIOUS
         </div>
       </div>
       <style jsx>{`
@@ -17,23 +17,25 @@ export const NextButton = ({ onClick, disabled }) => {
           display: flex;
           align-items: center;
           height: 100%;
-          justify-content: flex-end;
+          width: 100px;
           ${disabled ? `opacity: 0.1;` : ""}
         }
         .text {
           color: black;
-          padding-right: 20px;
           font-size: 14px;
         }
         .text:hover {
           text-decoration: underline;
+        }
+        .icon {
+          padding-right: 20px;
         }
         @media only screen and (max-width: 768px) {
           .container {
           display: flex;
           align-items: center;
           height: 100%;
-          justify-content: flex-end;
+          width: 20px;
           ${disabled ? `opacity: 0.1;` : ""}
         }
           .text {
@@ -45,7 +47,7 @@ export const NextButton = ({ onClick, disabled }) => {
   );
 };
 
-NextButton.propTypes = {
+PreviousButton.propTypes = {
   onClick: PropTypes.func.isRequired,
   disabled: PropTypes.bool.isRequired
 };
