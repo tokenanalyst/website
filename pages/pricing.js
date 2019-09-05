@@ -41,13 +41,19 @@ const Pricing = () => {
           }
           .product-widget {
             min-width: 100%;
-            margin-left: 10px;
+            padding-left: 7px;
             margin-right: 60px;
           }
           .feature-table {
             padding-top: 10px;
           }
           @media only screen and (max-width: 768px) {
+            .header {
+              text-align: center;
+            }
+            .product-widget {
+              padding-left: 2px;
+            }
             .shadow {
               height: 4px;
               box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.05);
