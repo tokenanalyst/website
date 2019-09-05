@@ -8,7 +8,7 @@ import { AmountCell, ChangeCell, ExchangeCell, HeaderCell } from "./renderers";
 import { getIoTableData } from "../../../data-transformers/tables";
 import { filterCaseInsensitive } from "../helpers";
 import { colors } from "../../../constants/styles/colors";
-import {NextButton, PreviousButton } from './ui'
+import {NextButton, PreviousButton } from './renderers'
 
 const TABLE_DATA = getIoTableData();
 
