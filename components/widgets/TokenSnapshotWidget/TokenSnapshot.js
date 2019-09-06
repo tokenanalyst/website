@@ -115,6 +115,7 @@ export const TokenSnapshot = ({
         padding-bottom: 10px;
       }
       .token-value {
+        font-family: Space Grotesk;
         font-size: 20px;
         opacity: 0.4;
       }
