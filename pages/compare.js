@@ -1,17 +1,14 @@
 import React from "react";
-import { useApi } from "../custom-hooks";
 
 import { CompareChartWidget } from "../components/widgets/CompareChartWidget";
-import { LoadingSpinner } from "../components/LoadingSpinner";
 import { PageHeader } from "../components/PageHeader";
 import { PricingLink } from "../components/PricingLink";
 
 const Compare = () => {
-  // const compareData = useApi("/api/");
-
   return (
     <>
       <div className="container">
+        <PageHeader text={"Transactions"} rightElement={PricingLink} />
         <CompareChartWidget />
       </div>
       <style jsx>{`

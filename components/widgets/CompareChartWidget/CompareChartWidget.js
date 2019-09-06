@@ -18,24 +18,28 @@ const SimpleChart = dynamic(
 
 const tokenCache = {};
 
-async function getTokenDataSet(token, color) {
-  let response;
-  if (!tokenCache[token]) {
-    response = await axios.get(`/api/network-data?token=${token}`);
-    tokenCache[token] = response;
-  } else {
-    response = tokenCache[token];
-  }
-
-  return getCompareDataSet(response.data.ta_response, token, color);
-}
-
 export const CompareChartWidget = () => {
   const [tokenLhs, setTokenLhs] = useState(NATIVE_TOKENS.BTC);
   const [tokenDataSetLhs, setTokenDataSetLhs] = useState(null);
 
   const [tokenRhs, setTokenRhs] = useState(NATIVE_TOKENS.ETH);
   const [tokenDataSetRhs, setTokenDataSetRhs] = useState(null);
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  async function getTokenDataSet(token, color) {
+    let response;
+    if (!tokenCache[token]) {
+      setIsLoading(true);
+      response = await axios.get(`/api/network-data?token=${token}`);
+      tokenCache[token] = response;
+      setIsLoading(false);
+    } else {
+      response = tokenCache[token];
+    }
+
+    return getCompareDataSet(response.data.ta_response, token, color);
+  }
 
   useEffect(() => {
     const updateData = async () => {
@@ -73,16 +77,6 @@ export const CompareChartWidget = () => {
             borderColor="rgba(250, 78, 150, 1)"
           />
           <div className="chart">
-            {/* <SimpleChart
-              dataSet={[...tokenDataSetRhs, ...tokenDataSetLhs]}
-              seriesType={CHART_TYPES.line}
-              width={
-                window.matchMedia("(max-width: 768px)").matches ? 300 : 1000
-              }
-              height={
-                window.matchMedia("(max-width: 768px)").matches ? 300 : 500
-              }
-            /> */}
             <SimpleChart
               dataSet={[...tokenDataSetLhs, ...tokenDataSetRhs]}
               seriesType={CHART_TYPES.line}
@@ -92,6 +86,7 @@ export const CompareChartWidget = () => {
               height={
                 window.matchMedia("(max-width: 768px)").matches ? 300 : 500
               }
+              isLoading={isLoading}
             />
           </div>
           <ChartControls
