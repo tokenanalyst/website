@@ -28,7 +28,10 @@ export const Layout = ({ children }) => (
         property="og:description"
         content="TokenAnalyst is the leading provider of real-time and historical blockchain data."
       />
-      <meta property="og:image" content="https://www.tokenanalyst.io/static/png/logo-open-graph.png" />
+      <meta
+        property="og:image"
+        content="https://www.tokenanalyst.io/static/png/logo-open-graph.png"
+      />
       <meta
         property="og:image:secure_url"
         content="https://www.tokenanalyst.io/static/png/logo-open-graph.png"
@@ -40,6 +43,7 @@ export const Layout = ({ children }) => (
         property="og:image:alt"
         content="TokenAnalyst is the leading provider of real-time and historical blockchain data."
       />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     </Head>
     <Nav />
     <Newsletter />

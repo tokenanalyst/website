@@ -77,20 +77,22 @@ export const SimpleChart = ({ dataSet, seriesType, width, height }) => {
     <div className="container" ref={chartRef}>
       <div className="tooltip">
         <table>
-          {tooltips.map(({ title, value, color }) =>
-            value ? (
-              <tr>
-                <td style={{ color }}>{title}</td>
-                <td className="value">
-                  {window.matchMedia("(max-width: 768px)").matches
-                    ? numeral(value).format("0.0a")
-                    : numeral(value).format("0,0.00")}
-                </td>
-              </tr>
-            ) : (
-              <tr />
-            )
-          )}
+          <tbody>
+            {tooltips.map(({ title, value, color }) =>
+              value ? (
+                <tr>
+                  <td style={{ color }}>{title}</td>
+                  <td className="value">
+                    {window.matchMedia("(max-width: 768px)").matches
+                      ? numeral(value).format("0.0a")
+                      : numeral(value).format("0,0.00")}
+                  </td>
+                </tr>
+              ) : (
+                <tr />
+              )
+            )}
+          </tbody>
         </table>
       </div>
       <style jsx>{`
