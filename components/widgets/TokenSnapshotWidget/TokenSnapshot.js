@@ -36,8 +36,7 @@ export const TokenSnapshot = ({
                 : tokenValueChange < 0
                 ? "change-negative"
                 : "change-neutral"
-            }
-          >
+            }>
             {tokenValueChange.toFixed(2)}%
           </span>
         </span>
@@ -83,8 +82,7 @@ export const TokenSnapshot = ({
                       : flow.change < 0
                       ? "change-negative"
                       : "change-neutral"
-                  }
-                >
+                  }>
                   {flow.change.toFixed(2)}%
                 </span>
               </div>
@@ -117,6 +115,7 @@ export const TokenSnapshot = ({
         padding-bottom: 10px;
       }
       .token-value {
+        font-family: Space Grotesk;
         font-size: 20px;
         opacity: 0.4;
       }
@@ -141,7 +140,7 @@ export const TokenSnapshot = ({
         padding-bottom: 20px;
       }
       .last-row {
-        display: flex;
+        visibility: hidden;
         flex-direction: row;
         justify-content: space-between;
         padding-bottom: 20px;
@@ -194,9 +193,21 @@ export const TokenSnapshot = ({
           padding-left: 20px;
           padding-right: 20px;
         }
+        .last-row {
+          visibility: visible;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          border-bottom: solid 1px rgba(151, 151, 151, 0.15);
+          padding-bottom: 20px;
+          margin-left: -20px;
+          margin-right: -20px;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
         .shadow {
           height: 4px;
-          box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.08);
+          box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.1);
           margin-left: -20px;
           margin-right: -20px;
         }
