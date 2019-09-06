@@ -36,8 +36,7 @@ export const TokenSnapshot = ({
                 : tokenValueChange < 0
                 ? "change-negative"
                 : "change-neutral"
-            }
-          >
+            }>
             {tokenValueChange.toFixed(2)}%
           </span>
         </span>
@@ -66,6 +65,7 @@ export const TokenSnapshot = ({
           </>
           <>
             <div className={index === flows.length - 1 ? "last-row" : "row"}>
+            {/* <div className={"row"}> */}
               <div className="token-flow-variation">
                 <img
                   src={
@@ -83,8 +83,7 @@ export const TokenSnapshot = ({
                       : flow.change < 0
                       ? "change-negative"
                       : "change-neutral"
-                  }
-                >
+                  }>
                   {flow.change.toFixed(2)}%
                 </span>
               </div>
@@ -141,7 +140,7 @@ export const TokenSnapshot = ({
         padding-bottom: 20px;
       }
       .last-row {
-        display: flex;
+        visibility: hidden;
         flex-direction: row;
         justify-content: space-between;
         padding-bottom: 20px;
@@ -184,6 +183,17 @@ export const TokenSnapshot = ({
           width: 150px;
         }
         .row {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          border-bottom: solid 1px rgba(151, 151, 151, 0.15);
+          padding-bottom: 20px;
+          margin-left: -20px;
+          margin-right: -20px;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+        .last-row {
           display: flex;
           flex-direction: row;
           justify-content: space-between;
