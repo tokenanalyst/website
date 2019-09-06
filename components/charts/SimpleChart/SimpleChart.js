@@ -3,6 +3,7 @@ import { createChart } from "lightweight-charts";
 import numeral from "numeral";
 
 import { CHART_TYPES } from "../../../constants/chartTypes";
+import { LoadingSpinner } from "../../LoadingSpinner";
 
 const FORMATTERS = {
   price: value => numeral(value).format("$0,0.00"),
@@ -16,7 +17,13 @@ const CHART_FUNCS = {
   histogram: "addHistogramSeries"
 };
 
-export const SimpleChart = ({ dataSet, seriesType, width, height }) => {
+export const SimpleChart = ({
+  dataSet,
+  seriesType,
+  width,
+  height,
+  isLoading = false
+}) => {
   const chartRef = useRef(null);
 
   const [tooltips, setTooltips] = useState([]);
@@ -95,10 +102,14 @@ export const SimpleChart = ({ dataSet, seriesType, width, height }) => {
           </tbody>
         </table>
       </div>
+      <div className="spinner">
+        <LoadingSpinner />
+      </div>
       <style jsx>{`
         .container {
           font-family: Open Sans;
           position: relative;
+          opacity: ${isLoading ? 0.2 : 1};
         }
         .tooltip {
           position: absolute;
@@ -114,10 +125,21 @@ export const SimpleChart = ({ dataSet, seriesType, width, height }) => {
           text-align: right;
           padding-left: 5px;
         }
+        .spinner {
+          position: absolute;
+          top: 20%;
+          left: 38%;
+          z-index: 10;
+          display: ${isLoading ? "block" : "none"};
+        }
         @media only screen and (max-width: 768px) {
           .container {
             padding-bottom: 20px;
             width: 275px;
+          }
+          .spinner {
+            top: 10%;
+            left: 18%;
           }
         }
       `}</style>
