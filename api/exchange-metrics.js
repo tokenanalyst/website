@@ -19,9 +19,7 @@ module.exports = async (req, res) => {
     let urlBase;
     let isStableCoin = false;
     let priceUrl = `https://api.tokenanalyst.io/analytics/private/v1/token_price_historical/last?format=json&token=${token}&key=${process.env.API_KEY}&exchange=${exchange}&window=1d`;
-    if (token === "BTC") {
-      urlBase = `https://api.tokenanalyst.io/analytics/private/v1/exchange_flow_historical`;
-    } else if (token === "ETH") {
+    if (token === "ETH" || token === "BTC") {
       urlBase = `https://api.tokenanalyst.io/analytics/private/v1/exchange_flow_window_historical`;
     } else if (token === "USDT_OMNI") {
       urlBase = `https://api.tokenanalyst.io/analytics/private/v1/exchange_flow_window_historical`;
