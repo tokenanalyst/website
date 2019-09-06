@@ -35,7 +35,7 @@ export const CompareChartWidget = () => {
       tokenCache[token] = response;
       setIsLoading(false);
     } else {
-      response = tokenCache[token];
+      response = { ...tokenCache[token] };
     }
 
     return getCompareDataSet(response.data.ta_response, token, color);
