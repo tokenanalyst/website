@@ -14,6 +14,11 @@ export const PageHeader = ({ text, rightElement }) => {
           display: flex;
           padding: 15px;
           padding-top: 30px;
+          padding-bottom: 30px;
+          border-bottom: 1px solid rgba(151, 151, 151, 0.15);
+          margin-bottom: 20px;
+          margin-left: -10px;
+          margin-right: -10px;
         }
         .text {
           font-size: 32px;
