@@ -2,13 +2,14 @@ import React, { useState, useContext } from "react";
 import Link from "next/link";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
+import classNames from "classnames";
 
 import { LoginContext } from "../../contexts/Login";
 import { LOGO_IMAGES } from "../../constants/image-paths";
 import { colors } from "../../constants/styles/colors";
 
 export const setLinkActive = (pathName, link) =>
-  pathName === link ? "desktop-link-active" : "desktop-link";
+  pathName === link ? "active" : "";
 
 export const DesktopNav = () => {
   const loginCtx = useContext(LoginContext);
@@ -53,23 +54,31 @@ export const DesktopNav = () => {
           </div>
           <div className="desktop-links">
             <Link href="/" passHref>
-              <div className={setLinkActive(router.pathname, "/")}>
+              <div
+                className={classNames(
+                  "desktop-link",
+                  setLinkActive(router.pathname, "/")
+                )}>
                 Exchange Flows
               </div>
             </Link>
             <Link href="/stablecoins" passHref>
               <div
-                className={setLinkActive(router.pathname, "/stablecoins")}
-                onMouseOver={collapseAllSubMenus}
-              >
+                className={classNames(
+                  "desktop-link",
+                  setLinkActive(router.pathname, "/stablecoins")
+                )}
+                onMouseOver={collapseAllSubMenus}>
                 Stablecoins
               </div>
             </Link>
             <Link href="/compare" passHref>
               <div
-                className={setLinkActive(router.pathname, "/compare")}
-                onMouseOver={collapseAllSubMenus}
-              >
+                className={classNames(
+                  "desktop-link",
+                  setLinkActive(router.pathname, "/compare")
+                )}
+                onMouseOver={collapseAllSubMenus}>
                 Compare
               </div>
             </Link>
@@ -77,24 +86,29 @@ export const DesktopNav = () => {
               Research
             </a>
             <Link href="/pricing" passHref>
-              <div className={setLinkActive(router.pathname, "/pricing")}>
+              <div
+                className={classNames(
+                  "desktop-link",
+                  setLinkActive(router.pathname, "/pricing")
+                )}>
                 Pricing
               </div>
             </Link>
             <a
               href="https://docs.tokenanalyst.io/#/api"
               target="_blank"
-              onMouseOver={collapseAllSubMenus}
-            >
+              onMouseOver={collapseAllSubMenus}>
               API
             </a>
             <div
-              className={setLinkActive(router.pathname, "/about")}
+              className={classNames(
+                "desktop-link",
+                setLinkActive(router.pathname, "/about")
+              )}
               onMouseOver={() => {
                 collapseAllSubMenus();
                 setShownItems(prev => ({ ...prev, contact: true }));
-              }}
-            >
+              }}>
               About Us
             </div>
           </div>
@@ -113,8 +127,7 @@ export const DesktopNav = () => {
                 }}
                 onMouseOver={() => {
                   collapseAllSubMenus();
-                }}
-              >
+                }}>
                 Logout
               </span>
             </>
@@ -124,8 +137,7 @@ export const DesktopNav = () => {
                 className="login-button"
                 onMouseOver={() => {
                   collapseAllSubMenus();
-                }}
-              >
+                }}>
                 Login
               </div>
             </Link>
@@ -135,17 +147,22 @@ export const DesktopNav = () => {
       <div className="desktop-sub-links-container">
         <div
           className="desktop-contact-sub-link-container"
-          onClick={collapseAllSubMenus}
-        >
+          onClick={collapseAllSubMenus}>
           <div className="desktop-sub-links">
             <div
               className="desktop-contact-sub-links"
-              onMouseLeave={() => collapseSubMenuDelayed("contact")}
-            >
-              <div className="desktop-sub-link">
+              onMouseLeave={() => collapseSubMenuDelayed("contact")}>
+              <div>
                 <Link href="/about" passHref>
-                  <a>Company</a>
+                  <div
+                    className={classNames(
+                      "desktop-sub-link",
+                      setLinkActive(router.pathname, "/about")
+                    )}>
+                    Company
+                  </div>
                 </Link>
+
               </div>
               <div className="desktop-sub-link">
                 <a href="https://twitter.com/thetokenanalyst" target="_blank">
@@ -155,8 +172,7 @@ export const DesktopNav = () => {
               <div className="desktop-sub-link">
                 <a
                   href="https://t.me/joinchat/AAAAAEXMAvSpOZao3fRvJA"
-                  target="_blank"
-                >
+                  target="_blank">
                   Telegram
                 </a>
               </div>
@@ -170,12 +186,8 @@ export const DesktopNav = () => {
         </div>
       </div>
       <style jsx>{`
-        .top {
-          font-family: DIN Alternate Medium;
-          color: white;
-        }
         .container {
-          font-family: DIN Alternate Medium;
+          font-family: Open Sans;
           color: white;
           position: fixed;
           background-color: black;
@@ -212,12 +224,8 @@ export const DesktopNav = () => {
           text-decoration: none;
           color: white;
         }
-        .desktop-link-active {
+        .active {
           opacity: 1;
-          padding-left: 10px;
-          padding-right: 10px;
-          text-decoration: none;
-          color: white;
         }
         .desktop-link:hover,
         a:hover {
@@ -278,11 +286,6 @@ export const DesktopNav = () => {
           border-radius: 10px;
           cursor: pointer;
           margin-left: 20px;
-        }
-        @media only screen and (max-width: 768px) {
-          .top {
-            display: none;
-          }
         }
       `}</style>
     </div>
