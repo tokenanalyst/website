@@ -65,7 +65,6 @@ export const TokenSnapshot = ({
           </>
           <>
             <div className={index === flows.length - 1 ? "last-row" : "row"}>
-            {/* <div className={"row"}> */}
               <div className="token-flow-variation">
                 <img
                   src={
@@ -194,6 +193,7 @@ export const TokenSnapshot = ({
           padding-right: 20px;
         }
         .last-row {
+          visibility: visible;
           display: flex;
           flex-direction: row;
           justify-content: space-between;
@@ -206,7 +206,7 @@ export const TokenSnapshot = ({
         }
         .shadow {
           height: 4px;
-          box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.08);
+          box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.1);
           margin-left: -20px;
           margin-right: -20px;
         }
