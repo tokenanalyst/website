@@ -16,8 +16,6 @@ const SimpleChart = dynamic(
   }
 );
 
-const tokenCache = {};
-
 export const CompareChartWidget = () => {
   const [tokenLhs, setTokenLhs] = useState(NATIVE_TOKENS.BTC);
   const [tokenDataSetLhs, setTokenDataSetLhs] = useState(null);
@@ -27,12 +25,15 @@ export const CompareChartWidget = () => {
 
   const [isLoading, setIsLoading] = useState(true);
 
+  const [tokenCache, setTokenCache] = useState({});
+
   async function getTokenDataSet(token, color) {
     let response;
     if (!tokenCache[token]) {
       setIsLoading(true);
       response = await axios.get(`/api/network-data?token=${token}`);
       tokenCache[token] = response;
+      setTokenCache(prevCache => ({ ...prevCache, [token]: response }));
       setIsLoading(false);
     } else {
       response = { ...tokenCache[token] };
