@@ -13,35 +13,37 @@ const Exchange = () => {
   const router = useRouter();
   const [dataSet, setDataSet] = useState(null);
   const [overallMetrics, setOverallMetrics] = useState(null);
+  const { token, exchange } = router.query;
+  const [ timeWindow, setTimeWindow ] = useState("1h");
 
   // Router query params are populated post-hydration so in order to avoid losing the static
   // optimisation benefit we wait for the population to happen client side before accessing
   // https://www.npmjs.com/package/next#dynamic-routing
   const apiResponse = useApi(
-    `/api/exchange-metrics?token=${router.query.token}&exchange=${router.query.exchange}`,
-    [router.query.token, router.query.exchange]
+    `/api/exchange-metrics?token=${token}&exchange=${exchange}&timeWindow=${timeWindow}`,
+    [token, exchange]
   );
 
   useEffect(() => {
     window.scrollTo(0, 0); // Very depressing that I need this here but the page remains focused on the footer even after loading - dunno why
-    if (apiResponse && router.query.token) {
-      setDataSet(getExchangeDataSet(apiResponse, router.query.token));
+    if (apiResponse && token) {
+      setDataSet(getExchangeDataSet(apiResponse, token, timeWindow));
       setOverallMetrics(
         getExchangeMetrics(
           apiResponse.overall.find(item => item.window === DATA_WINDOWS[0])
         )
       );
     }
-  }, [apiResponse, router.query.token]);
-
+  }, [apiResponse, token]);
+  console.log(dataSet);
   return (
     <>
       {dataSet && overallMetrics ? (
         <>
           <ExchangeMetricsWidget
             overallMetrics={overallMetrics}
-            token={router.query.token}
-            exchange={router.query.exchange}
+            token={token}
+            exchange={exchange}
           />
           <IoChartWidget dataSet={dataSet} setDataSet={setDataSet} />
         </>
