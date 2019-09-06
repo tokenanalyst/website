@@ -8,7 +8,7 @@ const Compare = () => {
   return (
     <>
       <div className="container">
-        <PageHeader text={"Transactions"} rightElement={PricingLink} />
+        <PageHeader text={"Compare"} rightElement={<PricingLink />} />
         <CompareChartWidget />
       </div>
       <style jsx>{`
