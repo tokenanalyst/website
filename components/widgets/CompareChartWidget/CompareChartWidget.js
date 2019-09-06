@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
+import axios from "axios";
 
 import { getCompareDataSet } from "../../../data-transformers/charts/getCompareDataSet";
 import { ChartControls } from "../../charts/ChartControls";
 import { CHART_TYPES } from "../../../constants/chartTypes";
 import { NATIVE_TOKENS } from "../../../constants/tokens";
+import { LoadingSpinner } from "../../LoadingSpinner";
+import { colors } from "../../../constants/styles/colors";
 
 const SimpleChart = dynamic(
   () => import("../../charts/SimpleChart").then(mod => mod.SimpleChart),
@@ -13,65 +16,75 @@ const SimpleChart = dynamic(
   }
 );
 
-export const CompareChartWidget = ({ response }) => {
+const tokenCache = {};
+
+async function getTokenDataSet(token, color) {
+  let response;
+  if (!tokenCache[token]) {
+    response = await axios.get(`/api/network-data?token=${token}`);
+    tokenCache[token] = response;
+  } else {
+    response = tokenCache[token];
+  }
+
+  return getCompareDataSet(response.data.ta_response, token, color);
+}
+
+export const CompareChartWidget = () => {
   const [tokenLhs, setTokenLhs] = useState(NATIVE_TOKENS.BTC);
   const [tokenDataSetLhs, setTokenDataSetLhs] = useState(null);
-  const [dataPointLhs, setDataPointLhs] = useState(null);
 
   const [tokenRhs, setTokenRhs] = useState(NATIVE_TOKENS.ETH);
   const [tokenDataSetRhs, setTokenDataSetRhs] = useState(null);
-  const [dataPointRhs, setDataPointRhs] = useState(null);
 
   useEffect(() => {
-    if (response && tokenLhs) {
-      const dataSet = !dataPointLhs
-        ? getCompareDataSet(response, tokenLhs, "rgba(250, 78, 150, 1)")
-        : getCompareDataSet(response, tokenLhs, "rgba(250, 78, 150, 1)").map(
-            datum => ({ ...datum, visible: datum.dataPoint === dataPointLhs })
-          );
-
-      setTokenDataSetLhs(
-        dataSet.some(datum => datum.visible)
-          ? dataSet
-          : dataSet.reduce(
-              (acc, curr, index) => [...acc, { ...curr, visible: index === 0 }],
-              []
-            )
+    const updateData = async () => {
+      let dataSet = await getTokenDataSet(
+        tokenLhs,
+        `rgba(${colors.primaryRed}, 1)`
       );
-    }
-    if (response && tokenRhs) {
-      const dataSet = !dataPointRhs
-        ? getCompareDataSet(response, tokenRhs, "rgba(63, 205, 171, 1)")
-        : getCompareDataSet(response, tokenRhs, "rgba(63, 205, 171, 1)").map(
-            datum => ({ ...datum, visible: datum.dataPoint === dataPointRhs })
-          );
+      setTokenDataSetLhs(dataSet);
+    };
 
-      setTokenDataSetRhs(
-        dataSet.some(datum => datum.visible)
-          ? dataSet
-          : dataSet.reduce(
-              (acc, curr, index) => [...acc, { ...curr, visible: index === 0 }],
-              []
-            )
+    updateData();
+  }, [tokenLhs]);
+
+  useEffect(() => {
+    const updateData = async () => {
+      let dataSet = await getTokenDataSet(
+        tokenRhs,
+        `rgba(${colors.primaryGreen}, 1)`
       );
-    }
-  }, [tokenLhs, tokenRhs]);
+      setTokenDataSetRhs(dataSet, `rgba(${colors.primaryGreen})`);
+    };
+
+    updateData();
+  }, [tokenRhs]);
 
   return (
     <>
-      {tokenDataSetRhs && tokenDataSetLhs && (
+      {tokenDataSetLhs && tokenDataSetRhs ? (
         <div className="container">
           <ChartControls
             dataSet={tokenDataSetLhs}
             setDataSet={newDataSet => setTokenDataSetLhs(newDataSet)}
             token={tokenLhs}
             setToken={setTokenLhs}
-            setDataPoint={setDataPointLhs}
             borderColor="rgba(250, 78, 150, 1)"
           />
           <div className="chart">
-            <SimpleChart
+            {/* <SimpleChart
               dataSet={[...tokenDataSetRhs, ...tokenDataSetLhs]}
+              seriesType={CHART_TYPES.line}
+              width={
+                window.matchMedia("(max-width: 768px)").matches ? 300 : 1000
+              }
+              height={
+                window.matchMedia("(max-width: 768px)").matches ? 300 : 500
+              }
+            /> */}
+            <SimpleChart
+              dataSet={[...tokenDataSetLhs, ...tokenDataSetRhs]}
               seriesType={CHART_TYPES.line}
               width={
                 window.matchMedia("(max-width: 768px)").matches ? 300 : 1000
@@ -86,10 +99,11 @@ export const CompareChartWidget = ({ response }) => {
             setDataSet={newDataSet => setTokenDataSetRhs(newDataSet)}
             token={tokenRhs}
             setToken={setTokenRhs}
-            setDataPoint={setDataPointRhs}
             borderColor="rgba(63, 205, 171, 1)"
           />
         </div>
+      ) : (
+        <LoadingSpinner />
       )}
       <style jsx>{`
         .container {

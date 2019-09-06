@@ -7,21 +7,12 @@ import { PageHeader } from "../components/PageHeader";
 import { PricingLink } from "../components/PricingLink";
 
 const Compare = () => {
-  const compareData = useApi("/api/network-data");
+  // const compareData = useApi("/api/");
 
   return (
     <>
       <div className="container">
-        <div>
-          <PageHeader text={"Compare"} rightElement={<PricingLink />} />
-        </div>
-        {compareData ? (
-          <>
-            <CompareChartWidget response={compareData} />
-          </>
-        ) : (
-          <LoadingSpinner />
-        )}
+        <CompareChartWidget />
       </div>
       <style jsx>{`
         .container {
