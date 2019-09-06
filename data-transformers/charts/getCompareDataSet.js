@@ -3,7 +3,7 @@ import { toSingleValueChartData } from "./mappers";
 import { NATIVE_TOKENS } from "../../constants/tokens";
 
 export const getCompareDataSet = (response, token, color) => {
-  const tokenData = response[token];
+  const tokenData = response;
   const baseDataSet = [
     {
       dataPoint: "Volume (USD)",

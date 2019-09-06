@@ -1,5 +1,7 @@
 import React from "react";
 
+import { PageHeader } from "../components/PageHeader";
+
 import {
   ProductSelectionWidget,
   FeatureTableDesktop,
@@ -9,7 +11,7 @@ import {
 const Pricing = () => {
   return (
     <div className="container">
-      <div className="header">Plans</div>
+      <PageHeader text={"Plans"} />
       <div className="shadow" />
       <div className="product-widget">
         <ProductSelectionWidget />
