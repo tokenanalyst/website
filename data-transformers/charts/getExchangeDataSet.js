@@ -17,12 +17,18 @@ const makeValueKey = (tokens, token) => {
   return Object.keys(tokens).indexOf(token) >= 0 ? "price_usd" : "price";
 };
 
-export const getExchangeDataSet = (response, token, timeWindow) => {
+const addTimeWindow = (baseDataSet, timeWindow) => {
+  return baseDataSet.map(dataPoint => {
+    return { ...dataPoint, timeWindow };
+  });
+};
+
+export const getExchangeDataSet = (response, token, timeWindow = "1d") => {
   const USDSymbol = formatTokenSymbol(CURRENCIES.USD);
   const tokenSymbol = formatTokenSymbol(token);
 
   const toSingleValueChartDataForTimeWindow = (data, timeKey, valueKey) => {
-    if(timeWindow === '1h') {
+    if (timeWindow === "1h") {
       return data.map(datum => ({
         time: new Date(`${datum.date}T${datum.hour}`).getTime() / 1000,
         value: datum[valueKey]
@@ -30,8 +36,6 @@ export const getExchangeDataSet = (response, token, timeWindow) => {
     }
     return toSingleValueChartData(data, timeKey, valueKey);
   };
-
-  console.log(response);
 
   const baseDataSet = [
     {
@@ -180,7 +184,7 @@ export const getExchangeDataSet = (response, token, timeWindow) => {
   ];
 
   if (token === NATIVE_TOKENS.BTC) {
-    return baseDataSet.concat([
+    const baseDataSetWithBTC = baseDataSet.concat([
       {
         dataPoint: "Add. Count (entity)",
         title: "Outflow No. Sending Addresses",
@@ -234,7 +238,8 @@ export const getExchangeDataSet = (response, token, timeWindow) => {
         bottomColor: "rgba(63, 205, 171, 0.04)"
       }
     ]);
+    return addTimeWindow(baseDataSetWithBTC, timeWindow);
   }
 
-  return baseDataSet;
+  return addTimeWindow(baseDataSet, timeWindow);
 };

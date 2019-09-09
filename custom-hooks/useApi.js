@@ -11,9 +11,12 @@ export const useApi = (url, dependencies) => {
         dependency => dependency === undefined || dependency === null
       )
     ) {
+      setData(null)
+
       const getApiResult = async () => {
         const apiResult = await axios.get(url);
         setData(apiResult.data.ta_response);
+
       };
 
       getApiResult();

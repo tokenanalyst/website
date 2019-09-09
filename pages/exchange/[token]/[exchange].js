@@ -14,14 +14,15 @@ const Exchange = () => {
   const [dataSet, setDataSet] = useState(null);
   const [overallMetrics, setOverallMetrics] = useState(null);
   const { token, exchange } = router.query;
-  const [ timeWindow, setTimeWindow ] = useState("1h");
+  const [timeWindow, setTimeWindow] = useState("1d");
+  const [isLoading, setIsLoading] = useState(true);
 
   // Router query params are populated post-hydration so in order to avoid losing the static
   // optimisation benefit we wait for the population to happen client side before accessing
   // https://www.npmjs.com/package/next#dynamic-routing
   const apiResponse = useApi(
     `/api/exchange-metrics?token=${token}&exchange=${exchange}&timeWindow=${timeWindow}`,
-    [token, exchange]
+    [token, exchange, timeWindow]
   );
 
   useEffect(() => {
@@ -33,24 +34,48 @@ const Exchange = () => {
           apiResponse.overall.find(item => item.window === DATA_WINDOWS[0])
         )
       );
+    } else {
+      setDataSet(null);
     }
   }, [apiResponse, token]);
-  console.log(dataSet);
+
   return (
-    <>
-      {dataSet && overallMetrics ? (
-        <>
-          <ExchangeMetricsWidget
-            overallMetrics={overallMetrics}
-            token={token}
-            exchange={exchange}
-          />
-          <IoChartWidget dataSet={dataSet} setDataSet={setDataSet} />
-        </>
-      ) : (
-        <LoadingSpinner />
-      )}
-    </>
+    <div>
+      <ExchangeMetricsWidget
+        overallMetrics={overallMetrics}
+        token={token}
+        exchange={exchange}
+      />
+      <div>
+        <IoChartWidget
+          dataSet={dataSet}
+          setDataSet={setDataSet}
+          setTimeWindow={setTimeWindow}
+        />
+        {!dataSet && (
+          <div className="spinner">
+            <LoadingSpinner />
+          </div>
+        )}
+      </div>
+
+      <style jsx>{`
+        .spinner {
+          position: absolute;
+          top: 30%;
+          left: 38%;
+          z-index: 10;
+          display: ${isLoading ? "block" : "none"};
+        }
+        @media only screen and (max-width: 768px) {
+          .spinner {
+            margin: auto;
+            top:55%;
+            left: 18%;
+          }
+        }
+      `}</style>
+    </div>
   );
 };
 

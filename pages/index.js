@@ -15,6 +15,7 @@ const Exchange = () => {
     "/api/latest-exchange-flows?tokens=BTC,ETH,USDC,DAI"
   );
   const ioTableData = useApi("/api/exchange-io");
+
   return (
     <>
       <FilterNav
