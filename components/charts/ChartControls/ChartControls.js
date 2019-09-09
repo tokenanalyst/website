@@ -3,6 +3,7 @@ import React from "react";
 import { Icon } from "@blueprintjs/core";
 import ReactGA from "react-ga";
 import { Skeleton } from "../../Skeleton";
+import { useRouter } from "next/router";
 
 import { CHART_TYPES } from "../../../constants/chartTypes";
 import { STABLE_TOKENS, NATIVE_TOKENS } from "../../../constants/tokens";
@@ -51,6 +52,10 @@ export const ChartControls = ({
 }) => {
   // Very ugly. We could use https://lodash.com/docs/4.17.11#has
 
+  const router = useRouter();
+
+  console.log(router);
+
   const selectedTimeWindow =
     (dataSet && dataSet[0] && dataSet[0].timeWindow) || "1d";
 
@@ -95,60 +100,69 @@ export const ChartControls = ({
         )}
         {token && (
           <div className="control">
-            <div className="token-control">
-              <span className="header">Token</span>
-              <img
-                src={`/static/png/coins/${COIN_IMAGES[token]}`}
-                className="token-icon"
-              />
+            <div className="select-header">
+              <div>Token</div>
+              <div>
+                <img
+                  src={`/static/png/coins/${COIN_IMAGES[token]}`}
+                  className="token-icon"
+                />
+              </div>
             </div>
-            <select
-              onChange={e => {
-                setToken(e.target.value);
-                ReactGA.event({
-                  category: "User",
-                  action: `Token view ${e.target.value}`,
-                  label: `Tokens`
-                });
-              }}
-              value={token}>
-              {[
-                ...Object.keys(NATIVE_TOKENS),
-                ...Object.keys(STABLE_TOKENS).filter(
-                  token =>
-                    token !== STABLE_TOKENS.USDT_OMNI &&
-                    token !== STABLE_TOKENS.USDT
-                )
-              ].map(token => (
-                <option key={token} value={token}>
-                  {token}
-                </option>
-              ))}
-            </select>
+            <div className="control-select-wrapper">
+              <select
+                className="control-select"
+                onChange={e => {
+                  setToken(e.target.value);
+                  ReactGA.event({
+                    category: "User",
+                    action: `Token view ${e.target.value}`,
+                    label: `Tokens`
+                  });
+                }}
+                value={token}>
+                {[
+                  ...Object.keys(NATIVE_TOKENS),
+                  ...Object.keys(STABLE_TOKENS).filter(
+                    token =>
+                      token !== STABLE_TOKENS.USDT_OMNI &&
+                      token !== STABLE_TOKENS.USDT
+                  )
+                ].map(token => (
+                  <option key={token} value={token}>
+                    {token}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
         )}
-        <div className="control">
-          <div className="select-header">Time interval</div>
-          <div className="control-select-wrapper">
-            <select
-              value={selectedTimeWindow}
-              className="control-select"
-              onChange={e => {
-                setTimeWindow && setTimeWindow(e.target.value);
-                ReactGA.event({
-                  category: "User",
-                  action: `Time Interval View ${e.target.value}`,
-                  label: `Time Interval`
-                });
-              }}>
-              {timeWindows.map(timeWindow => (
-                <option key={timeWindow.value} value={timeWindow.value}>
-                  {timeWindow.label}
-                </option>
-              ))}
-            </select>
+
+        {router.pathname !== "/compare" && (
+          <div className="control">
+            <div className="select-header">Time interval</div>
+            <div className="control-select-wrapper">
+              <select
+                value={selectedTimeWindow}
+                className="control-select"
+                onChange={e => {
+                  setTimeWindow && setTimeWindow(e.target.value);
+                  ReactGA.event({
+                    category: "User",
+                    action: `Time Interval View ${e.target.value}`,
+                    label: `Time Interval`
+                  });
+                }}>
+                {timeWindows.map(timeWindow => (
+                  <option key={timeWindow.value} value={timeWindow.value}>
+                    {timeWindow.label}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
-        </div>
+        )}
+
         <div className="control">
           <div className="select-header">Data Points</div>
           <Skeleton isSkeleton={!dataSet}>
@@ -282,6 +296,13 @@ export const ChartControls = ({
             height: 20px;
             width: 90%;
             padding-bottom: 10px;
+          }
+          .select-header {
+            padding-bottom: 15px;
+            padding-top: 5px;
+            font-weight: bold;
+            display: flex;
+            flex-direction: column-reverse;
           }
         }
       `}</style>
