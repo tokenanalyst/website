@@ -54,8 +54,6 @@ export const ChartControls = ({
 
   const router = useRouter();
 
-  console.log(router);
-
   const selectedTimeWindow =
     (dataSet && dataSet[0] && dataSet[0].timeWindow) || "1d";
 
@@ -259,6 +257,9 @@ export const ChartControls = ({
           padding-bottom: 15px;
           padding-top: 5px;
           font-weight: bold;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
         }
         .option {
           cursor: pointer;
@@ -302,7 +303,13 @@ export const ChartControls = ({
             padding-top: 5px;
             font-weight: bold;
             display: flex;
-            flex-direction: column-reverse;
+            flex-direction: column;
+          }
+          .token-icon {
+            padding-bottom: 10px;
+            width: 26px;
+            height: 26px;
+            padding-top: 10px;
           }
         }
       `}</style>
