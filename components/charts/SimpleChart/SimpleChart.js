@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { createChart } from "lightweight-charts";
+import { createChart, isBusinessDay } from "lightweight-charts";
 import numeral from "numeral";
 
 import { CHART_TYPES } from "../../../constants/chartTypes";
@@ -35,7 +35,12 @@ export const SimpleChart = ({
       localization: {
         priceFormatter: window.matchMedia("(max-width: 768px)").matches
           ? FORMATTERS.truncated
-          : FORMATTERS.volume
+          : FORMATTERS.volume,
+      },
+      timeScale: {
+        visible: true,
+        timeVisible: true,
+        secondsVisible: false
       },
       priceScale: {
         autoScale: true,
