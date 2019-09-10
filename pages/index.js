@@ -9,7 +9,7 @@ import { useApi } from "../custom-hooks";
 import { LoadingSpinner } from "../components/LoadingSpinner";
 
 const Exchange = () => {
-  const [dataWindow, setDataWindow] = useState(DATA_WINDOWS[2]);
+  const [dataWindow, setDataWindow] = useState(DATA_WINDOWS[0]);
   const [units, setUnits] = useState(UNITS[0]);
   const tokenSnapshotWidgetData = useApi(
     "/api/latest-exchange-flows?tokens=BTC,ETH,USDC,DAI"
