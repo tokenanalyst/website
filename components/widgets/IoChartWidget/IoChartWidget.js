@@ -1,15 +1,20 @@
 import React, { useState } from "react";
 import dynamic from "next/dynamic";
 import { Icon } from "@blueprintjs/core";
-import ReactTooltip from "react-tooltip";
 
 import { ChartControls } from "../../charts/ChartControls";
 import { CHART_TYPES } from "../../../constants/chartTypes";
 import { PricingLink } from "../../../components/PricingLink";
-import {SimpleToolTip} from "../../SimpleToolTip"
 
 const SimpleChart = dynamic(
   () => import("../../charts/SimpleChart").then(mod => mod.SimpleChart),
+  {
+    ssr: false
+  }
+);
+
+const SimpleToolTip = dynamic(
+  () => import("../../SimpleToolTip").then(mod => mod.SimpleToolTip),
   {
     ssr: false
   }
@@ -19,7 +24,7 @@ const GRAPH_SIZE = {
   width: {
     mobile: 300,
     tablet: 1000,
-    desktop: 1400
+    desktop: 1000
   },
   height: {
     mobile: 300,
@@ -27,10 +32,34 @@ const GRAPH_SIZE = {
   }
 };
 
+const TOOL_TIP = {
+  ["1h"]: {
+    message: (
+      <div>
+        Hourly data. All times are in UTC.
+        <br />
+        The displayed hour in the data is the start of the hour
+        <br /> for which the data is aggregated. <br />
+      </div>
+    )
+  },
+  ["1d"]: {
+    message: (
+      <div>
+        Daily data. All times are in UTC.
+        <br />
+        The latest day returned is the last full day of data.
+        <br />
+      </div>
+    )
+  }
+};
+
 export const IoChartWidget = ({
   dataSet,
   setDataSet,
   formatter,
+  timeWindow,
   setTimeWindow
 }) => {
   const [seriesType, setSeriesType] = useState(CHART_TYPES.line);
@@ -42,16 +71,17 @@ export const IoChartWidget = ({
           <div className="header">
             Inflow / Outflow <Icon icon="chart" color="gray" />
             <div className="header-info">
-              <div data-tip data-for="data-info">
-                <Icon icon="info-sign" color="gray" />
-              </div>
               <div>
-                <SimpleToolTip>Test Simple Tooltip</SimpleToolTip>
+                <SimpleToolTip
+                  dataFor={"header-tooltip"}
+                  toolTip={TOOL_TIP[timeWindow] && TOOL_TIP[timeWindow].message}
+                  type="dark"
+                  effect="solid">
+                  <div data-tip data-for="header-tooltip">
+                    <Icon icon="info-sign" color="gray" />
+                  </div>
+                </SimpleToolTip>
               </div>
-
-              <ReactTooltip id="data-info" type="light" effect="solid">
-                <span>Show happy face</span>
-              </ReactTooltip>
             </div>
           </div>
           <div className="graph">
@@ -110,11 +140,17 @@ export const IoChartWidget = ({
           height: ${GRAPH_SIZE.width.mobile}px;
         }
         .header {
+          position: relative;
           font-size: 18px;
           font-weight: bold;
           padding-bottom: 20px;
           text-align: center;
           width: 100%;
+        }
+        .header-info {
+          position: absolute;
+          right: 0;
+          top: 0;
         }
         .pricing-link {
           padding-top: 30px;
@@ -132,6 +168,11 @@ export const IoChartWidget = ({
             padding-top: 10px;
             text-align: center;
             width: 100%;
+          }
+          .header-info {
+            position: absolute;
+            right: 0;
+            top: 10px;
           }
           .widget-container {
             flex-direction: column;
