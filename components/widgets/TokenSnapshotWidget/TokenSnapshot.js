@@ -140,7 +140,7 @@ export const TokenSnapshot = ({
         padding-bottom: 20px;
       }
       .last-row {
-        visibility: hidden;
+        display: flex;
         flex-direction: row;
         justify-content: space-between;
         padding-bottom: 20px;
