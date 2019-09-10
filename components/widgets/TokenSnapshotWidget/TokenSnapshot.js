@@ -11,7 +11,9 @@ export const TokenSnapshot = ({
   tokenValueChange,
   flows,
   units
-}) => (
+}) => {
+
+  return (
   <>
     <div className="container">
       <div className="header">{token}</div>
@@ -217,7 +219,7 @@ export const TokenSnapshot = ({
       }
     `}</style>
   </>
-);
+)}
 
 TokenSnapshot.propTypes = {
   token: PropTypes.string.isRequired,

@@ -54,8 +54,6 @@ export const ChartControls = ({
 
   const router = useRouter();
 
-  console.log(router);
-
   const selectedTimeWindow =
     (dataSet && dataSet[0] && dataSet[0].timeWindow) || "1d";
 
