@@ -1,6 +1,6 @@
 import {API_ERROR_MSG, API_ERROR_REASON} from '../../constants/apiErrors'
 
-export const catchApiError = error => {
+export const formatApiError = error => {
   let errorResponse;
   if (error.response) {
     // The request was made and the server responded with a status code
@@ -10,7 +10,7 @@ export const catchApiError = error => {
       status,
       body: {
         message: data,
-        reason: API_ERROR_MSG.BACKEND_API_ERROR
+        reason: API_ERROR_REASON.BACKEND_API_ERROR
       }
     };
   } else if (error.request) {
@@ -29,7 +29,7 @@ export const catchApiError = error => {
     errorResponse = {
       status: 500,
       body: {
-        message: error || error.message,
+        message: error.message || error,
         reason: API_ERROR_REASON.PROXY_ERROR
       }
     };

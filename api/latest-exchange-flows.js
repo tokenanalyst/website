@@ -3,7 +3,7 @@ import url from "url";
 import { API_ERROR_MSG } from "../constants/apiErrors";
 
 import { DATA_WINDOWS } from "../constants/filters";
-import { catchApiError } from "./utils/catchApiError";
+import { formatApiError } from "./utils/formatApiError";
 
 module.exports = async (req, res) => {
   const urlParts = url.parse(req.url, true);
@@ -21,7 +21,7 @@ module.exports = async (req, res) => {
       )
     )
   ).catch(err => {
-    const { code, body } = catchApiError(err);
+    const { code, body } = formatApiError(err);
     return res.status(code).send(body);
   });
 
@@ -46,7 +46,7 @@ module.exports = async (req, res) => {
     allExchangeFlowsAllTokensRequest,
     allExchangeFlows24hAllTokensRequest
   ]).catch(err => {
-    const { code, body } = catchApiError(err);
+    const { code, body } = formatApiError(err);
     return res.status(code).send(body);
   });
 
