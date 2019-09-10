@@ -21,7 +21,7 @@ export const products = [
   },
   {
     name: "Enterprise",
-    price: "Neg.",
+    price: "-",
     features: [
       "Custom Metrics",
       "Full Historical Data",
