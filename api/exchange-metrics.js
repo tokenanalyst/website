@@ -2,6 +2,7 @@ import axios from "axios";
 import url from "url";
 
 const isAuthorised = require("./auth/isAuthorised");
+import { setResponseCache } from "./utils/setResponseCache";
 
 module.exports = async (req, res) => {
   const urlParts = url.parse(req.url, true);
@@ -62,7 +63,10 @@ module.exports = async (req, res) => {
     const filteredPrice = tokenPriceResponse.data.filter(
       item => item.exchange === exchange
     );
-
+    
+    setResponseCache().map(cacheHeader => {
+      res.setHeader(...cacheHeader);
+    });
     res.send({
       ta_response: {
         inflow: isMaxDaysOfData
@@ -80,6 +84,9 @@ module.exports = async (req, res) => {
       }
     });
   } else {
+    setResponseCache().map(cacheHeader => {
+      res.setHeader(...cacheHeader);
+    });
     res.send({
       ta_response: {
         inflow: isMaxDaysOfData
