@@ -1,6 +1,7 @@
 import axios from "axios";
 
 import { STABLE_TOKENS } from "../constants/tokens";
+import { setResponseCache } from "./utils/setResponseCache";
 
 const Stablecoins = [
   STABLE_TOKENS.USDT_ERC20,
@@ -42,5 +43,8 @@ module.exports = async (req, res) => {
     []
   );
 
+  setResponseCache().map(cacheHeader => {
+    res.setHeader(...cacheHeader);
+  });
   res.send({ ta_response: response });
 };

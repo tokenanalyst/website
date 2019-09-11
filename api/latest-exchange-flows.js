@@ -2,6 +2,7 @@ import axios from "axios";
 import url from "url";
 
 import { DATA_WINDOWS } from "../constants/filters";
+import { setResponseCache } from "./utils/setResponseCache";
 
 module.exports = async (req, res) => {
   const urlParts = url.parse(req.url, true);
@@ -77,7 +78,10 @@ module.exports = async (req, res) => {
         };
       });
     });
-
+    
+    setResponseCache().map(cacheHeader => {
+      res.setHeader(...cacheHeader);
+    });
     res.send({ ta_response });
   }
 };
