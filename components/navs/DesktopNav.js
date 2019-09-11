@@ -3,6 +3,7 @@ import Link from "next/link";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import classNames from "classnames";
+import ReactGA from "react-ga";
 
 import { LoginContext } from "../../contexts/Login";
 import { LOGO_IMAGES } from "../../constants/image-paths";
@@ -65,6 +66,13 @@ export const DesktopNav = () => {
             </div>
             <Link href="/stablecoins" passHref>
               <div
+                onClick={() => {
+                  ReactGA.event({
+                    category: "User",
+                    action: `Click Stablecoins`,
+                    label: `Desktop Mav`
+                  });
+                }}
                 className={classNames(
                   "desktop-link",
                   setLinkActive(asPath, "/stablecoins")
@@ -75,6 +83,13 @@ export const DesktopNav = () => {
             </Link>
             <Link href="/compare" passHref>
               <div
+                onClick={() => {
+                  ReactGA.event({
+                    category: "User",
+                    action: `Click Compare`,
+                    label: `Desktop Mav`
+                  });
+                }}
                 className={classNames(
                   "desktop-link",
                   setLinkActive(asPath, "/compare")
@@ -88,6 +103,13 @@ export const DesktopNav = () => {
             </a>
             <Link href="/pricing" passHref>
               <div
+                onClick={() => {
+                  ReactGA.event({
+                    category: "User",
+                    action: `Click Pricing`,
+                    label: `Desktop Mav`
+                  });
+                }}
                 className={classNames(
                   "desktop-link",
                   setLinkActive(asPath, "/pricing")
@@ -98,7 +120,14 @@ export const DesktopNav = () => {
             <a
               href="https://docs.tokenanalyst.io/#/api"
               target="_blank"
-              onMouseOver={collapseAllSubMenus}>
+              onMouseOver={collapseAllSubMenus}
+              onClick={() => {
+                ReactGA.event({
+                  category: "User",
+                  action: `Click API`,
+                  label: `Desktop Mav`
+                });
+              }}>
               API
             </a>
             <div
@@ -125,6 +154,11 @@ export const DesktopNav = () => {
                 onClick={() => {
                   Cookies.remove("apiKey");
                   loginCtx.setIsLoggedIn(false);
+                  ReactGA.event({
+                    category: "User",
+                    action: `Click Logout`,
+                    label: `Desktop Mav`
+                  });
                 }}
                 onMouseOver={() => {
                   collapseAllSubMenus();
@@ -136,6 +170,13 @@ export const DesktopNav = () => {
             <Link href="/login" passHref>
               <div
                 className="login-button"
+                onClick={() => {
+                  ReactGA.event({
+                    category: "User",
+                    action: `Click Login`,
+                    label: `Desktop Mav`
+                  });
+                }}
                 onMouseOver={() => {
                   collapseAllSubMenus();
                 }}>
@@ -156,6 +197,13 @@ export const DesktopNav = () => {
               <div>
                 <Link href="/about" passHref>
                   <div
+                    onClick={() => {
+                      ReactGA.event({
+                        category: "User",
+                        action: `Click Company`,
+                        label: `Desktop Mav`
+                      });
+                    }}
                     className={classNames(
                       "desktop-sub-link",
                       setLinkActive(asPath, "/about")
@@ -165,19 +213,44 @@ export const DesktopNav = () => {
                 </Link>
               </div>
               <div className="desktop-sub-link">
-                <a href="https://twitter.com/thetokenanalyst" target="_blank">
+                <a
+                  href="https://twitter.com/thetokenanalyst"
+                  target="_blank"
+                  onClick={() => {
+                    ReactGA.event({
+                      category: "User",
+                      action: `Click Follow Us`,
+                      label: `Desktop Mav`
+                    });
+                  }}>
                   Follow Us
                 </a>
               </div>
               <div className="desktop-sub-link">
                 <a
                   href="https://t.me/joinchat/AAAAAEXMAvSpOZao3fRvJA"
-                  target="_blank">
+                  target="_blank"
+                  onClick={() => {
+                    ReactGA.event({
+                      category: "User",
+                      action: `Click Telegram`,
+                      label: `Desktop Mav`
+                    });
+                  }}>
                   Telegram
                 </a>
               </div>
               <div className="desktop-sub-link">
-                <a href="mailto:info@tokenanalyst.io" target="_blank">
+                <a
+                  href="mailto:info@tokenanalyst.io"
+                  target="_blank"
+                  onClick={() => {
+                    ReactGA.event({
+                      category: "User",
+                      action: `Click Contact`,
+                      label: `Desktop Mav`
+                    });
+                  }}>
                   Contact
                 </a>
               </div>
@@ -194,6 +267,13 @@ export const DesktopNav = () => {
               <div>
                 <Link href="/exchange/BTC/Binance" passHref>
                   <div
+                    onClick={() => {
+                      ReactGA.event({
+                        category: "User",
+                        action: `Click BTC Binance`,
+                        label: `Desktop Mav`
+                      });
+                    }}
                     className={classNames(
                       "desktop-sub-link",
                       setLinkActive(asPath, "/exchange/BTC/Binance")
@@ -205,6 +285,13 @@ export const DesktopNav = () => {
               <div>
                 <Link href="/exchange/BTC/Bitstamp" passHref>
                   <div
+                    onClick={() => {
+                      ReactGA.event({
+                        category: "User",
+                        action: `Click BTC Bitstamp`,
+                        label: `Desktop Mav`
+                      });
+                    }}
                     className={classNames(
                       "desktop-sub-link",
                       setLinkActive(asPath, "/exchange/BTC/Bitstamp")
@@ -216,6 +303,13 @@ export const DesktopNav = () => {
               <div>
                 <Link href="/exchange/BTC/Bitmex" passHref>
                   <div
+                    onClick={() => {
+                      ReactGA.event({
+                        category: "User",
+                        action: `Click BTC BitMEX`,
+                        label: `Desktop Mav`
+                      });
+                    }}
                     className={classNames(
                       "desktop-sub-link",
                       setLinkActive(asPath, "/exchange/BTC/Bitmex")
@@ -227,6 +321,13 @@ export const DesktopNav = () => {
               <div>
                 <Link href="/exchange/BTC/Bitfinex" passHref>
                   <div
+                    onClick={() => {
+                      ReactGA.event({
+                        category: "User",
+                        action: `Click BTC Bitfinex`,
+                        label: `Desktop Mav`
+                      });
+                    }}
                     className={classNames(
                       "desktop-sub-link",
                       setLinkActive(asPath, "/exchange/BTC/Bitfinex")
