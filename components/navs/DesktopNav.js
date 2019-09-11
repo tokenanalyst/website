@@ -14,6 +14,7 @@ export const setLinkActive = (pathName, link) =>
 export const DesktopNav = () => {
   const loginCtx = useContext(LoginContext);
   const router = useRouter();
+  const { asPath } = router;
 
   const [shownItems, setShownItems] = useState({
     about: false,
@@ -23,7 +24,8 @@ export const DesktopNav = () => {
   const collapseAllSubMenus = () => {
     setShownItems({
       about: false,
-      contact: false
+      contact: false,
+      exchanges: false
     });
   };
 
@@ -53,20 +55,19 @@ export const DesktopNav = () => {
             </Link>
           </div>
           <div className="desktop-links">
-            <Link href="/" passHref>
-              <div
-                className={classNames(
-                  "desktop-link",
-                  setLinkActive(router.pathname, "/")
-                )}>
-                Exchange Flows
-              </div>
-            </Link>
+            <div
+              className={classNames("desktop-link", setLinkActive(asPath, "/"))}
+              onMouseOver={() => {
+                collapseAllSubMenus();
+                setShownItems(prev => ({ ...prev, exchanges: true }));
+              }}>
+              Exchange Flow
+            </div>
             <Link href="/stablecoins" passHref>
               <div
                 className={classNames(
                   "desktop-link",
-                  setLinkActive(router.pathname, "/stablecoins")
+                  setLinkActive(asPath, "/stablecoins")
                 )}
                 onMouseOver={collapseAllSubMenus}>
                 Stablecoins
@@ -76,7 +77,7 @@ export const DesktopNav = () => {
               <div
                 className={classNames(
                   "desktop-link",
-                  setLinkActive(router.pathname, "/compare")
+                  setLinkActive(asPath, "/compare")
                 )}
                 onMouseOver={collapseAllSubMenus}>
                 Compare
@@ -89,7 +90,7 @@ export const DesktopNav = () => {
               <div
                 className={classNames(
                   "desktop-link",
-                  setLinkActive(router.pathname, "/pricing")
+                  setLinkActive(asPath, "/pricing")
                 )}>
                 Pricing
               </div>
@@ -103,7 +104,7 @@ export const DesktopNav = () => {
             <div
               className={classNames(
                 "desktop-link",
-                setLinkActive(router.pathname, "/about")
+                setLinkActive(asPath, "/about")
               )}
               onMouseOver={() => {
                 collapseAllSubMenus();
@@ -157,12 +158,11 @@ export const DesktopNav = () => {
                   <div
                     className={classNames(
                       "desktop-sub-link",
-                      setLinkActive(router.pathname, "/about")
+                      setLinkActive(asPath, "/about")
                     )}>
                     Company
                   </div>
                 </Link>
-
               </div>
               <div className="desktop-sub-link">
                 <a href="https://twitter.com/thetokenanalyst" target="_blank">
@@ -180,6 +180,60 @@ export const DesktopNav = () => {
                 <a href="mailto:info@tokenanalyst.io" target="_blank">
                   Contact
                 </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="desktop-exchanges-sub-link-container"
+          onClick={collapseAllSubMenus}>
+          <div className="desktop-sub-links">
+            <div
+              className="desktop-exchanges-sub-links"
+              onMouseLeave={() => collapseSubMenuDelayed("contact")}>
+              <div>
+                <Link href="/exchange/BTC/Binance" passHref>
+                  <div
+                    className={classNames(
+                      "desktop-sub-link",
+                      setLinkActive(asPath, "/exchange/BTC/Binance")
+                    )}>
+                    BTC Binance
+                  </div>
+                </Link>
+              </div>
+              <div>
+                <Link href="/exchange/BTC/Bitstamp" passHref>
+                  <div
+                    className={classNames(
+                      "desktop-sub-link",
+                      setLinkActive(asPath, "/exchange/BTC/Bitstamp")
+                    )}>
+                    BTC Bitstamp
+                  </div>
+                </Link>
+              </div>
+              <div>
+                <Link href="/exchange/BTC/Bitmex" passHref>
+                  <div
+                    className={classNames(
+                      "desktop-sub-link",
+                      setLinkActive(asPath, "/exchange/BTC/Bitmex")
+                    )}>
+                    BTC BitMEX
+                  </div>
+                </Link>
+              </div>
+              <div>
+                <Link href="/exchange/BTC/Bitfinex" passHref>
+                  <div
+                    className={classNames(
+                      "desktop-sub-link",
+                      setLinkActive(asPath, "/exchange/BTC/Bitfinex")
+                    )}>
+                    BTC Bitfinex
+                  </div>
+                </Link>
               </div>
             </div>
           </div>
@@ -225,7 +279,7 @@ export const DesktopNav = () => {
           color: white;
         }
         .active {
-          opacity: 1;
+          opacity: 1 !important;
         }
         .desktop-link:hover,
         a:hover {
@@ -254,6 +308,17 @@ export const DesktopNav = () => {
           padding-left: 10px;
           border-radius: 0px 0px 5px 5px;
         }
+        .desktop-exchanges-sub-link-container {
+          width: 125px;
+          background: black;
+          position: fixed;
+          color: white;
+          z-index: 10000;
+          top: 60px;
+          margin-left: 200px;
+          padding-left: 10px;
+          border-radius: 0px 0px 5px 5px;
+        }
         .desktop-sub-link {
           padding-top: 10px;
           padding-bottom: 10px;
@@ -272,6 +337,9 @@ export const DesktopNav = () => {
         }
         .desktop-contact-sub-links {
           display: ${shownItems.contact ? "block" : "none"};
+        }
+        .desktop-exchanges-sub-links {
+          display: ${shownItems.exchanges ? "block" : "none"};
         }
         .right-side {
           margin-right: 2%;
