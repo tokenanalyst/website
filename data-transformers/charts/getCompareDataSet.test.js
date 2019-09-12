@@ -10,9 +10,11 @@ const nonNativeTokenResponse = {
   [nonNativeTokenSymbol]: TEST_TOKEN
 };
 
+
+
 describe("getCompareDataSet function", () => {
   it("returns dataSet for non native tokens success", () => {
-    const token = "testToken";
+    const token = "TEST_TOKEN";
     const expectedDataSet = [
       {
         dataPoint: "Volume (USD)",
@@ -82,8 +84,8 @@ describe("getCompareDataSet function", () => {
       }
     ];
     const dateSet = getCompareDataSet(
-      nonNativeTokenResponse,
-      "TEST_TOKEN",
+      nonNativeTokenResponse[token],
+      token,
       mockColor
     );
 

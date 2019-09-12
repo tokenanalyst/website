@@ -1,5 +1,6 @@
 import axios from "axios";
 import url from "url";
+import { API_ERROR_MSG } from "../constants/apiErrors";
 
 const isAuthorised = require("./auth/isAuthorised");
 import { setResponseCache } from "./utils/setResponseCache";
@@ -17,8 +18,9 @@ module.exports = async (req, res) => {
   }
 
   if (!token || !exchange) {
-    res.status(400);
-    return res.send({ error: "Token and / or exchange missing" });
+    return res
+      .status(400)
+      .send({ message: API_ERROR_MSG.TOKEN_EXCHANGE_MISSING });
   }
 
   let urlBase;

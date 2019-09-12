@@ -26,11 +26,13 @@ export const TEST_TOKEN = {
   address: [
     {
       date: "1",
-      active_recipients: "1"
+      active_recipients: "1",
+      active_senders: "1",
     },
     {
       date: "2",
-      active_recipients: "2"
+      active_recipients: "2",
+      active_senders: "2",
     }
   ]
 };
