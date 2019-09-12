@@ -60,7 +60,7 @@ export const CompareChartWidget = () => {
         tokenRhs,
         `rgba(${colors.primaryGreen}, 1)`
       );
-      setTokenDataSetRhs(dataSet, `rgba(${colors.primaryGreen})`);
+      setTokenDataSetRhs(dataSet);
     };
 
     updateData();
@@ -99,8 +99,8 @@ export const CompareChartWidget = () => {
           />
         </div>
       ) : (
-        <LoadingSpinner />
-      )}
+          <LoadingSpinner />
+        )}
       <style jsx>{`
         .container {
           font-family: Open Sans;
