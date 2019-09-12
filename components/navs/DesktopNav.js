@@ -279,20 +279,20 @@ export const DesktopNav = () => {
                 </Link>
               </div>
               <div>
-                <Link href="/exchange/ETH/Bitrex" passHref>
+                <Link href="/exchange/ETH/Bittrex" passHref>
                   <div
                     onClick={() => {
                       ReactGA.event({
                         category: "User",
-                        action: `Click ETH Bitrex`,
+                        action: `Click ETH Bittrex`,
                         label: `Desktop Nav`
                       });
                     }}
                     className={classNames(
                       "desktop-sub-link",
-                      setLinkActive(asPath, "/exchange/ETH/Bitrex")
+                      setLinkActive(asPath, "/exchange/ETH/Bittrex")
                     )}>
-                    ETH Bitrex
+                    ETH Bittrex
                   </div>
                 </Link>
               </div>
