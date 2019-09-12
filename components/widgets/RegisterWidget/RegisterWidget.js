@@ -17,13 +17,6 @@ export const RegisterWidget = () => {
   const [passwordVerify, setPasswordVerify] = useState("");
   const [errorText, setErrorText] = useState(false);
   const [hasRegistered, setHasRegistered] = useState(false);
-  const [isDeveloper, setIsDeveloper] = useState(false);
-  const [isEnthusiast, setIsEnthusiast] = useState(false);
-  const [isEnterprise, setIsEnterprise] = useState(false);
-  const [isResearcher, setIsResearcher] = useState(false);
-  const [isTrader, setIsTrader] = useState(false);
-  const [isOther, setIsOther] = useState(false);
-
   const [profession, setProfession] = useState({
     trader: false,
     enterprise: false,
@@ -33,45 +26,38 @@ export const RegisterWidget = () => {
     other: false
   })
 
+  const { trader, enterprise, enthusiast, researcher, developer, other } = profession
+
+  console.log(profession)
+
   const register = async () => {
     if (password !== passwordVerify) {
       setErrorText("Passwords do not match");
       return;
     }
 
-
-
-
     try {
       await axios.post("https://api.tokenanalyst.io/auth/user", {
         username: email,
         password,
         name,
-        trader: isTrader,
-        enterprise: isEnterprise,
-        enthusiast: isEnthusiast,
-        researcher: isResearcher,
-        developer: isDeveloper,
-        other: isOther
+        ...profession
       });
 
+      // const response = await axios.post(
+      //   "https://api.tokenanalyst.io/auth/user/login",
+      //   {
+      //     username: email,
+      //     password
+      //   }
+      // );
 
-
-      const response = await axios.post(
-        "https://api.tokenanalyst.io/auth/user/login",
-        {
-          username: email,
-          password
-        }
-      );
-
-      Cookies.set("apiKey", response.data.apiKey);
-      loginCtx.setIsLoggedIn(true);
-      setErrorText(null);
-      setHasRegistered(true);
+      // Cookies.set("apiKey", response.data.apiKey);
+      // loginCtx.setIsLoggedIn(true);
+      // setErrorText(null);
+      // setHasRegistered(true);
     } catch (e) {
-
-      console.log(e.message)
+      console.log(e)
       if (e.message === API_ERROR_MSG.USER_ALREADY_EXISTS) {
         setErrorText(
           "You are already registered, please login."
@@ -137,8 +123,17 @@ export const RegisterWidget = () => {
                 <span>
                   <input
                     type="checkbox"
-                    checked={isTrader}
-                    onChange={() => setIsTrader(!isTrader)}
+                    checked={trader}
+                    onChange={() => {
+                      console.log({
+                        ...profession,
+                        trader: !trader
+                      })
+                      return setProfession({
+                        ...profession,
+                        trader: !trader
+                      })
+                    }}
                   />
                   <span>Trader</span>
                 </span>
@@ -147,8 +142,11 @@ export const RegisterWidget = () => {
                 <span>
                   <input
                     type="checkbox"
-                    checked={isDeveloper}
-                    onChange={() => setIsDeveloper(!isDeveloper)}
+                    checked={developer}
+                    onChange={() => setProfession({
+                      ...profession,
+                      developer: !developer
+                    })}
                   />
                   <span>Developer</span>
                 </span>
@@ -157,8 +155,11 @@ export const RegisterWidget = () => {
                 <span>
                   <input
                     type="checkbox"
-                    checked={isEnthusiast}
-                    onChange={() => setIsEnthusiast(!isEnthusiast)}
+                    checked={enthusiast}
+                    onChange={() => setProfession({
+                      ...profession,
+                      enthusiast: !enthusiast
+                    })}
                   />
                   <span>Enthusiast</span>
                 </span>
@@ -167,8 +168,11 @@ export const RegisterWidget = () => {
                 <span>
                   <input
                     type="checkbox"
-                    checked={isEnterprise}
-                    onChange={() => setIsEnterprise(!isEnterprise)}
+                    checked={enterprise}
+                    onChange={() => setProfession({
+                      ...profession,
+                      enterprise: !enterprise
+                    })}
                   />
                   <span>Enterprise</span>
                 </span>
@@ -177,8 +181,11 @@ export const RegisterWidget = () => {
                 <span>
                   <input
                     type="checkbox"
-                    checked={isResearcher}
-                    onChange={() => setIsResearcher(!isResearcher)}
+                    checked={researcher}
+                    onChange={() => setProfession({
+                      ...profession,
+                      researcher: !researcher
+                    })}
                   />
                   <span>Researcher</span>
                 </span>
@@ -187,8 +194,11 @@ export const RegisterWidget = () => {
                 <span>
                   <input
                     type="checkbox"
-                    checked={isOther}
-                    onChange={() => setIsOther(!isOther)}
+                    checked={other}
+                    onChange={() => setProfession({
+                      ...profession,
+                      other: !other
+                    })}
                   />
                   <span>Other</span>
                 </span>
