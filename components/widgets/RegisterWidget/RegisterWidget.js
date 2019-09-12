@@ -38,6 +38,10 @@ export const RegisterWidget = () => {
 
     try {
       await axios.post("https://api.tokenanalyst.io/auth/user", {
+        validateStatus: function (status) {
+          console.log(status)
+          return status < 500; // Reject only if the status code is greater than or equal to 500
+        },
         username: email,
         password,
         name,
