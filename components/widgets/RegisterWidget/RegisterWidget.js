@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { Icon } from "@blueprintjs/core";
@@ -6,6 +6,7 @@ import Link from "next/link";
 
 import { LoginContext } from "../../../contexts/Login";
 import { colors } from "../../../constants/styles/colors";
+import { API_ERROR_MSG } from '../../../constants/apiErrors'
 
 export const RegisterWidget = () => {
   const loginCtx = useContext(LoginContext);
@@ -16,7 +17,6 @@ export const RegisterWidget = () => {
   const [passwordVerify, setPasswordVerify] = useState("");
   const [errorText, setErrorText] = useState(false);
   const [hasRegistered, setHasRegistered] = useState(false);
-
   const [isDeveloper, setIsDeveloper] = useState(false);
   const [isEnthusiast, setIsEnthusiast] = useState(false);
   const [isEnterprise, setIsEnterprise] = useState(false);
@@ -24,11 +24,24 @@ export const RegisterWidget = () => {
   const [isTrader, setIsTrader] = useState(false);
   const [isOther, setIsOther] = useState(false);
 
+  const [profession, setProfession] = useState({
+    trader: false,
+    enterprise: false,
+    enthusiast: false,
+    researcher: false,
+    developer: false,
+    other: false
+  })
+
   const register = async () => {
     if (password !== passwordVerify) {
       setErrorText("Passwords do not match");
       return;
     }
+
+
+
+
     try {
       await axios.post("https://api.tokenanalyst.io/auth/user", {
         username: email,
@@ -41,6 +54,8 @@ export const RegisterWidget = () => {
         developer: isDeveloper,
         other: isOther
       });
+
+
 
       const response = await axios.post(
         "https://api.tokenanalyst.io/auth/user/login",
@@ -55,15 +70,25 @@ export const RegisterWidget = () => {
       setErrorText(null);
       setHasRegistered(true);
     } catch (e) {
-      setErrorText(
-        "Please provide valid details and ensure that you haven't already registered"
-      );
+
+      console.log(e.message)
+      if (e.message === API_ERROR_MSG.USER_ALREADY_EXISTS) {
+        setErrorText(
+          "You are already registered, please login."
+        );
+      } else {
+        setErrorText(
+          "Please provide valid details and ensure that you haven't already registered"
+        );
+      }
+
     }
   };
 
   return (
     <>
       <div className="container">
+        <div className="header">Register</div>
         {hasRegistered ? (
           <>
             <Icon
@@ -82,98 +107,98 @@ export const RegisterWidget = () => {
             </Link>
           </>
         ) : (
-          <>
-            <div className="header">Name</div>
-            <input
-              type="text"
-              className="input"
-              onChange={e => setName(e.target.value)}
-            />
-            <div className="header">Email</div>
-            <input
-              type="text"
-              className="input"
-              onChange={e => setEmail(e.target.value)}
-            />
-            <div className="header">Password</div>
-            <input
-              type="password"
-              className="input"
-              onChange={e => setPassword(e.target.value)}
-            />
-            <div className="header">Repeat Password</div>
-            <input
-              className="input"
-              type="password"
-              onChange={e => setPasswordVerify(e.target.value)}
-            />
-            <div className="header">Which apply to you?</div>
-            <div className="profession">
-              <span>
-                <input
-                  type="checkbox"
-                  checked={isTrader}
-                  onClick={() => setIsTrader(!isTrader)}
-                />
-                <span>Trader</span>
-              </span>
+            <>
+              <div className="label">Name</div>
+              <input
+                type="text"
+                className="input"
+                onChange={e => setName(e.target.value)}
+              />
+              <div className="label">Email</div>
+              <input
+                type="text"
+                className="input"
+                onChange={e => setEmail(e.target.value)}
+              />
+              <div className="label">Password</div>
+              <input
+                type="password"
+                className="input"
+                onChange={e => setPassword(e.target.value)}
+              />
+              <div className="label">Repeat Password</div>
+              <input
+                className="input"
+                type="password"
+                onChange={e => setPasswordVerify(e.target.value)}
+              />
+              <div className="label">Which apply to you?</div>
+              <div className="profession">
+                <span>
+                  <input
+                    type="checkbox"
+                    checked={isTrader}
+                    onChange={() => setIsTrader(!isTrader)}
+                  />
+                  <span>Trader</span>
+                </span>
+              </div>
+              <div className="profession">
+                <span>
+                  <input
+                    type="checkbox"
+                    checked={isDeveloper}
+                    onChange={() => setIsDeveloper(!isDeveloper)}
+                  />
+                  <span>Developer</span>
+                </span>
+              </div>
+              <div className="profession">
+                <span>
+                  <input
+                    type="checkbox"
+                    checked={isEnthusiast}
+                    onChange={() => setIsEnthusiast(!isEnthusiast)}
+                  />
+                  <span>Enthusiast</span>
+                </span>
+              </div>
+              <div className="profession">
+                <span>
+                  <input
+                    type="checkbox"
+                    checked={isEnterprise}
+                    onChange={() => setIsEnterprise(!isEnterprise)}
+                  />
+                  <span>Enterprise</span>
+                </span>
+              </div>
+              <div className="profession">
+                <span>
+                  <input
+                    type="checkbox"
+                    checked={isResearcher}
+                    onChange={() => setIsResearcher(!isResearcher)}
+                  />
+                  <span>Researcher</span>
+                </span>
+              </div>
+              <div className="profession">
+                <span>
+                  <input
+                    type="checkbox"
+                    checked={isOther}
+                    onChange={() => setIsOther(!isOther)}
+                  />
+                  <span>Other</span>
+                </span>
+              </div>
+              <div className="button" onClick={register}>
+                Register
             </div>
-            <div className="profession">
-              <span>
-                <input
-                  type="checkbox"
-                  checked={isDeveloper}
-                  onClick={() => setIsDeveloper(!isDeveloper)}
-                />
-                <span>Developer</span>
-              </span>
-            </div>
-            <div className="profession">
-              <span>
-                <input
-                  type="checkbox"
-                  checked={isEnthusiast}
-                  onClick={() => setIsEnthusiast(!isEnthusiast)}
-                />
-                <span>Enthusiast</span>
-              </span>
-            </div>
-            <div className="profession">
-              <span>
-                <input
-                  type="checkbox"
-                  checked={isEnterprise}
-                  onClick={() => setIsEnterprise(!isEnterprise)}
-                />
-                <span>Enterprise</span>
-              </span>
-            </div>
-            <div className="profession">
-              <span>
-                <input
-                  type="checkbox"
-                  checked={isResearcher}
-                  onClick={() => setIsResearcher(!isResearcher)}
-                />
-                <span>Researcher</span>
-              </span>
-            </div>
-            <div className="profession">
-              <span>
-                <input
-                  type="checkbox"
-                  checked={isOther}
-                  onClick={() => setIsOther(!isOther)}
-                />
-                <span>Other</span>
-              </span>
-            </div>
-            <div className="button" onClick={register}>
-              Register
-            </div>
-            {errorText && <div className="error">{errorText}</div>}
-          </>
-        )}
+              {errorText && <div className="error">{errorText}</div>}
+            </>
+          )}
       </div>
       <style jsx>{`
         .container {
@@ -187,6 +212,13 @@ export const RegisterWidget = () => {
           padding-bottom: 30px;
         }
         .header {
+          font-size: 32px;
+          font-weight: bold;
+          padding: 15px;
+          padding-top: 30px;
+          text-align: center;
+        }
+        .label {
           font-size: 16px;
           padding-top: 10px;
           padding-bottom: 10px;

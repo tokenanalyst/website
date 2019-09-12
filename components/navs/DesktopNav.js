@@ -132,16 +132,16 @@ export const DesktopNav = () => {
               </span>
             </>
           ) : (
-            <Link href="/login" passHref>
-              <div
-                className="login-button"
-                onMouseOver={() => {
-                  collapseAllSubMenus();
-                }}>
-                Login
+              <Link href="/login" passHref>
+                <div
+                  className="login-button"
+                  onMouseOver={() => {
+                    collapseAllSubMenus();
+                  }}>
+                  Login
               </div>
-            </Link>
-          )}
+              </Link>
+            )}
         </div>
       </div>
       <div className="desktop-sub-links-container">
