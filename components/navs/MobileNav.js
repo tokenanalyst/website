@@ -91,7 +91,7 @@ export const MobileNav = () => {
                 ReactGA.event({
                   category: "User",
                   action: `Click Logout`,
-                  label: `Mobile Mav`
+                  label: `Mobile Nav`
                 });
               }}>
               Logout
