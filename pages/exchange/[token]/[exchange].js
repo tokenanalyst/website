@@ -51,6 +51,7 @@ const Exchange = () => {
           dataSet={dataSet}
           setDataSet={setDataSet}
           setTimeWindow={setTimeWindow}
+          timeWindow={timeWindow}
         />
         {!dataSet && (
           <div className="spinner">

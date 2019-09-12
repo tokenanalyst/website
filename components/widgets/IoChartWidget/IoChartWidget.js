@@ -13,22 +13,53 @@ const SimpleChart = dynamic(
   }
 );
 
-const graphSize = {
-  width:{
+const SimpleToolTip = dynamic(
+  () => import("../../SimpleToolTip").then(mod => mod.SimpleToolTip),
+  {
+    ssr: false
+  }
+);
+
+const GRAPH_SIZE = {
+  width: {
     mobile: 300,
     tablet: 1000,
-    desktop: 1400
+    desktop: 1000
   },
-  height:{
+  height: {
     mobile: 300,
     desktop: 450
   }
-}
+};
+
+const TOOL_TIP = {
+  ["1h"]: {
+    message: (
+      <div>
+        Hourly data. All times are in UTC.
+        <br />
+        The displayed hour in the data is the start of the hour
+        <br /> for which the data is aggregated. <br />
+      </div>
+    )
+  },
+  ["1d"]: {
+    message: (
+      <div>
+        Daily data. All times are in UTC.
+        <br />
+        The latest day returned is the last full day of data.
+        <br />
+      </div>
+    )
+  }
+};
 
 export const IoChartWidget = ({
   dataSet,
   setDataSet,
   formatter,
+  timeWindow,
   setTimeWindow
 }) => {
   const [seriesType, setSeriesType] = useState(CHART_TYPES.line);
@@ -39,6 +70,19 @@ export const IoChartWidget = ({
         <div className="chart">
           <div className="header">
             Inflow / Outflow <Icon icon="chart" color="gray" />
+            <div className="header-info">
+              <div>
+                <SimpleToolTip
+                  dataFor={"header-tooltip"}
+                  toolTip={TOOL_TIP[timeWindow] && TOOL_TIP[timeWindow].message}
+                  type="dark"
+                  effect="solid">
+                  <div data-tip data-for="header-tooltip">
+                    <Icon icon="info-sign" color="gray" />
+                  </div>
+                </SimpleToolTip>
+              </div>
+            </div>
           </div>
           <div className="graph">
             {dataSet && (
@@ -47,13 +91,15 @@ export const IoChartWidget = ({
                 seriesType={seriesType}
                 width={
                   window.matchMedia("(max-width: 768px)").matches
-                    ? graphSize.width.mobile
+                    ? GRAPH_SIZE.width.mobile
                     : window.matchMedia("(min-width: 1920px)").matches
-                    ? graphSize.width.desktop
-                    : graphSize.width.tablet
+                    ? GRAPH_SIZE.width.desktop
+                    : GRAPH_SIZE.width.tablet
                 }
                 height={
-                  window.matchMedia("(max-width: 768px)").matches ? graphSize.height.mobile : graphSize.height.desktop
+                  window.matchMedia("(max-width: 768px)").matches
+                    ? GRAPH_SIZE.height.mobile
+                    : GRAPH_SIZE.height.desktop
                 }
                 formatter={formatter}
               />
@@ -90,15 +136,21 @@ export const IoChartWidget = ({
           padding-right: 20px;
         }
         .graph {
-          width: ${graphSize.width.tablet}px;
-          height: ${graphSize.width.mobile}px;
+          width: ${GRAPH_SIZE.width.tablet}px;
+          height: ${GRAPH_SIZE.width.mobile}px;
         }
         .header {
+          position: relative;
           font-size: 18px;
           font-weight: bold;
           padding-bottom: 20px;
           text-align: center;
           width: 100%;
+        }
+        .header-info {
+          position: absolute;
+          right: 0;
+          top: 0;
         }
         .pricing-link {
           padding-top: 30px;
@@ -106,8 +158,8 @@ export const IoChartWidget = ({
         }
         @media only screen and (max-width: 768px) {
           .graph {
-            width: ${graphSize.width.mobile}px;
-            height: ${graphSize.height.mobile}px;
+            width: ${GRAPH_SIZE.width.mobile}px;
+            height: ${GRAPH_SIZE.height.mobile}px;
           }
           .header {
             font-size: 18px;
@@ -116,6 +168,11 @@ export const IoChartWidget = ({
             padding-top: 10px;
             text-align: center;
             width: 100%;
+          }
+          .header-info {
+            position: absolute;
+            right: 0;
+            top: 10px;
           }
           .widget-container {
             flex-direction: column;

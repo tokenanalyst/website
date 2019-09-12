@@ -117,9 +117,11 @@ module.exports = async (req, res) => {
         outflow_usd_sum_pct_change
       };
     });
+
     setResponseCache().map(cacheHeader => {
       res.setHeader(...cacheHeader);
     });
     res.send({ ta_response });
   }
+
 };
