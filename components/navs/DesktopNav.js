@@ -19,7 +19,8 @@ export const DesktopNav = () => {
 
   const [shownItems, setShownItems] = useState({
     about: false,
-    contact: false
+    contact: false,
+    exchanges: false
   });
 
   const collapseAllSubMenus = () => {
@@ -61,20 +62,29 @@ export const DesktopNav = () => {
               onMouseOver={() => {
                 collapseAllSubMenus();
                 setShownItems(prev => ({ ...prev, exchanges: true }));
-              }}>
+              }}
+            >
               Exchange Flow
             </div>
             <Link href="/stablecoins" passHref>
               <div
-                className={classNames("desktop-link", setLinkActive(asPath, "/stablecoins"))}
-                onMouseOver={collapseAllSubMenus}>
+                className={classNames(
+                  "desktop-link",
+                  setLinkActive(asPath, "/stablecoins")
+                )}
+                onMouseOver={collapseAllSubMenus}
+              >
                 Stablecoins
               </div>
             </Link>
             <Link href="/compare" passHref>
               <div
-                className={classNames("desktop-link", setLinkActive(asPath, "/compare"))}
-                onMouseOver={collapseAllSubMenus}>
+                className={classNames(
+                  "desktop-link",
+                  setLinkActive(asPath, "/compare")
+                )}
+                onMouseOver={collapseAllSubMenus}
+              >
                 Compare
               </div>
             </Link>
@@ -86,14 +96,16 @@ export const DesktopNav = () => {
                 className={classNames(
                   "desktop-link",
                   setLinkActive(asPath, "/pricing")
-                )}>
+                )}
+              >
                 Pricing
               </div>
             </Link>
             <a
               href="https://docs.tokenanalyst.io/#/api"
               target="_blank"
-              onMouseOver={collapseAllSubMenus}>
+              onMouseOver={collapseAllSubMenus}
+            >
               API
             </a>
             <div
@@ -104,7 +116,8 @@ export const DesktopNav = () => {
               onMouseOver={() => {
                 collapseAllSubMenus();
                 setShownItems(prev => ({ ...prev, contact: true }));
-              }}>
+              }}
+            >
               About Us
             </div>
           </div>
@@ -128,32 +141,35 @@ export const DesktopNav = () => {
                 }}
                 onMouseOver={() => {
                   collapseAllSubMenus();
-                }}>
+                }}
+              >
                 Logout
               </span>
             </>
           ) : (
-              <Link href="/login" passHref>
-                <div
-                  className="login-button"
-
-                  onMouseOver={() => {
-                    collapseAllSubMenus();
-                  }}>
-                  Login
+            <Link href="/login" passHref>
+              <div
+                className="login-button"
+                onMouseOver={() => {
+                  collapseAllSubMenus();
+                }}
+              >
+                Login
               </div>
-              </Link>
-            )}
+            </Link>
+          )}
         </div>
       </div>
       <div className="desktop-sub-links-container">
         <div
           className="desktop-contact-sub-link-container"
-          onClick={collapseAllSubMenus}>
+          onClick={collapseAllSubMenus}
+        >
           <div className="desktop-sub-links">
             <div
               className="desktop-contact-sub-links"
-              onMouseLeave={() => collapseSubMenuDelayed("contact")}>
+              onMouseLeave={() => collapseSubMenuDelayed("contact")}
+            >
               <div>
                 <Link href="/about" passHref>
                   <div
@@ -167,7 +183,8 @@ export const DesktopNav = () => {
                     className={classNames(
                       "desktop-sub-link",
                       setLinkActive(asPath, "/about")
-                    )}>
+                    )}
+                  >
                     Company
                   </div>
                 </Link>
@@ -182,7 +199,8 @@ export const DesktopNav = () => {
                       action: `Click Follow Us`,
                       label: `Desktop Nav`
                     });
-                  }}>
+                  }}
+                >
                   Follow Us
                 </a>
               </div>
@@ -196,7 +214,8 @@ export const DesktopNav = () => {
                       action: `Click Telegram`,
                       label: `Desktop Nav`
                     });
-                  }}>
+                  }}
+                >
                   Telegram
                 </a>
               </div>
@@ -210,7 +229,8 @@ export const DesktopNav = () => {
                       action: `Click Contact`,
                       label: `Desktop Nav`
                     });
-                  }}>
+                  }}
+                >
                   Contact
                 </a>
               </div>
@@ -219,11 +239,13 @@ export const DesktopNav = () => {
         </div>
         <div
           className="desktop-exchanges-sub-link-container"
-          onClick={collapseAllSubMenus}>
+          onClick={collapseAllSubMenus}
+        >
           <div className="desktop-sub-links">
             <div
               className="desktop-exchanges-sub-links"
-              onMouseLeave={() => collapseSubMenuDelayed("contact")}>
+              onMouseLeave={() => collapseSubMenuDelayed("exchanges")}
+            >
               <div>
                 <Link href="/exchange/BTC/Binance" passHref>
                   <div
@@ -237,7 +259,8 @@ export const DesktopNav = () => {
                     className={classNames(
                       "desktop-sub-link",
                       setLinkActive(asPath, "/exchange/BTC/Binance")
-                    )}>
+                    )}
+                  >
                     BTC Binance
                   </div>
                 </Link>
@@ -255,7 +278,8 @@ export const DesktopNav = () => {
                     className={classNames(
                       "desktop-sub-link",
                       setLinkActive(asPath, "/exchange/BTC/Bitstamp")
-                    )}>
+                    )}
+                  >
                     BTC Bitstamp
                   </div>
                 </Link>
@@ -273,7 +297,8 @@ export const DesktopNav = () => {
                     className={classNames(
                       "desktop-sub-link",
                       setLinkActive(asPath, "/exchange/ETH/Bitfinex")
-                    )}>
+                    )}
+                  >
                     ETH Bitfinex
                   </div>
                 </Link>
@@ -291,7 +316,8 @@ export const DesktopNav = () => {
                     className={classNames(
                       "desktop-sub-link",
                       setLinkActive(asPath, "/exchange/ETH/Bittrex")
-                    )}>
+                    )}
+                  >
                     ETH Bittrex
                   </div>
                 </Link>
