@@ -167,23 +167,23 @@ export const DesktopNav = () => {
               </span>
             </>
           ) : (
-            <Link href="/login" passHref>
-              <div
-                className="login-button"
-                onClick={() => {
-                  ReactGA.event({
-                    category: "User",
-                    action: `Click Login`,
-                    label: `Desktop Mav`
-                  });
-                }}
-                onMouseOver={() => {
-                  collapseAllSubMenus();
-                }}>
-                Login
+              <Link href="/login" passHref>
+                <div
+                  className="login-button"
+                  onClick={() => {
+                    ReactGA.event({
+                      category: "User",
+                      action: `Click Login`,
+                      label: `Desktop Mav`
+                    });
+                  }}
+                  onMouseOver={() => {
+                    collapseAllSubMenus();
+                  }}>
+                  Login
               </div>
-            </Link>
-          )}
+              </Link>
+            )}
         </div>
       </div>
       <div className="desktop-sub-links-container">
@@ -301,38 +301,38 @@ export const DesktopNav = () => {
                 </Link>
               </div>
               <div>
-                <Link href="/exchange/BTC/Bitmex" passHref>
+                <Link href="/exchange/ETH/Bitfinex" passHref>
                   <div
                     onClick={() => {
                       ReactGA.event({
                         category: "User",
-                        action: `Click BTC BitMEX`,
+                        action: `Click ETH Bitfinex`,
                         label: `Desktop Mav`
                       });
                     }}
                     className={classNames(
                       "desktop-sub-link",
-                      setLinkActive(asPath, "/exchange/BTC/Bitmex")
+                      setLinkActive(asPath, "/exchange/ETH/Bitfinex")
                     )}>
-                    BTC BitMEX
+                    ETH Bitfinex
                   </div>
                 </Link>
               </div>
               <div>
-                <Link href="/exchange/BTC/Bitfinex" passHref>
+                <Link href="/exchange/ETH/Bitrex" passHref>
                   <div
                     onClick={() => {
                       ReactGA.event({
                         category: "User",
-                        action: `Click BTC Bitfinex`,
+                        action: `Click ETH Bitrex`,
                         label: `Desktop Mav`
                       });
                     }}
                     className={classNames(
                       "desktop-sub-link",
-                      setLinkActive(asPath, "/exchange/BTC/Bitfinex")
+                      setLinkActive(asPath, "/exchange/ETH/Bitrex")
                     )}>
-                    BTC Bitfinex
+                    ETH Bitrex
                   </div>
                 </Link>
               </div>
