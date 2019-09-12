@@ -66,9 +66,9 @@ module.exports = async (req, res) => {
       item => item.exchange === exchange
     );
 
-    setResponseCache().map(cacheHeader => {
-      res.setHeader(...cacheHeader);
-    });
+    // setResponseCache().map(cacheHeader => {
+    //   res.setHeader(...cacheHeader);
+    // });
     res.send({
       ta_response: {
         inflow: isMaxDaysOfData
