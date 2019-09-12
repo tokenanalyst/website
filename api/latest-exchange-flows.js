@@ -4,6 +4,8 @@ import { API_ERROR_MSG } from "../constants/apiErrors";
 
 import { DATA_WINDOWS } from "../constants/filters";
 import { formatApiError } from "./utils/formatApiError";
+import { setResponseCache } from "./utils/setResponseCache";
+
 
 module.exports = async (req, res) => {
   const urlParts = url.parse(req.url, true);
@@ -115,7 +117,11 @@ module.exports = async (req, res) => {
         outflow_usd_sum_pct_change
       };
     });
-  });
 
-  res.send({ ta_response });
+    setResponseCache().map(cacheHeader => {
+      res.setHeader(...cacheHeader);
+    });
+    res.send({ ta_response });
+  }
+
 };

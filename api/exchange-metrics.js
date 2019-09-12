@@ -3,6 +3,7 @@ import url from "url";
 import { API_ERROR_MSG } from "../constants/apiErrors";
 
 const isAuthorised = require("./auth/isAuthorised");
+import { setResponseCache } from "./utils/setResponseCache";
 
 module.exports = async (req, res) => {
   const urlParts = url.parse(req.url, true);
@@ -24,16 +25,16 @@ module.exports = async (req, res) => {
 
   let urlBase;
   let isStableCoin = false;
-  let priceUrl = `https://api.tokenanalyst.io/analytics/private/v1/token_price_historical/last?format=json&token=${token}&key=${process.env.API_KEY}&exchange=${exchange}&window=${timeWindow}`;
+  let priceUrl = `https://api.tokenanalyst.io/analytics/private/v1/token_price_historical/last?format=json&token=${token}&key=${process.env.API_KEY}&exchange=${exchange}&window=${timeWindow}&limit=${amountOfTimeUnits}`;
   if (token === "ETH" || token === "BTC") {
     urlBase = `https://api.tokenanalyst.io/analytics/private/v1/exchange_flow_window_historical`;
   } else if (token === "USDT_OMNI") {
     urlBase = `https://api.tokenanalyst.io/analytics/private/v1/exchange_flow_window_historical`;
-    priceUrl = `https://api.tokenanalyst.io/analytics/private/v1/exchange_flow_window_historical/last?format=json&token=${token}&key=${process.env.API_KEY}&exchange=${exchange}&window=${timeWindow}&direction=inflow`;
+    priceUrl = `https://api.tokenanalyst.io/analytics/private/v1/exchange_flow_window_historical/last?format=json&token=${token}&key=${process.env.API_KEY}&exchange=${exchange}&window=${timeWindow}&direction=inflow&limit=${amountOfTimeUnits}`;
   } else {
     isStableCoin = true;
     urlBase = `https://api.tokenanalyst.io/analytics/private/v1/erc20_exchanges_flow_window_historical`;
-    priceUrl = `https://api.tokenanalyst.io/analytics/private/v1/erc20_exchanges_flow_window_historical/last?format=json&token=${token}&key=${process.env.API_KEY}&exchange=${exchange}&window=${timeWindow}&direction=inflow`;
+    priceUrl = `https://api.tokenanalyst.io/analytics/private/v1/erc20_exchanges_flow_window_historical/last?format=json&token=${token}&key=${process.env.API_KEY}&exchange=${exchange}&window=${timeWindow}&direction=inflow&limit=${amountOfTimeUnits}`;
   }
 
   const [
@@ -43,10 +44,10 @@ module.exports = async (req, res) => {
     tokenPriceResponse
   ] = await Promise.all([
     axios.get(
-      `${urlBase}/last?key=${process.env.API_KEY}&format=json&token=${token}&direction=inflow&exchange=${exchange}&window=${timeWindow}`
+      `${urlBase}/last?key=${process.env.API_KEY}&format=json&token=${token}&direction=inflow&exchange=${exchange}&window=${timeWindow}&limit=${amountOfTimeUnits}`
     ),
     axios.get(
-      `${urlBase}/last?key=${process.env.API_KEY}&format=json&token=${token}&direction=outflow&exchange=${exchange}&window=${timeWindow}`
+      `${urlBase}/last?key=${process.env.API_KEY}&format=json&token=${token}&direction=outflow&exchange=${exchange}&window=${timeWindow}&limit=${amountOfTimeUnits}`
     ),
     axios.get(
       `https://api.tokenanalyst.io/analytics/last?job=exchange_flows_all_tokens_v5&format=json`
@@ -64,7 +65,10 @@ module.exports = async (req, res) => {
     const filteredPrice = tokenPriceResponse.data.filter(
       item => item.exchange === exchange
     );
-
+    
+    setResponseCache().map(cacheHeader => {
+      res.setHeader(...cacheHeader);
+    });
     res.send({
       ta_response: {
         inflow: isMaxDaysOfData
@@ -82,6 +86,9 @@ module.exports = async (req, res) => {
       }
     });
   } else {
+    setResponseCache().map(cacheHeader => {
+      res.setHeader(...cacheHeader);
+    });
     res.send({
       ta_response: {
         inflow: isMaxDaysOfData
