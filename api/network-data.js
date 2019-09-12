@@ -23,7 +23,7 @@ function makeQuery(params = {}) {
 function createUrl(dataPoint, paramString, hasLimit) {
   return `https://api.tokenanalyst.io/analytics/private/v1/${dataPoint}/last?${paramString}${
     hasLimit ? `&limit=${LIMITED_DAYS}` : ``
-  }`;
+    }`;
 }
 
 module.exports = async (req, res) => {
@@ -42,139 +42,139 @@ module.exports = async (req, res) => {
 
   const apiResponse = isStableCoin(token)
     ? [
-        axios.get(
-          createUrl(
+      axios.get(
+        createUrl(
+          `token_volume_historical`,
+          makeQuery({ key: process.env.API_KEY, format: "json", token }),
+          hasLimit
+        )
+      ),
+      axios.get(
+        createUrl(
+          `token_count_historical`,
+          makeQuery({ key: process.env.API_KEY, format: "json", token }),
+          hasLimit
+        )
+      ),
+      axios.get(
+        createUrl(
+          `token_active_address_historical`,
+          makeQuery({ key: process.env.API_KEY, format: "json", token }),
+          hasLimit
+        )
+      )
+    ]
+    : [
+      axios.get(
+        token === NATIVE_TOKENS.BTC
+          ? createUrl(
+            `token_volume_window_historical`,
+            makeQuery({
+              key: process.env.API_KEY,
+              format: "json",
+              token,
+              window: "1d"
+            }),
+            hasLimit
+          )
+          : createUrl(
             `token_volume_historical`,
             makeQuery({ key: process.env.API_KEY, format: "json", token }),
             hasLimit
           )
-        ),
-        axios.get(
-          createUrl(
+      ),
+      axios.get(
+        token === NATIVE_TOKENS.BTC
+          ? createUrl(
+            `token_count_window_historical`,
+            makeQuery({
+              key: process.env.API_KEY,
+              format: "json",
+              token,
+              window: "1d"
+            }),
+            hasLimit
+          )
+          : createUrl(
             `token_count_historical`,
             makeQuery({ key: process.env.API_KEY, format: "json", token }),
             hasLimit
           )
-        ),
-        axios.get(
-          createUrl(
+      ),
+      axios.get(
+        token === NATIVE_TOKENS.BTC
+          ? createUrl(
+            `token_active_address_window_historical`,
+            makeQuery({
+              key: process.env.API_KEY,
+              format: "json",
+              token,
+              window: "1d"
+            }),
+            hasLimit
+          )
+          : createUrl(
             `token_active_address_historical`,
             makeQuery({ key: process.env.API_KEY, format: "json", token }),
             hasLimit
           )
-        )
-      ]
-    : [
-        axios.get(
-          token === NATIVE_TOKENS.BTC
-            ? createUrl(
-                `token_volume_window_historical`,
-                makeQuery({
-                  key: process.env.API_KEY,
-                  format: "json",
-                  token,
-                  window: "1d"
-                }),
-                hasLimit
-              )
-            : createUrl(
-                `token_volume_historical`,
-                makeQuery({ key: process.env.API_KEY, format: "json", token }),
-                hasLimit
-              )
-        ),
-        axios.get(
-          token === NATIVE_TOKENS.BTC
-            ? createUrl(
-                `token_count_window_historical`,
-                makeQuery({
-                  key: process.env.API_KEY,
-                  format: "json",
-                  token,
-                  window: "1d"
-                }),
-                hasLimit
-              )
-            : createUrl(
-                `token_count_historical`,
-                makeQuery({ key: process.env.API_KEY, format: "json", token }),
-                hasLimit
-              )
-        ),
-        axios.get(
-          token === NATIVE_TOKENS.BTC
-            ? createUrl(
-                `token_active_address_window_historical`,
-                makeQuery({
-                  key: process.env.API_KEY,
-                  format: "json",
-                  token,
-                  window: "1d"
-                }),
-                hasLimit
-              )
-            : createUrl(
-                `token_active_address_historical`,
-                makeQuery({ key: process.env.API_KEY, format: "json", token }),
-                hasLimit
-              )
-        ),
-        axios.get(
-          token === NATIVE_TOKENS.BTC
-            ? createUrl(
-                `token_nvt_window_historical`,
-                makeQuery({
-                  key: process.env.API_KEY,
-                  format: "json",
-                  token,
-                  window: "1d"
-                }),
-                hasLimit
-              )
-            : createUrl(
-                `token_nvt_historical`,
-                makeQuery({ key: process.env.API_KEY, format: "json", token }),
-                hasLimit
-              )
-        ),
-        axios.get(
-          token === NATIVE_TOKENS.BTC
-            ? createUrl(
-                `token_fees_window_historical`,
-                makeQuery({
-                  key: process.env.API_KEY,
-                  format: "json",
-                  token,
-                  window: "1d"
-                }),
-                hasLimit
-              )
-            : createUrl(
-                `token_fees_historical`,
-                makeQuery({ key: process.env.API_KEY, format: "json", token }),
-                hasLimit
-              )
-        )
-      ];
+      ),
+      axios.get(
+        token === NATIVE_TOKENS.BTC
+          ? createUrl(
+            `token_nvt_window_historical`,
+            makeQuery({
+              key: process.env.API_KEY,
+              format: "json",
+              token,
+              window: "1d"
+            }),
+            hasLimit
+          )
+          : createUrl(
+            `token_nvt_historical`,
+            makeQuery({ key: process.env.API_KEY, format: "json", token }),
+            hasLimit
+          )
+      ),
+      axios.get(
+        token === NATIVE_TOKENS.BTC
+          ? createUrl(
+            `token_fees_window_historical`,
+            makeQuery({
+              key: process.env.API_KEY,
+              format: "json",
+              token,
+              window: "1d"
+            }),
+            hasLimit
+          )
+          : createUrl(
+            `token_fees_historical`,
+            makeQuery({ key: process.env.API_KEY, format: "json", token }),
+            hasLimit
+          )
+      )
+    ];
 
   const results = await Promise.all(apiResponse);
 
   const response = isStableCoin(token)
     ? {
-        volume: results[0].data,
-        count: results[1].data,
-        address: results[2].data
-      }
+      volume: results[0].data,
+      count: results[1].data,
+      address: results[2].data
+    }
     : {
-        volume: results[0].data,
-        count: results[1].data,
-        address: results[2].data,
-        nvt: results[3].data,
-        fees: results[4].data
-      };
+      volume: results[0].data,
+      count: results[1].data,
+      address: results[2].data,
+      nvt: results[3].data,
+      fees: results[4].data
+    };
 
-  setResponseCache().map(cacheHeader => {
-    res.setHeader(...cacheHeader);
-  });
+  // setResponseCache().map(cacheHeader => {
+  //   res.setHeader(...cacheHeader);
+  // });
   res.send({ ta_response: response });
 };

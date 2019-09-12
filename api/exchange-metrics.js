@@ -65,7 +65,7 @@ module.exports = async (req, res) => {
     const filteredPrice = tokenPriceResponse.data.filter(
       item => item.exchange === exchange
     );
-    
+
     setResponseCache().map(cacheHeader => {
       res.setHeader(...cacheHeader);
     });
@@ -86,29 +86,29 @@ module.exports = async (req, res) => {
       }
     });
   } else {
-    setResponseCache().map(cacheHeader => {
-      res.setHeader(...cacheHeader);
-    });
+    // setResponseCache().map(cacheHeader => {
+    //   res.setHeader(...cacheHeader);
+    // });
     res.send({
       ta_response: {
         inflow: isMaxDaysOfData
           ? inflowTxnCountApiResponse.data
           : inflowTxnCountApiResponse.data.slice(
-              inflowTxnCountApiResponse.data.length - amountOfTimeUnits
-            ),
+            inflowTxnCountApiResponse.data.length - amountOfTimeUnits
+          ),
         outflow: isMaxDaysOfData
           ? outflowTxnCountApiResponse.data
           : outflowTxnCountApiResponse.data.slice(
-              outflowTxnCountApiResponse.data.length - amountOfTimeUnits
-            ),
+            outflowTxnCountApiResponse.data.length - amountOfTimeUnits
+          ),
         overall: publicApiResponse.data.filter(
           item => item.token === token && item.exchange === exchange
         ),
         price: isMaxDaysOfData
           ? tokenPriceResponse.data
           : tokenPriceResponse.data.slice(
-              tokenPriceResponse.data.length - amountOfTimeUnits
-            )
+            tokenPriceResponse.data.length - amountOfTimeUnits
+          )
       }
     });
   }
