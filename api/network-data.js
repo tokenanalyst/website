@@ -12,6 +12,14 @@ function isStableCoin(token) {
   return token !== NATIVE_TOKENS.BTC && token !== NATIVE_TOKENS.ETH;
 }
 
+function makeQuery(params = {}) {
+  const query = Object.keys(params).reduce(
+    (acc, param) => `${acc}${param}=${params[param]}&`,
+    ""
+  );
+
+  return `${query.slice(0, -1)}`;
+}
 function createUrl(dataPoint, paramString, hasLimit) {
   return `https://api.tokenanalyst.io/analytics/private/v1/${dataPoint}/last?${paramString}${
     hasLimit ? `&limit=${LIMITED_DAYS}` : ``
@@ -37,21 +45,21 @@ module.exports = async (req, res) => {
         axios.get(
           createUrl(
             `token_volume_historical`,
-            `key=${process.env.API_KEY}&format=json&token=${token}`,
+            makeQuery({ key: process.env.API_KEY, format: "json", token }),
             hasLimit
           )
         ),
         axios.get(
           createUrl(
             `token_count_historical`,
-            `key=${process.env.API_KEY}&format=json&token=${token}`,
+            makeQuery({ key: process.env.API_KEY, format: "json", token }),
             hasLimit
           )
         ),
         axios.get(
           createUrl(
             `token_active_address_historical`,
-            `key=${process.env.API_KEY}&format=json&token=${token}`,
+            makeQuery({ key: process.env.API_KEY, format: "json", token }),
             hasLimit
           )
         )
@@ -61,12 +69,17 @@ module.exports = async (req, res) => {
           token === NATIVE_TOKENS.BTC
             ? createUrl(
                 `token_volume_window_historical`,
-                `key=${process.env.API_KEY}&format=json&token=${token}&window=1d`,
+                makeQuery({
+                  key: process.env.API_KEY,
+                  format: "json",
+                  token,
+                  window: "1d"
+                }),
                 hasLimit
               )
             : createUrl(
                 `token_volume_historical`,
-                `key=${process.env.API_KEY}&format=json&token=${token}`,
+                makeQuery({ key: process.env.API_KEY, format: "json", token }),
                 hasLimit
               )
         ),
@@ -74,12 +87,17 @@ module.exports = async (req, res) => {
           token === NATIVE_TOKENS.BTC
             ? createUrl(
                 `token_count_window_historical`,
-                `key=${process.env.API_KEY}&format=json&token=${token}&window=1d`,
+                makeQuery({
+                  key: process.env.API_KEY,
+                  format: "json",
+                  token,
+                  window: "1d"
+                }),
                 hasLimit
               )
             : createUrl(
                 `token_count_historical`,
-                `key=${process.env.API_KEY}&format=json&token=${token}`,
+                makeQuery({ key: process.env.API_KEY, format: "json", token }),
                 hasLimit
               )
         ),
@@ -87,12 +105,17 @@ module.exports = async (req, res) => {
           token === NATIVE_TOKENS.BTC
             ? createUrl(
                 `token_active_address_window_historical`,
-                `key=${process.env.API_KEY}&format=json&token=${token}&window=1d`,
+                makeQuery({
+                  key: process.env.API_KEY,
+                  format: "json",
+                  token,
+                  window: "1d"
+                }),
                 hasLimit
               )
             : createUrl(
                 `token_active_address_historical`,
-                `key=${process.env.API_KEY}&format=json&token=${token}`,
+                makeQuery({ key: process.env.API_KEY, format: "json", token }),
                 hasLimit
               )
         ),
@@ -100,12 +123,17 @@ module.exports = async (req, res) => {
           token === NATIVE_TOKENS.BTC
             ? createUrl(
                 `token_nvt_window_historical`,
-                `key=${process.env.API_KEY}&format=json&token=${token}&window=1d`,
+                makeQuery({
+                  key: process.env.API_KEY,
+                  format: "json",
+                  token,
+                  window: "1d"
+                }),
                 hasLimit
               )
             : createUrl(
                 `token_nvt_historical`,
-                `key=${process.env.API_KEY}&format=json&token=${token}`,
+                makeQuery({ key: process.env.API_KEY, format: "json", token }),
                 hasLimit
               )
         ),
@@ -113,12 +141,17 @@ module.exports = async (req, res) => {
           token === NATIVE_TOKENS.BTC
             ? createUrl(
                 `token_fees_window_historical`,
-                `key=${process.env.API_KEY}&format=json&token=${token}&window=1d`,
+                makeQuery({
+                  key: process.env.API_KEY,
+                  format: "json",
+                  token,
+                  window: "1d"
+                }),
                 hasLimit
               )
             : createUrl(
                 `token_fees_historical`,
-                `key=${process.env.API_KEY}&format=json&token=${token}`,
+                makeQuery({ key: process.env.API_KEY, format: "json", token }),
                 hasLimit
               )
         )
