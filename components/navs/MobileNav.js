@@ -40,78 +40,36 @@ export const MobileNav = () => {
           onClick={() => setIsVisible(false)}>
           <Link href="/" passHref>
             <div
-              onClick={() => {
-                ReactGA.event({
-                  category: "User",
-                  action: `Click Exchange Flows`,
-                  label: `Mobile Mav`
-                });
-              }}
               className={setLinkActive(router.pathname, "/")}>
               Exchange Flows
             </div>
           </Link>
           <Link href="/stablecoins" passHref>
             <div
-              onClick={() => {
-                ReactGA.event({
-                  category: "User",
-                  action: `Click Stablecoins`,
-                  label: `Mobile Mav`
-                });
-              }}
               className={setLinkActive(router.pathname, "/stablecoins")}>
               Stablecoins
             </div>
           </Link>
           <Link href="/compare" passHref>
             <div
-              onClick={() => {
-                ReactGA.event({
-                  category: "User",
-                  action: `Click Compare`,
-                  label: `Mobile Mav`
-                });
-              }}
               className={setLinkActive(router.pathname, "/compare")}>
               Compare
             </div>
           </Link>
           <Link href="/about" passHref>
             <div
-              onClick={() => {
-                ReactGA.event({
-                  category: "User",
-                  action: `Click Company`,
-                  label: `Mobile Mav`
-                });
-              }}
               className={setLinkActive(router.pathname, "/about")}>
               Company
             </div>
           </Link>
           <Link href="/pricing" passHref>
             <div
-              onClick={() => {
-                ReactGA.event({
-                  category: "User",
-                  action: `Click Pricing`,
-                  label: `Mobile Mav`
-                });
-              }}
               className={setLinkActive(router.pathname, "/pricing")}>
               Pricing
             </div>
           </Link>
           <div className="mobile-link">
             <a
-              onClick={() => {
-                ReactGA.event({
-                  category: "User",
-                  action: `Click Research`,
-                  label: `Mobile Mav`
-                });
-              }}
               href="https://research.tokenanalyst.io/"
               target="_blank">
               Research
@@ -119,13 +77,6 @@ export const MobileNav = () => {
           </div>
           <div className="mobile-link">
             <a
-              onClick={() => {
-                ReactGA.event({
-                  category: "User",
-                  action: `Click API`,
-                  label: `Mobile Mav`
-                });
-              }}
               href="https://docs.tokenanalyst.io/#/api"
               target="_blank">
               API
@@ -146,20 +97,13 @@ export const MobileNav = () => {
               Logout
             </div>
           ) : (
-            <Link href="/login" passHref>
-              <div
-                onClick={() => {
-                  ReactGA.event({
-                    category: "User",
-                    action: `Click Login`,
-                    label: `Mobile Mav`
-                  });
-                }}
-                className="mobile-link">
-                Login
+              <Link href="/login" passHref>
+                <div
+                  className="mobile-link">
+                  Login
               </div>
-            </Link>
-          )}
+              </Link>
+            )}
         </div>
       </div>
       <style jsx>{`

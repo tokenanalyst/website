@@ -66,34 +66,14 @@ export const DesktopNav = () => {
             </div>
             <Link href="/stablecoins" passHref>
               <div
-                onClick={() => {
-                  ReactGA.event({
-                    category: "User",
-                    action: `Click Stablecoins`,
-                    label: `Desktop Mav`
-                  });
-                }}
-                className={classNames(
-                  "desktop-link",
-                  setLinkActive(asPath, "/stablecoins")
-                )}
+                className={classNames("desktop-link", setLinkActive(asPath, "/stablecoins"))}
                 onMouseOver={collapseAllSubMenus}>
                 Stablecoins
               </div>
             </Link>
             <Link href="/compare" passHref>
               <div
-                onClick={() => {
-                  ReactGA.event({
-                    category: "User",
-                    action: `Click Compare`,
-                    label: `Desktop Mav`
-                  });
-                }}
-                className={classNames(
-                  "desktop-link",
-                  setLinkActive(asPath, "/compare")
-                )}
+                className={classNames("desktop-link", setLinkActive(asPath, "/compare"))}
                 onMouseOver={collapseAllSubMenus}>
                 Compare
               </div>
@@ -103,13 +83,6 @@ export const DesktopNav = () => {
             </a>
             <Link href="/pricing" passHref>
               <div
-                onClick={() => {
-                  ReactGA.event({
-                    category: "User",
-                    action: `Click Pricing`,
-                    label: `Desktop Mav`
-                  });
-                }}
                 className={classNames(
                   "desktop-link",
                   setLinkActive(asPath, "/pricing")
@@ -120,14 +93,7 @@ export const DesktopNav = () => {
             <a
               href="https://docs.tokenanalyst.io/#/api"
               target="_blank"
-              onMouseOver={collapseAllSubMenus}
-              onClick={() => {
-                ReactGA.event({
-                  category: "User",
-                  action: `Click API`,
-                  label: `Desktop Mav`
-                });
-              }}>
+              onMouseOver={collapseAllSubMenus}>
               API
             </a>
             <div
@@ -170,13 +136,7 @@ export const DesktopNav = () => {
               <Link href="/login" passHref>
                 <div
                   className="login-button"
-                  onClick={() => {
-                    ReactGA.event({
-                      category: "User",
-                      action: `Click Login`,
-                      label: `Desktop Mav`
-                    });
-                  }}
+
                   onMouseOver={() => {
                     collapseAllSubMenus();
                   }}>
