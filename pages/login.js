@@ -9,9 +9,11 @@ const Login = () => {
       <div className="container">
         <div className="header">Login</div>
         <div className="contents">
+          <div className="login-form">
           <LoginWidget />
-          <div>
-            <div className="register">Need an account?</div>
+          </div>
+          <div className="register">
+            <div>Need an account?</div>
             <Link href="/register">
               <a>Sign Up</a>
             </Link>
@@ -21,10 +23,13 @@ const Login = () => {
       <style jsx>{`
         .container {
           font-family: Open Sans;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
         }
         .contents {
           display: flex;
-          flex-direction: row;
+          flex-direction: column;
           align-items: center;
           font-family: Space Grotesk;
         }
@@ -34,10 +39,12 @@ const Login = () => {
           font-weight: bold;
           padding: 15px;
           padding-top: 30px;
+          text-align: center;
         }
         .register {
           font-family: Open Sans;
           padding-bottom: 10px;
+          text-align: center;
         }
         @media only screen and (max-width: 768px) {
           .contents {

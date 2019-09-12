@@ -2,6 +2,7 @@ import axios from "axios";
 import url from "url";
 
 import { NATIVE_TOKENS } from "../constants/tokens";
+import { setResponseCache } from "./utils/setResponseCache";
 
 function isStableCoin(token) {
   return token !== NATIVE_TOKENS.BTC && token !== NATIVE_TOKENS.ETH;
@@ -77,5 +78,8 @@ module.exports = async (req, res) => {
         rewards: results[6].data
       };
 
+  setResponseCache().map(cacheHeader => {
+    res.setHeader(...cacheHeader);
+  });
   res.send({ ta_response: response });
 };

@@ -13,18 +13,21 @@ const Register = () => {
       </div>
       <style jsx>{`
         .container {
+          display: flex;
           font-family: Space Grotesk;
+          flex-direction: column;
         }
         .contents {
           display: flex;
-          flex-direction: row;
           align-items: center;
+          justify-content: center;
         }
         .header {
           font-size: 32px;
           font-weight: bold;
           padding: 15px;
           padding-top: 30px;
+          text-align: center;
         }
         @media only screen and (max-width: 768px) {
           .contents {
