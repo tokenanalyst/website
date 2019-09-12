@@ -123,7 +123,7 @@ export const DesktopNav = () => {
                   ReactGA.event({
                     category: "User",
                     action: `Click Logout`,
-                    label: `Desktop Mav`
+                    label: `Desktop Nav`
                   });
                 }}
                 onMouseOver={() => {
@@ -161,7 +161,7 @@ export const DesktopNav = () => {
                       ReactGA.event({
                         category: "User",
                         action: `Click Company`,
-                        label: `Desktop Mav`
+                        label: `Desktop Nav`
                       });
                     }}
                     className={classNames(
@@ -180,7 +180,7 @@ export const DesktopNav = () => {
                     ReactGA.event({
                       category: "User",
                       action: `Click Follow Us`,
-                      label: `Desktop Mav`
+                      label: `Desktop Nav`
                     });
                   }}>
                   Follow Us
@@ -194,7 +194,7 @@ export const DesktopNav = () => {
                     ReactGA.event({
                       category: "User",
                       action: `Click Telegram`,
-                      label: `Desktop Mav`
+                      label: `Desktop Nav`
                     });
                   }}>
                   Telegram
@@ -208,7 +208,7 @@ export const DesktopNav = () => {
                     ReactGA.event({
                       category: "User",
                       action: `Click Contact`,
-                      label: `Desktop Mav`
+                      label: `Desktop Nav`
                     });
                   }}>
                   Contact
@@ -231,7 +231,7 @@ export const DesktopNav = () => {
                       ReactGA.event({
                         category: "User",
                         action: `Click BTC Binance`,
-                        label: `Desktop Mav`
+                        label: `Desktop Nav`
                       });
                     }}
                     className={classNames(
@@ -249,7 +249,7 @@ export const DesktopNav = () => {
                       ReactGA.event({
                         category: "User",
                         action: `Click BTC Bitstamp`,
-                        label: `Desktop Mav`
+                        label: `Desktop Nav`
                       });
                     }}
                     className={classNames(
@@ -267,7 +267,7 @@ export const DesktopNav = () => {
                       ReactGA.event({
                         category: "User",
                         action: `Click ETH Bitfinex`,
-                        label: `Desktop Mav`
+                        label: `Desktop Nav`
                       });
                     }}
                     className={classNames(
@@ -285,7 +285,7 @@ export const DesktopNav = () => {
                       ReactGA.event({
                         category: "User",
                         action: `Click ETH Bitrex`,
-                        label: `Desktop Mav`
+                        label: `Desktop Nav`
                       });
                     }}
                     className={classNames(
