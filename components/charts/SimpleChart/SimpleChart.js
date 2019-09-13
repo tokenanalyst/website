@@ -35,7 +35,7 @@ export const SimpleChart = ({
       localization: {
         priceFormatter: window.matchMedia("(max-width: 768px)").matches
           ? FORMATTERS.truncated
-          : FORMATTERS.volume,
+          : FORMATTERS.volume
       },
       timeScale: {
         visible: true,
@@ -92,7 +92,7 @@ export const SimpleChart = ({
           <tbody>
             {tooltips.map(({ title, value, color }) =>
               value ? (
-                <tr>
+                <tr key={color}>
                   <td style={{ color }}>{title}</td>
                   <td className="value">
                     {window.matchMedia("(max-width: 768px)").matches
