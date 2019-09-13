@@ -1,16 +1,16 @@
-import React, { useState, useContext } from "react";
-import Link from "next/link";
-import Cookies from "js-cookie";
-import { useRouter } from "next/router";
-import classNames from "classnames";
-import ReactGA from "react-ga";
+import React, { useState, useContext } from 'react';
+import Link from 'next/link';
+import Cookies from 'js-cookie';
+import { useRouter } from 'next/router';
+import classNames from 'classnames';
+import ReactGA from 'react-ga';
 
-import { LoginContext } from "../../contexts/Login";
-import { LOGO_IMAGES } from "../../constants/image-paths";
-import { colors } from "../../constants/styles/colors";
+import { LoginContext } from '../../contexts/Login';
+import { LOGO_IMAGES } from '../../constants/image-paths';
+import { colors } from '../../constants/styles/colors';
 
 export const setLinkActive = (pathName, link) =>
-  pathName === link ? "active" : "";
+  pathName === link ? 'active' : '';
 
 export const DesktopNav = () => {
   const loginCtx = useContext(LoginContext);
@@ -49,8 +49,8 @@ export const DesktopNav = () => {
               <img
                 src={
                   loginCtx.isLoggedIn
-                    ? `/static/png/${LOGO_IMAGES["DesktopPro"]}`
-                    : `/static/png/${LOGO_IMAGES["Desktop"]}`
+                    ? `/static/png/${LOGO_IMAGES['DesktopPro']}`
+                    : `/static/png/${LOGO_IMAGES['Desktop']}`
                 }
                 width="180px"
               />
@@ -58,7 +58,7 @@ export const DesktopNav = () => {
           </div>
           <div className="desktop-links">
             <div
-              className={classNames("desktop-link", setLinkActive(asPath, "/"))}
+              className={classNames('desktop-link', setLinkActive(asPath, '/'))}
               onMouseOver={() => {
                 collapseAllSubMenus();
                 setShownItems(prev => ({ ...prev, exchanges: true }));
@@ -69,8 +69,8 @@ export const DesktopNav = () => {
             <Link href="/stablecoins" passHref>
               <div
                 className={classNames(
-                  "desktop-link",
-                  setLinkActive(asPath, "/stablecoins")
+                  'desktop-link',
+                  setLinkActive(asPath, '/stablecoins')
                 )}
                 onMouseOver={collapseAllSubMenus}
               >
@@ -80,8 +80,8 @@ export const DesktopNav = () => {
             <Link href="/compare" passHref>
               <div
                 className={classNames(
-                  "desktop-link",
-                  setLinkActive(asPath, "/compare")
+                  'desktop-link',
+                  setLinkActive(asPath, '/compare')
                 )}
                 onMouseOver={collapseAllSubMenus}
               >
@@ -94,8 +94,8 @@ export const DesktopNav = () => {
             <Link href="/pricing" passHref>
               <div
                 className={classNames(
-                  "desktop-link",
-                  setLinkActive(asPath, "/pricing")
+                  'desktop-link',
+                  setLinkActive(asPath, '/pricing')
                 )}
               >
                 Pricing
@@ -110,8 +110,8 @@ export const DesktopNav = () => {
             </a>
             <div
               className={classNames(
-                "desktop-link",
-                setLinkActive(asPath, "/about")
+                'desktop-link',
+                setLinkActive(asPath, '/about')
               )}
               onMouseOver={() => {
                 collapseAllSubMenus();
@@ -125,16 +125,16 @@ export const DesktopNav = () => {
         <div className="right-side">
           {loginCtx.isLoggedIn ? (
             <>
-              <span style={{ color: "white" }}>
-                Welcome, {Cookies.get("loggedInAs")}
+              <span style={{ color: 'white' }}>
+                Welcome, {Cookies.get('loggedInAs')}
               </span>
               <span
                 className="login-button"
                 onClick={() => {
-                  Cookies.remove("apiKey");
+                  Cookies.remove('apiKey');
                   loginCtx.setIsLoggedIn(false);
                   ReactGA.event({
-                    category: "User",
+                    category: 'User',
                     action: `Click Logout`,
                     label: `Desktop Nav`
                   });
@@ -168,21 +168,21 @@ export const DesktopNav = () => {
           <div className="desktop-sub-links">
             <div
               className="desktop-contact-sub-links"
-              onMouseLeave={() => collapseSubMenuDelayed("contact")}
+              onMouseLeave={() => collapseSubMenuDelayed('contact')}
             >
               <div>
                 <Link href="/about" passHref>
                   <div
                     onClick={() => {
                       ReactGA.event({
-                        category: "User",
+                        category: 'User',
                         action: `Click Company`,
                         label: `Desktop Nav`
                       });
                     }}
                     className={classNames(
-                      "desktop-sub-link",
-                      setLinkActive(asPath, "/about")
+                      'desktop-sub-link',
+                      setLinkActive(asPath, '/about')
                     )}
                   >
                     Company
@@ -195,7 +195,7 @@ export const DesktopNav = () => {
                   target="_blank"
                   onClick={() => {
                     ReactGA.event({
-                      category: "User",
+                      category: 'User',
                       action: `Click Follow Us`,
                       label: `Desktop Nav`
                     });
@@ -210,7 +210,7 @@ export const DesktopNav = () => {
                   target="_blank"
                   onClick={() => {
                     ReactGA.event({
-                      category: "User",
+                      category: 'User',
                       action: `Click Telegram`,
                       label: `Desktop Nav`
                     });
@@ -225,7 +225,7 @@ export const DesktopNav = () => {
                   target="_blank"
                   onClick={() => {
                     ReactGA.event({
-                      category: "User",
+                      category: 'User',
                       action: `Click Contact`,
                       label: `Desktop Nav`
                     });
@@ -244,21 +244,21 @@ export const DesktopNav = () => {
           <div className="desktop-sub-links">
             <div
               className="desktop-exchanges-sub-links"
-              onMouseLeave={() => collapseSubMenuDelayed("exchanges")}
+              onMouseLeave={() => collapseSubMenuDelayed('exchanges')}
             >
               <div>
                 <Link href="/exchange/BTC/Binance" passHref>
                   <div
                     onClick={() => {
                       ReactGA.event({
-                        category: "User",
+                        category: 'User',
                         action: `Click BTC Binance`,
                         label: `Desktop Nav`
                       });
                     }}
                     className={classNames(
-                      "desktop-sub-link",
-                      setLinkActive(asPath, "/exchange/BTC/Binance")
+                      'desktop-sub-link',
+                      setLinkActive(asPath, '/exchange/BTC/Binance')
                     )}
                   >
                     BTC Binance
@@ -270,14 +270,14 @@ export const DesktopNav = () => {
                   <div
                     onClick={() => {
                       ReactGA.event({
-                        category: "User",
+                        category: 'User',
                         action: `Click BTC Bitstamp`,
                         label: `Desktop Nav`
                       });
                     }}
                     className={classNames(
-                      "desktop-sub-link",
-                      setLinkActive(asPath, "/exchange/BTC/Bitstamp")
+                      'desktop-sub-link',
+                      setLinkActive(asPath, '/exchange/BTC/Bitstamp')
                     )}
                   >
                     BTC Bitstamp
@@ -289,14 +289,14 @@ export const DesktopNav = () => {
                   <div
                     onClick={() => {
                       ReactGA.event({
-                        category: "User",
+                        category: 'User',
                         action: `Click ETH Bitfinex`,
                         label: `Desktop Nav`
                       });
                     }}
                     className={classNames(
-                      "desktop-sub-link",
-                      setLinkActive(asPath, "/exchange/ETH/Bitfinex")
+                      'desktop-sub-link',
+                      setLinkActive(asPath, '/exchange/ETH/Bitfinex')
                     )}
                   >
                     ETH Bitfinex
@@ -308,14 +308,14 @@ export const DesktopNav = () => {
                   <div
                     onClick={() => {
                       ReactGA.event({
-                        category: "User",
+                        category: 'User',
                         action: `Click ETH Bittrex`,
                         label: `Desktop Nav`
                       });
                     }}
                     className={classNames(
-                      "desktop-sub-link",
-                      setLinkActive(asPath, "/exchange/ETH/Bittrex")
+                      'desktop-sub-link',
+                      setLinkActive(asPath, '/exchange/ETH/Bittrex')
                     )}
                   >
                     ETH Bittrex
@@ -420,13 +420,13 @@ export const DesktopNav = () => {
           opacity: 1;
         }
         .desktop-about-sub-links {
-          display: ${shownItems.about ? "block" : "none"};
+          display: ${shownItems.about ? 'block' : 'none'};
         }
         .desktop-contact-sub-links {
-          display: ${shownItems.contact ? "block" : "none"};
+          display: ${shownItems.contact ? 'block' : 'none'};
         }
         .desktop-exchanges-sub-links {
-          display: ${shownItems.exchanges ? "block" : "none"};
+          display: ${shownItems.exchanges ? 'block' : 'none'};
         }
         .right-side {
           margin-right: 2%;

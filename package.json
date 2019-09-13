@@ -45,7 +45,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run prettify"
+      "lint-staged": "npm run prettify"
     }
   }
 }
