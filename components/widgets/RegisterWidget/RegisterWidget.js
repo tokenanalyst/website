@@ -28,8 +28,6 @@ export const RegisterWidget = () => {
 
   const { trader, enterprise, enthusiast, researcher, developer, other } = profession
 
-  console.log(profession)
-
   const register = async () => {
     if (password !== passwordVerify) {
       setErrorText("Passwords do not match");
@@ -124,10 +122,6 @@ export const RegisterWidget = () => {
                     type="checkbox"
                     checked={trader}
                     onChange={() => {
-                      console.log({
-                        ...profession,
-                        trader: !trader
-                      })
                       return setProfession({
                         ...profession,
                         trader: !trader
