@@ -9,9 +9,9 @@ import { CHART_TYPES } from "../../constants/chartTypes";
 
 const formatTokenSymbol = rawSymbol => rawSymbol.replace("_", " ");
 
-const makeTimeKey = (tokens, token) => {
-  return Object.keys(tokens).indexOf(token) >= 0 ? "date" : "day";
-};
+// const makeTimeKey = (tokens, token) => {
+//   return Object.keys(tokens).indexOf(token) >= 0 ? "date" : "date";
+// };
 
 const makeValueKey = (tokens, token) => {
   return Object.keys(tokens).indexOf(token) >= 0 ? "price_usd" : "price";
@@ -23,17 +23,78 @@ const addTimeWindow = (baseDataSet, timeWindow) => {
   });
 };
 
+const getUTCDate = (datum) => {
+  if (datum.date && datum.hour) {
+    const { date, hour } = datum
+    console.log(date, hour)
+    const splitDate = date.split('-');
+    const splitHour = hour.split(':');
+    console.log(splitDate[0], splitDate[1], splitDate[2], splitHour[0], splitHour[1], splitHour[2])
+    return Date.UTC(splitDate[0], splitDate[1], splitDate[2], splitHour[0], splitHour[1], splitHour[2])
+  }
+  if (datum.day) {
+    const splitDate = datum.day.split('-');
+
+    return Date.UTC(splitDate[0], splitDate[1], splitDate[2])
+  }
+
+}
+
 export const getExchangeDataSet = (response, token, timeWindow = "1d") => {
   const USDSymbol = formatTokenSymbol(CURRENCIES.USD);
   const tokenSymbol = formatTokenSymbol(token);
-
+  console.log('response')
+  console.log(response)
   const toSingleValueChartDataForTimeWindow = (data, timeKey, valueKey) => {
+    // console.log(timeKey, valueKey)
+    // console.log(timeWindow)
     if (timeWindow === "1h") {
-      return data.map(datum => ({
-        time: new Date(`${datum.date}T${datum.hour}`).getTime() / 1000,
-        value: datum[valueKey]
-      }));
+      // console.log('run toSingleValueChartData 1h')
+      return data.map(datum => {
+        console.log(datum)
+        if (datum.date === '2019-09-08' && datum.hour === '20:00:00' && valueKey === 'outflow') {
+          console.log(`${datum.date} ${datum.hour} ${valueKey} ${datum[valueKey]}`)
+          console.log(new Date(`${datum.date}T${datum.hour}`).getTime() / 1000)
+          console.log('toSingleValueChartDataForTimeWindow match')
+          console.log({
+            time: new Date(`${datum.date}T${datum.hour}`).getTime() / 1000,
+            value: datum[valueKey]
+          })
+        }
+        if (datum.date === '2019-09-08' && datum.hour === '20:00:00' && valueKey === 'inflow') {
+          console.log(`${datum.date} ${datum.hour} ${valueKey} ${datum[valueKey]}`)
+          console.log(new Date(`${datum.date}T${datum.hour}`).getTime() / 1000)
+          console.log('toSingleValueChartDataForTimeWindow match')
+          console.log({
+            time: new Date(`${datum.date}T${datum.hour}`).getTime() / 1000,
+            value: datum[valueKey]
+          })
+        }
+        if (datum.date === '2019-09-08' && datum.hour === '21:00:00' && valueKey === 'outflow') {
+          console.log(`${datum.date} ${datum.hour} ${valueKey} ${datum[valueKey]}`)
+          console.log(new Date(`${datum.date}T${datum.hour}`).getTime() / 1000)
+          console.log('toSingleValueChartDataForTimeWindow match')
+          console.log({
+            time: new Date(`${datum.date}T${datum.hour}`).getTime() / 1000,
+            value: datum[valueKey]
+          })
+        }
+        if (datum.date === '2019-09-08' && datum.hour === '21:00:00' && valueKey === 'inflow') {
+          console.log(`${datum.date} ${datum.hour} ${valueKey} ${datum[valueKey]}`)
+          console.log(new Date(`${datum.date}T${datum.hour}`).getTime() / 1000)
+          console.log('toSingleValueChartDataForTimeWindow match')
+          console.log({
+            time: new Date(`${datum.date}T${datum.hour}`).getTime() / 1000,
+            value: datum[valueKey]
+          })
+        }
+        return {
+          time: new Date(getUTCDate(datum)).getTime() / 1000,
+          value: datum[valueKey]
+        }
+      });
     }
+    // console.log('run toSingleValueChartData 1d')
     return toSingleValueChartData(data, timeKey, valueKey);
   };
 
@@ -43,7 +104,7 @@ export const getExchangeDataSet = (response, token, timeWindow = "1d") => {
       title: "Price",
       chartValues: toSingleValueChartDataForTimeWindow(
         response.price,
-        makeTimeKey(STABLE_TOKENS, token),
+        'date',
         makeValueKey(STABLE_TOKENS, token)
       ),
       visible: true,
@@ -240,6 +301,6 @@ export const getExchangeDataSet = (response, token, timeWindow = "1d") => {
     ]);
     return addTimeWindow(baseDataSetWithBTC, timeWindow);
   }
-
+  console.log(baseDataSet)
   return addTimeWindow(baseDataSet, timeWindow);
 };

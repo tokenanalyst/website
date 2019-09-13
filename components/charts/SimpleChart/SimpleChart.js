@@ -47,7 +47,7 @@ export const SimpleChart = ({
         mode: 1
       }
     });
-
+    // console.log(dataSet)
     const allSeries = dataSet
       .filter(data => data.visible || data.isAlwaysDisplayed)
       .map(data => {
@@ -66,6 +66,22 @@ export const SimpleChart = ({
           lineStyle: 0,
           crosshairMarkerRadius: 5
         });
+        console.log(`${data.dataPoint} - ${data.title}`)
+        // console.log(data.chartValues)
+        if (data.title === 'Outflow Volume (ETH)') {
+          const match = data.chartValues.find(value => {
+            return value.time === 1567969200
+          })
+          console.log('SimpleChart match')
+          console.log(match)
+        }
+        if (data.title === 'Inflow Volume (ETH)') {
+          const match = data.chartValues.find(value => {
+            return value.time === 1567969200
+          })
+          console.log('SimpleChart match')
+          console.log(match)
+        }
         series.setData(data.chartValues);
         return { series, title: data.title, color: data.solidColor };
       });
@@ -101,8 +117,8 @@ export const SimpleChart = ({
                   </td>
                 </tr>
               ) : (
-                <tr />
-              )
+                  <tr />
+                )
             )}
           </tbody>
         </table>

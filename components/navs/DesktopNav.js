@@ -57,69 +57,78 @@ export const DesktopNav = () => {
             </Link>
           </div>
           <div className="desktop-links">
-            <div
-              className={classNames("desktop-link", setLinkActive(asPath, "/"))}
-              onMouseOver={() => {
-                collapseAllSubMenus();
-                setShownItems(prev => ({ ...prev, exchanges: true }));
-              }}
-            >
-              Exchange Flow
-            </div>
-            <Link href="/stablecoins" passHref>
+            <div className={'desktop-links-data'}>
               <div
-                className={classNames(
-                  "desktop-link",
-                  setLinkActive(asPath, "/stablecoins")
-                )}
+                className={classNames("desktop-link", setLinkActive(asPath, "/"))}
+                onMouseOver={() => {
+                  collapseAllSubMenus();
+                  setShownItems(prev => ({ ...prev, exchanges: true }));
+                }}
+              >
+                Exchange Flow
+            </div>
+              <Link href="/stablecoins" passHref>
+                <div
+                  className={classNames(
+                    "desktop-link",
+                    setLinkActive(asPath, "/stablecoins")
+                  )}
+                  onMouseOver={collapseAllSubMenus}
+                >
+                  Stablecoins
+              </div>
+              </Link>
+              <Link href="/compare" passHref>
+                <div
+                  className={classNames(
+                    "desktop-link",
+                    setLinkActive(asPath, "/compare")
+                  )}
+                  onMouseOver={collapseAllSubMenus}
+                >
+                  Compare
+              </div>
+              </Link>
+            </div>
+
+            <div className={'desktop-links-products'}>
+
+              <a href="https://research.tokenanalyst.io/" target="_blank">
+                Research
+            </a>
+              <Link href="/pricing" passHref>
+                <div
+                  className={classNames(
+                    "desktop-link",
+                    setLinkActive(asPath, "/pricing")
+                  )}
+                >
+                  Pricing
+              </div>
+              </Link>
+              <a
+                href="https://docs.tokenanalyst.io/#/api"
+                target="_blank"
                 onMouseOver={collapseAllSubMenus}
               >
-                Stablecoins
-              </div>
-            </Link>
-            <Link href="/compare" passHref>
+                API
+            </a>
               <div
                 className={classNames(
                   "desktop-link",
-                  setLinkActive(asPath, "/compare")
+                  setLinkActive(asPath, "/about")
                 )}
-                onMouseOver={collapseAllSubMenus}
+                onMouseOver={() => {
+                  collapseAllSubMenus();
+                  setShownItems(prev => ({ ...prev, contact: true }));
+                }}
               >
-                Compare
-              </div>
-            </Link>
-            <a href="https://research.tokenanalyst.io/" target="_blank">
-              Research
-            </a>
-            <Link href="/pricing" passHref>
-              <div
-                className={classNames(
-                  "desktop-link",
-                  setLinkActive(asPath, "/pricing")
-                )}
-              >
-                Pricing
-              </div>
-            </Link>
-            <a
-              href="https://docs.tokenanalyst.io/#/api"
-              target="_blank"
-              onMouseOver={collapseAllSubMenus}
-            >
-              API
-            </a>
-            <div
-              className={classNames(
-                "desktop-link",
-                setLinkActive(asPath, "/about")
-              )}
-              onMouseOver={() => {
-                collapseAllSubMenus();
-                setShownItems(prev => ({ ...prev, contact: true }));
-              }}
-            >
-              About Us
+                About Us
             </div>
+
+
+            </div>
+
           </div>
         </div>
         <div className="right-side">
@@ -147,17 +156,17 @@ export const DesktopNav = () => {
               </span>
             </>
           ) : (
-            <Link href="/login" passHref>
-              <div
-                className="login-button"
-                onMouseOver={() => {
-                  collapseAllSubMenus();
-                }}
-              >
-                Login
+              <Link href="/login" passHref>
+                <div
+                  className="login-button"
+                  onMouseOver={() => {
+                    collapseAllSubMenus();
+                  }}
+                >
+                  Login
               </div>
-            </Link>
-          )}
+              </Link>
+            )}
         </div>
       </div>
       <div className="desktop-sub-links-container">
@@ -356,6 +365,12 @@ export const DesktopNav = () => {
           justify-content: flex-start;
           align-items: center;
           min-width: 100%;
+        }
+        .desktop-links-data {
+          display: flex;
+        }
+        .desktop-links-products {
+          display: flex;
         }
         .desktop-link,
         a {
