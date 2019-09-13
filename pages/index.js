@@ -1,20 +1,20 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import { IoTable } from "../components/tables/IoTable";
-import { FilterNav } from "../components/navs";
-import { DATA_WINDOWS, UNITS } from "../constants/filters";
-import { underSubNav } from "../constants/styles/common-styled-jsx";
-import { TokenSnapshotWidget } from "../components/widgets/TokenSnapshotWidget";
-import { useApi } from "../custom-hooks";
-import { LoadingSpinner } from "../components/LoadingSpinner";
+import { IoTable } from '../components/tables/IoTable';
+import { FilterNav } from '../components/navs';
+import { DATA_WINDOWS, UNITS } from '../constants/filters';
+import { underSubNav } from '../constants/styles/common-styled-jsx';
+import { TokenSnapshotWidget } from '../components/widgets/TokenSnapshotWidget';
+import { useApi } from '../custom-hooks';
+import { LoadingSpinner } from '../components/LoadingSpinner';
 
 const Exchange = () => {
   const [dataWindow, setDataWindow] = useState(DATA_WINDOWS[0]);
   const [units, setUnits] = useState(UNITS[0]);
   const tokenSnapshotWidgetData = useApi(
-    "/api/latest-exchange-flows?tokens=BTC,ETH,USDC,DAI"
+    '/api/latest-exchange-flows?tokens=BTC,ETH,USDC,DAI'
   );
-  const ioTableData = useApi("/api/exchange-io");
+  const ioTableData = useApi('/api/exchange-io');
 
   return (
     <>

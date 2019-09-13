@@ -1,5 +1,5 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 export const PageHeader = ({ text, rightElement }) => {
   return (
@@ -57,9 +57,9 @@ export const PageHeader = ({ text, rightElement }) => {
 
 PageHeader.propTypes = {
   text: PropTypes.string.isRequired,
-  rightElement: PropTypes.node
+  rightElement: PropTypes.node,
 };
 
 PageHeader.defaultProps = {
-  rightElement: <div />
+  rightElement: <div />,
 };

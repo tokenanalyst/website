@@ -1,9 +1,8 @@
-import PropTypes from "prop-types";
-import React from "react";
-import ReactTooltip from "react-tooltip";
+import PropTypes from 'prop-types';
+import React from 'react';
+import ReactTooltip from 'react-tooltip';
 
 export const SimpleToolTip = ({ children, dataFor, toolTip, ...rest }) => {
-
   return (
     <>
       {children}
@@ -17,5 +16,5 @@ export const SimpleToolTip = ({ children, dataFor, toolTip, ...rest }) => {
 SimpleToolTip.propTypes = {
   children: PropTypes.node,
   dataFor: PropTypes.string,
-  toolTip: PropTypes.node
+  toolTip: PropTypes.node,
 };

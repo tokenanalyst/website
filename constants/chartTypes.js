@@ -1,5 +1,5 @@
 export const CHART_TYPES = {
-  line: "line",
-  area: "area",
-  histogram: "histogram"
+  line: 'line',
+  area: 'area',
+  histogram: 'histogram',
 };

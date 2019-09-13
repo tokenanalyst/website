@@ -8,4 +8,4 @@ export const API_ERROR_MSG = {
 export const API_ERROR_REASON = {
   PROXY_ERROR: 'Proxy internal error.',
   BACKEND_API_ERROR: 'Backend API error.',
-}
+};

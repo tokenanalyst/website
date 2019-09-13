@@ -1,7 +1,7 @@
-import React from "react";
-import Link from "next/link";
+import React from 'react';
+import Link from 'next/link';
 
-import { LoginWidget } from "../components/widgets/LoginWidget";
+import { LoginWidget } from '../components/widgets/LoginWidget';
 
 const Login = () => {
   return (
@@ -10,7 +10,7 @@ const Login = () => {
         <div className="header">Login</div>
         <div className="contents">
           <div className="login-form">
-          <LoginWidget />
+            <LoginWidget />
           </div>
           <div className="register">
             <div>Need an account?</div>
