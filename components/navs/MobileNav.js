@@ -3,10 +3,10 @@ import Link from "next/link";
 import { Icon } from "@blueprintjs/core";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
+import ReactGA from "react-ga";
 
 import { LOGO_IMAGES } from "../../constants/image-paths";
 import { LoginContext } from "../../contexts/Login";
-import { colors } from "../../constants/styles/colors";
 
 export const setLinkActive = (pathName, link) =>
   pathName === link ? "mobile-link-active" : "mobile-link";
@@ -37,40 +37,48 @@ export const MobileNav = () => {
         </div>
         <div
           className="mobile-sub-links-container"
-          onClick={() => setIsVisible(false)}
-        >
+          onClick={() => setIsVisible(false)}>
           <Link href="/" passHref>
-            <div className={setLinkActive(router.pathname, "/")}>
+            <div
+              className={setLinkActive(router.pathname, "/")}>
               Exchange Flows
             </div>
           </Link>
           <Link href="/stablecoins" passHref>
-            <div className={setLinkActive(router.pathname, "/stablecoins")}>
+            <div
+              className={setLinkActive(router.pathname, "/stablecoins")}>
               Stablecoins
             </div>
           </Link>
           <Link href="/compare" passHref>
-            <div className={setLinkActive(router.pathname, "/compare")}>
+            <div
+              className={setLinkActive(router.pathname, "/compare")}>
               Compare
             </div>
           </Link>
           <Link href="/about" passHref>
-            <div className={setLinkActive(router.pathname, "/about")}>
+            <div
+              className={setLinkActive(router.pathname, "/about")}>
               Company
             </div>
           </Link>
           <Link href="/pricing" passHref>
-            <div className={setLinkActive(router.pathname, "/pricing")}>
+            <div
+              className={setLinkActive(router.pathname, "/pricing")}>
               Pricing
             </div>
           </Link>
           <div className="mobile-link">
-            <a href="https://research.tokenanalyst.io/" target="_blank">
+            <a
+              href="https://research.tokenanalyst.io/"
+              target="_blank">
               Research
             </a>
           </div>
           <div className="mobile-link">
-            <a href="https://docs.tokenanalyst.io/#/api" target="_blank">
+            <a
+              href="https://docs.tokenanalyst.io/#/api"
+              target="_blank">
               API
             </a>
           </div>
@@ -80,15 +88,22 @@ export const MobileNav = () => {
               onClick={() => {
                 Cookies.remove("apiKey");
                 loginCtx.setIsLoggedIn(false);
-              }}
-            >
+                ReactGA.event({
+                  category: "User",
+                  action: `Click Logout`,
+                  label: `Mobile Nav`
+                });
+              }}>
               Logout
             </div>
           ) : (
-            <Link href="/login" passHref>
-              <div className="mobile-link">Login</div>
-            </Link>
-          )}
+              <Link href="/login" passHref>
+                <div
+                  className="mobile-link">
+                  Login
+              </div>
+              </Link>
+            )}
         </div>
       </div>
       <style jsx>{`
