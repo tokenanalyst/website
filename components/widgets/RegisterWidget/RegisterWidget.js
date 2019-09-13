@@ -38,31 +38,26 @@ export const RegisterWidget = () => {
 
     try {
       await axios.post("https://api.tokenanalyst.io/auth/user", {
-        validateStatus: function (status) {
-          console.log(status)
-          return status < 500; // Reject only if the status code is greater than or equal to 500
-        },
         username: email,
         password,
         name,
         ...profession
       });
 
-      // const response = await axios.post(
-      //   "https://api.tokenanalyst.io/auth/user/login",
-      //   {
-      //     username: email,
-      //     password
-      //   }
-      // );
+      const response = await axios.post(
+        "https://api.tokenanalyst.io/auth/user/login",
+        {
+          username: email,
+          password
+        }
+      );
 
-      // Cookies.set("apiKey", response.data.apiKey);
-      // loginCtx.setIsLoggedIn(true);
-      // setErrorText(null);
-      // setHasRegistered(true);
+      Cookies.set("apiKey", response.data.apiKey);
+      loginCtx.setIsLoggedIn(true);
+      setErrorText(null);
+      setHasRegistered(true);
     } catch (e) {
-      console.log(e)
-      if (e.message === API_ERROR_MSG.USER_ALREADY_EXISTS) {
+      if (e.response && e.response.data && e.response.data.message === API_ERROR_MSG.USER_ALREADY_EXISTS) {
         setErrorText(
           "You are already registered, please login."
         );
