@@ -1,7 +1,7 @@
-import React from "react";
-import Link from "next/link";
+import React from 'react';
+import Link from 'next/link';
 
-import { colors } from "../constants/styles/colors";
+import { colors } from '../constants/styles/colors';
 
 export const PricingLink = () => {
   return (

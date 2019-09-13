@@ -1,7 +1,7 @@
-import axios from "axios";
+import axios from 'axios';
 
-import { STABLE_TOKENS } from "../constants/tokens";
-import { setResponseCache } from "./utils/setResponseCache";
+import { STABLE_TOKENS } from '../constants/tokens';
+import { setResponseCache } from './utils/setResponseCache';
 
 const Stablecoins = [
   STABLE_TOKENS.USDT_OMNI,
@@ -10,7 +10,7 @@ const Stablecoins = [
   STABLE_TOKENS.PAX,
   STABLE_TOKENS.DAI,
   STABLE_TOKENS.TUSD,
-  STABLE_TOKENS.GUSD
+  STABLE_TOKENS.GUSD,
 ];
 
 module.exports = async (req, res) => {
@@ -27,7 +27,7 @@ module.exports = async (req, res) => {
 
   const response = Stablecoins.map((stablecoin, index) => ({
     name: stablecoin,
-    data: results[index].data
+    data: results[index].data,
   }));
 
   setResponseCache().map(cacheHeader => {

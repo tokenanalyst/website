@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 export const useApi = (url, dependencies) => {
   const [data, setData] = useState(null);
@@ -11,12 +11,11 @@ export const useApi = (url, dependencies) => {
         dependency => dependency === undefined || dependency === null
       )
     ) {
-      setData(null)
+      setData(null);
 
       const getApiResult = async () => {
         const apiResult = await axios.get(url);
         setData(apiResult.data.ta_response);
-
       };
 
       getApiResult();
