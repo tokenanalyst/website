@@ -1,9 +1,9 @@
-import React from "react";
-import Head from "next/head";
-import { Nav } from "./navs";
-import { Newsletter } from "./Newsletter";
-import { CookieBanner } from "./CookieBanner";
-import { Footer } from "./Footer";
+import React from 'react';
+import Head from 'next/head';
+import { Nav } from './navs';
+import { Newsletter } from './Newsletter';
+import { CookieBanner } from './CookieBanner';
+import { Footer } from './Footer';
 
 export const Layout = ({ children }) => (
   <div className="layout">

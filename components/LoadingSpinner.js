@@ -1,14 +1,14 @@
-import React from "react";
-import BarLoader from "react-spinners/ScaleLoader";
+import React from 'react';
+import BarLoader from 'react-spinners/ScaleLoader';
 
-import { colors } from "../constants/styles/colors";
+import { colors } from '../constants/styles/colors';
 
 export const LoadingSpinner = () => {
   return (
     <>
       <div className="spinner">
         <BarLoader
-          sizeUnit={"px"}
+          sizeUnit={'px'}
           height={100}
           width={10}
           color={`rgba(${colors.primaryGreen})`}

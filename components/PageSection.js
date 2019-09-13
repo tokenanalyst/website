@@ -1,6 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Icon } from "@blueprintjs/core";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Icon } from '@blueprintjs/core';
 
 export const PageSection = ({ text }) => {
   return (
@@ -29,9 +29,9 @@ export const PageSection = ({ text }) => {
 
 PageSection.propTypes = {
   text: PropTypes.string.isRequired,
-  rightElement: PropTypes.node
+  rightElement: PropTypes.node,
 };
 
 PageSection.defaultProps = {
-  rightElement: <div />
+  rightElement: <div />,
 };

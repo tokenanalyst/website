@@ -1,10 +1,10 @@
-import React from "react";
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
 export const Skeleton = ({ isSkeleton, children }) => {
   return (
     <>
-      <div className={isSkeleton ? "skeleton" : ''}>{children}</div>
+      <div className={isSkeleton ? 'skeleton' : ''}>{children}</div>
       <style jsx>{`
         .skeleton {
           margin: 2px;
@@ -29,9 +29,9 @@ export const Skeleton = ({ isSkeleton, children }) => {
 
 Skeleton.propTypes = {
   isSkeleton: PropTypes.bool,
-  children: PropTypes.node.isRequired
-}
+  children: PropTypes.node.isRequired,
+};
 
 Skeleton.defaultProps = {
   isSkeleton: false,
-}
+};

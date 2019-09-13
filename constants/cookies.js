@@ -1,3 +1,3 @@
 export const COOKIES = {
-  apiKey: "apiKey"
+  apiKey: 'apiKey',
 };
