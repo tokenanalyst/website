@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import { RegisterWidget } from "../components/widgets/RegisterWidget";
+import { RegisterWidget } from '../components/widgets/RegisterWidget';
 
 const Register = () => {
   return (

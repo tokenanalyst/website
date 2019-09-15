@@ -1,7 +1,7 @@
-import axios from "axios";
+import axios from 'axios';
 
-import { STABLE_TOKENS } from "../constants/tokens";
-import { setResponseCache } from "./utils/setResponseCache";
+import { STABLE_TOKENS } from '../constants/tokens';
+import { setResponseCache } from './utils/setResponseCache';
 
 const Stablecoins = [
   STABLE_TOKENS.USDT_ERC20,
@@ -9,7 +9,7 @@ const Stablecoins = [
   STABLE_TOKENS.PAX,
   STABLE_TOKENS.DAI,
   STABLE_TOKENS.TUSD,
-  STABLE_TOKENS.GUSD
+  STABLE_TOKENS.GUSD,
 ];
 
 module.exports = async (req, res) => {
@@ -25,7 +25,7 @@ module.exports = async (req, res) => {
     ),
     await axios.get(
       `https://api.tokenanalyst.io/analytics/last?job=public_${stablecoin}_total_supply_v5&format=json`
-    )
+    ),
   ]);
 
   const results = await Promise.all(apiResponses);
@@ -37,8 +37,8 @@ module.exports = async (req, res) => {
         address: { ...curr[0].data[0] },
         volume: { ...curr[1].data[0] },
         count: { ...curr[2].data[0] },
-        supply: { ...curr[3].data[0] }
-      }
+        supply: { ...curr[3].data[0] },
+      },
     ],
     []
   );

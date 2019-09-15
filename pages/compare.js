@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext } from 'react';
 
-import { CompareChartWidget } from "../components/widgets/CompareChartWidget";
-import { PageHeader } from "../components/PageHeader";
-import { PricingLink } from "../components/PricingLink";
-import { LoginContext } from "../contexts/Login";
+import { CompareChartWidget } from '../components/widgets/CompareChartWidget';
+import { PageHeader } from '../components/PageHeader';
+import { PricingLink } from '../components/PricingLink';
+import { LoginContext } from '../contexts/Login';
 
 const Compare = () => {
   const loginCtx = useContext(LoginContext);
@@ -12,7 +12,7 @@ const Compare = () => {
     <>
       <div className="container">
         <PageHeader
-          text={"Compare"}
+          text={'Compare'}
           rightElement={!loginCtx.isLoggedIn ? <PricingLink /> : <div />}
         />
         <CompareChartWidget />

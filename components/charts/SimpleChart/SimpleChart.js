@@ -93,7 +93,7 @@ export const SimpleChart = ({
           <tbody>
             {tooltips.map(({ title, value, color }) =>
               value ? (
-                <tr>
+                <tr key={color}>
                   <td style={{ color }}>{title}</td>
                   <td className='value'>
                     {window.matchMedia('(max-width: 768px)').matches

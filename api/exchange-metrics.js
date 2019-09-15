@@ -1,3 +1,4 @@
+
 const url = require('url');
 const { API_ERROR_MSG } = require('../constants/apiErrors');
 const isAuthorised = require('./auth/isAuthorised');
@@ -13,7 +14,6 @@ module.exports = async (req, res) => {
   const format = 'json';
   let amountOfTimeUnits = '90';
   const PUBLIC_API_URL = 'https://api.tokenanalyst.io/analytics';
-
   const { ETH, BTC } = NATIVE_TOKENS;
 
   if (timeWindow === '1h') {
@@ -120,12 +120,11 @@ module.exports = async (req, res) => {
           ? filteredOutflow
           : filteredOutflow.slice(filteredOutflow.length - amountOfTimeUnits),
         overall: publicApiResponse.filter(
+
           item => item.token === token && item.exchange === exchange
         ),
-        price: isMaxDaysOfData
-          ? filteredPrice
-          : filteredPrice.slice(filteredPrice.length - amountOfTimeUnits)
-      }
+        price: filteredPrice,
+      },
     });
   } else {
     // setResponseCache().map(cacheHeader => {
