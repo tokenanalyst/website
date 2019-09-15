@@ -1,21 +1,9 @@
 import { toSingleValueChartData } from './mappers';
 
-import {
-  STABLE_TOKENS,
-  NATIVE_TOKENS,
-  CURRENCIES
-} from '../../constants/tokens';
+import { NATIVE_TOKENS, CURRENCIES } from '../../constants/tokens';
 import { CHART_TYPES } from '../../constants/chartTypes';
 
 const formatTokenSymbol = rawSymbol => rawSymbol.replace('_', ' ');
-
-// const makeTimeKey = (tokens, token) => {
-//   return Object.keys(tokens).indexOf(token) >= 0 ? "date" : "date";
-// };
-
-const makeValueKey = (tokens, token) => {
-  return Object.keys(tokens).indexOf(token) >= 0 ? 'price_usd' : 'price_usd';
-};
 
 const addTimeWindow = (baseDataSet, timeWindow) => {
   return baseDataSet.map(dataPoint => {
@@ -66,7 +54,7 @@ export const getExchangeDataSet = (response, token, timeWindow = '1d') => {
       chartValues: toSingleValueChartDataForTimeWindow(
         response.price,
         'date',
-        makeValueKey(STABLE_TOKENS, token)
+        'price_usd'
       ),
       visible: true,
       solidColor: '#0198E1',

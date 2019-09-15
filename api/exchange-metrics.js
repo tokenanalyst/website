@@ -1,4 +1,3 @@
-
 const url = require('url');
 const { API_ERROR_MSG } = require('../constants/apiErrors');
 const isAuthorised = require('./auth/isAuthorised');
@@ -30,7 +29,7 @@ module.exports = async (req, res) => {
 
   const publicApi = TA({
     apiKey: process.env.API_KEY,
-    apiUrl: PUBLIC_API_URL
+    apiUrl: PUBLIC_API_URL,
   });
 
   const priceApiCall = privateApi.tokenPriceUsdWindowHistorical({
@@ -38,11 +37,11 @@ module.exports = async (req, res) => {
     token,
     exchange,
     window: timeWindow,
-    limit: amountOfTimeUnits
+    limit: amountOfTimeUnits,
   });
 
   const exchangeFlowsAllTokensCall = publicApi.exchangeFlowsAllTokens({
-    format
+    format,
   });
 
   let inFlowApiCall;
@@ -55,7 +54,7 @@ module.exports = async (req, res) => {
       direction: 'inflow',
       exchange,
       window: timeWindow,
-      limit: amountOfTimeUnits
+      limit: amountOfTimeUnits,
     });
     outFlowApiCall = privateApi.exchangeFlowWindowHistorical({
       format,
@@ -63,7 +62,7 @@ module.exports = async (req, res) => {
       direction: 'outflow',
       exchange,
       window: timeWindow,
-      limit: amountOfTimeUnits
+      limit: amountOfTimeUnits,
     });
   } else {
     isStableCoin = true;
@@ -73,7 +72,7 @@ module.exports = async (req, res) => {
       direction: 'inflow',
       exchange,
       window: timeWindow,
-      limit: amountOfTimeUnits
+      limit: amountOfTimeUnits,
     });
     outFlowApiCall = privateApi.erc20ExchangesFlowWindowHistorical({
       format,
@@ -81,7 +80,7 @@ module.exports = async (req, res) => {
       direction: 'outflow',
       exchange,
       window: timeWindow,
-      limit: amountOfTimeUnits
+      limit: amountOfTimeUnits,
     });
   }
 
@@ -89,12 +88,12 @@ module.exports = async (req, res) => {
     inflowTxnCountApiResponse,
     outflowTxnCountApiResponse,
     publicApiResponse,
-    tokenPriceApiResponse
+    tokenPriceApiResponse,
   ] = await Promise.all([
     inFlowApiCall,
     outFlowApiCall,
     exchangeFlowsAllTokensCall,
-    priceApiCall
+    priceApiCall,
   ]);
 
   if (isStableCoin) {
@@ -120,7 +119,6 @@ module.exports = async (req, res) => {
           ? filteredOutflow
           : filteredOutflow.slice(filteredOutflow.length - amountOfTimeUnits),
         overall: publicApiResponse.filter(
-
           item => item.token === token && item.exchange === exchange
         ),
         price: filteredPrice,
@@ -149,8 +147,8 @@ module.exports = async (req, res) => {
           ? tokenPriceApiResponse
           : tokenPriceApiResponse.slice(
               tokenPriceApiResponse.length - amountOfTimeUnits
-            )
-      }
+            ),
+      },
     });
   }
 };

@@ -21,7 +21,7 @@ TA.mockImplementation(() => {
     tokenPriceUsdWindowHistorical,
     exchangeFlowsAllTokens,
     exchangeFlowWindowHistorical,
-    erc20ExchangesFlowWindowHistorical
+    erc20ExchangesFlowWindowHistorical,
   };
 });
 
@@ -29,8 +29,8 @@ url.parse = jest.fn().mockImplementation(data => data);
 
 let mockRequest = {
   cookies: {
-    apiKey: ''
-  }
+    apiKey: '',
+  },
 };
 
 const mockResponse = {};
@@ -44,7 +44,7 @@ beforeEach(() => {
     mockResponse.status,
     mockResponse.json,
     mockResponse.send,
-    TA
+    TA,
   ]);
 });
 
@@ -55,7 +55,7 @@ describe('exchange-metrics api', () => {
       mockResponse.status,
       mockResponse.json,
       mockResponse.send,
-      TA
+      TA,
     ]);
   });
 
@@ -63,8 +63,8 @@ describe('exchange-metrics api', () => {
     mockRequest = {
       ...mockRequest,
       url: {
-        query: { timeWindow: '1d' }
-      }
+        query: { timeWindow: '1d' },
+      },
     };
     const expectedRespond = { message: API_ERROR_MSG.TOKEN_EXCHANGE_MISSING };
     const response = await exchangeMetrics(mockRequest, mockResponse);
@@ -77,11 +77,11 @@ describe('exchange-metrics api', () => {
     mockRequest = {
       ...mockRequest,
       url: {
-        query: { timeWindow: '1d' }
+        query: { timeWindow: '1d' },
       },
       cookies: {
-        apiKey: '123'
-      }
+        apiKey: '123',
+      },
     };
     await exchangeMetrics(mockRequest, mockResponse);
     expect(url.parse).toHaveBeenCalledWith(mockRequest.url, true);
