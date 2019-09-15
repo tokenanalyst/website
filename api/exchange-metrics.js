@@ -97,13 +97,6 @@ module.exports = async (req, res) => {
     priceApiCall
   ]);
 
-  console.log(
-    inflowTxnCountApiResponse,
-    outflowTxnCountApiResponse,
-    publicApiResponse,
-    tokenPriceApiResponse
-  );
-
   if (isStableCoin) {
     const filteredInflow = inflowTxnCountApiResponse.filter(
       item => item.exchange === exchange

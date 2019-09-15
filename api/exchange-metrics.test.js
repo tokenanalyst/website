@@ -7,8 +7,6 @@ import { ETH as ETHUsdPrice } from './__fixtures__/token_price_usd_window_histor
 import { mockExchangeFlowsAllTokens } from './__fixtures__/exchange_flows_all_tokens_v5';
 import { ETH as ETHFlows } from './__fixtures__/exchange_flow_window_historical';
 
-// console.log(ETHFlows);
-
 jest.mock('./utils/ta-api-node/ta');
 jest.mock('./auth/isAuthorised');
 jest.mock('url');
@@ -17,8 +15,6 @@ const tokenPriceUsdWindowHistorical = jest.fn();
 const exchangeFlowsAllTokens = jest.fn();
 const exchangeFlowWindowHistorical = jest.fn();
 const erc20ExchangesFlowWindowHistorical = jest.fn();
-
-console.log(TA);
 
 TA.mockImplementation(() => {
   return {

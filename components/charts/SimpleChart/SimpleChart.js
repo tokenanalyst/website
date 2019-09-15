@@ -1,20 +1,20 @@
-import React, { useEffect, useRef, useState } from "react";
-import { createChart, isBusinessDay } from "lightweight-charts";
-import numeral from "numeral";
+import React, { useEffect, useRef, useState } from 'react';
+import { createChart, isBusinessDay } from 'lightweight-charts';
+import numeral from 'numeral';
 
-import { CHART_TYPES } from "../../../constants/chartTypes";
-import { LoadingSpinner } from "../../LoadingSpinner";
+import { CHART_TYPES } from '../../../constants/chartTypes';
+import { LoadingSpinner } from '../../LoadingSpinner';
 
 const FORMATTERS = {
-  price: value => numeral(value).format("$0,0.00"),
-  volume: value => numeral(value).format("0,0.00"),
-  truncated: value => numeral(value).format("0.0a")
+  price: value => numeral(value).format('$0,0.00'),
+  volume: value => numeral(value).format('0,0.00'),
+  truncated: value => numeral(value).format('0.0a')
 };
 
 const CHART_FUNCS = {
-  line: "addLineSeries",
-  area: "addAreaSeries",
-  histogram: "addHistogramSeries"
+  line: 'addLineSeries',
+  area: 'addAreaSeries',
+  histogram: 'addHistogramSeries'
 };
 
 export const SimpleChart = ({
@@ -33,9 +33,9 @@ export const SimpleChart = ({
       height: height,
       width: width,
       localization: {
-        priceFormatter: window.matchMedia("(max-width: 768px)").matches
+        priceFormatter: window.matchMedia('(max-width: 768px)').matches
           ? FORMATTERS.truncated
-          : FORMATTERS.volume,
+          : FORMATTERS.volume
       },
       timeScale: {
         visible: true,
@@ -47,7 +47,7 @@ export const SimpleChart = ({
         mode: 1
       }
     });
-    // console.log(dataSet)
+
     const allSeries = dataSet
       .filter(data => data.visible || data.isAlwaysDisplayed)
       .map(data => {
@@ -66,22 +66,7 @@ export const SimpleChart = ({
           lineStyle: 0,
           crosshairMarkerRadius: 5
         });
-        console.log(`${data.dataPoint} - ${data.title}`)
-        // console.log(data.chartValues)
-        if (data.title === 'Outflow Volume (ETH)') {
-          const match = data.chartValues.find(value => {
-            return value.time === 1567969200
-          })
-          console.log('SimpleChart match')
-          console.log(match)
-        }
-        if (data.title === 'Inflow Volume (ETH)') {
-          const match = data.chartValues.find(value => {
-            return value.time === 1567969200
-          })
-          console.log('SimpleChart match')
-          console.log(match)
-        }
+
         series.setData(data.chartValues);
         return { series, title: data.title, color: data.solidColor };
       });
@@ -102,28 +87,28 @@ export const SimpleChart = ({
   }, [dataSet, seriesType]);
 
   return (
-    <div className="container" ref={chartRef}>
-      <div className="tooltip">
+    <div className='container' ref={chartRef}>
+      <div className='tooltip'>
         <table>
           <tbody>
             {tooltips.map(({ title, value, color }) =>
               value ? (
                 <tr>
                   <td style={{ color }}>{title}</td>
-                  <td className="value">
-                    {window.matchMedia("(max-width: 768px)").matches
-                      ? numeral(value).format("0.0a")
-                      : numeral(value).format("0,0.00")}
+                  <td className='value'>
+                    {window.matchMedia('(max-width: 768px)').matches
+                      ? numeral(value).format('0.0a')
+                      : numeral(value).format('0,0.00')}
                   </td>
                 </tr>
               ) : (
-                  <tr />
-                )
+                <tr />
+              )
             )}
           </tbody>
         </table>
       </div>
-      <div className="spinner">
+      <div className='spinner'>
         <LoadingSpinner />
       </div>
       <style jsx>{`
@@ -151,7 +136,7 @@ export const SimpleChart = ({
           top: 20%;
           left: 38%;
           z-index: 10;
-          display: ${isLoading ? "block" : "none"};
+          display: ${isLoading ? 'block' : 'none'};
         }
         @media only screen and (max-width: 768px) {
           .container {
