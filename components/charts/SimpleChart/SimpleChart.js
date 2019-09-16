@@ -66,6 +66,7 @@ export const SimpleChart = ({
           lineStyle: 0,
           crosshairMarkerRadius: 5
         });
+
         series.setData(data.chartValues);
         return { series, title: data.title, color: data.solidColor };
       });

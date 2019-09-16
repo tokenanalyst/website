@@ -1,20 +1,21 @@
-import React, { useState } from 'react';
-import dynamic from 'next/dynamic';
-import { Icon } from '@blueprintjs/core';
+import React, { useState } from "react";
+import dynamic from "next/dynamic";
+import { Icon } from "@blueprintjs/core";
 
-import { ChartControls } from '../../charts/ChartControls';
-import { CHART_TYPES } from '../../../constants/chartTypes';
-import { PricingLink } from '../../../components/PricingLink';
+import { ChartControls } from "../../charts/ChartControls";
+import { CHART_TYPES } from "../../../constants/chartTypes";
+import { PricingLink } from "../../../components/PricingLink";
+import { LoadingSpinner } from "../../../components/LoadingSpinner";
 
 const SimpleChart = dynamic(
-  () => import('../../charts/SimpleChart').then(mod => mod.SimpleChart),
+  () => import("../../charts/SimpleChart").then(mod => mod.SimpleChart),
   {
     ssr: false
   }
 );
 
 const SimpleToolTip = dynamic(
-  () => import('../../SimpleToolTip').then(mod => mod.SimpleToolTip),
+  () => import("../../SimpleToolTip").then(mod => mod.SimpleToolTip),
   {
     ssr: false
   }
@@ -34,7 +35,7 @@ const GRAPH_SIZE = {
 };
 
 const TOOL_TIP = {
-  ['1h']: {
+  ["1h"]: {
     message: (
       <div>
         Hourly data. All times are in UTC.
@@ -44,7 +45,7 @@ const TOOL_TIP = {
       </div>
     )
   },
-  ['1d']: {
+  ["1d"]: {
     message: (
       <div>
         Daily data. All times are in UTC.
@@ -67,86 +68,82 @@ export const IoChartWidget = ({
 
   return (
     <>
-      <div className="widget-container">
-        <div className="chart">
-          <div className="header">
-            Inflow / Outflow <Icon icon="chart" color="gray" />
-            <div className="header-info">
-              <div>
-                <SimpleToolTip
-                  dataFor={'header-tooltip'}
-                  toolTip={TOOL_TIP[timeWindow] && TOOL_TIP[timeWindow].message}
-                  type="dark"
-                  effect="solid"
-                >
-                  <div data-tip data-for="header-tooltip">
-                    <Icon icon="info-sign" color="gray" />
-                  </div>
-                </SimpleToolTip>
+      {dataSet ? (
+        <div className="widget-container">
+          <div className="chart-area">
+            <div className="header">
+              Inflow / Outflow <Icon icon="chart" color="gray" />
+              <div className="header-info">
+                <div>
+                  <SimpleToolTip
+                    dataFor={"header-tooltip"}
+                    toolTip={
+                      TOOL_TIP[timeWindow] && TOOL_TIP[timeWindow].message
+                    }
+                    type="dark"
+                    effect="solid"
+                  >
+                    <div data-tip data-for="header-tooltip">
+                      <Icon icon="info-sign" color="gray" />
+                    </div>
+                  </SimpleToolTip>
+                </div>
               </div>
             </div>
+            <div className="chart">
+              {dataSet && (
+                <SimpleChart
+                  dataSet={dataSet}
+                  seriesType={seriesType}
+                  width={
+                    window.matchMedia(
+                      "(min-width: 377px) and (max-width: 768px)"
+                    ).matches
+                      ? GRAPH_SIZE.width.tablet
+                      : window.matchMedia(
+                          "(min-width: 769px) and (max-width: 1400px)"
+                        ).matches
+                      ? GRAPH_SIZE.width.desktop
+                      : window.matchMedia("(min-width: 1800px)").matches
+                      ? GRAPH_SIZE.width.desktopLarge
+                      : GRAPH_SIZE.width.mobile
+                  }
+                  height={
+                    window.matchMedia("(max-width: 768px)").matches
+                      ? GRAPH_SIZE.height.mobile
+                      : GRAPH_SIZE.height.desktop
+                  }
+                  formatter={formatter}
+                  isLoading={!dataSet}
+                />
+              )}
+            </div>
           </div>
-          <div className="graph">
-            {dataSet && (
-              <SimpleChart
-                dataSet={dataSet}
-                seriesType={seriesType}
-                width={
-                  window.matchMedia('(min-width: 377px) and (max-width: 768)')
-                    .matches
-                    ? GRAPH_SIZE.width.tablet
-                    : window.matchMedia(
-                        '(min-width: 769px) and (max-width: 1400)'
-                      ).matches
-                    ? GRAPH_SIZE.width.desktop
-                    : window.matchMedia('(min-width: 1800px)').matches
-                    ? GRAPH_SIZE.width.desktopLarge
-                    : GRAPH_SIZE.width.mobile
-                }
-                height={
-                  window.matchMedia('(max-width: 768px)').matches
-                    ? GRAPH_SIZE.height.mobile
-                    : GRAPH_SIZE.height.desktop
-                }
-                formatter={formatter}
-                isLoading={!dataSet}
-              />
-            )}
+          <div className="controls-container">
+            <ChartControls
+              seriesType={seriesType}
+              setSeriesType={setSeriesType}
+              dataSet={dataSet}
+              setDataSet={setDataSet}
+              setTimeWindow={setTimeWindow}
+            />
+            <div className="pricing-link">
+              <PricingLink />
+            </div>
           </div>
         </div>
-        <div className="controls-container">
-          <ChartControls
-            seriesType={seriesType}
-            setSeriesType={setSeriesType}
-            dataSet={dataSet}
-            setDataSet={setDataSet}
-            setTimeWindow={setTimeWindow}
-          />
-          <div className="pricing-link">
-            <PricingLink />
-          </div>
-        </div>
-      </div>
+      ) : (
+        <LoadingSpinner />
+      )}
       <style jsx>{`
         .widget-container {
-          font-family: Open Sans;
-          padding: 3%;
           display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          align-items: center;
+          flex-direction: row;
+          justify-content: space-around;
+          padding: 10px;
         }
         .chart {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          font-weight: bold;
-          padding-left: 20px;
-          padding-right: 20px;
-        }
-        .graph {
-          width: ${GRAPH_SIZE.width.tablet}px;
-          height: ${GRAPH_SIZE.width.mobile}px;
+          min-width: 1400px;
         }
         .header {
           position: relative;
@@ -165,28 +162,27 @@ export const IoChartWidget = ({
           padding-top: 30px;
           text-align: center;
         }
-        @media (min-width: 377px) and (max-width: 768px) {
+        @media (min-width: 1400px) and (max-width: 1799px) {
           .chart {
-            padding-left: 0px;
-            padding-right: 0px;
-            margin-bottom: 20px;
+            min-width: 1000px;
           }
-          .header {
-            font-size: 18px;
-            font-weight: bold;
-            padding-bottom: 20px;
-            padding-top: 10px;
-            text-align: center;
-            width: 100%;
-          }
-          .header-info {
-            position: absolute;
-            right: 0;
-            top: 10px;
-          }
+        }
+        @media (min-width: 768px) and (max-width: 1399px) {
           .widget-container {
             flex-direction: column;
-            align-items: center;
+          }
+          .chart {
+            min-width: 700px;
+            min-height: 300px;
+          }
+        }
+        @media (min-width: 320px) and (max-width: 767px) {
+          .widget-container {
+            flex-direction: column;
+          }
+          .chart {
+            min-width: 300px;
+            min-height: 300px;
           }
         }
       `}</style>

@@ -1,43 +1,43 @@
-import PropTypes from 'prop-types';
-import React from 'react';
-import { Icon } from '@blueprintjs/core';
-import ReactGA from 'react-ga';
-import { Skeleton } from '../../Skeleton';
-import { useRouter } from 'next/router';
+import PropTypes from "prop-types";
+import React from "react";
+import { Icon } from "@blueprintjs/core";
+import ReactGA from "react-ga";
+import { Skeleton } from "../../Skeleton";
+import { useRouter } from "next/router";
 
-import { CHART_TYPES } from '../../../constants/chartTypes';
-import { STABLE_TOKENS, NATIVE_TOKENS } from '../../../constants/tokens';
-import { COIN_IMAGES } from '../../../constants/image-paths';
-import { colors } from '../../../constants/styles/colors';
+import { CHART_TYPES } from "../../../constants/chartTypes";
+import { STABLE_TOKENS, NATIVE_TOKENS } from "../../../constants/tokens";
+import { COIN_IMAGES } from "../../../constants/image-paths";
+import { colors } from "../../../constants/styles/colors";
 
-import { HTMLSelect } from '@blueprintjs/core';
+import { HTMLSelect } from "@blueprintjs/core";
 
 const chartDisplay = [
   {
     type: CHART_TYPES.line,
-    label: 'Line',
-    icon: 'timeline-line-chart'
+    label: "Line",
+    icon: "timeline-line-chart"
   },
   {
     type: CHART_TYPES.area,
-    label: 'Area',
-    icon: 'timeline-area-chart'
+    label: "Area",
+    icon: "timeline-area-chart"
   },
   {
     type: CHART_TYPES.histogram,
-    label: 'Histogram',
-    icon: 'timeline-bar-chart'
+    label: "Histogram",
+    icon: "timeline-bar-chart"
   }
 ];
 
 const timeWindows = [
   {
-    value: '1d',
-    label: '1 Day'
+    value: "1d",
+    label: "1 Day"
   },
   {
-    value: '1h',
-    label: '1 Hour'
+    value: "1h",
+    label: "1 Hour"
   }
 ];
 
@@ -57,7 +57,7 @@ export const ChartControls = ({
   const router = useRouter();
 
   const selectedTimeWindow =
-    (dataSet && dataSet[0] && dataSet[0].timeWindow) || '1d';
+    (dataSet && dataSet[0] && dataSet[0].timeWindow) || "1d";
 
   return (
     <>
@@ -72,7 +72,7 @@ export const ChartControls = ({
                 onClick={() => {
                   setSeriesType(chartType.type);
                   ReactGA.event({
-                    category: 'User',
+                    category: "User",
                     action: `Chart Type ${chartType.type}`,
                     label: `Chart Type`
                   });
@@ -80,7 +80,7 @@ export const ChartControls = ({
               >
                 <div
                   className={
-                    seriesType === chartType.type ? 'button-selected' : 'button'
+                    seriesType === chartType.type ? "button-selected" : "button"
                   }
                 >
                   {chartType.label}
@@ -92,7 +92,7 @@ export const ChartControls = ({
                     color={
                       seriesType === chartType.type
                         ? `rgba(${colors.primaryGreen})`
-                        : 'gray'
+                        : "gray"
                     }
                   />
                 </div>
@@ -117,7 +117,7 @@ export const ChartControls = ({
                 onChange={e => {
                   setToken(e.target.value);
                   ReactGA.event({
-                    category: 'User',
+                    category: "User",
                     action: `Token view ${e.target.value}`,
                     label: `Tokens`
                   });
@@ -152,7 +152,7 @@ export const ChartControls = ({
                   onChange={e => {
                     setTimeWindow && setTimeWindow(e.target.value);
                     ReactGA.event({
-                      category: 'User',
+                      category: "User",
                       action: `Time Interval View ${e.target.value}`,
                       label: `Time Interval`
                     });
@@ -191,7 +191,7 @@ export const ChartControls = ({
                         );
                         setDataPoint && setDataPoint(e.target.value);
                         ReactGA.event({
-                          category: 'User',
+                          category: "User",
                           action: `Data Point View ${e.target.value}`,
                           label: `Data Points`
                         });
@@ -226,7 +226,7 @@ export const ChartControls = ({
           align-items: flex-start;
           padding: 20px;
           border: 1px solid
-            ${borderColor ? borderColor : 'rgba(151, 151, 151, 0.15)'};
+            ${borderColor ? borderColor : "rgba(151, 151, 151, 0.15)"};
         }
         .control {
           padding-bottom: 20px;
@@ -289,7 +289,7 @@ export const ChartControls = ({
         .icon {
           padding-top: 5px;
         }
-        @media (min-width: 377px) and (max-width: 768px) {
+        @media (min-width: 768px) and (max-width: 1399px) {
           .controls {
             flex-direction: row;
             justify-content: center;
@@ -325,9 +325,10 @@ export const ChartControls = ({
             height: 34px;
           }
         }
-        @media only screen and (max-width: 376px) {
-          .controls {
-            color: blue;
+        @media (min-width: 320px) and (max-width: 767px) {
+          .select-boxes {
+            display: flex;
+            flex-direction: column;
           }
         }
       `}</style>

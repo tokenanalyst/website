@@ -1,21 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 
-import { useApi } from '../../../custom-hooks';
-import { getExchangeDataSet } from '../../../data-transformers/charts/getExchangeDataSet';
-import { getExchangeMetrics } from '../../../data-transformers/widgets/getExchangeMetrics';
-import { DATA_WINDOWS } from '../../../constants/filters';
-import { ExchangeMetricsWidget } from '../../../components/widgets/ExchangeMetricsWidget';
-import { IoChartWidget } from '../../../components/widgets/IoChartWidget';
-import { LoadingSpinner } from '../../../components/LoadingSpinner';
+import { useApi } from "../../../custom-hooks";
+import { getExchangeDataSet } from "../../../data-transformers/charts/getExchangeDataSet";
+import { getExchangeMetrics } from "../../../data-transformers/widgets/getExchangeMetrics";
+import { DATA_WINDOWS } from "../../../constants/filters";
+import { ExchangeMetricsWidget } from "../../../components/widgets/ExchangeMetricsWidget";
+import { IoChartWidget } from "../../../components/widgets/IoChartWidget";
 
 const Exchange = () => {
   const router = useRouter();
   const [dataSet, setDataSet] = useState(null);
   const [overallMetrics, setOverallMetrics] = useState(null);
   const { token, exchange } = router.query;
-  const [timeWindow, setTimeWindow] = useState('1d');
-  const [isLoading, setIsLoading] = useState(true);
+  const [timeWindow, setTimeWindow] = useState("1d");
 
   // Router query params are populated post-hydration so in order to avoid losing the static
   // optimisation benefit we wait for the population to happen client side before accessing
@@ -53,28 +51,7 @@ const Exchange = () => {
           setTimeWindow={setTimeWindow}
           timeWindow={timeWindow}
         />
-        {!dataSet && (
-          <div className="spinner">
-            <LoadingSpinner />
-          </div>
-        )}
       </div>
-
-      <style jsx>{`
-        .spinner {
-          position: absolute;
-          top: 30%;
-          left: 38%;
-          z-index: 10;
-        }
-        @media only screen and (max-width: 768px) {
-          .spinner {
-            margin: auto;
-            top: 55%;
-            left: 18%;
-          }
-        }
-      `}</style>
     </div>
   );
 };
