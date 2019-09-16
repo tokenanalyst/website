@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from "react";
-import { useRouter } from "next/router";
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 
-import { useApi } from "../../../custom-hooks";
-import { getExchangeDataSet } from "../../../data-transformers/charts/getExchangeDataSet";
-import { getExchangeMetrics } from "../../../data-transformers/widgets/getExchangeMetrics";
-import { DATA_WINDOWS } from "../../../constants/filters";
-import { ExchangeMetricsWidget } from "../../../components/widgets/ExchangeMetricsWidget";
-import { IoChartWidget } from "../../../components/widgets/IoChartWidget";
-import { LoadingSpinner } from "../../../components/LoadingSpinner";
+import { useApi } from '../../../custom-hooks';
+import { getExchangeDataSet } from '../../../data-transformers/charts/getExchangeDataSet';
+import { getExchangeMetrics } from '../../../data-transformers/widgets/getExchangeMetrics';
+import { DATA_WINDOWS } from '../../../constants/filters';
+import { ExchangeMetricsWidget } from '../../../components/widgets/ExchangeMetricsWidget';
+import { IoChartWidget } from '../../../components/widgets/IoChartWidget';
+import { LoadingSpinner } from '../../../components/LoadingSpinner';
 
 const Exchange = () => {
   const router = useRouter();
   const [dataSet, setDataSet] = useState(null);
   const [overallMetrics, setOverallMetrics] = useState(null);
   const { token, exchange } = router.query;
-  const [timeWindow, setTimeWindow] = useState("1d");
+  const [timeWindow, setTimeWindow] = useState('1d');
   const [isLoading, setIsLoading] = useState(true);
 
   // Router query params are populated post-hydration so in order to avoid losing the static
@@ -66,12 +66,11 @@ const Exchange = () => {
           top: 30%;
           left: 38%;
           z-index: 10;
-          display: ${isLoading ? "block" : "none"};
         }
         @media only screen and (max-width: 768px) {
           .spinner {
             margin: auto;
-            top:55%;
+            top: 55%;
             left: 18%;
           }
         }

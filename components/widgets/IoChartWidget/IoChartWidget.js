@@ -1,20 +1,20 @@
-import React, { useState } from "react";
-import dynamic from "next/dynamic";
-import { Icon } from "@blueprintjs/core";
+import React, { useState } from 'react';
+import dynamic from 'next/dynamic';
+import { Icon } from '@blueprintjs/core';
 
-import { ChartControls } from "../../charts/ChartControls";
-import { CHART_TYPES } from "../../../constants/chartTypes";
-import { PricingLink } from "../../../components/PricingLink";
+import { ChartControls } from '../../charts/ChartControls';
+import { CHART_TYPES } from '../../../constants/chartTypes';
+import { PricingLink } from '../../../components/PricingLink';
 
 const SimpleChart = dynamic(
-  () => import("../../charts/SimpleChart").then(mod => mod.SimpleChart),
+  () => import('../../charts/SimpleChart').then(mod => mod.SimpleChart),
   {
     ssr: false
   }
 );
 
 const SimpleToolTip = dynamic(
-  () => import("../../SimpleToolTip").then(mod => mod.SimpleToolTip),
+  () => import('../../SimpleToolTip').then(mod => mod.SimpleToolTip),
   {
     ssr: false
   }
@@ -33,7 +33,7 @@ const GRAPH_SIZE = {
 };
 
 const TOOL_TIP = {
-  ["1h"]: {
+  ['1h']: {
     message: (
       <div>
         Hourly data. All times are in UTC.
@@ -43,7 +43,7 @@ const TOOL_TIP = {
       </div>
     )
   },
-  ["1d"]: {
+  ['1d']: {
     message: (
       <div>
         Daily data. All times are in UTC.
@@ -73,10 +73,11 @@ export const IoChartWidget = ({
             <div className="header-info">
               <div>
                 <SimpleToolTip
-                  dataFor={"header-tooltip"}
+                  dataFor={'header-tooltip'}
                   toolTip={TOOL_TIP[timeWindow] && TOOL_TIP[timeWindow].message}
                   type="dark"
-                  effect="solid">
+                  effect="solid"
+                >
                   <div data-tip data-for="header-tooltip">
                     <Icon icon="info-sign" color="gray" />
                   </div>
@@ -90,18 +91,19 @@ export const IoChartWidget = ({
                 dataSet={dataSet}
                 seriesType={seriesType}
                 width={
-                  window.matchMedia("(max-width: 768px)").matches
+                  window.matchMedia('(max-width: 768px)').matches
                     ? GRAPH_SIZE.width.mobile
-                    : window.matchMedia("(min-width: 1920px)").matches
+                    : window.matchMedia('(min-width: 1920px)').matches
                     ? GRAPH_SIZE.width.desktop
                     : GRAPH_SIZE.width.tablet
                 }
                 height={
-                  window.matchMedia("(max-width: 768px)").matches
+                  window.matchMedia('(max-width: 768px)').matches
                     ? GRAPH_SIZE.height.mobile
                     : GRAPH_SIZE.height.desktop
                 }
                 formatter={formatter}
+                isLoading={!dataSet}
               />
             )}
           </div>

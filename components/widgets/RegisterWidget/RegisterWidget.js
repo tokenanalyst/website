@@ -1,19 +1,19 @@
-import React, { useState, useContext } from "react";
-import axios from "axios";
-import Cookies from "js-cookie";
-import { Icon } from "@blueprintjs/core";
-import Link from "next/link";
+import React, { useState, useContext } from 'react';
+import axios from 'axios';
+import Cookies from 'js-cookie';
+import { Icon } from '@blueprintjs/core';
+import Link from 'next/link';
 
-import { LoginContext } from "../../../contexts/Login";
-import { colors } from "../../../constants/styles/colors";
+import { LoginContext } from '../../../contexts/Login';
+import { colors } from '../../../constants/styles/colors';
 
 export const RegisterWidget = () => {
   const loginCtx = useContext(LoginContext);
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordVerify, setPasswordVerify] = useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordVerify, setPasswordVerify] = useState('');
   const [errorText, setErrorText] = useState(false);
   const [hasRegistered, setHasRegistered] = useState(false);
 
@@ -26,11 +26,11 @@ export const RegisterWidget = () => {
 
   const register = async () => {
     if (password !== passwordVerify) {
-      setErrorText("Passwords do not match");
+      setErrorText('Passwords do not match');
       return;
     }
     try {
-      await axios.post("https://api.tokenanalyst.io/auth/user", {
+      await axios.post('https://api.tokenanalyst.io/auth/user', {
         username: email,
         password,
         name,
@@ -43,14 +43,14 @@ export const RegisterWidget = () => {
       });
 
       const response = await axios.post(
-        "https://api.tokenanalyst.io/auth/user/login",
+        'https://api.tokenanalyst.io/auth/user/login',
         {
           username: email,
           password
         }
       );
 
-      Cookies.set("apiKey", response.data.apiKey);
+      Cookies.set('apiKey', response.data.apiKey);
       loginCtx.setIsLoggedIn(true);
       setErrorText(null);
       setHasRegistered(true);
@@ -196,7 +196,7 @@ export const RegisterWidget = () => {
           width: 300px;
           border: none;
           border-bottom: 1px solid
-            rgba(${errorText ? colors.primaryRed : "00, 00, 00"});
+            rgba(${errorText ? colors.primaryRed : '00, 00, 00'});
           font-size: 18px;
         }
         .button {
@@ -204,9 +204,9 @@ export const RegisterWidget = () => {
           min-width: 60px;
           text-align: center;
           background-color: rgba(${colors.primaryGreen});
-          max-height: 20px;
+          max-height: 40px;
           padding: 10px;
-          border-radius: 10px;
+          border-radius: 20px;
           cursor: pointer;
           margin-top: 20px;
         }
