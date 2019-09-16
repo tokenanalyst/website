@@ -399,7 +399,7 @@ export const DesktopNav = () => {
           color: white;
           z-index: 10000;
           top: 60px;
-          margin-left: 420px;
+          margin-left: 400px;
           padding-left: 10px;
           border-radius: 0px 0px 5px 5px;
         }
@@ -410,7 +410,7 @@ export const DesktopNav = () => {
           color: white;
           z-index: 10000;
           top: 60px;
-          margin-left: 715px;
+          margin-left: 665px;
           padding-left: 10px;
           border-radius: 0px 0px 5px 5px;
         }
