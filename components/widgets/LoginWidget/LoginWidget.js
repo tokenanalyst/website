@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import Cookies from "js-cookie";
+import { Button } from "@blueprintjs/core";
 
 import { LoginContext } from "../../../contexts/Login";
 import { colors } from "../../../constants/styles/colors";
@@ -27,8 +28,19 @@ export const LoginWidget = () => {
       Cookies.set("loggedInAs", response.data.name);
       loginCtx.setIsLoggedIn(true);
       loginCtx.setLoggedInAs(response.data.name);
+      console.log(loginCtx);
+      if (
+        loginCtx.loginData &&
+        loginCtx.loginData.stripe &&
+        loginCtx.loginData.stripe.redirectFn
+      ) {
+        loginCtx.setLoginData({ ...loginCtx.loginData, stripe: null });
+        return loginCtx.loginData.stripe.redirectFn();
+      }
+
       router.push("/");
     } catch (e) {
+      console.log(e);
       setIsError(true);
     }
   };

@@ -1,10 +1,28 @@
-import React from "react";
+import React, { useContext } from "react";
 import ReactGA from "react-ga";
+import Router from "next/router";
 
+import { LoginContext } from "../../../contexts/Login";
 import { STRIPE } from "../../../constants/stripe";
 import { colors } from "../../../constants/styles/colors";
 
 export const Product = ({ name, price, features, buttonText, stripePlan }) => {
+  const loginCtx = useContext(LoginContext);
+
+  const redirectToStripe = async () => {
+    const stripe = Stripe(STRIPE.apiKey);
+    await stripe.redirectToCheckout({
+      items: [
+        {
+          plan: stripePlan,
+          quantity: 1
+        }
+      ],
+      successUrl: "https://www.tokenanalyst.io/purchase-success",
+      cancelUrl: "https://www.tokenanalyst.io/"
+    });
+  };
+
   return (
     <>
       <div className="container">
@@ -32,18 +50,14 @@ export const Product = ({ name, price, features, buttonText, stripePlan }) => {
                       action: `Plan select ${name}`,
                       label: `Plans`
                     });
-                    const stripe = Stripe(STRIPE.apiKey);
-                    const result = await stripe.redirectToCheckout({
-                      items: [
-                        {
-                          plan: stripePlan,
-                          quantity: 1
-                        }
-                      ],
-                      successUrl:
-                        "https://www.tokenanalyst.io/purchase-success",
-                      cancelUrl: "https://www.tokenanalyst.io/"
-                    });
+
+                    if (!loginCtx.isLoggedIn) {
+                      loginCtx.setLoginData({
+                        stripe: { redirectFn: redirectToStripe }
+                      });
+                      return Router.push("/login");
+                    }
+                    await redirectToStripe();
                   }
                 : () => {
                     ReactGA.event({
@@ -53,8 +67,7 @@ export const Product = ({ name, price, features, buttonText, stripePlan }) => {
                     });
                     window.location = "mailto:info@tokenanalyst.io";
                   }
-            }
-          >
+            }>
             {buttonText}
           </div>
         </div>
