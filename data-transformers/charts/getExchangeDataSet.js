@@ -1,21 +1,10 @@
 import { toSingleValueChartData } from "./mappers";
 
-import {
-  STABLE_TOKENS,
-  NATIVE_TOKENS,
-  CURRENCIES
-} from "../../constants/tokens";
+import { NATIVE_TOKENS, CURRENCIES } from "../../constants/tokens";
 import { CHART_TYPES } from "../../constants/chartTypes";
+import { getUTCDate } from "./mappers/utils";
 
 const formatTokenSymbol = rawSymbol => rawSymbol.replace("_", " ");
-
-const makeTimeKey = (tokens, token) => {
-  return Object.keys(tokens).indexOf(token) >= 0 ? "date" : "day";
-};
-
-const makeValueKey = (tokens, token) => {
-  return Object.keys(tokens).indexOf(token) >= 0 ? "price_usd" : "price";
-};
 
 const addTimeWindow = (baseDataSet, timeWindow) => {
   return baseDataSet.map(dataPoint => {
@@ -30,10 +19,11 @@ export const getExchangeDataSet = (response, token, timeWindow = "1d") => {
   const toSingleValueChartDataForTimeWindow = (data, timeKey, valueKey) => {
     if (timeWindow === "1h") {
       return data.map(datum => ({
-        time: new Date(`${datum.date}T${datum.hour}`).getTime() / 1000,
+        time: new Date(getUTCDate(datum)).getTime() / 1000,
         value: datum[valueKey]
       }));
     }
+
     return toSingleValueChartData(data, timeKey, valueKey);
   };
 
@@ -43,8 +33,8 @@ export const getExchangeDataSet = (response, token, timeWindow = "1d") => {
       title: "Price",
       chartValues: toSingleValueChartDataForTimeWindow(
         response.price,
-        makeTimeKey(STABLE_TOKENS, token),
-        makeValueKey(STABLE_TOKENS, token)
+        "date",
+        "price_usd"
       ),
       visible: true,
       solidColor: "#0198E1",

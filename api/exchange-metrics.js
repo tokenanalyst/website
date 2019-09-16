@@ -1,60 +1,98 @@
-import axios from 'axios';
-import url from 'url';
-import { API_ERROR_MSG } from '../constants/apiErrors';
-
-const isAuthorised = require('./auth/isAuthorised');
-import { setResponseCache } from './utils/setResponseCache';
+const url = require("url");
+const { API_ERROR_MSG } = require("../constants/apiErrors");
+const isAuthorised = require("./auth/isAuthorised");
+const setResponseCache = require("./utils/setResponseCache");
+const TA = require("./utils/ta-api-node/ta");
+const { NATIVE_TOKENS, STABLE_TOKENS } = require("../constants/tokens");
 
 module.exports = async (req, res) => {
   const urlParts = url.parse(req.url, true);
   const { token, exchange, timeWindow } = urlParts.query;
   const isMaxDaysOfData =
     req.cookies.apiKey && (await isAuthorised(req.cookies.apiKey));
+  const FORMAT = "json";
+  let amountOfTimeUnits = "90";
+  const PUBLIC_API_URL = "https://api.tokenanalyst.io/analytics";
+  const { ETH, BTC } = NATIVE_TOKENS;
 
-  let amountOfTimeUnits = '90';
-
-  if (timeWindow === '1h') {
-    amountOfTimeUnits = '168'; // 1 week
+  if (timeWindow === "1h") {
+    amountOfTimeUnits = "168"; // 1 week
   }
 
-  if (!token || !exchange) {
+  if (!token || !exchange || !timeWindow) {
     return res
       .status(400)
       .send({ message: API_ERROR_MSG.TOKEN_EXCHANGE_MISSING });
   }
 
-  const userLimit = isMaxDaysOfData ? '' : `&limit=${amountOfTimeUnits}`;
+  const privateApi = TA({ apiKey: process.env.API_KEY });
 
-  let urlBase;
+  const publicApi = TA({
+    apiUrl: PUBLIC_API_URL
+  });
+
+  const priceApiCall = privateApi.tokenPriceUsdWindowHistorical({
+    format: FORMAT,
+    token,
+    exchange,
+    window: timeWindow,
+    limit: amountOfTimeUnits
+  });
+
+  const exchangeFlowsAllTokensCall = publicApi.exchangeFlowsAllTokens({
+    format: FORMAT
+  });
+
+  let inFlowApiCall;
+  let outFlowApiCall;
   let isStableCoin = false;
-  let priceUrl = `https://api.tokenanalyst.io/analytics/private/v1/token_price_historical/last?format=json&token=${token}&key=${process.env.API_KEY}&exchange=${exchange}&window=${timeWindow}${userLimit}`;
-  if (token === 'ETH' || token === 'BTC') {
-    urlBase = `https://api.tokenanalyst.io/analytics/private/v1/exchange_flow_window_historical`;
-  } else if (token === 'USDT_OMNI') {
-    urlBase = `https://api.tokenanalyst.io/analytics/private/v1/exchange_flow_window_historical`;
-    priceUrl = `https://api.tokenanalyst.io/analytics/private/v1/exchange_flow_window_historical/last?format=json&token=${token}&key=${process.env.API_KEY}&exchange=${exchange}&window=${timeWindow}&direction=inflow${userLimit}`;
+  if (token === ETH || token === BTC || token === STABLE_TOKENS.USDT_OMNI) {
+    inFlowApiCall = privateApi.exchangeFlowWindowHistorical({
+      format: FORMAT,
+      token,
+      direction: "inflow",
+      exchange,
+      window: timeWindow,
+      limit: amountOfTimeUnits
+    });
+    outFlowApiCall = privateApi.exchangeFlowWindowHistorical({
+      format: FORMAT,
+      token,
+      direction: "outflow",
+      exchange,
+      window: timeWindow,
+      limit: amountOfTimeUnits
+    });
   } else {
     isStableCoin = true;
-    urlBase = `https://api.tokenanalyst.io/analytics/private/v1/erc20_exchanges_flow_window_historical`;
-    priceUrl = `https://api.tokenanalyst.io/analytics/private/v1/erc20_exchanges_flow_window_historical/last?format=json&token=${token}&key=${process.env.API_KEY}&exchange=${exchange}&window=${timeWindow}&direction=inflow${userLimit}`;
+    inFlowApiCall = privateApi.erc20ExchangesFlowWindowHistorical({
+      format: FORMAT,
+      token,
+      direction: "inflow",
+      exchange,
+      window: timeWindow,
+      limit: amountOfTimeUnits
+    });
+    outFlowApiCall = privateApi.erc20ExchangesFlowWindowHistorical({
+      format: FORMAT,
+      token,
+      direction: "outflow",
+      exchange,
+      window: timeWindow,
+      limit: amountOfTimeUnits
+    });
   }
 
   const [
     inflowTxnCountApiResponse,
     outflowTxnCountApiResponse,
     publicApiResponse,
-    tokenPriceResponse,
+    tokenPriceApiResponse
   ] = await Promise.all([
-    axios.get(
-      `${urlBase}/last?key=${process.env.API_KEY}&format=json&token=${token}&direction=inflow&exchange=${exchange}&window=${timeWindow}${userLimit}`
-    ),
-    axios.get(
-      `${urlBase}/last?key=${process.env.API_KEY}&format=json&token=${token}&direction=outflow&exchange=${exchange}&window=${timeWindow}${userLimit}`
-    ),
-    axios.get(
-      `https://api.tokenanalyst.io/analytics/last?job=exchange_flows_all_tokens_v5&format=json`
-    ),
-    axios.get(priceUrl),
+    inFlowApiCall,
+    outFlowApiCall,
+    exchangeFlowsAllTokensCall,
+    priceApiCall
   ]);
 
   if (isStableCoin) {
@@ -64,7 +102,7 @@ module.exports = async (req, res) => {
     const filteredOutflow = outflowTxnCountApiResponse.data.filter(
       item => item.exchange === exchange
     );
-    const filteredPrice = tokenPriceResponse.data.filter(
+    const filteredPrice = tokenPriceApiResponse.data.filter(
       item => item.exchange === exchange
     );
 
@@ -73,13 +111,17 @@ module.exports = async (req, res) => {
     // });
     res.send({
       ta_response: {
-        inflow: filteredInflow,
-        outflow: filteredOutflow,
+        inflow: isMaxDaysOfData
+          ? filteredInflow
+          : filteredInflow.slice(filteredInflow.length - amountOfTimeUnits),
+        outflow: isMaxDaysOfData
+          ? filteredOutflow
+          : filteredOutflow.slice(filteredOutflow.length - amountOfTimeUnits),
         overall: publicApiResponse.data.filter(
           item => item.token === token && item.exchange === exchange
         ),
-        price: filteredPrice,
-      },
+        price: filteredPrice
+      }
     });
   } else {
     // setResponseCache().map(cacheHeader => {
@@ -87,13 +129,25 @@ module.exports = async (req, res) => {
     // });
     res.send({
       ta_response: {
-        inflow: inflowTxnCountApiResponse.data,
-        outflow: outflowTxnCountApiResponse.data,
+        inflow: isMaxDaysOfData
+          ? inflowTxnCountApiResponse.data
+          : inflowTxnCountApiResponse.data.slice(
+              inflowTxnCountApiResponse.data.length - amountOfTimeUnits
+            ),
+        outflow: isMaxDaysOfData
+          ? outflowTxnCountApiResponse.data
+          : outflowTxnCountApiResponse.data.slice(
+              outflowTxnCountApiResponse.data.length - amountOfTimeUnits
+            ),
         overall: publicApiResponse.data.filter(
           item => item.token === token && item.exchange === exchange
         ),
-        price: tokenPriceResponse.data,
-      },
+        price: isMaxDaysOfData
+          ? tokenPriceApiResponse.data
+          : tokenPriceApiResponse.data.slice(
+              tokenPriceApiResponse.data.length - amountOfTimeUnits
+            )
+      }
     });
   }
 };
