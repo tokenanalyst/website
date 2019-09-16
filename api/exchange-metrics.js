@@ -1,22 +1,22 @@
-const url = require('url');
-const { API_ERROR_MSG } = require('../constants/apiErrors');
-const isAuthorised = require('./auth/isAuthorised');
-const setResponseCache = require('./utils/setResponseCache');
-const TA = require('./utils/ta-api-node/ta');
-const { NATIVE_TOKENS, STABLE_TOKENS } = require('../constants/tokens');
+const url = require("url");
+const { API_ERROR_MSG } = require("../constants/apiErrors");
+const isAuthorised = require("./auth/isAuthorised");
+const setResponseCache = require("./utils/setResponseCache");
+const TA = require("./utils/ta-api-node/ta");
+const { NATIVE_TOKENS, STABLE_TOKENS } = require("../constants/tokens");
 
 module.exports = async (req, res) => {
   const urlParts = url.parse(req.url, true);
   const { token, exchange, timeWindow } = urlParts.query;
   const isMaxDaysOfData =
     req.cookies.apiKey && (await isAuthorised(req.cookies.apiKey));
-  const format = 'json';
-  let amountOfTimeUnits = '90';
-  const PUBLIC_API_URL = 'https://api.tokenanalyst.io/analytics';
+  const FORMAT = "json";
+  let amountOfTimeUnits = "90";
+  const PUBLIC_API_URL = "https://api.tokenanalyst.io/analytics";
   const { ETH, BTC } = NATIVE_TOKENS;
 
-  if (timeWindow === '1h') {
-    amountOfTimeUnits = '168'; // 1 week
+  if (timeWindow === "1h") {
+    amountOfTimeUnits = "168"; // 1 week
   }
 
   if (!token || !exchange || !timeWindow) {
@@ -29,19 +29,19 @@ module.exports = async (req, res) => {
 
   const publicApi = TA({
     apiKey: process.env.API_KEY,
-    apiUrl: PUBLIC_API_URL,
+    apiUrl: PUBLIC_API_URL
   });
 
   const priceApiCall = privateApi.tokenPriceUsdWindowHistorical({
-    format,
+    format: FORMAT,
     token,
     exchange,
     window: timeWindow,
-    limit: amountOfTimeUnits,
+    limit: amountOfTimeUnits
   });
 
   const exchangeFlowsAllTokensCall = publicApi.exchangeFlowsAllTokens({
-    format,
+    format: FORMAT
   });
 
   let inFlowApiCall;
@@ -49,38 +49,38 @@ module.exports = async (req, res) => {
   let isStableCoin = false;
   if (token === ETH || token === BTC || token === STABLE_TOKENS.USDT_OMNI) {
     inFlowApiCall = privateApi.exchangeFlowWindowHistorical({
-      format,
+      format: FORMAT,
       token,
-      direction: 'inflow',
+      direction: "inflow",
       exchange,
       window: timeWindow,
-      limit: amountOfTimeUnits,
+      limit: amountOfTimeUnits
     });
     outFlowApiCall = privateApi.exchangeFlowWindowHistorical({
-      format,
+      format: FORMAT,
       token,
-      direction: 'outflow',
+      direction: "outflow",
       exchange,
       window: timeWindow,
-      limit: amountOfTimeUnits,
+      limit: amountOfTimeUnits
     });
   } else {
     isStableCoin = true;
     inFlowApiCall = privateApi.erc20ExchangesFlowWindowHistorical({
-      format,
+      format: FORMAT,
       token,
-      direction: 'inflow',
+      direction: "inflow",
       exchange,
       window: timeWindow,
-      limit: amountOfTimeUnits,
+      limit: amountOfTimeUnits
     });
     outFlowApiCall = privateApi.erc20ExchangesFlowWindowHistorical({
-      format,
+      format: FORMAT,
       token,
-      direction: 'outflow',
+      direction: "outflow",
       exchange,
       window: timeWindow,
-      limit: amountOfTimeUnits,
+      limit: amountOfTimeUnits
     });
   }
 
@@ -88,22 +88,22 @@ module.exports = async (req, res) => {
     inflowTxnCountApiResponse,
     outflowTxnCountApiResponse,
     publicApiResponse,
-    tokenPriceApiResponse,
+    tokenPriceApiResponse
   ] = await Promise.all([
     inFlowApiCall,
     outFlowApiCall,
     exchangeFlowsAllTokensCall,
-    priceApiCall,
+    priceApiCall
   ]);
 
   if (isStableCoin) {
-    const filteredInflow = inflowTxnCountApiResponse.filter(
+    const filteredInflow = inflowTxnCountApiResponse.data.filter(
       item => item.exchange === exchange
     );
-    const filteredOutflow = outflowTxnCountApiResponse.filter(
+    const filteredOutflow = outflowTxnCountApiResponse.data.filter(
       item => item.exchange === exchange
     );
-    const filteredPrice = tokenPriceApiResponse.filter(
+    const filteredPrice = tokenPriceApiResponse.data.filter(
       item => item.exchange === exchange
     );
 
@@ -118,11 +118,11 @@ module.exports = async (req, res) => {
         outflow: isMaxDaysOfData
           ? filteredOutflow
           : filteredOutflow.slice(filteredOutflow.length - amountOfTimeUnits),
-        overall: publicApiResponse.filter(
+        overall: publicApiResponse.data.filter(
           item => item.token === token && item.exchange === exchange
         ),
-        price: filteredPrice,
-      },
+        price: filteredPrice
+      }
     });
   } else {
     // setResponseCache().map(cacheHeader => {
@@ -131,24 +131,24 @@ module.exports = async (req, res) => {
     res.send({
       ta_response: {
         inflow: isMaxDaysOfData
-          ? inflowTxnCountApiResponse
-          : inflowTxnCountApiResponse.slice(
-              inflowTxnCountApiResponse.length - amountOfTimeUnits
+          ? inflowTxnCountApiResponse.data
+          : inflowTxnCountApiResponse.data.slice(
+              inflowTxnCountApiResponse.data.length - amountOfTimeUnits
             ),
         outflow: isMaxDaysOfData
-          ? outflowTxnCountApiResponse
-          : outflowTxnCountApiResponse.slice(
-              outflowTxnCountApiResponse.length - amountOfTimeUnits
+          ? outflowTxnCountApiResponse.data
+          : outflowTxnCountApiResponse.data.slice(
+              outflowTxnCountApiResponse.data.length - amountOfTimeUnits
             ),
-        overall: publicApiResponse.filter(
+        overall: publicApiResponse.data.filter(
           item => item.token === token && item.exchange === exchange
         ),
         price: isMaxDaysOfData
-          ? tokenPriceApiResponse
-          : tokenPriceApiResponse.slice(
-              tokenPriceApiResponse.length - amountOfTimeUnits
-            ),
-      },
+          ? tokenPriceApiResponse.data
+          : tokenPriceApiResponse.data.slice(
+              tokenPriceApiResponse.data.length - amountOfTimeUnits
+            )
+      }
     });
   }
 };
