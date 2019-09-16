@@ -97,16 +97,18 @@ export const IoChartWidget = ({
                   seriesType={seriesType}
                   width={
                     window.matchMedia(
-                      "(min-width: 377px) and (max-width: 768px)"
+                      "(min-width: 320px) and (max-width: 767px)"
                     ).matches
+                      ? GRAPH_SIZE.width.mobile
+                      : window.matchMedia(
+                          "(min-width: 768px) and (max-width: 1399px)"
+                        ).matches
                       ? GRAPH_SIZE.width.tablet
                       : window.matchMedia(
-                          "(min-width: 769px) and (max-width: 1400px)"
+                          "(min-width: 1400px) and (max-width: 1799px)"
                         ).matches
                       ? GRAPH_SIZE.width.desktop
-                      : window.matchMedia("(min-width: 1800px)").matches
-                      ? GRAPH_SIZE.width.desktopLarge
-                      : GRAPH_SIZE.width.mobile
+                      : GRAPH_SIZE.width.desktopLarge
                   }
                   height={
                     window.matchMedia("(max-width: 768px)").matches
