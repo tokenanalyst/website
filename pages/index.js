@@ -1,20 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import { IoTable } from '../components/tables/IoTable';
-import { FilterNav } from '../components/navs';
-import { DATA_WINDOWS, UNITS } from '../constants/filters';
-import { underSubNav } from '../constants/styles/common-styled-jsx';
-import { TokenSnapshotWidget } from '../components/widgets/TokenSnapshotWidget';
-import { useApi } from '../custom-hooks';
-import { LoadingSpinner } from '../components/LoadingSpinner';
+import { IoTable } from "../components/tables/IoTable";
+import { FilterNav } from "../components/navs";
+import { DATA_WINDOWS, UNITS } from "../constants/filters";
+import { underSubNav } from "../constants/styles/common-styled-jsx";
+import { TokenSnapshotWidget } from "../components/widgets/TokenSnapshotWidget";
+import { useApi } from "../custom-hooks";
+import { LoadingSpinner } from "../components/LoadingSpinner";
+import { TestimonialsWidget } from "../components/widgets/TestimonialsWidget";
 
 const Exchange = () => {
   const [dataWindow, setDataWindow] = useState(DATA_WINDOWS[0]);
   const [units, setUnits] = useState(UNITS[0]);
   const tokenSnapshotWidgetData = useApi(
-    '/api/latest-exchange-flows?tokens=BTC,ETH,USDC,DAI'
+    "/api/latest-exchange-flows?tokens=BTC,ETH,USDC,DAI"
   );
-  const ioTableData = useApi('/api/exchange-io');
+  const ioTableData = useApi("/api/exchange-io");
 
   return (
     <>
@@ -27,7 +28,7 @@ const Exchange = () => {
       <div className="under-sub-nav">
         <>
           <div className="section-header">At a glance</div>
-          {tokenSnapshotWidgetData ? (
+          {/* {tokenSnapshotWidgetData ? (
             <TokenSnapshotWidget
               data={tokenSnapshotWidgetData}
               dataWindow={dataWindow}
@@ -37,9 +38,14 @@ const Exchange = () => {
             <div className="spinner">
               <LoadingSpinner />
             </div>
-          )}
+          )} */}
+          <div className="section-header">Testimonials</div>
+          <div className={"testimonials"}>
+            <TestimonialsWidget />
+          </div>
+
           <div className="section-header">{dataWindow} Inflows/Outflows</div>
-          <div className="table">
+          {/* <div className="table">
             {ioTableData ? (
               <IoTable
                 data={ioTableData}
@@ -51,7 +57,7 @@ const Exchange = () => {
                 <LoadingSpinner />
               </div>
             )}
-          </div>
+          </div> */}
         </>
       </div>
       <style jsx>{underSubNav}</style>
