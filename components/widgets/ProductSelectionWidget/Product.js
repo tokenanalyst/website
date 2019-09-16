@@ -40,8 +40,9 @@ export const Product = ({ name, price, features, buttonText, stripePlan }) => {
                           quantity: 1
                         }
                       ],
-                      successUrl: "https://tokenanalyst.io/purchase-success",
-                      cancelUrl: "https://tokenanalyst.io/"
+                      successUrl:
+                        "https://www.tokenanalyst.io/purchase-success",
+                      cancelUrl: "https://www.tokenanalyst.io/"
                     });
                   }
                 : () => {
@@ -102,9 +103,9 @@ export const Product = ({ name, price, features, buttonText, stripePlan }) => {
           min-width: 60px;
           text-align: center;
           background-color: rgba(${colors.primaryGreen});
-          max-height: 20px;
+          max-height: 40px;
           padding: 10px;
-          border-radius: 10px;
+          border-radius: 20px;
           cursor: pointer;
         }
         @media only screen and (max-width: 768px) {
