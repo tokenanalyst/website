@@ -141,7 +141,7 @@ export const ChartControls = ({
           </div>
         )}
 
-        <div>
+        <div className="select-boxes">
           {setTimeWindow && (
             <div className="control">
               <div className="select-header">Time interval</div>
@@ -224,7 +224,7 @@ export const ChartControls = ({
           display: flex;
           flex-direction: column;
           align-items: flex-start;
-          padding: 30px;
+          padding: 20px;
           border: 1px solid
             ${borderColor ? borderColor : 'rgba(151, 151, 151, 0.15)'};
         }
@@ -289,7 +289,7 @@ export const ChartControls = ({
         .icon {
           padding-top: 5px;
         }
-        @media only screen and (max-width: 768px) {
+        @media (min-width: 377px) and (max-width: 768px) {
           .controls {
             flex-direction: row;
             justify-content: center;
@@ -307,6 +307,10 @@ export const ChartControls = ({
             width: 90%;
             padding-bottom: 10px;
           }
+          .select-boxes {
+            display: flex;
+            min-width: 50%;
+          }
           .select-header {
             padding-bottom: 15px;
             padding-top: 5px;
@@ -319,6 +323,11 @@ export const ChartControls = ({
           .token-icon {
             width: 26px;
             height: 34px;
+          }
+        }
+        @media only screen and (max-width: 376px) {
+          .controls {
+            color: blue;
           }
         }
       `}</style>

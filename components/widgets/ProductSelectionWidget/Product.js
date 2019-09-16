@@ -40,8 +40,9 @@ export const Product = ({ name, price, features, buttonText, stripePlan }) => {
                           quantity: 1
                         }
                       ],
-                      successUrl: 'https://tokenanalyst.io/purchase-success',
-                      cancelUrl: 'https://tokenanalyst.io/'
+                      successUrl:
+                        'https://www.tokenanalyst.io/purchase-success',
+                      cancelUrl: 'https://www.tokenanalyst.io/'
                     });
                   }
                 : () => {

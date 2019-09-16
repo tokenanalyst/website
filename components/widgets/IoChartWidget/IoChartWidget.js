@@ -23,8 +23,9 @@ const SimpleToolTip = dynamic(
 const GRAPH_SIZE = {
   width: {
     mobile: 300,
-    tablet: 1000,
-    desktop: 1000
+    tablet: 700,
+    desktop: 1000,
+    desktopLarge: 1400
   },
   height: {
     mobile: 300,
@@ -91,11 +92,16 @@ export const IoChartWidget = ({
                 dataSet={dataSet}
                 seriesType={seriesType}
                 width={
-                  window.matchMedia('(max-width: 768px)').matches
-                    ? GRAPH_SIZE.width.mobile
-                    : window.matchMedia('(min-width: 1920px)').matches
+                  window.matchMedia('(min-width: 377px) and (max-width: 768)')
+                    .matches
+                    ? GRAPH_SIZE.width.tablet
+                    : window.matchMedia(
+                        '(min-width: 769px) and (max-width: 1400)'
+                      ).matches
                     ? GRAPH_SIZE.width.desktop
-                    : GRAPH_SIZE.width.tablet
+                    : window.matchMedia('(min-width: 1800px)').matches
+                    ? GRAPH_SIZE.width.desktopLarge
+                    : GRAPH_SIZE.width.mobile
                 }
                 height={
                   window.matchMedia('(max-width: 768px)').matches
@@ -126,8 +132,9 @@ export const IoChartWidget = ({
           font-family: Open Sans;
           padding: 3%;
           display: flex;
-          flex-direction: row;
+          flex-direction: column;
           justify-content: space-between;
+          align-items: center;
         }
         .chart {
           display: flex;
@@ -158,10 +165,11 @@ export const IoChartWidget = ({
           padding-top: 30px;
           text-align: center;
         }
-        @media only screen and (max-width: 768px) {
-          .graph {
-            width: ${GRAPH_SIZE.width.mobile}px;
-            height: ${GRAPH_SIZE.height.mobile}px;
+        @media (min-width: 377px) and (max-width: 768px) {
+          .chart {
+            padding-left: 0px;
+            padding-right: 0px;
+            margin-bottom: 20px;
           }
           .header {
             font-size: 18px;
