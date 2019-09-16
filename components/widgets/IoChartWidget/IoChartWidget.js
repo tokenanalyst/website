@@ -143,7 +143,7 @@ export const IoChartWidget = ({
           padding: 10px;
         }
         .chart {
-          min-width: 1400px;
+          min-width: ${GRAPH_SIZE.width.desktopLarge}px;
         }
         .header {
           position: relative;
@@ -164,7 +164,7 @@ export const IoChartWidget = ({
         }
         @media (min-width: 1400px) and (max-width: 1799px) {
           .chart {
-            min-width: 1000px;
+            min-width: ${GRAPH_SIZE.width.desktop}px;
           }
         }
         @media (min-width: 768px) and (max-width: 1399px) {
@@ -172,8 +172,8 @@ export const IoChartWidget = ({
             flex-direction: column;
           }
           .chart {
-            min-width: 700px;
-            min-height: 300px;
+            min-width: ${GRAPH_SIZE.width.tablet}px;
+            min-height: ${GRAPH_SIZE.width.mobile}px;
           }
         }
         @media (min-width: 320px) and (max-width: 767px) {
@@ -181,8 +181,8 @@ export const IoChartWidget = ({
             flex-direction: column;
           }
           .chart {
-            min-width: 300px;
-            min-height: 300px;
+            min-width: ${GRAPH_SIZE.width.mobile}px;
+            min-height: ${GRAPH_SIZE.height.mobile}px;
           }
         }
       `}</style>
