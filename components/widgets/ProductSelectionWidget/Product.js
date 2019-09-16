@@ -103,7 +103,7 @@ export const Product = ({ name, price, features, buttonText, stripePlan }) => {
           min-width: 60px;
           text-align: center;
           background-color: rgba(${colors.primaryGreen});
-          max-height: 40px;
+          max-height: 20px;
           padding: 10px;
           border-radius: 20px;
           cursor: pointer;
