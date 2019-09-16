@@ -1,6 +1,6 @@
-import ReactGA from "react-ga";
+import ReactGA from 'react-ga';
 
-import { DATA_WINDOWS, UNITS } from "../../constants/filters";
+import { DATA_WINDOWS, UNITS } from '../../constants/filters';
 
 export const FilterNav = ({ dataWindow, setDataWindow, units, setUnits }) => {
   return (
@@ -13,7 +13,7 @@ export const FilterNav = ({ dataWindow, setDataWindow, units, setUnits }) => {
             onClick={() => {
               setDataWindow(dw);
               ReactGA.event({
-                category: "User",
+                category: 'User',
                 action: `Filter ${dw}`,
                 label: `Time Window Filter`
               });
@@ -21,7 +21,7 @@ export const FilterNav = ({ dataWindow, setDataWindow, units, setUnits }) => {
           >
             <span
               className={
-                dw === dataWindow ? "option-active" : "option-inactive"
+                dw === dataWindow ? 'option-active' : 'option-inactive'
               }
             >
               {dw.toUpperCase()}
@@ -37,14 +37,14 @@ export const FilterNav = ({ dataWindow, setDataWindow, units, setUnits }) => {
             onClick={() => {
               setUnits(unit);
               ReactGA.event({
-                category: "User",
+                category: 'User',
                 action: `Filter ${unit}`,
                 label: `Units Filter`
               });
             }}
           >
             <span
-              className={unit === units ? "option-active" : "option-inactive"}
+              className={unit === units ? 'option-active' : 'option-inactive'}
             >
               {unit.toUpperCase()}
             </span>
@@ -54,12 +54,12 @@ export const FilterNav = ({ dataWindow, setDataWindow, units, setUnits }) => {
       <style jsx>{`
         .container {
           font-family: Open Sans;
-          padding: 10px;
+          padding: 11px;
           border-bottom: 1px solid rgb(203, 203, 203);
           position: fixed;
           top: 60px;
           width: 100%;
-          height: 30px;
+          height: 40px;
           background-color: #ffffff;
           z-index: 10;
           display: flex;
@@ -69,7 +69,7 @@ export const FilterNav = ({ dataWindow, setDataWindow, units, setUnits }) => {
         .options {
           display: flex;
           justify-content: space-evenly;
-          padding-top: 10px;
+          padding-top: 0px;
           padding-bottom: 10px;
           width: 100%;
           border-right: 1px solid rgb(203, 203, 203);

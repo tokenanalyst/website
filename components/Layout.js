@@ -5,12 +5,14 @@ import { Newsletter } from './Newsletter';
 import { CookieBanner } from './CookieBanner';
 import { Footer } from './Footer';
 
+import '../node_modules/normalize.css/normalize.css';
+import '../node_modules/@blueprintjs/core/lib/css/blueprint.css';
+
 export const Layout = ({ children }) => (
   <div className="layout">
     <Head>
       <title>TokenAnalyst</title>
       <link rel="shortcut icon" href="/static/favicon.ico" />
-      <link href="/static/styles/css_reset.css" rel="stylesheet" />
       <link href="/static/fonts/fonts.css" rel="stylesheet" />
       <script src="https://js.stripe.com/v3/" />
       <meta
