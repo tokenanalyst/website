@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import ReactGA from "react-ga";
 import Router from "next/router";
+import Cookies from "js-cookie";
 
 import { LoginContext } from "../../../contexts/Login";
 import { STRIPE } from "../../../constants/stripe";
@@ -8,10 +9,22 @@ import { colors } from "../../../constants/styles/colors";
 
 export const Product = ({ name, price, features, buttonText, stripePlan }) => {
   const loginCtx = useContext(LoginContext);
+  console.log(loginCtx);
 
-  const redirectToStripe = async () => {
-    const stripe = Stripe(STRIPE.apiKey);
-    await stripe.redirectToCheckout({
+  const username = Cookies.get("loggedInAsUsername");
+  const userId = Cookies.get("loggedInAsUserId");
+
+  console.log(username, userId);
+
+  const redirectToStripe = async stripeOptions => {
+    console.log("redirectToStripe run");
+    const stripe = Stripe(
+      // process.env.NODE_ENV !== "development" ? STRIPE.apiKey : STRIPE.apiTestKey
+      STRIPE.apiKey
+    );
+    console.log(stripeOptions);
+    console.log(STRIPE.apiKey);
+    const stripeOpt = {
       items: [
         {
           plan: stripePlan,
@@ -19,8 +32,13 @@ export const Product = ({ name, price, features, buttonText, stripePlan }) => {
         }
       ],
       successUrl: "https://www.tokenanalyst.io/purchase-success",
-      cancelUrl: "https://www.tokenanalyst.io/"
-    });
+      cancelUrl: "https://www.tokenanalyst.io/",
+      ...stripeOptions
+    };
+
+    console.log(stripeOpt);
+    // return;
+    await stripe.redirectToCheckout(stripeOpt);
   };
 
   return (
@@ -57,7 +75,10 @@ export const Product = ({ name, price, features, buttonText, stripePlan }) => {
                       });
                       return Router.push("/login");
                     }
-                    await redirectToStripe();
+                    await redirectToStripe({
+                      customerEmail: username,
+                      clientReferenceId: userId.toString()
+                    });
                   }
                 : () => {
                     ReactGA.event({

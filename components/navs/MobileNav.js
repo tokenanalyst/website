@@ -37,8 +37,7 @@ export const MobileNav = () => {
         </div>
         <div
           className="mobile-sub-links-container"
-          onClick={() => setIsVisible(false)}
-        >
+          onClick={() => setIsVisible(false)}>
           <Link href="/" passHref>
             <div className={setLinkActive(router.pathname, "/")}>
               Exchange Flows
@@ -79,14 +78,16 @@ export const MobileNav = () => {
               className="mobile-link"
               onClick={() => {
                 Cookies.remove("apiKey");
+                Cookies.remove("loggedInAs");
+                Cookies.remove("loggedInAsUsername");
+                Cookies.remove("loggedInAsUserId");
                 loginCtx.setIsLoggedIn(false);
                 ReactGA.event({
                   category: "User",
                   action: `Click Logout`,
                   label: `Mobile Nav`
                 });
-              }}
-            >
+              }}>
               Logout
             </div>
           ) : (

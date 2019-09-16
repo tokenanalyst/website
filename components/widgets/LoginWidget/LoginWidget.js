@@ -24,10 +24,17 @@ export const LoginWidget = () => {
           password
         }
       );
-      Cookies.set("apiKey", response.data.apiKey);
-      Cookies.set("loggedInAs", response.data.name);
+      const {
+        data: { apiKey, name, username, id }
+      } = response;
+
+      Cookies.set("apiKey", apiKey);
+      Cookies.set("loggedInAs", name);
+      Cookies.set("loggedInAsUsername", username);
+      Cookies.set("loggedInAsUserId", id);
       loginCtx.setIsLoggedIn(true);
-      loginCtx.setLoggedInAs(response.data.name);
+      loginCtx.setLoggedInAs(name);
+      console.log(response);
       console.log(loginCtx);
       if (
         loginCtx.loginData &&
@@ -35,7 +42,10 @@ export const LoginWidget = () => {
         loginCtx.loginData.stripe.redirectFn
       ) {
         loginCtx.setLoginData({ ...loginCtx.loginData, stripe: null });
-        return loginCtx.loginData.stripe.redirectFn();
+        return loginCtx.loginData.stripe.redirectFn({
+          customerEmail: username,
+          clientReferenceId: id.toString()
+        });
       }
 
       router.push("/");
