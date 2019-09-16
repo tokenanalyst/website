@@ -39,7 +39,6 @@ module.exports = endpointCallFn => async (taInstance, params) => {
         status: null,
         data: error.message
       };
-      console.log(error.config);
     }
   }
 

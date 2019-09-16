@@ -28,7 +28,6 @@ module.exports = async (req, res) => {
   const privateApi = TA({ apiKey: process.env.API_KEY });
 
   const publicApi = TA({
-    apiKey: process.env.API_KEY,
     apiUrl: PUBLIC_API_URL
   });
 
