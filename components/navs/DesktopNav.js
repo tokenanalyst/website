@@ -52,7 +52,11 @@ export const DesktopNav = () => {
                     ? `/static/png/${LOGO_IMAGES['DesktopPro']}`
                     : `/static/png/${LOGO_IMAGES['Desktop']}`
                 }
-                width='180px'
+                width="180px"
+                onMouseOver={() => {
+                  collapseAllSubMenus();
+                }}
+
               />
             </Link>
           </div>
@@ -156,8 +160,8 @@ export const DesktopNav = () => {
                 }}>
                 Login
               </div>
-            </Link>
-          )}
+              </Link>
+            )}
         </div>
       </div>
       <div className='desktop-sub-links-container'>
@@ -239,7 +243,11 @@ export const DesktopNav = () => {
               className='desktop-exchanges-sub-links'
               onMouseLeave={() => collapseSubMenuDelayed('exchanges')}>
               <div>
-                <Link href='/exchange/BTC/Binance' passHref>
+                <Link
+                  href="/exchange/[token]/[exchange]"
+                  as="/exchange/BTC/Binance"
+                  passHref
+                >
                   <div
                     onClick={() => {
                       ReactGA.event({
@@ -257,7 +265,11 @@ export const DesktopNav = () => {
                 </Link>
               </div>
               <div>
-                <Link href='/exchange/BTC/Bitstamp' passHref>
+                <Link
+                  href="/exchange/[token]/[exchange]"
+                  as="/exchange/BTC/Bitstamp"
+                  passHref
+                >
                   <div
                     onClick={() => {
                       ReactGA.event({
@@ -275,7 +287,11 @@ export const DesktopNav = () => {
                 </Link>
               </div>
               <div>
-                <Link href='/exchange/ETH/Bitfinex' passHref>
+                <Link
+                  href="/exchange/[token]/[exchange]"
+                  as="/exchange/ETH/Bitfinex"
+                  passHref
+                >
                   <div
                     onClick={() => {
                       ReactGA.event({
@@ -293,7 +309,11 @@ export const DesktopNav = () => {
                 </Link>
               </div>
               <div>
-                <Link href='/exchange/ETH/Bittrex' passHref>
+                <Link
+                  href="/exchange/[token]/[exchange]"
+                  as="/exchange/ETH/Bittrex"
+                  passHref
+                >
                   <div
                     onClick={() => {
                       ReactGA.event({
@@ -378,7 +398,7 @@ export const DesktopNav = () => {
           color: white;
           z-index: 10000;
           top: 60px;
-          margin-left: 470px;
+          margin-left: 420px;
           padding-left: 10px;
           border-radius: 0px 0px 5px 5px;
         }
@@ -389,7 +409,7 @@ export const DesktopNav = () => {
           color: white;
           z-index: 10000;
           top: 60px;
-          margin-left: 728px;
+          margin-left: 715px;
           padding-left: 10px;
           border-radius: 0px 0px 5px 5px;
         }
@@ -400,7 +420,7 @@ export const DesktopNav = () => {
           color: white;
           z-index: 10000;
           top: 60px;
-          margin-left: 200px;
+          margin-left: 190px;
           padding-left: 10px;
           border-radius: 0px 0px 5px 5px;
         }
