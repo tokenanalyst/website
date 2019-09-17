@@ -1,33 +1,53 @@
-import React, { useState, useContext } from 'react';
-import axios from 'axios';
-import { useRouter } from 'next/router';
-import Cookies from 'js-cookie';
+import React, { useState, useContext } from "react";
+import axios from "axios";
+import { useRouter } from "next/router";
+import Cookies from "js-cookie";
 
-import { LoginContext } from '../../../contexts/Login';
-import { colors } from '../../../constants/styles/colors';
+import { LoginContext } from "../../../contexts/Login";
+import { colors } from "../../../constants/styles/colors";
 
 export const LoginWidget = () => {
   const router = useRouter();
   const loginCtx = useContext(LoginContext);
 
   const [isError, setIsError] = useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const isRedirectToStripe = loginCtx.paymentData.stripe;
 
   const login = async () => {
     try {
       const response = await axios.post(
-        'https://api.tokenanalyst.io/auth/user/login',
+        "https://api.tokenanalyst.io/auth/user/login",
         {
           username: email,
           password
         }
       );
-      Cookies.set('apiKey', response.data.apiKey);
-      Cookies.set('loggedInAs', response.data.name);
+      const {
+        data: { apiKey, name, username, id }
+      } = response;
+
+      Cookies.set("apiKey", apiKey);
+      Cookies.set("loggedInAs", name);
+      Cookies.set("loggedInAsUsername", username);
+      Cookies.set("loggedInAsUserId", id);
       loginCtx.setIsLoggedIn(true);
-      loginCtx.setLoggedInAs(response.data.name);
-      router.push('/');
+      loginCtx.setLoggedInAs(name);
+
+      if (
+        loginCtx.paymentData.stripe &&
+        loginCtx.paymentData.stripe.redirectFn
+      ) {
+        loginCtx.setPaymentData({ ...loginCtx.paymentData, stripe: null });
+        return loginCtx.paymentData.stripe.redirectFn({
+          customerEmail: username,
+          clientReferenceId: id.toString()
+        });
+      }
+
+      router.push("/");
     } catch (e) {
       setIsError(true);
     }
@@ -55,6 +75,9 @@ export const LoginWidget = () => {
         {isError ? (
           <div className="error">Incorrect email or password</div>
         ) : null}
+        {isRedirectToStripe ? (
+          <div className="message">Please login to complete your purchase.</div>
+        ) : null}
       </div>
       <style jsx>{`
         .container {
@@ -77,7 +100,7 @@ export const LoginWidget = () => {
           width: 300px;
           border: none;
           border-bottom: 1px solid
-            rgba(${isError ? colors.primaryRed : '00, 00, 00'});
+            rgba(${isError ? colors.primaryRed : "00, 00, 00"});
           font-size: 18px;
         }
         .login-button {
@@ -93,6 +116,10 @@ export const LoginWidget = () => {
         }
         .error {
           color: rgba(${colors.primaryRed}, 1);
+          padding-top: 10px;
+          text-align: center;
+        }
+        .message {
           padding-top: 10px;
           text-align: center;
         }

@@ -1,6 +1,8 @@
 import React from "react";
 
 import { PageHeader } from "../components/PageHeader";
+
+import { PageHeader } from "../components/PageHeader";
 import { TestimonialsWidget } from "../components/widgets/TestimonialsWidget";
 import {
   ProductSelectionWidget,

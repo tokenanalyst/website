@@ -136,6 +136,9 @@ export const DesktopNav = () => {
                   className="login-button"
                   onClick={() => {
                     Cookies.remove("apiKey");
+                    Cookies.remove("loggedInAs");
+                    Cookies.remove("loggedInAsUsername");
+                    Cookies.remove("loggedInAsUserId");
                     loginCtx.setIsLoggedIn(false);
                     ReactGA.event({
                       category: "User",
