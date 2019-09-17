@@ -1,16 +1,16 @@
-import React, { useState, useContext } from 'react';
-import Link from 'next/link';
-import Cookies from 'js-cookie';
-import { useRouter } from 'next/router';
-import classNames from 'classnames';
-import ReactGA from 'react-ga';
+import React, { useState, useContext } from "react";
+import Link from "next/link";
+import Cookies from "js-cookie";
+import { useRouter } from "next/router";
+import classNames from "classnames";
+import ReactGA from "react-ga";
 
-import { LoginContext } from '../../contexts/Login';
-import { LOGO_IMAGES } from '../../constants/image-paths';
-import { colors } from '../../constants/styles/colors';
+import { LoginContext } from "../../contexts/Login";
+import { LOGO_IMAGES } from "../../constants/image-paths";
+import { colors } from "../../constants/styles/colors";
 
 export const setLinkActive = (pathName, link) =>
-  pathName === link ? 'active' : '';
+  pathName === link ? "active" : "";
 
 export const DesktopNav = () => {
   const loginCtx = useContext(LoginContext);
@@ -41,16 +41,16 @@ export const DesktopNav = () => {
   };
 
   return (
-    <div className='container'>
-      <div className='desktop'>
-        <div className='left-side'>
-          <div className='logo-desktop'>
-            <Link href='/' passHref>
+    <div className="container">
+      <div className="desktop">
+        <div className="left-side">
+          <div className="logo-desktop">
+            <Link href="/" passHref>
               <img
                 src={
                   loginCtx.isLoggedIn
-                    ? `/static/png/${LOGO_IMAGES['DesktopPro']}`
-                    : `/static/png/${LOGO_IMAGES['Desktop']}`
+                    ? `/static/png/${LOGO_IMAGES["DesktopPro"]}`
+                    : `/static/png/${LOGO_IMAGES["Desktop"]}`
                 }
                 width="180px"
                 onMouseOver={() => {
@@ -59,7 +59,6 @@ export const DesktopNav = () => {
               />
             </Link>
           </div>
-          <div className="desktop-links">
             <div className={"links-metrics"}>
               <div
                 className={classNames(
@@ -127,57 +126,57 @@ export const DesktopNav = () => {
             </div>
           </div>
         </div>
-        <div className='right-side'>
+        <div className="right-side">
           {loginCtx.isLoggedIn ? (
             <>
-              <span style={{ color: 'white' }}>
-                Welcome, {Cookies.get('loggedInAs')}
+              <span style={{ color: "white" }}>
+                Welcome, {Cookies.get("loggedInAs")}
               </span>
               <span
-                className='login-button'
+                className="login-button"
                 onClick={() => {
-                  Cookies.remove('apiKey');
+                  Cookies.remove("apiKey");
                   loginCtx.setIsLoggedIn(false);
                   ReactGA.event({
-                    category: 'User',
+                    category: "User",
                     action: `Click Logout`,
                     label: `Desktop Nav`
                   });
                 }}
                 onMouseOver={() => {
                   collapseAllSubMenus();
-                }}>
+                }}
+              >
                 Logout
               </span>
             </>
           ) : (
-            <Link href='/login' passHref>
+            <Link href="/login" passHref>
               <div
-                className='login-button'
+                className="login-button"
                 onMouseOver={() => {
                   collapseAllSubMenus();
-                }}>
+                }}
+              >
                 Login
               </div>
             </Link>
           )}
         </div>
       </div>
-      <div className='desktop-sub-links-container'>
-        <div
-
-          className="desktop-contact-sub-link-container"
+      <div className="desktop-sub-links-container">
+        <div className="desktop-contact-sub-link-container"
           onClick={collapseAllSubMenus}>
           <div className="desktop-sub-links">
             <div
               className="desktop-contact-sub-links"
               onMouseLeave={() => collapseSubMenuDelayed("contact")}>
               <div>
-                <Link href='/about' passHref>
+                <Link href="/about" passHref>
                   <div
                     onClick={() => {
                       ReactGA.event({
-                        category: 'User',
+                        category: "User",
                         action: `Click Company`,
                         label: `Desktop Nav`
                       });
@@ -190,45 +189,48 @@ export const DesktopNav = () => {
                   </div>
                 </Link>
               </div>
-              <div className='desktop-sub-link'>
+              <div className="desktop-sub-link">
                 <a
-                  href='https://twitter.com/thetokenanalyst'
-                  target='_blank'
+                  href="https://twitter.com/thetokenanalyst"
+                  target="_blank"
                   onClick={() => {
                     ReactGA.event({
-                      category: 'User',
+                      category: "User",
                       action: `Click Follow Us`,
                       label: `Desktop Nav`
                     });
-                  }}>
+                  }}
+                >
                   Follow Us
                 </a>
               </div>
-              <div className='desktop-sub-link'>
+              <div className="desktop-sub-link">
                 <a
-                  href='https://t.me/joinchat/AAAAAEXMAvSpOZao3fRvJA'
-                  target='_blank'
+                  href="https://t.me/joinchat/AAAAAEXMAvSpOZao3fRvJA"
+                  target="_blank"
                   onClick={() => {
                     ReactGA.event({
-                      category: 'User',
+                      category: "User",
                       action: `Click Telegram`,
                       label: `Desktop Nav`
                     });
-                  }}>
+                  }}
+                >
                   Telegram
                 </a>
               </div>
-              <div className='desktop-sub-link'>
+              <div className="desktop-sub-link">
                 <a
-                  href='mailto:info@tokenanalyst.io'
-                  target='_blank'
+                  href="mailto:info@tokenanalyst.io"
+                  target="_blank"
                   onClick={() => {
                     ReactGA.event({
-                      category: 'User',
+                      category: "User",
                       action: `Click Contact`,
                       label: `Desktop Nav`
                     });
-                  }}>
+                  }}
+                >
                   Contact
                 </a>
               </div>
@@ -250,7 +252,7 @@ export const DesktopNav = () => {
                   <div
                     onClick={() => {
                       ReactGA.event({
-                        category: 'User',
+                        category: "User",
                         action: `Click BTC Binance`,
                         label: `Desktop Nav`
                       });
@@ -271,7 +273,7 @@ export const DesktopNav = () => {
                   <div
                     onClick={() => {
                       ReactGA.event({
-                        category: 'User',
+                        category: "User",
                         action: `Click BTC Bitstamp`,
                         label: `Desktop Nav`
                       });
@@ -292,7 +294,7 @@ export const DesktopNav = () => {
                   <div
                     onClick={() => {
                       ReactGA.event({
-                        category: 'User',
+                        category: "User",
                         action: `Click ETH Bitfinex`,
                         label: `Desktop Nav`
                       });
@@ -313,7 +315,7 @@ export const DesktopNav = () => {
                   <div
                     onClick={() => {
                       ReactGA.event({
-                        category: 'User',
+                        category: "User",
                         action: `Click ETH Bittrex`,
                         label: `Desktop Nav`
                       });
@@ -394,7 +396,7 @@ export const DesktopNav = () => {
           color: white;
           z-index: 10000;
           top: 60px;
-          margin-left: 420px;
+          margin-left: 400px;
           padding-left: 10px;
           border-radius: 0px 0px 5px 5px;
         }
@@ -405,7 +407,7 @@ export const DesktopNav = () => {
           color: white;
           z-index: 10000;
           top: 60px;
-          margin-left: 715px;
+          margin-left: 665px;
           padding-left: 10px;
           border-radius: 0px 0px 5px 5px;
         }
@@ -434,22 +436,22 @@ export const DesktopNav = () => {
           opacity: 1;
         }
         .desktop-about-sub-links {
-          display: ${shownItems.about ? 'block' : 'none'};
+          display: ${shownItems.about ? "block" : "none"};
         }
         .desktop-contact-sub-links {
-          display: ${shownItems.contact ? 'block' : 'none'};
+          display: ${shownItems.contact ? "block" : "none"};
         }
         .desktop-exchanges-sub-links {
-          display: ${shownItems.exchanges ? 'block' : 'none'};
+          display: ${shownItems.exchanges ? "block" : "none"};
         }
         .login-button {
           color: white;
           min-width: 60px;
           text-align: center;
           background-color: rgba(${colors.primaryGreen});
-          max-height: 20px;
+          max-height: 40px;
           padding: 10px;
-          border-radius: 10px;
+          border-radius: 20px;
           cursor: pointer;
           margin-left: 20px;
         }

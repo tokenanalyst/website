@@ -10,6 +10,8 @@ import { STABLE_TOKENS, NATIVE_TOKENS } from "../../../constants/tokens";
 import { COIN_IMAGES } from "../../../constants/image-paths";
 import { colors } from "../../../constants/styles/colors";
 
+import { HTMLSelect } from "@blueprintjs/core";
+
 const chartDisplay = [
   {
     type: CHART_TYPES.line,
@@ -52,8 +54,6 @@ export const ChartControls = ({
 }) => {
   // Very ugly. We could use https://lodash.com/docs/4.17.11#has
 
-  const router = useRouter();
-
   const selectedTimeWindow =
     (dataSet && dataSet[0] && dataSet[0].timeWindow) || "1d";
 
@@ -74,11 +74,13 @@ export const ChartControls = ({
                     action: `Chart Type ${chartType.type}`,
                     label: `Chart Type`
                   });
-                }}>
+                }}
+              >
                 <div
                   className={
                     seriesType === chartType.type ? "button-selected" : "button"
-                  }>
+                  }
+                >
                   {chartType.label}
                 </div>
                 <div className="icon">
@@ -99,7 +101,7 @@ export const ChartControls = ({
         {token && (
           <div className="control">
             <div className="select-header">
-              <div>Token</div>
+              <div className="token-header">Token</div>
               <div>
                 <img
                   src={`/static/png/coins/${COIN_IMAGES[token]}`}
@@ -108,7 +110,7 @@ export const ChartControls = ({
               </div>
             </div>
             <div className="control-select-wrapper">
-              <select
+              <HTMLSelect
                 className="control-select"
                 onChange={e => {
                   setToken(e.target.value);
@@ -118,7 +120,8 @@ export const ChartControls = ({
                     label: `Tokens`
                   });
                 }}
-                value={token}>
+                value={token}
+              >
                 {[
                   ...Object.keys(NATIVE_TOKENS),
                   ...Object.keys(STABLE_TOKENS).filter(
@@ -131,83 +134,87 @@ export const ChartControls = ({
                     {token}
                   </option>
                 ))}
-              </select>
+              </HTMLSelect>
             </div>
           </div>
         )}
 
-        {router.pathname !== "/compare" && (
+        <div className="select-boxes">
+          {setTimeWindow && (
+            <div className="control">
+              <div className="select-header">Time interval</div>
+              <div className="control-select-wrapper">
+                <HTMLSelect
+                  value={selectedTimeWindow}
+                  className="control-select"
+                  onChange={e => {
+                    setTimeWindow && setTimeWindow(e.target.value);
+                    ReactGA.event({
+                      category: "User",
+                      action: `Time Interval View ${e.target.value}`,
+                      label: `Time Interval`
+                    });
+                  }}
+                >
+                  {timeWindows.map(timeWindow => (
+                    <option key={timeWindow.value} value={timeWindow.value}>
+                      {timeWindow.label}
+                    </option>
+                  ))}
+                </HTMLSelect>
+              </div>
+            </div>
+          )}
+
           <div className="control">
-            <div className="select-header">Time interval</div>
-            <div className="control-select-wrapper">
-              <select
-                value={selectedTimeWindow}
-                className="control-select"
-                onChange={e => {
-                  setTimeWindow && setTimeWindow(e.target.value);
-                  ReactGA.event({
-                    category: "User",
-                    action: `Time Interval View ${e.target.value}`,
-                    label: `Time Interval`
-                  });
-                }}>
-                {timeWindows.map(timeWindow => (
-                  <option key={timeWindow.value} value={timeWindow.value}>
-                    {timeWindow.label}
-                  </option>
-                ))}
-              </select>
-            </div>
+            <div className="select-header">Data Points</div>
+            <Skeleton isSkeleton={!dataSet}>
+              <div className="control-select-wrapper">
+                {dataSet && (
+                  <>
+                    <HTMLSelect
+                      className="control-select"
+                      onChange={e => {
+                        setDataSet(
+                          dataSet.reduce(
+                            (acc, curr) => [
+                              ...acc,
+                              {
+                                ...curr,
+                                visible: curr.dataPoint === e.target.value
+                              }
+                            ],
+                            []
+                          )
+                        );
+                        setDataPoint && setDataPoint(e.target.value);
+                        ReactGA.event({
+                          category: "User",
+                          action: `Data Point View ${e.target.value}`,
+                          label: `Data Points`
+                        });
+                      }}
+                    >
+                      {dataSet &&
+                        dataSet
+                          .reduce(
+                            (acc, { dataPoint, isAlwaysDisplayed }) =>
+                              acc.indexOf(dataPoint) < 0 && !isAlwaysDisplayed
+                                ? [...acc, dataPoint]
+                                : acc,
+                            []
+                          )
+                          .map(optionName => (
+                            <option key={optionName} value={optionName}>
+                              {optionName}
+                            </option>
+                          ))}
+                    </HTMLSelect>
+                  </>
+                )}
+              </div>
+            </Skeleton>
           </div>
-        )}
-
-        <div className="control">
-          <div className="select-header">Data Points</div>
-          <Skeleton isSkeleton={!dataSet}>
-            <div className="control-select-wrapper">
-              {dataSet && (
-                <>
-                  <select
-                    className="control-select"
-                    onChange={e => {
-                      setDataSet(
-                        dataSet.reduce(
-                          (acc, curr) => [
-                            ...acc,
-                            {
-                              ...curr,
-                              visible: curr.dataPoint === e.target.value
-                            }
-                          ],
-                          []
-                        )
-                      );
-                      setDataPoint && setDataPoint(e.target.value);
-                      ReactGA.event({
-                        category: "User",
-                        action: `Data Point View ${e.target.value}`,
-                        label: `Data Points`
-                      });
-                    }}>
-                    {dataSet &&
-                      dataSet
-                        .reduce(
-                          (acc, { dataPoint, isAlwaysDisplayed }) =>
-                            acc.indexOf(dataPoint) < 0 && !isAlwaysDisplayed
-                              ? [...acc, dataPoint]
-                              : acc,
-                          []
-                        )
-                        .map(optionName => (
-                          <option key={optionName} value={optionName}>
-                            {optionName}
-                          </option>
-                        ))}
-                  </select>
-                </>
-              )}
-            </div>
-          </Skeleton>
         </div>
       </div>
       <style jsx>{`
@@ -215,7 +222,7 @@ export const ChartControls = ({
           display: flex;
           flex-direction: column;
           align-items: flex-start;
-          padding: 30px;
+          padding: 20px;
           border: 1px solid
             ${borderColor ? borderColor : "rgba(151, 151, 151, 0.15)"};
         }
@@ -247,7 +254,7 @@ export const ChartControls = ({
         .token-icon {
           padding-bottom: 10px;
           width: 26px;
-          height: 26px;
+          height: 34px;
         }
         .header {
           padding-bottom: 10px;
@@ -280,9 +287,9 @@ export const ChartControls = ({
         .icon {
           padding-top: 5px;
         }
-        @media only screen and (max-width: 768px) {
+        @media (min-width: 768px) and (max-width: 1399px) {
           .controls {
-            flex-direction: column;
+            flex-direction: row;
             justify-content: center;
             max-width: 100%;
             padding: 10px;
@@ -298,18 +305,28 @@ export const ChartControls = ({
             width: 90%;
             padding-bottom: 10px;
           }
+          .select-boxes {
+            display: flex;
+            min-width: 50%;
+          }
           .select-header {
             padding-bottom: 15px;
             padding-top: 5px;
             font-weight: bold;
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
           }
           .token-icon {
-            padding-bottom: 10px;
             width: 26px;
-            height: 26px;
-            padding-top: 10px;
+            height: 34px;
+          }
+        }
+        @media (min-width: 320px) and (max-width: 767px) {
+          .select-boxes {
+            display: flex;
+            flex-direction: column;
           }
         }
       `}</style>

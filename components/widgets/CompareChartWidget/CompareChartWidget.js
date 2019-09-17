@@ -16,6 +16,19 @@ const SimpleChart = dynamic(
   }
 );
 
+const GRAPH_SIZE = {
+  width: {
+    mobile: 300,
+    tablet: 700,
+    desktop: 850,
+    desktopLarge: 1200
+  },
+  height: {
+    mobile: 300,
+    desktop: 450
+  }
+};
+
 export const CompareChartWidget = () => {
   const [tokenLhs, setTokenLhs] = useState(NATIVE_TOKENS.BTC);
   const [tokenDataSetLhs, setTokenDataSetLhs] = useState(null);
@@ -82,10 +95,21 @@ export const CompareChartWidget = () => {
               dataSet={[...tokenDataSetLhs, ...tokenDataSetRhs]}
               seriesType={CHART_TYPES.line}
               width={
-                window.matchMedia("(max-width: 768px)").matches ? 300 : 1000
+                window.matchMedia("(min-width: 320px) and (max-width: 767px)")
+                  .matches
+                  ? GRAPH_SIZE.width.mobile
+                  : window.matchMedia(
+                      "(min-width: 768px) and (max-width: 1399px)"
+                    ).matches
+                  ? GRAPH_SIZE.width.tablet
+                  : window.matchMedia(
+                      "(min-width: 1400px) and (max-width: 1799px)"
+                    ).matches
+                  ? GRAPH_SIZE.width.desktop
+                  : GRAPH_SIZE.width.desktopLarge
               }
               height={
-                window.matchMedia("(max-width: 768px)").matches ? 300 : 500
+                window.matchMedia("(max-width: 768px)").matches ? 400 : 500
               }
               isLoading={isLoading}
             />
@@ -99,8 +123,8 @@ export const CompareChartWidget = () => {
           />
         </div>
       ) : (
-          <LoadingSpinner />
-        )}
+        <LoadingSpinner />
+      )}
       <style jsx>{`
         .container {
           font-family: Open Sans;
@@ -108,13 +132,22 @@ export const CompareChartWidget = () => {
           flex-direction: row;
           justify-content: space-around;
         }
-        .chart {
-          padding-top: 20px;
-        }
-        @media only screen and (max-width: 768px) {
+        @media (min-width: 768px) and (max-width: 1399px) {
           .container {
             flex-direction: column;
-            align-items: center;
+          }
+          .chart {
+            padding-top: 20px;
+            padding-bottom: 20px;
+          }
+        }
+        @media (min-width: 320px) and (max-width: 767px) {
+          .container {
+            flex-direction: column;
+          }
+          .chart {
+            padding-top: 20px;
+            padding-bottom: 20px;
           }
         }
       `}</style>

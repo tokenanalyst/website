@@ -1,10 +1,10 @@
-import React from "react";
-import numeral from "numeral";
-import { Skeleton } from "../../Skeleton";
+import React from 'react';
+import numeral from 'numeral';
+import { Skeleton } from '../../Skeleton';
 
-import { EXCHANGE_IMAGES } from "../../../constants/image-paths";
-import { EXCHANGE_NAMES } from "../../../constants/exchanges";
-import { colors } from "../../../constants/styles/colors";
+import { EXCHANGE_IMAGES } from '../../../constants/image-paths';
+import { EXCHANGE_NAMES } from '../../../constants/exchanges';
+import { colors } from '../../../constants/styles/colors';
 
 export const ExchangeMetricsWidget = ({ overallMetrics, token, exchange }) => {
   return (
@@ -16,7 +16,7 @@ export const ExchangeMetricsWidget = ({ overallMetrics, token, exchange }) => {
               <>
                 <div className="banner-header">
                   <span className="banner-banner-header-symbol">
-                    {token.replace("_", " ")}
+                    {token.replace('_', ' ')}
                   </span>
                   <span className="banner-banner-header-exchange-name">
                     {EXCHANGE_NAMES[exchange]}
@@ -32,38 +32,39 @@ export const ExchangeMetricsWidget = ({ overallMetrics, token, exchange }) => {
             )}
           </div>
         </Skeleton>
-        <Skeleton isSkeleton={!overallMetrics}> 
+        <Skeleton isSkeleton={!overallMetrics}>
           <div className="banner-metric-container">
             {overallMetrics && (
               <>
                 <div className="banner-item">
                   <div>
                     <span className="flow-value">
-                      ${numeral(overallMetrics.inflowUsdSum).format("0.0a")}
+                      ${numeral(overallMetrics.inflowUsdSum).format('0.0a')}
                     </span>
                     <img
                       src={
                         overallMetrics.inflowUsdSumPctChange < 0
-                          ? "/static/svg/down.svg"
+                          ? '/static/svg/down.svg'
                           : overallMetrics.inflowUsdSumPctChange > 0
-                          ? "/static/svg/up.svg"
-                          : "/static/svg/nochange.svg"
+                          ? '/static/svg/up.svg'
+                          : '/static/svg/nochange.svg'
                       }
                     />
                     <span
                       className={
                         overallMetrics.inflowUsdSumPctChange > 0
-                          ? "change-positive"
+                          ? 'change-positive'
                           : overallMetrics.inflowUsdSumPctChange < 0
-                          ? "change-negative"
-                          : "change-neutral"
-                      }>
+                          ? 'change-negative'
+                          : 'change-neutral'
+                      }
+                    >
                       {overallMetrics.inflowUsdSumPctChange &&
                         overallMetrics.inflowUsdSumPctChange.toFixed(2)}
                       %
                     </span>
                   </div>
-                  <div>Inflow Volume Last 24h</div>
+                  <div className="volume-label">Inflow Volume Last 24h</div>
                 </div>
               </>
             )}
@@ -76,25 +77,26 @@ export const ExchangeMetricsWidget = ({ overallMetrics, token, exchange }) => {
                 <div className="banner-item">
                   <div>
                     <span className="flow-value">
-                      ${numeral(overallMetrics.outflowUsdSum).format("0.0a")}
+                      ${numeral(overallMetrics.outflowUsdSum).format('0.0a')}
                     </span>
                     <img
                       src={
                         overallMetrics.outflowUsdSumPctChange < 0
-                          ? "/static/svg/down.svg"
+                          ? '/static/svg/down.svg'
                           : overallMetrics.outflowUsdSumPctChange > 0
-                          ? "/static/svg/up.svg"
-                          : "/static/svg/nochange.svg"
+                          ? '/static/svg/up.svg'
+                          : '/static/svg/nochange.svg'
                       }
                     />
                     <span
                       className={
                         overallMetrics.outflowUsdSumPctChange > 0
-                          ? "change-positive"
+                          ? 'change-positive'
                           : overallMetrics.outflowUsdSumPctChange < 0
-                          ? "change-negative"
-                          : "change-neutral"
-                      }>
+                          ? 'change-negative'
+                          : 'change-neutral'
+                      }
+                    >
                       {overallMetrics.outflowUsdSumPctChange &&
                         overallMetrics.outflowUsdSumPctChange.toFixed(2)}
                       %
@@ -145,9 +147,9 @@ export const ExchangeMetricsWidget = ({ overallMetrics, token, exchange }) => {
           padding-right: 20px;
         }
         .banner-metric-container {
-            height: 40px;
-            width: 200px;
-          }
+          height: 40px;
+          width: 200px;
+        }
         .banner-item {
           font-family: Open Sans;
           display: flex;
@@ -193,7 +195,10 @@ export const ExchangeMetricsWidget = ({ overallMetrics, token, exchange }) => {
             flex-direction: column-reverse;
             justify-content: space-around;
             align-items: center;
-            padding-bottom: 50px;
+            padding-bottom: 70px;
+          }
+          .banner-header {
+            padding-left: 0px;
           }
           .banner-banner-logo-img {
             width: 40px;
@@ -201,7 +206,7 @@ export const ExchangeMetricsWidget = ({ overallMetrics, token, exchange }) => {
           }
           .banner-logo-img-container {
             flex: 1;
-            padding-bottom: 10px;
+            padding-top: 50px;
           }
           .banner-banner-header {
             flex: 1;
@@ -218,16 +223,23 @@ export const ExchangeMetricsWidget = ({ overallMetrics, token, exchange }) => {
           .banner-container {
             flex-direction: column;
             border-bottom: none;
-            padding-bottom: 0px;
+            padding-bottom: 10px;
           }
           .banner-metric-container {
-            padding-bottom: 20px;
+            height: 60px;
           }
           .banner-item {
             font-family: Space Grotesk;
             display: flex;
             flex-direction: column;
             align-items: center;
+          }
+          .flow-value {
+            padding-top: 5px;
+          }
+          .volume-label {
+            padding-top: 2px;
+            padding-bottom: 2px;
           }
           .shadow {
             height: 4px;
@@ -246,8 +258,8 @@ const Separator = () => (
         border: solid 0.5px rgba(151, 151, 151, 0.15);
         margin-left: 10px;
         margin-right: 10px;
-        margin-top: 10px;
-        margin-bottom: 10px;
+        margin-top: 15px;
+        margin-bottom: 15px;
       }
       @media only screen and (max-width: 768px) {
         .separator {
