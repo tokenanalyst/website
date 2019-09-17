@@ -1,4 +1,4 @@
-export const products = [
+export const PRODUCTS = [
   {
     name: "Free",
     price: "$0",
@@ -31,7 +31,23 @@ export const products = [
   }
 ];
 
-export const features = {
+export const TEST_PRODUCTS = [
+  {
+    name: "Free",
+    price: "$0",
+    features: ["Fundamental Analytics", "90 Day Data", "CSV & API"],
+    buttonText: "Get"
+  },
+  {
+    name: "Hobbyist",
+    price: "$99",
+    features: ["Advanced Analytics", "Full Historical Data", "CSV & API"],
+    buttonText: "Purchase",
+    stripePlan: "plan_F7W6tgvMEc0yRM"
+  }
+];
+
+export const FEATURES = {
   columns: ["Free", "Hobbyist", "Pro", "Enterprise"],
   categories: [
     {

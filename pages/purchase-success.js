@@ -1,7 +1,7 @@
-import React from 'react';
-import Link from 'next/link';
+import React from "react";
+import Link from "next/link";
 
-import { colors } from '../constants/styles/colors';
+import { colors } from "../constants/styles/colors";
 
 const PurchaseSuccess = () => {
   return (
@@ -14,16 +14,16 @@ const PurchaseSuccess = () => {
           on the payment page.
         </div>
         <div>
-          You will find your plan details and <strong>API access key</strong>{' '}
+          You will find your plan details and <strong>API access key</strong>{" "}
           within the email
         </div>
         <div className="issues">Any issues?</div>
         <span>
-          Please get in touch with us{' '}
+          Please get in touch with us{" "}
           <a href="mailto:info@tokenanalyst.io">here</a>
         </span>
         <Link href="/" passHref>
-          <div className="home-button">Go Home</div>
+          <div className="home-button">Home</div>
         </Link>
       </div>
       <style jsx>{`
@@ -37,21 +37,21 @@ const PurchaseSuccess = () => {
         .congratulations {
           font-weight: bold;
           font-size: 24px;
-          padding-bottom: 10px;
+          padding-bottom: 30px;
         }
         .issues {
-          padding-top: 20px;
+          padding-bottom: 30px;
         }
         .home-button {
+          margin-top: 30px;
           color: white;
           min-width: 60px;
           text-align: center;
           background-color: rgba(${colors.primaryGreen});
-          max-height: 20px;
-          padding: 10px;
-          margin: 10px;
-          border-radius: 10px;
+          max-height: 40px;
           cursor: pointer;
+          padding: 10px;
+          border-radius: 20px;
         }
       `}</style>
     </>

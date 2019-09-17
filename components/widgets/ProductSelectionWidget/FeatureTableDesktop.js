@@ -1,7 +1,7 @@
 import React from "react";
 import { Icon } from "@blueprintjs/core";
 
-import { features } from "./data/productsData";
+import { FEATURES } from "./data/productsData";
 import { colors } from "../../../constants/styles/colors";
 
 export const FeatureTableDesktop = () => {
@@ -9,11 +9,11 @@ export const FeatureTableDesktop = () => {
     <div className="container">
       <table>
         <tbody>
-          {features.categories.map((category, index) => (
+          {FEATURES.categories.map((category, index) => (
             <React.Fragment key={category.name}>
               <tr className="row-header">
                 <td className="column-header">{category.name}</td>
-                {features.columns.map(column => (
+                {FEATURES.columns.map(column => (
                   <td key={column} className="column-header">
                     {index === 0 && column}
                   </td>

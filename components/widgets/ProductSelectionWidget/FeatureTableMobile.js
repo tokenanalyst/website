@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Icon } from "@blueprintjs/core";
 
-import { features } from "./data/productsData";
+import { FEATURES } from "./data/productsData";
 import { colors } from "../../../constants/styles/colors";
 
 export const FeatureTableMobile = () => {
@@ -10,19 +10,18 @@ export const FeatureTableMobile = () => {
   return (
     <div className="container">
       <div className="button-container">
-        {features.columns.map((column, index) => (
+        {FEATURES.columns.map((column, index) => (
           <span
             key={column}
             className={index === displayedTab ? "button-selected" : "button"}
-            onClick={() => setDisplayedTab(index)}
-          >
+            onClick={() => setDisplayedTab(index)}>
             {column}
           </span>
         ))}
       </div>
       <table>
         <tbody>
-          {features.categories.map(feature => (
+          {FEATURES.categories.map(feature => (
             <React.Fragment key={feature.name}>
               <tr className="row-header">
                 <td>{feature.name}</td>

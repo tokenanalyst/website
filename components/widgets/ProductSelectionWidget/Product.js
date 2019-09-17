@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import ReactGA from "react-ga";
 import Router from "next/router";
 import Cookies from "js-cookie";
+import { useRouter } from "next/router";
 
 import { LoginContext } from "../../../contexts/Login";
 import { STRIPE } from "../../../constants/stripe";
@@ -9,21 +10,11 @@ import { colors } from "../../../constants/styles/colors";
 
 export const Product = ({ name, price, features, buttonText, stripePlan }) => {
   const loginCtx = useContext(LoginContext);
-  console.log(loginCtx);
-
   const username = Cookies.get("loggedInAsUsername");
   const userId = Cookies.get("loggedInAsUserId");
 
-  console.log(username, userId);
-
   const redirectToStripe = async stripeOptions => {
-    console.log("redirectToStripe run");
-    const stripe = Stripe(
-      // process.env.NODE_ENV !== "development" ? STRIPE.apiKey : STRIPE.apiTestKey
-      STRIPE.apiKey
-    );
-    console.log(stripeOptions);
-    console.log(STRIPE.apiKey);
+    const stripe = Stripe(STRIPE.apiKey);
     const stripeOpt = {
       items: [
         {
@@ -36,8 +27,6 @@ export const Product = ({ name, price, features, buttonText, stripePlan }) => {
       ...stripeOptions
     };
 
-    console.log(stripeOpt);
-    // return;
     await stripe.redirectToCheckout(stripeOpt);
   };
 

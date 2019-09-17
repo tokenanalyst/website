@@ -34,8 +34,7 @@ export const LoginWidget = () => {
       Cookies.set("loggedInAsUserId", id);
       loginCtx.setIsLoggedIn(true);
       loginCtx.setLoggedInAs(name);
-      console.log(response);
-      console.log(loginCtx);
+
       if (
         loginCtx.loginData &&
         loginCtx.loginData.stripe &&
@@ -50,7 +49,6 @@ export const LoginWidget = () => {
 
       router.push("/");
     } catch (e) {
-      console.log(e);
       setIsError(true);
     }
   };
