@@ -1,17 +1,17 @@
-import React from 'react';
+import React from "react";
 
-import { PageHeader } from '../components/PageHeader';
+import { PageHeader } from "../components/PageHeader";
 
 import {
   ProductSelectionWidget,
   FeatureTableDesktop,
-  FeatureTableMobile,
-} from '../components/widgets/ProductSelectionWidget';
+  FeatureTableMobile
+} from "../components/widgets/ProductSelectionWidget";
 
 const Pricing = () => {
   return (
     <div className="container">
-      <PageHeader text={'Plans'} />
+      <PageHeader text={"Plans"} />
       <div className="shadow" />
       <div className="product-widget">
         <ProductSelectionWidget />

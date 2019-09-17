@@ -1,10 +1,34 @@
-import React from 'react';
-import ReactGA from 'react-ga';
+import React, { useContext } from "react";
+import ReactGA from "react-ga";
+import Router from "next/router";
+import Cookies from "js-cookie";
 
-import { STRIPE } from '../../../constants/stripe';
-import { colors } from '../../../constants/styles/colors';
+import { LoginContext } from "../../../contexts/Login";
+import { STRIPE } from "../../../constants/stripe";
+import { colors } from "../../../constants/styles/colors";
 
 export const Product = ({ name, price, features, buttonText, stripePlan }) => {
+  const loginCtx = useContext(LoginContext);
+  const username = Cookies.get("loggedInAsUsername");
+  const userId = Cookies.get("loggedInAsUserId");
+
+  const redirectToStripe = async stripeOptions => {
+    const stripe = Stripe(STRIPE.apiKey);
+    const stripeOpt = {
+      items: [
+        {
+          plan: stripePlan,
+          quantity: 1
+        }
+      ],
+      successUrl: "https://www.tokenanalyst.io/purchase-success",
+      cancelUrl: "https://www.tokenanalyst.io/",
+      ...stripeOptions
+    };
+
+    await stripe.redirectToCheckout(stripeOpt);
+  };
+
   return (
     <>
       <div className="container">
@@ -28,33 +52,36 @@ export const Product = ({ name, price, features, buttonText, stripePlan }) => {
               stripePlan
                 ? async () => {
                     ReactGA.event({
-                      category: 'User',
+                      category: "User",
                       action: `Plan select ${name}`,
                       label: `Plans`
                     });
-                    const stripe = Stripe(STRIPE.apiKey);
-                    const result = await stripe.redirectToCheckout({
-                      items: [
-                        {
-                          plan: stripePlan,
-                          quantity: 1
-                        }
-                      ],
-                      successUrl:
-                        'https://www.tokenanalyst.io/purchase-success',
-                      cancelUrl: 'https://www.tokenanalyst.io/'
+
+                    if (!loginCtx.isLoggedIn) {
+                      loginCtx.setPaymentData({
+                        stripe: { redirectFn: redirectToStripe }
+                      });
+                      return Router.push("/login");
+                    }
+                    await redirectToStripe({
+                      customerEmail: username,
+                      clientReferenceId: userId.toString()
                     });
                   }
                 : () => {
                     ReactGA.event({
-                      category: 'User',
+                      category: "User",
                       action: `Plan select ${name}`,
                       label: `Plans`
                     });
-                    window.location = 'mailto:info@tokenanalyst.io';
+
+                    if (name === "Free") {
+                      return Router.push("/register");
+                    }
+
+                    window.location = "mailto:info@tokenanalyst.io";
                   }
-            }
-          >
+            }>
             {buttonText}
           </div>
         </div>
