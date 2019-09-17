@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import ReactGA from "react-ga";
 import Router from "next/router";
 import Cookies from "js-cookie";
-import { useRouter } from "next/router";
 
 import { LoginContext } from "../../../contexts/Login";
 import { STRIPE } from "../../../constants/stripe";
@@ -53,13 +52,13 @@ export const Product = ({ name, price, features, buttonText, stripePlan }) => {
               stripePlan
                 ? async () => {
                     ReactGA.event({
-                      category: 'User',
+                      category: "User",
                       action: `Plan select ${name}`,
                       label: `Plans`
                     });
 
                     if (!loginCtx.isLoggedIn) {
-                      loginCtx.setLoginData({
+                      loginCtx.setPaymentData({
                         stripe: { redirectFn: redirectToStripe }
                       });
                       return Router.push("/login");
@@ -71,11 +70,16 @@ export const Product = ({ name, price, features, buttonText, stripePlan }) => {
                   }
                 : () => {
                     ReactGA.event({
-                      category: 'User',
+                      category: "User",
                       action: `Plan select ${name}`,
                       label: `Plans`
                     });
-                    window.location = 'mailto:info@tokenanalyst.io';
+
+                    if (name === "Free") {
+                      return Router.push("/register");
+                    }
+
+                    window.location = "mailto:info@tokenanalyst.io";
                   }
             }>
             {buttonText}

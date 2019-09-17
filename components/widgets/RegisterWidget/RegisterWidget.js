@@ -11,7 +11,7 @@ import { API_ERROR_MSG } from "../../../constants/apiErrors";
 export const RegisterWidget = () => {
   const loginCtx = useContext(LoginContext);
 
-  const [name, setName] = useState("");
+  const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordVerify, setPasswordVerify] = useState("");
@@ -45,7 +45,7 @@ export const RegisterWidget = () => {
       await axios.post("https://api.tokenanalyst.io/auth/user", {
         username: email,
         password,
-        name,
+        name: fullName,
         trader: isTrader,
         enterprise: isEnterprise,
         enthusiast: isEnthusiast,
@@ -77,12 +77,11 @@ export const RegisterWidget = () => {
       setHasRegistered(true);
 
       if (
-        loginCtx.loginData &&
-        loginCtx.loginData.stripe &&
-        loginCtx.loginData.stripe.redirectFn
+        loginCtx.paymentData.stripe &&
+        loginCtx.paymentData.stripe.redirectFn
       ) {
-        loginCtx.setLoginData({ ...loginCtx.loginData, stripe: null });
-        return loginCtx.loginData.stripe.redirectFn({
+        loginCtx.setPaymentData({ ...loginCtx.paymentData, stripe: null });
+        return loginCtx.paymentData.stripe.redirectFn({
           customerEmail: username,
           clientReferenceId: id.toString()
         });
@@ -129,7 +128,7 @@ export const RegisterWidget = () => {
             <input
               type="text"
               className="input"
-              onChange={e => setName(e.target.value)}
+              onChange={e => setFullName(e.target.value)}
             />
             <div className="label">Email</div>
             <input

@@ -7,7 +7,7 @@ import { COOKIES } from "../../constants/cookies";
 export const LoginProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loggedInAs, setLoggedInAs] = useState(null);
-  const [loginData, setLoginData] = useState({});
+  const [paymentData, setPaymentData] = useState({ stripe: null });
 
   useEffect(() => {
     if (Cookies.get(COOKIES.apiKey)) setIsLoggedIn(true);
@@ -18,8 +18,8 @@ export const LoginProvider = ({ children }) => {
     loggedInAs,
     setIsLoggedIn,
     setLoggedInAs,
-    setLoginData,
-    loginData
+    setPaymentData,
+    paymentData
   };
 
   return (

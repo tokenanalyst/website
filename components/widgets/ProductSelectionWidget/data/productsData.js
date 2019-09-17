@@ -1,50 +1,15 @@
+import { STRIPE_PLANS, TEST_STRIPE_PLANS } from "../../../../constants/stripe";
+
 export const PRODUCTS = [
-  {
-    name: "Free",
-    price: "$0",
-    features: ["Fundamental Analytics", "90 Day Data", "CSV & API"],
-    buttonText: "Get"
-  },
-  {
-    name: "Hobbyist",
-    price: "$199",
-    features: ["Advanced Analytics", "Full Historical Data", "CSV & API"],
-    buttonText: "Purchase",
-    stripePlan: "plan_FZwwbyxH5Pi73S"
-  },
-  {
-    name: "Pro",
-    price: "$799",
-    features: ["Exchange Flows", "Full Historical Data", "CSV & API"],
-    buttonText: "Purchase",
-    stripePlan: "plan_FZwuSdyp2hRm98"
-  },
-  {
-    name: "Enterprise",
-    price: "-",
-    features: [
-      "Custom Metrics",
-      "Full Historical Data",
-      "All Formats + Websockets"
-    ],
-    buttonText: "Contact Us"
-  }
+  STRIPE_PLANS.FREE,
+  STRIPE_PLANS.HOBBYIST,
+  STRIPE_PLANS.PRO,
+  STRIPE_PLANS.ENTERPRISE
 ];
 
 export const TEST_PRODUCTS = [
-  {
-    name: "Free",
-    price: "$0",
-    features: ["Fundamental Analytics", "90 Day Data", "CSV & API"],
-    buttonText: "Get"
-  },
-  {
-    name: "Hobbyist",
-    price: "$99",
-    features: ["Advanced Analytics", "Full Historical Data", "CSV & API"],
-    buttonText: "Purchase",
-    stripePlan: "plan_F7W6tgvMEc0yRM"
-  }
+  TEST_STRIPE_PLANS.FREE,
+  TEST_STRIPE_PLANS.HOBBYIST
 ];
 
 export const FEATURES = {

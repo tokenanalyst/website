@@ -1,25 +1,25 @@
-import React, { useState, useContext } from 'react';
-import axios from 'axios';
-import { useRouter } from 'next/router';
-import Cookies from 'js-cookie';
+import React, { useState, useContext } from "react";
+import axios from "axios";
+import { useRouter } from "next/router";
+import Cookies from "js-cookie";
 
-import { LoginContext } from '../../../contexts/Login';
-import { colors } from '../../../constants/styles/colors';
+import { LoginContext } from "../../../contexts/Login";
+import { colors } from "../../../constants/styles/colors";
 
 export const LoginWidget = () => {
   const router = useRouter();
   const loginCtx = useContext(LoginContext);
 
   const [isError, setIsError] = useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const isRedirectToStripe = loginCtx.loginData && loginCtx.loginData.stripe;
+  const isRedirectToStripe = loginCtx.paymentData.stripe;
 
   const login = async () => {
     try {
       const response = await axios.post(
-        'https://api.tokenanalyst.io/auth/user/login',
+        "https://api.tokenanalyst.io/auth/user/login",
         {
           username: email,
           password
@@ -37,12 +37,11 @@ export const LoginWidget = () => {
       loginCtx.setLoggedInAs(name);
 
       if (
-        loginCtx.loginData &&
-        loginCtx.loginData.stripe &&
-        loginCtx.loginData.stripe.redirectFn
+        loginCtx.paymentData.stripe &&
+        loginCtx.paymentData.stripe.redirectFn
       ) {
-        loginCtx.setLoginData({ ...loginCtx.loginData, stripe: null });
-        return loginCtx.loginData.stripe.redirectFn({
+        loginCtx.setPaymentData({ ...loginCtx.paymentData, stripe: null });
+        return loginCtx.paymentData.stripe.redirectFn({
           customerEmail: username,
           clientReferenceId: id.toString()
         });
@@ -101,7 +100,7 @@ export const LoginWidget = () => {
           width: 300px;
           border: none;
           border-bottom: 1px solid
-            rgba(${isError ? colors.primaryRed : '00, 00, 00'});
+            rgba(${isError ? colors.primaryRed : "00, 00, 00"});
           font-size: 18px;
         }
         .login-button {
