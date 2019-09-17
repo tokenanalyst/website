@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { Icon } from "@blueprintjs/core";
 
@@ -31,7 +31,8 @@ const GRAPH_SIZE = {
   height: {
     mobile: 300,
     desktop: 450
-  }
+  },
+  netflowHeight: 150
 };
 
 const TOOL_TIP = {
@@ -71,30 +72,30 @@ export const IoChartWidget = ({
       {dataSet ? (
         <div className="widget-container">
           <div className="chart-area">
+            <div className="header">
+              Inflow / Outflow <Icon icon="chart" color="gray" />
+              <div className="header-info">
+                <div>
+                  <SimpleToolTip
+                    dataFor={"header-tooltip"}
+                    toolTip={
+                      TOOL_TIP[timeWindow] && TOOL_TIP[timeWindow].message
+                    }
+                    type="dark"
+                    effect="solid"
+                  >
+                    <div data-tip data-for="header-tooltip">
+                      <Icon icon="info-sign" color="gray" />
+                    </div>
+                  </SimpleToolTip>
+                </div>
+              </div>
+            </div>
             <div className="chart">
               {dataSet && (
                 <>
-                  <div className="header">
-                    Inflow / Outflow <Icon icon="chart" color="gray" />
-                    <div className="header-info">
-                      <div>
-                        <SimpleToolTip
-                          dataFor={"header-tooltip"}
-                          toolTip={
-                            TOOL_TIP[timeWindow] && TOOL_TIP[timeWindow].message
-                          }
-                          type="dark"
-                          effect="solid"
-                        >
-                          <div data-tip data-for="header-tooltip">
-                            <Icon icon="info-sign" color="gray" />
-                          </div>
-                        </SimpleToolTip>
-                      </div>
-                    </div>
-                  </div>
                   <SimpleChart
-                    dataSet={dataSet.filter(ds => ds.dataPoint !== "Net Flow")}
+                    dataSet={dataSet.mainData}
                     seriesType={seriesType}
                     width={
                       window.matchMedia(
@@ -117,30 +118,10 @@ export const IoChartWidget = ({
                         : GRAPH_SIZE.height.desktop
                     }
                     formatter={formatter}
-                    isLoading={!dataSet}
                   />
-                  <div className="header">
-                    Net Flow <Icon icon="chart" color="gray" />
-                    <div className="header-info">
-                      <div>
-                        <SimpleToolTip
-                          dataFor={"header-tooltip"}
-                          toolTip={
-                            TOOL_TIP[timeWindow] && TOOL_TIP[timeWindow].message
-                          }
-                          type="dark"
-                          effect="solid"
-                        >
-                          <div data-tip data-for="header-tooltip">
-                            <Icon icon="info-sign" color="gray" />
-                          </div>
-                        </SimpleToolTip>
-                      </div>
-                    </div>
-                  </div>
                   <SimpleChart
-                    dataSet={dataSet.filter(ds => ds.dataPoint === "Net Flow")}
-                    seriesType={seriesType}
+                    dataSet={dataSet.netflowData}
+                    seriesType={CHART_TYPES.histogram}
                     width={
                       window.matchMedia(
                         "(min-width: 320px) and (max-width: 767px)"
@@ -156,9 +137,8 @@ export const IoChartWidget = ({
                         ? GRAPH_SIZE.width.desktop
                         : GRAPH_SIZE.width.desktopLarge
                     }
-                    height={150}
+                    height={GRAPH_SIZE.netflowHeight}
                     formatter={formatter}
-                    isLoading={!dataSet}
                     mode={0}
                   />
                 </>
@@ -169,7 +149,7 @@ export const IoChartWidget = ({
             <ChartControls
               seriesType={seriesType}
               setSeriesType={setSeriesType}
-              dataSet={dataSet}
+              dataSet={dataSet.mainData}
               setDataSet={setDataSet}
               setTimeWindow={setTimeWindow}
             />

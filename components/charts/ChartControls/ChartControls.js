@@ -142,7 +142,7 @@ export const ChartControls = ({
         <div className="select-boxes">
           {setTimeWindow && (
             <div className="control">
-              <div className="select-header">Time interval</div>
+              <div className="select-header">Time Interval</div>
               <div className="control-select-wrapper">
                 <HTMLSelect
                   value={selectedTimeWindow}
@@ -175,18 +175,19 @@ export const ChartControls = ({
                     <HTMLSelect
                       className="control-select"
                       onChange={e => {
-                        setDataSet(
-                          dataSet.reduce(
-                            (acc, curr) => [
+                        e.persist();
+                        setDataSet(prev => ({
+                          ...prev,
+                          mainData: dataSet.reduce((acc, curr) => {
+                            return [
                               ...acc,
                               {
                                 ...curr,
                                 visible: curr.dataPoint === e.target.value
                               }
-                            ],
-                            []
-                          )
-                        );
+                            ];
+                          }, [])
+                        }));
                         setDataPoint && setDataPoint(e.target.value);
                         ReactGA.event({
                           category: "User",

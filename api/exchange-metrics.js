@@ -9,7 +9,7 @@ const { TIME_WINDOWS } = require("../constants/filters");
 module.exports = async (req, res) => {
   const urlParts = url.parse(req.url, true);
   const { token, exchange, timeWindow } = urlParts.query;
-  const isMaxDaysOfData =
+  const isUnlimited =
     req.cookies.apiKey && (await isAuthorised(req.cookies.apiKey));
   const FORMAT = "json";
   const PUBLIC_API_URL = "https://api.tokenanalyst.io/analytics";
@@ -98,11 +98,10 @@ module.exports = async (req, res) => {
     priceApiCall
   ]);
 
-  console.log(inflowTxnCountApiResponse.data);
-
   const netflow = inflowTxnCountApiResponse.data.map(
-    ({ inflow, inflow_usd, date }, index) => ({
+    ({ inflow, inflow_usd, date, hour }, index) => ({
       date,
+      hour,
       value: Number(
         (inflow - outflowTxnCountApiResponse.data[index].outflow).toFixed(2)
       ),
@@ -127,12 +126,8 @@ module.exports = async (req, res) => {
 
     res.send({
       ta_response: {
-        inflow: isMaxDaysOfData
-          ? filteredInflow
-          : filteredInflow.slice(filteredInflow.length - amountOfTimeUnits),
-        outflow: isMaxDaysOfData
-          ? filteredOutflow
-          : filteredOutflow.slice(filteredOutflow.length - amountOfTimeUnits),
+        inflow: filteredInflow,
+        outflow: filteredOutflow,
         overall: publicApiResponse.data.filter(
           item => item.token === token && item.exchange === exchange
         ),
@@ -142,25 +137,13 @@ module.exports = async (req, res) => {
   } else {
     res.send({
       ta_response: {
-        inflow: isMaxDaysOfData
-          ? inflowTxnCountApiResponse.data
-          : inflowTxnCountApiResponse.data.slice(
-              inflowTxnCountApiResponse.data.length - amountOfTimeUnits
-            ),
-        outflow: isMaxDaysOfData
-          ? outflowTxnCountApiResponse.data
-          : outflowTxnCountApiResponse.data.slice(
-              outflowTxnCountApiResponse.data.length - amountOfTimeUnits
-            ),
+        inflow: inflowTxnCountApiResponse.data,
+        outflow: outflowTxnCountApiResponse.data,
         netflow,
         overall: publicApiResponse.data.filter(
           item => item.token === token && item.exchange === exchange
         ),
-        price: isMaxDaysOfData
-          ? tokenPriceApiResponse.data
-          : tokenPriceApiResponse.data.slice(
-              tokenPriceApiResponse.data.length - amountOfTimeUnits
-            )
+        price: tokenPriceApiResponse.data
       }
     });
   }
