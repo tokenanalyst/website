@@ -71,53 +71,97 @@ export const IoChartWidget = ({
       {dataSet ? (
         <div className="widget-container">
           <div className="chart-area">
-            <div className="header">
-              Inflow / Outflow <Icon icon="chart" color="gray" />
-              <div className="header-info">
-                <div>
-                  <SimpleToolTip
-                    dataFor={"header-tooltip"}
-                    toolTip={
-                      TOOL_TIP[timeWindow] && TOOL_TIP[timeWindow].message
-                    }
-                    type="dark"
-                    effect="solid"
-                  >
-                    <div data-tip data-for="header-tooltip">
-                      <Icon icon="info-sign" color="gray" />
-                    </div>
-                  </SimpleToolTip>
-                </div>
-              </div>
-            </div>
             <div className="chart">
               {dataSet && (
-                <SimpleChart
-                  dataSet={dataSet}
-                  seriesType={seriesType}
-                  width={
-                    window.matchMedia(
-                      "(min-width: 320px) and (max-width: 767px)"
-                    ).matches
-                      ? GRAPH_SIZE.width.mobile
-                      : window.matchMedia(
-                          "(min-width: 768px) and (max-width: 1399px)"
-                        ).matches
-                      ? GRAPH_SIZE.width.tablet
-                      : window.matchMedia(
-                          "(min-width: 1400px) and (max-width: 1799px)"
-                        ).matches
-                      ? GRAPH_SIZE.width.desktop
-                      : GRAPH_SIZE.width.desktopLarge
-                  }
-                  height={
-                    window.matchMedia("(max-width: 768px)").matches
-                      ? GRAPH_SIZE.height.mobile
-                      : GRAPH_SIZE.height.desktop
-                  }
-                  formatter={formatter}
-                  isLoading={!dataSet}
-                />
+                <>
+                  <div className="header">
+                    Inflow / Outflow <Icon icon="chart" color="gray" />
+                    <div className="header-info">
+                      <div>
+                        <SimpleToolTip
+                          dataFor={"header-tooltip"}
+                          toolTip={
+                            TOOL_TIP[timeWindow] && TOOL_TIP[timeWindow].message
+                          }
+                          type="dark"
+                          effect="solid"
+                        >
+                          <div data-tip data-for="header-tooltip">
+                            <Icon icon="info-sign" color="gray" />
+                          </div>
+                        </SimpleToolTip>
+                      </div>
+                    </div>
+                  </div>
+                  <SimpleChart
+                    dataSet={dataSet.filter(ds => ds.dataPoint !== "Net Flow")}
+                    seriesType={seriesType}
+                    width={
+                      window.matchMedia(
+                        "(min-width: 320px) and (max-width: 767px)"
+                      ).matches
+                        ? GRAPH_SIZE.width.mobile
+                        : window.matchMedia(
+                            "(min-width: 768px) and (max-width: 1399px)"
+                          ).matches
+                        ? GRAPH_SIZE.width.tablet
+                        : window.matchMedia(
+                            "(min-width: 1400px) and (max-width: 1799px)"
+                          ).matches
+                        ? GRAPH_SIZE.width.desktop
+                        : GRAPH_SIZE.width.desktopLarge
+                    }
+                    height={
+                      window.matchMedia("(max-width: 768px)").matches
+                        ? GRAPH_SIZE.height.mobile
+                        : GRAPH_SIZE.height.desktop
+                    }
+                    formatter={formatter}
+                    isLoading={!dataSet}
+                  />
+                  <div className="header">
+                    Net Flow <Icon icon="chart" color="gray" />
+                    <div className="header-info">
+                      <div>
+                        <SimpleToolTip
+                          dataFor={"header-tooltip"}
+                          toolTip={
+                            TOOL_TIP[timeWindow] && TOOL_TIP[timeWindow].message
+                          }
+                          type="dark"
+                          effect="solid"
+                        >
+                          <div data-tip data-for="header-tooltip">
+                            <Icon icon="info-sign" color="gray" />
+                          </div>
+                        </SimpleToolTip>
+                      </div>
+                    </div>
+                  </div>
+                  <SimpleChart
+                    dataSet={dataSet.filter(ds => ds.dataPoint === "Net Flow")}
+                    seriesType={seriesType}
+                    width={
+                      window.matchMedia(
+                        "(min-width: 320px) and (max-width: 767px)"
+                      ).matches
+                        ? GRAPH_SIZE.width.mobile
+                        : window.matchMedia(
+                            "(min-width: 768px) and (max-width: 1399px)"
+                          ).matches
+                        ? GRAPH_SIZE.width.tablet
+                        : window.matchMedia(
+                            "(min-width: 1400px) and (max-width: 1799px)"
+                          ).matches
+                        ? GRAPH_SIZE.width.desktop
+                        : GRAPH_SIZE.width.desktopLarge
+                    }
+                    height={150}
+                    formatter={formatter}
+                    isLoading={!dataSet}
+                    mode={0}
+                  />
+                </>
               )}
             </div>
           </div>
@@ -152,6 +196,7 @@ export const IoChartWidget = ({
           font-size: 18px;
           font-weight: bold;
           padding-bottom: 20px;
+          padding-top: 20px;
           text-align: center;
           width: 100%;
         }
