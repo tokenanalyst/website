@@ -1,20 +1,24 @@
-import React from 'react';
+import React from "react";
 
-import { PageHeader } from '../components/PageHeader';
-
+import { PageHeader } from "../components/PageHeader";
+import { TestimonialsWidget } from "../components/widgets/TestimonialsWidget";
 import {
   ProductSelectionWidget,
   FeatureTableDesktop,
-  FeatureTableMobile,
-} from '../components/widgets/ProductSelectionWidget';
+  FeatureTableMobile
+} from "../components/widgets/ProductSelectionWidget";
 
 const Pricing = () => {
   return (
     <div className="container">
-      <PageHeader text={'Plans'} />
+      <PageHeader text={"Plans"} />
       <div className="shadow" />
       <div className="product-widget">
         <ProductSelectionWidget />
+      </div>
+      <div>
+        <div className="sub-header">Testimonials</div>
+        <TestimonialsWidget />
       </div>
       <div className="sub-header">What you get</div>
       <div className="feature-table">
