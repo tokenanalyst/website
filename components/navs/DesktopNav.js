@@ -65,7 +65,8 @@ export const DesktopNav = () => {
               onMouseOver={() => {
                 collapseAllSubMenus();
                 setShownItems(prev => ({ ...prev, exchanges: true }));
-              }}>
+              }}
+            >
               Exchange Flow
             </div>
             <Link href="/stablecoins" passHref>
@@ -74,7 +75,8 @@ export const DesktopNav = () => {
                   "desktop-link",
                   setLinkActive(asPath, "/stablecoins")
                 )}
-                onMouseOver={collapseAllSubMenus}>
+                onMouseOver={collapseAllSubMenus}
+              >
                 Stablecoins
               </div>
             </Link>
@@ -84,7 +86,8 @@ export const DesktopNav = () => {
                   "desktop-link",
                   setLinkActive(asPath, "/compare")
                 )}
-                onMouseOver={collapseAllSubMenus}>
+                onMouseOver={collapseAllSubMenus}
+              >
                 Compare
               </div>
             </Link>
@@ -114,7 +117,8 @@ export const DesktopNav = () => {
               onMouseOver={() => {
                 collapseAllSubMenus();
                 setShownItems(prev => ({ ...prev, contact: true }));
-              }}>
+              }}
+            >
               About Us
             </div>
           </div>
@@ -141,7 +145,8 @@ export const DesktopNav = () => {
                 }}
                 onMouseOver={() => {
                   collapseAllSubMenus();
-                }}>
+                }}
+              >
                 Logout
               </span>
             </>
@@ -151,7 +156,8 @@ export const DesktopNav = () => {
                 className="login-button"
                 onMouseOver={() => {
                   collapseAllSubMenus();
-                }}>
+                }}
+              >
                 Login
               </div>
             </Link>
@@ -194,7 +200,8 @@ export const DesktopNav = () => {
                       action: `Click Follow Us`,
                       label: `Desktop Nav`
                     });
-                  }}>
+                  }}
+                >
                   Follow Us
                 </a>
               </div>
@@ -208,7 +215,8 @@ export const DesktopNav = () => {
                       action: `Click Telegram`,
                       label: `Desktop Nav`
                     });
-                  }}>
+                  }}
+                >
                   Telegram
                 </a>
               </div>
@@ -222,7 +230,8 @@ export const DesktopNav = () => {
                       action: `Click Contact`,
                       label: `Desktop Nav`
                     });
-                  }}>
+                  }}
+                >
                   Contact
                 </a>
               </div>
@@ -378,7 +387,7 @@ export const DesktopNav = () => {
           color: white;
           z-index: 10000;
           top: 60px;
-          margin-left: 420px;
+          margin-left: 400px;
           padding-left: 10px;
           border-radius: 0px 0px 5px 5px;
         }
@@ -389,7 +398,7 @@ export const DesktopNav = () => {
           color: white;
           z-index: 10000;
           top: 60px;
-          margin-left: 715px;
+          margin-left: 665px;
           padding-left: 10px;
           border-radius: 0px 0px 5px 5px;
         }
@@ -434,9 +443,9 @@ export const DesktopNav = () => {
           min-width: 60px;
           text-align: center;
           background-color: rgba(${colors.primaryGreen});
-          max-height: 20px;
+          max-height: 40px;
           padding: 10px;
-          border-radius: 10px;
+          border-radius: 20px;
           cursor: pointer;
           margin-left: 20px;
         }

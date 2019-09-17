@@ -1,8 +1,8 @@
 export const mockExchangeFlowsAllTokens = [
   {
-    token: 'MKR',
-    exchange: 'Binance',
-    window: '24h',
+    token: "MKR",
+    exchange: "Binance",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -13,9 +13,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'MKR',
-    exchange: 'Bitfinex',
-    window: '24h',
+    token: "MKR",
+    exchange: "Bitfinex",
+    window: "24h",
     inflow_sum: 12.9,
     inflow_usd_sum: 5995.75,
     inflow_sum_pct_change: 0.791666666666667,
@@ -26,9 +26,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.172913053054707
   },
   {
-    token: 'MKR',
-    exchange: 'Bittrex',
-    window: '24h',
+    token: "MKR",
+    exchange: "Bittrex",
+    window: "24h",
     inflow_sum: 2.7763,
     inflow_usd_sum: 1291.37,
     inflow_sum_pct_change: -0.531109609863199,
@@ -39,9 +39,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 3.65480623693631
   },
   {
-    token: 'MKR',
-    exchange: 'Kraken',
-    window: '24h',
+    token: "MKR",
+    exchange: "Kraken",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -52,9 +52,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'MKR',
-    exchange: 'Kucoin',
-    window: '24h',
+    token: "MKR",
+    exchange: "Kucoin",
+    window: "24h",
     inflow_sum: 6.739,
     inflow_usd_sum: 3120.01,
     inflow_sum_pct_change: -0.66137890489566,
@@ -65,9 +65,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.657805375983211
   },
   {
-    token: 'MKR',
-    exchange: 'Poloniex',
-    window: '24h',
+    token: "MKR",
+    exchange: "Poloniex",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -78,9 +78,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'MKR',
-    exchange: 'Binance',
-    window: '7d',
+    token: "MKR",
+    exchange: "Binance",
+    window: "7d",
     inflow_sum: 24.725,
     inflow_usd_sum: 10556.21,
     inflow_sum_pct_change: 7.51206665060075,
@@ -91,9 +91,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'MKR',
-    exchange: 'Bitfinex',
-    window: '7d',
+    token: "MKR",
+    exchange: "Bitfinex",
+    window: "7d",
     inflow_sum: 237.8779,
     inflow_usd_sum: 110931.67,
     inflow_sum_pct_change: 4.66728133435301,
@@ -104,9 +104,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.0360770470183164
   },
   {
-    token: 'MKR',
-    exchange: 'Bittrex',
-    window: '7d',
+    token: "MKR",
+    exchange: "Bittrex",
+    window: "7d",
     inflow_sum: 62.9129,
     inflow_usd_sum: 27629.86,
     inflow_sum_pct_change: -0.435859429572659,
@@ -117,9 +117,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.419670883988037
   },
   {
-    token: 'MKR',
-    exchange: 'Kraken',
-    window: '7d',
+    token: "MKR",
+    exchange: "Kraken",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -130,9 +130,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'MKR',
-    exchange: 'Kucoin',
-    window: '7d',
+    token: "MKR",
+    exchange: "Kucoin",
+    window: "7d",
     inflow_sum: 73.0258,
     inflow_usd_sum: 33956.84,
     inflow_sum_pct_change: -0.157055492324989,
@@ -143,9 +143,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.211416925509531
   },
   {
-    token: 'MKR',
-    exchange: 'Poloniex',
-    window: '7d',
+    token: "MKR",
+    exchange: "Poloniex",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -156,9 +156,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'MKR',
-    exchange: 'Binance',
-    window: '30d',
+    token: "MKR",
+    exchange: "Binance",
+    window: "30d",
     inflow_sum: 55.4557,
     inflow_usd_sum: 25017.53,
     inflow_sum_pct_change: -0.42258426591921,
@@ -169,9 +169,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'MKR',
-    exchange: 'Bitfinex',
-    window: '30d',
+    token: "MKR",
+    exchange: "Bitfinex",
+    window: "30d",
     inflow_sum: 2673.3338,
     inflow_usd_sum: 1323144.43,
     inflow_sum_pct_change: -0.0944950684087402,
@@ -182,9 +182,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.704333581366997
   },
   {
-    token: 'MKR',
-    exchange: 'Bittrex',
-    window: '30d',
+    token: "MKR",
+    exchange: "Bittrex",
+    window: "30d",
     inflow_sum: 458.601,
     inflow_usd_sum: 218426.18,
     inflow_sum_pct_change: -0.651359565491271,
@@ -195,9 +195,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.535049732177644
   },
   {
-    token: 'MKR',
-    exchange: 'Kraken',
-    window: '30d',
+    token: "MKR",
+    exchange: "Kraken",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -208,9 +208,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'MKR',
-    exchange: 'Kucoin',
-    window: '30d',
+    token: "MKR",
+    exchange: "Kucoin",
+    window: "30d",
     inflow_sum: 418.6522,
     inflow_usd_sum: 202424.89,
     inflow_sum_pct_change: -0.529221087365942,
@@ -221,9 +221,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.585749929181912
   },
   {
-    token: 'MKR',
-    exchange: 'Poloniex',
-    window: '30d',
+    token: "MKR",
+    exchange: "Poloniex",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -234,9 +234,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'BAT',
-    exchange: 'Binance',
-    window: '24h',
+    token: "BAT",
+    exchange: "Binance",
+    window: "24h",
     inflow_sum: 212829.2038,
     inflow_usd_sum: 36305.81,
     inflow_sum_pct_change: -0.646851510493306,
@@ -247,9 +247,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.531583901154593
   },
   {
-    token: 'BAT',
-    exchange: 'Bitfinex',
-    window: '24h',
+    token: "BAT",
+    exchange: "Bitfinex",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: -1,
@@ -260,9 +260,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -1
   },
   {
-    token: 'BAT',
-    exchange: 'Bittrex',
-    window: '24h',
+    token: "BAT",
+    exchange: "Bittrex",
+    window: "24h",
     inflow_sum: 12191.0403,
     inflow_usd_sum: 2117.93,
     inflow_sum_pct_change: -0.739641187660074,
@@ -273,9 +273,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.730851931185974
   },
   {
-    token: 'BAT',
-    exchange: 'Kraken',
-    window: '24h',
+    token: "BAT",
+    exchange: "Kraken",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -286,9 +286,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'BAT',
-    exchange: 'Kucoin',
-    window: '24h',
+    token: "BAT",
+    exchange: "Kucoin",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -299,9 +299,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'BAT',
-    exchange: 'Poloniex',
-    window: '24h',
+    token: "BAT",
+    exchange: "Poloniex",
+    window: "24h",
     inflow_sum: 3271.2062,
     inflow_usd_sum: 556.13,
     inflow_sum_pct_change: -0.896790308353198,
@@ -312,9 +312,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.997168325458262
   },
   {
-    token: 'BAT',
-    exchange: 'Binance',
-    window: '7d',
+    token: "BAT",
+    exchange: "Binance",
+    window: "7d",
     inflow_sum: 6238453.7666,
     inflow_usd_sum: 1078458.96,
     inflow_sum_pct_change: 0.537747342248454,
@@ -325,9 +325,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.310007056324069
   },
   {
-    token: 'BAT',
-    exchange: 'Bitfinex',
-    window: '7d',
+    token: "BAT",
+    exchange: "Bitfinex",
+    window: "7d",
     inflow_sum: 807642.7957,
     inflow_usd_sum: 138548.24,
     inflow_sum_pct_change: 0.746470658757338,
@@ -338,9 +338,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.664169543746467
   },
   {
-    token: 'BAT',
-    exchange: 'Bittrex',
-    window: '7d',
+    token: "BAT",
+    exchange: "Bittrex",
+    window: "7d",
     inflow_sum: 3209423.3314,
     inflow_usd_sum: 545914.22,
     inflow_sum_pct_change: 3.44913510897136,
@@ -351,9 +351,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 2.84382264920025
   },
   {
-    token: 'BAT',
-    exchange: 'Kraken',
-    window: '7d',
+    token: "BAT",
+    exchange: "Kraken",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -364,9 +364,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'BAT',
-    exchange: 'Kucoin',
-    window: '7d',
+    token: "BAT",
+    exchange: "Kucoin",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -377,9 +377,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'BAT',
-    exchange: 'Poloniex',
-    window: '7d',
+    token: "BAT",
+    exchange: "Poloniex",
+    window: "7d",
     inflow_sum: 131156.0791,
     inflow_usd_sum: 22529.26,
     inflow_sum_pct_change: -0.266176009796895,
@@ -390,9 +390,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.0938361631700214
   },
   {
-    token: 'BAT',
-    exchange: 'Binance',
-    window: '30d',
+    token: "BAT",
+    exchange: "Binance",
+    window: "30d",
     inflow_sum: 26671035.4736,
     inflow_usd_sum: 4834170.42,
     inflow_sum_pct_change: -0.421299013234334,
@@ -403,9 +403,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.334215908387252
   },
   {
-    token: 'BAT',
-    exchange: 'Bitfinex',
-    window: '30d',
+    token: "BAT",
+    exchange: "Bitfinex",
+    window: "30d",
     inflow_sum: 2884488.7994,
     inflow_usd_sum: 517781.54,
     inflow_sum_pct_change: -0.0179187446774987,
@@ -416,9 +416,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.682254228701479
   },
   {
-    token: 'BAT',
-    exchange: 'Bittrex',
-    window: '30d',
+    token: "BAT",
+    exchange: "Bittrex",
+    window: "30d",
     inflow_sum: 8520563.73560001,
     inflow_usd_sum: 1523467.59,
     inflow_sum_pct_change: 0.265605896506182,
@@ -429,9 +429,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.509795494526972
   },
   {
-    token: 'BAT',
-    exchange: 'Kraken',
-    window: '30d',
+    token: "BAT",
+    exchange: "Kraken",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -442,9 +442,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'BAT',
-    exchange: 'Kucoin',
-    window: '30d',
+    token: "BAT",
+    exchange: "Kucoin",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -455,9 +455,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'BAT',
-    exchange: 'Poloniex',
-    window: '30d',
+    token: "BAT",
+    exchange: "Poloniex",
+    window: "30d",
     inflow_sum: 1085585.5065,
     inflow_usd_sum: 197647.73,
     inflow_sum_pct_change: -0.341842302977835,
@@ -468,9 +468,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.496858361776611
   },
   {
-    token: 'OMG',
-    exchange: 'Binance',
-    window: '24h',
+    token: "OMG",
+    exchange: "Binance",
+    window: "24h",
     inflow_sum: 84748.2223,
     inflow_usd_sum: 87636.03,
     inflow_sum_pct_change: -0.0474518054425888,
@@ -481,9 +481,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.241866510519843
   },
   {
-    token: 'OMG',
-    exchange: 'Bitfinex',
-    window: '24h',
+    token: "OMG",
+    exchange: "Bitfinex",
+    window: "24h",
     inflow_sum: 13556.8368,
     inflow_usd_sum: 14098.46,
     inflow_sum_pct_change: 0.668096790497367,
@@ -494,9 +494,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.119937638527156
   },
   {
-    token: 'OMG',
-    exchange: 'Bittrex',
-    window: '24h',
+    token: "OMG",
+    exchange: "Bittrex",
+    window: "24h",
     inflow_sum: 857.0273,
     inflow_usd_sum: 899.05,
     inflow_sum_pct_change: -0.932674995365956,
@@ -507,9 +507,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.798070953197319
   },
   {
-    token: 'OMG',
-    exchange: 'Kraken',
-    window: '24h',
+    token: "OMG",
+    exchange: "Kraken",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -520,9 +520,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'OMG',
-    exchange: 'Kucoin',
-    window: '24h',
+    token: "OMG",
+    exchange: "Kucoin",
+    window: "24h",
     inflow_sum: 3747.4469,
     inflow_usd_sum: 3919.82,
     inflow_sum_pct_change: -0.807131115520233,
@@ -533,9 +533,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -1
   },
   {
-    token: 'OMG',
-    exchange: 'Poloniex',
-    window: '24h',
+    token: "OMG",
+    exchange: "Poloniex",
+    window: "24h",
     inflow_sum: 578.8764,
     inflow_usd_sum: 605.09,
     inflow_sum_pct_change: -0.95593090512491,
@@ -546,9 +546,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 6.99647296637933
   },
   {
-    token: 'OMG',
-    exchange: 'Binance',
-    window: '7d',
+    token: "OMG",
+    exchange: "Binance",
+    window: "7d",
     inflow_sum: 465501.6911,
     inflow_usd_sum: 488495.78,
     inflow_sum_pct_change: -0.475986655246595,
@@ -559,9 +559,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.276927942873011
   },
   {
-    token: 'OMG',
-    exchange: 'Bitfinex',
-    window: '7d',
+    token: "OMG",
+    exchange: "Bitfinex",
+    window: "7d",
     inflow_sum: 179796.3338,
     inflow_usd_sum: 190259.3,
     inflow_sum_pct_change: -0.531729195803575,
@@ -572,9 +572,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.313450784501029
   },
   {
-    token: 'OMG',
-    exchange: 'Bittrex',
-    window: '7d',
+    token: "OMG",
+    exchange: "Bittrex",
+    window: "7d",
     inflow_sum: 28180.9584,
     inflow_usd_sum: 29588.7,
     inflow_sum_pct_change: -0.778463778280204,
@@ -585,9 +585,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.572175058782006
   },
   {
-    token: 'OMG',
-    exchange: 'Kraken',
-    window: '7d',
+    token: "OMG",
+    exchange: "Kraken",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -598,9 +598,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'OMG',
-    exchange: 'Kucoin',
-    window: '7d',
+    token: "OMG",
+    exchange: "Kucoin",
+    window: "7d",
     inflow_sum: 32405.6707,
     inflow_usd_sum: 33851.03,
     inflow_sum_pct_change: 2.0602054753474,
@@ -611,9 +611,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.918663325358038
   },
   {
-    token: 'OMG',
-    exchange: 'Poloniex',
-    window: '7d',
+    token: "OMG",
+    exchange: "Poloniex",
+    window: "7d",
     inflow_sum: 28796.1569,
     inflow_usd_sum: 30290.12,
     inflow_sum_pct_change: 5.72808441713952,
@@ -624,9 +624,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.0237348207357363
   },
   {
-    token: 'OMG',
-    exchange: 'Binance',
-    window: '30d',
+    token: "OMG",
+    exchange: "Binance",
+    window: "30d",
     inflow_sum: 3314644.9012,
     inflow_usd_sum: 3806702.94,
     inflow_sum_pct_change: 0.0341561631396923,
@@ -637,9 +637,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.328809332022361
   },
   {
-    token: 'OMG',
-    exchange: 'Bitfinex',
-    window: '30d',
+    token: "OMG",
+    exchange: "Bitfinex",
+    window: "30d",
     inflow_sum: 1845687.8835,
     inflow_usd_sum: 2127508.77,
     inflow_sum_pct_change: -0.0501638836827223,
@@ -650,9 +650,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.228292852665489
   },
   {
-    token: 'OMG',
-    exchange: 'Bittrex',
-    window: '30d',
+    token: "OMG",
+    exchange: "Bittrex",
+    window: "30d",
     inflow_sum: 400225.9858,
     inflow_usd_sum: 452107.24,
     inflow_sum_pct_change: 0.323789050084455,
@@ -663,9 +663,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.213574441903091
   },
   {
-    token: 'OMG',
-    exchange: 'Kraken',
-    window: '30d',
+    token: "OMG",
+    exchange: "Kraken",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -676,9 +676,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'OMG',
-    exchange: 'Kucoin',
-    window: '30d',
+    token: "OMG",
+    exchange: "Kucoin",
+    window: "30d",
     inflow_sum: 69513.6031,
     inflow_usd_sum: 76830.17,
     inflow_sum_pct_change: 0.889251981284629,
@@ -689,9 +689,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.114762389888655
   },
   {
-    token: 'OMG',
-    exchange: 'Poloniex',
-    window: '30d',
+    token: "OMG",
+    exchange: "Poloniex",
+    window: "30d",
     inflow_sum: 83089.3629,
     inflow_usd_sum: 95421.83,
     inflow_sum_pct_change: 0.0403588531585544,
@@ -702,9 +702,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.10325594927958
   },
   {
-    token: 'REP',
-    exchange: 'Binance',
-    window: '24h',
+    token: "REP",
+    exchange: "Binance",
+    window: "24h",
     inflow_sum: 5514.1807,
     inflow_usd_sum: 59158.3,
     inflow_sum_pct_change: -0.560820087848237,
@@ -715,9 +715,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.234015540242466
   },
   {
-    token: 'REP',
-    exchange: 'Bitfinex',
-    window: '24h',
+    token: "REP",
+    exchange: "Bitfinex",
+    window: "24h",
     inflow_sum: 11.1145,
     inflow_usd_sum: 120.06,
     inflow_sum_pct_change: null,
@@ -728,9 +728,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'REP',
-    exchange: 'Bittrex',
-    window: '24h',
+    token: "REP",
+    exchange: "Bittrex",
+    window: "24h",
     inflow_sum: 60.1061,
     inflow_usd_sum: 630.92,
     inflow_sum_pct_change: -0.965157883692472,
@@ -741,9 +741,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 5.40484050962522
   },
   {
-    token: 'REP',
-    exchange: 'Kraken',
-    window: '24h',
+    token: "REP",
+    exchange: "Kraken",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -754,9 +754,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'REP',
-    exchange: 'Kucoin',
-    window: '24h',
+    token: "REP",
+    exchange: "Kucoin",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -767,9 +767,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'REP',
-    exchange: 'Poloniex',
-    window: '24h',
+    token: "REP",
+    exchange: "Poloniex",
+    window: "24h",
     inflow_sum: 257.2347,
     inflow_usd_sum: 2740.2,
     inflow_sum_pct_change: -0.870006315870543,
@@ -780,9 +780,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.465545826738499
   },
   {
-    token: 'REP',
-    exchange: 'Binance',
-    window: '7d',
+    token: "REP",
+    exchange: "Binance",
+    window: "7d",
     inflow_sum: 116582.6381,
     inflow_usd_sum: 1263815.81,
     inflow_sum_pct_change: 0.550259088800269,
@@ -793,9 +793,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.129928349847688
   },
   {
-    token: 'REP',
-    exchange: 'Bitfinex',
-    window: '7d',
+    token: "REP",
+    exchange: "Bitfinex",
+    window: "7d",
     inflow_sum: 323.0852,
     inflow_usd_sum: 3585.9,
     inflow_sum_pct_change: -0.872929818452796,
@@ -806,9 +806,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 2.25096098482135
   },
   {
-    token: 'REP',
-    exchange: 'Bittrex',
-    window: '7d',
+    token: "REP",
+    exchange: "Bittrex",
+    window: "7d",
     inflow_sum: 27358.472,
     inflow_usd_sum: 300598.92,
     inflow_sum_pct_change: -0.135398970021894,
@@ -819,9 +819,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.310881373716099
   },
   {
-    token: 'REP',
-    exchange: 'Kraken',
-    window: '7d',
+    token: "REP",
+    exchange: "Kraken",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -832,9 +832,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'REP',
-    exchange: 'Kucoin',
-    window: '7d',
+    token: "REP",
+    exchange: "Kucoin",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -845,9 +845,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'REP',
-    exchange: 'Poloniex',
-    window: '7d',
+    token: "REP",
+    exchange: "Poloniex",
+    window: "7d",
     inflow_sum: 2401.3707,
     inflow_usd_sum: 25774.53,
     inflow_sum_pct_change: -0.127309012477809,
@@ -858,9 +858,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 1.82161420115138
   },
   {
-    token: 'REP',
-    exchange: 'Binance',
-    window: '30d',
+    token: "REP",
+    exchange: "Binance",
+    window: "30d",
     inflow_sum: 258904.6383,
     inflow_usd_sum: 2590319.23,
     inflow_sum_pct_change: 1.13914081858467,
@@ -871,9 +871,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.684701392311802
   },
   {
-    token: 'REP',
-    exchange: 'Bitfinex',
-    window: '30d',
+    token: "REP",
+    exchange: "Bitfinex",
+    window: "30d",
     inflow_sum: 10495.3836,
     inflow_usd_sum: 99208.8,
     inflow_sum_pct_change: -0.221237067674652,
@@ -884,9 +884,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 1.03992684317488
   },
   {
-    token: 'REP',
-    exchange: 'Bittrex',
-    window: '30d',
+    token: "REP",
+    exchange: "Bittrex",
+    window: "30d",
     inflow_sum: 63402.7285,
     inflow_usd_sum: 643888.32,
     inflow_sum_pct_change: 1.26903583490115,
@@ -897,9 +897,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.530140496823223
   },
   {
-    token: 'REP',
-    exchange: 'Kraken',
-    window: '30d',
+    token: "REP",
+    exchange: "Kraken",
+    window: "30d",
     inflow_sum: 2533.5717,
     inflow_usd_sum: 24141.87,
     inflow_sum_pct_change: -0.943339440491166,
@@ -910,9 +910,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 8.70001516766446
   },
   {
-    token: 'REP',
-    exchange: 'Kucoin',
-    window: '30d',
+    token: "REP",
+    exchange: "Kucoin",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -923,9 +923,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'REP',
-    exchange: 'Poloniex',
-    window: '30d',
+    token: "REP",
+    exchange: "Poloniex",
+    window: "30d",
     inflow_sum: 15717.9078,
     inflow_usd_sum: 143729.06,
     inflow_sum_pct_change: -0.602815755139566,
@@ -936,9 +936,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.263979728721218
   },
   {
-    token: 'GNT',
-    exchange: 'Binance',
-    window: '24h',
+    token: "GNT",
+    exchange: "Binance",
+    window: "24h",
     inflow_sum: 1170527.0905,
     inflow_usd_sum: 70231.63,
     inflow_sum_pct_change: 0.620909678341715,
@@ -949,9 +949,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.138302688385731
   },
   {
-    token: 'GNT',
-    exchange: 'Bitfinex',
-    window: '24h',
+    token: "GNT",
+    exchange: "Bitfinex",
+    window: "24h",
     inflow_sum: 259840.3,
     inflow_usd_sum: 15590.42,
     inflow_sum_pct_change: -0.574381832676186,
@@ -962,9 +962,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'GNT',
-    exchange: 'Bittrex',
-    window: '24h',
+    token: "GNT",
+    exchange: "Bittrex",
+    window: "24h",
     inflow_sum: 157788.4802,
     inflow_usd_sum: 9467.31,
     inflow_sum_pct_change: -0.554100074204267,
@@ -975,9 +975,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.28952668249248
   },
   {
-    token: 'GNT',
-    exchange: 'Kraken',
-    window: '24h',
+    token: "GNT",
+    exchange: "Kraken",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -988,9 +988,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'GNT',
-    exchange: 'Kucoin',
-    window: '24h',
+    token: "GNT",
+    exchange: "Kucoin",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -1001,9 +1001,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'GNT',
-    exchange: 'Poloniex',
-    window: '24h',
+    token: "GNT",
+    exchange: "Poloniex",
+    window: "24h",
     inflow_sum: 7288.783,
     inflow_usd_sum: 437.33,
     inflow_sum_pct_change: -0.908486645470024,
@@ -1014,9 +1014,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.999101260772276
   },
   {
-    token: 'GNT',
-    exchange: 'Binance',
-    window: '7d',
+    token: "GNT",
+    exchange: "Binance",
+    window: "7d",
     inflow_sum: 4779914.6438,
     inflow_usd_sum: 286794.91,
     inflow_sum_pct_change: -0.204815660660366,
@@ -1027,9 +1027,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.3042002757688
   },
   {
-    token: 'GNT',
-    exchange: 'Bitfinex',
-    window: '7d',
+    token: "GNT",
+    exchange: "Bitfinex",
+    window: "7d",
     inflow_sum: 1921265.3287,
     inflow_usd_sum: 115275.92,
     inflow_sum_pct_change: -0.136218377187421,
@@ -1040,9 +1040,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.14270331763211
   },
   {
-    token: 'GNT',
-    exchange: 'Bittrex',
-    window: '7d',
+    token: "GNT",
+    exchange: "Bittrex",
+    window: "7d",
     inflow_sum: 2278297.6432,
     inflow_usd_sum: 136697.88,
     inflow_sum_pct_change: 0.422084441859721,
@@ -1053,9 +1053,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.662305392956777
   },
   {
-    token: 'GNT',
-    exchange: 'Kraken',
-    window: '7d',
+    token: "GNT",
+    exchange: "Kraken",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -1066,9 +1066,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'GNT',
-    exchange: 'Kucoin',
-    window: '7d',
+    token: "GNT",
+    exchange: "Kucoin",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -1079,9 +1079,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'GNT',
-    exchange: 'Poloniex',
-    window: '7d',
+    token: "GNT",
+    exchange: "Poloniex",
+    window: "7d",
     inflow_sum: 165340.1771,
     inflow_usd_sum: 9920.4,
     inflow_sum_pct_change: -0.911001243704935,
@@ -1092,9 +1092,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 11.474618042412
   },
   {
-    token: 'GNT',
-    exchange: 'Binance',
-    window: '30d',
+    token: "GNT",
+    exchange: "Binance",
+    window: "30d",
     inflow_sum: 29442539.43,
     inflow_usd_sum: 1761464.19,
     inflow_sum_pct_change: 0.711615148879418,
@@ -1105,9 +1105,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.281188459227193
   },
   {
-    token: 'GNT',
-    exchange: 'Bitfinex',
-    window: '30d',
+    token: "GNT",
+    exchange: "Bitfinex",
+    window: "30d",
     inflow_sum: 4944749.4298,
     inflow_usd_sum: 295959.17,
     inflow_sum_pct_change: 1.18396524612187,
@@ -1118,9 +1118,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.753191716440143
   },
   {
-    token: 'GNT',
-    exchange: 'Bittrex',
-    window: '30d',
+    token: "GNT",
+    exchange: "Bittrex",
+    window: "30d",
     inflow_sum: 14474644.2191,
     inflow_usd_sum: 862061.61,
     inflow_sum_pct_change: 1.8540357108241,
@@ -1131,9 +1131,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 1.32529551277958
   },
   {
-    token: 'GNT',
-    exchange: 'Kraken',
-    window: '30d',
+    token: "GNT",
+    exchange: "Kraken",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -1144,9 +1144,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'GNT',
-    exchange: 'Kucoin',
-    window: '30d',
+    token: "GNT",
+    exchange: "Kucoin",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -1157,9 +1157,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'GNT',
-    exchange: 'Poloniex',
-    window: '30d',
+    token: "GNT",
+    exchange: "Poloniex",
+    window: "30d",
     inflow_sum: 3097756.804,
     inflow_usd_sum: 183912.77,
     inflow_sum_pct_change: 0.502195004070547,
@@ -1170,9 +1170,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.648724488028183
   },
   {
-    token: 'ZRX',
-    exchange: 'Binance',
-    window: '24h',
+    token: "ZRX",
+    exchange: "Binance",
+    window: "24h",
     inflow_sum: 288559.1467,
     inflow_usd_sum: 46622.52,
     inflow_sum_pct_change: -0.0454225292303942,
@@ -1183,9 +1183,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.412196809987697
   },
   {
-    token: 'ZRX',
-    exchange: 'Bitfinex',
-    window: '24h',
+    token: "ZRX",
+    exchange: "Bitfinex",
+    window: "24h",
     inflow_sum: 40180.14,
     inflow_usd_sum: 6428.83,
     inflow_sum_pct_change: -0.694720394525029,
@@ -1196,9 +1196,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 1.5627670196459
   },
   {
-    token: 'ZRX',
-    exchange: 'Bittrex',
-    window: '24h',
+    token: "ZRX",
+    exchange: "Bittrex",
+    window: "24h",
     inflow_sum: 18775.7525,
     inflow_usd_sum: 3112.5,
     inflow_sum_pct_change: -0.735774339372363,
@@ -1209,9 +1209,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.318093493846738
   },
   {
-    token: 'ZRX',
-    exchange: 'Kraken',
-    window: '24h',
+    token: "ZRX",
+    exchange: "Kraken",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -1222,9 +1222,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'ZRX',
-    exchange: 'Kucoin',
-    window: '24h',
+    token: "ZRX",
+    exchange: "Kucoin",
+    window: "24h",
     inflow_sum: 42936.4229,
     inflow_usd_sum: 6876.55,
     inflow_sum_pct_change: 5.50079618677008,
@@ -1235,9 +1235,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 22.2188626037913
   },
   {
-    token: 'ZRX',
-    exchange: 'Poloniex',
-    window: '24h',
+    token: "ZRX",
+    exchange: "Poloniex",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: -1,
@@ -1248,9 +1248,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.941992592127566
   },
   {
-    token: 'ZRX',
-    exchange: 'Binance',
-    window: '7d',
+    token: "ZRX",
+    exchange: "Binance",
+    window: "7d",
     inflow_sum: 2673475.5888,
     inflow_usd_sum: 429982.78,
     inflow_sum_pct_change: 0.0750903666652296,
@@ -1261,9 +1261,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.622388292540099
   },
   {
-    token: 'ZRX',
-    exchange: 'Bitfinex',
-    window: '7d',
+    token: "ZRX",
+    exchange: "Bitfinex",
+    window: "7d",
     inflow_sum: 423211.3094,
     inflow_usd_sum: 68166.89,
     inflow_sum_pct_change: 0.914612130799255,
@@ -1274,9 +1274,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.472120486653223
   },
   {
-    token: 'ZRX',
-    exchange: 'Bittrex',
-    window: '7d',
+    token: "ZRX",
+    exchange: "Bittrex",
+    window: "7d",
     inflow_sum: 267503.5224,
     inflow_usd_sum: 42744.12,
     inflow_sum_pct_change: -0.451400583962956,
@@ -1287,9 +1287,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.680823370533416
   },
   {
-    token: 'ZRX',
-    exchange: 'Kraken',
-    window: '7d',
+    token: "ZRX",
+    exchange: "Kraken",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -1300,9 +1300,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'ZRX',
-    exchange: 'Kucoin',
-    window: '7d',
+    token: "ZRX",
+    exchange: "Kucoin",
+    window: "7d",
     inflow_sum: 167001.18,
     inflow_usd_sum: 26754.23,
     inflow_sum_pct_change: 3.85232727637677,
@@ -1313,9 +1313,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 1.92798718807115
   },
   {
-    token: 'ZRX',
-    exchange: 'Poloniex',
-    window: '7d',
+    token: "ZRX",
+    exchange: "Poloniex",
+    window: "7d",
     inflow_sum: 20320.113,
     inflow_usd_sum: 3253.83,
     inflow_sum_pct_change: -0.843388967382282,
@@ -1326,9 +1326,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.365581220221172
   },
   {
-    token: 'ZRX',
-    exchange: 'Binance',
-    window: '30d',
+    token: "ZRX",
+    exchange: "Binance",
+    window: "30d",
     inflow_sum: 14650980.9248,
     inflow_usd_sum: 2486877.66,
     inflow_sum_pct_change: -0.0437993950502927,
@@ -1339,9 +1339,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.228227396574719
   },
   {
-    token: 'ZRX',
-    exchange: 'Bitfinex',
-    window: '30d',
+    token: "ZRX",
+    exchange: "Bitfinex",
+    window: "30d",
     inflow_sum: 3157937.212,
     inflow_usd_sum: 544818.74,
     inflow_sum_pct_change: -0.307707866335673,
@@ -1352,9 +1352,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.655875982915192
   },
   {
-    token: 'ZRX',
-    exchange: 'Bittrex',
-    window: '30d',
+    token: "ZRX",
+    exchange: "Bittrex",
+    window: "30d",
     inflow_sum: 1680769.298,
     inflow_usd_sum: 283936.37,
     inflow_sum_pct_change: 0.0715762824734905,
@@ -1365,9 +1365,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.54537982302744
   },
   {
-    token: 'ZRX',
-    exchange: 'Kraken',
-    window: '30d',
+    token: "ZRX",
+    exchange: "Kraken",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -1378,9 +1378,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'ZRX',
-    exchange: 'Kucoin',
-    window: '30d',
+    token: "ZRX",
+    exchange: "Kucoin",
+    window: "30d",
     inflow_sum: 261159.2689,
     inflow_usd_sum: 42549.57,
     inflow_sum_pct_change: -0.248384173912025,
@@ -1391,9 +1391,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.601049428211407
   },
   {
-    token: 'ZRX',
-    exchange: 'Poloniex',
-    window: '30d',
+    token: "ZRX",
+    exchange: "Poloniex",
+    window: "30d",
     inflow_sum: 691548.5645,
     inflow_usd_sum: 117797.97,
     inflow_sum_pct_change: -0.559509447017213,
@@ -1404,9 +1404,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.356225715884337
   },
   {
-    token: 'ZIL',
-    exchange: 'Binance',
-    window: '24h',
+    token: "ZIL",
+    exchange: "Binance",
+    window: "24h",
     inflow_sum: 1700,
     inflow_usd_sum: 17,
     inflow_sum_pct_change: -0.999225147215603,
@@ -1417,9 +1417,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'ZIL',
-    exchange: 'Bitfinex',
-    window: '24h',
+    token: "ZIL",
+    exchange: "Bitfinex",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -1430,9 +1430,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -1
   },
   {
-    token: 'ZIL',
-    exchange: 'Bittrex',
-    window: '24h',
+    token: "ZIL",
+    exchange: "Bittrex",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -1443,9 +1443,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'ZIL',
-    exchange: 'Kraken',
-    window: '24h',
+    token: "ZIL",
+    exchange: "Kraken",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -1456,9 +1456,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'ZIL',
-    exchange: 'Kucoin',
-    window: '24h',
+    token: "ZIL",
+    exchange: "Kucoin",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: -1,
@@ -1469,9 +1469,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'ZIL',
-    exchange: 'Poloniex',
-    window: '24h',
+    token: "ZIL",
+    exchange: "Poloniex",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -1482,9 +1482,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'ZIL',
-    exchange: 'Binance',
-    window: '7d',
+    token: "ZIL",
+    exchange: "Binance",
+    window: "7d",
     inflow_sum: 3105250.6319,
     inflow_usd_sum: 31052.49,
     inflow_sum_pct_change: 2.00972455126794,
@@ -1495,9 +1495,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'ZIL',
-    exchange: 'Bitfinex',
-    window: '7d',
+    token: "ZIL",
+    exchange: "Bitfinex",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -1508,9 +1508,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.719096516113914
   },
   {
-    token: 'ZIL',
-    exchange: 'Bittrex',
-    window: '7d',
+    token: "ZIL",
+    exchange: "Bittrex",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -1521,9 +1521,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'ZIL',
-    exchange: 'Kraken',
-    window: '7d',
+    token: "ZIL",
+    exchange: "Kraken",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -1534,9 +1534,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'ZIL',
-    exchange: 'Kucoin',
-    window: '7d',
+    token: "ZIL",
+    exchange: "Kucoin",
+    window: "7d",
     inflow_sum: 21174.339,
     inflow_usd_sum: 211.74,
     inflow_sum_pct_change: 0.434569291355051,
@@ -1547,9 +1547,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'ZIL',
-    exchange: 'Poloniex',
-    window: '7d',
+    token: "ZIL",
+    exchange: "Poloniex",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -1560,9 +1560,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'ZIL',
-    exchange: 'Binance',
-    window: '30d',
+    token: "ZIL",
+    exchange: "Binance",
+    window: "30d",
     inflow_sum: 92293189.1175999,
     inflow_usd_sum: 922931.85,
     inflow_sum_pct_change: -0.703634539052953,
@@ -1573,9 +1573,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'ZIL',
-    exchange: 'Bitfinex',
-    window: '30d',
+    token: "ZIL",
+    exchange: "Bitfinex",
+    window: "30d",
     inflow_sum: 9000,
     inflow_usd_sum: 90,
     inflow_sum_pct_change: -0.955071578635529,
@@ -1586,9 +1586,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.396983724460078
   },
   {
-    token: 'ZIL',
-    exchange: 'Bittrex',
-    window: '30d',
+    token: "ZIL",
+    exchange: "Bittrex",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: -1,
@@ -1599,9 +1599,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -1
   },
   {
-    token: 'ZIL',
-    exchange: 'Kraken',
-    window: '30d',
+    token: "ZIL",
+    exchange: "Kraken",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -1612,9 +1612,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'ZIL',
-    exchange: 'Kucoin',
-    window: '30d',
+    token: "ZIL",
+    exchange: "Kucoin",
+    window: "30d",
     inflow_sum: 491985.5732,
     inflow_usd_sum: 4919.84,
     inflow_sum_pct_change: -0.769489164224092,
@@ -1625,9 +1625,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'ZIL',
-    exchange: 'Poloniex',
-    window: '30d',
+    token: "ZIL",
+    exchange: "Poloniex",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -1638,9 +1638,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'MANA',
-    exchange: 'Binance',
-    window: '24h',
+    token: "MANA",
+    exchange: "Binance",
+    window: "24h",
     inflow_sum: 1640402.8428,
     inflow_usd_sum: 49212.09,
     inflow_sum_pct_change: -0.324770271552324,
@@ -1651,9 +1651,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.0957220889993524
   },
   {
-    token: 'MANA',
-    exchange: 'Bitfinex',
-    window: '24h',
+    token: "MANA",
+    exchange: "Bitfinex",
+    window: "24h",
     inflow_sum: 6306.0088,
     inflow_usd_sum: 189.18,
     inflow_sum_pct_change: null,
@@ -1664,9 +1664,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.981883721057439
   },
   {
-    token: 'MANA',
-    exchange: 'Bittrex',
-    window: '24h',
+    token: "MANA",
+    exchange: "Bittrex",
+    window: "24h",
     inflow_sum: 176118.175,
     inflow_usd_sum: 5283.54,
     inflow_sum_pct_change: 1.3616659164469,
@@ -1677,9 +1677,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 82.415
   },
   {
-    token: 'MANA',
-    exchange: 'Kraken',
-    window: '24h',
+    token: "MANA",
+    exchange: "Kraken",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -1690,9 +1690,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'MANA',
-    exchange: 'Kucoin',
-    window: '24h',
+    token: "MANA",
+    exchange: "Kucoin",
+    window: "24h",
     inflow_sum: 2878.816,
     inflow_usd_sum: 86.36,
     inflow_sum_pct_change: -0.968308835423909,
@@ -1703,9 +1703,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.803006283625611
   },
   {
-    token: 'MANA',
-    exchange: 'Poloniex',
-    window: '24h',
+    token: "MANA",
+    exchange: "Poloniex",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: -1,
@@ -1716,9 +1716,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -1
   },
   {
-    token: 'MANA',
-    exchange: 'Binance',
-    window: '7d',
+    token: "MANA",
+    exchange: "Binance",
+    window: "7d",
     inflow_sum: 7358462.1941,
     inflow_usd_sum: 220753.87,
     inflow_sum_pct_change: -0.371037211506526,
@@ -1729,9 +1729,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.562232745175965
   },
   {
-    token: 'MANA',
-    exchange: 'Bitfinex',
-    window: '7d',
+    token: "MANA",
+    exchange: "Bitfinex",
+    window: "7d",
     inflow_sum: 6306.0088,
     inflow_usd_sum: 189.18,
     inflow_sum_pct_change: -0.98152377704334,
@@ -1742,9 +1742,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 3.46100682424918
   },
   {
-    token: 'MANA',
-    exchange: 'Bittrex',
-    window: '7d',
+    token: "MANA",
+    exchange: "Bittrex",
+    window: "7d",
     inflow_sum: 471557.5481,
     inflow_usd_sum: 14146.71,
     inflow_sum_pct_change: -0.934585193436639,
@@ -1755,9 +1755,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.948020238250957
   },
   {
-    token: 'MANA',
-    exchange: 'Kraken',
-    window: '7d',
+    token: "MANA",
+    exchange: "Kraken",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -1768,9 +1768,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'MANA',
-    exchange: 'Kucoin',
-    window: '7d',
+    token: "MANA",
+    exchange: "Kucoin",
+    window: "7d",
     inflow_sum: 392900.5859,
     inflow_usd_sum: 11787.01,
     inflow_sum_pct_change: 3.30928963774996,
@@ -1781,9 +1781,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.19650271088751
   },
   {
-    token: 'MANA',
-    exchange: 'Poloniex',
-    window: '7d',
+    token: "MANA",
+    exchange: "Poloniex",
+    window: "7d",
     inflow_sum: 87422.2719,
     inflow_usd_sum: 2622.67,
     inflow_sum_pct_change: -0.782235195310083,
@@ -1794,9 +1794,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.884433737810931
   },
   {
-    token: 'MANA',
-    exchange: 'Binance',
-    window: '30d',
+    token: "MANA",
+    exchange: "Binance",
+    window: "30d",
     inflow_sum: 40080236.7055,
     inflow_usd_sum: 1392407.23,
     inflow_sum_pct_change: 0.562944383772399,
@@ -1807,9 +1807,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.0754456890969433
   },
   {
-    token: 'MANA',
-    exchange: 'Bitfinex',
-    window: '30d',
+    token: "MANA",
+    exchange: "Bitfinex",
+    window: "30d",
     inflow_sum: 1000521.3088,
     inflow_usd_sum: 34750.78,
     inflow_sum_pct_change: -0.010520783428898,
@@ -1820,9 +1820,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 8.80488608960124
   },
   {
-    token: 'MANA',
-    exchange: 'Bittrex',
-    window: '30d',
+    token: "MANA",
+    exchange: "Bittrex",
+    window: "30d",
     inflow_sum: 12950450.4876,
     inflow_usd_sum: 440400.91,
     inflow_sum_pct_change: 0.68723980749963,
@@ -1833,9 +1833,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.247222288492161
   },
   {
-    token: 'MANA',
-    exchange: 'Kraken',
-    window: '30d',
+    token: "MANA",
+    exchange: "Kraken",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -1846,9 +1846,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'MANA',
-    exchange: 'Kucoin',
-    window: '30d',
+    token: "MANA",
+    exchange: "Kucoin",
+    window: "30d",
     inflow_sum: 1052779.0748,
     inflow_usd_sum: 35224.94,
     inflow_sum_pct_change: 0.308679439666345,
@@ -1859,9 +1859,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.447475057500903
   },
   {
-    token: 'MANA',
-    exchange: 'Poloniex',
-    window: '30d',
+    token: "MANA",
+    exchange: "Poloniex",
+    window: "30d",
     inflow_sum: 1236942.0128,
     inflow_usd_sum: 39562.82,
     inflow_sum_pct_change: -0.419268595073354,
@@ -1872,9 +1872,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.678374827841517
   },
   {
-    token: 'NMR',
-    exchange: 'Binance',
-    window: '24h',
+    token: "NMR",
+    exchange: "Binance",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -1885,9 +1885,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'NMR',
-    exchange: 'Bitfinex',
-    window: '24h',
+    token: "NMR",
+    exchange: "Bitfinex",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: -1,
@@ -1898,9 +1898,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'NMR',
-    exchange: 'Bittrex',
-    window: '24h',
+    token: "NMR",
+    exchange: "Bittrex",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: -1,
@@ -1911,9 +1911,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'NMR',
-    exchange: 'Kraken',
-    window: '24h',
+    token: "NMR",
+    exchange: "Kraken",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -1924,9 +1924,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'NMR',
-    exchange: 'Kucoin',
-    window: '24h',
+    token: "NMR",
+    exchange: "Kucoin",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -1937,9 +1937,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'NMR',
-    exchange: 'Poloniex',
-    window: '24h',
+    token: "NMR",
+    exchange: "Poloniex",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -1950,9 +1950,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -1
   },
   {
-    token: 'NMR',
-    exchange: 'Binance',
-    window: '7d',
+    token: "NMR",
+    exchange: "Binance",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -1963,9 +1963,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'NMR',
-    exchange: 'Bitfinex',
-    window: '7d',
+    token: "NMR",
+    exchange: "Bitfinex",
+    window: "7d",
     inflow_sum: 151,
     inflow_usd_sum: 755.65,
     inflow_sum_pct_change: 0.6254036598493,
@@ -1976,9 +1976,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'NMR',
-    exchange: 'Bittrex',
-    window: '7d',
+    token: "NMR",
+    exchange: "Bittrex",
+    window: "7d",
     inflow_sum: 24.6566,
     inflow_usd_sum: 114.71,
     inflow_sum_pct_change: -0.957865672072828,
@@ -1989,9 +1989,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.78998125959641
   },
   {
-    token: 'NMR',
-    exchange: 'Kraken',
-    window: '7d',
+    token: "NMR",
+    exchange: "Kraken",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -2002,9 +2002,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'NMR',
-    exchange: 'Kucoin',
-    window: '7d',
+    token: "NMR",
+    exchange: "Kucoin",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -2015,9 +2015,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'NMR',
-    exchange: 'Poloniex',
-    window: '7d',
+    token: "NMR",
+    exchange: "Poloniex",
+    window: "7d",
     inflow_sum: 536.7579,
     inflow_usd_sum: 2574.36,
     inflow_sum_pct_change: 0.0557934621038179,
@@ -2028,9 +2028,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.886241738205577
   },
   {
-    token: 'NMR',
-    exchange: 'Binance',
-    window: '30d',
+    token: "NMR",
+    exchange: "Binance",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -2041,9 +2041,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'NMR',
-    exchange: 'Bitfinex',
-    window: '30d',
+    token: "NMR",
+    exchange: "Bitfinex",
+    window: "30d",
     inflow_sum: 684,
     inflow_usd_sum: 3419.32,
     inflow_sum_pct_change: -0.497502203937702,
@@ -2054,9 +2054,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'NMR',
-    exchange: 'Bittrex',
-    window: '30d',
+    token: "NMR",
+    exchange: "Bittrex",
+    window: "30d",
     inflow_sum: 2247.1362,
     inflow_usd_sum: 10704.56,
     inflow_sum_pct_change: -0.717538566312916,
@@ -2067,9 +2067,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.525384004911339
   },
   {
-    token: 'NMR',
-    exchange: 'Kraken',
-    window: '30d',
+    token: "NMR",
+    exchange: "Kraken",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -2080,9 +2080,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'NMR',
-    exchange: 'Kucoin',
-    window: '30d',
+    token: "NMR",
+    exchange: "Kucoin",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -2093,9 +2093,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'NMR',
-    exchange: 'Poloniex',
-    window: '30d',
+    token: "NMR",
+    exchange: "Poloniex",
+    window: "30d",
     inflow_sum: 3947.5509,
     inflow_usd_sum: 19277.2,
     inflow_sum_pct_change: -0.831604736472169,
@@ -2106,9 +2106,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.843673139515845
   },
   {
-    token: 'TKN',
-    exchange: 'Binance',
-    window: '24h',
+    token: "TKN",
+    exchange: "Binance",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -2119,9 +2119,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'TKN',
-    exchange: 'Bitfinex',
-    window: '24h',
+    token: "TKN",
+    exchange: "Bitfinex",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -2132,9 +2132,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'TKN',
-    exchange: 'Bittrex',
-    window: '24h',
+    token: "TKN",
+    exchange: "Bittrex",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -2145,9 +2145,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'TKN',
-    exchange: 'Kraken',
-    window: '24h',
+    token: "TKN",
+    exchange: "Kraken",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -2158,9 +2158,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'TKN',
-    exchange: 'Kucoin',
-    window: '24h',
+    token: "TKN",
+    exchange: "Kucoin",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -2171,9 +2171,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'TKN',
-    exchange: 'Poloniex',
-    window: '24h',
+    token: "TKN",
+    exchange: "Poloniex",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -2184,9 +2184,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'TKN',
-    exchange: 'Binance',
-    window: '7d',
+    token: "TKN",
+    exchange: "Binance",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -2197,9 +2197,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'TKN',
-    exchange: 'Bitfinex',
-    window: '7d',
+    token: "TKN",
+    exchange: "Bitfinex",
+    window: "7d",
     inflow_sum: 2936.4,
     inflow_usd_sum: 1135.22,
     inflow_sum_pct_change: -0.70636,
@@ -2210,9 +2210,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.124220649666438
   },
   {
-    token: 'TKN',
-    exchange: 'Bittrex',
-    window: '7d',
+    token: "TKN",
+    exchange: "Bittrex",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -2223,9 +2223,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'TKN',
-    exchange: 'Kraken',
-    window: '7d',
+    token: "TKN",
+    exchange: "Kraken",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -2236,9 +2236,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'TKN',
-    exchange: 'Kucoin',
-    window: '7d',
+    token: "TKN",
+    exchange: "Kucoin",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -2249,9 +2249,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'TKN',
-    exchange: 'Poloniex',
-    window: '7d',
+    token: "TKN",
+    exchange: "Poloniex",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -2262,9 +2262,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'TKN',
-    exchange: 'Binance',
-    window: '30d',
+    token: "TKN",
+    exchange: "Binance",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -2275,9 +2275,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'TKN',
-    exchange: 'Bitfinex',
-    window: '30d',
+    token: "TKN",
+    exchange: "Bitfinex",
+    window: "30d",
     inflow_sum: 184430.7,
     inflow_usd_sum: 90560.9,
     inflow_sum_pct_change: -0.417464294960083,
@@ -2288,9 +2288,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 1.31149400619309
   },
   {
-    token: 'TKN',
-    exchange: 'Bittrex',
-    window: '30d',
+    token: "TKN",
+    exchange: "Bittrex",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -2301,9 +2301,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'TKN',
-    exchange: 'Kraken',
-    window: '30d',
+    token: "TKN",
+    exchange: "Kraken",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -2314,9 +2314,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'TKN',
-    exchange: 'Kucoin',
-    window: '30d',
+    token: "TKN",
+    exchange: "Kucoin",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -2327,9 +2327,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'TKN',
-    exchange: 'Poloniex',
-    window: '30d',
+    token: "TKN",
+    exchange: "Poloniex",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -2340,9 +2340,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'BNT',
-    exchange: 'Binance',
-    window: '24h',
+    token: "BNT",
+    exchange: "Binance",
+    window: "24h",
     inflow_sum: 14526.8584,
     inflow_usd_sum: 5229.68,
     inflow_sum_pct_change: 4841.28613333333,
@@ -2353,9 +2353,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.00562786396952097
   },
   {
-    token: 'BNT',
-    exchange: 'Bitfinex',
-    window: '24h',
+    token: "BNT",
+    exchange: "Bitfinex",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -2366,9 +2366,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'BNT',
-    exchange: 'Bittrex',
-    window: '24h',
+    token: "BNT",
+    exchange: "Bittrex",
+    window: "24h",
     inflow_sum: 1882.215,
     inflow_usd_sum: 677.7,
     inflow_sum_pct_change: -0.726733337374276,
@@ -2379,9 +2379,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.811937935402153
   },
   {
-    token: 'BNT',
-    exchange: 'Kraken',
-    window: '24h',
+    token: "BNT",
+    exchange: "Kraken",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -2392,9 +2392,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'BNT',
-    exchange: 'Kucoin',
-    window: '24h',
+    token: "BNT",
+    exchange: "Kucoin",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -2405,9 +2405,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'BNT',
-    exchange: 'Poloniex',
-    window: '24h',
+    token: "BNT",
+    exchange: "Poloniex",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: -1,
@@ -2418,9 +2418,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -1
   },
   {
-    token: 'BNT',
-    exchange: 'Binance',
-    window: '7d',
+    token: "BNT",
+    exchange: "Binance",
+    window: "7d",
     inflow_sum: 497548.2636,
     inflow_usd_sum: 182701.99,
     inflow_sum_pct_change: 17.7129278033093,
@@ -2431,9 +2431,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.198743707061575
   },
   {
-    token: 'BNT',
-    exchange: 'Bitfinex',
-    window: '7d',
+    token: "BNT",
+    exchange: "Bitfinex",
+    window: "7d",
     inflow_sum: 1432.599,
     inflow_usd_sum: 508.69,
     inflow_sum_pct_change: null,
@@ -2444,9 +2444,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 6.77206851119895
   },
   {
-    token: 'BNT',
-    exchange: 'Bittrex',
-    window: '7d',
+    token: "BNT",
+    exchange: "Bittrex",
+    window: "7d",
     inflow_sum: 13373.89,
     inflow_usd_sum: 4724.01,
     inflow_sum_pct_change: 5.75883569379887,
@@ -2457,9 +2457,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.125896143395537
   },
   {
-    token: 'BNT',
-    exchange: 'Kraken',
-    window: '7d',
+    token: "BNT",
+    exchange: "Kraken",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -2470,9 +2470,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'BNT',
-    exchange: 'Kucoin',
-    window: '7d',
+    token: "BNT",
+    exchange: "Kucoin",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -2483,9 +2483,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'BNT',
-    exchange: 'Poloniex',
-    window: '7d',
+    token: "BNT",
+    exchange: "Poloniex",
+    window: "7d",
     inflow_sum: 2955.5564,
     inflow_usd_sum: 1071.91,
     inflow_sum_pct_change: 4.64880381622883,
@@ -2496,9 +2496,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 8.92226890756303
   },
   {
-    token: 'BNT',
-    exchange: 'Binance',
-    window: '30d',
+    token: "BNT",
+    exchange: "Binance",
+    window: "30d",
     inflow_sum: 933907.7774,
     inflow_usd_sum: 351029.5,
     inflow_sum_pct_change: 0.462768636017738,
@@ -2509,9 +2509,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.00900840643326095
   },
   {
-    token: 'BNT',
-    exchange: 'Bitfinex',
-    window: '30d',
+    token: "BNT",
+    exchange: "Bitfinex",
+    window: "30d",
     inflow_sum: 3009.048,
     inflow_usd_sum: 1114.07,
     inflow_sum_pct_change: -0.669325119158919,
@@ -2522,9 +2522,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.698613786749309
   },
   {
-    token: 'BNT',
-    exchange: 'Bittrex',
-    window: '30d',
+    token: "BNT",
+    exchange: "Bittrex",
+    window: "30d",
     inflow_sum: 18127.2529,
     inflow_usd_sum: 6514.91,
     inflow_sum_pct_change: 0.346961875395364,
@@ -2535,9 +2535,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.643777078135466
   },
   {
-    token: 'BNT',
-    exchange: 'Kraken',
-    window: '30d',
+    token: "BNT",
+    exchange: "Kraken",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -2548,9 +2548,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'BNT',
-    exchange: 'Kucoin',
-    window: '30d',
+    token: "BNT",
+    exchange: "Kucoin",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -2561,9 +2561,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'BNT',
-    exchange: 'Poloniex',
-    window: '30d',
+    token: "BNT",
+    exchange: "Poloniex",
+    window: "30d",
     inflow_sum: 36281.1765,
     inflow_usd_sum: 13891.29,
     inflow_sum_pct_change: 0.558338058520981,
@@ -2574,9 +2574,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 1.20203176249256
   },
   {
-    token: 'LOOM',
-    exchange: 'Binance',
-    window: '24h',
+    token: "LOOM",
+    exchange: "Binance",
+    window: "24h",
     inflow_sum: 2435798.8108,
     inflow_usd_sum: 48715.97,
     inflow_sum_pct_change: 0.658394780349189,
@@ -2587,9 +2587,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.677493462086101
   },
   {
-    token: 'LOOM',
-    exchange: 'Bitfinex',
-    window: '24h',
+    token: "LOOM",
+    exchange: "Bitfinex",
+    window: "24h",
     inflow_sum: 25732.5,
     inflow_usd_sum: 514.65,
     inflow_sum_pct_change: null,
@@ -2600,9 +2600,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'LOOM',
-    exchange: 'Bittrex',
-    window: '24h',
+    token: "LOOM",
+    exchange: "Bittrex",
+    window: "24h",
     inflow_sum: 723856.8289,
     inflow_usd_sum: 14477.14,
     inflow_sum_pct_change: -0.68965710655354,
@@ -2613,9 +2613,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.947269091011521
   },
   {
-    token: 'LOOM',
-    exchange: 'Kraken',
-    window: '24h',
+    token: "LOOM",
+    exchange: "Kraken",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -2626,9 +2626,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'LOOM',
-    exchange: 'Kucoin',
-    window: '24h',
+    token: "LOOM",
+    exchange: "Kucoin",
+    window: "24h",
     inflow_sum: 336154.6433,
     inflow_usd_sum: 6723.1,
     inflow_sum_pct_change: 4.09798691883877,
@@ -2639,9 +2639,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 2.03151351276011
   },
   {
-    token: 'LOOM',
-    exchange: 'Poloniex',
-    window: '24h',
+    token: "LOOM",
+    exchange: "Poloniex",
+    window: "24h",
     inflow_sum: 1363.4,
     inflow_usd_sum: 27.27,
     inflow_sum_pct_change: 1.79786579109378,
@@ -2652,9 +2652,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -1
   },
   {
-    token: 'LOOM',
-    exchange: 'Binance',
-    window: '7d',
+    token: "LOOM",
+    exchange: "Binance",
+    window: "7d",
     inflow_sum: 38451116.0905,
     inflow_usd_sum: 1120261.35,
     inflow_sum_pct_change: 11.6809382637924,
@@ -2665,9 +2665,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 5.92849280638487
   },
   {
-    token: 'LOOM',
-    exchange: 'Bitfinex',
-    window: '7d',
+    token: "LOOM",
+    exchange: "Bitfinex",
+    window: "7d",
     inflow_sum: 25732.5,
     inflow_usd_sum: 514.65,
     inflow_sum_pct_change: null,
@@ -2678,9 +2678,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'LOOM',
-    exchange: 'Bittrex',
-    window: '7d',
+    token: "LOOM",
+    exchange: "Bittrex",
+    window: "7d",
     inflow_sum: 24493878.4118,
     inflow_usd_sum: 704223.94,
     inflow_sum_pct_change: 18.0181111683878,
@@ -2691,9 +2691,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.369156871576562
   },
   {
-    token: 'LOOM',
-    exchange: 'Kraken',
-    window: '7d',
+    token: "LOOM",
+    exchange: "Kraken",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -2704,9 +2704,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'LOOM',
-    exchange: 'Kucoin',
-    window: '7d',
+    token: "LOOM",
+    exchange: "Kucoin",
+    window: "7d",
     inflow_sum: 1122721.7791,
     inflow_usd_sum: 30054.85,
     inflow_sum_pct_change: -0.674278535882656,
@@ -2717,9 +2717,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.95040653584526
   },
   {
-    token: 'LOOM',
-    exchange: 'Poloniex',
-    window: '7d',
+    token: "LOOM",
+    exchange: "Poloniex",
+    window: "7d",
     inflow_sum: 592955.837,
     inflow_usd_sum: 17770.17,
     inflow_sum_pct_change: 23.5394239025202,
@@ -2730,9 +2730,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 3.25017360850156
   },
   {
-    token: 'LOOM',
-    exchange: 'Binance',
-    window: '30d',
+    token: "LOOM",
+    exchange: "Binance",
+    window: "30d",
     inflow_sum: 73559488.8187,
     inflow_usd_sum: 2193945.36,
     inflow_sum_pct_change: 2.77020154438531,
@@ -2743,9 +2743,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.344478911144625
   },
   {
-    token: 'LOOM',
-    exchange: 'Bitfinex',
-    window: '30d',
+    token: "LOOM",
+    exchange: "Bitfinex",
+    window: "30d",
     inflow_sum: 27818.6094,
     inflow_usd_sum: 577.23,
     inflow_sum_pct_change: -0.770137485271011,
@@ -2756,9 +2756,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -1
   },
   {
-    token: 'LOOM',
-    exchange: 'Bittrex',
-    window: '30d',
+    token: "LOOM",
+    exchange: "Bittrex",
+    window: "30d",
     inflow_sum: 29351900.3738,
     inflow_usd_sum: 853655.28,
     inflow_sum_pct_change: 12.7281322340877,
@@ -2769,9 +2769,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.681626395457918
   },
   {
-    token: 'LOOM',
-    exchange: 'Kraken',
-    window: '30d',
+    token: "LOOM",
+    exchange: "Kraken",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -2782,9 +2782,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'LOOM',
-    exchange: 'Kucoin',
-    window: '30d',
+    token: "LOOM",
+    exchange: "Kucoin",
+    window: "30d",
     inflow_sum: 6179745.3186,
     inflow_usd_sum: 183242.91,
     inflow_sum_pct_change: -0.51820082853526,
@@ -2795,9 +2795,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.609722848403014
   },
   {
-    token: 'LOOM',
-    exchange: 'Poloniex',
-    window: '30d',
+    token: "LOOM",
+    exchange: "Poloniex",
+    window: "30d",
     inflow_sum: 1242036.0077,
     inflow_usd_sum: 37242.58,
     inflow_sum_pct_change: -0.204629768290988,
@@ -2808,9 +2808,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.842793605784062
   },
   {
-    token: 'SNT',
-    exchange: 'Binance',
-    window: '24h',
+    token: "SNT",
+    exchange: "Binance",
+    window: "24h",
     inflow_sum: 1067878.3727,
     inflow_usd_sum: 10678.79,
     inflow_sum_pct_change: -0.572450232358389,
@@ -2821,9 +2821,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.670852598595354
   },
   {
-    token: 'SNT',
-    exchange: 'Bitfinex',
-    window: '24h',
+    token: "SNT",
+    exchange: "Bitfinex",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: -1,
@@ -2834,9 +2834,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'SNT',
-    exchange: 'Bittrex',
-    window: '24h',
+    token: "SNT",
+    exchange: "Bittrex",
+    window: "24h",
     inflow_sum: 38562.686,
     inflow_usd_sum: 385.63,
     inflow_sum_pct_change: -0.512569022579489,
@@ -2847,9 +2847,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 5.43511077158136
   },
   {
-    token: 'SNT',
-    exchange: 'Kraken',
-    window: '24h',
+    token: "SNT",
+    exchange: "Kraken",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -2860,9 +2860,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'SNT',
-    exchange: 'Kucoin',
-    window: '24h',
+    token: "SNT",
+    exchange: "Kucoin",
+    window: "24h",
     inflow_sum: 3370.619,
     inflow_usd_sum: 33.71,
     inflow_sum_pct_change: -0.926961909582916,
@@ -2873,9 +2873,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'SNT',
-    exchange: 'Poloniex',
-    window: '24h',
+    token: "SNT",
+    exchange: "Poloniex",
+    window: "24h",
     inflow_sum: 9090.726,
     inflow_usd_sum: 90.91,
     inflow_sum_pct_change: 5.4714601146076,
@@ -2886,9 +2886,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'SNT',
-    exchange: 'Binance',
-    window: '7d',
+    token: "SNT",
+    exchange: "Binance",
+    window: "7d",
     inflow_sum: 16568161.2262,
     inflow_usd_sum: 296944.1,
     inflow_sum_pct_change: 0.459415807048013,
@@ -2899,9 +2899,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.28909147934203
   },
   {
-    token: 'SNT',
-    exchange: 'Bitfinex',
-    window: '7d',
+    token: "SNT",
+    exchange: "Bitfinex",
+    window: "7d",
     inflow_sum: 118565.92,
     inflow_usd_sum: 1185.66,
     inflow_sum_pct_change: -0.76286816,
@@ -2912,9 +2912,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.987166338059866
   },
   {
-    token: 'SNT',
-    exchange: 'Bittrex',
-    window: '7d',
+    token: "SNT",
+    exchange: "Bittrex",
+    window: "7d",
     inflow_sum: 424819.554,
     inflow_usd_sum: 7322.58,
     inflow_sum_pct_change: -0.874651497170181,
@@ -2925,9 +2925,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.930071459324254
   },
   {
-    token: 'SNT',
-    exchange: 'Kraken',
-    window: '7d',
+    token: "SNT",
+    exchange: "Kraken",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -2938,9 +2938,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'SNT',
-    exchange: 'Kucoin',
-    window: '7d',
+    token: "SNT",
+    exchange: "Kucoin",
+    window: "7d",
     inflow_sum: 174525.3563,
     inflow_usd_sum: 3021.01,
     inflow_sum_pct_change: 0.60384883068282,
@@ -2951,9 +2951,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.946487900478598
   },
   {
-    token: 'SNT',
-    exchange: 'Poloniex',
-    window: '7d',
+    token: "SNT",
+    exchange: "Poloniex",
+    window: "7d",
     inflow_sum: 10495.4671,
     inflow_usd_sum: 104.96,
     inflow_sum_pct_change: -0.916037470984187,
@@ -2964,9 +2964,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.976403943141782
   },
   {
-    token: 'SNT',
-    exchange: 'Binance',
-    window: '30d',
+    token: "SNT",
+    exchange: "Binance",
+    window: "30d",
     inflow_sum: 75423858.1043,
     inflow_usd_sum: 1473718.26,
     inflow_sum_pct_change: -0.0696487500459239,
@@ -2977,9 +2977,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.13704419279385
   },
   {
-    token: 'SNT',
-    exchange: 'Bitfinex',
-    window: '30d',
+    token: "SNT",
+    exchange: "Bitfinex",
+    window: "30d",
     inflow_sum: 2435565.92,
     inflow_usd_sum: 47525.66,
     inflow_sum_pct_change: 0.29847038150042,
@@ -2990,9 +2990,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.824273386107271
   },
   {
-    token: 'SNT',
-    exchange: 'Bittrex',
-    window: '30d',
+    token: "SNT",
+    exchange: "Bittrex",
+    window: "30d",
     inflow_sum: 6773512.1278,
     inflow_usd_sum: 134296.44,
     inflow_sum_pct_change: -0.134796157386699,
@@ -3003,9 +3003,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.899547955665916
   },
   {
-    token: 'SNT',
-    exchange: 'Kraken',
-    window: '30d',
+    token: "SNT",
+    exchange: "Kraken",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -3016,9 +3016,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'SNT',
-    exchange: 'Kucoin',
-    window: '30d',
+    token: "SNT",
+    exchange: "Kucoin",
+    window: "30d",
     inflow_sum: 317591.1486,
     inflow_usd_sum: 5882.32,
     inflow_sum_pct_change: 0.639413664003999,
@@ -3029,9 +3029,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.52174560995238
   },
   {
-    token: 'SNT',
-    exchange: 'Poloniex',
-    window: '30d',
+    token: "SNT",
+    exchange: "Poloniex",
+    window: "30d",
     inflow_sum: 1826266.0076,
     inflow_usd_sum: 36420.37,
     inflow_sum_pct_change: 37.9889796600124,
@@ -3042,9 +3042,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 37.3990008995732
   },
   {
-    token: 'CVC',
-    exchange: 'Binance',
-    window: '24h',
+    token: "CVC",
+    exchange: "Binance",
+    window: "24h",
     inflow_sum: 753537.8647,
     inflow_usd_sum: 30141.52,
     inflow_sum_pct_change: -0.462222579612017,
@@ -3055,9 +3055,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.103742801672359
   },
   {
-    token: 'CVC',
-    exchange: 'Bitfinex',
-    window: '24h',
+    token: "CVC",
+    exchange: "Bitfinex",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: -1,
@@ -3068,9 +3068,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'CVC',
-    exchange: 'Bittrex',
-    window: '24h',
+    token: "CVC",
+    exchange: "Bittrex",
+    window: "24h",
     inflow_sum: 4963.1,
     inflow_usd_sum: 198.52,
     inflow_sum_pct_change: 7.72845365799783,
@@ -3081,9 +3081,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.0630754049486139
   },
   {
-    token: 'CVC',
-    exchange: 'Kraken',
-    window: '24h',
+    token: "CVC",
+    exchange: "Kraken",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -3094,9 +3094,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'CVC',
-    exchange: 'Kucoin',
-    window: '24h',
+    token: "CVC",
+    exchange: "Kucoin",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: -1,
@@ -3107,9 +3107,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -1
   },
   {
-    token: 'CVC',
-    exchange: 'Poloniex',
-    window: '24h',
+    token: "CVC",
+    exchange: "Poloniex",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: -1,
@@ -3120,9 +3120,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.24810707286656
   },
   {
-    token: 'CVC',
-    exchange: 'Binance',
-    window: '7d',
+    token: "CVC",
+    exchange: "Binance",
+    window: "7d",
     inflow_sum: 8857086.4079,
     inflow_usd_sum: 393235.39,
     inflow_sum_pct_change: 2.58179887293312,
@@ -3133,9 +3133,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 2.16778635933701
   },
   {
-    token: 'CVC',
-    exchange: 'Bitfinex',
-    window: '7d',
+    token: "CVC",
+    exchange: "Bitfinex",
+    window: "7d",
     inflow_sum: 50099.3,
     inflow_usd_sum: 2023.54,
     inflow_sum_pct_change: null,
@@ -3146,9 +3146,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'CVC',
-    exchange: 'Bittrex',
-    window: '7d',
+    token: "CVC",
+    exchange: "Bittrex",
+    window: "7d",
     inflow_sum: 5252716.0251,
     inflow_usd_sum: 240414.6,
     inflow_sum_pct_change: 50.0694073070694,
@@ -3159,9 +3159,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.175830212354012
   },
   {
-    token: 'CVC',
-    exchange: 'Kraken',
-    window: '7d',
+    token: "CVC",
+    exchange: "Kraken",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -3172,9 +3172,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'CVC',
-    exchange: 'Kucoin',
-    window: '7d',
+    token: "CVC",
+    exchange: "Kucoin",
+    window: "7d",
     inflow_sum: 227075.7785,
     inflow_usd_sum: 9455.44,
     inflow_sum_pct_change: 0.83907978890548,
@@ -3185,9 +3185,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.12320581984633
   },
   {
-    token: 'CVC',
-    exchange: 'Poloniex',
-    window: '7d',
+    token: "CVC",
+    exchange: "Poloniex",
+    window: "7d",
     inflow_sum: 29337.914,
     inflow_usd_sum: 1214.89,
     inflow_sum_pct_change: -0.266333012841773,
@@ -3198,9 +3198,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 27.1516098890063
   },
   {
-    token: 'CVC',
-    exchange: 'Binance',
-    window: '30d',
+    token: "CVC",
+    exchange: "Binance",
+    window: "30d",
     inflow_sum: 37739282.51,
     inflow_usd_sum: 1790506.61,
     inflow_sum_pct_change: 0.535169571774778,
@@ -3211,9 +3211,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.712091839077494
   },
   {
-    token: 'CVC',
-    exchange: 'Bitfinex',
-    window: '30d',
+    token: "CVC",
+    exchange: "Bitfinex",
+    window: "30d",
     inflow_sum: 379778.6376,
     inflow_usd_sum: 15210.71,
     inflow_sum_pct_change: -0.0594158252406267,
@@ -3224,9 +3224,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'CVC',
-    exchange: 'Bittrex',
-    window: '30d',
+    token: "CVC",
+    exchange: "Bittrex",
+    window: "30d",
     inflow_sum: 12468860.258,
     inflow_usd_sum: 588332.67,
     inflow_sum_pct_change: 4.02962472442344,
@@ -3237,9 +3237,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 1.45145722332682
   },
   {
-    token: 'CVC',
-    exchange: 'Kraken',
-    window: '30d',
+    token: "CVC",
+    exchange: "Kraken",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -3250,9 +3250,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'CVC',
-    exchange: 'Kucoin',
-    window: '30d',
+    token: "CVC",
+    exchange: "Kucoin",
+    window: "30d",
     inflow_sum: 700427.0711,
     inflow_usd_sum: 31990.94,
     inflow_sum_pct_change: 3.71954891375859,
@@ -3263,9 +3263,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 2.1977087657672
   },
   {
-    token: 'CVC',
-    exchange: 'Poloniex',
-    window: '30d',
+    token: "CVC",
+    exchange: "Poloniex",
+    window: "30d",
     inflow_sum: 893843.2032,
     inflow_usd_sum: 40680.32,
     inflow_sum_pct_change: 0.211434967452666,
@@ -3276,9 +3276,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 1.0208862906283
   },
   {
-    token: 'KNC',
-    exchange: 'Binance',
-    window: '24h',
+    token: "KNC",
+    exchange: "Binance",
+    window: "24h",
     inflow_sum: 332158.3721,
     inflow_usd_sum: 64873.33,
     inflow_sum_pct_change: -0.680292211267128,
@@ -3289,9 +3289,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.0305028210733258
   },
   {
-    token: 'KNC',
-    exchange: 'Bitfinex',
-    window: '24h',
+    token: "KNC",
+    exchange: "Bitfinex",
+    window: "24h",
     inflow_sum: 160565,
     inflow_usd_sum: 32113,
     inflow_sum_pct_change: 1.84224072618618,
@@ -3302,9 +3302,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'KNC',
-    exchange: 'Bittrex',
-    window: '24h',
+    token: "KNC",
+    exchange: "Bittrex",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -3315,9 +3315,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'KNC',
-    exchange: 'Kraken',
-    window: '24h',
+    token: "KNC",
+    exchange: "Kraken",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -3328,9 +3328,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'KNC',
-    exchange: 'Kucoin',
-    window: '24h',
+    token: "KNC",
+    exchange: "Kucoin",
+    window: "24h",
     inflow_sum: 23821.835,
     inflow_usd_sum: 4787.65,
     inflow_sum_pct_change: -0.778375998438533,
@@ -3341,9 +3341,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.81460320421632
   },
   {
-    token: 'KNC',
-    exchange: 'Poloniex',
-    window: '24h',
+    token: "KNC",
+    exchange: "Poloniex",
+    window: "24h",
     inflow_sum: 3605,
     inflow_usd_sum: 721,
     inflow_sum_pct_change: -0.736943878928511,
@@ -3354,9 +3354,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 34.3262946204123
   },
   {
-    token: 'KNC',
-    exchange: 'Binance',
-    window: '7d',
+    token: "KNC",
+    exchange: "Binance",
+    window: "7d",
     inflow_sum: 3716498.0772,
     inflow_usd_sum: 703713.35,
     inflow_sum_pct_change: 0.458548050646746,
@@ -3367,9 +3367,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.975745133928123
   },
   {
-    token: 'KNC',
-    exchange: 'Bitfinex',
-    window: '7d',
+    token: "KNC",
+    exchange: "Bitfinex",
+    window: "7d",
     inflow_sum: 287232.2,
     inflow_usd_sum: 56187.44,
     inflow_sum_pct_change: 3.53184161158961,
@@ -3380,9 +3380,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 9.44413715169358
   },
   {
-    token: 'KNC',
-    exchange: 'Bittrex',
-    window: '7d',
+    token: "KNC",
+    exchange: "Bittrex",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -3393,9 +3393,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'KNC',
-    exchange: 'Kraken',
-    window: '7d',
+    token: "KNC",
+    exchange: "Kraken",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -3406,9 +3406,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'KNC',
-    exchange: 'Kucoin',
-    window: '7d',
+    token: "KNC",
+    exchange: "Kucoin",
+    window: "7d",
     inflow_sum: 235603.5732,
     inflow_usd_sum: 45806.62,
     inflow_sum_pct_change: 3.47339875767132,
@@ -3419,9 +3419,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.878308835226368
   },
   {
-    token: 'KNC',
-    exchange: 'Poloniex',
-    window: '7d',
+    token: "KNC",
+    exchange: "Poloniex",
+    window: "7d",
     inflow_sum: 195018.9267,
     inflow_usd_sum: 36862.59,
     inflow_sum_pct_change: 1.47244065707241,
@@ -3432,9 +3432,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 16.7431402083948
   },
   {
-    token: 'KNC',
-    exchange: 'Binance',
-    window: '30d',
+    token: "KNC",
+    exchange: "Binance",
+    window: "30d",
     inflow_sum: 11212084.797,
     inflow_usd_sum: 2005623.61,
     inflow_sum_pct_change: 0.154580622342305,
@@ -3445,9 +3445,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.0274265509109708
   },
   {
-    token: 'KNC',
-    exchange: 'Bitfinex',
-    window: '30d',
+    token: "KNC",
+    exchange: "Bitfinex",
+    window: "30d",
     inflow_sum: 391787.61,
     inflow_usd_sum: 73885.18,
     inflow_sum_pct_change: 2.83242059397453,
@@ -3458,9 +3458,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.348534290196503
   },
   {
-    token: 'KNC',
-    exchange: 'Bittrex',
-    window: '30d',
+    token: "KNC",
+    exchange: "Bittrex",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -3471,9 +3471,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'KNC',
-    exchange: 'Kraken',
-    window: '30d',
+    token: "KNC",
+    exchange: "Kraken",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -3484,9 +3484,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'KNC',
-    exchange: 'Kucoin',
-    window: '30d',
+    token: "KNC",
+    exchange: "Kucoin",
+    window: "30d",
     inflow_sum: 419909.2368,
     inflow_usd_sum: 77313.16,
     inflow_sum_pct_change: 3.2250485609044,
@@ -3497,9 +3497,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 1.0805267131843
   },
   {
-    token: 'KNC',
-    exchange: 'Poloniex',
-    window: '30d',
+    token: "KNC",
+    exchange: "Poloniex",
+    window: "30d",
     inflow_sum: 608268.2928,
     inflow_usd_sum: 106444.9,
     inflow_sum_pct_change: 7.15414169318871,
@@ -3510,9 +3510,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 3.56915065323807
   },
   {
-    token: 'RLC',
-    exchange: 'Binance',
-    window: '24h',
+    token: "RLC",
+    exchange: "Binance",
+    window: "24h",
     inflow_sum: 18268.1443,
     inflow_usd_sum: 3820.12,
     inflow_sum_pct_change: -0.38280020746101,
@@ -3523,9 +3523,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.409614451087122
   },
   {
-    token: 'RLC',
-    exchange: 'Bitfinex',
-    window: '24h',
+    token: "RLC",
+    exchange: "Bitfinex",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: -1,
@@ -3536,9 +3536,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'RLC',
-    exchange: 'Bittrex',
-    window: '24h',
+    token: "RLC",
+    exchange: "Bittrex",
+    window: "24h",
     inflow_sum: 4906.8825,
     inflow_usd_sum: 1010.55,
     inflow_sum_pct_change: 10.2979755256091,
@@ -3549,9 +3549,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.346481688091196
   },
   {
-    token: 'RLC',
-    exchange: 'Kraken',
-    window: '24h',
+    token: "RLC",
+    exchange: "Kraken",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -3562,9 +3562,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'RLC',
-    exchange: 'Kucoin',
-    window: '24h',
+    token: "RLC",
+    exchange: "Kucoin",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -3575,9 +3575,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'RLC',
-    exchange: 'Poloniex',
-    window: '24h',
+    token: "RLC",
+    exchange: "Poloniex",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -3588,9 +3588,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'RLC',
-    exchange: 'Binance',
-    window: '7d',
+    token: "RLC",
+    exchange: "Binance",
+    window: "7d",
     inflow_sum: 75728.0766,
     inflow_usd_sum: 14853.61,
     inflow_sum_pct_change: -0.416477686577149,
@@ -3601,9 +3601,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 3.33935270692087
   },
   {
-    token: 'RLC',
-    exchange: 'Bitfinex',
-    window: '7d',
+    token: "RLC",
+    exchange: "Bitfinex",
+    window: "7d",
     inflow_sum: 842.14,
     inflow_usd_sum: 160.98,
     inflow_sum_pct_change: -0.879476292763239,
@@ -3614,9 +3614,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.843220091501996
   },
   {
-    token: 'RLC',
-    exchange: 'Bittrex',
-    window: '7d',
+    token: "RLC",
+    exchange: "Bittrex",
+    window: "7d",
     inflow_sum: 135343.3046,
     inflow_usd_sum: 25999.03,
     inflow_sum_pct_change: 7.07769778461984,
@@ -3627,9 +3627,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 1.52946739739507
   },
   {
-    token: 'RLC',
-    exchange: 'Kraken',
-    window: '7d',
+    token: "RLC",
+    exchange: "Kraken",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -3640,9 +3640,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'RLC',
-    exchange: 'Kucoin',
-    window: '7d',
+    token: "RLC",
+    exchange: "Kucoin",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -3653,9 +3653,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'RLC',
-    exchange: 'Poloniex',
-    window: '7d',
+    token: "RLC",
+    exchange: "Poloniex",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -3666,9 +3666,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'RLC',
-    exchange: 'Binance',
-    window: '30d',
+    token: "RLC",
+    exchange: "Binance",
+    window: "30d",
     inflow_sum: 726406.1796,
     inflow_usd_sum: 155163.49,
     inflow_sum_pct_change: 0.159043034851677,
@@ -3679,9 +3679,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.0750862928095831
   },
   {
-    token: 'RLC',
-    exchange: 'Bitfinex',
-    window: '30d',
+    token: "RLC",
+    exchange: "Bitfinex",
+    window: "30d",
     inflow_sum: 41969.53,
     inflow_usd_sum: 9414.84,
     inflow_sum_pct_change: 1.26101751032485,
@@ -3692,9 +3692,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.203330381304824
   },
   {
-    token: 'RLC',
-    exchange: 'Bittrex',
-    window: '30d',
+    token: "RLC",
+    exchange: "Bittrex",
+    window: "30d",
     inflow_sum: 201435.8095,
     inflow_usd_sum: 40268.36,
     inflow_sum_pct_change: -0.273083433922289,
@@ -3705,9 +3705,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.908065617642563
   },
   {
-    token: 'RLC',
-    exchange: 'Kraken',
-    window: '30d',
+    token: "RLC",
+    exchange: "Kraken",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -3718,9 +3718,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'RLC',
-    exchange: 'Kucoin',
-    window: '30d',
+    token: "RLC",
+    exchange: "Kucoin",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -3731,9 +3731,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'RLC',
-    exchange: 'Poloniex',
-    window: '30d',
+    token: "RLC",
+    exchange: "Poloniex",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -3744,9 +3744,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'FET',
-    exchange: 'Binance',
-    window: '24h',
+    token: "FET",
+    exchange: "Binance",
+    window: "24h",
     inflow_sum: 218751.7544,
     inflow_usd_sum: 12119.24,
     inflow_sum_pct_change: -0.452423550137584,
@@ -3757,9 +3757,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.857169532575803
   },
   {
-    token: 'FET',
-    exchange: 'Bitfinex',
-    window: '24h',
+    token: "FET",
+    exchange: "Bitfinex",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -3770,9 +3770,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'FET',
-    exchange: 'Bittrex',
-    window: '24h',
+    token: "FET",
+    exchange: "Bittrex",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -3783,9 +3783,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 8.34750186428039
   },
   {
-    token: 'FET',
-    exchange: 'Kraken',
-    window: '24h',
+    token: "FET",
+    exchange: "Kraken",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -3796,9 +3796,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'FET',
-    exchange: 'Kucoin',
-    window: '24h',
+    token: "FET",
+    exchange: "Kucoin",
+    window: "24h",
     inflow_sum: 3078.572,
     inflow_usd_sum: 156.33,
     inflow_sum_pct_change: -0.965193970550926,
@@ -3809,9 +3809,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -1
   },
   {
-    token: 'FET',
-    exchange: 'Poloniex',
-    window: '24h',
+    token: "FET",
+    exchange: "Poloniex",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -3822,9 +3822,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'FET',
-    exchange: 'Binance',
-    window: '7d',
+    token: "FET",
+    exchange: "Binance",
+    window: "7d",
     inflow_sum: 1370971.7546,
     inflow_usd_sum: 71070.51,
     inflow_sum_pct_change: -0.482344461316751,
@@ -3835,9 +3835,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.198074380176267
   },
   {
-    token: 'FET',
-    exchange: 'Bitfinex',
-    window: '7d',
+    token: "FET",
+    exchange: "Bitfinex",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -3848,9 +3848,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'FET',
-    exchange: 'Bittrex',
-    window: '7d',
+    token: "FET",
+    exchange: "Bittrex",
+    window: "7d",
     inflow_sum: 21960.219,
     inflow_usd_sum: 1098.01,
     inflow_sum_pct_change: -0.560346223495809,
@@ -3861,9 +3861,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 4.79593662824359
   },
   {
-    token: 'FET',
-    exchange: 'Kraken',
-    window: '7d',
+    token: "FET",
+    exchange: "Kraken",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -3874,9 +3874,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'FET',
-    exchange: 'Kucoin',
-    window: '7d',
+    token: "FET",
+    exchange: "Kucoin",
+    window: "7d",
     inflow_sum: 281936.0964,
     inflow_usd_sum: 14521.08,
     inflow_sum_pct_change: 1.8143052756452,
@@ -3887,9 +3887,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.540534456870321
   },
   {
-    token: 'FET',
-    exchange: 'Poloniex',
-    window: '7d',
+    token: "FET",
+    exchange: "Poloniex",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -3900,9 +3900,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'FET',
-    exchange: 'Binance',
-    window: '30d',
+    token: "FET",
+    exchange: "Binance",
+    window: "30d",
     inflow_sum: 15651530.5117,
     inflow_usd_sum: 901931.540000001,
     inflow_sum_pct_change: -0.132596162040042,
@@ -3913,9 +3913,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.322700809200352
   },
   {
-    token: 'FET',
-    exchange: 'Bitfinex',
-    window: '30d',
+    token: "FET",
+    exchange: "Bitfinex",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -3926,9 +3926,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'FET',
-    exchange: 'Bittrex',
-    window: '30d',
+    token: "FET",
+    exchange: "Bittrex",
+    window: "30d",
     inflow_sum: 343914.6866,
     inflow_usd_sum: 22706.69,
     inflow_sum_pct_change: 0.565740650976657,
@@ -3939,9 +3939,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.135351262500616
   },
   {
-    token: 'FET',
-    exchange: 'Kraken',
-    window: '30d',
+    token: "FET",
+    exchange: "Kraken",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -3952,9 +3952,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'FET',
-    exchange: 'Kucoin',
-    window: '30d',
+    token: "FET",
+    exchange: "Kucoin",
+    window: "30d",
     inflow_sum: 782783.7515,
     inflow_usd_sum: 44204.17,
     inflow_sum_pct_change: 0.342991111265885,
@@ -3965,9 +3965,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.418403328114495
   },
   {
-    token: 'FET',
-    exchange: 'Poloniex',
-    window: '30d',
+    token: "FET",
+    exchange: "Poloniex",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -3978,9 +3978,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'LINK',
-    exchange: 'Binance',
-    window: '24h',
+    token: "LINK",
+    exchange: "Binance",
+    window: "24h",
     inflow_sum: 427458.0469,
     inflow_usd_sum: 721727.05,
     inflow_sum_pct_change: 1.36640882908345,
@@ -3991,9 +3991,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.578059456473094
   },
   {
-    token: 'LINK',
-    exchange: 'Bitfinex',
-    window: '24h',
+    token: "LINK",
+    exchange: "Bitfinex",
+    window: "24h",
     inflow_sum: 58643.1,
     inflow_usd_sum: 98668.95,
     inflow_sum_pct_change: 0.777128259209426,
@@ -4004,9 +4004,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'LINK',
-    exchange: 'Bittrex',
-    window: '24h',
+    token: "LINK",
+    exchange: "Bittrex",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -4017,9 +4017,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'LINK',
-    exchange: 'Kraken',
-    window: '24h',
+    token: "LINK",
+    exchange: "Kraken",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -4030,9 +4030,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'LINK',
-    exchange: 'Kucoin',
-    window: '24h',
+    token: "LINK",
+    exchange: "Kucoin",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -4043,9 +4043,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'LINK',
-    exchange: 'Poloniex',
-    window: '24h',
+    token: "LINK",
+    exchange: "Poloniex",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -4056,9 +4056,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'LINK',
-    exchange: 'Binance',
-    window: '7d',
+    token: "LINK",
+    exchange: "Binance",
+    window: "7d",
     inflow_sum: 1937854.8031,
     inflow_usd_sum: 3440587.34,
     inflow_sum_pct_change: -0.0971915011509803,
@@ -4069,9 +4069,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.310018585663947
   },
   {
-    token: 'LINK',
-    exchange: 'Bitfinex',
-    window: '7d',
+    token: "LINK",
+    exchange: "Bitfinex",
+    window: "7d",
     inflow_sum: 129336.7,
     inflow_usd_sum: 223720.22,
     inflow_sum_pct_change: 1.10357620331728,
@@ -4082,9 +4082,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'LINK',
-    exchange: 'Bittrex',
-    window: '7d',
+    token: "LINK",
+    exchange: "Bittrex",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -4095,9 +4095,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'LINK',
-    exchange: 'Kraken',
-    window: '7d',
+    token: "LINK",
+    exchange: "Kraken",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -4108,9 +4108,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'LINK',
-    exchange: 'Kucoin',
-    window: '7d',
+    token: "LINK",
+    exchange: "Kucoin",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -4121,9 +4121,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'LINK',
-    exchange: 'Poloniex',
-    window: '7d',
+    token: "LINK",
+    exchange: "Poloniex",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -4134,9 +4134,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'LINK',
-    exchange: 'Binance',
-    window: '30d',
+    token: "LINK",
+    exchange: "Binance",
+    window: "30d",
     inflow_sum: 12693166.2363,
     inflow_usd_sum: 26940929.28,
     inflow_sum_pct_change: -0.288922966252424,
@@ -4147,9 +4147,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.0929756444269177
   },
   {
-    token: 'LINK',
-    exchange: 'Bitfinex',
-    window: '30d',
+    token: "LINK",
+    exchange: "Bitfinex",
+    window: "30d",
     inflow_sum: 357328,
     inflow_usd_sum: 704939.48,
     inflow_sum_pct_change: 0.980321371053106,
@@ -4160,9 +4160,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'LINK',
-    exchange: 'Bittrex',
-    window: '30d',
+    token: "LINK",
+    exchange: "Bittrex",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -4173,9 +4173,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'LINK',
-    exchange: 'Kraken',
-    window: '30d',
+    token: "LINK",
+    exchange: "Kraken",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -4186,9 +4186,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'LINK',
-    exchange: 'Kucoin',
-    window: '30d',
+    token: "LINK",
+    exchange: "Kucoin",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -4199,9 +4199,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'LINK',
-    exchange: 'Poloniex',
-    window: '30d',
+    token: "LINK",
+    exchange: "Poloniex",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -4212,9 +4212,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'USDC',
-    exchange: 'Binance',
-    window: '24h',
+    token: "USDC",
+    exchange: "Binance",
+    window: "24h",
     inflow_sum: 4135495.2343,
     inflow_usd_sum: 4135495.22,
     inflow_sum_pct_change: 1.16086634381795,
@@ -4225,9 +4225,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.764148603384068
   },
   {
-    token: 'USDC',
-    exchange: 'Bitfinex',
-    window: '24h',
+    token: "USDC",
+    exchange: "Bitfinex",
+    window: "24h",
     inflow_sum: 15870.2,
     inflow_usd_sum: 15870.2,
     inflow_sum_pct_change: -0.536266863806772,
@@ -4238,9 +4238,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 3.74274954560825
   },
   {
-    token: 'USDC',
-    exchange: 'Bittrex',
-    window: '24h',
+    token: "USDC",
+    exchange: "Bittrex",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -4251,9 +4251,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'USDC',
-    exchange: 'Kraken',
-    window: '24h',
+    token: "USDC",
+    exchange: "Kraken",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -4264,9 +4264,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'USDC',
-    exchange: 'Kucoin',
-    window: '24h',
+    token: "USDC",
+    exchange: "Kucoin",
+    window: "24h",
     inflow_sum: 78436.6761,
     inflow_usd_sum: 78436.65,
     inflow_sum_pct_change: -0.19933450465465,
@@ -4277,9 +4277,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 1.54594081529419
   },
   {
-    token: 'USDC',
-    exchange: 'Poloniex',
-    window: '24h',
+    token: "USDC",
+    exchange: "Poloniex",
+    window: "24h",
     inflow_sum: 528593.204,
     inflow_usd_sum: 528593.22,
     inflow_sum_pct_change: 2.51421459541985,
@@ -4290,9 +4290,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 1.37144691243431
   },
   {
-    token: 'USDC',
-    exchange: 'Binance',
-    window: '7d',
+    token: "USDC",
+    exchange: "Binance",
+    window: "7d",
     inflow_sum: 21803824.2344,
     inflow_usd_sum: 21803867.6,
     inflow_sum_pct_change: -0.537638829391235,
@@ -4303,9 +4303,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.25593166576207
   },
   {
-    token: 'USDC',
-    exchange: 'Bitfinex',
-    window: '7d',
+    token: "USDC",
+    exchange: "Bitfinex",
+    window: "7d",
     inflow_sum: 333963.0317,
     inflow_usd_sum: 333965.09,
     inflow_sum_pct_change: 0.916129123388844,
@@ -4316,9 +4316,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.589462558480801
   },
   {
-    token: 'USDC',
-    exchange: 'Bittrex',
-    window: '7d',
+    token: "USDC",
+    exchange: "Bittrex",
+    window: "7d",
     inflow_sum: 25.4914,
     inflow_usd_sum: 25.49,
     inflow_sum_pct_change: -0.981791857142857,
@@ -4329,9 +4329,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'USDC',
-    exchange: 'Kraken',
-    window: '7d',
+    token: "USDC",
+    exchange: "Kraken",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -4342,9 +4342,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'USDC',
-    exchange: 'Kucoin',
-    window: '7d',
+    token: "USDC",
+    exchange: "Kucoin",
+    window: "7d",
     inflow_sum: 280113.1535,
     inflow_usd_sum: 280113.42,
     inflow_sum_pct_change: 0.472053286289119,
@@ -4355,9 +4355,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.379499098507878
   },
   {
-    token: 'USDC',
-    exchange: 'Poloniex',
-    window: '7d',
+    token: "USDC",
+    exchange: "Poloniex",
+    window: "7d",
     inflow_sum: 2788317.2321,
     inflow_usd_sum: 2788340.92,
     inflow_sum_pct_change: -0.548752532290287,
@@ -4368,9 +4368,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.135691406771965
   },
   {
-    token: 'USDC',
-    exchange: 'Binance',
-    window: '30d',
+    token: "USDC",
+    exchange: "Binance",
+    window: "30d",
     inflow_sum: 149459923.5477,
     inflow_usd_sum: 149251660.57,
     inflow_sum_pct_change: -0.0951472133162419,
@@ -4381,9 +4381,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.0911851512756381
   },
   {
-    token: 'USDC',
-    exchange: 'Bitfinex',
-    window: '30d',
+    token: "USDC",
+    exchange: "Bitfinex",
+    window: "30d",
     inflow_sum: 2958630.0166,
     inflow_usd_sum: 2959434.99,
     inflow_sum_pct_change: -0.658421931419487,
@@ -4394,9 +4394,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.629845068161537
   },
   {
-    token: 'USDC',
-    exchange: 'Bittrex',
-    window: '30d',
+    token: "USDC",
+    exchange: "Bittrex",
+    window: "30d",
     inflow_sum: 1425.4914,
     inflow_usd_sum: 1425.49,
     inflow_sum_pct_change: 0.227750833032458,
@@ -4407,9 +4407,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'USDC',
-    exchange: 'Kraken',
-    window: '30d',
+    token: "USDC",
+    exchange: "Kraken",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -4420,9 +4420,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'USDC',
-    exchange: 'Kucoin',
-    window: '30d',
+    token: "USDC",
+    exchange: "Kucoin",
+    window: "30d",
     inflow_sum: 932391.6517,
     inflow_usd_sum: 912471.31,
     inflow_sum_pct_change: -0.330103222536752,
@@ -4433,9 +4433,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.28784135462939
   },
   {
-    token: 'USDC',
-    exchange: 'Poloniex',
-    window: '30d',
+    token: "USDC",
+    exchange: "Poloniex",
+    window: "30d",
     inflow_sum: 29432660.1985,
     inflow_usd_sum: 29443823.72,
     inflow_sum_pct_change: -0.224889176176844,
@@ -4446,9 +4446,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.523417224766981
   },
   {
-    token: 'PAX',
-    exchange: 'Binance',
-    window: '24h',
+    token: "PAX",
+    exchange: "Binance",
+    window: "24h",
     inflow_sum: 748592.6731,
     inflow_usd_sum: 748592.68,
     inflow_sum_pct_change: -0.0273922307449207,
@@ -4459,9 +4459,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.0211470690478543
   },
   {
-    token: 'PAX',
-    exchange: 'Bitfinex',
-    window: '24h',
+    token: "PAX",
+    exchange: "Bitfinex",
+    window: "24h",
     inflow_sum: 14371.943,
     inflow_usd_sum: 14371.94,
     inflow_sum_pct_change: 2.8611420665198,
@@ -4472,9 +4472,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'PAX',
-    exchange: 'Bittrex',
-    window: '24h',
+    token: "PAX",
+    exchange: "Bittrex",
+    window: "24h",
     inflow_sum: 60988.3778,
     inflow_usd_sum: 60988.37,
     inflow_sum_pct_change: 0.0215393421829881,
@@ -4485,9 +4485,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -1
   },
   {
-    token: 'PAX',
-    exchange: 'Kraken',
-    window: '24h',
+    token: "PAX",
+    exchange: "Kraken",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -4498,9 +4498,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'PAX',
-    exchange: 'Kucoin',
-    window: '24h',
+    token: "PAX",
+    exchange: "Kucoin",
+    window: "24h",
     inflow_sum: 50695.836,
     inflow_usd_sum: 50695.83,
     inflow_sum_pct_change: 3.44216381008714,
@@ -4511,9 +4511,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.75093943340839
   },
   {
-    token: 'PAX',
-    exchange: 'Poloniex',
-    window: '24h',
+    token: "PAX",
+    exchange: "Poloniex",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -4524,9 +4524,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'PAX',
-    exchange: 'Binance',
-    window: '7d',
+    token: "PAX",
+    exchange: "Binance",
+    window: "7d",
     inflow_sum: 6561936.8722,
     inflow_usd_sum: 6561967.8,
     inflow_sum_pct_change: -0.674139166233622,
@@ -4537,9 +4537,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.4127719767929
   },
   {
-    token: 'PAX',
-    exchange: 'Bitfinex',
-    window: '7d',
+    token: "PAX",
+    exchange: "Bitfinex",
+    window: "7d",
     inflow_sum: 55600.972,
     inflow_usd_sum: 55600.97,
     inflow_sum_pct_change: 0.970976670637618,
@@ -4550,9 +4550,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 7.59282783800561
   },
   {
-    token: 'PAX',
-    exchange: 'Bittrex',
-    window: '7d',
+    token: "PAX",
+    exchange: "Bittrex",
+    window: "7d",
     inflow_sum: 821472.6659,
     inflow_usd_sum: 821486.35,
     inflow_sum_pct_change: 12.1734304888012,
@@ -4563,9 +4563,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.389412185263816
   },
   {
-    token: 'PAX',
-    exchange: 'Kraken',
-    window: '7d',
+    token: "PAX",
+    exchange: "Kraken",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -4576,9 +4576,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'PAX',
-    exchange: 'Kucoin',
-    window: '7d',
+    token: "PAX",
+    exchange: "Kucoin",
+    window: "7d",
     inflow_sum: 161094.9333,
     inflow_usd_sum: 161094.93,
     inflow_sum_pct_change: 3.03129208098431,
@@ -4589,9 +4589,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.229331129816364
   },
   {
-    token: 'PAX',
-    exchange: 'Poloniex',
-    window: '7d',
+    token: "PAX",
+    exchange: "Poloniex",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -4602,9 +4602,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'PAX',
-    exchange: 'Binance',
-    window: '30d',
+    token: "PAX",
+    exchange: "Binance",
+    window: "30d",
     inflow_sum: 57678734.1958,
     inflow_usd_sum: 57667791.9,
     inflow_sum_pct_change: -0.64087325567377,
@@ -4615,9 +4615,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.537433184852516
   },
   {
-    token: 'PAX',
-    exchange: 'Bitfinex',
-    window: '30d',
+    token: "PAX",
+    exchange: "Bitfinex",
+    window: "30d",
     inflow_sum: 752576.46,
     inflow_usd_sum: 751249.38,
     inflow_sum_pct_change: -0.684067312262555,
@@ -4628,9 +4628,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.652034863634701
   },
   {
-    token: 'PAX',
-    exchange: 'Bittrex',
-    window: '30d',
+    token: "PAX",
+    exchange: "Bittrex",
+    window: "30d",
     inflow_sum: 2175396.8894,
     inflow_usd_sum: 2175406.3,
     inflow_sum_pct_change: -0.311100219489586,
@@ -4641,9 +4641,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.0594880176512265
   },
   {
-    token: 'PAX',
-    exchange: 'Kraken',
-    window: '30d',
+    token: "PAX",
+    exchange: "Kraken",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -4654,9 +4654,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'PAX',
-    exchange: 'Kucoin',
-    window: '30d',
+    token: "PAX",
+    exchange: "Kucoin",
+    window: "30d",
     inflow_sum: 328643.1728,
     inflow_usd_sum: 328302.71,
     inflow_sum_pct_change: -0.275105825057832,
@@ -4667,9 +4667,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.258118180821447
   },
   {
-    token: 'PAX',
-    exchange: 'Poloniex',
-    window: '30d',
+    token: "PAX",
+    exchange: "Poloniex",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -4680,9 +4680,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'TUSD',
-    exchange: 'Binance',
-    window: '24h',
+    token: "TUSD",
+    exchange: "Binance",
+    window: "24h",
     inflow_sum: 3895876.3278,
     inflow_usd_sum: 3895889.7,
     inflow_sum_pct_change: 7.8484190996184,
@@ -4693,9 +4693,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.242526688538716
   },
   {
-    token: 'TUSD',
-    exchange: 'Bitfinex',
-    window: '24h',
+    token: "TUSD",
+    exchange: "Bitfinex",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -4706,9 +4706,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.977310237597121
   },
   {
-    token: 'TUSD',
-    exchange: 'Bittrex',
-    window: '24h',
+    token: "TUSD",
+    exchange: "Bittrex",
+    window: "24h",
     inflow_sum: 491204.4774,
     inflow_usd_sum: 491204.49,
     inflow_sum_pct_change: 12.6041599269636,
@@ -4719,9 +4719,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 4.9036732827057
   },
   {
-    token: 'TUSD',
-    exchange: 'Kraken',
-    window: '24h',
+    token: "TUSD",
+    exchange: "Kraken",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -4732,9 +4732,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'TUSD',
-    exchange: 'Kucoin',
-    window: '24h',
+    token: "TUSD",
+    exchange: "Kucoin",
+    window: "24h",
     inflow_sum: 33796.9668,
     inflow_usd_sum: 33797.76,
     inflow_sum_pct_change: -0.438190271064027,
@@ -4745,9 +4745,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.19295364833662
   },
   {
-    token: 'TUSD',
-    exchange: 'Poloniex',
-    window: '24h',
+    token: "TUSD",
+    exchange: "Poloniex",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -4758,9 +4758,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'TUSD',
-    exchange: 'Binance',
-    window: '7d',
+    token: "TUSD",
+    exchange: "Binance",
+    window: "7d",
     inflow_sum: 10283983.4088,
     inflow_usd_sum: 10284088.49,
     inflow_sum_pct_change: -0.298786811887966,
@@ -4771,9 +4771,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.174433659253619
   },
   {
-    token: 'TUSD',
-    exchange: 'Bitfinex',
-    window: '7d',
+    token: "TUSD",
+    exchange: "Bitfinex",
+    window: "7d",
     inflow_sum: 300400,
     inflow_usd_sum: 300450.85,
     inflow_sum_pct_change: 10.2167567293072,
@@ -4784,9 +4784,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 9.8536067725076
   },
   {
-    token: 'TUSD',
-    exchange: 'Bittrex',
-    window: '7d',
+    token: "TUSD",
+    exchange: "Bittrex",
+    window: "7d",
     inflow_sum: 957906.0402,
     inflow_usd_sum: 957908.91,
     inflow_sum_pct_change: -0.437487933119818,
@@ -4797,9 +4797,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.412902661232941
   },
   {
-    token: 'TUSD',
-    exchange: 'Kraken',
-    window: '7d',
+    token: "TUSD",
+    exchange: "Kraken",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -4810,9 +4810,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'TUSD',
-    exchange: 'Kucoin',
-    window: '7d',
+    token: "TUSD",
+    exchange: "Kucoin",
+    window: "7d",
     inflow_sum: 140039.2719,
     inflow_usd_sum: 140043.21,
     inflow_sum_pct_change: 0.52925071494972,
@@ -4823,9 +4823,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.00102282063898806
   },
   {
-    token: 'TUSD',
-    exchange: 'Poloniex',
-    window: '7d',
+    token: "TUSD",
+    exchange: "Poloniex",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -4836,9 +4836,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'TUSD',
-    exchange: 'Binance',
-    window: '30d',
+    token: "TUSD",
+    exchange: "Binance",
+    window: "30d",
     inflow_sum: 47654487.2524,
     inflow_usd_sum: 47553037.57,
     inflow_sum_pct_change: 0.030323831960045,
@@ -4849,9 +4849,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.0373391880382797
   },
   {
-    token: 'TUSD',
-    exchange: 'Bitfinex',
-    window: '30d',
+    token: "TUSD",
+    exchange: "Bitfinex",
+    window: "30d",
     inflow_sum: 1585515.37,
     inflow_usd_sum: 1585650.98,
     inflow_sum_pct_change: 0.289613165758664,
@@ -4862,9 +4862,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.211402104862505
   },
   {
-    token: 'TUSD',
-    exchange: 'Bittrex',
-    window: '30d',
+    token: "TUSD",
+    exchange: "Bittrex",
+    window: "30d",
     inflow_sum: 3632470.1618,
     inflow_usd_sum: 3632765.55,
     inflow_sum_pct_change: -0.132448059556678,
@@ -4875,9 +4875,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.0228950904042264
   },
   {
-    token: 'TUSD',
-    exchange: 'Kraken',
-    window: '30d',
+    token: "TUSD",
+    exchange: "Kraken",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -4888,9 +4888,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'TUSD',
-    exchange: 'Kucoin',
-    window: '30d',
+    token: "TUSD",
+    exchange: "Kucoin",
+    window: "30d",
     inflow_sum: 385471.4767,
     inflow_usd_sum: 380429.86,
     inflow_sum_pct_change: -0.213543276059642,
@@ -4901,9 +4901,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.349425058386376
   },
   {
-    token: 'TUSD',
-    exchange: 'Poloniex',
-    window: '30d',
+    token: "TUSD",
+    exchange: "Poloniex",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -4914,9 +4914,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'GUSD',
-    exchange: 'Binance',
-    window: '24h',
+    token: "GUSD",
+    exchange: "Binance",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -4927,9 +4927,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'GUSD',
-    exchange: 'Bitfinex',
-    window: '24h',
+    token: "GUSD",
+    exchange: "Bitfinex",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: -1,
@@ -4940,9 +4940,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'GUSD',
-    exchange: 'Bittrex',
-    window: '24h',
+    token: "GUSD",
+    exchange: "Bittrex",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -4953,9 +4953,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'GUSD',
-    exchange: 'Kraken',
-    window: '24h',
+    token: "GUSD",
+    exchange: "Kraken",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -4966,9 +4966,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'GUSD',
-    exchange: 'Kucoin',
-    window: '24h',
+    token: "GUSD",
+    exchange: "Kucoin",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -4979,9 +4979,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'GUSD',
-    exchange: 'Poloniex',
-    window: '24h',
+    token: "GUSD",
+    exchange: "Poloniex",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -4992,9 +4992,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'GUSD',
-    exchange: 'Binance',
-    window: '7d',
+    token: "GUSD",
+    exchange: "Binance",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: -1,
@@ -5005,9 +5005,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'GUSD',
-    exchange: 'Bitfinex',
-    window: '7d',
+    token: "GUSD",
+    exchange: "Bitfinex",
+    window: "7d",
     inflow_sum: 59827.3,
     inflow_usd_sum: 60173.52,
     inflow_sum_pct_change: 0.0175884226106344,
@@ -5018,9 +5018,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -1
   },
   {
-    token: 'GUSD',
-    exchange: 'Bittrex',
-    window: '7d',
+    token: "GUSD",
+    exchange: "Bittrex",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -5031,9 +5031,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'GUSD',
-    exchange: 'Kraken',
-    window: '7d',
+    token: "GUSD",
+    exchange: "Kraken",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -5044,9 +5044,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'GUSD',
-    exchange: 'Kucoin',
-    window: '7d',
+    token: "GUSD",
+    exchange: "Kucoin",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -5057,9 +5057,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'GUSD',
-    exchange: 'Poloniex',
-    window: '7d',
+    token: "GUSD",
+    exchange: "Poloniex",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -5070,9 +5070,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'GUSD',
-    exchange: 'Binance',
-    window: '30d',
+    token: "GUSD",
+    exchange: "Binance",
+    window: "30d",
     inflow_sum: 122.48,
     inflow_usd_sum: 121.85,
     inflow_sum_pct_change: 22.3295238095238,
@@ -5083,9 +5083,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'GUSD',
-    exchange: 'Bitfinex',
-    window: '30d',
+    token: "GUSD",
+    exchange: "Bitfinex",
+    window: "30d",
     inflow_sum: 272559.42,
     inflow_usd_sum: 270351.61,
     inflow_sum_pct_change: -0.797937103652926,
@@ -5096,9 +5096,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 3.43719510412861
   },
   {
-    token: 'GUSD',
-    exchange: 'Bittrex',
-    window: '30d',
+    token: "GUSD",
+    exchange: "Bittrex",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -5109,9 +5109,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'GUSD',
-    exchange: 'Kraken',
-    window: '30d',
+    token: "GUSD",
+    exchange: "Kraken",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -5122,9 +5122,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'GUSD',
-    exchange: 'Kucoin',
-    window: '30d',
+    token: "GUSD",
+    exchange: "Kucoin",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -5135,9 +5135,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'GUSD',
-    exchange: 'Poloniex',
-    window: '30d',
+    token: "GUSD",
+    exchange: "Poloniex",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -5148,9 +5148,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'USDT_ERC20',
-    exchange: 'Binance',
-    window: '24h',
+    token: "USDT_ERC20",
+    exchange: "Binance",
+    window: "24h",
     inflow_sum: 24359759.2237,
     inflow_usd_sum: 24359759.23,
     inflow_sum_pct_change: -0.337598693543754,
@@ -5161,9 +5161,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.273931465076684
   },
   {
-    token: 'USDT_ERC20',
-    exchange: 'Bitfinex',
-    window: '24h',
+    token: "USDT_ERC20",
+    exchange: "Bitfinex",
+    window: "24h",
     inflow_sum: 496676.3523,
     inflow_usd_sum: 496676.35,
     inflow_sum_pct_change: -0.72947531800307,
@@ -5174,9 +5174,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.169703887011814
   },
   {
-    token: 'USDT_ERC20',
-    exchange: 'Bittrex',
-    window: '24h',
+    token: "USDT_ERC20",
+    exchange: "Bittrex",
+    window: "24h",
     inflow_sum: 1075345.6946,
     inflow_usd_sum: 1075345.7,
     inflow_sum_pct_change: -0.292599350804691,
@@ -5187,9 +5187,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.549071913923377
   },
   {
-    token: 'USDT_ERC20',
-    exchange: 'Kraken',
-    window: '24h',
+    token: "USDT_ERC20",
+    exchange: "Kraken",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -5200,9 +5200,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'USDT_ERC20',
-    exchange: 'Kucoin',
-    window: '24h',
+    token: "USDT_ERC20",
+    exchange: "Kucoin",
+    window: "24h",
     inflow_sum: 1550116.3025,
     inflow_usd_sum: 1550116.28,
     inflow_sum_pct_change: 0.353404783662964,
@@ -5213,9 +5213,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.0414583264043129
   },
   {
-    token: 'USDT_ERC20',
-    exchange: 'Poloniex',
-    window: '24h',
+    token: "USDT_ERC20",
+    exchange: "Poloniex",
+    window: "24h",
     inflow_sum: 513152.6975,
     inflow_usd_sum: 513152.7,
     inflow_sum_pct_change: -0.212084503518733,
@@ -5226,9 +5226,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 1.45508682766345
   },
   {
-    token: 'USDT_ERC20',
-    exchange: 'Binance',
-    window: '7d',
+    token: "USDT_ERC20",
+    exchange: "Binance",
+    window: "7d",
     inflow_sum: 185991950.8771,
     inflow_usd_sum: 185997299.43,
     inflow_sum_pct_change: -0.170667097847688,
@@ -5239,9 +5239,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.193914763226879
   },
   {
-    token: 'USDT_ERC20',
-    exchange: 'Bitfinex',
-    window: '7d',
+    token: "USDT_ERC20",
+    exchange: "Bitfinex",
+    window: "7d",
     inflow_sum: 9229620.5876,
     inflow_usd_sum: 9230393.72,
     inflow_sum_pct_change: 0.136252840706587,
@@ -5252,9 +5252,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.629063351878087
   },
   {
-    token: 'USDT_ERC20',
-    exchange: 'Bittrex',
-    window: '7d',
+    token: "USDT_ERC20",
+    exchange: "Bittrex",
+    window: "7d",
     inflow_sum: 7263584.9655,
     inflow_usd_sum: 7265084.07,
     inflow_sum_pct_change: 0.189846018087237,
@@ -5265,9 +5265,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.163832294837174
   },
   {
-    token: 'USDT_ERC20',
-    exchange: 'Kraken',
-    window: '7d',
+    token: "USDT_ERC20",
+    exchange: "Kraken",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -5278,9 +5278,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'USDT_ERC20',
-    exchange: 'Kucoin',
-    window: '7d',
+    token: "USDT_ERC20",
+    exchange: "Kucoin",
+    window: "7d",
     inflow_sum: 6450841.779,
     inflow_usd_sum: 6451484.02,
     inflow_sum_pct_change: 0.476753693312079,
@@ -5291,9 +5291,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.395941221154412
   },
   {
-    token: 'USDT_ERC20',
-    exchange: 'Poloniex',
-    window: '7d',
+    token: "USDT_ERC20",
+    exchange: "Poloniex",
+    window: "7d",
     inflow_sum: 5142474.5586,
     inflow_usd_sum: 5142716.69,
     inflow_sum_pct_change: -0.21066099745066,
@@ -5304,9 +5304,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.101741963811988
   },
   {
-    token: 'USDT_ERC20',
-    exchange: 'Binance',
-    window: '30d',
+    token: "USDT_ERC20",
+    exchange: "Binance",
+    window: "30d",
     inflow_sum: 847055064.902901,
     inflow_usd_sum: 846009639.749999,
     inflow_sum_pct_change: -0.187224548793224,
@@ -5317,9 +5317,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.0875478418948997
   },
   {
-    token: 'USDT_ERC20',
-    exchange: 'Bitfinex',
-    window: '30d',
+    token: "USDT_ERC20",
+    exchange: "Bitfinex",
+    window: "30d",
     inflow_sum: 58622191.0921,
     inflow_usd_sum: 58624793.13,
     inflow_sum_pct_change: -0.497474576055413,
@@ -5330,9 +5330,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.442223378415779
   },
   {
-    token: 'USDT_ERC20',
-    exchange: 'Bittrex',
-    window: '30d',
+    token: "USDT_ERC20",
+    exchange: "Bittrex",
+    window: "30d",
     inflow_sum: 27019526.5044,
     inflow_usd_sum: 26987079.17,
     inflow_sum_pct_change: 2.34799786458382,
@@ -5343,9 +5343,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 2.49130904418007
   },
   {
-    token: 'USDT_ERC20',
-    exchange: 'Kraken',
-    window: '30d',
+    token: "USDT_ERC20",
+    exchange: "Kraken",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -5356,9 +5356,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'USDT_ERC20',
-    exchange: 'Kucoin',
-    window: '30d',
+    token: "USDT_ERC20",
+    exchange: "Kucoin",
+    window: "30d",
     inflow_sum: 28517133.8484,
     inflow_usd_sum: 28481748.02,
     inflow_sum_pct_change: 0.686501882254239,
@@ -5369,9 +5369,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.0327478883684299
   },
   {
-    token: 'USDT_ERC20',
-    exchange: 'Poloniex',
-    window: '30d',
+    token: "USDT_ERC20",
+    exchange: "Poloniex",
+    window: "30d",
     inflow_sum: 23157531.4227,
     inflow_usd_sum: 23002653.51,
     inflow_sum_pct_change: 0.0630080187826929,
@@ -5382,9 +5382,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 2.25568342153431
   },
   {
-    token: 'DAI',
-    exchange: 'Binance',
-    window: '24h',
+    token: "DAI",
+    exchange: "Binance",
+    window: "24h",
     inflow_sum: 812.7053,
     inflow_usd_sum: 820.83,
     inflow_sum_pct_change: -0.616812436828333,
@@ -5395,9 +5395,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'DAI',
-    exchange: 'Bitfinex',
-    window: '24h',
+    token: "DAI",
+    exchange: "Bitfinex",
+    window: "24h",
     inflow_sum: 73572.62,
     inflow_usd_sum: 74308.34,
     inflow_sum_pct_change: -0.361547921361663,
@@ -5408,9 +5408,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 35.9924739517079
   },
   {
-    token: 'DAI',
-    exchange: 'Bittrex',
-    window: '24h',
+    token: "DAI",
+    exchange: "Bittrex",
+    window: "24h",
     inflow_sum: 8535.4374,
     inflow_usd_sum: 8620.75,
     inflow_sum_pct_change: 36.551500993183,
@@ -5421,9 +5421,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'DAI',
-    exchange: 'Kraken',
-    window: '24h',
+    token: "DAI",
+    exchange: "Kraken",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -5434,9 +5434,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'DAI',
-    exchange: 'Kucoin',
-    window: '24h',
+    token: "DAI",
+    exchange: "Kucoin",
+    window: "24h",
     inflow_sum: 49070.5093,
     inflow_usd_sum: 49561.21,
     inflow_sum_pct_change: 0.278573047141229,
@@ -5447,9 +5447,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.474792340251539
   },
   {
-    token: 'DAI',
-    exchange: 'Poloniex',
-    window: '24h',
+    token: "DAI",
+    exchange: "Poloniex",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -5460,9 +5460,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'DAI',
-    exchange: 'Binance',
-    window: '7d',
+    token: "DAI",
+    exchange: "Binance",
+    window: "7d",
     inflow_sum: 4700.7396,
     inflow_usd_sum: 4747.9,
     inflow_sum_pct_change: -0.53190595610124,
@@ -5473,9 +5473,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'DAI',
-    exchange: 'Bitfinex',
-    window: '7d',
+    token: "DAI",
+    exchange: "Bitfinex",
+    window: "7d",
     inflow_sum: 727325.4202,
     inflow_usd_sum: 734599.4,
     inflow_sum_pct_change: -0.279886439979444,
@@ -5486,9 +5486,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.290578752186612
   },
   {
-    token: 'DAI',
-    exchange: 'Bittrex',
-    window: '7d',
+    token: "DAI",
+    exchange: "Bittrex",
+    window: "7d",
     inflow_sum: 33512.923,
     inflow_usd_sum: 33854.13,
     inflow_sum_pct_change: 1.5532766008846,
@@ -5499,9 +5499,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.789477304628673
   },
   {
-    token: 'DAI',
-    exchange: 'Kraken',
-    window: '7d',
+    token: "DAI",
+    exchange: "Kraken",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -5512,9 +5512,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'DAI',
-    exchange: 'Kucoin',
-    window: '7d',
+    token: "DAI",
+    exchange: "Kucoin",
+    window: "7d",
     inflow_sum: 141497.9274,
     inflow_usd_sum: 142918.42,
     inflow_sum_pct_change: 1.25982071821045,
@@ -5525,9 +5525,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.00958106358021582
   },
   {
-    token: 'DAI',
-    exchange: 'Poloniex',
-    window: '7d',
+    token: "DAI",
+    exchange: "Poloniex",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -5538,9 +5538,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'DAI',
-    exchange: 'Binance',
-    window: '30d',
+    token: "DAI",
+    exchange: "Binance",
+    window: "30d",
     inflow_sum: 118637.7901,
     inflow_usd_sum: 119331.58,
     inflow_sum_pct_change: -0.719498716673622,
@@ -5551,9 +5551,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'DAI',
-    exchange: 'Bitfinex',
-    window: '30d',
+    token: "DAI",
+    exchange: "Bitfinex",
+    window: "30d",
     inflow_sum: 7271494.0025,
     inflow_usd_sum: 7337678.13,
     inflow_sum_pct_change: -0.437151777863801,
@@ -5564,9 +5564,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.320920597045752
   },
   {
-    token: 'DAI',
-    exchange: 'Bittrex',
-    window: '30d',
+    token: "DAI",
+    exchange: "Bittrex",
+    window: "30d",
     inflow_sum: 216904.4327,
     inflow_usd_sum: 219051.28,
     inflow_sum_pct_change: -0.737216998843947,
@@ -5577,9 +5577,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 1.20009777812511
   },
   {
-    token: 'DAI',
-    exchange: 'Kraken',
-    window: '30d',
+    token: "DAI",
+    exchange: "Kraken",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -5590,9 +5590,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'DAI',
-    exchange: 'Kucoin',
-    window: '30d',
+    token: "DAI",
+    exchange: "Kucoin",
+    window: "30d",
     inflow_sum: 415954.1544,
     inflow_usd_sum: 417897.54,
     inflow_sum_pct_change: 0.0284952848840638,
@@ -5603,9 +5603,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.139456002358726
   },
   {
-    token: 'DAI',
-    exchange: 'Poloniex',
-    window: '30d',
+    token: "DAI",
+    exchange: "Poloniex",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -5616,9 +5616,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'ETH',
-    exchange: 'Binance',
-    window: '24h',
+    token: "ETH",
+    exchange: "Binance",
+    window: "24h",
     inflow_sum: 58187.4904,
     inflow_usd_sum: 10474916.39,
     inflow_sum_pct_change: 0.0294402407174637,
@@ -5629,9 +5629,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.341294203402551
   },
   {
-    token: 'ETH',
-    exchange: 'Binance',
-    window: '7d',
+    token: "ETH",
+    exchange: "Binance",
+    window: "7d",
     inflow_sum: 508506.923,
     inflow_usd_sum: 90747443.68,
     inflow_sum_pct_change: 0.226139700824632,
@@ -5642,9 +5642,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.262948854636632
   },
   {
-    token: 'ETH',
-    exchange: 'Binance',
-    window: '30d',
+    token: "ETH",
+    exchange: "Binance",
+    window: "30d",
     inflow_sum: 2168914.0154,
     inflow_usd_sum: 395641859.46,
     inflow_sum_pct_change: -0.293114970030339,
@@ -5655,9 +5655,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.1834306889116
   },
   {
-    token: 'ETH',
-    exchange: 'Bitfinex',
-    window: '24h',
+    token: "ETH",
+    exchange: "Bitfinex",
+    window: "24h",
     inflow_sum: 5783.0227,
     inflow_usd_sum: 1041376.5,
     inflow_sum_pct_change: -0.498033240675998,
@@ -5668,9 +5668,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.48732906756043
   },
   {
-    token: 'ETH',
-    exchange: 'Bitfinex',
-    window: '7d',
+    token: "ETH",
+    exchange: "Bitfinex",
+    window: "7d",
     inflow_sum: 94933.0039999999,
     inflow_usd_sum: 16960228.09,
     inflow_sum_pct_change: 0.467757616138103,
@@ -5681,9 +5681,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 1.37226653037597
   },
   {
-    token: 'ETH',
-    exchange: 'Bitfinex',
-    window: '30d',
+    token: "ETH",
+    exchange: "Bitfinex",
+    window: "30d",
     inflow_sum: 381827.7255,
     inflow_usd_sum: 69430861.1,
     inflow_sum_pct_change: -0.359558137971361,
@@ -5694,9 +5694,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.448145268619687
   },
   {
-    token: 'ETH',
-    exchange: 'Bittrex',
-    window: '24h',
+    token: "ETH",
+    exchange: "Bittrex",
+    window: "24h",
     inflow_sum: 1231.8362,
     inflow_usd_sum: 221640.63,
     inflow_sum_pct_change: -0.653171986557726,
@@ -5707,9 +5707,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.726362992082239
   },
   {
-    token: 'ETH',
-    exchange: 'Bittrex',
-    window: '7d',
+    token: "ETH",
+    exchange: "Bittrex",
+    window: "7d",
     inflow_sum: 19440.4094,
     inflow_usd_sum: 3480908.53,
     inflow_sum_pct_change: -0.313274428827505,
@@ -5720,9 +5720,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.108576733920688
   },
   {
-    token: 'ETH',
-    exchange: 'Bittrex',
-    window: '30d',
+    token: "ETH",
+    exchange: "Bittrex",
+    window: "30d",
     inflow_sum: 109151.728,
     inflow_usd_sum: 19802992.44,
     inflow_sum_pct_change: -0.0217551252227137,
@@ -5733,9 +5733,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.217503758978979
   },
   {
-    token: 'ETH',
-    exchange: 'Kraken',
-    window: '24h',
+    token: "ETH",
+    exchange: "Kraken",
+    window: "24h",
     inflow_sum: 7947.5042,
     inflow_usd_sum: 1428635.38,
     inflow_sum_pct_change: -0.479432733875962,
@@ -5746,9 +5746,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.60818063449759
   },
   {
-    token: 'ETH',
-    exchange: 'Kraken',
-    window: '7d',
+    token: "ETH",
+    exchange: "Kraken",
+    window: "7d",
     inflow_sum: 76466.0565,
     inflow_usd_sum: 13683159.4,
     inflow_sum_pct_change: -0.0161043029546254,
@@ -5759,9 +5759,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.0855777887756628
   },
   {
-    token: 'ETH',
-    exchange: 'Kraken',
-    window: '30d',
+    token: "ETH",
+    exchange: "Kraken",
+    window: "30d",
     inflow_sum: 432975.045600001,
     inflow_usd_sum: 78794767.07,
     inflow_sum_pct_change: -0.0773639739838471,
@@ -5772,9 +5772,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.240612385819032
   },
   {
-    token: 'ETH',
-    exchange: 'Kucoin',
-    window: '24h',
+    token: "ETH",
+    exchange: "Kucoin",
+    window: "24h",
     inflow_sum: 2777.0654,
     inflow_usd_sum: 499881.11,
     inflow_sum_pct_change: 0.204156683935523,
@@ -5785,9 +5785,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.00769378926977515
   },
   {
-    token: 'ETH',
-    exchange: 'Kucoin',
-    window: '7d',
+    token: "ETH",
+    exchange: "Kucoin",
+    window: "7d",
     inflow_sum: 16380.5196,
     inflow_usd_sum: 2932203.35,
     inflow_sum_pct_change: -0.09576301736054,
@@ -5798,9 +5798,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.143103251232339
   },
   {
-    token: 'ETH',
-    exchange: 'Kucoin',
-    window: '30d',
+    token: "ETH",
+    exchange: "Kucoin",
+    window: "30d",
     inflow_sum: 83655.5004,
     inflow_usd_sum: 15152843.87,
     inflow_sum_pct_change: 0.0285973345568493,
@@ -5811,9 +5811,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.0984233550932897
   },
   {
-    token: 'ETH',
-    exchange: 'Poloniex',
-    window: '24h',
+    token: "ETH",
+    exchange: "Poloniex",
+    window: "24h",
     inflow_sum: 1356.2067,
     inflow_usd_sum: 243994.88,
     inflow_sum_pct_change: -0.185606907210688,
@@ -5824,9 +5824,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.434428811669891
   },
   {
-    token: 'ETH',
-    exchange: 'Poloniex',
-    window: '7d',
+    token: "ETH",
+    exchange: "Poloniex",
+    window: "7d",
     inflow_sum: 9315.70810000001,
     inflow_usd_sum: 1662744.94,
     inflow_sum_pct_change: -0.183796251567589,
@@ -5837,9 +5837,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.0135363443134279
   },
   {
-    token: 'ETH',
-    exchange: 'Poloniex',
-    window: '30d',
+    token: "ETH",
+    exchange: "Poloniex",
+    window: "30d",
     inflow_sum: 142758.7957,
     inflow_usd_sum: 26271208.59,
     inflow_sum_pct_change: 0.529040214035814,
@@ -5850,9 +5850,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.196972623584316
   },
   {
-    token: 'USDT_OMNI',
-    exchange: 'Bitfinex',
-    window: '24h',
+    token: "USDT_OMNI",
+    exchange: "Bitfinex",
+    window: "24h",
     inflow_sum: 1128238.2163,
     inflow_usd_sum: 1128238.21,
     inflow_sum_pct_change: 0.00896427019634527,
@@ -5863,9 +5863,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.0711271842272179
   },
   {
-    token: 'USDT_OMNI',
-    exchange: 'Bitfinex',
-    window: '7d',
+    token: "USDT_OMNI",
+    exchange: "Bitfinex",
+    window: "7d",
     inflow_sum: 8466963.2442,
     inflow_usd_sum: 8467009.83,
     inflow_sum_pct_change: 0.620743653066802,
@@ -5876,9 +5876,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 1.94774368803177
   },
   {
-    token: 'USDT_OMNI',
-    exchange: 'Bitfinex',
-    window: '30d',
+    token: "USDT_OMNI",
+    exchange: "Bitfinex",
+    window: "30d",
     inflow_sum: 38121895.8417,
     inflow_usd_sum: 38122154.33,
     inflow_sum_pct_change: -0.578418997584677,
@@ -5889,9 +5889,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.519700087789842
   },
   {
-    token: 'USDT_OMNI',
-    exchange: 'Bittrex',
-    window: '24h',
+    token: "USDT_OMNI",
+    exchange: "Bittrex",
+    window: "24h",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -5902,9 +5902,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'USDT_OMNI',
-    exchange: 'Bittrex',
-    window: '7d',
+    token: "USDT_OMNI",
+    exchange: "Bittrex",
+    window: "7d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: null,
@@ -5915,9 +5915,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: null
   },
   {
-    token: 'USDT_OMNI',
-    exchange: 'Bittrex',
-    window: '30d',
+    token: "USDT_OMNI",
+    exchange: "Bittrex",
+    window: "30d",
     inflow_sum: 0,
     inflow_usd_sum: 0,
     inflow_sum_pct_change: -1,
@@ -5928,9 +5928,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -1
   },
   {
-    token: 'USDT_OMNI',
-    exchange: 'Kraken',
-    window: '24h',
+    token: "USDT_OMNI",
+    exchange: "Kraken",
+    window: "24h",
     inflow_sum: 1553421.2947,
     inflow_usd_sum: 1553421.3,
     inflow_sum_pct_change: -0.242942172497751,
@@ -5941,9 +5941,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.0642274617442165
   },
   {
-    token: 'USDT_OMNI',
-    exchange: 'Kraken',
-    window: '7d',
+    token: "USDT_OMNI",
+    exchange: "Kraken",
+    window: "7d",
     inflow_sum: 10124035.6511,
     inflow_usd_sum: 10125536.72,
     inflow_sum_pct_change: 0.795565297382723,
@@ -5954,9 +5954,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.348418659235538
   },
   {
-    token: 'USDT_OMNI',
-    exchange: 'Kraken',
-    window: '30d',
+    token: "USDT_OMNI",
+    exchange: "Kraken",
+    window: "30d",
     inflow_sum: 39411458.684,
     inflow_usd_sum: 39413775.71,
     inflow_sum_pct_change: -0.288820293032195,
@@ -5967,9 +5967,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.2562344481085
   },
   {
-    token: 'USDT_OMNI',
-    exchange: 'Okex',
-    window: '24h',
+    token: "USDT_OMNI",
+    exchange: "Okex",
+    window: "24h",
     inflow_sum: 6357390.1625,
     inflow_usd_sum: 6357390.16,
     inflow_sum_pct_change: -0.413450850646299,
@@ -5980,9 +5980,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.381013423530121
   },
   {
-    token: 'USDT_OMNI',
-    exchange: 'Okex',
-    window: '7d',
+    token: "USDT_OMNI",
+    exchange: "Okex",
+    window: "7d",
     inflow_sum: 90582086.2009,
     inflow_usd_sum: 90589121.57,
     inflow_sum_pct_change: -0.0600752080705488,
@@ -5993,9 +5993,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.513797338933432
   },
   {
-    token: 'USDT_OMNI',
-    exchange: 'Okex',
-    window: '30d',
+    token: "USDT_OMNI",
+    exchange: "Okex",
+    window: "30d",
     inflow_sum: 358881328.2651,
     inflow_usd_sum: 358907134.06,
     inflow_sum_pct_change: 0.153711418430624,
@@ -6006,9 +6006,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.15767567817755
   },
   {
-    token: 'USDT_OMNI',
-    exchange: 'Poloniex',
-    window: '24h',
+    token: "USDT_OMNI",
+    exchange: "Poloniex",
+    window: "24h",
     inflow_sum: 384691.5787,
     inflow_usd_sum: 384691.58,
     inflow_sum_pct_change: 1.86782461348842,
@@ -6019,9 +6019,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.13017711167366
   },
   {
-    token: 'USDT_OMNI',
-    exchange: 'Poloniex',
-    window: '7d',
+    token: "USDT_OMNI",
+    exchange: "Poloniex",
+    window: "7d",
     inflow_sum: 3254133.6619,
     inflow_usd_sum: 3254279.74,
     inflow_sum_pct_change: -0.324989447597172,
@@ -6032,9 +6032,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 1.54907917518956
   },
   {
-    token: 'USDT_OMNI',
-    exchange: 'Poloniex',
-    window: '30d',
+    token: "USDT_OMNI",
+    exchange: "Poloniex",
+    window: "30d",
     inflow_sum: 17431453.8242,
     inflow_usd_sum: 17432086.69,
     inflow_sum_pct_change: -0.426762720079335,
@@ -6045,9 +6045,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.467992145057014
   },
   {
-    token: 'BTC',
-    exchange: 'Binance',
-    window: '24h',
+    token: "BTC",
+    exchange: "Binance",
+    window: "24h",
     inflow_sum: 4866.23992409,
     inflow_usd_sum: 50346073.17,
     inflow_sum_pct_change: -0.33698744061111,
@@ -6058,9 +6058,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.13300142135264
   },
   {
-    token: 'BTC',
-    exchange: 'Binance',
-    window: '7d',
+    token: "BTC",
+    exchange: "Binance",
+    window: "7d",
     inflow_sum: 35624.99517136,
     inflow_usd_sum: 367088727.82,
     inflow_sum_pct_change: -0.056825120319849,
@@ -6071,9 +6071,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.0950870133611608
   },
   {
-    token: 'BTC',
-    exchange: 'Binance',
-    window: '30d',
+    token: "BTC",
+    exchange: "Binance",
+    window: "30d",
     inflow_sum: 153314.85976502,
     inflow_usd_sum: 1565480185.3,
     inflow_sum_pct_change: -0.163560602794097,
@@ -6084,9 +6084,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.0869524427484901
   },
   {
-    token: 'BTC',
-    exchange: 'Bitfinex',
-    window: '24h',
+    token: "BTC",
+    exchange: "Bitfinex",
+    window: "24h",
     inflow_sum: 448.02489659,
     inflow_usd_sum: 4633801.69,
     inflow_sum_pct_change: -0.302955105535861,
@@ -6097,9 +6097,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.0706097492893523
   },
   {
-    token: 'BTC',
-    exchange: 'Bitfinex',
-    window: '7d',
+    token: "BTC",
+    exchange: "Bitfinex",
+    window: "7d",
     inflow_sum: 2634.92398365,
     inflow_usd_sum: 27180671.89,
     inflow_sum_pct_change: -0.691853591817302,
@@ -6110,9 +6110,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.935562654456107
   },
   {
-    token: 'BTC',
-    exchange: 'Bitfinex',
-    window: '30d',
+    token: "BTC",
+    exchange: "Bitfinex",
+    window: "30d",
     inflow_sum: 24795.28742819,
     inflow_usd_sum: 254828357.93,
     inflow_sum_pct_change: -0.459603887713602,
@@ -6123,9 +6123,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.185863474209877
   },
   {
-    token: 'BTC',
-    exchange: 'Bitmex',
-    window: '24h',
+    token: "BTC",
+    exchange: "Bitmex",
+    window: "24h",
     inflow_sum: 702.50881162,
     inflow_usd_sum: 7265701,
     inflow_sum_pct_change: 0.196298618335673,
@@ -6136,9 +6136,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.530285215115446
   },
   {
-    token: 'BTC',
-    exchange: 'Bitmex',
-    window: '7d',
+    token: "BTC",
+    exchange: "Bitmex",
+    window: "7d",
     inflow_sum: 6849.98710399,
     inflow_usd_sum: 70793119.63,
     inflow_sum_pct_change: -0.406425337289873,
@@ -6149,9 +6149,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.202987121156821
   },
   {
-    token: 'BTC',
-    exchange: 'Bitmex',
-    window: '30d',
+    token: "BTC",
+    exchange: "Bitmex",
+    window: "30d",
     inflow_sum: 46248.5116783099,
     inflow_usd_sum: 467306208.66,
     inflow_sum_pct_change: -0.305358151626617,
@@ -6162,9 +6162,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.465686972197366
   },
   {
-    token: 'BTC',
-    exchange: 'Bitstamp',
-    window: '24h',
+    token: "BTC",
+    exchange: "Bitstamp",
+    window: "24h",
     inflow_sum: 2200.84528745,
     inflow_usd_sum: 22731629.9,
     inflow_sum_pct_change: 1.58289190187561,
@@ -6175,9 +6175,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.204739236285878
   },
   {
-    token: 'BTC',
-    exchange: 'Bitstamp',
-    window: '7d',
+    token: "BTC",
+    exchange: "Bitstamp",
+    window: "7d",
     inflow_sum: 10752.57572826,
     inflow_usd_sum: 111034125.58,
     inflow_sum_pct_change: -0.034806554012508,
@@ -6188,9 +6188,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.015379046853416
   },
   {
-    token: 'BTC',
-    exchange: 'Bitstamp',
-    window: '30d',
+    token: "BTC",
+    exchange: "Bitstamp",
+    window: "30d",
     inflow_sum: 48901.94495053,
     inflow_usd_sum: 500505312.779999,
     inflow_sum_pct_change: -0.518843903090135,
@@ -6201,9 +6201,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.46461287642855
   },
   {
-    token: 'BTC',
-    exchange: 'Bittrex',
-    window: '24h',
+    token: "BTC",
+    exchange: "Bittrex",
+    window: "24h",
     inflow_sum: 370.85985164,
     inflow_usd_sum: 3834266.65,
     inflow_sum_pct_change: 0.069657090599083,
@@ -6214,9 +6214,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.0157263632400442
   },
   {
-    token: 'BTC',
-    exchange: 'Bittrex',
-    window: '7d',
+    token: "BTC",
+    exchange: "Bittrex",
+    window: "7d",
     inflow_sum: 2164.37149376,
     inflow_usd_sum: 22264016.22,
     inflow_sum_pct_change: -0.0595580891489954,
@@ -6227,9 +6227,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: 0.065433258210529
   },
   {
-    token: 'BTC',
-    exchange: 'Bittrex',
-    window: '30d',
+    token: "BTC",
+    exchange: "Bittrex",
+    window: "30d",
     inflow_sum: 9760.94564849,
     inflow_usd_sum: 99381117.1300001,
     inflow_sum_pct_change: -0.314093773451194,
@@ -6240,9 +6240,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.344048252832849
   },
   {
-    token: 'BTC',
-    exchange: 'Poloniex',
-    window: '24h',
+    token: "BTC",
+    exchange: "Poloniex",
+    window: "24h",
     inflow_sum: 318.3343565,
     inflow_usd_sum: 3290298.95,
     inflow_sum_pct_change: 0.408058711689711,
@@ -6253,9 +6253,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.186145304151908
   },
   {
-    token: 'BTC',
-    exchange: 'Poloniex',
-    window: '7d',
+    token: "BTC",
+    exchange: "Poloniex",
+    window: "7d",
     inflow_sum: 1896.68396532,
     inflow_usd_sum: 19503637.57,
     inflow_sum_pct_change: 0.421429954653305,
@@ -6266,9 +6266,9 @@ export const mockExchangeFlowsAllTokens = [
     outflow_usd_sum_pct_change: -0.0851639121261588
   },
   {
-    token: 'BTC',
-    exchange: 'Poloniex',
-    window: '30d',
+    token: "BTC",
+    exchange: "Poloniex",
+    window: "30d",
     inflow_sum: 8782.96283479999,
     inflow_usd_sum: 89446490.41,
     inflow_sum_pct_change: -0.516311865266599,

@@ -7,7 +7,6 @@ import { getExchangeMetrics } from "../../../data-transformers/widgets/getExchan
 import { DATA_WINDOWS } from "../../../constants/filters";
 import { ExchangeMetricsWidget } from "../../../components/widgets/ExchangeMetricsWidget";
 import { IoChartWidget } from "../../../components/widgets/IoChartWidget";
-import { LoadingSpinner } from "../../../components/LoadingSpinner";
 
 const Exchange = () => {
   const router = useRouter();
@@ -15,7 +14,6 @@ const Exchange = () => {
   const [overallMetrics, setOverallMetrics] = useState(null);
   const { token, exchange } = router.query;
   const [timeWindow, setTimeWindow] = useState("1d");
-  const [isLoading, setIsLoading] = useState(true);
 
   // Router query params are populated post-hydration so in order to avoid losing the static
   // optimisation benefit we wait for the population to happen client side before accessing
@@ -53,29 +51,7 @@ const Exchange = () => {
           setTimeWindow={setTimeWindow}
           timeWindow={timeWindow}
         />
-        {!dataSet && (
-          <div className="spinner">
-            <LoadingSpinner />
-          </div>
-        )}
       </div>
-
-      <style jsx>{`
-        .spinner {
-          position: absolute;
-          top: 30%;
-          left: 38%;
-          z-index: 10;
-          display: ${isLoading ? "block" : "none"};
-        }
-        @media only screen and (max-width: 768px) {
-          .spinner {
-            margin: auto;
-            top:55%;
-            left: 18%;
-          }
-        }
-      `}</style>
     </div>
   );
 };

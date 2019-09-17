@@ -53,7 +53,7 @@ export const Product = ({ name, price, features, buttonText, stripePlan }) => {
               stripePlan
                 ? async () => {
                     ReactGA.event({
-                      category: "User",
+                      category: 'User',
                       action: `Plan select ${name}`,
                       label: `Plans`
                     });
@@ -71,11 +71,11 @@ export const Product = ({ name, price, features, buttonText, stripePlan }) => {
                   }
                 : () => {
                     ReactGA.event({
-                      category: "User",
+                      category: 'User',
                       action: `Plan select ${name}`,
                       label: `Plans`
                     });
-                    window.location = "mailto:info@tokenanalyst.io";
+                    window.location = 'mailto:info@tokenanalyst.io';
                   }
             }>
             {buttonText}
@@ -126,7 +126,7 @@ export const Product = ({ name, price, features, buttonText, stripePlan }) => {
           min-width: 60px;
           text-align: center;
           background-color: rgba(${colors.primaryGreen});
-          max-height: 20px;
+          max-height: 40px;
           padding: 10px;
           border-radius: 20px;
           cursor: pointer;

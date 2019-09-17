@@ -70,6 +70,7 @@ export const RegisterWidget = () => {
       Cookies.set("loggedInAs", name);
       Cookies.set("loggedInAsUsername", username);
       Cookies.set("loggedInAsUserId", id);
+
       loginCtx.setIsLoggedIn(true);
       loginCtx.setLoggedInAs(name);
       setErrorText(null);
@@ -282,9 +283,9 @@ export const RegisterWidget = () => {
           min-width: 60px;
           text-align: center;
           background-color: rgba(${colors.primaryGreen});
-          max-height: 20px;
+          max-height: 40px;
           padding: 10px;
-          border-radius: 10px;
+          border-radius: 20px;
           cursor: pointer;
           margin-top: 20px;
         }

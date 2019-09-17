@@ -1,25 +1,25 @@
-import React, { useState, useContext } from "react";
-import axios from "axios";
-import { useRouter } from "next/router";
-import Cookies from "js-cookie";
+import React, { useState, useContext } from 'react';
+import axios from 'axios';
+import { useRouter } from 'next/router';
+import Cookies from 'js-cookie';
 
-import { LoginContext } from "../../../contexts/Login";
-import { colors } from "../../../constants/styles/colors";
+import { LoginContext } from '../../../contexts/Login';
+import { colors } from '../../../constants/styles/colors';
 
 export const LoginWidget = () => {
   const router = useRouter();
   const loginCtx = useContext(LoginContext);
 
   const [isError, setIsError] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const isRedirectToStripe = loginCtx.loginData && loginCtx.loginData.stripe;
 
   const login = async () => {
     try {
       const response = await axios.post(
-        "https://api.tokenanalyst.io/auth/user/login",
+        'https://api.tokenanalyst.io/auth/user/login',
         {
           username: email,
           password
@@ -101,7 +101,7 @@ export const LoginWidget = () => {
           width: 300px;
           border: none;
           border-bottom: 1px solid
-            rgba(${isError ? colors.primaryRed : "00, 00, 00"});
+            rgba(${isError ? colors.primaryRed : '00, 00, 00'});
           font-size: 18px;
         }
         .login-button {
@@ -109,9 +109,9 @@ export const LoginWidget = () => {
           min-width: 60px;
           text-align: center;
           background-color: rgba(${colors.primaryGreen});
-          max-height: 20px;
+          max-height: 40px;
           padding: 10px;
-          border-radius: 10px;
+          border-radius: 20px;
           cursor: pointer;
           margin-top: 20px;
         }
