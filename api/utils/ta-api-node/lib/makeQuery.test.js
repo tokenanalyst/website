@@ -1,14 +1,14 @@
 // const {makeRestApiUrl} = require("./makeApiUrl");
-const makeQuery = require('./makeQuery');
-const queryParams = { test1: 'test1', test2: 'test2', test3: 'test3' };
-const stringQuery = 'test1=test1&test2=test2&test3=test3';
+const makeQuery = require("./makeQuery");
+const queryParams = { test1: "test1", test2: "test2", test3: "test3" };
+const stringQuery = "test1=test1&test2=test2&test3=test3";
 
-describe('makeQuery function', () => {
-  it('should return empty string', () => {
+describe("makeQuery function", () => {
+  it("should return empty string", () => {
     const query = makeQuery();
-    expect(query).toEqual('');
+    expect(query).toEqual("");
   });
-  it('should return correct query string', () => {
+  it("should return correct query string", () => {
     const query = makeQuery(queryParams);
     expect(query).toEqual(stringQuery);
   });

@@ -1,20 +1,20 @@
-import React, { useState, useContext, useEffect } from 'react';
-import axios from 'axios';
-import Cookies from 'js-cookie';
-import { Icon } from '@blueprintjs/core';
-import Link from 'next/link';
+import React, { useState, useContext, useEffect } from "react";
+import axios from "axios";
+import Cookies from "js-cookie";
+import { Icon } from "@blueprintjs/core";
+import Link from "next/link";
 
-import { LoginContext } from '../../../contexts/Login';
-import { colors } from '../../../constants/styles/colors';
-import { API_ERROR_MSG } from '../../../constants/apiErrors';
+import { LoginContext } from "../../../contexts/Login";
+import { colors } from "../../../constants/styles/colors";
+import { API_ERROR_MSG } from "../../../constants/apiErrors";
 
 export const RegisterWidget = () => {
   const loginCtx = useContext(LoginContext);
 
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordVerify, setPasswordVerify] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordVerify, setPasswordVerify] = useState("");
   const [errorText, setErrorText] = useState(false);
   const [hasRegistered, setHasRegistered] = useState(false);
   const [profession, setProfession] = useState({
@@ -37,12 +37,12 @@ export const RegisterWidget = () => {
 
   const register = async () => {
     if (password !== passwordVerify) {
-      setErrorText('Passwords do not match');
+      setErrorText("Passwords do not match");
       return;
     }
 
     try {
-      await axios.post('https://api.tokenanalyst.io/auth/user', {
+      await axios.post("https://api.tokenanalyst.io/auth/user", {
         username: email,
         password,
         name,
@@ -55,14 +55,14 @@ export const RegisterWidget = () => {
       });
 
       const response = await axios.post(
-        'https://api.tokenanalyst.io/auth/user/login',
+        "https://api.tokenanalyst.io/auth/user/login",
         {
           username: email,
           password
         }
       );
 
-      Cookies.set('apiKey', response.data.apiKey);
+      Cookies.set("apiKey", response.data.apiKey);
       loginCtx.setIsLoggedIn(true);
       setErrorText(null);
       setHasRegistered(true);
@@ -72,7 +72,7 @@ export const RegisterWidget = () => {
         e.response.data &&
         e.response.data.message === API_ERROR_MSG.USER_ALREADY_EXISTS
       ) {
-        setErrorText('You are already registered, please login.');
+        setErrorText("You are already registered, please login.");
       } else {
         setErrorText(
           "Please provide valid details and ensure that you haven't already registered"
@@ -83,56 +83,56 @@ export const RegisterWidget = () => {
 
   return (
     <>
-      <div className='container'>
-        <div className='header'>Register</div>
+      <div className="container">
+        <div className="header">Register</div>
         {hasRegistered ? (
           <>
             <Icon
-              icon='tick'
+              icon="tick"
               color={`rgba(${colors.primaryGreen})`}
               iconSize={48}
             />
-            <div className='success'>Thanks for registering {name}!</div>
+            <div className="success">Thanks for registering {name}!</div>
             <br />
-            <div className='success'>
+            <div className="success">
               An email will shortly be with you containing all your details
               including your API key
             </div>
-            <Link href='/' passHref>
-              <div className='button'>Go Home</div>
+            <Link href="/" passHref>
+              <div className="button">Go Home</div>
             </Link>
           </>
         ) : (
           <>
-            <div className='label'>Name</div>
+            <div className="label">Name</div>
             <input
-              type='text'
-              className='input'
+              type="text"
+              className="input"
               onChange={e => setName(e.target.value)}
             />
-            <div className='label'>Email</div>
+            <div className="label">Email</div>
             <input
-              type='text'
-              className='input'
+              type="text"
+              className="input"
               onChange={e => setEmail(e.target.value)}
             />
-            <div className='label'>Password</div>
+            <div className="label">Password</div>
             <input
-              type='password'
-              className='input'
+              type="password"
+              className="input"
               onChange={e => setPassword(e.target.value)}
             />
-            <div className='label'>Repeat Password</div>
+            <div className="label">Repeat Password</div>
             <input
-              className='input'
-              type='password'
+              className="input"
+              type="password"
               onChange={e => setPasswordVerify(e.target.value)}
             />
-            <div className='label'>Which apply to you?</div>
-            <div className='profession'>
+            <div className="label">Which apply to you?</div>
+            <div className="profession">
               <span>
                 <input
-                  type='checkbox'
+                  type="checkbox"
                   checked={isTrader}
                   onChange={() => {
                     return setProfession({
@@ -144,10 +144,10 @@ export const RegisterWidget = () => {
                 <span>Trader</span>
               </span>
             </div>
-            <div className='profession'>
+            <div className="profession">
               <span>
                 <input
-                  type='checkbox'
+                  type="checkbox"
                   checked={isDeveloper}
                   onChange={() =>
                     setProfession({
@@ -159,10 +159,10 @@ export const RegisterWidget = () => {
                 <span>Developer</span>
               </span>
             </div>
-            <div className='profession'>
+            <div className="profession">
               <span>
                 <input
-                  type='checkbox'
+                  type="checkbox"
                   checked={isEnthusiast}
                   onChange={() =>
                     setProfession({
@@ -174,10 +174,10 @@ export const RegisterWidget = () => {
                 <span>Enthusiast</span>
               </span>
             </div>
-            <div className='profession'>
+            <div className="profession">
               <span>
                 <input
-                  type='checkbox'
+                  type="checkbox"
                   checked={isEnterprise}
                   onChange={() =>
                     setProfession({
@@ -189,10 +189,10 @@ export const RegisterWidget = () => {
                 <span>Enterprise</span>
               </span>
             </div>
-            <div className='profession'>
+            <div className="profession">
               <span>
                 <input
-                  type='checkbox'
+                  type="checkbox"
                   checked={isResearcher}
                   onChange={() =>
                     setProfession({
@@ -204,10 +204,10 @@ export const RegisterWidget = () => {
                 <span>Researcher</span>
               </span>
             </div>
-            <div className='profession'>
+            <div className="profession">
               <span>
                 <input
-                  type='checkbox'
+                  type="checkbox"
                   checked={isOther}
                   onChange={() =>
                     setProfession({
@@ -219,10 +219,10 @@ export const RegisterWidget = () => {
                 <span>Other</span>
               </span>
             </div>
-            <div className='button' onClick={register}>
+            <div className="button" onClick={register}>
               Register
             </div>
-            {errorText && <div className='error'>{errorText}</div>}
+            {errorText && <div className="error">{errorText}</div>}
           </>
         )}
       </div>
@@ -254,7 +254,7 @@ export const RegisterWidget = () => {
           width: 300px;
           border: none;
           border-bottom: 1px solid
-            rgba(${errorText ? colors.primaryRed : '00, 00, 00'});
+            rgba(${errorText ? colors.primaryRed : "00, 00, 00"});
           font-size: 18px;
         }
         .button {
@@ -262,9 +262,9 @@ export const RegisterWidget = () => {
           min-width: 60px;
           text-align: center;
           background-color: rgba(${colors.primaryGreen});
-          max-height: 20px;
+          max-height: 40px;
           padding: 10px;
-          border-radius: 10px;
+          border-radius: 20px;
           cursor: pointer;
           margin-top: 20px;
         }

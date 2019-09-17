@@ -1,20 +1,20 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { createChart, isBusinessDay } from 'lightweight-charts';
-import numeral from 'numeral';
+import React, { useEffect, useRef, useState } from "react";
+import { createChart, isBusinessDay } from "lightweight-charts";
+import numeral from "numeral";
 
-import { CHART_TYPES } from '../../../constants/chartTypes';
-import { LoadingSpinner } from '../../LoadingSpinner';
+import { CHART_TYPES } from "../../../constants/chartTypes";
+import { LoadingSpinner } from "../../LoadingSpinner";
 
 const FORMATTERS = {
-  price: value => numeral(value).format('$0,0.00'),
-  volume: value => numeral(value).format('0,0.00'),
-  truncated: value => numeral(value).format('0.0a')
+  price: value => numeral(value).format("$0,0.00"),
+  volume: value => numeral(value).format("0,0.00"),
+  truncated: value => numeral(value).format("0.0a")
 };
 
 const CHART_FUNCS = {
-  line: 'addLineSeries',
-  area: 'addAreaSeries',
-  histogram: 'addHistogramSeries'
+  line: "addLineSeries",
+  area: "addAreaSeries",
+  histogram: "addHistogramSeries"
 };
 
 export const SimpleChart = ({
@@ -33,7 +33,7 @@ export const SimpleChart = ({
       height: height,
       width: width,
       localization: {
-        priceFormatter: window.matchMedia('(max-width: 768px)').matches
+        priceFormatter: window.matchMedia("(max-width: 768px)").matches
           ? FORMATTERS.truncated
           : FORMATTERS.volume
       },
@@ -87,18 +87,18 @@ export const SimpleChart = ({
   }, [dataSet, seriesType]);
 
   return (
-    <div className='container' ref={chartRef}>
-      <div className='tooltip'>
+    <div className="container" ref={chartRef}>
+      <div className="tooltip">
         <table>
           <tbody>
             {tooltips.map(({ title, value, color }) =>
               value ? (
                 <tr key={color}>
                   <td style={{ color }}>{title}</td>
-                  <td className='value'>
-                    {window.matchMedia('(max-width: 768px)').matches
-                      ? numeral(value).format('0.0a')
-                      : numeral(value).format('0,0.00')}
+                  <td className="value">
+                    {window.matchMedia("(max-width: 768px)").matches
+                      ? numeral(value).format("0.0a")
+                      : numeral(value).format("0,0.00")}
                   </td>
                 </tr>
               ) : (
@@ -108,7 +108,7 @@ export const SimpleChart = ({
           </tbody>
         </table>
       </div>
-      <div className='spinner'>
+      <div className="spinner">
         <LoadingSpinner />
       </div>
       <style jsx>{`
@@ -136,7 +136,7 @@ export const SimpleChart = ({
           top: 20%;
           left: 38%;
           z-index: 10;
-          display: ${isLoading ? 'block' : 'none'};
+          display: ${isLoading ? "block" : "none"};
         }
         @media only screen and (max-width: 768px) {
           .container {
