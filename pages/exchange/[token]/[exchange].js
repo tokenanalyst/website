@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { useApi } from "../../../custom-hooks";
 import { getExchangeDataSet } from "../../../data-transformers/charts/getExchangeDataSet";
 import { getExchangeMetrics } from "../../../data-transformers/widgets/getExchangeMetrics";
-import { DATA_WINDOWS } from "../../../constants/filters";
+import { DATA_WINDOWS, TIME_WINDOWS } from "../../../constants/filters";
 import { ExchangeMetricsWidget } from "../../../components/widgets/ExchangeMetricsWidget";
 import { IoChartWidget } from "../../../components/widgets/IoChartWidget";
 
@@ -13,7 +13,7 @@ const Exchange = () => {
   const [dataSet, setDataSet] = useState(null);
   const [overallMetrics, setOverallMetrics] = useState(null);
   const { token, exchange } = router.query;
-  const [timeWindow, setTimeWindow] = useState("1d");
+  const [timeWindow, setTimeWindow] = useState(TIME_WINDOWS.oneDay);
 
   // Router query params are populated post-hydration so in order to avoid losing the static
   // optimisation benefit we wait for the population to happen client side before accessing

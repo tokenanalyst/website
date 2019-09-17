@@ -54,8 +54,6 @@ export const ChartControls = ({
 }) => {
   // Very ugly. We could use https://lodash.com/docs/4.17.11#has
 
-  const router = useRouter();
-
   const selectedTimeWindow =
     (dataSet && dataSet[0] && dataSet[0].timeWindow) || "1d";
 
