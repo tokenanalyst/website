@@ -2,10 +2,15 @@ import { toSingleValueChartData } from "./mappers";
 
 import { NATIVE_TOKENS, CURRENCIES } from "../../constants/tokens";
 import { CHART_TYPES } from "../../constants/chartTypes";
+import { TIME_WINDOWS } from "../../constants/filters";
 
 const formatTokenSymbol = rawSymbol => rawSymbol.replace("_", " ");
 
-export const getExchangeDataSet = (response, token, timeWindow = "1d") => {
+export const getExchangeDataSet = (
+  response,
+  token,
+  timeWindow = TIME_WINDOWS.oneDay
+) => {
   const USDSymbol = formatTokenSymbol(CURRENCIES.USD);
   const tokenSymbol = formatTokenSymbol(token);
 
