@@ -139,6 +139,7 @@ export const DesktopNav = () => {
                     Cookies.remove("loggedInAs");
                     Cookies.remove("loggedInAsUsername");
                     Cookies.remove("loggedInAsUserId");
+                    loginCtx.setIsLoggedIn(false);
                     ReactGA.event({
                       category: "User",
                       action: `Click Logout`,
