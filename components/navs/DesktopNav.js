@@ -41,24 +41,25 @@ export const DesktopNav = () => {
   };
 
   return (
-    <div className="container">
-      <div className="desktop">
-        <div className="left-side">
-          <div className="logo-desktop">
-            <Link href="/" passHref>
-              <img
-                src={
-                  loginCtx.isLoggedIn
-                    ? `/static/png/${LOGO_IMAGES["DesktopPro"]}`
-                    : `/static/png/${LOGO_IMAGES["Desktop"]}`
-                }
-                width="180px"
-                onMouseOver={() => {
-                  collapseAllSubMenus();
-                }}
-              />
-            </Link>
-          </div>
+    <>
+      <div className="container">
+        <div className="desktop">
+          <div className="left-side">
+            <div className="logo-desktop">
+              <Link href="/" passHref>
+                <img
+                  src={
+                    loginCtx.isLoggedIn
+                      ? `/static/png/${LOGO_IMAGES["DesktopPro"]}`
+                      : `/static/png/${LOGO_IMAGES["Desktop"]}`
+                  }
+                  width="180px"
+                  onMouseOver={() => {
+                    collapseAllSubMenus();
+                  }}
+                />
+              </Link>
+            </div>
             <div className={"links-metrics"}>
               <div
                 className={classNames(
@@ -125,47 +126,46 @@ export const DesktopNav = () => {
               </div>
             </div>
           </div>
-        </div>
-        <div className="right-side">
-          {loginCtx.isLoggedIn ? (
-            <>
-              <span style={{ color: "white" }}>
-                Welcome, {Cookies.get("loggedInAs")}
-              </span>
-              <span
-                className="login-button"
-                onClick={() => {
-                  Cookies.remove("apiKey");
-                  loginCtx.setIsLoggedIn(false);
-                  ReactGA.event({
-                    category: "User",
-                    action: `Click Logout`,
-                    label: `Desktop Nav`
-                  });
-                }}
-                onMouseOver={() => {
-                  collapseAllSubMenus();
-                }}
-              >
-                Logout
-              </span>
-            </>
-          ) : (
-            <Link href="/login" passHref>
-              <div
-                className="login-button"
-                onMouseOver={() => {
-                  collapseAllSubMenus();
-                }}
-              >
-                Login
-              </div>
-            </Link>
-          )}
+          <div className="right-side">
+            {loginCtx.isLoggedIn ? (
+              <>
+                <div style={{ color: "white" }}>
+                  Welcome, {Cookies.get("loggedInAs")}
+                </div>
+                <div
+                  className="login-button"
+                  onClick={() => {
+                    Cookies.remove("apiKey");
+                    loginCtx.setIsLoggedIn(false);
+                    ReactGA.event({
+                      category: "User",
+                      action: `Click Logout`,
+                      label: `Desktop Nav`
+                    });
+                  }}
+                  onMouseOver={() => {
+                    collapseAllSubMenus();
+                  }}>
+                  Logout
+                </div>
+              </>
+            ) : (
+              <Link href="/login" passHref>
+                <div
+                  className="login-button"
+                  onMouseOver={() => {
+                    collapseAllSubMenus();
+                  }}>
+                  Login
+                </div>
+              </Link>
+            )}
+          </div>
         </div>
       </div>
       <div className="desktop-sub-links-container">
-        <div className="desktop-contact-sub-link-container"
+        <div
+          className="desktop-contact-sub-link-container"
           onClick={collapseAllSubMenus}>
           <div className="desktop-sub-links">
             <div
@@ -199,8 +199,7 @@ export const DesktopNav = () => {
                       action: `Click Follow Us`,
                       label: `Desktop Nav`
                     });
-                  }}
-                >
+                  }}>
                   Follow Us
                 </a>
               </div>
@@ -214,8 +213,7 @@ export const DesktopNav = () => {
                       action: `Click Telegram`,
                       label: `Desktop Nav`
                     });
-                  }}
-                >
+                  }}>
                   Telegram
                 </a>
               </div>
@@ -229,8 +227,7 @@ export const DesktopNav = () => {
                       action: `Click Contact`,
                       label: `Desktop Nav`
                     });
-                  }}
-                >
+                  }}>
                   Contact
                 </a>
               </div>
@@ -353,9 +350,12 @@ export const DesktopNav = () => {
           display: flex;
           flex-direction: row;
           width: 100%;
+          align-items: center;
         }
         .right-side {
           margin-right: 2%;
+          display: flex;
+          padding-left: 10px;
         }
         .logo-desktop {
           cursor: pointer;
@@ -383,6 +383,8 @@ export const DesktopNav = () => {
         }
         .links-products {
           display: flex;
+          flex-grow: 1;
+          justify-content: flex-end;
         }
         .desktop-link:hover,
         a:hover {
@@ -456,6 +458,6 @@ export const DesktopNav = () => {
           margin-left: 20px;
         }
       `}</style>
-    </div>
+    </>
   );
 };
