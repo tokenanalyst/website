@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import Cookies from "js-cookie";
-import { Button } from "@blueprintjs/core";
 
 import { LoginContext } from "../../../contexts/Login";
 import { colors } from "../../../constants/styles/colors";
@@ -14,6 +13,8 @@ export const LoginWidget = () => {
   const [isError, setIsError] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const isRedirectToStripe = loginCtx.loginData && loginCtx.loginData.stripe;
 
   const login = async () => {
     try {
@@ -75,6 +76,9 @@ export const LoginWidget = () => {
         {isError ? (
           <div className="error">Incorrect email or password</div>
         ) : null}
+        {isRedirectToStripe ? (
+          <div className="message">Please login to complete your purchase.</div>
+        ) : null}
       </div>
       <style jsx>{`
         .container {
@@ -113,6 +117,10 @@ export const LoginWidget = () => {
         }
         .error {
           color: rgba(${colors.primaryRed}, 1);
+          padding-top: 10px;
+          text-align: center;
+        }
+        .message {
           padding-top: 10px;
           text-align: center;
         }
