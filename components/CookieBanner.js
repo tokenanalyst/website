@@ -1,24 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import ReactGA from 'react-ga';
+import React, { useState, useEffect } from "react";
+import ReactGA from "react-ga";
 
-import { colors } from '../constants/styles/colors';
+import { colors } from "../constants/styles/colors";
 
 export const CookieBanner = () => {
   const [isShown, setIsShown] = useState(false);
 
   useEffect(() => {
-    if (!window.localStorage.getItem('cookieBannerDismissed')) {
+    if (!window.localStorage.getItem("cookieBannerDismissed")) {
       setIsShown(true);
     }
   }, []);
 
   const dismiss = () => {
-    window.localStorage.setItem('cookieBannerDismissed', true);
+    window.localStorage.setItem("cookieBannerDismissed", true);
     setIsShown(false);
     ReactGA.event({
-      category: 'User',
+      category: "User",
       action: `Dismiss cookie banner`,
-      label: `CookieBanner`,
+      label: `CookieBanner`
     });
   };
 
@@ -40,13 +40,13 @@ export const CookieBanner = () => {
           font-family: Space Grotesk;
           position: fixed;
           bottom: 223px;
-          height: 50px;
+          height: 150px;
           background-color: white;
           width: 100%;
           z-index: 10000;
           border-top: solid 3px rgba(151, 151, 151, 0.15);
           padding: 20px;
-          display: ${isShown ? 'block' : 'none'};
+          display: ${isShown ? "block" : "none"};
         }
         .top {
           display: flex;
@@ -71,7 +71,7 @@ export const CookieBanner = () => {
         }
         @media only screen and (max-width: 768px) {
           .container {
-            height: 80px;
+            height: 150px;
             bottom: 223px;
           }
           .body {
