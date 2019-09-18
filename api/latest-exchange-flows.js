@@ -41,11 +41,11 @@ module.exports = async (req, res) => {
   const [
     exchangeFlowsAllTokensResponse,
     allExchangeFlowsAllTokensResponse,
-    allExchangeFlows24hAllTokensResponse
+    allExchangeFlows24hAllTokensResponse,
   ] = await Promise.all([
     exchangeFlowsAllTokensRequest,
     allExchangeFlowsAllTokensRequest,
-    allExchangeFlows24hAllTokensRequest
+    allExchangeFlows24hAllTokensRequest,
   ]).catch(err => {
     const { code, body } = formatApiError(err);
     return res.status(code).send(body);
@@ -61,7 +61,7 @@ module.exports = async (req, res) => {
   tokens.forEach(token => {
     ta_response[token].sparklines = {
       days: {},
-      hours: {}
+      hours: {},
     };
     ta_response[
       token
@@ -102,7 +102,7 @@ module.exports = async (req, res) => {
         outflow_sum,
         outflow_usd_sum,
         outflow_sum_pct_change,
-        outflow_usd_sum_pct_change
+        outflow_usd_sum_pct_change,
       } = tokenData;
 
       ta_response[token].values[`data-window-${dataWindow}`] = {
@@ -113,7 +113,7 @@ module.exports = async (req, res) => {
         outflow_sum,
         outflow_usd_sum,
         outflow_sum_pct_change,
-        outflow_usd_sum_pct_change
+        outflow_usd_sum_pct_change,
       };
     });
   });
