@@ -22,6 +22,7 @@ export const SimpleChart = ({
   seriesType,
   width,
   height,
+  mode = 1,
   isLoading = false
 }) => {
   const chartRef = useRef(null);
@@ -44,7 +45,7 @@ export const SimpleChart = ({
       },
       priceScale: {
         autoScale: true,
-        mode: 1
+        mode
       }
     });
 

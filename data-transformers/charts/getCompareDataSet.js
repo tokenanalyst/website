@@ -110,8 +110,8 @@ export const getCompareDataSet = (response, token, color) => {
       }
     ]);
 
-    return nativeBaseDataSet;
+    return { mainData: nativeBaseDataSet };
   }
 
-  return baseDataSet;
+  return { mainData: baseDataSet };
 };

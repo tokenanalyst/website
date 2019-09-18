@@ -84,7 +84,7 @@ export const CompareChartWidget = () => {
       {tokenDataSetLhs && tokenDataSetRhs ? (
         <div className="container">
           <ChartControls
-            dataSet={tokenDataSetLhs}
+            dataSet={tokenDataSetLhs.mainData}
             setDataSet={newDataSet => setTokenDataSetLhs(newDataSet)}
             token={tokenLhs}
             setToken={setTokenLhs}
@@ -92,7 +92,10 @@ export const CompareChartWidget = () => {
           />
           <div className="chart">
             <SimpleChart
-              dataSet={[...tokenDataSetLhs, ...tokenDataSetRhs]}
+              dataSet={[
+                ...tokenDataSetLhs.mainData,
+                ...tokenDataSetRhs.mainData
+              ]}
               seriesType={CHART_TYPES.line}
               width={
                 window.matchMedia("(min-width: 320px) and (max-width: 767px)")
@@ -115,7 +118,7 @@ export const CompareChartWidget = () => {
             />
           </div>
           <ChartControls
-            dataSet={tokenDataSetRhs}
+            dataSet={tokenDataSetRhs.mainData}
             setDataSet={newDataSet => setTokenDataSetRhs(newDataSet)}
             token={tokenRhs}
             setToken={setTokenRhs}

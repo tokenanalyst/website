@@ -31,7 +31,8 @@ const GRAPH_SIZE = {
   height: {
     mobile: 300,
     desktop: 450
-  }
+  },
+  netflowHeight: 150
 };
 
 const TOOL_TIP = {
@@ -92,32 +93,54 @@ export const IoChartWidget = ({
             </div>
             <div className="chart">
               {dataSet && (
-                <SimpleChart
-                  dataSet={dataSet}
-                  seriesType={seriesType}
-                  width={
-                    window.matchMedia(
-                      "(min-width: 320px) and (max-width: 767px)"
-                    ).matches
-                      ? GRAPH_SIZE.width.mobile
-                      : window.matchMedia(
-                          "(min-width: 768px) and (max-width: 1399px)"
-                        ).matches
-                      ? GRAPH_SIZE.width.tablet
-                      : window.matchMedia(
-                          "(min-width: 1400px) and (max-width: 1799px)"
-                        ).matches
-                      ? GRAPH_SIZE.width.desktop
-                      : GRAPH_SIZE.width.desktopLarge
-                  }
-                  height={
-                    window.matchMedia("(max-width: 768px)").matches
-                      ? GRAPH_SIZE.height.mobile
-                      : GRAPH_SIZE.height.desktop
-                  }
-                  formatter={formatter}
-                  isLoading={!dataSet}
-                />
+                <>
+                  <SimpleChart
+                    dataSet={dataSet.mainData}
+                    seriesType={seriesType}
+                    width={
+                      window.matchMedia(
+                        "(min-width: 320px) and (max-width: 767px)"
+                      ).matches
+                        ? GRAPH_SIZE.width.mobile
+                        : window.matchMedia(
+                            "(min-width: 768px) and (max-width: 1399px)"
+                          ).matches
+                        ? GRAPH_SIZE.width.tablet
+                        : window.matchMedia(
+                            "(min-width: 1400px) and (max-width: 1799px)"
+                          ).matches
+                        ? GRAPH_SIZE.width.desktop
+                        : GRAPH_SIZE.width.desktopLarge
+                    }
+                    height={
+                      window.matchMedia("(max-width: 768px)").matches
+                        ? GRAPH_SIZE.height.mobile
+                        : GRAPH_SIZE.height.desktop
+                    }
+                    formatter={formatter}
+                  />
+                  <SimpleChart
+                    dataSet={dataSet.netflowData}
+                    width={
+                      window.matchMedia(
+                        "(min-width: 320px) and (max-width: 767px)"
+                      ).matches
+                        ? GRAPH_SIZE.width.mobile
+                        : window.matchMedia(
+                            "(min-width: 768px) and (max-width: 1399px)"
+                          ).matches
+                        ? GRAPH_SIZE.width.tablet
+                        : window.matchMedia(
+                            "(min-width: 1400px) and (max-width: 1799px)"
+                          ).matches
+                        ? GRAPH_SIZE.width.desktop
+                        : GRAPH_SIZE.width.desktopLarge
+                    }
+                    height={GRAPH_SIZE.netflowHeight}
+                    formatter={formatter}
+                    mode={0}
+                  />
+                </>
               )}
             </div>
           </div>
@@ -125,7 +148,7 @@ export const IoChartWidget = ({
             <ChartControls
               seriesType={seriesType}
               setSeriesType={setSeriesType}
-              dataSet={dataSet}
+              dataSet={dataSet.mainData}
               setDataSet={setDataSet}
               setTimeWindow={setTimeWindow}
             />
@@ -152,6 +175,7 @@ export const IoChartWidget = ({
           font-size: 18px;
           font-weight: bold;
           padding-bottom: 20px;
+          padding-top: 20px;
           text-align: center;
           width: 100%;
         }
