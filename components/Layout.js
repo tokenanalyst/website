@@ -1,12 +1,12 @@
-import React from "react";
-import Head from "next/head";
-import { Nav } from "./navs";
-import { Newsletter } from "./Newsletter";
-import { CookieBanner } from "./CookieBanner";
-import { Footer } from "./Footer";
+import React from 'react';
+import Head from 'next/head';
+import { Nav } from './navs';
+import { Newsletter } from './Newsletter';
+import { CookieBanner } from './CookieBanner';
+import { Footer } from './Footer';
 
-import "../node_modules/normalize.css/normalize.css";
-import "../node_modules/@blueprintjs/core/lib/css/blueprint.css";
+import '../node_modules/normalize.css/normalize.css';
+import '../node_modules/@blueprintjs/core/lib/css/blueprint.css';
 
 export const Layout = ({ children }) => (
   <div className="layout">

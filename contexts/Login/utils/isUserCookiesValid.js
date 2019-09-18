@@ -1,6 +1,6 @@
-import Cookies from "js-cookie";
+import Cookies from 'js-cookie';
 
-import { COOKIES } from "../../../constants/cookies";
+import { COOKIES } from '../../../constants/cookies';
 
 export const isUserCookiesValid = () => {
   return !!(

@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import Cookies from "js-cookie";
+import React, { useState, useEffect } from 'react';
+import Cookies from 'js-cookie';
 
-import { LoginContext } from "./LoginContext";
-import { COOKIES } from "../../constants/cookies";
-import { intercom, isUserCookiesValid } from "./utils";
+import { LoginContext } from './LoginContext';
+import { COOKIES } from '../../constants/cookies';
+import { intercom, isUserCookiesValid } from './utils';
 
 export const LoginProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -34,7 +34,7 @@ export const LoginProvider = ({ children }) => {
     setLoggedInAs,
     setPaymentData,
     paymentData,
-    intercom
+    intercom,
   };
 
   return (

@@ -1,2 +1,2 @@
-export * from "./intercom";
-export * from "./isUserCookiesValid";
+export * from './intercom';
+export * from './isUserCookiesValid';

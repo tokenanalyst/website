@@ -1,26 +1,26 @@
-import React, { useEffect } from "react";
-import Router from "next/router";
-import ReactGA from "react-ga";
-import * as Sentry from "@sentry/browser";
+import React, { useEffect } from 'react';
+import Router from 'next/router';
+import ReactGA from 'react-ga';
+import * as Sentry from '@sentry/browser';
 
 export const Analytics = ({ children }) => {
   useEffect(() => {
-    if (process.env.NODE_ENV !== "development") {
-      ReactGA.initialize("UA-113322596-1");
+    if (process.env.NODE_ENV !== 'development') {
+      ReactGA.initialize('UA-113322596-1');
       const handleRouteChange = () => {
         ReactGA.pageview(Router.asPath);
       };
-      Router.events.on("routeChangeComplete", handleRouteChange);
+      Router.events.on('routeChangeComplete', handleRouteChange);
       Sentry.init({
-        dsn: "https://04801cfba732405cae39800a34b707ca@sentry.io/1553818"
+        dsn: 'https://04801cfba732405cae39800a34b707ca@sentry.io/1553818',
       });
 
-      window.Intercom("boot", {
-        app_id: "s8z1cqo3"
+      window.Intercom('boot', {
+        app_id: 's8z1cqo3',
       });
 
       return () => {
-        Router.events.off("routeChangeComplete", handleRouteChange);
+        Router.events.off('routeChangeComplete', handleRouteChange);
       };
     }
   }, []);
