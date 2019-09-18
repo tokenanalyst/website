@@ -356,7 +356,7 @@ export const DesktopNav = () => {
           align-items: center;
         }
         .right-side {
-          margin-right: 2%;
+          margin-right: 10px;
           display: flex;
           padding-left: 10px;
         }
@@ -412,7 +412,7 @@ export const DesktopNav = () => {
           color: white;
           z-index: 10000;
           top: 60px;
-          margin-left: 665px;
+          right: ${loginCtx.isLoggedIn ? "125px" : "50px"};
           padding-left: 10px;
           border-radius: 0px 0px 5px 5px;
         }
