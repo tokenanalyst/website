@@ -2,15 +2,28 @@ import React, { useContext } from "react";
 import ReactGA from "react-ga";
 import Router from "next/router";
 import Cookies from "js-cookie";
+import { Button, Intent } from "@blueprintjs/core";
 
 import { LoginContext } from "../../../contexts/Login";
 import { STRIPE } from "../../../constants/stripe";
 import { colors } from "../../../constants/styles/colors";
 
+import css from "styled-jsx/css";
+
+function getLinkStyles(color) {
+  return css.resolve`
+    :global(.bp3-button:not([class*="bp3-intent-"])) {
+      background-color: yellow;
+    }
+  `;
+}
+
 export const Product = ({ name, price, features, buttonText, stripePlan }) => {
   const loginCtx = useContext(LoginContext);
   const username = Cookies.get("loggedInAsUsername");
   const userId = Cookies.get("loggedInAsUserId");
+
+  const { className, styles } = getLinkStyles();
 
   const redirectToStripe = async stripeOptions => {
     const stripe = Stripe(STRIPE.apiKey);
@@ -46,46 +59,51 @@ export const Product = ({ name, price, features, buttonText, stripePlan }) => {
               </div>
             ))}
           </div>
-          <div
-            className="purchase-button"
-            onClick={
-              stripePlan
-                ? async () => {
-                    ReactGA.event({
-                      category: "User",
-                      action: `Plan select ${name}`,
-                      label: `Plans`
-                    });
-
-                    if (!loginCtx.isLoggedIn) {
-                      loginCtx.setPaymentData({
-                        stripe: { redirectFn: redirectToStripe }
+          <div>
+            Test text
+            <Button
+              className={className}
+              onClick={
+                stripePlan
+                  ? async () => {
+                      ReactGA.event({
+                        category: "User",
+                        action: `Plan select ${name}`,
+                        label: `Plans`
                       });
-                      return Router.push("/login");
-                    }
-                    await redirectToStripe({
-                      customerEmail: username,
-                      clientReferenceId: userId.toString()
-                    });
-                  }
-                : () => {
-                    ReactGA.event({
-                      category: "User",
-                      action: `Plan select ${name}`,
-                      label: `Plans`
-                    });
 
-                    if (name === "Free") {
-                      return Router.push("/register");
+                      if (!loginCtx.isLoggedIn) {
+                        loginCtx.setPaymentData({
+                          stripe: { redirectFn: redirectToStripe }
+                        });
+                        return Router.push("/login");
+                      }
+                      await redirectToStripe({
+                        customerEmail: username,
+                        clientReferenceId: userId.toString()
+                      });
                     }
+                  : () => {
+                      ReactGA.event({
+                        category: "User",
+                        action: `Plan select ${name}`,
+                        label: `Plans`
+                      });
 
-                    window.location = "mailto:info@tokenanalyst.io";
-                  }
-            }>
-            {buttonText}
+                      if (name === "Free") {
+                        return Router.push("/register");
+                      }
+
+                      window.location = "mailto:info@tokenanalyst.io";
+                    }
+              }>
+              {buttonText}
+            </Button>
+            {/* <CustomButton></CustomButton> */}
           </div>
         </div>
       </div>
+      {styles}
       <style jsx>{`
         .container {
           font-family: Open Sans;
@@ -126,14 +144,11 @@ export const Product = ({ name, price, features, buttonText, stripePlan }) => {
           padding-bottom: 4px;
         }
         .purchase-button {
-          color: white;
-          min-width: 60px;
-          text-align: center;
-          background-color: rgba(${colors.primaryGreen});
-          max-height: 40px;
-          padding: 10px;
-          border-radius: 20px;
-          cursor: pointer;
+          height: 100px;
+          width: 200px;
+        }
+        .merry--override {
+          color: yellow;
         }
         @media only screen and (max-width: 768px) {
           .container {

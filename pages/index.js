@@ -28,7 +28,7 @@ const Exchange = () => {
       <div className="under-sub-nav">
         <>
           <div className="section-header">At a glance</div>
-          {/* {tokenSnapshotWidgetData ? (
+          {tokenSnapshotWidgetData ? (
             <TokenSnapshotWidget
               data={tokenSnapshotWidgetData}
               dataWindow={dataWindow}
@@ -38,14 +38,9 @@ const Exchange = () => {
             <div className="spinner">
               <LoadingSpinner />
             </div>
-          )} */}
-          <div className="section-header">Testimonials</div>
-          <div className={"testimonials"}>
-            <TestimonialsWidget />
-          </div>
-
+          )}
           <div className="section-header">{dataWindow} Inflows/Outflows</div>
-          {/* <div className="table">
+          <div className="table">
             {ioTableData ? (
               <IoTable
                 data={ioTableData}
@@ -57,7 +52,7 @@ const Exchange = () => {
                 <LoadingSpinner />
               </div>
             )}
-          </div> */}
+          </div>
         </>
       </div>
       <style jsx>{underSubNav}</style>

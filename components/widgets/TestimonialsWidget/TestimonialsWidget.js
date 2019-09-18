@@ -1,4 +1,5 @@
-import { Button, Card, Elevation } from "@blueprintjs/core";
+import React from "react";
+import { Card, Elevation } from "@blueprintjs/core";
 
 export const TestimonialsWidget = () => {
   return (
