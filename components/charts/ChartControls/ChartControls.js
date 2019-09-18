@@ -10,7 +10,7 @@ import { COIN_IMAGES } from "../../../constants/image-paths";
 import { colors } from "../../../constants/styles/colors";
 import { TIME_WINDOWS } from "../../../constants/filters";
 
-const chartDisplay = [
+const CHART_DISPLAY = [
   {
     type: CHART_TYPES.line,
     label: "Line",
@@ -28,7 +28,7 @@ const chartDisplay = [
   }
 ];
 
-const chartModes = [
+const CHART_MODES = [
   {
     label: "Linear",
     value: 0
@@ -72,7 +72,7 @@ export const ChartControls = ({
         {setSeriesType && (
           <div className="control">
             <div className="header">Chart Type</div>
-            {chartDisplay.map(chartType => (
+            {CHART_DISPLAY.map(chartType => (
               <div
                 key={chartType.type}
                 className="option"
@@ -110,7 +110,7 @@ export const ChartControls = ({
         {setChartMode && (
           <div className="control">
             <div className="header">Chart Scaling</div>
-            {chartModes.map(cm => (
+            {CHART_MODES.map(cm => (
               <div
                 key={cm.label}
                 className="option-scaling"
