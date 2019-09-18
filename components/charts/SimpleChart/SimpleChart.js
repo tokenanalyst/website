@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { createChart, isBusinessDay } from "lightweight-charts";
+import { createChart } from "lightweight-charts";
 import numeral from "numeral";
 
 import { CHART_TYPES } from "../../../constants/chartTypes";
@@ -85,7 +85,7 @@ export const SimpleChart = ({
     });
 
     return () => chart.remove();
-  }, [dataSet, seriesType]);
+  }, [dataSet, seriesType, mode]);
 
   return (
     <div className="container" ref={chartRef}>
