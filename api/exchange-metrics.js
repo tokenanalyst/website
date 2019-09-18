@@ -1,22 +1,25 @@
 const url = require("url");
+
 const { API_ERROR_MSG } = require("../constants/apiErrors");
 const isAuthorised = require("./auth/isAuthorised");
-const setResponseCache = require("./utils/setResponseCache");
 const TA = require("./utils/ta-api-node/ta");
 const { NATIVE_TOKENS, STABLE_TOKENS } = require("../constants/tokens");
+const { TIME_WINDOWS } = require("../constants/filters");
 
 module.exports = async (req, res) => {
   const urlParts = url.parse(req.url, true);
   const { token, exchange, timeWindow } = urlParts.query;
-  const isMaxDaysOfData =
+  const isUnlimited =
     req.cookies.apiKey && (await isAuthorised(req.cookies.apiKey));
   const FORMAT = "json";
-  let amountOfTimeUnits = "90";
   const PUBLIC_API_URL = "https://api.tokenanalyst.io/analytics";
   const { ETH, BTC } = NATIVE_TOKENS;
+  const ONE_WEEK_IN_HRS = "168";
 
-  if (timeWindow === "1h") {
-    amountOfTimeUnits = "168"; // 1 week
+  let amountOfTimeUnits = "90";
+
+  if (timeWindow === TIME_WINDOWS.oneHour) {
+    amountOfTimeUnits = ONE_WEEK_IN_HRS;
   }
 
   if (!token || !exchange || !timeWindow) {
@@ -95,6 +98,21 @@ module.exports = async (req, res) => {
     priceApiCall
   ]);
 
+  const netflow = inflowTxnCountApiResponse.data.map(
+    ({ inflow, inflow_usd, date, hour }, index) => ({
+      date,
+      hour,
+      value: Number(
+        (inflow - outflowTxnCountApiResponse.data[index].outflow).toFixed(2)
+      ),
+      value_usd: Number(
+        (
+          inflow_usd - outflowTxnCountApiResponse.data[index].outflow_usd
+        ).toFixed(2)
+      )
+    })
+  );
+
   if (isStableCoin) {
     const filteredInflow = inflowTxnCountApiResponse.data.filter(
       item => item.exchange === exchange
@@ -106,17 +124,10 @@ module.exports = async (req, res) => {
       item => item.exchange === exchange
     );
 
-    // setResponseCache().map(cacheHeader => {
-    //   res.setHeader(...cacheHeader);
-    // });
     res.send({
       ta_response: {
-        inflow: isMaxDaysOfData
-          ? filteredInflow
-          : filteredInflow.slice(filteredInflow.length - amountOfTimeUnits),
-        outflow: isMaxDaysOfData
-          ? filteredOutflow
-          : filteredOutflow.slice(filteredOutflow.length - amountOfTimeUnits),
+        inflow: filteredInflow,
+        outflow: filteredOutflow,
         overall: publicApiResponse.data.filter(
           item => item.token === token && item.exchange === exchange
         ),
@@ -124,29 +135,15 @@ module.exports = async (req, res) => {
       }
     });
   } else {
-    // setResponseCache().map(cacheHeader => {
-    //   res.setHeader(...cacheHeader);
-    // });
     res.send({
       ta_response: {
-        inflow: isMaxDaysOfData
-          ? inflowTxnCountApiResponse.data
-          : inflowTxnCountApiResponse.data.slice(
-              inflowTxnCountApiResponse.data.length - amountOfTimeUnits
-            ),
-        outflow: isMaxDaysOfData
-          ? outflowTxnCountApiResponse.data
-          : outflowTxnCountApiResponse.data.slice(
-              outflowTxnCountApiResponse.data.length - amountOfTimeUnits
-            ),
+        inflow: inflowTxnCountApiResponse.data,
+        outflow: outflowTxnCountApiResponse.data,
+        netflow,
         overall: publicApiResponse.data.filter(
           item => item.token === token && item.exchange === exchange
         ),
-        price: isMaxDaysOfData
-          ? tokenPriceApiResponse.data
-          : tokenPriceApiResponse.data.slice(
-              tokenPriceApiResponse.data.length - amountOfTimeUnits
-            )
+        price: tokenPriceApiResponse.data
       }
     });
   }

@@ -1,16 +1,14 @@
 import PropTypes from "prop-types";
 import React from "react";
-import { Icon } from "@blueprintjs/core";
+import { Icon, HTMLSelect } from "@blueprintjs/core";
 import ReactGA from "react-ga";
-import { Skeleton } from "../../Skeleton";
-import { useRouter } from "next/router";
 
+import { Skeleton } from "../../Skeleton";
 import { CHART_TYPES } from "../../../constants/chartTypes";
 import { STABLE_TOKENS, NATIVE_TOKENS } from "../../../constants/tokens";
 import { COIN_IMAGES } from "../../../constants/image-paths";
 import { colors } from "../../../constants/styles/colors";
-
-import { HTMLSelect } from "@blueprintjs/core";
+import { TIME_WINDOWS } from "../../../constants/filters";
 
 const chartDisplay = [
   {
@@ -32,30 +30,28 @@ const chartDisplay = [
 
 const timeWindows = [
   {
-    value: "1d",
+    value: TIME_WINDOWS.oneDay,
     label: "1 Day"
   },
   {
-    value: "1h",
+    value: TIME_WINDOWS.oneHour,
     label: "1 Hour"
   }
 ];
 
 export const ChartControls = ({
-  seriesType,
-  setSeriesType,
   dataSet,
-  setDataSet,
+  seriesType,
   token,
+  setDataSet,
+  setSeriesType,
   setToken,
-  borderColor,
   setDataPoint,
-  setTimeWindow
+  setTimeWindow,
+  borderColor
 }) => {
-  // Very ugly. We could use https://lodash.com/docs/4.17.11#has
-
   const selectedTimeWindow =
-    (dataSet && dataSet[0] && dataSet[0].timeWindow) || "1d";
+    (dataSet && dataSet[0] && dataSet[0].timeWindow) || TIME_WINDOWS.oneDay;
 
   return (
     <>
@@ -98,7 +94,7 @@ export const ChartControls = ({
             ))}
           </div>
         )}
-        {token && (
+        {setToken && (
           <div className="control">
             <div className="select-header">
               <div className="token-header">Token</div>
@@ -142,7 +138,7 @@ export const ChartControls = ({
         <div className="select-boxes">
           {setTimeWindow && (
             <div className="control">
-              <div className="select-header">Time interval</div>
+              <div className="select-header">Time Interval</div>
               <div className="control-select-wrapper">
                 <HTMLSelect
                   value={selectedTimeWindow}
@@ -175,18 +171,19 @@ export const ChartControls = ({
                     <HTMLSelect
                       className="control-select"
                       onChange={e => {
-                        setDataSet(
-                          dataSet.reduce(
-                            (acc, curr) => [
+                        e.persist();
+                        setDataSet(prev => ({
+                          ...prev,
+                          mainData: dataSet.reduce((acc, curr) => {
+                            return [
                               ...acc,
                               {
                                 ...curr,
                                 visible: curr.dataPoint === e.target.value
                               }
-                            ],
-                            []
-                          )
-                        );
+                            ];
+                          }, [])
+                        }));
                         setDataPoint && setDataPoint(e.target.value);
                         ReactGA.event({
                           category: "User",

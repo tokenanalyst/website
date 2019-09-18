@@ -14,6 +14,24 @@ export const getExchangeDataSet = (
   const USDSymbol = formatTokenSymbol(CURRENCIES.USD);
   const tokenSymbol = formatTokenSymbol(token);
 
+  const netflowData = [
+    {
+      dataPoint: `Net Flow`,
+      title: `Netflow Volume`,
+      chartValues: toSingleValueChartData(
+        response.netflow,
+        "date",
+        "value",
+        timeWindow
+      ),
+      visible: true,
+      solidColor: "rgba(180, 156, 242, 1)",
+      chartType: CHART_TYPES.histogram,
+      isAlwaysDisplayed: true,
+      timeWindow
+    }
+  ];
+
   const baseDataSet = [
     {
       dataPoint: "Price",
@@ -245,8 +263,14 @@ export const getExchangeDataSet = (
         timeWindow
       }
     ]);
-    return baseDataSetWithBTC;
+    return {
+      mainData: baseDataSetWithBTC,
+      netflowData
+    };
   }
 
-  return baseDataSet;
+  return {
+    mainData: baseDataSet,
+    netflowData
+  };
 };
