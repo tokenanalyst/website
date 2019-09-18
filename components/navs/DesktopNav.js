@@ -69,7 +69,8 @@ export const DesktopNav = () => {
                 onMouseOver={() => {
                   collapseAllSubMenus();
                   setShownItems(prev => ({ ...prev, exchanges: true }));
-                }}>
+                }}
+              >
                 Exchange Flow
               </div>
               <Link href="/stablecoins" passHref>
@@ -78,7 +79,8 @@ export const DesktopNav = () => {
                     "desktop-link",
                     setLinkActive(asPath, "/stablecoins")
                   )}
-                  onMouseOver={collapseAllSubMenus}>
+                  onMouseOver={collapseAllSubMenus}
+                >
                   Stablecoins
                 </div>
               </Link>
@@ -88,7 +90,8 @@ export const DesktopNav = () => {
                     "desktop-link",
                     setLinkActive(asPath, "/compare")
                   )}
-                  onMouseOver={collapseAllSubMenus}>
+                  onMouseOver={collapseAllSubMenus}
+                >
                   Compare
                 </div>
               </Link>
@@ -103,14 +106,16 @@ export const DesktopNav = () => {
                   className={classNames(
                     "desktop-link",
                     setLinkActive(asPath, "/pricing")
-                  )}>
+                  )}
+                >
                   Pricing
                 </div>
               </Link>
               <a
                 href="https://docs.tokenanalyst.io/#/api"
                 target="_blank"
-                onMouseOver={collapseAllSubMenus}>
+                onMouseOver={collapseAllSubMenus}
+              >
                 API
               </a>
               <div
@@ -121,7 +126,8 @@ export const DesktopNav = () => {
                 onMouseOver={() => {
                   collapseAllSubMenus();
                   setShownItems(prev => ({ ...prev, contact: true }));
-                }}>
+                }}
+              >
                 About Us
               </div>
             </div>
@@ -148,7 +154,8 @@ export const DesktopNav = () => {
                   }}
                   onMouseOver={() => {
                     collapseAllSubMenus();
-                  }}>
+                  }}
+                >
                   Logout
                 </div>
               </>
@@ -158,7 +165,8 @@ export const DesktopNav = () => {
                   className="login-button"
                   onMouseOver={() => {
                     collapseAllSubMenus();
-                  }}>
+                  }}
+                >
                   Login
                 </div>
               </Link>
@@ -169,11 +177,13 @@ export const DesktopNav = () => {
       <div className="desktop-sub-links-container">
         <div
           className="desktop-contact-sub-link-container"
-          onClick={collapseAllSubMenus}>
+          onClick={collapseAllSubMenus}
+        >
           <div className="desktop-sub-links">
             <div
               className="desktop-contact-sub-links"
-              onMouseLeave={() => collapseSubMenuDelayed("contact")}>
+              onMouseLeave={() => collapseSubMenuDelayed("contact")}
+            >
               <div>
                 <Link href="/about" passHref>
                   <div
@@ -187,7 +197,8 @@ export const DesktopNav = () => {
                     className={classNames(
                       "desktop-sub-link",
                       setLinkActive(asPath, "/about")
-                    )}>
+                    )}
+                  >
                     Company
                   </div>
                 </Link>
@@ -202,7 +213,8 @@ export const DesktopNav = () => {
                       action: `Click Follow Us`,
                       label: `Desktop Nav`
                     });
-                  }}>
+                  }}
+                >
                   Follow Us
                 </a>
               </div>
@@ -216,7 +228,8 @@ export const DesktopNav = () => {
                       action: `Click Telegram`,
                       label: `Desktop Nav`
                     });
-                  }}>
+                  }}
+                >
                   Telegram
                 </a>
               </div>
@@ -230,7 +243,8 @@ export const DesktopNav = () => {
                       action: `Click Contact`,
                       label: `Desktop Nav`
                     });
-                  }}>
+                  }}
+                >
                   Contact
                 </a>
               </div>
@@ -239,16 +253,19 @@ export const DesktopNav = () => {
         </div>
         <div
           className="desktop-exchanges-sub-link-container"
-          onClick={collapseAllSubMenus}>
+          onClick={collapseAllSubMenus}
+        >
           <div className="desktop-sub-links">
             <div
               className="desktop-exchanges-sub-links"
-              onMouseLeave={() => collapseSubMenuDelayed("exchanges")}>
+              onMouseLeave={() => collapseSubMenuDelayed("exchanges")}
+            >
               <div>
                 <Link
                   href="/exchange/[token]/[exchange]"
                   as="/exchange/BTC/Binance"
-                  passHref>
+                  passHref
+                >
                   <div
                     onClick={() => {
                       ReactGA.event({
@@ -260,7 +277,8 @@ export const DesktopNav = () => {
                     className={classNames(
                       "desktop-sub-link",
                       setLinkActive(asPath, "/exchange/BTC/Binance")
-                    )}>
+                    )}
+                  >
                     BTC Binance
                   </div>
                 </Link>
@@ -269,7 +287,8 @@ export const DesktopNav = () => {
                 <Link
                   href="/exchange/[token]/[exchange]"
                   as="/exchange/BTC/Bitstamp"
-                  passHref>
+                  passHref
+                >
                   <div
                     onClick={() => {
                       ReactGA.event({
@@ -281,7 +300,8 @@ export const DesktopNav = () => {
                     className={classNames(
                       "desktop-sub-link",
                       setLinkActive(asPath, "/exchange/BTC/Bitstamp")
-                    )}>
+                    )}
+                  >
                     BTC Bitstamp
                   </div>
                 </Link>
@@ -290,7 +310,8 @@ export const DesktopNav = () => {
                 <Link
                   href="/exchange/[token]/[exchange]"
                   as="/exchange/ETH/Bitfinex"
-                  passHref>
+                  passHref
+                >
                   <div
                     onClick={() => {
                       ReactGA.event({
@@ -302,7 +323,8 @@ export const DesktopNav = () => {
                     className={classNames(
                       "desktop-sub-link",
                       setLinkActive(asPath, "/exchange/ETH/Bitfinex")
-                    )}>
+                    )}
+                  >
                     ETH Bitfinex
                   </div>
                 </Link>
@@ -311,7 +333,8 @@ export const DesktopNav = () => {
                 <Link
                   href="/exchange/[token]/[exchange]"
                   as="/exchange/ETH/Bittrex"
-                  passHref>
+                  passHref
+                >
                   <div
                     onClick={() => {
                       ReactGA.event({
@@ -323,7 +346,8 @@ export const DesktopNav = () => {
                     className={classNames(
                       "desktop-sub-link",
                       setLinkActive(asPath, "/exchange/ETH/Bittrex")
-                    )}>
+                    )}
+                  >
                     ETH Bittrex
                   </div>
                 </Link>
@@ -356,7 +380,7 @@ export const DesktopNav = () => {
           align-items: center;
         }
         .right-side {
-          margin-right: 2%;
+          margin-right: 10px;
           display: flex;
           padding-left: 10px;
         }
@@ -412,7 +436,7 @@ export const DesktopNav = () => {
           color: white;
           z-index: 10000;
           top: 60px;
-          margin-left: 665px;
+          right: ${loginCtx.isLoggedIn ? "125px" : "50px"};
           padding-left: 10px;
           border-radius: 0px 0px 5px 5px;
         }
