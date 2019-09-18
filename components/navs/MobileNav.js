@@ -77,11 +77,14 @@ export const MobileNav = () => {
             <div
               className="mobile-link"
               onClick={() => {
+                // TO DO: put all auth logic into its own module
                 Cookies.remove("apiKey");
                 Cookies.remove("loggedInAs");
                 Cookies.remove("loggedInAsUsername");
                 Cookies.remove("loggedInAsUserId");
                 loginCtx.setIsLoggedIn(false);
+                loginCtx.intercom.removeUser();
+
                 ReactGA.event({
                   category: "User",
                   action: `Click Logout`,

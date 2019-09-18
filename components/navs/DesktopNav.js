@@ -8,6 +8,7 @@ import ReactGA from "react-ga";
 import { LoginContext } from "../../contexts/Login";
 import { LOGO_IMAGES } from "../../constants/image-paths";
 import { colors } from "../../constants/styles/colors";
+import { COOKIES } from "../../constants/cookies";
 
 export const setLinkActive = (pathName, link) =>
   pathName === link ? "active" : "";
@@ -135,11 +136,14 @@ export const DesktopNav = () => {
                 <div
                   className="login-button"
                   onClick={() => {
-                    Cookies.remove("apiKey");
-                    Cookies.remove("loggedInAs");
-                    Cookies.remove("loggedInAsUsername");
-                    Cookies.remove("loggedInAsUserId");
+                    // TO DO: put all auth logic into its own module
+                    Cookies.remove(COOKIES.apiKey);
+                    Cookies.remove(COOKIES.loggedInAs);
+                    Cookies.remove(COOKIES.loggedInAsUsername);
+                    Cookies.remove(COOKIES.loggedInAsUserId);
                     loginCtx.setIsLoggedIn(false);
+                    loginCtx.intercom.removeUser();
+
                     ReactGA.event({
                       category: "User",
                       action: `Click Logout`,

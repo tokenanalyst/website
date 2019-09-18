@@ -5,6 +5,7 @@ import Cookies from "js-cookie";
 
 import { LoginContext } from "../../../contexts/Login";
 import { colors } from "../../../constants/styles/colors";
+import { COOKIES } from "../../../constants/cookies";
 
 export const LoginWidget = () => {
   const router = useRouter();
@@ -29,12 +30,13 @@ export const LoginWidget = () => {
         data: { apiKey, name, username, id }
       } = response;
 
-      Cookies.set("apiKey", apiKey);
-      Cookies.set("loggedInAs", name);
-      Cookies.set("loggedInAsUsername", username);
-      Cookies.set("loggedInAsUserId", id);
+      Cookies.set(COOKIES.apiKey, apiKey);
+      Cookies.set(COOKIES.loggedInAs, name);
+      Cookies.set(COOKIES.loggedInAsUsername, username);
+      Cookies.set(COOKIES.loggedInAsUserId, id);
       loginCtx.setIsLoggedIn(true);
       loginCtx.setLoggedInAs(name);
+      loginCtx.intercom.setUser(name, username);
 
       if (
         loginCtx.paymentData.stripe &&

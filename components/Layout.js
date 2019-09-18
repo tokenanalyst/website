@@ -1,12 +1,12 @@
-import React from 'react';
-import Head from 'next/head';
-import { Nav } from './navs';
-import { Newsletter } from './Newsletter';
-import { CookieBanner } from './CookieBanner';
-import { Footer } from './Footer';
+import React from "react";
+import Head from "next/head";
+import { Nav } from "./navs";
+import { Newsletter } from "./Newsletter";
+import { CookieBanner } from "./CookieBanner";
+import { Footer } from "./Footer";
 
-import '../node_modules/normalize.css/normalize.css';
-import '../node_modules/@blueprintjs/core/lib/css/blueprint.css';
+import "../node_modules/normalize.css/normalize.css";
+import "../node_modules/@blueprintjs/core/lib/css/blueprint.css";
 
 export const Layout = ({ children }) => (
   <div className="layout">
@@ -15,6 +15,8 @@ export const Layout = ({ children }) => (
       <link rel="shortcut icon" href="/static/favicon.ico" />
       <link href="/static/fonts/fonts.css" rel="stylesheet" />
       <script src="https://js.stripe.com/v3/" />
+      <script src="/static/js/intercom.js" />
+
       <meta
         name="description"
         content="TokenAnalyst is the leading provider of real-time and historical blockchain data. Our offering includes on-chain inflow and outflow from exchanges and low-latency alerts on significant transactions."

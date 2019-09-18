@@ -1,3 +1,6 @@
 export const COOKIES = {
-  apiKey: 'apiKey',
+  apiKey: "apiKey",
+  loggedInAs: "loggedInAs",
+  loggedInAsUsername: "loggedInAsUsername",
+  loggedInAsUserId: "loggedInAsUserId"
 };
