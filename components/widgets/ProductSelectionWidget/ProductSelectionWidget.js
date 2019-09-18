@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-import { Product } from "./Product";
-import { PRODUCTS } from "./data/productsData";
+import { Product } from './Product';
+import { PRODUCTS } from './data/productsData';
 
 export const ProductSelectionWidget = () => {
   return (
