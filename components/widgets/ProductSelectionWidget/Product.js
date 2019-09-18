@@ -75,9 +75,9 @@ export const Product = ({ name, price, features, buttonText, stripePlan }) => {
                       label: `Plans`
                     });
 
-                    if (name === "Free") {
-                      return Router.push("/register");
-                    }
+                    // if (name === "Free") {
+                    //   return Router.push("/login");
+                    // }
 
                     window.location = "mailto:info@tokenanalyst.io";
                   }
