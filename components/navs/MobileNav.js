@@ -1,15 +1,15 @@
-import React, { useState, useContext } from "react";
-import Link from "next/link";
-import { Icon } from "@blueprintjs/core";
-import Cookies from "js-cookie";
-import { useRouter } from "next/router";
-import ReactGA from "react-ga";
+import React, { useState, useContext } from 'react';
+import Link from 'next/link';
+import { Icon } from '@blueprintjs/core';
+import Cookies from 'js-cookie';
+import { useRouter } from 'next/router';
+import ReactGA from 'react-ga';
 
-import { LOGO_IMAGES } from "../../constants/image-paths";
-import { LoginContext } from "../../contexts/Login";
+import { LOGO_IMAGES } from '../../constants/image-paths';
+import { LoginContext } from '../../contexts/Login';
 
 export const setLinkActive = (pathName, link) =>
-  pathName === link ? "mobile-link-active" : "mobile-link";
+  pathName === link ? 'mobile-link-active' : 'mobile-link';
 
 export const MobileNav = () => {
   const loginCtx = useContext(LoginContext);
@@ -23,11 +23,11 @@ export const MobileNav = () => {
         <div className="container">
           <div className="mobile">
             <Link href="/" passHref>
-              <img src={`/static/png/${LOGO_IMAGES["Mobile"]}`} width="50px" />
+              <img src={`/static/png/${LOGO_IMAGES['Mobile']}`} width="50px" />
             </Link>
             <div className="menu-icon">
               <Icon
-                icon={isVisible ? "cross" : "menu"}
+                icon={isVisible ? 'cross' : 'menu'}
                 color="white"
                 iconSize={35}
                 onClick={() => setIsVisible(prev => !prev)}
@@ -37,29 +37,30 @@ export const MobileNav = () => {
         </div>
         <div
           className="mobile-sub-links-container"
-          onClick={() => setIsVisible(false)}>
+          onClick={() => setIsVisible(false)}
+        >
           <Link href="/" passHref>
-            <div className={setLinkActive(router.pathname, "/")}>
+            <div className={setLinkActive(router.pathname, '/')}>
               Exchange Flows
             </div>
           </Link>
           <Link href="/stablecoins" passHref>
-            <div className={setLinkActive(router.pathname, "/stablecoins")}>
+            <div className={setLinkActive(router.pathname, '/stablecoins')}>
               Stablecoins
             </div>
           </Link>
           <Link href="/compare" passHref>
-            <div className={setLinkActive(router.pathname, "/compare")}>
+            <div className={setLinkActive(router.pathname, '/compare')}>
               Compare
             </div>
           </Link>
           <Link href="/about" passHref>
-            <div className={setLinkActive(router.pathname, "/about")}>
+            <div className={setLinkActive(router.pathname, '/about')}>
               Company
             </div>
           </Link>
           <Link href="/pricing" passHref>
-            <div className={setLinkActive(router.pathname, "/pricing")}>
+            <div className={setLinkActive(router.pathname, '/pricing')}>
               Pricing
             </div>
           </Link>
@@ -77,17 +78,21 @@ export const MobileNav = () => {
             <div
               className="mobile-link"
               onClick={() => {
-                Cookies.remove("apiKey");
-                Cookies.remove("loggedInAs");
-                Cookies.remove("loggedInAsUsername");
-                Cookies.remove("loggedInAsUserId");
+                // TO DO: put all auth logic into its own module
+                Cookies.remove('apiKey');
+                Cookies.remove('loggedInAs');
+                Cookies.remove('loggedInAsUsername');
+                Cookies.remove('loggedInAsUserId');
                 loginCtx.setIsLoggedIn(false);
+                loginCtx.intercom.removeUser();
+
                 ReactGA.event({
-                  category: "User",
+                  category: 'User',
                   action: `Click Logout`,
-                  label: `Mobile Nav`
+                  label: `Mobile Nav`,
                 });
-              }}>
+              }}
+            >
               Logout
             </div>
           ) : (
@@ -127,7 +132,7 @@ export const MobileNav = () => {
           top: 60px;
           display: flex;
           justify-content: flex-end;
-          display: ${isVisible ? "block" : "none"};
+          display: ${isVisible ? 'block' : 'none'};
           background-color: black;
           width: 100%;
           text-align: center;
