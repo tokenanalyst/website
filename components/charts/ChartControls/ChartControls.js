@@ -1,53 +1,53 @@
-import PropTypes from "prop-types";
-import React from "react";
-import { Icon, HTMLSelect } from "@blueprintjs/core";
-import ReactGA from "react-ga";
+import PropTypes from 'prop-types';
+import React from 'react';
+import { Icon, HTMLSelect } from '@blueprintjs/core';
+import ReactGA from 'react-ga';
 
-import { Skeleton } from "../../Skeleton";
-import { CHART_TYPES } from "../../../constants/chartTypes";
-import { STABLE_TOKENS, NATIVE_TOKENS } from "../../../constants/tokens";
-import { COIN_IMAGES } from "../../../constants/image-paths";
-import { colors } from "../../../constants/styles/colors";
-import { TIME_WINDOWS } from "../../../constants/filters";
+import { Skeleton } from '../../Skeleton';
+import { CHART_TYPES } from '../../../constants/chartTypes';
+import { STABLE_TOKENS, NATIVE_TOKENS } from '../../../constants/tokens';
+import { COIN_IMAGES } from '../../../constants/image-paths';
+import { colors } from '../../../constants/styles/colors';
+import { TIME_WINDOWS } from '../../../constants/filters';
 
 const CHART_DISPLAY = [
   {
     type: CHART_TYPES.line,
-    label: "Line",
-    icon: "timeline-line-chart"
+    label: 'Line',
+    icon: 'timeline-line-chart',
   },
   {
     type: CHART_TYPES.area,
-    label: "Area",
-    icon: "timeline-area-chart"
+    label: 'Area',
+    icon: 'timeline-area-chart',
   },
   {
     type: CHART_TYPES.histogram,
-    label: "Histogram",
-    icon: "timeline-bar-chart"
-  }
+    label: 'Histogram',
+    icon: 'timeline-bar-chart',
+  },
 ];
 
 const CHART_MODES = [
   {
-    label: "Linear",
-    value: 0
+    label: 'Linear',
+    value: 0,
   },
   {
-    label: "Logarithmic",
-    value: 1
-  }
+    label: 'Logarithmic',
+    value: 1,
+  },
 ];
 
 const timeWindows = [
   {
     value: TIME_WINDOWS.oneDay,
-    label: "1 Day"
+    label: '1 Day',
   },
   {
     value: TIME_WINDOWS.oneHour,
-    label: "1 Hour"
-  }
+    label: '1 Hour',
+  },
 ];
 
 export const ChartControls = ({
@@ -61,7 +61,7 @@ export const ChartControls = ({
   setChartMode,
   setDataPoint,
   setTimeWindow,
-  borderColor
+  borderColor,
 }) => {
   const selectedTimeWindow =
     (dataSet && dataSet[0] && dataSet[0].timeWindow) || TIME_WINDOWS.oneDay;
@@ -69,71 +69,6 @@ export const ChartControls = ({
   return (
     <>
       <div className="controls">
-        {setSeriesType && (
-          <div className="control">
-            <div className="header">Chart Type</div>
-            {CHART_DISPLAY.map(chartType => (
-              <div
-                key={chartType.type}
-                className="option"
-                onClick={() => {
-                  setSeriesType(chartType.type);
-                  ReactGA.event({
-                    category: "User",
-                    action: `Chart Type ${chartType.type}`,
-                    label: `Chart Type`
-                  });
-                }}
-              >
-                <div
-                  className={
-                    seriesType === chartType.type ? "button-selected" : "button"
-                  }
-                >
-                  {chartType.label}
-                </div>
-                <div className="icon">
-                  <Icon
-                    icon={chartType.icon}
-                    iconSize={24}
-                    color={
-                      seriesType === chartType.type
-                        ? `rgba(${colors.primaryGreen})`
-                        : "gray"
-                    }
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-        {setChartMode && (
-          <div className="control">
-            <div className="header">Chart Scaling</div>
-            {CHART_MODES.map(cm => (
-              <div
-                key={cm.label}
-                className="option-scaling"
-                onClick={() => {
-                  setChartMode(cm.value);
-                  ReactGA.event({
-                    category: "Chart Mode",
-                    action: `Chart Mode ${cm.label}`,
-                    label: `Chart Mode`
-                  });
-                }}
-              >
-                <div
-                  className={
-                    chartMode === cm.value ? "button-selected" : "button"
-                  }
-                >
-                  {cm.label}
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
         {setToken && (
           <div className="control">
             <div className="select-header">
@@ -151,9 +86,9 @@ export const ChartControls = ({
                 onChange={e => {
                   setToken(e.target.value);
                   ReactGA.event({
-                    category: "User",
+                    category: 'User',
                     action: `Token view ${e.target.value}`,
-                    label: `Tokens`
+                    label: `Tokens`,
                   });
                 }}
                 value={token}
@@ -164,7 +99,7 @@ export const ChartControls = ({
                     token =>
                       token !== STABLE_TOKENS.USDT_OMNI &&
                       token !== STABLE_TOKENS.USDT
-                  )
+                  ),
                 ].map(token => (
                   <option key={token} value={token}>
                     {token}
@@ -172,6 +107,44 @@ export const ChartControls = ({
                 ))}
               </HTMLSelect>
             </div>
+          </div>
+        )}
+        {setSeriesType && (
+          <div className="control">
+            <div className="header">Chart Type</div>
+            {CHART_DISPLAY.map(chartType => (
+              <div
+                key={chartType.type}
+                className="option"
+                onClick={() => {
+                  setSeriesType(chartType.type);
+                  ReactGA.event({
+                    category: 'User',
+                    action: `Chart Type ${chartType.type}`,
+                    label: `Chart Type`,
+                  });
+                }}
+              >
+                <div
+                  className={
+                    seriesType === chartType.type ? 'button-selected' : 'button'
+                  }
+                >
+                  {chartType.label}
+                </div>
+                <div className="icon">
+                  <Icon
+                    icon={chartType.icon}
+                    iconSize={24}
+                    color={
+                      seriesType === chartType.type
+                        ? `rgba(${colors.primaryGreen})`
+                        : 'gray'
+                    }
+                  />
+                </div>
+              </div>
+            ))}
           </div>
         )}
 
@@ -186,9 +159,9 @@ export const ChartControls = ({
                   onChange={e => {
                     setTimeWindow && setTimeWindow(e.target.value);
                     ReactGA.event({
-                      category: "User",
+                      category: 'User',
                       action: `Time Interval View ${e.target.value}`,
-                      label: `Time Interval`
+                      label: `Time Interval`,
                     });
                   }}
                 >
@@ -219,16 +192,16 @@ export const ChartControls = ({
                               ...acc,
                               {
                                 ...curr,
-                                visible: curr.dataPoint === e.target.value
-                              }
+                                visible: curr.dataPoint === e.target.value,
+                              },
                             ];
-                          }, [])
+                          }, []),
                         }));
                         setDataPoint && setDataPoint(e.target.value);
                         ReactGA.event({
-                          category: "User",
+                          category: 'User',
                           action: `Data Point View ${e.target.value}`,
-                          label: `Data Points`
+                          label: `Data Points`,
                         });
                       }}
                     >
@@ -252,6 +225,34 @@ export const ChartControls = ({
               </div>
             </Skeleton>
           </div>
+
+          {setChartMode && (
+            <div className="control">
+              <div className="header">Chart Scaling</div>
+              {CHART_MODES.map(cm => (
+                <div
+                  key={cm.label}
+                  className="option-scaling"
+                  onClick={() => {
+                    setChartMode(cm.value);
+                    ReactGA.event({
+                      category: 'Chart Mode',
+                      action: `Chart Mode ${cm.label}`,
+                      label: `Chart Mode`,
+                    });
+                  }}
+                >
+                  <div
+                    className={
+                      chartMode === cm.value ? 'button-selected' : 'button'
+                    }
+                  >
+                    {cm.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
       <style jsx>{`
@@ -261,7 +262,7 @@ export const ChartControls = ({
           align-items: flex-start;
           padding: 20px;
           border: 1px solid
-            ${borderColor ? borderColor : "rgba(151, 151, 151, 0.15)"};
+            ${borderColor ? borderColor : 'rgba(151, 151, 151, 0.15)'};
         }
         .control {
           padding-bottom: 20px;
@@ -294,6 +295,7 @@ export const ChartControls = ({
           height: 34px;
         }
         .header {
+          padding-top: 10px;
           padding-bottom: 10px;
           font-weight: bold;
         }
@@ -320,7 +322,7 @@ export const ChartControls = ({
           align-items: center;
           width: 160px;
           justify-content: space-between;
-          padding-bottom: 10px;
+          height: 28px;
         }
         .button {
           margin-right: 10px;
@@ -388,5 +390,5 @@ ChartControls.ChartControls = {
   token: PropTypes.string.isRequired,
   setToken: PropTypes.func.isRequired,
   borderColor: PropTypes.string.isRequired,
-  setDataPoint: PropTypes.func.isRequired
+  setDataPoint: PropTypes.func.isRequired,
 };
