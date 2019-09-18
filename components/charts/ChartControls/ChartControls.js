@@ -69,71 +69,6 @@ export const ChartControls = ({
   return (
     <>
       <div className="controls">
-        {setSeriesType && (
-          <div className="control">
-            <div className="header">Chart Type</div>
-            {CHART_DISPLAY.map(chartType => (
-              <div
-                key={chartType.type}
-                className="option"
-                onClick={() => {
-                  setSeriesType(chartType.type);
-                  ReactGA.event({
-                    category: "User",
-                    action: `Chart Type ${chartType.type}`,
-                    label: `Chart Type`
-                  });
-                }}
-              >
-                <div
-                  className={
-                    seriesType === chartType.type ? "button-selected" : "button"
-                  }
-                >
-                  {chartType.label}
-                </div>
-                <div className="icon">
-                  <Icon
-                    icon={chartType.icon}
-                    iconSize={24}
-                    color={
-                      seriesType === chartType.type
-                        ? `rgba(${colors.primaryGreen})`
-                        : "gray"
-                    }
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-        {setChartMode && (
-          <div className="control">
-            <div className="header">Chart Scaling</div>
-            {CHART_MODES.map(cm => (
-              <div
-                key={cm.label}
-                className="option-scaling"
-                onClick={() => {
-                  setChartMode(cm.value);
-                  ReactGA.event({
-                    category: "Chart Mode",
-                    action: `Chart Mode ${cm.label}`,
-                    label: `Chart Mode`
-                  });
-                }}
-              >
-                <div
-                  className={
-                    chartMode === cm.value ? "button-selected" : "button"
-                  }
-                >
-                  {cm.label}
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
         {setToken && (
           <div className="control">
             <div className="select-header">
@@ -172,6 +107,44 @@ export const ChartControls = ({
                 ))}
               </HTMLSelect>
             </div>
+          </div>
+        )}
+        {setSeriesType && (
+          <div className="control">
+            <div className="header">Chart Type</div>
+            {CHART_DISPLAY.map(chartType => (
+              <div
+                key={chartType.type}
+                className="option"
+                onClick={() => {
+                  setSeriesType(chartType.type);
+                  ReactGA.event({
+                    category: "User",
+                    action: `Chart Type ${chartType.type}`,
+                    label: `Chart Type`
+                  });
+                }}
+              >
+                <div
+                  className={
+                    seriesType === chartType.type ? "button-selected" : "button"
+                  }
+                >
+                  {chartType.label}
+                </div>
+                <div className="icon">
+                  <Icon
+                    icon={chartType.icon}
+                    iconSize={24}
+                    color={
+                      seriesType === chartType.type
+                        ? `rgba(${colors.primaryGreen})`
+                        : "gray"
+                    }
+                  />
+                </div>
+              </div>
+            ))}
           </div>
         )}
 
@@ -252,6 +225,34 @@ export const ChartControls = ({
               </div>
             </Skeleton>
           </div>
+
+          {setChartMode && (
+            <div className="control">
+              <div className="header">Chart Scaling</div>
+              {CHART_MODES.map(cm => (
+                <div
+                  key={cm.label}
+                  className="option-scaling"
+                  onClick={() => {
+                    setChartMode(cm.value);
+                    ReactGA.event({
+                      category: "Chart Mode",
+                      action: `Chart Mode ${cm.label}`,
+                      label: `Chart Mode`
+                    });
+                  }}
+                >
+                  <div
+                    className={
+                      chartMode === cm.value ? "button-selected" : "button"
+                    }
+                  >
+                    {cm.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
       <style jsx>{`
@@ -294,6 +295,7 @@ export const ChartControls = ({
           height: 34px;
         }
         .header {
+          padding-top: 10px;
           padding-bottom: 10px;
           font-weight: bold;
         }
@@ -320,7 +322,7 @@ export const ChartControls = ({
           align-items: center;
           width: 160px;
           justify-content: space-between;
-          padding-bottom: 10px;
+          height: 28px;
         }
         .button {
           margin-right: 10px;

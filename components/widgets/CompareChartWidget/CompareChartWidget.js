@@ -4,7 +4,7 @@ import axios from "axios";
 
 import { getCompareDataSet } from "../../../data-transformers/charts/getCompareDataSet";
 import { ChartControls } from "../../charts/ChartControls";
-import { CHART_TYPES } from "../../../constants/chartTypes";
+import { CHART_TYPES, CHART_MODES } from "../../../constants/chartTypes";
 import { NATIVE_TOKENS } from "../../../constants/tokens";
 import { LoadingSpinner } from "../../LoadingSpinner";
 import { colors } from "../../../constants/styles/colors";
@@ -39,6 +39,8 @@ export const CompareChartWidget = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   const [tokenCache, setTokenCache] = useState({});
+
+  const [chartMode, setChartMode] = useState(CHART_MODES.logarithmic);
 
   async function getTokenDataSet(token, color) {
     let response;
@@ -89,6 +91,8 @@ export const CompareChartWidget = () => {
             token={tokenLhs}
             setToken={setTokenLhs}
             borderColor="rgba(250, 78, 150, 1)"
+            chartMode={chartMode}
+            setChartMode={setChartMode}
           />
           <div className="chart">
             <SimpleChart
@@ -115,6 +119,7 @@ export const CompareChartWidget = () => {
                 window.matchMedia("(max-width: 768px)").matches ? 400 : 500
               }
               isLoading={isLoading}
+              mode={chartMode}
             />
           </div>
           <ChartControls
