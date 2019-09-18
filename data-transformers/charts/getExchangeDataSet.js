@@ -25,7 +25,8 @@ export const getExchangeDataSet = (
         timeWindow
       ),
       visible: true,
-      solidColor: "rgba(0, 206, 206, 1)",
+      solidColor: "rgba(180, 156, 242, 1)",
+      chartType: CHART_TYPES.histogram,
       isAlwaysDisplayed: true,
       timeWindow
     }

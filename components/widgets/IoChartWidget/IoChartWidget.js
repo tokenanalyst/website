@@ -121,7 +121,6 @@ export const IoChartWidget = ({
                   />
                   <SimpleChart
                     dataSet={dataSet.netflowData}
-                    seriesType={CHART_TYPES.histogram}
                     width={
                       window.matchMedia(
                         "(min-width: 320px) and (max-width: 767px)"
