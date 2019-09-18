@@ -129,17 +129,6 @@ export const ChartControls = ({
               >
                 {cm.label}
               </div>
-              {/* <div className="icon">
-                <Icon
-                  icon={chartType.icon}
-                  iconSize={24}
-                  color={
-                    seriesType === chartType.type
-                      ? `rgba(${colors.primaryGreen})`
-                      : 'gray'
-                  }
-                />
-              </div> */}
             </div>
           ))}
         </div>
