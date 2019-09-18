@@ -28,6 +28,17 @@ const chartDisplay = [
   }
 ];
 
+const chartModes = [
+  {
+    label: "Linear",
+    value: 0
+  },
+  {
+    label: "Logarithmic",
+    value: 1
+  }
+];
+
 const timeWindows = [
   {
     value: TIME_WINDOWS.oneDay,
@@ -43,9 +54,11 @@ export const ChartControls = ({
   dataSet,
   seriesType,
   token,
+  chartMode,
   setDataSet,
   setSeriesType,
   setToken,
+  setChartMode,
   setDataPoint,
   setTimeWindow,
   borderColor
@@ -94,6 +107,42 @@ export const ChartControls = ({
             ))}
           </div>
         )}
+        <div className="control">
+          <div className="header">Chart Scaling</div>
+          {chartModes.map(cm => (
+            <div
+              key={cm.label}
+              className="option-scaling"
+              onClick={() => {
+                setChartMode(cm.value);
+                ReactGA.event({
+                  category: "Chart Mode",
+                  action: `Chart Mode ${cm.label}`,
+                  label: `Chart Mode`
+                });
+              }}
+            >
+              <div
+                className={
+                  chartMode === cm.value ? "button-selected" : "button"
+                }
+              >
+                {cm.label}
+              </div>
+              {/* <div className="icon">
+                <Icon
+                  icon={chartType.icon}
+                  iconSize={24}
+                  color={
+                    seriesType === chartType.type
+                      ? `rgba(${colors.primaryGreen})`
+                      : 'gray'
+                  }
+                />
+              </div> */}
+            </div>
+          ))}
+        </div>
         {setToken && (
           <div className="control">
             <div className="select-header">
@@ -272,6 +321,15 @@ export const ChartControls = ({
           align-items: center;
           width: 160px;
           justify-content: space-between;
+        }
+        .option-scaling {
+          cursor: pointer;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          width: 160px;
+          justify-content: space-between;
+          padding-bottom: 10px;
         }
         .button {
           margin-right: 10px;
