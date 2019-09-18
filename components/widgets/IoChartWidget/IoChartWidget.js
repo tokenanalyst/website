@@ -119,7 +119,7 @@ export const IoChartWidget = ({
                     }
                     formatter={formatter}
                   />
-                  <SimpleChart
+                  {/* <SimpleChart
                     dataSet={dataSet.netflowData}
                     width={
                       window.matchMedia(
@@ -139,7 +139,7 @@ export const IoChartWidget = ({
                     height={GRAPH_SIZE.netflowHeight}
                     formatter={formatter}
                     mode={0}
-                  />
+                  /> */}
                 </>
               )}
             </div>
