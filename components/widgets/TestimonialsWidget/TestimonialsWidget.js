@@ -9,15 +9,16 @@ export const TestimonialsWidget = () => {
           <Card interactive={false} elevation={Elevation.ZERO}>
             <blockquote className="bp3-blockquote">
               <div className={"logo"}>
-                <img src="/static/png/logo_mobile.png" width="50px" />
+                <img src="/static/jpg/delphi_digital.jpg" width="50px" />
               </div>
-              Premium Aerotec is a key supplier for Airbus, producing 30 million
-              parts per year, which is huge complexity. Skywise helps us manage
+              TokenAnalyst is one of our go-to sources when it comes to
+              cryptocurrency data. Their exchange flow data is fundamental to
+              parts of our research, and the intuitive API makes data
+              integration very straightforward
             </blockquote>
-            <h3 className={"name"}>Alfred Hitchcock</h3>
+            <h3 className={"name"}>Yan</h3>
             <p className={"position"}>
-              <span className={"position-title"}>CEO</span> -{" "}
-              <span className={"position-company"}>Company Ltd</span>
+              <span className={"position-company"}>Delphi Digital</span>
             </p>
           </Card>
         </div>
