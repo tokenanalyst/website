@@ -1,15 +1,15 @@
-import axios from "axios";
-import url from "url";
-import { API_ERROR_MSG } from "../constants/apiErrors";
+import axios from 'axios';
+import url from 'url';
+import { API_ERROR_MSG } from '../constants/apiErrors';
 
-import { DATA_WINDOWS } from "../constants/filters";
-import { formatApiError } from "./utils/formatApiError";
-import { setResponseCache } from "./utils/setResponseCache";
+import { DATA_WINDOWS } from '../constants/filters';
+import { formatApiError } from './utils/formatApiError';
+import { setResponseCache } from './utils/setResponseCache';
 
 module.exports = async (req, res) => {
   const urlParts = url.parse(req.url, true);
   const tokensParam = urlParts.query.tokens;
-  const tokens = urlParts.query.tokens && tokensParam.split(",");
+  const tokens = urlParts.query.tokens && tokensParam.split(',');
 
   if (!tokens) {
     return res.status(400).send({ message: API_ERROR_MSG.NO_TOKEN_PROVIDED });
@@ -27,15 +27,15 @@ module.exports = async (req, res) => {
   });
 
   const exchangeFlowsAllTokensRequest = axios.get(
-    "https://api.tokenanalyst.io/analytics/last?job=exchange_flows_all_tokens_30day_v5&format=json"
+    'https://api.tokenanalyst.io/analytics/last?job=exchange_flows_all_tokens_30day_v5&format=json'
   );
 
   const allExchangeFlowsAllTokensRequest = axios.get(
-    "https://api.tokenanalyst.io/analytics/last?job=all_exchange_flows_all_tokens_v5&format=json"
+    'https://api.tokenanalyst.io/analytics/last?job=all_exchange_flows_all_tokens_v5&format=json'
   );
 
   const allExchangeFlows24hAllTokensRequest = axios.get(
-    "https://api.tokenanalyst.io/analytics/last?job=exchange_flows_all_tokens_48h_v5&format=json"
+    'https://api.tokenanalyst.io/analytics/last?job=exchange_flows_all_tokens_48h_v5&format=json'
   );
 
   const [
