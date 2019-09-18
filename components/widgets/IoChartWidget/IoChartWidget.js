@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 import { Icon } from "@blueprintjs/core";
 
 import { ChartControls } from "../../charts/ChartControls";
-import { CHART_TYPES } from "../../../constants/chartTypes";
+import { CHART_TYPES, CHART_MODES } from "../../../constants/chartTypes";
 import { PricingLink } from "../../../components/PricingLink";
 import { LoadingSpinner } from "../../../components/LoadingSpinner";
 
@@ -66,6 +66,7 @@ export const IoChartWidget = ({
   setTimeWindow
 }) => {
   const [seriesType, setSeriesType] = useState(CHART_TYPES.line);
+  const [chartMode, setChartMode] = useState(CHART_MODES.logarithmic);
 
   return (
     <>
@@ -118,28 +119,8 @@ export const IoChartWidget = ({
                         : GRAPH_SIZE.height.desktop
                     }
                     formatter={formatter}
+                    mode={chartMode}
                   />
-                  {/* <SimpleChart
-                    dataSet={dataSet.netflowData}
-                    width={
-                      window.matchMedia(
-                        "(min-width: 320px) and (max-width: 767px)"
-                      ).matches
-                        ? GRAPH_SIZE.width.mobile
-                        : window.matchMedia(
-                            "(min-width: 768px) and (max-width: 1399px)"
-                          ).matches
-                        ? GRAPH_SIZE.width.tablet
-                        : window.matchMedia(
-                            "(min-width: 1400px) and (max-width: 1799px)"
-                          ).matches
-                        ? GRAPH_SIZE.width.desktop
-                        : GRAPH_SIZE.width.desktopLarge
-                    }
-                    height={GRAPH_SIZE.netflowHeight}
-                    formatter={formatter}
-                    mode={0}
-                  /> */}
                 </>
               )}
             </div>
@@ -151,6 +132,8 @@ export const IoChartWidget = ({
               dataSet={dataSet.mainData}
               setDataSet={setDataSet}
               setTimeWindow={setTimeWindow}
+              chartMode={chartMode}
+              setChartMode={setChartMode}
             />
             <div className="pricing-link">
               <PricingLink />

@@ -10,7 +10,7 @@ import { COIN_IMAGES } from "../../../constants/image-paths";
 import { colors } from "../../../constants/styles/colors";
 import { TIME_WINDOWS } from "../../../constants/filters";
 
-const chartDisplay = [
+const CHART_DISPLAY = [
   {
     type: CHART_TYPES.line,
     label: "Line",
@@ -25,6 +25,17 @@ const chartDisplay = [
     type: CHART_TYPES.histogram,
     label: "Histogram",
     icon: "timeline-bar-chart"
+  }
+];
+
+const CHART_MODES = [
+  {
+    label: "Linear",
+    value: 0
+  },
+  {
+    label: "Logarithmic",
+    value: 1
   }
 ];
 
@@ -43,9 +54,11 @@ export const ChartControls = ({
   dataSet,
   seriesType,
   token,
+  chartMode,
   setDataSet,
   setSeriesType,
   setToken,
+  setChartMode,
   setDataPoint,
   setTimeWindow,
   borderColor
@@ -59,7 +72,7 @@ export const ChartControls = ({
         {setSeriesType && (
           <div className="control">
             <div className="header">Chart Type</div>
-            {chartDisplay.map(chartType => (
+            {CHART_DISPLAY.map(chartType => (
               <div
                 key={chartType.type}
                 className="option"
@@ -89,6 +102,33 @@ export const ChartControls = ({
                         : "gray"
                     }
                   />
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+        {setChartMode && (
+          <div className="control">
+            <div className="header">Chart Scaling</div>
+            {CHART_MODES.map(cm => (
+              <div
+                key={cm.label}
+                className="option-scaling"
+                onClick={() => {
+                  setChartMode(cm.value);
+                  ReactGA.event({
+                    category: "Chart Mode",
+                    action: `Chart Mode ${cm.label}`,
+                    label: `Chart Mode`
+                  });
+                }}
+              >
+                <div
+                  className={
+                    chartMode === cm.value ? "button-selected" : "button"
+                  }
+                >
+                  {cm.label}
                 </div>
               </div>
             ))}
@@ -272,6 +312,15 @@ export const ChartControls = ({
           align-items: center;
           width: 160px;
           justify-content: space-between;
+        }
+        .option-scaling {
+          cursor: pointer;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          width: 160px;
+          justify-content: space-between;
+          padding-bottom: 10px;
         }
         .button {
           margin-right: 10px;
