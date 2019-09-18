@@ -1,13 +1,13 @@
 import React from "react";
 
 import { Product } from "./Product";
-import { products } from "./data/productsData";
+import { PRODUCTS } from "./data/productsData";
 
 export const ProductSelectionWidget = () => {
   return (
     <>
       <div className="container">
-        {products.map(
+        {PRODUCTS.map(
           ({ name, price, features, buttonText, stripePlan }, index) => (
             <React.Fragment key={name}>
               <Product
@@ -17,7 +17,7 @@ export const ProductSelectionWidget = () => {
                 buttonText={buttonText}
                 stripePlan={stripePlan}
               />
-              {index !== products.length - 1 && <Separator />}
+              {index !== PRODUCTS.length - 1 && <Separator />}
             </React.Fragment>
           )
         )}

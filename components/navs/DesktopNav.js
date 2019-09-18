@@ -41,138 +41,139 @@ export const DesktopNav = () => {
   };
 
   return (
-    <div className="container">
-      <div className="desktop">
-        <div className="left-side">
-          <div className="logo-desktop">
-            <Link href="/" passHref>
-              <img
-                src={
-                  loginCtx.isLoggedIn
-                    ? `/static/png/${LOGO_IMAGES["DesktopPro"]}`
-                    : `/static/png/${LOGO_IMAGES["Desktop"]}`
-                }
-                width="180px"
-                onMouseOver={() => {
-                  collapseAllSubMenus();
-                }}
-              />
-            </Link>
-          </div>
-          <div className="desktop-links">
-            <div
-              className={classNames("desktop-link", setLinkActive(asPath, "/"))}
-              onMouseOver={() => {
-                collapseAllSubMenus();
-                setShownItems(prev => ({ ...prev, exchanges: true }));
-              }}
-            >
-              Exchange Flow
+    <>
+      <div className="container">
+        <div className="desktop">
+          <div className="left-side">
+            <div className="logo-desktop">
+              <Link href="/" passHref>
+                <img
+                  src={
+                    loginCtx.isLoggedIn
+                      ? `/static/png/${LOGO_IMAGES["DesktopPro"]}`
+                      : `/static/png/${LOGO_IMAGES["Desktop"]}`
+                  }
+                  width="180px"
+                  onMouseOver={() => {
+                    collapseAllSubMenus();
+                  }}
+                />
+              </Link>
             </div>
-            <Link href="/stablecoins" passHref>
+            <div className={"links-metrics"}>
               <div
                 className={classNames(
                   "desktop-link",
-                  setLinkActive(asPath, "/stablecoins")
+                  setLinkActive(asPath, "/")
                 )}
-                onMouseOver={collapseAllSubMenus}
-              >
-                Stablecoins
+                onMouseOver={() => {
+                  collapseAllSubMenus();
+                  setShownItems(prev => ({ ...prev, exchanges: true }));
+                }}>
+                Exchange Flow
               </div>
-            </Link>
-            <Link href="/compare" passHref>
+              <Link href="/stablecoins" passHref>
+                <div
+                  className={classNames(
+                    "desktop-link",
+                    setLinkActive(asPath, "/stablecoins")
+                  )}
+                  onMouseOver={collapseAllSubMenus}>
+                  Stablecoins
+                </div>
+              </Link>
+              <Link href="/compare" passHref>
+                <div
+                  className={classNames(
+                    "desktop-link",
+                    setLinkActive(asPath, "/compare")
+                  )}
+                  onMouseOver={collapseAllSubMenus}>
+                  Compare
+                </div>
+              </Link>
+            </div>
+
+            <div className={"links-products"}>
+              <a href="https://research.tokenanalyst.io/" target="_blank">
+                Research
+              </a>
+              <Link href="/pricing" passHref>
+                <div
+                  className={classNames(
+                    "desktop-link",
+                    setLinkActive(asPath, "/pricing")
+                  )}>
+                  Pricing
+                </div>
+              </Link>
+              <a
+                href="https://docs.tokenanalyst.io/#/api"
+                target="_blank"
+                onMouseOver={collapseAllSubMenus}>
+                API
+              </a>
               <div
                 className={classNames(
                   "desktop-link",
-                  setLinkActive(asPath, "/compare")
+                  setLinkActive(asPath, "/about")
                 )}
-                onMouseOver={collapseAllSubMenus}
-              >
-                Compare
+                onMouseOver={() => {
+                  collapseAllSubMenus();
+                  setShownItems(prev => ({ ...prev, contact: true }));
+                }}>
+                About Us
               </div>
-            </Link>
-            <a href="https://research.tokenanalyst.io/" target="_blank">
-              Research
-            </a>
-            <Link href="/pricing" passHref>
-              <div
-                className={classNames(
-                  "desktop-link",
-                  setLinkActive(asPath, "/pricing")
-                )}
-              >
-                Pricing
-              </div>
-            </Link>
-            <a
-              href="https://docs.tokenanalyst.io/#/api"
-              target="_blank"
-              onMouseOver={collapseAllSubMenus}
-            >
-              API
-            </a>
-            <div
-              className={classNames(
-                "desktop-link",
-                setLinkActive(asPath, "/about")
-              )}
-              onMouseOver={() => {
-                collapseAllSubMenus();
-                setShownItems(prev => ({ ...prev, contact: true }));
-              }}
-            >
-              About Us
             </div>
           </div>
-        </div>
-        <div className="right-side">
-          {loginCtx.isLoggedIn ? (
-            <>
-              <span style={{ color: "white" }}>
-                Welcome, {Cookies.get("loggedInAs")}
-              </span>
-              <span
-                className="login-button"
-                onClick={() => {
-                  Cookies.remove("apiKey");
-                  loginCtx.setIsLoggedIn(false);
-                  ReactGA.event({
-                    category: "User",
-                    action: `Click Logout`,
-                    label: `Desktop Nav`
-                  });
-                }}
-                onMouseOver={() => {
-                  collapseAllSubMenus();
-                }}
-              >
-                Logout
-              </span>
-            </>
-          ) : (
-            <Link href="/login" passHref>
-              <div
-                className="login-button"
-                onMouseOver={() => {
-                  collapseAllSubMenus();
-                }}
-              >
-                Login
-              </div>
-            </Link>
-          )}
+          <div className="right-side">
+            {loginCtx.isLoggedIn ? (
+              <>
+                <div style={{ color: "white" }}>
+                  Welcome, {Cookies.get("loggedInAs")}
+                </div>
+                <div
+                  className="login-button"
+                  onClick={() => {
+                    Cookies.remove("apiKey");
+                    Cookies.remove("loggedInAs");
+                    Cookies.remove("loggedInAsUsername");
+                    Cookies.remove("loggedInAsUserId");
+                    loginCtx.setIsLoggedIn(false);
+                    ReactGA.event({
+                      category: "User",
+                      action: `Click Logout`,
+                      label: `Desktop Nav`
+                    });
+                  }}
+                  onMouseOver={() => {
+                    collapseAllSubMenus();
+                  }}>
+                  Logout
+                </div>
+              </>
+            ) : (
+              <Link href="/login" passHref>
+                <div
+                  className="login-button"
+                  onMouseOver={() => {
+                    collapseAllSubMenus();
+                  }}>
+                  Login
+                </div>
+              </Link>
+            )}
+          </div>
         </div>
       </div>
       <div className="desktop-sub-links-container">
         <div
           className="desktop-contact-sub-link-container"
-          onClick={collapseAllSubMenus}
-        >
+          onClick={collapseAllSubMenus}>
           <div className="desktop-sub-links">
             <div
               className="desktop-contact-sub-links"
-              onMouseLeave={() => collapseSubMenuDelayed("contact")}
-            >
+              onMouseLeave={() => collapseSubMenuDelayed("contact")}>
               <div>
                 <Link href="/about" passHref>
                   <div
@@ -186,8 +187,7 @@ export const DesktopNav = () => {
                     className={classNames(
                       "desktop-sub-link",
                       setLinkActive(asPath, "/about")
-                    )}
-                  >
+                    )}>
                     Company
                   </div>
                 </Link>
@@ -202,8 +202,7 @@ export const DesktopNav = () => {
                       action: `Click Follow Us`,
                       label: `Desktop Nav`
                     });
-                  }}
-                >
+                  }}>
                   Follow Us
                 </a>
               </div>
@@ -217,8 +216,7 @@ export const DesktopNav = () => {
                       action: `Click Telegram`,
                       label: `Desktop Nav`
                     });
-                  }}
-                >
+                  }}>
                   Telegram
                 </a>
               </div>
@@ -232,8 +230,7 @@ export const DesktopNav = () => {
                       action: `Click Contact`,
                       label: `Desktop Nav`
                     });
-                  }}
-                >
+                  }}>
                   Contact
                 </a>
               </div>
@@ -242,19 +239,16 @@ export const DesktopNav = () => {
         </div>
         <div
           className="desktop-exchanges-sub-link-container"
-          onClick={collapseAllSubMenus}
-        >
+          onClick={collapseAllSubMenus}>
           <div className="desktop-sub-links">
             <div
               className="desktop-exchanges-sub-links"
-              onMouseLeave={() => collapseSubMenuDelayed("exchanges")}
-            >
+              onMouseLeave={() => collapseSubMenuDelayed("exchanges")}>
               <div>
                 <Link
                   href="/exchange/[token]/[exchange]"
                   as="/exchange/BTC/Binance"
-                  passHref
-                >
+                  passHref>
                   <div
                     onClick={() => {
                       ReactGA.event({
@@ -266,8 +260,7 @@ export const DesktopNav = () => {
                     className={classNames(
                       "desktop-sub-link",
                       setLinkActive(asPath, "/exchange/BTC/Binance")
-                    )}
-                  >
+                    )}>
                     BTC Binance
                   </div>
                 </Link>
@@ -276,8 +269,7 @@ export const DesktopNav = () => {
                 <Link
                   href="/exchange/[token]/[exchange]"
                   as="/exchange/BTC/Bitstamp"
-                  passHref
-                >
+                  passHref>
                   <div
                     onClick={() => {
                       ReactGA.event({
@@ -289,8 +281,7 @@ export const DesktopNav = () => {
                     className={classNames(
                       "desktop-sub-link",
                       setLinkActive(asPath, "/exchange/BTC/Bitstamp")
-                    )}
-                  >
+                    )}>
                     BTC Bitstamp
                   </div>
                 </Link>
@@ -299,8 +290,7 @@ export const DesktopNav = () => {
                 <Link
                   href="/exchange/[token]/[exchange]"
                   as="/exchange/ETH/Bitfinex"
-                  passHref
-                >
+                  passHref>
                   <div
                     onClick={() => {
                       ReactGA.event({
@@ -312,8 +302,7 @@ export const DesktopNav = () => {
                     className={classNames(
                       "desktop-sub-link",
                       setLinkActive(asPath, "/exchange/ETH/Bitfinex")
-                    )}
-                  >
+                    )}>
                     ETH Bitfinex
                   </div>
                 </Link>
@@ -322,8 +311,7 @@ export const DesktopNav = () => {
                 <Link
                   href="/exchange/[token]/[exchange]"
                   as="/exchange/ETH/Bittrex"
-                  passHref
-                >
+                  passHref>
                   <div
                     onClick={() => {
                       ReactGA.event({
@@ -335,8 +323,7 @@ export const DesktopNav = () => {
                     className={classNames(
                       "desktop-sub-link",
                       setLinkActive(asPath, "/exchange/ETH/Bittrex")
-                    )}
-                  >
+                    )}>
                     ETH Bittrex
                   </div>
                 </Link>
@@ -365,6 +352,13 @@ export const DesktopNav = () => {
         .left-side {
           display: flex;
           flex-direction: row;
+          width: 100%;
+          align-items: center;
+        }
+        .right-side {
+          margin-right: 2%;
+          display: flex;
+          padding-left: 10px;
         }
         .logo-desktop {
           cursor: pointer;
@@ -372,9 +366,9 @@ export const DesktopNav = () => {
         .desktop-links {
           display: flex;
           flex-direction: row;
-          justify-content: flex-start;
+          justify-content: space-between;
           align-items: center;
-          min-width: 100%;
+          width: 100%;
         }
         .desktop-link,
         a {
@@ -386,6 +380,14 @@ export const DesktopNav = () => {
         }
         .active {
           opacity: 1 !important;
+        }
+        .links-metrics {
+          display: flex;
+        }
+        .links-products {
+          display: flex;
+          flex-grow: 1;
+          justify-content: flex-end;
         }
         .desktop-link:hover,
         a:hover {
@@ -447,9 +449,6 @@ export const DesktopNav = () => {
         .desktop-exchanges-sub-links {
           display: ${shownItems.exchanges ? "block" : "none"};
         }
-        .right-side {
-          margin-right: 2%;
-        }
         .login-button {
           color: white;
           min-width: 60px;
@@ -462,6 +461,6 @@ export const DesktopNav = () => {
           margin-left: 20px;
         }
       `}</style>
-    </div>
+    </>
   );
 };
