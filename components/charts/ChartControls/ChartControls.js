@@ -107,31 +107,33 @@ export const ChartControls = ({
             ))}
           </div>
         )}
-        <div className="control">
-          <div className="header">Chart Scaling</div>
-          {chartModes.map(cm => (
-            <div
-              key={cm.label}
-              className="option-scaling"
-              onClick={() => {
-                setChartMode(cm.value);
-                ReactGA.event({
-                  category: "Chart Mode",
-                  action: `Chart Mode ${cm.label}`,
-                  label: `Chart Mode`
-                });
-              }}
-            >
+        {setChartMode && (
+          <div className="control">
+            <div className="header">Chart Scaling</div>
+            {chartModes.map(cm => (
               <div
-                className={
-                  chartMode === cm.value ? "button-selected" : "button"
-                }
+                key={cm.label}
+                className="option-scaling"
+                onClick={() => {
+                  setChartMode(cm.value);
+                  ReactGA.event({
+                    category: "Chart Mode",
+                    action: `Chart Mode ${cm.label}`,
+                    label: `Chart Mode`
+                  });
+                }}
               >
-                {cm.label}
+                <div
+                  className={
+                    chartMode === cm.value ? "button-selected" : "button"
+                  }
+                >
+                  {cm.label}
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
         {setToken && (
           <div className="control">
             <div className="select-header">
