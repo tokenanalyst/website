@@ -10,13 +10,11 @@ export const Analytics = ({ children }) => {
       const handleRouteChange = () => {
         ReactGA.pageview(Router.asPath);
       };
+
       Router.events.on('routeChangeComplete', handleRouteChange);
+
       Sentry.init({
         dsn: 'https://04801cfba732405cae39800a34b707ca@sentry.io/1553818',
-      });
-
-      window.Intercom('boot', {
-        app_id: 's8z1cqo3',
       });
 
       return () => {
