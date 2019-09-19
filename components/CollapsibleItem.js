@@ -19,11 +19,11 @@ export const CollapsibleItem = ({ header, body }) => {
           .header {
             font-size: 16px;
             font-weight: bold;
-            line-height: 52px;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding-bottom: 10px;
           }
         `}
       </style>

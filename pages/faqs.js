@@ -8,7 +8,7 @@ const Faqs = () => {
     <>
       <PageHeader text={'FAQs'} />
       {FAQS.map(faq => (
-        <div className="faq">
+        <div className="faq" key={faq.question}>
           <CollapsibleItem header={faq.question} body={faq.answer} />
         </div>
       ))}
