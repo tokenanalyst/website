@@ -479,7 +479,7 @@ export const DesktopNav = () => {
         }
         .login-button {
           color: white;
-          min-width: 60px;
+          min-width: 80px;
           text-align: center;
           background-color: rgba(${colors.primaryGreen});
           max-height: 40px;
