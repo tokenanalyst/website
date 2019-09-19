@@ -207,6 +207,25 @@ export const DesktopNav = () => {
                   </div>
                 </Link>
               </div>
+              <div>
+                <Link href="/faqs" passHref>
+                  <div
+                    onClick={() => {
+                      ReactGA.event({
+                        category: 'User',
+                        action: `Click FAQs`,
+                        label: `Desktop Nav`,
+                      });
+                    }}
+                    className={classNames(
+                      'desktop-sub-link',
+                      setLinkActive(asPath, '/faqs')
+                    )}
+                  >
+                    FAQs
+                  </div>
+                </Link>
+              </div>
               <div className="desktop-sub-link">
                 <a
                   href="https://twitter.com/thetokenanalyst"
