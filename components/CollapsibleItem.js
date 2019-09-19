@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 import { Card, Collapse, Icon } from '@blueprintjs/core';
 
@@ -29,4 +30,9 @@ export const CollapsibleItem = ({ header, body }) => {
       </style>
     </>
   );
+};
+
+CollapsibleItem.propTypes = {
+  header: PropTypes.string,
+  body: PropTypes.string,
 };
