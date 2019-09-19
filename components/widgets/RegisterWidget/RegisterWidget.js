@@ -3,6 +3,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import { Icon } from '@blueprintjs/core';
 import Link from 'next/link';
+import Router from 'next/router';
 
 import { LoginContext } from '../../../contexts/Login';
 import { colors } from '../../../constants/styles/colors';
@@ -26,6 +27,8 @@ export const RegisterWidget = () => {
     isDeveloper: false,
     isOther: false,
   });
+
+  const isRedirectedForFreeTier = loginCtx.paymentData.isFreeTier;
 
   const {
     isTrader,
@@ -87,6 +90,9 @@ export const RegisterWidget = () => {
           customerEmail: username,
           clientReferenceId: id.toString(),
         });
+      } else if (loginCtx.paymentData.isFreeTier) {
+        loginCtx.setPaymentData({ ...loginCtx.paymentData, isFreeTier: false });
+        Router.push('/free-tier-success');
       }
     } catch (e) {
       if (
@@ -245,6 +251,11 @@ export const RegisterWidget = () => {
               Register
             </div>
             {errorText && <div className="error">{errorText}</div>}
+            {isRedirectedForFreeTier ? (
+              <div className="message">
+                Please register to access your free tier.
+              </div>
+            ) : null}
           </>
         )}
       </div>
@@ -302,6 +313,10 @@ export const RegisterWidget = () => {
           justify-content: space-between;
           padding-top: 15px;
           width: 250px;
+        }
+        .message {
+          padding-top: 10px;
+          text-align: center;
         }
         @media only screen and (max-width: 768px) {
           .input {

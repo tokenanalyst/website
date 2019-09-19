@@ -1,16 +1,17 @@
-import React, { useContext } from "react";
-import ReactGA from "react-ga";
-import Router from "next/router";
-import Cookies from "js-cookie";
+import React, { useContext } from 'react';
+import ReactGA from 'react-ga';
+import Router from 'next/router';
+import Cookies from 'js-cookie';
 
-import { LoginContext } from "../../../contexts/Login";
-import { STRIPE } from "../../../constants/stripe";
-import { colors } from "../../../constants/styles/colors";
+import { LoginContext } from '../../../contexts/Login';
+import { STRIPE } from '../../../constants/stripe';
+import { PLAN_NAMES } from '../../../constants/plans';
+import { colors } from '../../../constants/styles/colors';
 
 export const Product = ({ name, price, features, buttonText, stripePlan }) => {
   const loginCtx = useContext(LoginContext);
-  const username = Cookies.get("loggedInAsUsername");
-  const userId = Cookies.get("loggedInAsUserId");
+  const username = Cookies.get('loggedInAsUsername');
+  const userId = Cookies.get('loggedInAsUserId');
 
   const redirectToStripe = async stripeOptions => {
     const stripe = Stripe(STRIPE.apiKey);
@@ -18,15 +19,23 @@ export const Product = ({ name, price, features, buttonText, stripePlan }) => {
       items: [
         {
           plan: stripePlan,
-          quantity: 1
-        }
+          quantity: 1,
+        },
       ],
-      successUrl: "https://www.tokenanalyst.io/purchase-success",
-      cancelUrl: "https://www.tokenanalyst.io/",
-      ...stripeOptions
+      successUrl: 'https://www.tokenanalyst.io/purchase-success',
+      cancelUrl: 'https://www.tokenanalyst.io/',
+      ...stripeOptions,
     };
 
     await stripe.redirectToCheckout(stripeOpt);
+  };
+
+  const emitProductEvent = name => {
+    ReactGA.event({
+      category: 'User',
+      action: `Plan select ${name}`,
+      label: `Plans`,
+    });
   };
 
   return (
@@ -49,39 +58,36 @@ export const Product = ({ name, price, features, buttonText, stripePlan }) => {
           <div
             className="purchase-button"
             onClick={
-              stripePlan
-                ? async () => {
-                    ReactGA.event({
-                      category: "User",
-                      action: `Plan select ${name}`,
-                      label: `Plans`
-                    });
-
+              name === PLAN_NAMES.ENTERPRISE
+                ? () => {
+                    emitProductEvent(name);
+                    window.location = 'mailto:info@tokenanalyst.io';
+                  }
+                : name === PLAN_NAMES.FREE
+                ? () => {
+                    emitProductEvent(name);
                     if (!loginCtx.isLoggedIn) {
                       loginCtx.setPaymentData({
-                        stripe: { redirectFn: redirectToStripe }
+                        isFreeTier: true,
                       });
-                      return Router.push("/login");
+                    }
+                    return Router.push('/register');
+                  }
+                : async () => {
+                    emitProductEvent(name);
+                    if (!loginCtx.isLoggedIn) {
+                      loginCtx.setPaymentData({
+                        stripe: { redirectFn: redirectToStripe },
+                      });
+                      return Router.push('/login');
                     }
                     await redirectToStripe({
                       customerEmail: username,
-                      clientReferenceId: userId.toString()
+                      clientReferenceId: userId.toString(),
                     });
                   }
-                : () => {
-                    ReactGA.event({
-                      category: "User",
-                      action: `Plan select ${name}`,
-                      label: `Plans`
-                    });
-
-                    // if (name === "Free") {
-                    //   return Router.push("/login");
-                    // }
-
-                    window.location = "mailto:info@tokenanalyst.io";
-                  }
-            }>
+            }
+          >
             {buttonText}
           </div>
         </div>
