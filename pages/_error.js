@@ -47,7 +47,7 @@ class Error extends React.Component {
             width: 120px;
             text-align: center;
             background-color: rgba(${colors.primaryGreen});
-            max-height: 20px;
+            max-height: 40px;
             padding: 10px;
             border-radius: 10px;
             cursor: pointer;

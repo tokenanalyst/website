@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import ReactGA from 'react-ga';
 import Router from 'next/router';
 import Cookies from 'js-cookie';
+import { Card } from '@blueprintjs/core';
 
 import { LoginContext } from '../../../contexts/Login';
 import { STRIPE } from '../../../constants/stripe';
@@ -41,66 +42,71 @@ export const Product = ({ name, price, features, buttonText, stripePlan }) => {
   return (
     <>
       <div className="container">
-        <div className="header">
-          <div className="title">{name}</div>
-          <div className="price">
-            {price} <span className="monthly">/month</span>
-          </div>
-        </div>
-        <div className="body">
-          <div className="features">
-            {features.map(feature => (
-              <div key={feature} className="feature">
-                {feature}
+        <Card>
+          <div className="card-body">
+            <div className="header">
+              <div className="title">{name}</div>
+              <div className="price">
+                {price} <span className="monthly">/month</span>
               </div>
-            ))}
+            </div>
+            <div className="body">
+              <div className="features">
+                {features.map(feature => (
+                  <div key={feature} className="feature">
+                    {feature}
+                  </div>
+                ))}
+              </div>
+              <div
+                className="purchase-button"
+                onClick={
+                  name === PLAN_NAMES.ENTERPRISE
+                    ? () => {
+                        emitProductEvent(name);
+                        window.location = 'mailto:info@tokenanalyst.io';
+                      }
+                    : name === PLAN_NAMES.FREE
+                    ? () => {
+                        emitProductEvent(name);
+                        if (!loginCtx.isLoggedIn) {
+                          loginCtx.setPaymentData({
+                            isFreeTier: true,
+                          });
+                        }
+                        return Router.push('/register');
+                      }
+                    : async () => {
+                        emitProductEvent(name);
+                        if (!loginCtx.isLoggedIn) {
+                          loginCtx.setPaymentData({
+                            stripe: { redirectFn: redirectToStripe },
+                          });
+                          return Router.push('/login');
+                        }
+                        await redirectToStripe({
+                          customerEmail: username,
+                          clientReferenceId: userId.toString(),
+                        });
+                      }
+                }
+              >
+                {buttonText}
+              </div>
+            </div>
           </div>
-          <div
-            className="purchase-button"
-            onClick={
-              name === PLAN_NAMES.ENTERPRISE
-                ? () => {
-                    emitProductEvent(name);
-                    window.location = 'mailto:info@tokenanalyst.io';
-                  }
-                : name === PLAN_NAMES.FREE
-                ? () => {
-                    emitProductEvent(name);
-                    if (!loginCtx.isLoggedIn) {
-                      loginCtx.setPaymentData({
-                        isFreeTier: true,
-                      });
-                    }
-                    return Router.push('/register');
-                  }
-                : async () => {
-                    emitProductEvent(name);
-                    if (!loginCtx.isLoggedIn) {
-                      loginCtx.setPaymentData({
-                        stripe: { redirectFn: redirectToStripe },
-                      });
-                      return Router.push('/login');
-                    }
-                    await redirectToStripe({
-                      customerEmail: username,
-                      clientReferenceId: userId.toString(),
-                    });
-                  }
-            }
-          >
-            {buttonText}
-          </div>
-        </div>
+        </Card>
       </div>
       <style jsx>{`
         .container {
           font-family: Open Sans;
           display: flex;
           flex-direction: column;
-          min-width: 300px;
-          max-width: 300px;
-          border-bottom: solid 1px rgba(151, 151, 151, 0.15);
+          min-width: 500px;
+          max-width: 500px;
           padding: 10px;
+        }
+        .card-body {
         }
         .header {
           font-family: Space Grotesk;
