@@ -1,6 +1,5 @@
 export const PLAN_NAMES = {
   FREE: 'Free',
-  HOBBYIST: 'Hobbyist',
   PRO: 'Pro',
   ENTERPRISE: 'Enterprise',
 };
@@ -11,13 +10,6 @@ export const PLANS = {
     price: '$0',
     features: ['Fundamental Analytics', '90 Day Data', 'CSV & API'],
     buttonText: 'Get',
-  },
-  HOBBYIST: {
-    name: PLAN_NAMES.HOBBYIST,
-    price: '$199',
-    features: ['Advanced Analytics', 'Full Historical Data', 'CSV & API'],
-    buttonText: 'Purchase',
-    stripePlan: 'plan_FZwwbyxH5Pi73S',
   },
   PRO: {
     name: PLAN_NAMES.PRO,

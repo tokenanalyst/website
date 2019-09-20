@@ -45,7 +45,7 @@ export const FEATURES = {
         },
         {
           name: 'Security Metrics (hashrate, miner rewards, uncle rates)',
-          entitled: [false, true, true, true],
+          entitled: [false, true, true],
         },
       ],
     },

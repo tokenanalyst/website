@@ -9,7 +9,14 @@ import { STRIPE } from '../../../constants/stripe';
 import { PLAN_NAMES } from '../../../constants/plans';
 import { colors } from '../../../constants/styles/colors';
 
-export const Product = ({ name, price, features, buttonText, stripePlan }) => {
+export const Product = ({
+  name,
+  price,
+  features,
+  buttonText,
+  stripePlan,
+  isMaxWidth,
+}) => {
   const loginCtx = useContext(LoginContext);
   const username = Cookies.get('loggedInAsUsername');
   const userId = Cookies.get('loggedInAsUserId');
@@ -47,7 +54,11 @@ export const Product = ({ name, price, features, buttonText, stripePlan }) => {
             <div className="header">
               <div className="title">{name}</div>
               <div className="price">
-                {price} <span className="monthly">/month</span>
+                {price ? (
+                  <>
+                    {price} <span className="monthly">/month</span>
+                  </>
+                ) : null}
               </div>
             </div>
             <div className="body">
@@ -102,8 +113,8 @@ export const Product = ({ name, price, features, buttonText, stripePlan }) => {
           font-family: Open Sans;
           display: flex;
           flex-direction: column;
-          min-width: 500px;
-          max-width: 500px;
+          min-width: ${isMaxWidth ? '100%' : '600px'};
+          max-width: 600px;
           padding: 10px;
         }
         .card-body {
@@ -139,7 +150,7 @@ export const Product = ({ name, price, features, buttonText, stripePlan }) => {
         }
         .purchase-button {
           color: white;
-          min-width: 60px;
+          min-width: 110px;
           text-align: center;
           background-color: rgba(${colors.primaryGreen});
           max-height: 40px;

@@ -65,6 +65,9 @@ export const FeatureTableDesktop = () => {
           padding-left: 20px;
           padding-right: 90px;
         }
+        table {
+          border-spacing: 0px;
+        }
         @media only screen and (max-width: 768px) {
           .container {
             display: none;
