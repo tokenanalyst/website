@@ -1,29 +1,31 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { TokenSnapshot } from './TokenSnapshot';
-import { NATIVE_TOKENS, STABLE_TOKENS } from '../../../constants/tokens';
-
-const defaultTokens = [
-  NATIVE_TOKENS.BTC,
-  NATIVE_TOKENS.ETH,
-  STABLE_TOKENS.DAI,
-  STABLE_TOKENS.OMG,
-];
+import { getTokens } from './helpers';
 
 export const TokenSnapshotWidget = ({ units, dataWindow }) => {
+  const [tokens, setTokens] = useState(null);
+
+  useEffect(() => {
+    setTokens(getTokens());
+  }, []);
+
   return (
     <>
-      <div className="container">
-        {defaultTokens.map(token => (
-          <TokenSnapshot
-            key={token}
-            token={token}
-            dataWindow={dataWindow}
-            units={units}
-          />
-        ))}
-      </div>
+      {tokens && (
+        <div className="container">
+          {tokens.map((token, index) => (
+            <TokenSnapshot
+              key={token}
+              initialToken={token}
+              dataWindow={dataWindow}
+              units={units}
+              position={index}
+            />
+          ))}
+        </div>
+      )}
       <style jsx>{`
         .container {
           display: flex;

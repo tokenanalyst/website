@@ -1,6 +1,11 @@
 export const TOKEN_NAMES = {
   BTC: 'Bitcoin',
   ETH: 'Ethereum',
-  USDC: 'USDC',
+  USDT: 'Tether',
   DAI: 'DAI',
+  OMG: 'OmiseGO',
+  PAX: 'Paxos',
+  TUSD: 'TrueUSD',
+  USDC: 'USD Coin',
+  GUSD: 'Gemini Dollar',
 };
