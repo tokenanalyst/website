@@ -8,4 +8,6 @@ export const TOKEN_NAMES = {
   TUSD: 'TrueUSD',
   USDC: 'USD Coin',
   GUSD: 'Gemini Dollar',
+  LINK: 'Chainlink',
+  ZIL: 'Zilliqa',
 };

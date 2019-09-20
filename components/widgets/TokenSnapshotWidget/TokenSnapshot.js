@@ -8,10 +8,10 @@ import ReactGA from 'react-ga';
 
 import { colors } from '../../../constants/styles/colors';
 import { LoadingSpinner } from '../../LoadingSpinner';
-import { DATA_WINDOWS } from '../../../constants/filters';
 import { NATIVE_TOKENS, STABLE_TOKENS } from '../../../constants/tokens';
 import { TOKEN_NAMES } from '../../../constants/token-names';
 import { updateToken } from './helpers';
+import { getTokenSnapshotData } from '../../../data-transformers/widgets/getTokenSnapshot';
 
 const TOKEN_OPTIONS = [
   NATIVE_TOKENS.BTC,
@@ -20,21 +20,8 @@ const TOKEN_OPTIONS = [
   STABLE_TOKENS.PAX,
   STABLE_TOKENS.OMG,
   STABLE_TOKENS.TUSD,
+  STABLE_TOKENS.LINK,
 ];
-
-const getSparklineWindow = (tokenData, dataWindow, flow) => {
-  const { hours, days } = tokenData;
-  const sparkLines = {
-    [DATA_WINDOWS[0]]: [
-      ...hours[flow].slice(hours[flow].length - 24, hours[flow].length),
-    ],
-    [DATA_WINDOWS[1]]: [
-      ...days[flow].slice(days[flow].length - 7, hours[flow].length),
-    ],
-    [DATA_WINDOWS[2]]: [...days[flow]],
-  };
-  return sparkLines[dataWindow];
-};
 
 export const TokenSnapshot = ({
   initialToken,
@@ -43,6 +30,7 @@ export const TokenSnapshot = ({
   position,
 }) => {
   const [data, setData] = useState(null);
+  const [apiResponse, setApiResponse] = useState(null);
   const [snapshotToken, setSnapshotToken] = useState(initialToken);
 
   useEffect(() => {
@@ -50,11 +38,23 @@ export const TokenSnapshot = ({
       const result = await axios.get(
         `/api/latest-exchange-flows?tokens=${snapshotToken}`
       );
-      setData(result.data);
+      setApiResponse(result.data);
+      setData(
+        getTokenSnapshotData(result.data, snapshotToken, units, dataWindow)
+      );
     };
 
+    setData(null);
     getData();
   }, [snapshotToken]);
+
+  useEffect(() => {
+    if (data) {
+      setData(
+        getTokenSnapshotData(apiResponse, snapshotToken, units, dataWindow)
+      );
+    }
+  }, [units, dataWindow]);
 
   return (
     <>
@@ -73,6 +73,7 @@ export const TokenSnapshot = ({
                   <RadioGroup selectedValue={snapshotToken}>
                     {TOKEN_OPTIONS.map(token => (
                       <Radio
+                        defaultChecked
                         label={token}
                         value={token}
                         onClick={e => {
@@ -95,74 +96,33 @@ export const TokenSnapshot = ({
           </div>
           <div className="top-row">
             <span className="token-value">
-              ${numeral(data[snapshotToken].token.price).format('0,0')}
+              ${numeral(data.price).format('0,0')}
             </span>
             <span>
               <img
                 src={
-                  data[snapshotToken].token.price_pct_change < 0
+                  data.change < 0
                     ? '/static/svg/down.svg'
-                    : data[snapshotToken].token.price_pct_change > 0
+                    : data.change > 0
                     ? '/static/svg/up.svg'
                     : '/static/svg/nochange.svg'
                 }
               />
               <span
                 className={
-                  data[snapshotToken].token.price_pct_change > 0
+                  data.change > 0
                     ? 'change-positive'
-                    : data[snapshotToken].token.price_pct_change < 0
+                    : data.change < 0
                     ? 'change-negative'
                     : 'change-neutral'
                 }
               >
-                {data[snapshotToken].token.price_pct_change.toFixed(2)}%
+                {data.change.toFixed(2)}%
               </span>
             </span>
           </div>
           <div className="shadow" />
-          {[
-            {
-              label: 'Inflow',
-              change:
-                units === 'USD'
-                  ? data[snapshotToken].values[`data-window-${dataWindow}`]
-                      .inflow_usd_sum_pct_change
-                  : data[snapshotToken].values[`data-window-${dataWindow}`]
-                      .inflow_sum_pct_change,
-              value:
-                units === 'USD'
-                  ? data[snapshotToken].values[`data-window-${dataWindow}`]
-                      .inflow_usd_sum
-                  : data[snapshotToken].values[`data-window-${dataWindow}`]
-                      .inflow_sum,
-              sparkline: getSparklineWindow(
-                data[snapshotToken].sparklines,
-                dataWindow,
-                'inflow'
-              ),
-            },
-            {
-              label: 'Outflow',
-              change:
-                units === 'USD'
-                  ? data[snapshotToken].values[`data-window-${dataWindow}`]
-                      .outflow_usd_sum_pct_change
-                  : data[snapshotToken].values[`data-window-${dataWindow}`]
-                      .outflow_sum_pct_change,
-              value:
-                units === 'USD'
-                  ? data[snapshotToken].values[`data-window-${dataWindow}`]
-                      .outflow_usd_sum
-                  : data[snapshotToken].values[`data-window-${dataWindow}`]
-                      .outflow_sum,
-              sparkline: getSparklineWindow(
-                data[snapshotToken].sparklines,
-                dataWindow,
-                'outflow'
-              ),
-            },
-          ].map((flow, index) => (
+          {data.flows.map((flow, index) => (
             <div className="section" key={index}>
               <>
                 <div className="sparkline-row">
@@ -363,4 +323,5 @@ TokenSnapshot.propTypes = {
   initialToken: PropTypes.string.isRequired,
   dataWindow: PropTypes.string.isRequired,
   units: PropTypes.string.isRequired,
+  position: PropTypes.number.isRequired,
 };

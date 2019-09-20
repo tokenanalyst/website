@@ -1,4 +1,5 @@
 import { NATIVE_TOKENS, STABLE_TOKENS } from '../../../../constants/tokens';
+import { APP_STORAGE_KEYS } from '../../../../constants/appStore';
 
 const defaultTokens = [
   NATIVE_TOKENS.BTC,
@@ -8,20 +9,27 @@ const defaultTokens = [
 ];
 
 export const getTokens = () => {
-  if (!window.localStorage.getItem('atAGlance')) {
+  if (!window.localStorage.getItem(APP_STORAGE_KEYS.tokenSnapshot)) {
     window.localStorage.setItem(
-      'atAGlance',
+      APP_STORAGE_KEYS.tokenSnapshot,
       JSON.stringify({ ...defaultTokens })
     );
     return Object.values(defaultTokens);
   } else {
-    const tokens = JSON.parse(window.localStorage.getItem('atAGlance'));
+    const tokens = JSON.parse(
+      window.localStorage.getItem(APP_STORAGE_KEYS.tokenSnapshot)
+    );
     return Object.values(tokens);
   }
 };
 
 export const updateToken = (token, position) => {
-  const tokens = JSON.parse(window.localStorage.getItem('atAGlance'));
+  const tokens = JSON.parse(
+    window.localStorage.getItem(APP_STORAGE_KEYS.tokenSnapshot)
+  );
   tokens[position] = token;
-  window.localStorage.setItem('atAGlance', JSON.stringify(tokens));
+  window.localStorage.setItem(
+    APP_STORAGE_KEYS.tokenSnapshot,
+    JSON.stringify(tokens)
+  );
 };
