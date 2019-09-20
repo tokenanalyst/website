@@ -1,88 +1,28 @@
-import PropTypes from "prop-types";
-import React from "react";
+import PropTypes from 'prop-types';
+import React from 'react';
 
-import { TokenSnapshot } from "./TokenSnapshot";
-import { DATA_WINDOWS } from "../../../constants/filters";
-import { TOKEN_NAMES } from "../../../constants/token-names";
-import { Separator } from "./Separator";
+import { TokenSnapshot } from './TokenSnapshot';
+import { NATIVE_TOKENS, STABLE_TOKENS } from '../../../constants/tokens';
 
-const renderSeparatorIfNotFirstSnapshot = (data, index) =>
-  Object.keys(data).length - 1 !== index && <Separator />;
+const defaultTokens = [
+  NATIVE_TOKENS.BTC,
+  NATIVE_TOKENS.ETH,
+  STABLE_TOKENS.DAI,
+  STABLE_TOKENS.OMG,
+];
 
-const getSparklineWindow = (tokenData, dataWindow, flow) => {
-  const { hours, days } = tokenData;
-  const sparkLines = {
-    [DATA_WINDOWS[0]]: [
-      ...hours[flow].slice(hours[flow].length - 24, hours[flow].length)
-    ],
-    [DATA_WINDOWS[1]]: [
-      ...days[flow].slice(days[flow].length - 7, hours[flow].length)
-    ],
-    [DATA_WINDOWS[2]]: [...days[flow]]
-  };
-  return sparkLines[dataWindow];
-};
-
-export const TokenSnapshotWidget = ({ units, data, dataWindow }) => {
+export const TokenSnapshotWidget = ({ units, dataWindow }) => {
   return (
     <>
       <div className="container">
-        {data &&
-          Object.keys(data).map((token, index) => (
-            <React.Fragment key={token}>
-              <div className="token-snapshot">
-                <TokenSnapshot
-                  token={TOKEN_NAMES[data[token].token.token]}
-                  tokenValue={data[token].token.price}
-                  tokenValueChange={data[token].token.price_pct_change}
-                  units={units}
-                  flows={[
-                    {
-                      label: "Inflow",
-                      change:
-                        units === "USD"
-                          ? data[token].values[`data-window-${dataWindow}`]
-                              .inflow_usd_sum_pct_change
-                          : data[token].values[`data-window-${dataWindow}`]
-                              .inflow_sum_pct_change,
-                      value:
-                        units === "USD"
-                          ? data[token].values[`data-window-${dataWindow}`]
-                              .inflow_usd_sum
-                          : data[token].values[`data-window-${dataWindow}`]
-                              .inflow_sum,
-                      sparkline: getSparklineWindow(
-                        data[token].sparklines,
-                        dataWindow,
-                        "inflow"
-                      )
-                    },
-                    {
-                      label: "Outflow",
-                      change:
-                        units === "USD"
-                          ? data[token].values[`data-window-${dataWindow}`]
-                              .outflow_usd_sum_pct_change
-                          : data[token].values[`data-window-${dataWindow}`]
-                              .outflow_sum_pct_change,
-                      value:
-                        units === "USD"
-                          ? data[token].values[`data-window-${dataWindow}`]
-                              .outflow_usd_sum
-                          : data[token].values[`data-window-${dataWindow}`]
-                              .outflow_sum,
-                      sparkline: getSparklineWindow(
-                        data[token].sparklines,
-                        dataWindow,
-                        "outflow"
-                      )
-                    }
-                  ]}
-                />
-              </div>
-              {renderSeparatorIfNotFirstSnapshot(data, index)}
-            </React.Fragment>
-          ))}
+        {defaultTokens.map(token => (
+          <TokenSnapshot
+            key={token}
+            token={token}
+            dataWindow={dataWindow}
+            units={units}
+          />
+        ))}
       </div>
       <style jsx>{`
         .container {
@@ -106,7 +46,6 @@ export const TokenSnapshotWidget = ({ units, data, dataWindow }) => {
 };
 
 TokenSnapshotWidget.propTypes = {
-  data: PropTypes.objectOf(PropTypes.object).isRequired,
   dataWindow: PropTypes.string.isRequired,
-  units: PropTypes.string.isRequired
+  units: PropTypes.string.isRequired,
 };
