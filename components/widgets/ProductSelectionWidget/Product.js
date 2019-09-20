@@ -50,60 +50,58 @@ export const Product = ({
     <>
       <div className="container">
         <Card>
-          <div className="card-body">
-            <div className="header">
-              <div className="title">{name}</div>
-              <div className="price">
-                {price ? (
-                  <>
-                    {price} <span className="monthly">/month</span>
-                  </>
-                ) : null}
-              </div>
+          <div className="header">
+            <div className="title">{name}</div>
+            <div className="price">
+              {price ? (
+                <>
+                  {price} <span className="monthly">/month</span>
+                </>
+              ) : null}
             </div>
-            <div className="body">
-              <div className="features">
-                {features.map(feature => (
-                  <div key={feature} className="feature">
-                    {feature}
-                  </div>
-                ))}
-              </div>
-              <div
-                className="purchase-button"
-                onClick={
-                  name === PLAN_NAMES.ENTERPRISE
-                    ? () => {
-                        emitProductEvent(name);
-                        window.location = 'mailto:info@tokenanalyst.io';
-                      }
-                    : name === PLAN_NAMES.FREE
-                    ? () => {
-                        emitProductEvent(name);
-                        if (!loginCtx.isLoggedIn) {
-                          loginCtx.setPaymentData({
-                            isFreeTier: true,
-                          });
-                        }
-                        return Router.push('/register');
-                      }
-                    : async () => {
-                        emitProductEvent(name);
-                        if (!loginCtx.isLoggedIn) {
-                          loginCtx.setPaymentData({
-                            stripe: { redirectFn: redirectToStripe },
-                          });
-                          return Router.push('/login');
-                        }
-                        await redirectToStripe({
-                          customerEmail: username,
-                          clientReferenceId: userId.toString(),
+          </div>
+          <div className="body">
+            <div className="features">
+              {features.map(feature => (
+                <div key={feature} className="feature">
+                  {feature}
+                </div>
+              ))}
+            </div>
+            <div
+              className="purchase-button"
+              onClick={
+                name === PLAN_NAMES.ENTERPRISE
+                  ? () => {
+                      emitProductEvent(name);
+                      window.location = 'mailto:info@tokenanalyst.io';
+                    }
+                  : name === PLAN_NAMES.FREE
+                  ? () => {
+                      emitProductEvent(name);
+                      if (!loginCtx.isLoggedIn) {
+                        loginCtx.setPaymentData({
+                          isFreeTier: true,
                         });
                       }
-                }
-              >
-                {buttonText}
-              </div>
+                      return Router.push('/register');
+                    }
+                  : async () => {
+                      emitProductEvent(name);
+                      if (!loginCtx.isLoggedIn) {
+                        loginCtx.setPaymentData({
+                          stripe: { redirectFn: redirectToStripe },
+                        });
+                        return Router.push('/login');
+                      }
+                      await redirectToStripe({
+                        customerEmail: username,
+                        clientReferenceId: userId.toString(),
+                      });
+                    }
+              }
+            >
+              {buttonText}
             </div>
           </div>
         </Card>
@@ -116,8 +114,6 @@ export const Product = ({
           min-width: ${isMaxWidth ? '100%' : '600px'};
           max-width: 600px;
           padding: 10px;
-        }
-        .card-body {
         }
         .header {
           font-family: Space Grotesk;
