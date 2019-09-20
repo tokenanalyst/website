@@ -154,6 +154,11 @@ export const Product = ({
           border-radius: 20px;
           cursor: pointer;
         }
+        @media (min-width: 1400px) and (max-width: 1799px) {
+          .container {
+            min-width: 450px;
+          }
+        }
         @media only screen and (max-width: 768px) {
           .container {
             padding: 5px;
