@@ -17,7 +17,6 @@ export const ProductSelectionWidget = () => {
                 buttonText={buttonText}
                 stripePlan={stripePlan}
               />
-              {index !== PRODUCTS.length - 1 && <Separator />}
             </React.Fragment>
           )
         )}
@@ -40,20 +39,3 @@ export const ProductSelectionWidget = () => {
     </>
   );
 };
-
-const Separator = () => (
-  <div className="separator">
-    <style jsx>{`
-      .separator {
-        border: solid 0.5px rgba(151, 151, 151, 0.15);
-        margin-top: 10px;
-        margin-bottom: 10px;
-      }
-      @media only screen and (max-width: 768px) {
-        .separator {
-          visibility: hidden;
-        }
-      }
-    `}</style>
-  </div>
-);
