@@ -3149,21 +3149,23 @@ webpackJsonp([17, 27], {
               (c = i.centerCaption ? 'caption-big-center' : 'caption-big'),
               n.modalDialog.find('._tv-dialog').css('width', r),
               (p = i.customButtonCaption ? i.customButtonCaption : $.t('OK')),
-              n.modalDialog.find('._tv-dialog-content').html(
-                o.render(
-                  '<div class="main"><div class="{{captionClassName}} {{classSuffix}}">{{text}}' +
-                    s +
-                    '</div>{{^removeOkButton}}<div class="buttons"><input type="button" class="_tv-button ok" value="' +
-                    p +
-                    '"/></div>{{/removeOkButton}}</div>',
-                  {
-                    captionClassName: c,
-                    classSuffix: i.classSuffix || '',
-                    text: e,
-                    removeOkButton: i && i.removeOkButton,
-                  }
-                )
-              ),
+              n.modalDialog
+                .find('._tv-dialog-content')
+                .html(
+                  o.render(
+                    '<div class="main"><div class="{{captionClassName}} {{classSuffix}}">{{text}}' +
+                      s +
+                      '</div>{{^removeOkButton}}<div class="buttons"><input type="button" class="_tv-button ok" value="' +
+                      p +
+                      '"/></div>{{/removeOkButton}}</div>',
+                    {
+                      captionClassName: c,
+                      classSuffix: i.classSuffix || '',
+                      text: e,
+                      removeOkButton: i && i.removeOkButton,
+                    }
+                  )
+                ),
               n.modalDialog.find('._tv-button.ok').on('click', function() {
                 n.destroy(), i.onOkButtonClick && i.onOkButtonClick();
               }),

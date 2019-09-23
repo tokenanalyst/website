@@ -137,10 +137,10 @@ const tvData = (exchangeService, exchangeName, symbols) => {
       );
       console.log(exchangeService.ta.getTradingPair());
       const taTradingPair = exchangeService.ta.getTradingPair();
+      console.log(taTradingPair);
       if (symbolInfo.name === '#FLOWS') {
         const flow = await exchangeService.ta.fetchExchangeFlow(
           symbolInfo.exchange,
-          'inflow',
           taTradingPair[0],
           resolution,
           from * 1000,
@@ -156,7 +156,6 @@ const tvData = (exchangeService, exchangeName, symbols) => {
       if (symbolInfo.name === '#NET_FLOWS') {
         const flow = await exchangeService.ta.fetchExchangeFlow(
           symbolInfo.exchange,
-          'outflow',
           taTradingPair[0],
           resolution,
           from * 1000,

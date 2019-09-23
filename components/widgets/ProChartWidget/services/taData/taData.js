@@ -1,14 +1,12 @@
-import TA from './utils/ta-api-node/ta';
+import { default as taApiClient } from './lib/ta-api-node/ta';
 import ta from './api';
 
 let instance;
 
-console.log(TA);
-
 const taData = ({ apiKey }) =>
   (() => {
     if (!instance) {
-      const taInstance = TA({ apiKey });
+      const taInstance = taApiClient({ apiKey });
       ta.setApi(taInstance);
       instance = ta;
       return instance;

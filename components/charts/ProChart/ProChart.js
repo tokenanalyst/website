@@ -1,16 +1,12 @@
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 import moment from 'moment';
-import * as testTv from '../../../static/charting_library/charting_library.min';
-
-console.log('TV -> ' + testTv);
 
 let tvWidget = null;
 
 const ProChart = ({ kaikoService, tradingViewOptions, onChartRenderCb }) => {
   useEffect(() => {
-    // eslint-disable-next-line new-cap
-    tvWidget = new widget(tradingViewOptions);
+    tvWidget = new TradingView.widget(tradingViewOptions);
 
     tvWidget.onChartReady(() => {
       const chart = tvWidget.chart();
