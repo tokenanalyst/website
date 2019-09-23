@@ -52,7 +52,7 @@ const Separator = () => (
     <div className="container" />
     <style jsx>{`
       .container {
-        border-right: 1px solid rgb(203, 203, 203);
+        border-right: 1px solid rgb(203, 203, 203, 0.3);
       }
     `}</style>
   </>
