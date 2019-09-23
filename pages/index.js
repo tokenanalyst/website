@@ -11,9 +11,6 @@ import { LoadingSpinner } from '../components/LoadingSpinner';
 const Exchange = () => {
   const [dataWindow, setDataWindow] = useState(DATA_WINDOWS[0]);
   const [units, setUnits] = useState(UNITS[0]);
-  const tokenSnapshotWidgetData = useApi(
-    '/api/latest-exchange-flows?tokens=BTC,ETH,USDC,DAI'
-  );
   const ioTableData = useApi('/api/exchange-io');
 
   return (
@@ -27,17 +24,7 @@ const Exchange = () => {
       <div className="under-sub-nav">
         <>
           <div className="section-header">At a glance</div>
-          {tokenSnapshotWidgetData ? (
-            <TokenSnapshotWidget
-              data={tokenSnapshotWidgetData}
-              dataWindow={dataWindow}
-              units={units}
-            />
-          ) : (
-            <div className="spinner">
-              <LoadingSpinner />
-            </div>
-          )}
+          <TokenSnapshotWidget dataWindow={dataWindow} units={units} />
           <div className="section-header">{dataWindow} Inflows/Outflows</div>
           <div className="table">
             {ioTableData ? (
