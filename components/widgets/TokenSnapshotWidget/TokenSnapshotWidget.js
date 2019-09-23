@@ -37,9 +37,6 @@ export const TokenSnapshotWidget = ({ units, dataWindow }) => {
           justify-content: space-between;
           padding: 5px;
         }
-        .token-snapshot {
-          padding: 5px;
-        }
         @media only screen and (max-width: 768px) {
           .container {
             flex-direction: column;

@@ -312,6 +312,7 @@ export const TokenSnapshot = ({
           }
           .header {
             padding-bottom: 5px;
+            padding-top: 10px;
           }
         }
       `}</style>
