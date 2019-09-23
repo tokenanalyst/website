@@ -92,20 +92,16 @@ export const SimpleChart = ({
       <div className="tooltip">
         <table>
           <tbody>
-            {tooltips.map(({ title, value, color }) =>
-              value ? (
-                <tr key={color}>
-                  <td style={{ color }}>{title}</td>
-                  <td className="value">
-                    {window.matchMedia('(max-width: 768px)').matches
-                      ? numeral(value).format('0.0a')
-                      : numeral(value).format('0,0.00')}
-                  </td>
-                </tr>
-              ) : (
-                <tr />
-              )
-            )}
+            {tooltips.map(({ title, value, color }) => (
+              <tr key={color}>
+                <td style={{ color }}>{title}</td>
+                <td className="value">
+                  {window.matchMedia('(max-width: 768px)').matches
+                    ? numeral(value).format('0.0a')
+                    : numeral(value).format('0,0.00')}
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
@@ -127,6 +123,7 @@ export const SimpleChart = ({
           line-height: 20px;
           font-size: 14px;
           padding: 10px;
+          min-width: 35%;
         }
         .value {
           text-align: right;
