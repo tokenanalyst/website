@@ -16,13 +16,16 @@ export const TokenSnapshotWidget = ({ units, dataWindow }) => {
       {tokens && (
         <div className="container">
           {tokens.map((token, index) => (
-            <TokenSnapshot
-              key={token}
-              initialToken={token}
-              dataWindow={dataWindow}
-              units={units}
-              position={index}
-            />
+            <>
+              <TokenSnapshot
+                key={token}
+                initialToken={token}
+                dataWindow={dataWindow}
+                units={units}
+                position={index}
+              />
+              {index != tokens.length - 1 && <Separator />}
+            </>
           ))}
         </div>
       )}
@@ -46,6 +49,17 @@ export const TokenSnapshotWidget = ({ units, dataWindow }) => {
     </>
   );
 };
+
+const Separator = () => (
+  <>
+    <div className="container" />
+    <style jsx>{`
+      .container {
+        border-right: 1px solid rgb(203, 203, 203);
+      }
+    `}</style>
+  </>
+);
 
 TokenSnapshotWidget.propTypes = {
   dataWindow: PropTypes.string.isRequired,
