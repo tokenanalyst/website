@@ -9,7 +9,9 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage --colors",
-    "prettify": "prettier --trailing-comma es5 --single-quote --write **/*.js"
+    "prettify": "prettier --trailing-comma es5 --single-quote --write **/*.js",
+    "deploy:staging": "now deploy",
+    "deploy:prod": "next build && now deploy --prod"
   },
   "dependencies": {
     "@blueprintjs/core": "^3.18.0",
