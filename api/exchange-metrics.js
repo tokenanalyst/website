@@ -106,8 +106,6 @@ module.exports = async (req, res) => {
     priceApiCall,
   ]);
 
-  console.log(inflowTxnCountApiResponse.data);
-
   const netflow = inflowTxnCountApiResponse.data.map(
     ({ inflow, inflow_usd, date, hour }, index) => ({
       date,

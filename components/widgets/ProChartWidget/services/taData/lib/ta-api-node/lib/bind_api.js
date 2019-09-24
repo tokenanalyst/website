@@ -36,6 +36,11 @@ module.exports = () => {
     fetchDataFromApi(ENDPOINTS.private.token_price_usd_window_historical)
   );
 
+  // Serverless endpoint
+  ta.exchangeMetrics = compose(
+    fetchDataFromApi(ENDPOINTS.serverless.exchange_metrics)
+  );
+
   // Public endpoint
   ta.allExchangeFlowsAllTokens = compose(
     fetchDataFromApi(ENDPOINTS.public.all_exchange_flows_all_tokens)

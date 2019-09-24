@@ -11,8 +11,17 @@ const ta = (function ta() {
 
   let api;
 
+  const formatDate = (item, itemKeys) => {
+    let timePoint = item;
+
+    if (item.hour) {
+      timePoint = { ...item, date: `${item.date} ${item.hour}` };
+    }
+    return pick(timePoint, itemKeys);
+  };
+
   return {
-    fetchExchangeFlow: async (exchange, symbol, timeFrame, start, end) => {
+    fetchFromTAProxy: async (exchange, symbol, timeFrame, start, end) => {
       const startDate = moment(start).format('YYYY-MM-DD');
       const endDate = moment(end).format('YYYY-MM-DD');
       let window;
@@ -27,14 +36,90 @@ const ta = (function ta() {
         window = '1h';
       }
 
-      const formatDate = (item, itemKeys) => {
-        let timePoint = item;
+      const flowsApiCall = async () =>
+        api.exchangeMetrics({
+          token: symbol.toUpperCase(),
+          exchange: exchange.toLowerCase(),
+          timeWindow: window,
+          from_date: startDate,
+          to_date: endDate,
+        });
 
-        if (item.hour) {
-          timePoint = { ...item, date: `${item.date} ${item.hour}` };
-        }
-        return pick(timePoint, itemKeys);
-      };
+      const flowsData = async () =>
+        fetchDataFromApi$(flowsApiCall)
+          .pipe(
+            map(response => response.data.ta_response),
+            map(flows => {
+              const inFlow = flows.inflow.map(entry => {
+                const inFlowEntry = formatDate(entry, [
+                  'date',
+                  'inflow',
+                  'inflow_usd',
+                  'avg_txn_value_usd',
+                ]);
+                inFlowEntry.inflow_avg_txn_value_usd =
+                  inFlowEntry.avg_txn_value_usd;
+                return inFlowEntry;
+              });
+              const outFlow = flows.outflow.map(entry => {
+                const outFlowEntry = formatDate(entry, [
+                  'date',
+                  'outflow',
+                  'outflow_usd',
+                  'avg_txn_value_usd',
+                ]);
+                outFlowEntry.outflow_avg_txn_value_usd =
+                  outFlowEntry.avg_txn_value_usd;
+                return outFlowEntry;
+              });
+              const netFlow = flows.netflow.map(entry => {
+                return formatDate(entry, ['date', 'value_usd']);
+              });
+              const allFlows = merge(inFlow, outFlow, netFlow);
+              return merge(allFlows);
+            }),
+            map(flows => {
+              return flows.map(item => {
+                const {
+                  date,
+                  inflow_usd,
+                  outflow_usd,
+                  inflow_avg_txn_value_usd,
+                  outflow_avg_txn_value_usd,
+                  value_usd,
+                } = item;
+                const time = moment.utc(date).valueOf();
+
+                return {
+                  time,
+                  open: Number(inflow_usd),
+                  close: Number(outflow_usd),
+                  high: Number(inflow_avg_txn_value_usd),
+                  low: Number(outflow_avg_txn_value_usd),
+                  volume: Number(value_usd),
+                };
+              });
+            })
+          )
+          .toPromise();
+
+      return flowsData();
+    },
+
+    fetchExchangeFlow: async (exchange, symbol, timeFrame, start, end) => {
+      const startDate = moment(start).format('YYYY-MM-DD');
+      const endDate = moment(end).format('YYYY-MM-DD');
+      let window;
+
+      window = timeFrame;
+
+      if (timeFrame === 'D') {
+        window = '1d';
+      }
+
+      if (timeFrame === '60') {
+        window = '1h';
+      }
 
       const fetchFromTA = async flowDirection => {
         if ([ETH, BTC, USDT_OMNI].includes(symbol.toUpperCase())) {

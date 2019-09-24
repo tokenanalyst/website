@@ -31,17 +31,11 @@ const kaiko = (function kaiko() {
   const DEFAULT_OPTIONS = { format: 'tradingview', apiLimit: 100 };
 
   return {
-    start: opts => {
+    start: (opts = {}) => {
       options = makeOptions({ ...DEFAULT_OPTIONS, ...opts });
     },
 
     fetchCandles: async (pair, timeFrame, start, end, limit, exchangeName) => {
-      console.warn('Parameters');
-      console.warn(pair, timeFrame, start, end, limit, exchangeName);
-      if (!options.apiKey) {
-        return debugError(ERROR.API_KEY_NOT_PROVIDED, status.debug);
-      }
-
       if (!KAIKO_EXCHANGES_MAP[exchangeName.toLowerCase()]) {
         return debugError(ERROR.EXCHANGE_NOT_SUPPORTED, status.debug);
       }
@@ -61,12 +55,6 @@ const kaiko = (function kaiko() {
         status,
         options,
         makeCandlesUrlFn,
-        // requestOptions: {
-        //   headers: {
-        //     'X-Api-Key': options.apiKey,
-        //     Accept: 'application/json',
-        //   },
-        // },
       });
     },
 

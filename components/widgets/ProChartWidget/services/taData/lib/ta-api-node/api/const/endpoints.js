@@ -23,5 +23,8 @@ module.exports = {
       miner_rewards_30day: () => ({ token }) =>
         `last?job=${token}_miner_rewards_30day_v5&`,
     },
+    serverless: {
+      exchange_metrics: () => 'exchange-metrics',
+    },
   },
 };
