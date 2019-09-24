@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`candlesData function throws error on unsupported exchange succes 1`] = `"test not supported."`;

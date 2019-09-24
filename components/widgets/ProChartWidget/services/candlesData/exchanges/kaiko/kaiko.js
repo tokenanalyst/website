@@ -1,38 +1,20 @@
-import { Subject, ReplaySubject } from 'rxjs';
-import { map, multicast, takeUntil, filter } from 'rxjs/operators';
-import pick from 'lodash/pick';
 import moment from 'moment';
-import {
-  debugError,
-  makeCandlesRestApiUrl,
-  fetchCandles,
-  updateCandles,
-} from '../../utils';
+import { debugError, makeCandlesRestApiUrl, fetchCandles } from '../../utils';
 import {
   ERROR,
-  wsRootUrl,
   restRootUrl,
+  restRootUrlTAProxy,
   timeFrames,
   KAIKO_EXCHANGES,
+  KAIKO_EXCHANGES_MAP,
 } from './const';
-import {
-  makeDataStream,
-  addTradingPair,
-  makeOptions,
-  makeSubs,
-  removeTradingPair,
-  processStreamEvent,
-} from './utils';
+import { addTradingPair, makeOptions, removeTradingPair } from './utils';
 
 import { EXCHANGE_NAME } from '../../const';
 
 const kaiko = (function kaiko() {
-  const closeStream$ = new Subject();
   let candlesData = {};
   let pairs = {};
-  let data$;
-  let wsInstance$;
-  let dataSource$;
   let ws;
   let options;
   const status = {
@@ -53,31 +35,38 @@ const kaiko = (function kaiko() {
       options = makeOptions({ ...DEFAULT_OPTIONS, ...opts });
     },
 
-    fetchCandles: async (pair, timeFrame, start, end, limit) => {
+    fetchCandles: async (pair, timeFrame, start, end, limit, exchangeName) => {
+      console.warn('Parameters');
+      console.warn(pair, timeFrame, start, end, limit, exchangeName);
       if (!options.apiKey) {
         return debugError(ERROR.API_KEY_NOT_PROVIDED, status.debug);
       }
 
+      if (!KAIKO_EXCHANGES_MAP[exchangeName.toLowerCase()]) {
+        return debugError(ERROR.EXCHANGE_NOT_SUPPORTED, status.debug);
+      }
+
       const makeCandlesUrlFn = (symbol, interval, startTime, endTime) =>
-        makeCandlesRestApiUrl(status.exchange.name, restRootUrl, {
-          symbol: `${pair[0].toLowerCase()}-${pair[1].toLowerCase()}`,
+        makeCandlesRestApiUrl(status.exchange.name, restRootUrlTAProxy, {
+          instrument: `${pair[0].toLowerCase()}-${pair[1].toLowerCase()}`,
+          instrument_class: 'spot',
           interval: interval.toLowerCase(),
           start_time: moment(startTime).toISOString(),
           end_time: moment(endTime).toISOString(),
-          exchange: 'binance',
+          exchange: KAIKO_EXCHANGES_MAP[exchangeName.toLowerCase()].code,
+          commodity: 'trades',
         });
 
       return fetchCandles(pair, timeFrame, start, end, limit, {
         status,
         options,
         makeCandlesUrlFn,
-        requestOptions: {
-          // mode: 'cors',
-          headers: {
-            'X-Api-Key': options.apiKey,
-            Accept: 'application/json',
-          },
-        },
+        // requestOptions: {
+        //   headers: {
+        //     'X-Api-Key': options.apiKey,
+        //     Accept: 'application/json',
+        //   },
+        // },
       });
     },
 
@@ -131,17 +120,6 @@ const kaiko = (function kaiko() {
 
       return pairs;
     },
-
-    data$: channels =>
-      data$.pipe(
-        map(data => {
-          if (channels && channels.length) {
-            const candles = pick(data, channels);
-            return candles;
-          }
-          return data;
-        })
-      ),
   };
 })();
 

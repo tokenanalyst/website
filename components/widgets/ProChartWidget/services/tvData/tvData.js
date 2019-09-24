@@ -35,50 +35,11 @@ const tvData = (exchangeService, exchangeName, symbols) => {
     ) => {
       console.log('====== resolveSymbol running');
 
-      if (symbolName === '#FLOWS') {
-        console.log('get flow #FLOWS');
-        const symbolStub = {
-          data_status: 'streaming',
-          description: '',
-          exchange: exchangeName,
-          has_intraday: false,
-          minmov: 1,
-          name: '#FLOWS',
-          pricescale: 100000000,
-          session: '24x7',
-          supported_resolutions: ['1D'],
-          ticker: '#FLOWS',
-          timezone: `${Intl.DateTimeFormat().resolvedOptions().timeZone}`,
-          type: 'crypto',
-          volume_precision: 1,
-          has_empty_bars: true,
-        };
-        setTimeout(() => {
-          onSymbolResolvedCallback(symbolStub);
-        }, 0);
-        return;
-      }
+      if (exchangeService.studies.getSymbol[symbolName]) {
+        const getSymbol = exchangeService.studies.getSymbol[symbolName];
 
-      if (symbolName === '#NET_FLOWS') {
-        console.log('get flow #NET_FLOWS');
-        const symbolStub = {
-          data_status: 'streaming',
-          description: '',
-          exchange: exchangeName,
-          has_intraday: false,
-          minmov: 1,
-          name: '#NET_FLOWS',
-          pricescale: 100000000,
-          session: '24x7',
-          supported_resolutions: ['1D'],
-          ticker: '#NET_FLOWS',
-          timezone: `${Intl.DateTimeFormat().resolvedOptions().timeZone}`,
-          type: 'crypto',
-          volume_precision: 1,
-          has_empty_bars: true,
-        };
         setTimeout(() => {
-          onSymbolResolvedCallback(symbolStub);
+          onSymbolResolvedCallback(getSymbol());
         }, 0);
         return;
       }
@@ -130,45 +91,17 @@ const tvData = (exchangeService, exchangeName, symbols) => {
       console.log('===== getBars running');
       const [baseSymbol, quoteSymbol] = symbolInfo.name.split('/');
 
+      if (exchangeService.studies.getData[symbolInfo.name]) {
+        const getTAData = exchangeService.studies.getData[symbolInfo.name];
+        const taData = await getTAData(from, to, resolution);
+        return onHistoryCallback(cloneDeep(taData), { noData: false });
+      }
+
       console.log(
         `Requesting bars from ${formatDate(from * 1000)} to ${formatDate(
           to * 1000
         )} for ${symbolInfo.name}`
       );
-      console.log(exchangeService.ta.getTradingPair());
-      const taTradingPair = exchangeService.ta.getTradingPair();
-      console.log(taTradingPair);
-      if (symbolInfo.name === '#FLOWS') {
-        const flow = await exchangeService.ta.fetchExchangeFlow(
-          symbolInfo.exchange,
-          taTradingPair[0],
-          resolution,
-          from * 1000,
-          to * 1000
-        );
-        console.log(
-          `Received bars from ${formatDate(flow[0].time)} to ${formatDate(
-            flow[flow.length - 1].time
-          )}`
-        );
-        return onHistoryCallback(cloneDeep(flow), { noData: false });
-      }
-      if (symbolInfo.name === '#NET_FLOWS') {
-        const flow = await exchangeService.ta.fetchExchangeFlow(
-          symbolInfo.exchange,
-          taTradingPair[0],
-          resolution,
-          from * 1000,
-          to * 1000
-        );
-        console.log(flow);
-        console.log(
-          `Received bars from ${formatDate(flow[0].time)} to ${formatDate(
-            flow[flow.length - 1].time
-          )}`
-        );
-        return onHistoryCallback(cloneDeep(flow), { noData: false });
-      }
 
       // eslint-disable-next-line max-len
       console.log(
@@ -178,24 +111,35 @@ const tvData = (exchangeService, exchangeName, symbols) => {
         ]}, ${makeTimeFrame(resolution)}, ${from * 1000}, ${to * 1000})`
       );
 
-      let bars;
-      if (firstDataRequest) {
-        bars = await exchangeService.fetchCandles(
-          [baseSymbol, quoteSymbol],
-          makeTimeFrame(resolution),
-          from * 1000,
-          to * 1000,
-          1000
-        );
-      } else {
-        bars = await exchangeService.fetchCandles(
-          [baseSymbol, quoteSymbol],
-          makeTimeFrame(resolution),
-          from * 1000,
-          to * 1000,
-          1000
-        );
-      }
+      // let bars;
+      // if (firstDataRequest) {
+      //   bars = await exchangeService.fetchCandles(
+      //     [baseSymbol, quoteSymbol],
+      //     makeTimeFrame(resolution),
+      //     from * 1000,
+      //     to * 1000,
+      //     1000,
+      //     symbolInfo.exchange
+      //   );
+      // } else {
+      //   bars = await exchangeService.fetchCandles(
+      //     [baseSymbol, quoteSymbol],
+      //     makeTimeFrame(resolution),
+      //     from * 1000,
+      //     to * 1000,
+      //     1000
+      //   );
+      // }
+
+      const bars = await exchangeService.fetchCandles(
+        [baseSymbol, quoteSymbol],
+        makeTimeFrame(resolution),
+        from * 1000,
+        to * 1000,
+        1000,
+        symbolInfo.exchange
+      );
+
       console.log(bars);
       if (bars.length) {
         console.log(
@@ -253,14 +197,6 @@ const tvData = (exchangeService, exchangeName, symbols) => {
 
     calculateHistoryDepth: (resolution, resolutionBack, intervalBack) => {
       console.log('===== calculateHistoryDepth running');
-
-      // return resolution < 60 ? { resolutionBack: 'D', intervalBack: '1' } : undefined
-      //   if (resolution === '1D') {
-      //     return {
-      //       resolutionBack: 'M',
-      //       intervalBack: 6,
-      //     }
-      // }
     },
 
     getMarks: (symbolInfo, startDate, endDate, onDataCallback, resolution) => {

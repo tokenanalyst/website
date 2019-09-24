@@ -2,6 +2,10 @@ export const wsRootUrl = 'wss://eu.market-ws.kaiko.io/v2/rpc';
 export const restRootUrl =
   'https://eu.market-api.kaiko.io/v1/data/trades.v1/exchanges';
 
+// export const restRootUrlTAProxy ='https://www.tokenanalyst.io/api';
+
+export const restRootUrlTAProxy = 'http://10.3.0.145:3000/api';
+
 export const timeFrames = {
   '1m': '1m',
   '5m': '5m',
@@ -26,11 +30,51 @@ export const ERROR = {
   PAIR_IS_NOT_ARRAY: 'Pair must be an array with base ccy and quote ccy.',
   SERVICE_IS_RUNNING: 'The service is already running.',
   API_KEY_NOT_PROVIDED: 'Api Key not provided',
+  EXCHANGE_NOT_SUPPORTED: 'Exchange not supported',
+};
+
+export const KAIKO_EXCHANGES_MAP = {
+  binance: {
+    code: 'bnce',
+    name: 'Binance',
+  },
+  bitfinex: {
+    code: 'bfnx',
+    name: 'Bitfinex',
+  },
+  bitstamp: {
+    code: 'stmp',
+    name: 'Bitstamp',
+  },
+  bitmex: {
+    code: 'btmx',
+    name: 'BitMEX',
+  },
+  kraken: {
+    code: 'krkn',
+    name: 'Kraken',
+  },
+  poloniex: {
+    code: 'polo',
+    name: 'Poloniex',
+  },
+  bittrex: {
+    code: 'btrx',
+    name: 'Bittrex',
+  },
+  okex: {
+    code: 'okex',
+    name: 'OkEX',
+  },
+  kucoin: {
+    code: 'kcon',
+    name: 'KuCoin',
+  },
 };
 
 export const KAIKO_EXCHANGES = [
   {
-    code: 'abts',
+    kaikocode: 'abts',
     name: 'AnyBits',
     kaiko_legacy_slug: 'ab',
   },

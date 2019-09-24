@@ -1,3 +1,5 @@
+export const KAIKO = 'kaiko';
+
 export const TRADINVIEW_DEFAULT_OPTIONS = {
   debug: false,
   container_id: 'tv_chart_container',
