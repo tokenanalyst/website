@@ -15,7 +15,7 @@ export const FilterNav = ({ dataWindow, setDataWindow, units, setUnits }) => {
               ReactGA.event({
                 category: 'User',
                 action: `Filter ${dw}`,
-                label: `Time Window Filter`
+                label: `Time Window Filter`,
               });
             }}
           >
@@ -29,6 +29,7 @@ export const FilterNav = ({ dataWindow, setDataWindow, units, setUnits }) => {
           </span>
         ))}
       </div>
+      <Separator />
       <div className="options">
         {UNITS.map(unit => (
           <span
@@ -39,7 +40,7 @@ export const FilterNav = ({ dataWindow, setDataWindow, units, setUnits }) => {
               ReactGA.event({
                 category: 'User',
                 action: `Filter ${unit}`,
-                label: `Units Filter`
+                label: `Units Filter`,
               });
             }}
           >
@@ -64,7 +65,7 @@ export const FilterNav = ({ dataWindow, setDataWindow, units, setUnits }) => {
           z-index: 10;
           display: flex;
           justify-content: space-between;
-          margin-left: -17px;
+          margin-left: -10px;
         }
         .options {
           display: flex;
@@ -72,7 +73,6 @@ export const FilterNav = ({ dataWindow, setDataWindow, units, setUnits }) => {
           padding-top: 0px;
           padding-bottom: 10px;
           width: 100%;
-          border-right: 1px solid rgb(203, 203, 203);
         }
         .option {
           font-weight: bold;
@@ -95,3 +95,14 @@ export const FilterNav = ({ dataWindow, setDataWindow, units, setUnits }) => {
     </div>
   );
 };
+
+const Separator = () => (
+  <>
+    <div className="separator" />
+    <style jsx>{`
+      .separator {
+        border-right: 1px solid rgb(203, 203, 203);
+      }
+    `}</style>
+  </>
+);

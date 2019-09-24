@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Icon } from '@blueprintjs/core';
 
 export const PageSection = ({ text }) => {
   return (
@@ -14,6 +13,7 @@ export const PageSection = ({ text }) => {
           display: flex;
           padding: 5px;
           padding-bottom: 20px;
+          padding-top: 20px;
         }
         .text {
           font-size: 22px;

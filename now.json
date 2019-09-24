@@ -1,6 +1,7 @@
 {
   "version": 2,
   "env": {
-    "API_KEY": "@api-key"
+    "API_KEY": "@api-key",
+    "KAIKO_KEY": "@kaiko-key"
   }
 }
