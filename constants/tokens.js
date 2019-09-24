@@ -11,7 +11,7 @@ export const STABLE_TOKENS = {
   FET: 'FET',
   // FTM: 'FTM',
   GNT: 'GNT',
-  // GUSD: 'GUSD',
+  GUSD: 'GUSD',
   KNC: 'KNC',
   LINK: 'LINK',
   LOOM: 'LOOM',
