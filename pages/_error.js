@@ -47,7 +47,7 @@ class Error extends React.Component {
             width: 120px;
             text-align: center;
             background-color: rgba(${colors.primaryGreen});
-            max-height: 40px;
+            max-height: 80px;
             padding: 10px;
             border-radius: 10px;
             cursor: pointer;
@@ -56,7 +56,6 @@ class Error extends React.Component {
         `}</style>
       </>
     );
-    // return <p>{this.props.statusCode === 404 ? `Page not found` : "Broken"}</p>;
   }
 }
 
