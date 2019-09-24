@@ -134,7 +134,7 @@ export const ProChartWidget = () => {
               />
             </div>
           </div>
-          <div>
+          <div className="api-button">
             <Button>Get API</Button>
           </div>
         </div>
@@ -203,6 +203,21 @@ export const ProChartWidget = () => {
           }
           .pro-chart {
             width: 100%;
+          }
+          @media (min-width: 320px) and (max-width: 767px) {
+            .controls-lhs {
+              flex-direction: column;
+            }
+            .controls {
+              flex-direction: column;
+            }
+            .control {
+              justify-content: space-between;
+            }
+            .api-button {
+              display: flex;
+              justify-content: center;
+            }
           }
         `}
       </style>
