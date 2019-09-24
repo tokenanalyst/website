@@ -77,7 +77,6 @@ module.exports = async (req, res) => {
   let inFlowApiCall;
   let outFlowApiCall;
   let isStableCoin = false;
-  console.log(getParams('inflow', from_date, to_date));
   if (token === ETH || token === BTC || token === STABLE_TOKENS.USDT_OMNI) {
     inFlowApiCall = privateApi.exchangeFlowWindowHistorical(
       getParams('inflow', from_date, to_date)
