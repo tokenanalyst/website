@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import Head from 'next/head';
-import { HTMLSelect, Button, Card } from '@blueprintjs/core';
+import { HTMLSelect, Button, Card, Switch } from '@blueprintjs/core';
 import { ProChartContainer } from './ProChartContainer.js';
 
 const TA_TRADING_PAIRS = [
@@ -13,6 +13,8 @@ const TA_TRADING_PAIRS = [
 const SELECTED_EXCHANGE = 'Bitfinex';
 
 const EXCHANGES = ['Bitfinex', 'Binance'];
+const TOKENS = ['BTC', 'ETH'];
+const ON_CHAIN_DATA = ['Volumes', 'Addresses'];
 
 const STUDIES = {
   FLOWS: 'Flows',
@@ -38,77 +40,102 @@ export const ProChartWidget = () => {
       </Head>
       <div className="container">
         <div className="controls">
-          <div className="card">
-            <Card>
-              <div className="control">
-                <HTMLSelect
-                  className="ta-select"
-                  options={EXCHANGES}
-                  onChange={event => {
-                    // setIsLoading(true);
-                    setExchangeName(event.target.value);
-                  }}
-                  id="exchange-select"
-                />
-              </div>
-              <div className="control">
-                <HTMLSelect
-                  className="ta-select"
-                  options={makeTickers(TA_TRADING_PAIRS)}
-                  onChange={event => {
-                    setSymbols(event.target.value.split('/'));
-                  }}
-                  id="pair-select"
-                />
-              </div>
-            </Card>
+          {/* <div className="card"> */}
+          <div className="controls-lhs">
+            <div className="control">
+              <div className="label">Token:</div>
+              <HTMLSelect
+                className="ta-select"
+                options={TOKENS}
+                // onChange={event => {
+
+                //   setExchangeName(event.target.value);
+                // }}
+                id="exchange-select"
+              />
+            </div>
+            <div className="control">
+              <div className="label">Exchange:</div>
+              <HTMLSelect
+                className="ta-select"
+                options={EXCHANGES}
+                onChange={event => {
+                  // setIsLoading(true);
+                  setExchangeName(event.target.value);
+                }}
+                id="exchange-select"
+              />
+            </div>
+            {/* <div className="control">
+              <HTMLSelect
+                className="ta-select"
+                options={makeTickers(TA_TRADING_PAIRS)}
+                onChange={event => {
+                  setSymbols(event.target.value.split('/'));
+                }}
+                id="pair-select"
+              />
+            </div> */}
+
+            {/* <div className="card"> */}
+            <div className="control">
+              <div className="label">On-Chain Data:</div>
+              {/* <Button
+                onClick={() => {
+                  if (!studies.current.flows.entityId) {
+                    const entityId = tvInstance.current
+                      .chart()
+                      .createStudy(STUDIES.FLOWS, false, true);
+                    studies.current.flows.entityId = entityId;
+                  } else {
+                    tvInstance.current
+                      .chart()
+                      .removeEntity(studies.current.flows.entityId);
+                    studies.current.flows.entityId = null;
+                  }
+                }}
+              >
+                In/Out Flows
+              </Button> */}
+              <HTMLSelect
+                className="ta-select"
+                options={ON_CHAIN_DATA}
+                onChange={event => {
+                  // setIsLoading(true);
+                  setExchangeName(event.target.value);
+                }}
+                id="exchange-select"
+              />
+            </div>
+
+            {/* <div className="legend-flows">
+            <div className="legend-flows-inflow">In flows</div>
+            <div className="legend-flows-outflow">Out flows</div>
+          </div> */}
+            {/* <br /> */}
+            <div className="control">
+              <div className="label">Net Flows:</div>
+              <Switch
+                className=".bp3-large"
+                onChange={() => {
+                  // tv.current.chart().createStudy('Equity', false, true);
+                  if (!studies.current.transactions.entityId) {
+                    studies.current.transactions.entityId = tvInstance.current
+                      .chart()
+                      .createStudy(STUDIES.NET_FLOWS, false, true);
+                  } else {
+                    tvInstance.current
+                      .chart()
+                      .removeEntity(studies.current.transactions.entityId);
+                    studies.current.transactions.entityId = null;
+                  }
+                }}
+                checked
+              />
+            </div>
           </div>
-          <div className="card">
-            <Card className="card">
-              <div className="control">
-                <Button
-                  onClick={() => {
-                    if (!studies.current.flows.entityId) {
-                      const entityId = tvInstance.current
-                        .chart()
-                        .createStudy(STUDIES.FLOWS, false, true);
-                      studies.current.flows.entityId = entityId;
-                    } else {
-                      tvInstance.current
-                        .chart()
-                        .removeEntity(studies.current.flows.entityId);
-                      studies.current.flows.entityId = null;
-                    }
-                  }}
-                >
-                  In/Out Flows
-                </Button>
-              </div>
-              <div className="legend-flows">
-                <div className="legend-flows-inflow">In flows</div>
-                <div className="legend-flows-outflow">Out flows</div>
-              </div>
-              <br />
-              <div className="control">
-                <Button
-                  onClick={() => {
-                    // tv.current.chart().createStudy('Equity', false, true);
-                    if (!studies.current.transactions.entityId) {
-                      studies.current.transactions.entityId = tvInstance.current
-                        .chart()
-                        .createStudy(STUDIES.NET_FLOWS, false, true);
-                    } else {
-                      tvInstance.current
-                        .chart()
-                        .removeEntity(studies.current.transactions.entityId);
-                      studies.current.transactions.entityId = null;
-                    }
-                  }}
-                >
-                  Net Flows
-                </Button>
-              </div>
-            </Card>
+          <div>
+            <Button>Get API</Button>
           </div>
         </div>
         <div className="pro-chart">
@@ -135,6 +162,7 @@ export const ProChartWidget = () => {
         {`
           .container {
             display: flex;
+            flex-direction: column;
             border-right-style: solid;
             border-right-color: lightgray;
             padding-right: 20px;
@@ -142,19 +170,27 @@ export const ProChartWidget = () => {
             justify-content: flex-start;
           }
           .controls {
-            flex-direction: column;
+            flex-direction: row;
             display: flex;
             border-right-style: solid;
-            border-right-color: lightgray;
             padding: 20px;
             border-right-width: 1px;
-            justify-content: flex-start;
-            width: 250px;
+            justify-content: space-between;
+            min-width: 100%;
+          }
+          .controls-lhs {
+            display: flex;
           }
           .control {
             padding: 5px;
+            display: flex;
+            align-items: center;
+            font-weight: bold;
           }
-
+          .label {
+            padding-right: 10px;
+            padding-left: 5px;
+          }
           .legend-flows {
             padding-left: 8px;
           }
@@ -168,6 +204,7 @@ export const ProChartWidget = () => {
 
           .card {
             padding-bottom: 10px;
+            display: flex;
           }
           .pro-chart {
             width: 100%;

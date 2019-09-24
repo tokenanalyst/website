@@ -8,8 +8,6 @@ import { TRADINVIEW_DEFAULT_OPTIONS, KAIKO_TIME_FRAMES } from './const';
 import { TA_API_KEY, KAIKO_API_KEY } from './const/secrets';
 import candlesData from './services/candlesData';
 
-console.log('dynamic loading');
-
 const ProChart = dynamic(
   () => import('../../charts/ProChart').then(mod => mod.default),
   {
