@@ -163,18 +163,13 @@ export const ProChartWidget = () => {
           .container {
             display: flex;
             flex-direction: column;
-            border-right-style: solid;
-            border-right-color: lightgray;
             padding-right: 20px;
-            border-right-width: 1px;
             justify-content: flex-start;
           }
           .controls {
             flex-direction: row;
             display: flex;
-            border-right-style: solid;
             padding: 20px;
-            border-right-width: 1px;
             justify-content: space-between;
             min-width: 100%;
           }
