@@ -94,10 +94,6 @@ export const ProChartContainer = ({
         {`
           .container {
             display: flex;
-            border-right-style: solid;
-            border-right-color: lightgray;
-            padding-right: 20px;
-            border-right-width: 1px;
             justify-content: flex-start;
           }
           .tv-chart {

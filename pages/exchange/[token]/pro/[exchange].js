@@ -45,9 +45,7 @@ const Exchange = () => {
         token={token}
         exchange={exchange}
       />
-      <div>
-        <ProChartWidget setTimeWindow={setTimeWindow} timeWindow={timeWindow} />
-      </div>
+      <ProChartWidget setTimeWindow={setTimeWindow} timeWindow={timeWindow} />
     </div>
   );
 };
