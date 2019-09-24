@@ -6,8 +6,9 @@ import { getExchangeDataSet } from '../../../../data-transformers/charts/getExch
 import { getExchangeMetrics } from '../../../../data-transformers/widgets/getExchangeMetrics';
 import { DATA_WINDOWS, TIME_WINDOWS } from '../../../../constants/filters';
 import { ExchangeMetricsWidget } from '../../../../components/widgets/ExchangeMetricsWidget';
-import { IoChartWidget } from '../../../../components/widgets/IoChartWidget';
 import { ProChartWidget } from '../../../../components/widgets/ProChartWidget';
+
+import { EXCHANGE_NAMES } from '../../../../constants/exchanges';
 
 const Exchange = () => {
   const router = useRouter();
@@ -27,7 +28,7 @@ const Exchange = () => {
   useEffect(() => {
     window.scrollTo(0, 0); // Very depressing that I need this here but the page remains focused on the footer even after loading - dunno why
     if (apiResponse && token) {
-      setDataSet(getExchangeDataSet(apiResponse, token, timeWindow));
+      // setDataSet(getExchangeDataSet(apiResponse, token, timeWindow));
       setOverallMetrics(
         getExchangeMetrics(
           apiResponse.overall.find(item => item.window === DATA_WINDOWS[0])
@@ -45,7 +46,22 @@ const Exchange = () => {
         token={token}
         exchange={exchange}
       />
-      <ProChartWidget setTimeWindow={setTimeWindow} timeWindow={timeWindow} />
+      <ProChartWidget
+        exchange={exchange}
+        token={token}
+        onChangeExchange={newExchange => {
+          router.push(
+            `/exchange/[token]/pro/[newExchange]`,
+            `/exchange/${token}/pro/${newExchange}`
+          );
+        }}
+        onChangeToken={newToken => {
+          router.push(
+            `/exchange/[newToken]/pro/[exchange]`,
+            `/exchange/${newToken}/pro/${exchange}`
+          );
+        }}
+      />
     </div>
   );
 };
