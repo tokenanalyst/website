@@ -22,7 +22,13 @@ module.exports = async (req, res) => {
   try {
     apiResult = await axios.get(
       `${KAIKO_BASE_URL}/${commodity}.${DATA_VERSION}/exchanges/${exchange}/${instrument_class}/${instrument}/aggregations/ohlcv?interval=${interval}&start_time=${start_time}&end_time=${end_time}`,
-      { headers: { 'x-api-key': process.env.KAIKO_KEY } }
+      {
+        headers: {
+          'x-api-key': process.env.KAIKO_KEY,
+          Accept: 'application/json',
+          'Accept-Encoding': 'gzip',
+        },
+      }
     );
     res.send(apiResult.data);
   } catch (e) {
