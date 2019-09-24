@@ -11,7 +11,7 @@ export const makeStudiesCb = (ta, exchangeName, symbol) => ({
           to * 1000
         )} for #FLOWS`
       );
-      const flow = await ta.fetchExchangeFlow(
+      const flow = await ta.fetchFromTAProxy(
         exchangeName,
         symbol,
         resolution,
@@ -31,7 +31,7 @@ export const makeStudiesCb = (ta, exchangeName, symbol) => ({
           to * 1000
         )} for #NET_FLOWS`
       );
-      const flow = await ta.fetchExchangeFlow(
+      const flow = await ta.fetchFromTAProxy(
         exchangeName,
         symbol,
         resolution,

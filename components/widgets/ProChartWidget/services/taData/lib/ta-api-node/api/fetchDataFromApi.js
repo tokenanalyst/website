@@ -6,10 +6,14 @@ module.exports = endpointCallFn => async (taInstance, params) => {
     config: { apiUrl, apiKey },
   } = taInstance;
 
-  const apiCall = makeApiUrl(endpointCallFn(params), apiUrl, {
-    ...params,
-    key: apiKey,
-  });
+  const apiParams = !apiKey
+    ? params
+    : {
+        ...params,
+        key: apiKey,
+      };
+
+  const apiCall = makeApiUrl(endpointCallFn(params), apiUrl, apiParams);
 
   let response;
 

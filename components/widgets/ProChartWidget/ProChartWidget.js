@@ -118,7 +118,6 @@ export const ProChartWidget = () => {
             symbols={symbols}
             exchangeName={exchangeName}
             onChartRenderCb={tvWidget => {
-              console.warn('onChartRenderCb');
               tvInstance.current = tvWidget;
               studies.current.flows.entityId = tvInstance.current
                 .chart()

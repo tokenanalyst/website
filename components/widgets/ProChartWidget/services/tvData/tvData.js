@@ -111,26 +111,6 @@ const tvData = (exchangeService, exchangeName, symbols) => {
         ]}, ${makeTimeFrame(resolution)}, ${from * 1000}, ${to * 1000})`
       );
 
-      // let bars;
-      // if (firstDataRequest) {
-      //   bars = await exchangeService.fetchCandles(
-      //     [baseSymbol, quoteSymbol],
-      //     makeTimeFrame(resolution),
-      //     from * 1000,
-      //     to * 1000,
-      //     1000,
-      //     symbolInfo.exchange
-      //   );
-      // } else {
-      //   bars = await exchangeService.fetchCandles(
-      //     [baseSymbol, quoteSymbol],
-      //     makeTimeFrame(resolution),
-      //     from * 1000,
-      //     to * 1000,
-      //     1000
-      //   );
-      // }
-
       const bars = await exchangeService.fetchCandles(
         [baseSymbol, quoteSymbol],
         makeTimeFrame(resolution),
@@ -140,7 +120,6 @@ const tvData = (exchangeService, exchangeName, symbols) => {
         symbolInfo.exchange
       );
 
-      console.log(bars);
       if (bars.length) {
         console.log(
           `Received bars from ${formatDate(bars[0].time)} to ${formatDate(

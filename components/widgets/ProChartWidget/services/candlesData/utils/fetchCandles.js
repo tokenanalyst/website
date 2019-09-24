@@ -27,8 +27,6 @@ const fetchCandles = async (pair, timeFrame, start, end, limit, opts) => {
 
   const timeIntervalChunks = makeTimeChunks(start, end, chunksSize);
 
-  console.log(timeIntervalChunks);
-
   const fetchCallsArray = timeIntervalChunks
     .map(chunk => {
       try {

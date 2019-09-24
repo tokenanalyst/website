@@ -11,12 +11,10 @@ import '../node_modules/@blueprintjs/core/lib/css/blueprint.css';
 export const Layout = ({ children }) => (
   <div className="layout">
     <Head>
-      {console.log('head loaded')}
       <title>TokenAnalyst</title>
       <link rel="shortcut icon" href="/static/favicon.ico" />
       <link href="/static/fonts/fonts.css" rel="stylesheet" />
       <script src="https://js.stripe.com/v3/" />
-      {console.log('intercom loaded')}
       <script src="/static/js/intercom.js" />
 
       <script
