@@ -10,9 +10,10 @@ import { LoginProvider } from '../contexts/Login';
 // https://github.com/zeit/next.js/issues/5264#issuecomment-424000127
 import '../static/styles/empty.css';
 
-Sentry.init({
-  dsn: 'https://04801cfba732405cae39800a34b707ca@sentry.io/1553818',
-});
+process.env.NODE_ENV !== 'development' &&
+  Sentry.init({
+    dsn: 'https://04801cfba732405cae39800a34b707ca@sentry.io/1553818',
+  });
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
