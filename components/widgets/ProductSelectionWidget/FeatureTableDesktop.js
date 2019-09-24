@@ -1,8 +1,8 @@
-import React from "react";
-import { Icon } from "@blueprintjs/core";
+import React from 'react';
+import { Icon } from '@blueprintjs/core';
 
-import { FEATURES } from "./data/productsData";
-import { colors } from "../../../constants/styles/colors";
+import { FEATURES } from './data/productsData';
+import { colors } from '../../../constants/styles/colors';
 
 export const FeatureTableDesktop = () => {
   return (
@@ -26,7 +26,7 @@ export const FeatureTableDesktop = () => {
                     {item.entitled.map((e, index) => (
                       <td key={index} className="feature">
                         <Icon
-                          icon={e ? "tick" : "cross"}
+                          icon={e ? 'tick' : 'cross'}
                           color={
                             e
                               ? `rgba(${colors.primaryGreen})`
@@ -45,7 +45,7 @@ export const FeatureTableDesktop = () => {
       <style jsx>{`
         .container {
           font-family: Open Sans;
-          font-size: 18px;
+          font-size: 16px;
           line-height: 24px;
         }
         .row-header {
@@ -64,6 +64,9 @@ export const FeatureTableDesktop = () => {
         .feature {
           padding-left: 20px;
           padding-right: 90px;
+        }
+        table {
+          border-spacing: 0px;
         }
         @media only screen and (max-width: 768px) {
           .container {

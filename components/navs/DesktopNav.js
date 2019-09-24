@@ -207,6 +207,25 @@ export const DesktopNav = () => {
                   </div>
                 </Link>
               </div>
+              <div>
+                <Link href="/faqs" passHref>
+                  <div
+                    onClick={() => {
+                      ReactGA.event({
+                        category: 'User',
+                        action: `Click FAQs`,
+                        label: `Desktop Nav`,
+                      });
+                    }}
+                    className={classNames(
+                      'desktop-sub-link',
+                      setLinkActive(asPath, '/faqs')
+                    )}
+                  >
+                    FAQs
+                  </div>
+                </Link>
+              </div>
               <div className="desktop-sub-link">
                 <a
                   href="https://twitter.com/thetokenanalyst"
@@ -440,7 +459,7 @@ export const DesktopNav = () => {
           color: white;
           z-index: 10000;
           top: 60px;
-          right: ${loginCtx.isLoggedIn ? '125px' : '50px'};
+          right: ${loginCtx.isLoggedIn ? '145px' : '75px'};
           padding-left: 10px;
           border-radius: 0px 0px 5px 5px;
         }
@@ -479,7 +498,7 @@ export const DesktopNav = () => {
         }
         .login-button {
           color: white;
-          min-width: 60px;
+          min-width: 80px;
           text-align: center;
           background-color: rgba(${colors.primaryGreen});
           max-height: 40px;

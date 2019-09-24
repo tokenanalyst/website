@@ -1,16 +1,25 @@
-import React, { useContext } from "react";
-import ReactGA from "react-ga";
-import Router from "next/router";
-import Cookies from "js-cookie";
+import React, { useContext } from 'react';
+import ReactGA from 'react-ga';
+import Router from 'next/router';
+import Cookies from 'js-cookie';
+import { Card } from '@blueprintjs/core';
 
-import { LoginContext } from "../../../contexts/Login";
-import { STRIPE } from "../../../constants/stripe";
-import { colors } from "../../../constants/styles/colors";
+import { LoginContext } from '../../../contexts/Login';
+import { STRIPE } from '../../../constants/stripe';
+import { PLAN_NAMES } from '../../../constants/plans';
+import { colors } from '../../../constants/styles/colors';
 
-export const Product = ({ name, price, features, buttonText, stripePlan }) => {
+export const Product = ({
+  name,
+  price,
+  features,
+  buttonText,
+  stripePlan,
+  isMaxWidth,
+}) => {
   const loginCtx = useContext(LoginContext);
-  const username = Cookies.get("loggedInAsUsername");
-  const userId = Cookies.get("loggedInAsUserId");
+  const username = Cookies.get('loggedInAsUsername');
+  const userId = Cookies.get('loggedInAsUserId');
 
   const redirectToStripe = async stripeOptions => {
     const stripe = Stripe(STRIPE.apiKey);
@@ -18,82 +27,92 @@ export const Product = ({ name, price, features, buttonText, stripePlan }) => {
       items: [
         {
           plan: stripePlan,
-          quantity: 1
-        }
+          quantity: 1,
+        },
       ],
-      successUrl: "https://www.tokenanalyst.io/purchase-success",
-      cancelUrl: "https://www.tokenanalyst.io/",
-      ...stripeOptions
+      successUrl: 'https://www.tokenanalyst.io/purchase-success',
+      cancelUrl: 'https://www.tokenanalyst.io/',
+      ...stripeOptions,
     };
 
     await stripe.redirectToCheckout(stripeOpt);
   };
 
+  const emitProductEvent = name => {
+    ReactGA.event({
+      category: 'User',
+      action: `Plan select ${name}`,
+      label: `Plans`,
+    });
+  };
+
   return (
     <>
       <div className="container">
-        <div className="header">
-          <div className="title">{name}</div>
-          <div className="price">
-            {price} <span className="monthly">/month</span>
+        <Card>
+          <div className="header">
+            <div className="title">{name}</div>
+            <div className="price">
+              {price ? (
+                <>
+                  {price} <span className="monthly">/month</span>
+                </>
+              ) : null}
+            </div>
           </div>
-        </div>
-        <div className="body">
-          <div className="features">
-            {features.map(feature => (
-              <div key={feature} className="feature">
-                {feature}
-              </div>
-            ))}
-          </div>
-          <div
-            className="purchase-button"
-            onClick={
-              stripePlan
-                ? async () => {
-                    ReactGA.event({
-                      category: "User",
-                      action: `Plan select ${name}`,
-                      label: `Plans`
-                    });
-
-                    if (!loginCtx.isLoggedIn) {
-                      loginCtx.setPaymentData({
-                        stripe: { redirectFn: redirectToStripe }
-                      });
-                      return Router.push("/login");
+          <div className="body">
+            <div className="features">
+              {features.map(feature => (
+                <div key={feature} className="feature">
+                  {feature}
+                </div>
+              ))}
+            </div>
+            <div
+              className="purchase-button"
+              onClick={
+                name === PLAN_NAMES.ENTERPRISE
+                  ? () => {
+                      emitProductEvent(name);
+                      window.location = 'mailto:info@tokenanalyst.io';
                     }
-                    await redirectToStripe({
-                      customerEmail: username,
-                      clientReferenceId: userId.toString()
-                    });
-                  }
-                : () => {
-                    ReactGA.event({
-                      category: "User",
-                      action: `Plan select ${name}`,
-                      label: `Plans`
-                    });
-
-                    // if (name === "Free") {
-                    //   return Router.push("/login");
-                    // }
-
-                    window.location = "mailto:info@tokenanalyst.io";
-                  }
-            }>
-            {buttonText}
+                  : name === PLAN_NAMES.FREE
+                  ? () => {
+                      emitProductEvent(name);
+                      if (!loginCtx.isLoggedIn) {
+                        loginCtx.setPaymentData({
+                          isFreeTier: true,
+                        });
+                      }
+                      return Router.push('/register');
+                    }
+                  : async () => {
+                      emitProductEvent(name);
+                      if (!loginCtx.isLoggedIn) {
+                        loginCtx.setPaymentData({
+                          stripe: { redirectFn: redirectToStripe },
+                        });
+                        return Router.push('/login');
+                      }
+                      await redirectToStripe({
+                        customerEmail: username,
+                        clientReferenceId: userId.toString(),
+                      });
+                    }
+              }
+            >
+              {buttonText}
+            </div>
           </div>
-        </div>
+        </Card>
       </div>
       <style jsx>{`
         .container {
           font-family: Open Sans;
           display: flex;
           flex-direction: column;
-          min-width: 300px;
-          max-width: 300px;
-          border-bottom: solid 1px rgba(151, 151, 151, 0.15);
+          min-width: ${isMaxWidth ? '100%' : '600px'};
+          max-width: 600px;
           padding: 10px;
         }
         .header {
@@ -127,13 +146,18 @@ export const Product = ({ name, price, features, buttonText, stripePlan }) => {
         }
         .purchase-button {
           color: white;
-          min-width: 60px;
+          min-width: 110px;
           text-align: center;
           background-color: rgba(${colors.primaryGreen});
           max-height: 40px;
           padding: 10px;
           border-radius: 20px;
           cursor: pointer;
+        }
+        @media (min-width: 1400px) and (max-width: 1799px) {
+          .container {
+            min-width: 450px;
+          }
         }
         @media only screen and (max-width: 768px) {
           .container {
