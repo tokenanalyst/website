@@ -14,7 +14,7 @@ const tvData = (exchangeService, exchangeName, symbols) => {
   return {
     onReady: cb => {
       console.log('===== onReady running');
-      const { supported_resolutions } = config[exchangeName.toLowerCase()];
+      const { supported_resolutions } = config.kaiko;
       setTimeout(
         () =>
           cb({
@@ -48,9 +48,11 @@ const tvData = (exchangeService, exchangeName, symbols) => {
         onResolveErrorCallback(`Exchange ${exchangeName} not supported.`);
       }
 
-      const { intraday_multipliers, supported_resolutions } = config[
-        exchangeName.toLowerCase()
-      ];
+      // const { intraday_multipliers, supported_resolutions } = config[
+      //   exchangeName.toLowerCase()
+      // ];
+
+      const { intraday_multipliers, supported_resolutions } = config.kaiko;
 
       const symbolStub = {
         data_status: 'streaming',
@@ -65,6 +67,7 @@ const tvData = (exchangeService, exchangeName, symbols) => {
         supported_resolutions,
         ticker: `${exchangeName}:${symbols[0]}/${symbols[1]}`,
         timezone: `${Intl.DateTimeFormat().resolvedOptions().timeZone}`,
+        // timezone: 'Etc/UTC',
         type: 'crypto',
         volume_precision: 6,
         has_empty_bars: true,
@@ -119,12 +122,13 @@ const tvData = (exchangeService, exchangeName, symbols) => {
         1000,
         symbolInfo.exchange
       );
-
+      // console.log(bars)
+      // return onHistoryCallback([], { noData: true });
       if (bars.length) {
         console.log(
           `Received bars from ${formatDate(bars[0].time)} to ${formatDate(
             bars[bars.length - 1].time
-          )}`
+          )} for ${symbolInfo.name}`
         );
         onHistoryCallback(cloneDeep(bars), { noData: false });
       } else {

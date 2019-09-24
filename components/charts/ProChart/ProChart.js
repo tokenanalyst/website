@@ -18,33 +18,33 @@ const ProChart = ({ kaikoService, tradingViewOptions, onChartRenderCb }) => {
 
       chart.onIntervalChanged().subscribe(null, (interval, obj) => {
         const now = moment();
-        switch (obj.timeframe) {
-          case '2h': {
-            const twoHoursBefore = now.subtract(2, 'hours').valueOf();
-            chart.setVisibleRange({
-              from: twoHoursBefore,
-              to: now.milliseconds(),
-            });
-            break;
-          }
-          case '6h': {
-            const sixHoursBefore = now.subtract(6, 'hours').valueOf();
-            chart.setVisibleRange({
-              from: sixHoursBefore,
-              to: now.milliseconds(),
-            });
-            break;
-          }
-          case '1d': {
-            const oneDayBefore = now.subtract(1, 'days').valueOf();
-            chart.setVisibleRange({
-              from: oneDayBefore,
-              to: now.milliseconds(),
-            });
-            break;
-          }
-          default:
-        }
+        // switch (obj.timeframe) {
+        //   case '2h': {
+        //     const twoHoursBefore = now.subtract(2, 'hours').valueOf();
+        //     chart.setVisibleRange({
+        //       from: twoHoursBefore,
+        //       to: now.milliseconds(),
+        //     });
+        //     break;
+        //   }
+        //   case '6h': {
+        //     const sixHoursBefore = now.subtract(6, 'hours').valueOf();
+        //     chart.setVisibleRange({
+        //       from: sixHoursBefore,
+        //       to: now.milliseconds(),
+        //     });
+        //     break;
+        //   }
+        //   case '1d': {
+        //     const oneDayBefore = now.subtract(1, 'days').valueOf();
+        //     chart.setVisibleRange({
+        //       from: oneDayBefore,
+        //       to: now.milliseconds(),
+        //     });
+        //     break;
+        //   }
+        //   default:
+        // }
       });
 
       tvWidget.headerReady().then(() => {

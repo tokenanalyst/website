@@ -12,7 +12,7 @@ export const TRADINVIEW_DEFAULT_OPTIONS = {
     'header_compare',
     'header_saveload',
   ],
-  enabled_features: ['study_templates', 'cl_feed_return_all_data'],
+  enabled_features: ['study_templates'],
   charts_storage_url: 'https://saveload.tradingview.com',
   charts_storage_api_version: '1.1',
   client_id: 'tradingview.com',
@@ -44,6 +44,6 @@ export const KAIKO_TIME_FRAMES = [
   { text: '7d', resolution: '1D', description: '7 day' },
   { text: '3d', resolution: '1D', description: '3 days' },
   { text: '1d', resolution: '1D', description: '1 day' },
-  { text: '6h', resolution: '60', description: '6 hours' },
-  { text: '1h', resolution: '60', description: '2 hours' },
+  { text: '6h', resolution: '120', description: '6 hours' },
+  { text: '1h', resolution: '60', description: '1 hour' },
 ];

@@ -25,6 +25,7 @@ export const ProChartContainer = ({
   const [isLoading, setIsLoading] = useState(true);
   const tokenAnalystService = useRef(
     taData({ apiUrl: 'http://localhost:3000/api' })
+    // taData({ apiKey: '23fed9074dc23443dd89a8f65ec9fd82560d29c3b2de6b612711a19de36e0eb0'  })
   );
   const kaikoService = useRef(candlesData(KAIKO));
   const tradingViewOptions = {
@@ -34,6 +35,7 @@ export const ProChartContainer = ({
     datafeed: tvData(kaikoService.current, exchangeName, symbols),
     symbol: `${symbols[0]}/${symbols[1]}`,
     time_frames: KAIKO_TIME_FRAMES,
+    debug: false,
   };
 
   tokenAnalystService.current.setTradingPair(symbols);
@@ -45,6 +47,7 @@ export const ProChartContainer = ({
       exchangeName,
       symbols[0]
     );
+    kaikoService.current.ta = tokenAnalystService.current;
 
     setIsLoading(false);
   }, [kaikoService]);

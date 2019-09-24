@@ -6,6 +6,7 @@ const formatDate = epoch => moment(epoch).format('DD/MM/YYYY, HH:mm:ss');
 export const makeStudiesCb = (ta, exchangeName, symbol) => ({
   getData: {
     ['#FLOWS']: async (from, to, resolution) => {
+      console.warn(from, to, resolution);
       console.log(
         `Requesting bars from ${formatDate(from * 1000)} to ${formatDate(
           to * 1000
@@ -52,12 +53,13 @@ export const makeStudiesCb = (ta, exchangeName, symbol) => ({
         data_status: 'streaming',
         description: '',
         exchange: exchangeName,
-        has_intraday: false,
+        intraday_multipliers: ['60'],
+        has_intraday: true,
         minmov: 1,
         name: '#FLOWS',
         pricescale: 100000000,
         session: '24x7',
-        supported_resolutions: ['1D'],
+        supported_resolutions: ['60', '1D'],
         ticker: '#FLOWS',
         timezone: `${Intl.DateTimeFormat().resolvedOptions().timeZone}`,
         type: 'crypto',
@@ -77,7 +79,7 @@ export const makeStudiesCb = (ta, exchangeName, symbol) => ({
         name: '#NET_FLOWS',
         pricescale: 100000000,
         session: '24x7',
-        supported_resolutions: ['1D'],
+        supported_resolutions: ['60', '1D'],
         ticker: '#NET_FLOWS',
         timezone: `${Intl.DateTimeFormat().resolvedOptions().timeZone}`,
         type: 'crypto',
