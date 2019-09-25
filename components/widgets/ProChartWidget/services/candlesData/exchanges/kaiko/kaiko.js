@@ -40,16 +40,6 @@ const kaiko = (function kaiko() {
         return debugError(ERROR.EXCHANGE_NOT_SUPPORTED, status.debug);
       }
 
-      const threeDaysAgo = moment()
-        .subtract(3, 'days')
-        .valueOf();
-
-      console.log(end, threeDaysAgo);
-
-      if (end < threeDaysAgo) {
-        return [];
-      }
-
       const makeCandlesUrlFn = (symbol, interval, startTime, endTime) =>
         makeCandlesRestApiUrl(status.exchange.name, restRootUrlTAProxy, {
           instrument: `${pair[0].toLowerCase()}-${pair[1].toLowerCase()}`,

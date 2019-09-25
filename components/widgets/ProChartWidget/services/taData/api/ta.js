@@ -22,16 +22,6 @@ const ta = (function ta() {
 
   return {
     fetchFromTAProxy: async (exchange, symbol, timeFrame, start, end) => {
-      // const threeDaysAgo = moment()
-      //   .subtract(3, 'days')
-      //   .valueOf();
-
-      // console.log(end, threeDaysAgo)
-
-      // if (end < threeDaysAgo) {
-      //   return [];
-      // }
-
       const startDate = moment(start).format('YYYY-MM-DD');
       const endDate = moment(end).format('YYYY-MM-DD');
       let window;
