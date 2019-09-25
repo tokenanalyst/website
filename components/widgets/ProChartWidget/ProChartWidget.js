@@ -96,7 +96,9 @@ export const ProChartWidget = ({
               <div className="label">Exchange:</div>
               <HTMLSelect
                 className="ta-select"
-                options={Object.keys(EXCHANGE_NAMES)}
+                options={Object.keys(EXCHANGE_NAMES).filter(
+                  exchangeName => exchangeName != EXCHANGE_NAMES.Okex
+                )}
                 onChange={() => {
                   ReactGA.event({
                     category: 'User',

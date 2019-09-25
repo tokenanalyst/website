@@ -24,7 +24,11 @@ const Exchange = () => {
               onChangeExchange={newExchange => {
                 router.push(
                   `/exchange/[token]/[exchange]`,
-                  `/exchange/${EXCHANGE_TOKENS[newExchange][0]}/${newExchange}`
+                  `/exchange/${
+                    EXCHANGE_TOKENS[newExchange].indexOf(token) > 0
+                      ? token
+                      : EXCHANGE_TOKENS[newExchange][0]
+                  }/${newExchange}`
                 );
               }}
               onChangeToken={newToken => {
