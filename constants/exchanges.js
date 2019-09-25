@@ -12,6 +12,18 @@ export const EXCHANGE_NAMES = {
   Okex: 'Okex',
 };
 
+export const EXCHANGE_DOLLARS = {
+  Binance: 'USDT',
+  Bitfinex: 'USDT',
+  Bitmex: 'USD',
+  Bitstamp: 'USD',
+  Bittrex: 'USDT',
+  Kraken: 'USD',
+  Kucoin: 'USDT',
+  Poloniex: 'USDT',
+  Okex: 'USD',
+};
+
 export const EXCHANGE_TOKENS = {
   [EXCHANGE_NAMES.Binance]: [
     NATIVE_TOKENS.BTC,
