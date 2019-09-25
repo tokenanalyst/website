@@ -97,7 +97,10 @@ const tvData = (exchangeService, exchangeName, symbols) => {
       if (exchangeService.studies.getData[symbolInfo.name]) {
         const getTAData = exchangeService.studies.getData[symbolInfo.name];
         const taData = await getTAData(from, to, resolution);
-        return onHistoryCallback(cloneDeep(taData), { noData: false });
+        if (taData.length) {
+          return onHistoryCallback(taData, { noData: false });
+        }
+        return onHistoryCallback([], { noData: true });
       }
 
       console.log(
@@ -130,9 +133,9 @@ const tvData = (exchangeService, exchangeName, symbols) => {
             bars[bars.length - 1].time
           )} for ${symbolInfo.name}`
         );
-        onHistoryCallback(cloneDeep(bars), { noData: false });
+        onHistoryCallback(bars, { noData: false });
       } else {
-        onHistoryCallback(cloneDeep(bars), { noData: true });
+        onHistoryCallback(bars, { noData: true });
       }
     },
 

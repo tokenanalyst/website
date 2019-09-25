@@ -1,4 +1,3 @@
-import cloneDeep from 'lodash/cloneDeep';
 import moment from 'moment';
 
 const formatDate = epoch => moment(epoch).format('DD/MM/YYYY, HH:mm:ss');
@@ -19,11 +18,17 @@ export const makeStudiesCb = (ta, exchangeName, symbol) => ({
         from * 1000,
         to * 1000
       );
+
+      if (!flow.length) {
+        return [];
+      }
+
       console.log(
         `Received bars from ${formatDate(flow[0].time)} to ${formatDate(
           flow[flow.length - 1].time
         )} for #FLOWS`
       );
+      console.warn(flow);
       return flow;
     },
     ['#NET_FLOWS']: async (from, to, resolution) => {
@@ -39,6 +44,11 @@ export const makeStudiesCb = (ta, exchangeName, symbol) => ({
         from * 1000,
         to * 1000
       );
+
+      if (!flow.length) {
+        return [];
+      }
+
       console.log(
         `Received bars from ${formatDate(flow[0].time)} to ${formatDate(
           flow[flow.length - 1].time
@@ -53,8 +63,7 @@ export const makeStudiesCb = (ta, exchangeName, symbol) => ({
         data_status: 'streaming',
         description: '',
         exchange: exchangeName,
-        intraday_multipliers: ['60'],
-        has_intraday: true,
+        has_intraday: false,
         minmov: 1,
         name: '#FLOWS',
         pricescale: 100000000,

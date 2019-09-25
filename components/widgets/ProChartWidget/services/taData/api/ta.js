@@ -22,6 +22,16 @@ const ta = (function ta() {
 
   return {
     fetchFromTAProxy: async (exchange, symbol, timeFrame, start, end) => {
+      // const threeDaysAgo = moment()
+      //   .subtract(3, 'days')
+      //   .valueOf();
+
+      // console.log(end, threeDaysAgo)
+
+      // if (end < threeDaysAgo) {
+      //   return [];
+      // }
+
       const startDate = moment(start).format('YYYY-MM-DD');
       const endDate = moment(end).format('YYYY-MM-DD');
       let window;
@@ -49,10 +59,6 @@ const ta = (function ta() {
         fetchDataFromApi$(flowsApiCall)
           .pipe(
             map(response => response.data.ta_response),
-            // map(flows =>{
-            //   console.log(flows)
-            //   return flows
-            // }),
             map(flows => {
               const inFlow = flows.inflow.map(entry => {
                 const inFlowEntry = formatDate(entry, [
@@ -93,6 +99,7 @@ const ta = (function ta() {
                     outflow_avg_txn_value_usd,
                     value_usd,
                   } = item;
+                  console.log(item.time > start && item.time < end);
                   const time = moment.utc(date).valueOf();
 
                   return {
