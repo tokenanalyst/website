@@ -23,7 +23,7 @@ const makeCandlesRestApiUrl = (exchangeName, restRootUrl, params) => {
     }
     case EXCHANGE_NAME.KAIKO: {
       // https://<eu|us>.market-api.kaiko.io/v1/data/trades.v1/exchanges/cbse/spot/btc-usd/aggregations/ohlcv
-      return `${restRootUrl}/kaiko-historical-aggregates?${makeQuery(params)}`;
+      return `/api/kaiko-historical-aggregates?${makeQuery(params)}`;
     }
     default:
       throw Error(ERROR.EXCHANGE_NOT_SUPPORTED);

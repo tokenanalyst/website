@@ -18,6 +18,7 @@ export const ExchangeMetricsWidget = ({ token, exchange }) => {
   );
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     if (apiResponse && token) {
       setOverallMetrics(
         getExchangeMetrics(
