@@ -152,6 +152,7 @@ export const ProChartWidget = ({
         <div className="pro-chart">
           <ProChartContainer
             timeFrame="3D"
+            // interval="1D"
             interval="60"
             symbols={symbols}
             exchangeName={'Bitfinex'}

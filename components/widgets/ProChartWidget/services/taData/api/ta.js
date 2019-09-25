@@ -1,6 +1,6 @@
 import pick from 'lodash/pick';
 import merge from 'lodash/merge';
-import { map } from 'rxjs/operators';
+import { map, filter } from 'rxjs/operators';
 import { forkJoin } from 'rxjs';
 import moment from 'moment';
 import { fetchDataFromApi$ } from '../lib/observables';
@@ -22,6 +22,16 @@ const ta = (function ta() {
 
   return {
     fetchFromTAProxy: async (exchange, symbol, timeFrame, start, end) => {
+      // const threeDaysAgo = moment()
+      //   .subtract(3, 'days')
+      //   .valueOf();
+
+      // console.log(end, threeDaysAgo)
+
+      // if (end < threeDaysAgo) {
+      //   return [];
+      // }
+
       const startDate = moment(start).format('YYYY-MM-DD');
       const endDate = moment(end).format('YYYY-MM-DD');
       let window;
@@ -79,26 +89,31 @@ const ta = (function ta() {
               return merge(allFlows);
             }),
             map(flows => {
-              return flows.map(item => {
-                const {
-                  date,
-                  inflow_usd,
-                  outflow_usd,
-                  inflow_avg_txn_value_usd,
-                  outflow_avg_txn_value_usd,
-                  value_usd,
-                } = item;
-                const time = moment.utc(date).valueOf();
+              const flowsData = flows
+                .map(item => {
+                  const {
+                    date,
+                    inflow_usd,
+                    outflow_usd,
+                    inflow_avg_txn_value_usd,
+                    outflow_avg_txn_value_usd,
+                    value_usd,
+                  } = item;
+                  console.log(item.time > start && item.time < end);
+                  const time = moment.utc(date).valueOf();
 
-                return {
-                  time,
-                  open: Number(inflow_usd),
-                  close: Number(outflow_usd),
-                  high: Number(inflow_avg_txn_value_usd),
-                  low: Number(outflow_avg_txn_value_usd),
-                  volume: Number(value_usd),
-                };
-              });
+                  return {
+                    time,
+                    open: Number(inflow_usd),
+                    close: Number(outflow_usd),
+                    high: Number(inflow_avg_txn_value_usd),
+                    low: Number(outflow_avg_txn_value_usd),
+                    volume: Number(value_usd),
+                  };
+                })
+                .filter(item => item.time > start && item.time < end);
+
+              return flowsData;
             })
           )
           .toPromise();
@@ -109,6 +124,7 @@ const ta = (function ta() {
     fetchExchangeFlow: async (exchange, symbol, timeFrame, start, end) => {
       const startDate = moment(start).format('YYYY-MM-DD');
       const endDate = moment(end).format('YYYY-MM-DD');
+
       let window;
 
       window = timeFrame;
@@ -172,20 +188,28 @@ const ta = (function ta() {
               return allFlows;
             }),
             map(flows => {
-              return flows.map(item => {
-                const { date, inflow, outflow, inflow_usd, outflow_usd } = item;
-                const time = moment.utc(date).valueOf();
-                const netFlow = inflow - outflow;
+              return flows
+                .map(item => {
+                  const {
+                    date,
+                    inflow,
+                    outflow,
+                    inflow_usd,
+                    outflow_usd,
+                  } = item;
+                  const time = moment.utc(date).valueOf();
+                  const netFlow = inflow - outflow;
 
-                return {
-                  time,
-                  open: Number(inflow_usd),
-                  close: Number(outflow_usd),
-                  high: Number(inflow),
-                  low: Number(outflow),
-                  volume: Number(netFlow),
-                };
-              });
+                  return {
+                    time,
+                    open: Number(inflow_usd),
+                    close: Number(outflow_usd),
+                    high: Number(inflow),
+                    low: Number(outflow),
+                    volume: Number(netFlow),
+                  };
+                })
+                .filter(item => item.time > start && item.time < end);
             })
           )
           .toPromise();
