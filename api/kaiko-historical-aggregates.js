@@ -1,5 +1,8 @@
-import axios from 'axios';
-import url from 'url';
+const axios = require('axios');
+const url = require('url');
+const moment = require('moment');
+
+const isAuthorised = require('./auth/isAuthorised');
 
 const REGION = 'eu';
 const KAIKO_BASE_URL = `https://${REGION}.market-api.kaiko.io/v1/data`;
@@ -16,8 +19,48 @@ module.exports = async (req, res) => {
     instrument_class,
     instrument,
   } = URL_PARTS.query;
+  const isUnlimited =
+    req.cookies.apiKey && (await isAuthorised(req.cookies.apiKey));
 
   let apiResult;
+
+  const limitDataForFreeUsers = result => {
+    if (isUnlimited) {
+      return result;
+    }
+
+    const ninetyDaysAgo = moment()
+      .subtract(90, 'days')
+      .valueOf();
+
+    const filterSerie = serie =>
+      serie.filter(item => {
+        return item.timestamp > ninetyDaysAgo;
+      });
+
+    const { data } = result;
+
+    return {
+      ...result,
+      data: filterSerie(data),
+    };
+  };
+
+  if (!isUnlimited) {
+    const threeDaysAgo = moment()
+      .subtract(90, 'days')
+      .valueOf();
+
+    if (end_time < threeDaysAgo) {
+      return res.send({
+        data: [],
+      });
+    }
+  }
+
+  // console.log(
+  //   `${KAIKO_BASE_URL}/${commodity}.${DATA_VERSION}/exchanges/${exchange}/${instrument_class}/${instrument}/aggregations/ohlcv?interval=${interval}&start_time=${start_time}&end_time=${end_time}`
+  // );
 
   try {
     apiResult = await axios.get(
@@ -30,8 +73,10 @@ module.exports = async (req, res) => {
         },
       }
     );
-    res.send(apiResult.data);
+    res.send(limitDataForFreeUsers(apiResult.data));
   } catch (e) {
-    res.status(e.response.status).send({ error: e.response.statusText });
+    res
+      .status(e.response.status)
+      .send({ error: e.response.statusText, reason: e.response.data.message });
   }
 };
