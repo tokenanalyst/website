@@ -83,8 +83,8 @@ const ta = (function ta() {
                 .map(item => {
                   const {
                     date,
-                    inflow_usd,
-                    outflow_usd,
+                    inflow,
+                    outflow,
                     inflow_avg_txn_value_usd,
                     outflow_avg_txn_value_usd,
                     value_usd,
@@ -94,8 +94,8 @@ const ta = (function ta() {
 
                   return {
                     time,
-                    open: Number(inflow_usd),
-                    close: Number(outflow_usd),
+                    open: Number(inflow),
+                    close: Number(outflow),
                     high: Number(inflow_avg_txn_value_usd),
                     low: Number(outflow_avg_txn_value_usd),
                     volume: Number(value_usd),
