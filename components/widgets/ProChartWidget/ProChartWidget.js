@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import Router from 'next/router';
 import { Icon } from '@blueprintjs/core';
 import dynamic from 'next/dynamic';
+import ReactGA from 'react-ga';
 
 import { HTMLSelect, Button, Switch } from '@blueprintjs/core';
 import { ProChartContainer } from './ProChartContainer.js';
@@ -44,7 +45,6 @@ const TOOLTIP_TEXT = (
     </div>
   </>
 );
-// ('Below is the legend for each of the charts displayed. \n(All units are displayed in terms of the selected asset except for the Price which is in USD or USDT). 1: Price of the selected asset on the selected exchange in either USD or USDT. 2: Trading volume of the pair shown above on the selected exchange. Expressed in terms of the selected asset. 3: Inflows and outflows of the selected asset into and out of the selected exchange on the blockchain. 4: "Net" flows of the asset into the exchange on the blockchain. This is the sum of inflows minus the outflows. Negative net flows mean more funds left the exchange than came in during the time interval and vice versa for positive net flows.');
 
 const STUDIES = {
   FLOWS: 'Flows',
@@ -80,7 +80,14 @@ export const ProChartWidget = ({
               <HTMLSelect
                 className="ta-select"
                 options={EXCHANGE_TOKENS[exchange]}
-                onChange={() => onChangeToken(event.target.value)}
+                onChange={() => {
+                  ReactGA.event({
+                    category: 'User',
+                    action: `Pro Chart change token ${event.target.value}`,
+                    label: `Pro Charts`,
+                  });
+                  onChangeToken(event.target.value);
+                }}
                 value={token}
                 id="exchange-select"
               />
@@ -90,7 +97,14 @@ export const ProChartWidget = ({
               <HTMLSelect
                 className="ta-select"
                 options={Object.keys(EXCHANGE_NAMES)}
-                onChange={() => onChangeExchange(event.target.value)}
+                onChange={() => {
+                  ReactGA.event({
+                    category: 'User',
+                    action: `Pro Chart change exchange ${event.target.value}`,
+                    label: `Pro Charts`,
+                  });
+                  onChangeExchange(event.target.value);
+                }}
                 value={exchange}
                 id="exchange-select"
               />
@@ -100,6 +114,11 @@ export const ProChartWidget = ({
               <Switch
                 className=".bp3-large"
                 onChange={() => {
+                  ReactGA.event({
+                    category: 'User',
+                    action: `Pro Chart toggle netflow`,
+                    label: `Pro Charts`,
+                  });
                   if (!studies.current.transactions.entityId) {
                     studies.current.transactions.entityId = tvInstance.current
                       .chart()
@@ -128,7 +147,16 @@ export const ProChartWidget = ({
             </div>
           </div>
           <div className="api-button">
-            <Button onClick={() => Router.push('/pricing')}>
+            <Button
+              onClick={() => {
+                ReactGA.event({
+                  category: 'User',
+                  action: `Click get API Access Button`,
+                  label: `Pro Charts`,
+                });
+                Router.push('/pricing');
+              }}
+            >
               Get API Access
             </Button>
           </div>
