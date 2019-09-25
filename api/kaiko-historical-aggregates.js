@@ -58,9 +58,9 @@ module.exports = async (req, res) => {
     }
   }
 
-  console.log(
-    `${KAIKO_BASE_URL}/${commodity}.${DATA_VERSION}/exchanges/${exchange}/${instrument_class}/${instrument}/aggregations/ohlcv?interval=${interval}&start_time=${start_time}&end_time=${end_time}`
-  );
+  // console.log(
+  //   `${KAIKO_BASE_URL}/${commodity}.${DATA_VERSION}/exchanges/${exchange}/${instrument_class}/${instrument}/aggregations/ohlcv?interval=${interval}&start_time=${start_time}&end_time=${end_time}`
+  // );
 
   try {
     apiResult = await axios.get(
@@ -74,9 +74,7 @@ module.exports = async (req, res) => {
       }
     );
     res.send(limitDataForFreeUsers(apiResult.data));
-    // console.log(apiResult)
   } catch (e) {
-    // console.log(e)
     res
       .status(e.response.status)
       .send({ error: e.response.statusText, reason: e.response.data.message });

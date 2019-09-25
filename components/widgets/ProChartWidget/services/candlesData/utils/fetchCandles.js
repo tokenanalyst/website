@@ -14,7 +14,6 @@ const fetchCandles = async (pair, timeFrame, start, end, limit, opts) => {
 
   // Set to max 1000, because Binance has the lowest limit among exchanges: 1000.
   // TO DO: add condition to set custom limit.
-  console.log(options.apiLimit);
   const apiLimit = options.apiLimit || 1000;
 
   const timePeriod = timePeriods[timeFrame.slice(-1)];

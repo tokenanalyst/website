@@ -89,7 +89,6 @@ const ta = (function ta() {
                     outflow_avg_txn_value_usd,
                     value_usd,
                   } = item;
-                  console.log(item.time > start && item.time < end);
                   const time = moment.utc(date).valueOf();
 
                   return {

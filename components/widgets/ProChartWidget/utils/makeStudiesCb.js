@@ -5,12 +5,14 @@ const formatDate = epoch => moment(epoch).format('DD/MM/YYYY, HH:mm:ss');
 export const makeStudiesCb = (ta, exchangeName, symbol) => ({
   getData: {
     ['#FLOWS']: async (from, to, resolution) => {
-      console.warn(from, to, resolution);
-      console.log(
-        `Requesting bars from ${formatDate(from * 1000)} to ${formatDate(
-          to * 1000
-        )} for #FLOWS`
-      );
+      if (process.env.NODE_ENV === 'development') {
+        console.log(
+          `Requesting bars from ${formatDate(from * 1000)} to ${formatDate(
+            to * 1000
+          )} for #FLOWS`
+        );
+      }
+
       const flow = await ta.fetchFromTAProxy(
         exchangeName,
         symbol,
@@ -23,20 +25,25 @@ export const makeStudiesCb = (ta, exchangeName, symbol) => ({
         return [];
       }
 
-      console.log(
-        `Received bars from ${formatDate(flow[0].time)} to ${formatDate(
-          flow[flow.length - 1].time
-        )} for #FLOWS`
-      );
-      console.warn(flow);
+      if (process.env.NODE_ENV === 'development') {
+        console.log(
+          `Received bars from ${formatDate(flow[0].time)} to ${formatDate(
+            flow[flow.length - 1].time
+          )} for #FLOWS`
+        );
+      }
+
       return flow;
     },
     ['#NET_FLOWS']: async (from, to, resolution) => {
-      console.log(
-        `Requesting bars from ${formatDate(from * 1000)} to ${formatDate(
-          to * 1000
-        )} for #NET_FLOWS`
-      );
+      if (process.env.NODE_ENV === 'development') {
+        console.log(
+          `Requesting bars from ${formatDate(from * 1000)} to ${formatDate(
+            to * 1000
+          )} for #NET_FLOWS`
+        );
+      }
+
       const flow = await ta.fetchFromTAProxy(
         exchangeName,
         symbol,
@@ -49,11 +56,13 @@ export const makeStudiesCb = (ta, exchangeName, symbol) => ({
         return [];
       }
 
-      console.log(
-        `Received bars from ${formatDate(flow[0].time)} to ${formatDate(
-          flow[flow.length - 1].time
-        )} for #NET_FLOWS`
-      );
+      if (process.env.NODE_ENV === 'development') {
+        console.log(
+          `Received bars from ${formatDate(flow[0].time)} to ${formatDate(
+            flow[flow.length - 1].time
+          )} for #NET_FLOWS`
+        );
+      }
       return flow;
     },
   },

@@ -13,7 +13,10 @@ const tvData = (exchangeService, exchangeName, symbols) => {
 
   return {
     onReady: cb => {
-      console.log('===== onReady running');
+      if (process.env.NODE_ENV === 'development') {
+        console.log('===== onReady running');
+      }
+
       const { supported_resolutions } = config.kaiko;
       setTimeout(
         () =>
@@ -25,7 +28,9 @@ const tvData = (exchangeService, exchangeName, symbols) => {
     },
 
     searchSymbols: (userInput, exchange, symbolType, onResultReadyCallback) => {
-      console.log('==== Search Symbols running');
+      if (process.env.NODE_ENV === 'development') {
+        console.log('==== Search Symbols running');
+      }
     },
 
     resolveSymbol: async (
@@ -33,7 +38,9 @@ const tvData = (exchangeService, exchangeName, symbols) => {
       onSymbolResolvedCallback,
       onResolveErrorCallback
     ) => {
-      console.log('====== resolveSymbol running');
+      if (process.env.NODE_ENV === 'development') {
+        console.log('====== resolveSymbol running');
+      }
 
       if (exchangeService.studies.getSymbol[symbolName]) {
         const getSymbol = exchangeService.studies.getSymbol[symbolName];
@@ -83,7 +90,9 @@ const tvData = (exchangeService, exchangeName, symbols) => {
       onErrorCallback,
       firstDataRequest
     ) => {
-      console.log('===== getBars running');
+      if (process.env.NODE_ENV === 'development') {
+        console.log('===== getBars running');
+      }
       const [baseSymbol, quoteSymbol] = symbolInfo.name.split('/');
 
       if (exchangeService.studies.getData[symbolInfo.name]) {
@@ -95,19 +104,23 @@ const tvData = (exchangeService, exchangeName, symbols) => {
         return onHistoryCallback([], { noData: true });
       }
 
-      console.log(
-        `Requesting bars from ${formatDate(from * 1000)} to ${formatDate(
-          to * 1000
-        )} for ${symbolInfo.name}`
-      );
+      if (process.env.NODE_ENV === 'development') {
+        console.log(
+          `Requesting bars from ${formatDate(from * 1000)} to ${formatDate(
+            to * 1000
+          )} for ${symbolInfo.name}`
+        );
+      }
 
-      // eslint-disable-next-line max-len
-      console.log(
-        `exchangeService.fetchCandles(${[
-          baseSymbol,
-          quoteSymbol,
-        ]}, ${makeTimeFrame(resolution)}, ${from * 1000}, ${to * 1000})`
-      );
+      if (process.env.NODE_ENV === 'development') {
+        // eslint-disable-next-line max-len
+        console.log(
+          `exchangeService.fetchCandles(${[
+            baseSymbol,
+            quoteSymbol,
+          ]}, ${makeTimeFrame(resolution)}, ${from * 1000}, ${to * 1000})`
+        );
+      }
 
       const bars = await exchangeService.fetchCandles(
         [baseSymbol, quoteSymbol],
@@ -117,8 +130,7 @@ const tvData = (exchangeService, exchangeName, symbols) => {
         1000,
         symbolInfo.exchange
       );
-      // console.log(bars)
-      // return onHistoryCallback([], { noData: true });
+
       if (bars.length) {
         console.log(
           `Received bars from ${formatDate(bars[0].time)} to ${formatDate(
@@ -138,8 +150,9 @@ const tvData = (exchangeService, exchangeName, symbols) => {
       subscribeUID,
       onResetCacheNeededCallback
     ) {
-      console.log('===== subscribeBars runnning');
-
+      if (process.env.NODE_ENV === 'development') {
+        console.log('===== subscribeBars runnning');
+      }
       const channel = `${makeTimeFrame(resolution)}:${symbols[0]}${symbols[1]}`;
 
       if (subscrition) {
