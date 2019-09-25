@@ -19,18 +19,84 @@ export const TRADINVIEW_DEFAULT_OPTIONS = {
   user_id: 'public_user_id',
   fullscreen: false,
   autosize: true,
-  studies_overrides: {},
+  studies_overrides: {
+    'volume.volume.color.0': '#3FCDAB',
+    'volume.volume.color.1': '#FD5996',
+  },
   indicators_file_name: './indicators.js',
   overrides: {
-    // paneProperties: { background: '#ffffff' },
-    // 'mainSeriesProperties.showCountdown': true,
-    // 'paneProperties.background': '#131722',
-    // 'paneProperties.vertGridProperties.color': '#363c4e',
-    // 'paneProperties.horzGridProperties.color': '#363c4e',
-    // 'symbolWatermarkProperties.transparency': 90,
-    // 'scalesProperties.textColor': '#AAA',
-    // 'mainSeriesProperties.candleStyle.wickUpColor': '#336854',
-    // 'mainSeriesProperties.candleStyle.wickDownColor': '#7f323f',
+    // Candles styles
+    'mainSeriesProperties.candleStyle.upColor': '#3FCDAB',
+    'mainSeriesProperties.candleStyle.downColor': '#FD5996',
+    'mainSeriesProperties.candleStyle.drawWick': true,
+    'mainSeriesProperties.candleStyle.drawBorder': true,
+    'mainSeriesProperties.candleStyle.borderColor': '#378658',
+    'mainSeriesProperties.candleStyle.borderUpColor': '#3FCDAB',
+    'mainSeriesProperties.candleStyle.borderDownColor': '#FD5996',
+    'mainSeriesProperties.candleStyle.wickUpColor': '#3FCDAB',
+    'mainSeriesProperties.candleStyle.wickDownColor': '#FD5996',
+    'mainSeriesProperties.candleStyle.barColorsOnPrevClose': false,
+
+    // Hollow Candles styles
+    'mainSeriesProperties.hollowCandleStyle.upColor': '#3FCDAB',
+    'mainSeriesProperties.hollowCandleStyle.downColor': '#FD5996',
+    'mainSeriesProperties.hollowCandleStyle.drawWick': true,
+    'mainSeriesProperties.hollowCandleStyle.drawBorder': true,
+    'mainSeriesProperties.hollowCandleStyle.borderColor': '#378658',
+    'mainSeriesProperties.hollowCandleStyle.borderUpColor': '#3FCDAB',
+    'mainSeriesProperties.hollowCandleStyle.borderDownColor': '#FD5996',
+    'mainSeriesProperties.hollowCandleStyle.wickColor': '#737375',
+
+    // Heikin Ashi styles
+    'mainSeriesProperties.haStyle.upColor': '#3FCDAB',
+    'mainSeriesProperties.haStyle.downColor': '#FD5996',
+    'mainSeriesProperties.haStyle.drawWick': true,
+    'mainSeriesProperties.haStyle.drawBorder': true,
+    'mainSeriesProperties.haStyle.borderColor': '#378658',
+    'mainSeriesProperties.haStyle.borderUpColor': '#3FCDAB',
+    'mainSeriesProperties.haStyle.borderDownColor': '#FD5996',
+    'mainSeriesProperties.haStyle.wickColor': '#737375',
+    'mainSeriesProperties.haStyle.barColorsOnPrevClose': false,
+
+    // Bar styles
+    'mainSeriesProperties.barStyle.upColor': '#3FCDAB',
+    'mainSeriesProperties.barStyle.downColor': '#FD5996',
+    'mainSeriesProperties.barStyle.barColorsOnPrevClose': false,
+    'mainSeriesProperties.barStyle.dontDrawOpen': false,
+
+    // Line styles
+    'mainSeriesProperties.lineStyle.color': '#2196f3',
+    'mainSeriesProperties.lineStyle.linewidth': 3,
+    'mainSeriesProperties.lineStyle.priceSource': 'close',
+
+    // Area styles
+    'mainSeriesProperties.areaStyle.color1': '#2196f3',
+    'mainSeriesProperties.areaStyle.color2': '#2196f3',
+    'mainSeriesProperties.areaStyle.linecolor': '#2196f3',
+    'mainSeriesProperties.areaStyle.linewidth': 1,
+    'mainSeriesProperties.areaStyle.priceSource': 'close',
+
+    // Baseline styles
+    'mainSeriesProperties.baselineStyle.baselineColor':
+      'rgba( 117, 134, 150, 1)',
+    'mainSeriesProperties.baselineStyle.topFillColor1':
+      'rgba( 38, 166, 154, 0.05)',
+    'mainSeriesProperties.baselineStyle.topFillColor2':
+      'rgba( 38, 166, 154, 0.05)',
+    'mainSeriesProperties.baselineStyle.bottomFillColor1':
+      'rgba( 239, 83, 80, 0.05)',
+    'mainSeriesProperties.baselineStyle.bottomFillColor2':
+      'rgba( 239, 83, 80, 0.05)',
+    'mainSeriesProperties.baselineStyle.topLineColor': 'rgba( 38, 166, 154, 1)',
+    'mainSeriesProperties.baselineStyle.bottomLineColor':
+      'rgba( 239, 83, 80, 1)',
+    'mainSeriesProperties.baselineStyle.topLineWidth': 3,
+    'mainSeriesProperties.baselineStyle.bottomLineWidth': 3,
+    'mainSeriesProperties.baselineStyle.priceSource': 'close',
+    'mainSeriesProperties.baselineStyle.transparency': 50,
+    'mainSeriesProperties.baselineStyle.baseLevelPercentage': 50,
+    'paneProperties.vertGridProperties.color': '#E1ECF2',
+    'paneProperties.horzGridProperties.color': '#E1ECF2',
 
     volumePaneSize: 'medium',
   },
