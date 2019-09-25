@@ -1,22 +1,32 @@
 /* eslint-disable import/prefer-default-export */
 export const config = {
+  kaiko: {
+    intraday_multipliers: ['60'],
+    supported_resolutions: ['60', '120', '180', '240', '1D'],
+    makeTimeFrame: resolution => {
+      if (!Number.isNaN(resolution)) {
+        if (Number(resolution) < '60') {
+          return `${resolution}m`;
+        }
+        if (resolution === '60') {
+          return '1h';
+        }
+      }
+      if (resolution === '1D') {
+        return resolution;
+      }
+      if (resolution === 'D') {
+        return '1d';
+      }
+
+      return null;
+    },
+  },
   bitfinex: {
-    intraday_multipliers: ['1', '5', '15', '30', '60'],
+    // intraday_multipliers: ['1', '5', '15', '30', '60'],
+    intraday_multipliers: ['60'],
     // intraday_multipliers: ['1'],
-    supported_resolutions: [
-      // '1',
-      // '5',
-      // '15',
-      // '30',
-      '60',
-      '180',
-      '360',
-      '720',
-      '1D',
-      '7D',
-      '14D',
-      '1M',
-    ],
+    supported_resolutions: ['60', '120', '180', '240', '1D'],
     makeTimeFrame: resolution => {
       if (!Number.isNaN(resolution)) {
         if (Number(resolution) < '60') {
@@ -37,24 +47,9 @@ export const config = {
     },
   },
   binance: {
-    intraday_multipliers: ['1', '3', '5', '15', '30', '60'],
-    supported_resolutions: [
-      // '1',
-      // '3',
-      // '5',
-      // '15',
-      // '30',
-      '60',
-      '120',
-      '240',
-      '360',
-      '480',
-      '720',
-      '1D',
-      '3D',
-      '1W',
-      '1M',
-    ],
+    // intraday_multipliers: ['1', '3', '5', '15', '30', '60'],
+    intraday_multipliers: ['60'],
+    supported_resolutions: ['60', '120', '180', '240', '1D'],
     makeTimeFrame: resolution => {
       if (!Number.isNaN(resolution)) {
         if (Number(resolution) < '60') {

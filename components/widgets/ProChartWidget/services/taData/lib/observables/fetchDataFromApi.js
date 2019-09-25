@@ -11,7 +11,7 @@ const fetchDataFromApi$ = apiCall => {
         map(val => {
           return val;
         }),
-        tap(val => console.log(`${val} Retrying...`)),
+        tap(val => console.log(`Retrying...`)),
         delayWhen(() => timer(5000))
       )
     )

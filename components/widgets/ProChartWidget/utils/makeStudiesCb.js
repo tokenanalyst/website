@@ -1,4 +1,3 @@
-import cloneDeep from 'lodash/cloneDeep';
 import moment from 'moment';
 
 const formatDate = epoch => moment(epoch).format('DD/MM/YYYY, HH:mm:ss');
@@ -6,6 +5,7 @@ const formatDate = epoch => moment(epoch).format('DD/MM/YYYY, HH:mm:ss');
 export const makeStudiesCb = (ta, exchangeName, symbol) => ({
   getData: {
     ['#FLOWS']: async (from, to, resolution) => {
+      console.warn(from, to, resolution);
       console.log(
         `Requesting bars from ${formatDate(from * 1000)} to ${formatDate(
           to * 1000
@@ -18,11 +18,17 @@ export const makeStudiesCb = (ta, exchangeName, symbol) => ({
         from * 1000,
         to * 1000
       );
+
+      if (!flow.length) {
+        return [];
+      }
+
       console.log(
         `Received bars from ${formatDate(flow[0].time)} to ${formatDate(
           flow[flow.length - 1].time
         )} for #FLOWS`
       );
+      console.warn(flow);
       return flow;
     },
     ['#NET_FLOWS']: async (from, to, resolution) => {
@@ -38,6 +44,11 @@ export const makeStudiesCb = (ta, exchangeName, symbol) => ({
         from * 1000,
         to * 1000
       );
+
+      if (!flow.length) {
+        return [];
+      }
+
       console.log(
         `Received bars from ${formatDate(flow[0].time)} to ${formatDate(
           flow[flow.length - 1].time
@@ -57,7 +68,7 @@ export const makeStudiesCb = (ta, exchangeName, symbol) => ({
         name: '#FLOWS',
         pricescale: 100000000,
         session: '24x7',
-        supported_resolutions: ['1D'],
+        supported_resolutions: ['60', '1D'],
         ticker: '#FLOWS',
         timezone: `${Intl.DateTimeFormat().resolvedOptions().timeZone}`,
         type: 'crypto',
@@ -77,7 +88,7 @@ export const makeStudiesCb = (ta, exchangeName, symbol) => ({
         name: '#NET_FLOWS',
         pricescale: 100000000,
         session: '24x7',
-        supported_resolutions: ['1D'],
+        supported_resolutions: ['60', '1D'],
         ticker: '#NET_FLOWS',
         timezone: `${Intl.DateTimeFormat().resolvedOptions().timeZone}`,
         type: 'crypto',

@@ -34,6 +34,7 @@ export const ProChartContainer = ({
     datafeed: tvData(kaikoService.current, exchangeName, symbols),
     symbol: `${symbols[0]}/${symbols[1]}`,
     time_frames: KAIKO_TIME_FRAMES,
+    debug: false,
   };
 
   tokenAnalystService.current.setTradingPair(symbols);
@@ -45,6 +46,7 @@ export const ProChartContainer = ({
       exchangeName,
       symbols[0]
     );
+    kaikoService.current.ta = tokenAnalystService.current;
 
     setIsLoading(false);
   }, [kaikoService]);
