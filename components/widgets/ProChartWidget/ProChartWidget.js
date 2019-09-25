@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
-import Head from 'next/head';
 import Router from 'next/router';
+import { Icon } from '@blueprintjs/core';
+import dynamic from 'next/dynamic';
 
 import { HTMLSelect, Button, Switch } from '@blueprintjs/core';
 import { ProChartContainer } from './ProChartContainer.js';
@@ -10,17 +11,17 @@ import {
   EXCHANGE_DOLLARS,
 } from '../../../constants/exchanges';
 
-const TA_TRADING_PAIRS = [
-  ['BTC', 'USD'],
-  ['ETH', 'USD'],
-  ['ZRX', 'USD'],
-  ['OMG', 'USD'],
-];
-
 const STUDIES = {
   FLOWS: 'Flows',
   NET_FLOWS: 'NetFlows',
 };
+
+const SimpleToolTip = dynamic(
+  () => import('../../SimpleToolTip').then(mod => mod.SimpleToolTip),
+  {
+    ssr: false,
+  }
+);
 
 export const ProChartWidget = ({
   exchange,
@@ -36,12 +37,8 @@ export const ProChartWidget = ({
 
   return (
     <div>
-      <Head>
-        <title>Home</title>
-      </Head>
       <div className="container">
         <div className="controls">
-          {/* <div className="card"> */}
           <div className="controls-lhs">
             <div className="control">
               <div className="label">Token:</div>
@@ -81,6 +78,18 @@ export const ProChartWidget = ({
                 }}
                 defaultChecked={true}
               />
+            </div>
+            <div className="control">
+              <SimpleToolTip
+                dataFor={'header-tooltip'}
+                toolTip={'Blah blah'}
+                type="dark"
+                effect="solid"
+              >
+                <div data-tip data-for="header-tooltip">
+                  <Icon icon="info-sign" color="gray" />
+                </div>
+              </SimpleToolTip>
             </div>
           </div>
           <div className="api-button">
