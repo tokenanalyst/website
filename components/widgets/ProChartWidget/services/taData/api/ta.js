@@ -72,9 +72,11 @@ const ta = (function ta() {
                   outFlowEntry.avg_txn_value_usd;
                 return outFlowEntry;
               });
-              const netFlow = flows.netflow.map(entry => {
-                return formatDate(entry, ['date', 'value_usd']);
-              });
+              const netFlow = flows.netflow
+                .filter(value => value)
+                .map(entry => {
+                  return formatDate(entry, ['date', 'value_usd']);
+                });
               const allFlows = merge(inFlow, outFlow, netFlow);
               return merge(allFlows);
             }),
