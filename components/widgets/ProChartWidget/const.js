@@ -20,8 +20,8 @@ export const TRADINVIEW_DEFAULT_OPTIONS = {
   fullscreen: false,
   autosize: true,
   studies_overrides: {
-    'volume.volume.color.0': '#3FCDAB',
-    'volume.volume.color.1': '#FD5996',
+    'volume.volume.color.0': '#FD5996',
+    'volume.volume.color.1': '#3FCDAB',
   },
   indicators_file_name: './indicators.js',
   overrides: {
