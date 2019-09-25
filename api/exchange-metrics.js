@@ -1,5 +1,4 @@
 const url = require('url');
-const moment = require('moment');
 
 const { API_ERROR_MSG } = require('../constants/apiErrors');
 const isAuthorised = require('./auth/isAuthorised');
@@ -15,37 +14,12 @@ module.exports = async (req, res) => {
   const FORMAT = 'json';
   const PUBLIC_API_URL = 'https://api.tokenanalyst.io/analytics';
   const { ETH, BTC } = NATIVE_TOKENS;
-  const NINETY_DAYS_IN_HRS = '2160';
+  const ONE_WEEK_IN_HRS = '168';
 
   let amountOfTimeUnits = '90';
 
-  const limitDataForFreeUsers = result => {
-    if (isUnlimited) {
-      return result
-    }
-
-    const ninetyDaysAgo = moment()
-      .subtract(90, 'days')
-      .valueOf();
-
-    const filterSerie = serie =>
-      serie.filter(item => {
-        return moment(item.date).valueOf() > ninetyDaysAgo;
-      });
-
-    const { inflow, netflow, outflow, price, overall,  } = result;
-
-    return {
-      inflow: filterSerie(inflow),
-      outflow: filterSerie(outflow),
-      netflow: filterSerie(netflow),
-      price: filterSerie(price),
-      overall
-    };
-  };
-
   if (timeWindow === TIME_WINDOWS.oneHour) {
-    amountOfTimeUnits = NINETY_DAYS_IN_HRS;
+    amountOfTimeUnits = ONE_WEEK_IN_HRS;
   }
 
   if (!token || !exchange || !timeWindow) {
@@ -66,16 +40,11 @@ module.exports = async (req, res) => {
       token,
       exchange,
       window: timeWindow,
+      limit: amountOfTimeUnits,
     };
-
-    if (!isAuthorised) {
-      baseParams = { ...baseParams, limit: amountOfTimeUnits };
-    }
-
     if (direction) {
       baseParams = { ...baseParams, direction };
     }
-
     if (!from_date && !to_date) {
       return baseParams;
     } else if (!from_date) {
@@ -164,18 +133,18 @@ module.exports = async (req, res) => {
     );
 
     res.send({
-      ta_response: limitDataForFreeUsers({
+      ta_response: {
         inflow: filteredInflow,
         outflow: filteredOutflow,
         overall: publicApiResponse.data.filter(
           item => item.token === token && item.exchange === exchange
         ),
         price: filteredPrice,
-      })
+      },
     });
   } else {
     res.send({
-      ta_response: limitDataForFreeUsers({
+      ta_response: {
         inflow: inflowTxnCountApiResponse.data,
         outflow: outflowTxnCountApiResponse.data,
         netflow,
@@ -183,7 +152,7 @@ module.exports = async (req, res) => {
           item => item.token === token && item.exchange === exchange
         ),
         price: tokenPriceApiResponse.data,
-      })
+      },
     });
   }
 };
