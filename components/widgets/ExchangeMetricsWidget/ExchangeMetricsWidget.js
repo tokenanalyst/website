@@ -18,7 +18,6 @@ export const ExchangeMetricsWidget = ({ token, exchange }) => {
   );
 
   useEffect(() => {
-    window.scrollTo(0, 0); // Very depressing that I need this here but the page remains focused on the footer even after loading - dunno why
     if (apiResponse && token) {
       setOverallMetrics(
         getExchangeMetrics(
