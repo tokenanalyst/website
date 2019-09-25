@@ -1,6 +1,8 @@
 import React, { useRef } from 'react';
-import Head from 'next/head';
 import Router from 'next/router';
+import { Icon } from '@blueprintjs/core';
+import dynamic from 'next/dynamic';
+import ReactGA from 'react-ga';
 
 import { HTMLSelect, Button, Switch } from '@blueprintjs/core';
 import { ProChartContainer } from './ProChartContainer.js';
@@ -10,17 +12,51 @@ import {
   EXCHANGE_DOLLARS,
 } from '../../../constants/exchanges';
 
-const TA_TRADING_PAIRS = [
-  ['BTC', 'USD'],
-  ['ETH', 'USD'],
-  ['ZRX', 'USD'],
-  ['OMG', 'USD'],
-];
+const TOOLTIP_TEXT = (
+  <>
+    <div>Below is the legend for each of the charts displayed</div>
+    <div>
+      All units are displayed in terms of the selected asset except for the
+      Price which is in USD or USDT
+    </div>
+    <br />
+    <div>
+      1: Price of the selected asset on the selected exchange in either USD or
+      USDT
+    </div>
+    <br />
+    <div>
+      2: Trading volume of the pair shown above on the selected exchange.
+      Expressed in terms of the selected asset
+    </div>
+    <br />
+    <div>
+      3: Inflows and outflows of the selected asset into and out of the selected
+      exchange on the blockchain
+    </div>
+    <br />
+    <div>
+      4: "Net" flows of the asset into the exchange on the blockchain. This is
+      the sum of inflows minus the outflows
+    </div>
+    <div>
+      Negative net flows mean more funds left the exchange than came in during
+      the time interval and vice versa for positive net flows
+    </div>
+  </>
+);
 
 const STUDIES = {
   FLOWS: 'Flows',
   NET_FLOWS: 'NetFlows',
 };
+
+const SimpleToolTip = dynamic(
+  () => import('../../SimpleToolTip').then(mod => mod.SimpleToolTip),
+  {
+    ssr: false,
+  }
+);
 
 export const ProChartWidget = ({
   exchange,
@@ -36,19 +72,22 @@ export const ProChartWidget = ({
 
   return (
     <div>
-      <Head>
-        <title>Home</title>
-      </Head>
       <div className="container">
         <div className="controls">
-          {/* <div className="card"> */}
           <div className="controls-lhs">
             <div className="control">
               <div className="label">Token:</div>
               <HTMLSelect
                 className="ta-select"
                 options={EXCHANGE_TOKENS[exchange]}
-                onChange={() => onChangeToken(event.target.value)}
+                onChange={() => {
+                  ReactGA.event({
+                    category: 'User',
+                    action: `Pro Chart change token ${event.target.value}`,
+                    label: `Pro Charts`,
+                  });
+                  onChangeToken(event.target.value);
+                }}
                 value={token}
                 id="exchange-select"
               />
@@ -58,7 +97,14 @@ export const ProChartWidget = ({
               <HTMLSelect
                 className="ta-select"
                 options={Object.keys(EXCHANGE_NAMES)}
-                onChange={() => onChangeExchange(event.target.value)}
+                onChange={() => {
+                  ReactGA.event({
+                    category: 'User',
+                    action: `Pro Chart change exchange ${event.target.value}`,
+                    label: `Pro Charts`,
+                  });
+                  onChangeExchange(event.target.value);
+                }}
                 value={exchange}
                 id="exchange-select"
               />
@@ -68,6 +114,11 @@ export const ProChartWidget = ({
               <Switch
                 className=".bp3-large"
                 onChange={() => {
+                  ReactGA.event({
+                    category: 'User',
+                    action: `Pro Chart toggle netflow`,
+                    label: `Pro Charts`,
+                  });
                   if (!studies.current.transactions.entityId) {
                     studies.current.transactions.entityId = tvInstance.current
                       .chart()
@@ -82,9 +133,30 @@ export const ProChartWidget = ({
                 defaultChecked={true}
               />
             </div>
+            <div className="control">
+              <SimpleToolTip
+                dataFor={'header-tooltip'}
+                toolTip={TOOLTIP_TEXT}
+                type="dark"
+                effect="solid"
+              >
+                <div data-tip data-for="header-tooltip">
+                  <Icon icon="info-sign" color="gray" />
+                </div>
+              </SimpleToolTip>
+            </div>
           </div>
           <div className="api-button">
-            <Button onClick={() => Router.push('/pricing')}>
+            <Button
+              onClick={() => {
+                ReactGA.event({
+                  category: 'User',
+                  action: `Click get API Access Button`,
+                  label: `Pro Charts`,
+                });
+                Router.push('/pricing');
+              }}
+            >
               Get API Access
             </Button>
           </div>

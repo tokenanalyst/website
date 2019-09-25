@@ -186,6 +186,8 @@ export const TokenSnapshot = ({
           font-family: Open Sans;
           min-width: 300px;
           max-width: 300px;
+          padding-left: 5px;
+          padding-right: 5px;
         }
         .header {
           font-family: Space Grotesk;
