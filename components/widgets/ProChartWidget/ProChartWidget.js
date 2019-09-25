@@ -113,27 +113,29 @@ export const ProChartWidget = ({
             </div>
             <div className="control">
               <div className="label">Net Flows:</div>
-              <Switch
-                className=".bp3-large"
-                onChange={() => {
-                  ReactGA.event({
-                    category: 'User',
-                    action: `Pro Chart toggle netflow`,
-                    label: `Pro Charts`,
-                  });
-                  if (!studies.current.transactions.entityId) {
-                    studies.current.transactions.entityId = tvInstance.current
-                      .chart()
-                      .createStudy(STUDIES.NET_FLOWS, false, true);
-                  } else {
-                    tvInstance.current
-                      .chart()
-                      .removeEntity(studies.current.transactions.entityId);
-                    studies.current.transactions.entityId = null;
-                  }
-                }}
-                defaultChecked={true}
-              />
+              <div className="switch">
+                <Switch
+                  onChange={() => {
+                    ReactGA.event({
+                      category: 'User',
+                      action: `Pro Chart toggle netflow`,
+                      label: `Pro Charts`,
+                    });
+                    if (!studies.current.transactions.entityId) {
+                      studies.current.transactions.entityId = tvInstance.current
+                        .chart()
+                        .createStudy(STUDIES.NET_FLOWS, false, true);
+                    } else {
+                      tvInstance.current
+                        .chart()
+                        .removeEntity(studies.current.transactions.entityId);
+                      studies.current.transactions.entityId = null;
+                    }
+                  }}
+                  defaultChecked={true}
+                  large
+                />
+              </div>
             </div>
             <div className="control">
               <SimpleToolTip
@@ -227,6 +229,9 @@ export const ProChartWidget = ({
           }
           .pro-chart {
             width: 100%;
+          }
+          .switch {
+            padding-top: 10px;
           }
           @media (min-width: 320px) and (max-width: 767px) {
             .controls-lhs {
