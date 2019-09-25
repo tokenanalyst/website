@@ -2,17 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 import { useApi } from '../../../../custom-hooks';
-import { getExchangeDataSet } from '../../../../data-transformers/charts/getExchangeDataSet';
 import { getExchangeMetrics } from '../../../../data-transformers/widgets/getExchangeMetrics';
 import { DATA_WINDOWS, TIME_WINDOWS } from '../../../../constants/filters';
 import { ExchangeMetricsWidget } from '../../../../components/widgets/ExchangeMetricsWidget';
 import { ProChartWidget } from '../../../../components/widgets/ProChartWidget';
 
-import { EXCHANGE_NAMES } from '../../../../constants/exchanges';
+import { EXCHANGE_TOKENS } from '../../../../constants/exchanges';
 
 const Exchange = () => {
   const router = useRouter();
-  const [dataSet, setDataSet] = useState(null);
+  // const [dataSet, setDataSet] = useState(null);
   const [overallMetrics, setOverallMetrics] = useState(null);
   const { token, exchange } = router.query;
   const [timeWindow, setTimeWindow] = useState(TIME_WINDOWS.oneDay);
@@ -21,8 +20,8 @@ const Exchange = () => {
   // optimisation benefit we wait for the population to happen client side before accessing
   // https://www.npmjs.com/package/next#dynamic-routing
   const apiResponse = useApi(
-    `/api/exchange-metrics?token=${token}&exchange=${exchange}&timeWindow=${timeWindow}`,
-    [token, exchange, timeWindow]
+    `/api/exchange-metrics?token=${token}&exchange=${exchange}&timeWindow=1d`,
+    [token, exchange]
   );
 
   useEffect(() => {
@@ -35,7 +34,7 @@ const Exchange = () => {
         )
       );
     } else {
-      setDataSet(null);
+      // setDataSet(null);
     }
   }, [apiResponse, token]);
 
@@ -53,7 +52,7 @@ const Exchange = () => {
           onChangeExchange={newExchange => {
             router.push(
               `/exchange/[token]/pro/[exchange]`,
-              `/exchange/${token}/pro/${newExchange}`
+              `/exchange/${EXCHANGE_TOKENS[newExchange][0]}/pro/${newExchange}`
             );
           }}
           onChangeToken={newToken => {

@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import Head from 'next/head';
 import Router from 'next/router';
 
-import { HTMLSelect, Button, Card, Switch } from '@blueprintjs/core';
+import { HTMLSelect, Button, Switch } from '@blueprintjs/core';
 import { ProChartContainer } from './ProChartContainer.js';
 import { EXCHANGE_NAMES, EXCHANGE_TOKENS } from '../../../constants/exchanges';
 
@@ -13,19 +13,10 @@ const TA_TRADING_PAIRS = [
   ['OMG', 'USD'],
 ];
 
-const SELECTED_EXCHANGE = 'Bitfinex';
-
-// const EXCHANGES = ['Bitfinex', 'Binance'];
-// const TOKENS = ['BTC', 'ETH'];
-const ON_CHAIN_DATA = ['Volumes', 'Addresses'];
-
 const STUDIES = {
   FLOWS: 'Flows',
   NET_FLOWS: 'NetFlows',
 };
-
-const makeTickers = symbols =>
-  symbols.reduce((curr, symbol) => [...curr, `${symbol[0]}/${symbol[1]}`], []);
 
 export const ProChartWidget = ({
   exchange,
@@ -33,7 +24,6 @@ export const ProChartWidget = ({
   token,
   onChangeToken,
 }) => {
-  const [symbols, setSymbols] = useState(TA_TRADING_PAIRS[0]);
   const tvInstance = useRef(null);
   const studies = useRef({
     flows: { entityId: null },
@@ -54,10 +44,6 @@ export const ProChartWidget = ({
               <HTMLSelect
                 className="ta-select"
                 options={EXCHANGE_TOKENS[exchange]}
-                // onChange={event => {
-
-                //   setExchangeName(event.target.value);
-                // }}
                 onChange={() => onChangeToken(event.target.value)}
                 value={token}
                 id="exchange-select"
@@ -67,69 +53,17 @@ export const ProChartWidget = ({
               <div className="label">Exchange:</div>
               <HTMLSelect
                 className="ta-select"
-                options={Object.values(EXCHANGE_NAMES)}
-                // onChange={event => {
-                // setIsLoading(true);
-                // setExchangeName(event.target.value);
-                // }}
+                options={Object.keys(EXCHANGE_NAMES)}
                 onChange={() => onChangeExchange(event.target.value)}
                 value={exchange}
                 id="exchange-select"
               />
             </div>
-            {/* <div className="control">
-              <HTMLSelect
-                className="ta-select"
-                options={makeTickers(TA_TRADING_PAIRS)}
-                onChange={event => {
-                  setSymbols(event.target.value.split('/'));
-                }}
-                id="pair-select"
-              />
-            </div> */}
-
-            {/* <div className="card"> */}
-            <div className="control">
-              <div className="label">On-Chain Data:</div>
-              {/* <Button
-                onClick={() => {
-                  if (!studies.current.flows.entityId) {
-                    const entityId = tvInstance.current
-                      .chart()
-                      .createStudy(STUDIES.FLOWS, false, true);
-                    studies.current.flows.entityId = entityId;
-                  } else {
-                    tvInstance.current
-                      .chart()
-                      .removeEntity(studies.current.flows.entityId);
-                    studies.current.flows.entityId = null;
-                  }
-                }}
-              >
-                In/Out Flows
-              </Button> */}
-              <HTMLSelect
-                className="ta-select"
-                options={ON_CHAIN_DATA}
-                onChange={event => {
-                  // setIsLoading(true);
-                  // setExchangeName(event.target.value);
-                }}
-                id="exchange-select"
-              />
-            </div>
-
-            {/* <div className="legend-flows">
-            <div className="legend-flows-inflow">In flows</div>
-            <div className="legend-flows-outflow">Out flows</div>
-          </div> */}
-            {/* <br /> */}
             <div className="control">
               <div className="label">Net Flows:</div>
               <Switch
                 className=".bp3-large"
                 onChange={() => {
-                  // tv.current.chart().createStudy('Equity', false, true);
                   if (!studies.current.transactions.entityId) {
                     studies.current.transactions.entityId = tvInstance.current
                       .chart()
@@ -146,16 +80,17 @@ export const ProChartWidget = ({
             </div>
           </div>
           <div className="api-button">
-            <Button onClick={() => Router.push('/pricing')}>Get API</Button>
+            <Button onClick={() => Router.push('/pricing')}>
+              Get API Access
+            </Button>
           </div>
         </div>
         <div className="pro-chart">
           <ProChartContainer
             timeFrame="3D"
-            // interval="1D"
             interval="60"
-            symbols={symbols}
-            exchangeName={'Bitfinex'}
+            symbols={[token, 'USD']}
+            exchangeName={exchange}
             onChartRenderCb={tvWidget => {
               tvInstance.current = tvWidget;
               studies.current.flows.entityId = tvInstance.current
