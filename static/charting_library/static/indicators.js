@@ -33,7 +33,7 @@ __customIndicators = [
 
             transparency: 40,
 
-            color: '#008000',
+            color: '#3FCDAB',
           },
           plot_1: {
             linestyle: 0,
@@ -50,7 +50,7 @@ __customIndicators = [
 
             transparency: 40,
 
-            color: '#FF0000',
+            color: '#FD5996',
           },
         },
 
@@ -154,7 +154,7 @@ __customIndicators = [
             transparency: 40,
 
             // Set the plotted line color to dark red
-            color: '#880000',
+            color: '#3FCDAB',
           },
         },
 
@@ -165,12 +165,12 @@ __customIndicators = [
           palette_0: {
             colors: {
               0: {
-                color: '#008000',
+                color: '#3FCDAB',
                 width: 1,
                 style: 1,
               },
               1: {
-                color: '#FF0000',
+                color: '#FD5996',
                 width: 1,
                 style: 1,
               },
