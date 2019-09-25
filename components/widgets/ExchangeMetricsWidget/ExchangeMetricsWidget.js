@@ -1,12 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import numeral from 'numeral';
 import { Skeleton } from '../../Skeleton';
 
 import { EXCHANGE_IMAGES } from '../../../constants/image-paths';
 import { EXCHANGE_NAMES } from '../../../constants/exchanges';
 import { colors } from '../../../constants/styles/colors';
+import { useApi } from '../../../custom-hooks';
+import { getExchangeMetrics } from '../../../data-transformers/widgets/getExchangeMetrics';
+import { DATA_WINDOWS } from '../../../constants/filters';
 
-export const ExchangeMetricsWidget = ({ overallMetrics, token, exchange }) => {
+export const ExchangeMetricsWidget = ({ token, exchange }) => {
+  const [overallMetrics, setOverallMetrics] = useState(null);
+
+  const apiResponse = useApi(
+    `/api/exchange-metrics?token=${token}&exchange=${exchange}&timeWindow=1d`,
+    [token, exchange]
+  );
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // Very depressing that I need this here but the page remains focused on the footer even after loading - dunno why
+    if (apiResponse && token) {
+      setOverallMetrics(
+        getExchangeMetrics(
+          apiResponse.overall.find(item => item.window === DATA_WINDOWS[0])
+        )
+      );
+    }
+  }, [apiResponse, token]);
+
   return (
     <>
       <div className="banner-container">
