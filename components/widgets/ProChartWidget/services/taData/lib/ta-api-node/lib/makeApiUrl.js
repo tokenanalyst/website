@@ -9,5 +9,5 @@ module.exports = (endpoint, restRootUrl, queryParams) => {
     separator = '?';
   }
 
-  return `${restRootUrl}/${endpoint}${separator}${makeQuery(queryParams)}`;
+  return `/api/${endpoint}${separator}${makeQuery(queryParams)}`;
 };
