@@ -17,7 +17,7 @@ const TOOLTIP_TEXT = (
     <div>Below is the legend for each of the charts displayed</div>
     <div>
       All units are displayed in terms of the selected asset except for the
-      Price which is in USD or USDT
+      Price which is displayed in USD, USDT or appropriate stablecoin
     </div>
     <br />
     <div>
