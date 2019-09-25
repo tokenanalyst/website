@@ -9,7 +9,7 @@ let subscrition;
 const formatDate = epoch => moment(epoch).format('DD/MM/YYYY, HH:mm:ss');
 
 const tvData = (exchangeService, exchangeName, symbols) => {
-  const { makeTimeFrame } = config[exchangeName.toLowerCase()];
+  const { makeTimeFrame } = config.kaiko;
 
   return {
     onReady: cb => {
@@ -43,14 +43,6 @@ const tvData = (exchangeService, exchangeName, symbols) => {
         }, 0);
         return;
       }
-
-      if (!config[exchangeName.toLowerCase()]) {
-        onResolveErrorCallback(`Exchange ${exchangeName} not supported.`);
-      }
-
-      // const { intraday_multipliers, supported_resolutions } = config[
-      //   exchangeName.toLowerCase()
-      // ];
 
       const { intraday_multipliers, supported_resolutions } = config.kaiko;
 
