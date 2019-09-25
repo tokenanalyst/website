@@ -9,7 +9,6 @@ const wsInstance$ = new Subject();
 const reconnect$ = new Subject();
 
 const makeDataStream = (wsUrl, options) => {
-  console.log(options);
   ws = connectWs(wsUrl, {
     wsProtocols: options.wsProtocols,
     initSubs: (options && options.initSubs) || {},

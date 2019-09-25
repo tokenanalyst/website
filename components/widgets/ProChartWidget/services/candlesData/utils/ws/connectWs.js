@@ -14,7 +14,6 @@ function connectWs(url, opts = {}) {
   };
 
   const connOpts = { ...defOpts, ...opts };
-  console.log(connOpts.wsProtocols);
   const ws =
     typeof window !== 'undefined' && window.WebSocket
       ? new WebSocket(url, connOpts.wsProtocols)
