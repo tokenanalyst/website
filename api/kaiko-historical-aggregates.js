@@ -26,7 +26,7 @@ module.exports = async (req, res) => {
 
   const limitDataForFreeUsers = result => {
     if (isUnlimited) {
-      return result
+      return result;
     }
 
     const ninetyDaysAgo = moment()
@@ -42,8 +42,8 @@ module.exports = async (req, res) => {
 
     return {
       ...result,
-      data: filterSerie(data)
-    }
+      data: filterSerie(data),
+    };
   };
 
   if (!isUnlimited) {
@@ -58,6 +58,10 @@ module.exports = async (req, res) => {
     }
   }
 
+  console.log(
+    `${KAIKO_BASE_URL}/${commodity}.${DATA_VERSION}/exchanges/${exchange}/${instrument_class}/${instrument}/aggregations/ohlcv?interval=${interval}&start_time=${start_time}&end_time=${end_time}`
+  );
+
   try {
     apiResult = await axios.get(
       `${KAIKO_BASE_URL}/${commodity}.${DATA_VERSION}/exchanges/${exchange}/${instrument_class}/${instrument}/aggregations/ohlcv?interval=${interval}&start_time=${start_time}&end_time=${end_time}`,
@@ -70,7 +74,11 @@ module.exports = async (req, res) => {
       }
     );
     res.send(limitDataForFreeUsers(apiResult.data));
+    // console.log(apiResult)
   } catch (e) {
-    res.status(e.response.status).send({ error: e.response.statusText });
+    // console.log(e)
+    res
+      .status(e.response.status)
+      .send({ error: e.response.statusText, reason: e.response.data.message });
   }
 };
