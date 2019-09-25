@@ -1,7 +1,10 @@
 import React, { useState, useRef } from 'react';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
+
 import { HTMLSelect, Button, Card, Switch } from '@blueprintjs/core';
 import { ProChartContainer } from './ProChartContainer.js';
+import { EXCHANGE_NAMES, EXCHANGE_TOKENS } from '../../../constants/exchanges';
 
 const TA_TRADING_PAIRS = [
   ['BTC', 'USD'],
@@ -12,7 +15,7 @@ const TA_TRADING_PAIRS = [
 
 const SELECTED_EXCHANGE = 'Bitfinex';
 
-const EXCHANGES = ['Bitfinex', 'Binance'];
+// const EXCHANGES = ['Bitfinex', 'Binance'];
 const TOKENS = ['BTC', 'ETH'];
 const ON_CHAIN_DATA = ['Volumes', 'Addresses'];
 
@@ -24,7 +27,12 @@ const STUDIES = {
 const makeTickers = symbols =>
   symbols.reduce((curr, symbol) => [...curr, `${symbol[0]}/${symbol[1]}`], []);
 
-export const ProChartWidget = () => {
+export const ProChartWidget = ({
+  exchange,
+  onChangeExchange,
+  token,
+  onChangeToken,
+}) => {
   const [exchangeName, setExchangeName] = useState(SELECTED_EXCHANGE);
   const [symbols, setSymbols] = useState(TA_TRADING_PAIRS[0]);
   const tvInstance = useRef(null);
@@ -46,11 +54,13 @@ export const ProChartWidget = () => {
               <div className="label">Token:</div>
               <HTMLSelect
                 className="ta-select"
-                options={TOKENS}
+                options={EXCHANGE_TOKENS[exchange]}
                 // onChange={event => {
 
                 //   setExchangeName(event.target.value);
                 // }}
+                onChange={() => onChangeToken(event.target.value)}
+                value={token}
                 id="exchange-select"
               />
             </div>
@@ -58,11 +68,13 @@ export const ProChartWidget = () => {
               <div className="label">Exchange:</div>
               <HTMLSelect
                 className="ta-select"
-                options={EXCHANGES}
-                onChange={event => {
-                  // setIsLoading(true);
-                  setExchangeName(event.target.value);
-                }}
+                options={Object.keys(EXCHANGE_NAMES)}
+                // onChange={event => {
+                // setIsLoading(true);
+                // setExchangeName(event.target.value);
+                // }}
+                onChange={() => onChangeExchange(event.target.value)}
+                value={exchange}
                 id="exchange-select"
               />
             </div>
@@ -144,7 +156,7 @@ export const ProChartWidget = () => {
             // interval="1D"
             interval="60"
             symbols={symbols}
-            exchangeName={exchangeName}
+            exchangeName={'Bitfinex'}
             onChartRenderCb={tvWidget => {
               tvInstance.current = tvWidget;
               studies.current.flows.entityId = tvInstance.current
