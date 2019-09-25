@@ -150,9 +150,9 @@ export const ProChartWidget = () => {
               studies.current.flows.entityId = tvInstance.current
                 .chart()
                 .createStudy('Flows', false, true);
-              // studies.current.transactions.entityId = tvInstance.current
-              //   .chart()
-              //   .createStudy('NetFlows', false, true);
+              studies.current.transactions.entityId = tvInstance.current
+                .chart()
+                .createStudy('NetFlows', false, true);
             }}
           />
         </div>

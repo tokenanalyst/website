@@ -95,130 +95,130 @@ __customIndicators = [
       };
     },
   },
-  // {
-  //   name: 'NetFlows',
-  //   metainfo: {
-  //     _metainfoVersion: 40,
-  //     id: 'NetFlows@tv-basicstudies-1',
-  //     scriptIdPart: '',
-  //     name: 'NetFlows',
-  //     description: 'NetFlows',
-  //     shortDescription: 'Net Flows',
+  {
+    name: 'NetFlows',
+    metainfo: {
+      _metainfoVersion: 40,
+      id: 'NetFlows@tv-basicstudies-1',
+      scriptIdPart: '',
+      name: 'NetFlows',
+      description: 'NetFlows',
+      shortDescription: 'Net Flows',
 
-  //     is_hidden_study: false,
-  //     is_price_study: false,
-  //     isCustomIndicator: true,
+      is_hidden_study: false,
+      is_price_study: false,
+      isCustomIndicator: true,
 
-  //     plots: [
-  //       { id: 'plot_0', type: 'line' },
-  //       {
-  //         id: 'plot_1',
-  //         palette: 'palette_0',
-  //         target: 'plot_0',
-  //         type: 'colorer',
-  //       },
-  //     ],
+      plots: [
+        { id: 'plot_0', type: 'line' },
+        {
+          id: 'plot_1',
+          palette: 'palette_0',
+          target: 'plot_0',
+          type: 'colorer',
+        },
+      ],
 
-  //     palettes: {
-  //       palette_0: {
-  //         colors: {
-  //           0: {
-  //             name: 'Color 0',
-  //           },
-  //           1: {
-  //             name: 'Color 1',
-  //           },
-  //         },
-  //         valToIndex: {
-  //           100: 0,
-  //           200: 1,
-  //         },
-  //       },
-  //     },
+      palettes: {
+        palette_0: {
+          colors: {
+            0: {
+              name: 'Color 0',
+            },
+            1: {
+              name: 'Color 1',
+            },
+          },
+          valToIndex: {
+            100: 0,
+            200: 1,
+          },
+        },
+      },
 
-  //     defaults: {
-  //       styles: {
-  //         plot_0: {
-  //           linestyle: 0,
-  //           visible: true,
+      defaults: {
+        styles: {
+          plot_0: {
+            linestyle: 0,
+            visible: true,
 
-  //           // Make the line thinner
-  //           linewidth: 4,
+            // Make the line thinner
+            linewidth: 4,
 
-  //           // Plot type is Line
-  //           plottype: 5,
+            // Plot type is Line
+            plottype: 5,
 
-  //           // Show price line
-  //           trackPrice: false,
+            // Show price line
+            trackPrice: false,
 
-  //           transparency: 40,
+            transparency: 40,
 
-  //           // Set the plotted line color to dark red
-  //           color: '#880000',
-  //         },
-  //       },
+            // Set the plotted line color to dark red
+            color: '#880000',
+          },
+        },
 
-  //       // Precision is set to one digit, e.g. 777.7
-  //       precision: 0,
+        // Precision is set to one digit, e.g. 777.7
+        precision: 0,
 
-  //       palettes: {
-  //         palette_0: {
-  //           colors: {
-  //             0: {
-  //               color: '#008000',
-  //               width: 1,
-  //               style: 1,
-  //             },
-  //             1: {
-  //               color: '#FF0000',
-  //               width: 1,
-  //               style: 1,
-  //             },
-  //           },
-  //         },
-  //       },
+        palettes: {
+          palette_0: {
+            colors: {
+              0: {
+                color: '#008000',
+                width: 1,
+                style: 1,
+              },
+              1: {
+                color: '#FF0000',
+                width: 1,
+                style: 1,
+              },
+            },
+          },
+        },
 
-  //       inputs: {},
-  //     },
-  //     styles: {
-  //       plot_0: {
-  //         // Output name will be displayed in the Style window
-  //         title: 'Net Flows value',
-  //         histogramBase: 0,
-  //       },
-  //     },
-  //     inputs: [],
-  //   },
+        inputs: {},
+      },
+      styles: {
+        plot_0: {
+          // Output name will be displayed in the Style window
+          title: 'Net Flows value',
+          histogramBase: 0,
+        },
+      },
+      inputs: [],
+    },
 
-  //   constructor: function() {
-  //     this.init = function(context, inputCallback) {
-  //       this._context = context;
-  //       this._input = inputCallback;
-  //       // console.warn(context);
+    constructor: function() {
+      this.init = function(context, inputCallback) {
+        this._context = context;
+        this._input = inputCallback;
+        // console.warn(context);
 
-  //       var symbol = '#NET_FLOWS';
-  //       this._context.new_sym(
-  //         symbol,
-  //         PineJS.Std.period(this._context),
-  //         PineJS.Std.period(this._context)
-  //       );
-  //     };
+        var symbol = '#NET_FLOWS';
+        this._context.new_sym(
+          symbol,
+          PineJS.Std.period(this._context),
+          PineJS.Std.period(this._context)
+        );
+      };
 
-  //     this.main = function(context, inputCallback) {
-  //       this._context = context;
-  //       this._input = inputCallback;
+      this.main = function(context, inputCallback) {
+        this._context = context;
+        this._input = inputCallback;
 
-  //       this._context.select_sym(1);
+        this._context.select_sym(1);
 
-  //       var netFlowValue = PineJS.Std.volume(this._context);
+        var netFlowValue = PineJS.Std.volume(this._context);
 
-  //       return [
-  //         {
-  //           value: netFlowValue,
-  //         },
-  //         netFlowValue < 0 ? 200 : 100,
-  //       ];
-  //     };
-  //   },
-  // },
+        return [
+          {
+            value: netFlowValue,
+          },
+          netFlowValue < 0 ? 200 : 100,
+        ];
+      };
+    },
+  },
 ];
