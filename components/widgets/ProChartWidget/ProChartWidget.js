@@ -1,10 +1,14 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import Head from 'next/head';
 import Router from 'next/router';
 
 import { HTMLSelect, Button, Switch } from '@blueprintjs/core';
 import { ProChartContainer } from './ProChartContainer.js';
-import { EXCHANGE_NAMES, EXCHANGE_TOKENS } from '../../../constants/exchanges';
+import {
+  EXCHANGE_NAMES,
+  EXCHANGE_TOKENS,
+  EXCHANGE_DOLLARS,
+} from '../../../constants/exchanges';
 
 const TA_TRADING_PAIRS = [
   ['BTC', 'USD'],
@@ -89,7 +93,7 @@ export const ProChartWidget = ({
           <ProChartContainer
             timeFrame="3D"
             interval="60"
-            symbols={[token, 'USD']}
+            symbols={[token, EXCHANGE_DOLLARS[exchange]]}
             exchangeName={exchange}
             onChartRenderCb={tvWidget => {
               tvInstance.current = tvWidget;
