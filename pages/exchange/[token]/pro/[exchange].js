@@ -65,7 +65,23 @@ const Exchange = () => {
               );
             }}
           />
-          {/* <img src="/static/png/" */}
+          <div className="kaiko">
+            Order-book data by{' '}
+            <a href="http://kaiko.com" target="_blank" className="link">
+              Kaiko
+            </a>
+          </div>
+          <style jsx>{`
+            .kaiko {
+              padding: 20px;
+              display: flex;
+              align-items: center;
+              justify-content: flex-end;
+            }
+            .link {
+              padding-left: 3px;
+            }
+          `}</style>
         </>
       )}
     </div>
