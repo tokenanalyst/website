@@ -46,22 +46,24 @@ const Exchange = () => {
         token={token}
         exchange={exchange}
       />
-      <ProChartWidget
-        exchange={exchange}
-        token={token}
-        onChangeExchange={newExchange => {
-          router.push(
-            `/exchange/[token]/pro/[newExchange]`,
-            `/exchange/${token}/pro/${newExchange}`
-          );
-        }}
-        onChangeToken={newToken => {
-          router.push(
-            `/exchange/[newToken]/pro/[exchange]`,
-            `/exchange/${newToken}/pro/${exchange}`
-          );
-        }}
-      />
+      {token && exchange && (
+        <ProChartWidget
+          exchange={exchange}
+          token={token}
+          onChangeExchange={newExchange => {
+            router.push(
+              `/exchange/[token]/pro/[exchange]`,
+              `/exchange/${token}/pro/${newExchange}`
+            );
+          }}
+          onChangeToken={newToken => {
+            router.push(
+              `/exchange/[token]/pro/[exchange]`,
+              `/exchange/${newToken}/pro/${exchange}`
+            );
+          }}
+        />
+      )}
     </div>
   );
 };

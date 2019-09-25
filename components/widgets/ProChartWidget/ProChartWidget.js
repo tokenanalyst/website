@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
+import Router from 'next/router';
 
 import { HTMLSelect, Button, Card, Switch } from '@blueprintjs/core';
 import { ProChartContainer } from './ProChartContainer.js';
@@ -16,7 +16,7 @@ const TA_TRADING_PAIRS = [
 const SELECTED_EXCHANGE = 'Bitfinex';
 
 // const EXCHANGES = ['Bitfinex', 'Binance'];
-const TOKENS = ['BTC', 'ETH'];
+// const TOKENS = ['BTC', 'ETH'];
 const ON_CHAIN_DATA = ['Volumes', 'Addresses'];
 
 const STUDIES = {
@@ -33,7 +33,6 @@ export const ProChartWidget = ({
   token,
   onChangeToken,
 }) => {
-  const [exchangeName, setExchangeName] = useState(SELECTED_EXCHANGE);
   const [symbols, setSymbols] = useState(TA_TRADING_PAIRS[0]);
   const tvInstance = useRef(null);
   const studies = useRef({
@@ -68,7 +67,7 @@ export const ProChartWidget = ({
               <div className="label">Exchange:</div>
               <HTMLSelect
                 className="ta-select"
-                options={Object.keys(EXCHANGE_NAMES)}
+                options={Object.values(EXCHANGE_NAMES)}
                 // onChange={event => {
                 // setIsLoading(true);
                 // setExchangeName(event.target.value);
@@ -114,7 +113,7 @@ export const ProChartWidget = ({
                 options={ON_CHAIN_DATA}
                 onChange={event => {
                   // setIsLoading(true);
-                  setExchangeName(event.target.value);
+                  // setExchangeName(event.target.value);
                 }}
                 id="exchange-select"
               />
@@ -142,12 +141,12 @@ export const ProChartWidget = ({
                     studies.current.transactions.entityId = null;
                   }
                 }}
-                checked
+                defaultChecked={true}
               />
             </div>
           </div>
           <div className="api-button">
-            <Button>Get API</Button>
+            <Button onClick={() => Router.push('/pricing')}>Get API</Button>
           </div>
         </div>
         <div className="pro-chart">
