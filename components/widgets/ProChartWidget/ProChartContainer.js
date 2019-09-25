@@ -25,7 +25,6 @@ export const ProChartContainer = ({
   const [isLoading, setIsLoading] = useState(true);
   const tokenAnalystService = useRef(
     taData({ apiUrl: 'http://localhost:3000/api' })
-    // taData({ apiKey: '23fed9074dc23443dd89a8f65ec9fd82560d29c3b2de6b612711a19de36e0eb0'  })
   );
   const kaikoService = useRef(candlesData(KAIKO));
   const tradingViewOptions = {
