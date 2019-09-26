@@ -29,9 +29,9 @@ module.exports = async (req, res) => {
       .valueOf();
 
     const filterSerie = series =>
-      series.filter(item => {
-        return moment(item.date).valueOf() > ninetyDaysAgo;
-      });
+      series
+        .filter(item => item)
+        .filter(item => moment(item.date).valueOf() > ninetyDaysAgo);
 
     const { inflow, netflow, outflow, price, overall } = result;
 
