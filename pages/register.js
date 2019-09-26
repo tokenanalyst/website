@@ -1,16 +1,17 @@
-import React, { useEffect, useContext } from "react";
-import Router from "next/router";
-import dynamic from "next/dynamic";
+import React, { useEffect, useContext } from 'react';
+import Router from 'next/router';
+import dynamic from 'next/dynamic';
+import Head from 'next/head';
 
-import { LoginContext } from "../contexts/Login";
+import { LoginContext } from '../contexts/Login';
 
 const RegisterWidget = dynamic(
   () =>
-    import("../components/widgets/RegisterWidget").then(
+    import('../components/widgets/RegisterWidget').then(
       mod => mod.RegisterWidget
     ),
   {
-    ssr: false
+    ssr: false,
   }
 );
 
@@ -19,12 +20,15 @@ const Register = () => {
 
   useEffect(() => {
     if (loginCtx.isLoggedIn) {
-      Router.push("/");
+      Router.push('/');
     }
   }, [loginCtx.isLoggedIn]);
 
   return (
     <>
+      <Head>
+        <title>TokenAnalyst - Register</title>
+      </Head>
       <div className="container">
         {!loginCtx.isLoggedIn && (
           <>

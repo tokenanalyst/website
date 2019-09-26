@@ -28,7 +28,7 @@ export const Layout = ({ children }) => (
       />
       <meta
         name="keywords"
-        content="blockchain, bitcoin, ethereum, data, on-chain, streaming, alerts, bots, trading"
+        content="blockchain, bitcoin, ethereum, data, on-chain, streaming, trading, inflow, outflow, exchange flows"
       />
       <meta property="og:title" content="TokenAnalyst" />
       <meta property="og:type" content="website" />
