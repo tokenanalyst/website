@@ -1,8 +1,3 @@
-import React, { useContext } from "react";
-import ReactGA from "react-ga";
-import Router from "next/router";
-import Cookies from "js-cookie";
-import { Button, Intent } from "@blueprintjs/core";
 import React, { useContext } from 'react';
 import ReactGA from 'react-ga';
 import Router from 'next/router';
@@ -12,19 +7,9 @@ import { Card } from '@blueprintjs/core';
 import { LoginContext } from '../../../contexts/Login';
 import { STRIPE } from '../../../constants/stripe';
 import { PLAN_NAMES } from '../../../constants/plans';
-import { colors } from '../../../constants/styles/colors';
+import { PRIMARY_GREEN } from '../../../constants/styles/colors';
+import { SimpleButton } from '../../SimpleButton';
 
-import css from "styled-jsx/css";
-
-function getLinkStyles(color) {
-  return css.resolve`
-    :global(.bp3-button:not([class*="bp3-intent-"])) {
-      background-color: yellow;
-    }
-  `;
-}
-
-export const Product = ({ name, price, features, buttonText, stripePlan }) => {
 export const Product = ({
   name,
   price,
@@ -36,8 +21,6 @@ export const Product = ({
   const loginCtx = useContext(LoginContext);
   const username = Cookies.get('loggedInAsUsername');
   const userId = Cookies.get('loggedInAsUserId');
-
-  const { className, styles } = getLinkStyles();
 
   const redirectToStripe = async stripeOptions => {
     const stripe = Stripe(STRIPE.apiKey);
@@ -78,47 +61,16 @@ export const Product = ({
               ) : null}
             </div>
           </div>
-        </div>
-        <div className="body">
-          <div className="features">
-            {features.map(feature => (
-              <div key={feature} className="feature">
-                {feature}
-              </div>
-            ))}
-          </div>
-          <div>
-            Test text
-            <Button
-              className={className}
-              onClick={
-                stripePlan
-                  ? async () => {
-                      ReactGA.event({
-                        category: "User",
-                        action: `Plan select ${name}`,
-                        label: `Plans`
-                      });
-
-                      if (!loginCtx.isLoggedIn) {
-                        loginCtx.setPaymentData({
-                          stripe: { redirectFn: redirectToStripe }
-                        });
-                        return Router.push("/login");
-                      }
-                      await redirectToStripe({
-                        customerEmail: username,
-                        clientReferenceId: userId.toString()
           <div className="body">
             <div className="features">
-              {features.map(feature => (
-                <div key={feature} className="feature">
-                  {feature}
-                </div>
-              ))}
+              <ul className="feature">
+                {features.map(feature => (
+                  <li key={feature}>{feature}</li>
+                ))}
+              </ul>
             </div>
-            <div
-              className="purchase-button"
+            <SimpleButton
+              backGrounColor={PRIMARY_GREEN}
               onClick={
                 name === PLAN_NAMES.ENTERPRISE
                   ? () => {
@@ -148,39 +100,20 @@ export const Product = ({
                         clientReferenceId: userId.toString(),
                       });
                     }
-                  : () => {
-                      ReactGA.event({
-                        category: "User",
-                        action: `Plan select ${name}`,
-                        label: `Plans`
-                      });
-
-                      if (name === "Free") {
-                        return Router.push("/register");
-                      }
-
-                      window.location = "mailto:info@tokenanalyst.io";
-                    }
-              }>
-              {buttonText}
-            </Button>
-            {/* <CustomButton></CustomButton> */}
               }
             >
               {buttonText}
-            </div>
+            </SimpleButton>
           </div>
         </Card>
       </div>
-      {styles}
       <style jsx>{`
         .container {
           font-family: Open Sans;
           display: flex;
           flex-direction: column;
-          min-width: ${isMaxWidth ? '100%' : '600px'};
-          max-width: 600px;
-          padding: 10px;
+          width: 33%;
+          margin: 5px;
         }
         .header {
           font-family: Space Grotesk;
@@ -207,24 +140,12 @@ export const Product = ({
           flex-direction: row;
           justify-content: space-between;
         }
-        .feature {
+        .features {
           padding-top: 4px;
           padding-bottom: 4px;
         }
-        .purchase-button {
-          height: 100px;
-          width: 200px;
-          color: white;
-          min-width: 110px;
-          text-align: center;
-          background-color: rgba(${colors.primaryGreen});
-          max-height: 40px;
-          padding: 10px;
-          border-radius: 20px;
-          cursor: pointer;
-        }
-        .merry--override {
-          color: yellow;
+        .feature {
+          padding-left: 20px;
         }
         @media (min-width: 1400px) and (max-width: 1799px) {
           .container {
@@ -233,12 +154,16 @@ export const Product = ({
         }
         @media only screen and (max-width: 768px) {
           .container {
-            padding: 5px;
+            width: 100%;
             min-width: 95%;
           }
-          .feature {
+          .features {
+            padding-right: 2px;
             padding-top: 2px;
             padding-bottom: 2px;
+          }
+          .feature {
+            padding-left: 20px;
           }
         }
       `}</style>

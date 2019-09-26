@@ -3,7 +3,6 @@ import ReactGA from 'react-ga';
 
 import { PageHeader } from '../components/PageHeader';
 import { TestimonialsWidget } from '../components/widgets/TestimonialsWidget';
-import { PageHeader } from '../components/PageHeader';
 import { PageSection } from '../components/PageSection';
 
 import {
@@ -35,11 +34,10 @@ const Pricing = () => {
         </a>{' '}
         to get a small sample of our data for your specific use case
       </div>
+      <PageSection text={'Testimonials'} />
       <div>
-        <div className="sub-header">Testimonials</div>
         <TestimonialsWidget />
       </div>
-      <div className="sub-header">What you get</div>
       <PageSection text={'What you get'} />
       <div className="feature-table">
         <FeatureTableDesktop />
