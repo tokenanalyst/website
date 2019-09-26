@@ -122,5 +122,5 @@ module.exports = async (req, res) => {
     res.setHeader(...cacheHeader);
   });
 
-  res.send({ ta_response });
+  res.send(ta_response);
 };

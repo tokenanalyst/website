@@ -1,21 +1,18 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import { IoTable } from "../components/tables/IoTable";
-import { FilterNav } from "../components/navs";
-import { DATA_WINDOWS, UNITS } from "../constants/filters";
-import { underSubNav } from "../constants/styles/common-styled-jsx";
-import { TokenSnapshotWidget } from "../components/widgets/TokenSnapshotWidget";
-import { useApi } from "../custom-hooks";
-import { LoadingSpinner } from "../components/LoadingSpinner";
-import { TestimonialsWidget } from "../components/widgets/TestimonialsWidget";
+import { IoTable } from '../components/tables/IoTable';
+import { FilterNav } from '../components/navs';
+import { DATA_WINDOWS, UNITS } from '../constants/filters';
+import { underSubNav } from '../constants/styles/common-styled-jsx';
+import { TokenSnapshotWidget } from '../components/widgets/TokenSnapshotWidget';
+import { useApi } from '../custom-hooks';
+import { LoadingSpinner } from '../components/LoadingSpinner';
+import { TestimonialsWidget } from '../components/widgets/TestimonialsWidget';
 
 const Exchange = () => {
   const [dataWindow, setDataWindow] = useState(DATA_WINDOWS[0]);
   const [units, setUnits] = useState(UNITS[0]);
-  const tokenSnapshotWidgetData = useApi(
-    "/api/latest-exchange-flows?tokens=BTC,ETH,USDC,DAI"
-  );
-  const ioTableData = useApi("/api/exchange-io");
+  const ioTableData = useApi('/api/exchange-io');
 
   return (
     <>
@@ -28,17 +25,7 @@ const Exchange = () => {
       <div className="under-sub-nav">
         <>
           <div className="section-header">At a glance</div>
-          {tokenSnapshotWidgetData ? (
-            <TokenSnapshotWidget
-              data={tokenSnapshotWidgetData}
-              dataWindow={dataWindow}
-              units={units}
-            />
-          ) : (
-            <div className="spinner">
-              <LoadingSpinner />
-            </div>
-          )}
+          <TokenSnapshotWidget dataWindow={dataWindow} units={units} />
           <div className="section-header">{dataWindow} Inflows/Outflows</div>
           <div className="table">
             {ioTableData ? (

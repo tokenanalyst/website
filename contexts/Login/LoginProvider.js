@@ -1,17 +1,9 @@
-import React, { useState, useEffect } from "react";
-import Cookies from "js-cookie";
+import React, { useState, useEffect } from 'react';
+import Cookies from 'js-cookie';
 
-import { LoginContext } from "./LoginContext";
-import { COOKIES } from "../../constants/cookies";
-
-const isUserCookiesValid = () => {
-  return !!(
-    Cookies.get("apiKey") &&
-    Cookies.get("loggedInAs") &&
-    Cookies.get("loggedInAsUsername") &&
-    Cookies.get("loggedInAsUserId")
-  );
-};
+import { LoginContext } from './LoginContext';
+import { COOKIES } from '../../constants/cookies';
+import { intercom, isUserCookiesValid } from './utils';
 
 export const LoginProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -20,13 +12,18 @@ export const LoginProvider = ({ children }) => {
 
   useEffect(() => {
     if (isUserCookiesValid()) {
+      intercom.setUser(
+        Cookies.get(COOKIES.loggedInAs),
+        Cookies.get(COOKIES.loggedInAsUsername)
+      );
       setIsLoggedIn(true);
     } else {
+      intercom.removeUser();
       setIsLoggedIn(false);
-      Cookies.remove("apiKey");
-      Cookies.remove("loggedInAs");
-      Cookies.remove("loggedInAsUsername");
-      Cookies.remove("loggedInAsUserId");
+      Cookies.remove(COOKIES.apiKey);
+      Cookies.remove(COOKIES.loggedInAs);
+      Cookies.remove(COOKIES.loggedInAsUsername);
+      Cookies.remove(COOKIES.loggedInAsUserId);
     }
   });
 
@@ -36,7 +33,8 @@ export const LoginProvider = ({ children }) => {
     setIsLoggedIn,
     setLoggedInAs,
     setPaymentData,
-    paymentData
+    paymentData,
+    intercom,
   };
 
   return (

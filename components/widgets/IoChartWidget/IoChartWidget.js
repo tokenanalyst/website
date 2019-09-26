@@ -1,23 +1,26 @@
-import React, { useState } from "react";
-import dynamic from "next/dynamic";
-import { Icon } from "@blueprintjs/core";
+import React, { useState, useEffect } from 'react';
+import dynamic from 'next/dynamic';
+import { Icon } from '@blueprintjs/core';
 
-import { ChartControls } from "../../charts/ChartControls";
-import { CHART_TYPES } from "../../../constants/chartTypes";
-import { PricingLink } from "../../../components/PricingLink";
-import { LoadingSpinner } from "../../../components/LoadingSpinner";
+import { ChartControls } from '../../charts/ChartControls';
+import { CHART_TYPES, CHART_MODES } from '../../../constants/chartTypes';
+import { PricingLink } from '../../../components/PricingLink';
+import { LoadingSpinner } from '../../../components/LoadingSpinner';
+import { getExchangeDataSet } from '../../../data-transformers/charts/getExchangeDataSet';
+import { TIME_WINDOWS } from '../../../constants/filters';
+import { useApi } from '../../../custom-hooks';
 
 const SimpleChart = dynamic(
-  () => import("../../charts/SimpleChart").then(mod => mod.SimpleChart),
+  () => import('../../charts/SimpleChart').then(mod => mod.SimpleChart),
   {
-    ssr: false
+    ssr: false,
   }
 );
 
 const SimpleToolTip = dynamic(
-  () => import("../../SimpleToolTip").then(mod => mod.SimpleToolTip),
+  () => import('../../SimpleToolTip').then(mod => mod.SimpleToolTip),
   {
-    ssr: false
+    ssr: false,
   }
 );
 
@@ -26,17 +29,17 @@ const GRAPH_SIZE = {
     mobile: 300,
     tablet: 700,
     desktop: 1000,
-    desktopLarge: 1400
+    desktopLarge: 1400,
   },
   height: {
     mobile: 300,
-    desktop: 450
+    desktop: 450,
   },
-  netflowHeight: 150
+  netflowHeight: 150,
 };
 
 const TOOL_TIP = {
-  ["1h"]: {
+  ['1h']: {
     message: (
       <div>
         Hourly data. All times are in UTC.
@@ -44,9 +47,9 @@ const TOOL_TIP = {
         The displayed hour in the data is the start of the hour
         <br /> for which the data is aggregated. <br />
       </div>
-    )
+    ),
   },
-  ["1d"]: {
+  ['1d']: {
     message: (
       <div>
         Daily data. All times are in UTC.
@@ -54,18 +57,29 @@ const TOOL_TIP = {
         The latest day returned is the last full day of data.
         <br />
       </div>
-    )
-  }
+    ),
+  },
 };
 
-export const IoChartWidget = ({
-  dataSet,
-  setDataSet,
-  formatter,
-  timeWindow,
-  setTimeWindow
-}) => {
+export const IoChartWidget = ({ token, exchange, formatter }) => {
   const [seriesType, setSeriesType] = useState(CHART_TYPES.line);
+  const [chartMode, setChartMode] = useState(CHART_MODES.linear);
+  const [dataSet, setDataSet] = useState(null);
+  const [timeWindow, setTimeWindow] = useState(TIME_WINDOWS.oneDay);
+
+  const apiResponse = useApi(
+    `/api/exchange-metrics?token=${token}&exchange=${exchange}&timeWindow=${timeWindow}`,
+    [token, exchange, timeWindow]
+  );
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // Very depressing that I need this here but the page remains focused on the footer even after loading - dunno why
+    if (apiResponse && token) {
+      setDataSet(getExchangeDataSet(apiResponse, token, timeWindow));
+    } else {
+      setDataSet(null);
+    }
+  }, [token, apiResponse]);
 
   return (
     <>
@@ -77,7 +91,7 @@ export const IoChartWidget = ({
               <div className="header-info">
                 <div>
                   <SimpleToolTip
-                    dataFor={"header-tooltip"}
+                    dataFor={'header-tooltip'}
                     toolTip={
                       TOOL_TIP[timeWindow] && TOOL_TIP[timeWindow].message
                     }
@@ -99,46 +113,26 @@ export const IoChartWidget = ({
                     seriesType={seriesType}
                     width={
                       window.matchMedia(
-                        "(min-width: 320px) and (max-width: 767px)"
+                        '(min-width: 320px) and (max-width: 767px)'
                       ).matches
                         ? GRAPH_SIZE.width.mobile
                         : window.matchMedia(
-                            "(min-width: 768px) and (max-width: 1399px)"
+                            '(min-width: 768px) and (max-width: 1399px)'
                           ).matches
                         ? GRAPH_SIZE.width.tablet
                         : window.matchMedia(
-                            "(min-width: 1400px) and (max-width: 1799px)"
+                            '(min-width: 1400px) and (max-width: 1799px)'
                           ).matches
                         ? GRAPH_SIZE.width.desktop
                         : GRAPH_SIZE.width.desktopLarge
                     }
                     height={
-                      window.matchMedia("(max-width: 768px)").matches
+                      window.matchMedia('(max-width: 768px)').matches
                         ? GRAPH_SIZE.height.mobile
                         : GRAPH_SIZE.height.desktop
                     }
                     formatter={formatter}
-                  />
-                  <SimpleChart
-                    dataSet={dataSet.netflowData}
-                    width={
-                      window.matchMedia(
-                        "(min-width: 320px) and (max-width: 767px)"
-                      ).matches
-                        ? GRAPH_SIZE.width.mobile
-                        : window.matchMedia(
-                            "(min-width: 768px) and (max-width: 1399px)"
-                          ).matches
-                        ? GRAPH_SIZE.width.tablet
-                        : window.matchMedia(
-                            "(min-width: 1400px) and (max-width: 1799px)"
-                          ).matches
-                        ? GRAPH_SIZE.width.desktop
-                        : GRAPH_SIZE.width.desktopLarge
-                    }
-                    height={GRAPH_SIZE.netflowHeight}
-                    formatter={formatter}
-                    mode={0}
+                    mode={chartMode}
                   />
                 </>
               )}
@@ -151,6 +145,8 @@ export const IoChartWidget = ({
               dataSet={dataSet.mainData}
               setDataSet={setDataSet}
               setTimeWindow={setTimeWindow}
+              chartMode={chartMode}
+              setChartMode={setChartMode}
             />
             <div className="pricing-link">
               <PricingLink />

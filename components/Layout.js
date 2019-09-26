@@ -15,6 +15,13 @@ export const Layout = ({ children }) => (
       <link rel="shortcut icon" href="/static/favicon.ico" />
       <link href="/static/fonts/fonts.css" rel="stylesheet" />
       <script src="https://js.stripe.com/v3/" />
+      <script src="/static/js/intercom.js" />
+
+      <script
+        type="text/javascript"
+        src="/static/charting_library/charting_library.min.js"
+      ></script>
+
       <meta
         name="description"
         content="TokenAnalyst is the leading provider of real-time and historical blockchain data. Our offering includes on-chain inflow and outflow from exchanges and low-latency alerts on significant transactions."

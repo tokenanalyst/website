@@ -1,25 +1,51 @@
-const url = require("url");
+const url = require('url');
+const moment = require('moment');
 
-const { API_ERROR_MSG } = require("../constants/apiErrors");
-const isAuthorised = require("./auth/isAuthorised");
-const TA = require("./utils/ta-api-node/ta");
-const { NATIVE_TOKENS, STABLE_TOKENS } = require("../constants/tokens");
-const { TIME_WINDOWS } = require("../constants/filters");
+const { API_ERROR_MSG } = require('../constants/apiErrors');
+const isAuthorised = require('./auth/isAuthorised');
+const TA = require('./utils/ta-api-node/ta');
+const { NATIVE_TOKENS, STABLE_TOKENS } = require('../constants/tokens');
+const { TIME_WINDOWS } = require('../constants/filters');
 
 module.exports = async (req, res) => {
   const urlParts = url.parse(req.url, true);
-  const { token, exchange, timeWindow } = urlParts.query;
+  const { token, exchange, timeWindow, from_date, to_date } = urlParts.query;
   const isUnlimited =
     req.cookies.apiKey && (await isAuthorised(req.cookies.apiKey));
-  const FORMAT = "json";
-  const PUBLIC_API_URL = "https://api.tokenanalyst.io/analytics";
+  const FORMAT = 'json';
+  const PUBLIC_API_URL = 'https://api.tokenanalyst.io/analytics';
   const { ETH, BTC } = NATIVE_TOKENS;
-  const ONE_WEEK_IN_HRS = "168";
+  const NINETY_DAYS_IN_HRS = '2160';
 
-  let amountOfTimeUnits = "90";
+  let amountOfTimeUnits = '90';
+
+  const limitDataForFreeUsers = result => {
+    if (isUnlimited) {
+      return result;
+    }
+
+    const ninetyDaysAgo = moment()
+      .subtract(90, 'days')
+      .valueOf();
+
+    const filterSerie = series =>
+      series.filter(item => {
+        return moment(item.date).valueOf() > ninetyDaysAgo;
+      });
+
+    const { inflow, netflow, outflow, price, overall } = result;
+
+    return {
+      inflow: filterSerie(inflow),
+      outflow: filterSerie(outflow),
+      netflow: filterSerie(netflow),
+      price: filterSerie(price),
+      overall,
+    };
+  };
 
   if (timeWindow === TIME_WINDOWS.oneHour) {
-    amountOfTimeUnits = ONE_WEEK_IN_HRS;
+    amountOfTimeUnits = NINETY_DAYS_IN_HRS;
   }
 
   if (!token || !exchange || !timeWindow) {
@@ -31,87 +57,110 @@ module.exports = async (req, res) => {
   const privateApi = TA({ apiKey: process.env.API_KEY });
 
   const publicApi = TA({
-    apiUrl: PUBLIC_API_URL
+    apiUrl: PUBLIC_API_URL,
   });
 
-  const priceApiCall = privateApi.tokenPriceUsdWindowHistorical({
-    format: FORMAT,
-    token,
-    exchange,
-    window: timeWindow,
-    limit: amountOfTimeUnits
-  });
+  const getParams = (direction, from_date, to_date) => {
+    let baseParams = {
+      format: FORMAT,
+      token,
+      exchange,
+      window: timeWindow,
+    };
+
+    if (!isAuthorised) {
+      baseParams = { ...baseParams, limit: amountOfTimeUnits };
+    }
+
+    if (direction) {
+      baseParams = { ...baseParams, direction };
+    }
+
+    if (!from_date && !to_date) {
+      return baseParams;
+    } else if (!from_date) {
+      return {
+        ...baseParams,
+        to_date,
+      };
+    } else if (!to_date) {
+      return {
+        ...baseParams,
+        from_date,
+      };
+    } else {
+      return {
+        ...baseParams,
+        from_date,
+        to_date,
+      };
+    }
+  };
+
+  const priceApiCall = privateApi.tokenPriceUsdWindowHistorical(
+    getParams(null, from_date, to_date)
+  );
 
   const exchangeFlowsAllTokensCall = publicApi.exchangeFlowsAllTokens({
-    format: FORMAT
+    format: FORMAT,
   });
 
   let inFlowApiCall;
   let outFlowApiCall;
   let isStableCoin = false;
   if (token === ETH || token === BTC || token === STABLE_TOKENS.USDT_OMNI) {
-    inFlowApiCall = privateApi.exchangeFlowWindowHistorical({
-      format: FORMAT,
-      token,
-      direction: "inflow",
-      exchange,
-      window: timeWindow,
-      limit: amountOfTimeUnits
-    });
-    outFlowApiCall = privateApi.exchangeFlowWindowHistorical({
-      format: FORMAT,
-      token,
-      direction: "outflow",
-      exchange,
-      window: timeWindow,
-      limit: amountOfTimeUnits
-    });
+    inFlowApiCall = privateApi.exchangeFlowWindowHistorical(
+      getParams('inflow', from_date, to_date)
+    );
+    outFlowApiCall = privateApi.exchangeFlowWindowHistorical(
+      getParams('outflow', from_date, to_date)
+    );
   } else {
     isStableCoin = true;
-    inFlowApiCall = privateApi.erc20ExchangesFlowWindowHistorical({
-      format: FORMAT,
-      token,
-      direction: "inflow",
-      exchange,
-      window: timeWindow,
-      limit: amountOfTimeUnits
-    });
-    outFlowApiCall = privateApi.erc20ExchangesFlowWindowHistorical({
-      format: FORMAT,
-      token,
-      direction: "outflow",
-      exchange,
-      window: timeWindow,
-      limit: amountOfTimeUnits
-    });
+    inFlowApiCall = privateApi.erc20ExchangesFlowWindowHistorical(
+      getParams('inflow', from_date, to_date)
+    );
+    outFlowApiCall = privateApi.erc20ExchangesFlowWindowHistorical(
+      getParams('outflow', from_date, to_date)
+    );
   }
 
   const [
     inflowTxnCountApiResponse,
     outflowTxnCountApiResponse,
     publicApiResponse,
-    tokenPriceApiResponse
+    tokenPriceApiResponse,
   ] = await Promise.all([
     inFlowApiCall,
     outFlowApiCall,
     exchangeFlowsAllTokensCall,
-    priceApiCall
+    priceApiCall,
   ]);
 
-  const netflow = inflowTxnCountApiResponse.data.map(
-    ({ inflow, inflow_usd, date, hour }, index) => ({
-      date,
-      hour,
-      value: Number(
-        (inflow - outflowTxnCountApiResponse.data[index].outflow).toFixed(2)
-      ),
-      value_usd: Number(
-        (
-          inflow_usd - outflowTxnCountApiResponse.data[index].outflow_usd
-        ).toFixed(2)
-      )
-    })
-  );
+  const netflow =
+    !from_date || !to_date
+      ? []
+      : inflowTxnCountApiResponse.data.map(
+          ({ inflow, inflow_usd, date, hour }, index) => {
+            if (outflowTxnCountApiResponse.data[index]) {
+              return {
+                date,
+                hour,
+                value: Number(
+                  (
+                    inflow - outflowTxnCountApiResponse.data[index].outflow
+                  ).toFixed(2)
+                ),
+                value_usd: Number(
+                  (
+                    inflow_usd -
+                    outflowTxnCountApiResponse.data[index].outflow_usd
+                  ).toFixed(2)
+                ),
+              };
+            }
+          }
+        );
 
   if (isStableCoin) {
     const filteredInflow = inflowTxnCountApiResponse.data.filter(
@@ -125,26 +174,27 @@ module.exports = async (req, res) => {
     );
 
     res.send({
-      ta_response: {
+      ta_response: limitDataForFreeUsers({
         inflow: filteredInflow,
         outflow: filteredOutflow,
         overall: publicApiResponse.data.filter(
           item => item.token === token && item.exchange === exchange
         ),
-        price: filteredPrice
-      }
+        netflow,
+        price: filteredPrice,
+      }),
     });
   } else {
     res.send({
-      ta_response: {
+      ta_response: limitDataForFreeUsers({
         inflow: inflowTxnCountApiResponse.data,
         outflow: outflowTxnCountApiResponse.data,
         netflow,
         overall: publicApiResponse.data.filter(
           item => item.token === token && item.exchange === exchange
         ),
-        price: tokenPriceApiResponse.data
-      }
+        price: tokenPriceApiResponse.data,
+      }),
     });
   }
 };

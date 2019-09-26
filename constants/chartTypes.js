@@ -3,3 +3,8 @@ export const CHART_TYPES = {
   area: 'area',
   histogram: 'histogram',
 };
+
+export const CHART_MODES = {
+  linear: 0,
+  logarithmic: 1,
+};

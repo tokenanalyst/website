@@ -1,9 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Button, Intent } from "@blueprintjs/core";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Button, Intent } from '@blueprintjs/core';
 
-import { Product } from "./Product";
-import { PRODUCTS } from "./data/productsData";
+import { Product } from './Product';
+import { PRODUCTS } from './data/productsData';
 
 const CustomButton = ({ backGrounColor }) => {
   return (
@@ -12,7 +12,7 @@ const CustomButton = ({ backGrounColor }) => {
       <style jsx>{`
         /* "div" will be prefixed, but ".bp3-button:not" won't */
 
-        div > :global(.bp3-button:not([class*="bp3-intent-"])) {
+        div > :global(.bp3-button:not([class*='bp3-intent-'])) {
           color: red;
           background-color: ${backGrounColor};
         }
@@ -22,11 +22,11 @@ const CustomButton = ({ backGrounColor }) => {
 };
 
 CustomButton.propTypes = {
-  backGrounColor: PropTypes.string
+  backGrounColor: PropTypes.string,
 };
 
 CustomButton.defaultProps = {
-  backGrounColor: "magenta"
+  backGrounColor: 'magenta',
 };
 
 export const ProductSelectionWidget = () => {
@@ -45,7 +45,6 @@ export const ProductSelectionWidget = () => {
                 buttonText={buttonText}
                 stripePlan={stripePlan}
               />
-              {index !== PRODUCTS.length - 1 && <Separator />}
             </React.Fragment>
           )
         )}
@@ -68,20 +67,3 @@ export const ProductSelectionWidget = () => {
     </>
   );
 };
-
-const Separator = () => (
-  <div className="separator">
-    <style jsx>{`
-      .separator {
-        border: solid 0.5px rgba(151, 151, 151, 0.15);
-        margin-top: 10px;
-        margin-bottom: 10px;
-      }
-      @media only screen and (max-width: 768px) {
-        .separator {
-          visibility: hidden;
-        }
-      }
-    `}</style>
-  </div>
-);

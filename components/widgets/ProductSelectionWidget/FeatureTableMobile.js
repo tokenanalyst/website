@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { Icon } from "@blueprintjs/core";
+import React, { useState } from 'react';
+import { Icon } from '@blueprintjs/core';
 
-import { FEATURES } from "./data/productsData";
-import { colors } from "../../../constants/styles/colors";
+import { FEATURES } from './data/productsData';
+import { colors } from '../../../constants/styles/colors';
 
 export const FeatureTableMobile = () => {
   const [displayedTab, setDisplayedTab] = useState(0);
@@ -13,8 +13,9 @@ export const FeatureTableMobile = () => {
         {FEATURES.columns.map((column, index) => (
           <span
             key={column}
-            className={index === displayedTab ? "button-selected" : "button"}
-            onClick={() => setDisplayedTab(index)}>
+            className={index === displayedTab ? 'button-selected' : 'button'}
+            onClick={() => setDisplayedTab(index)}
+          >
             {column}
           </span>
         ))}
@@ -31,7 +32,7 @@ export const FeatureTableMobile = () => {
                   <td className="feature-name">{item.name}</td>
                   <td>
                     <Icon
-                      icon={item.entitled[displayedTab] ? "tick" : "cross"}
+                      icon={item.entitled[displayedTab] ? 'tick' : 'cross'}
                       color={
                         item.entitled[displayedTab]
                           ? `rgba(${colors.primaryGreen})`
@@ -56,17 +57,15 @@ export const FeatureTableMobile = () => {
           display: flex;
           flex-direction: row;
           justify-content: space-between;
-          margin-bottom: 10px;
+          margin-bottom: 20px;
         }
         .button {
           color: black;
           max-height: 20px;
-          padding: 10px;
         }
         .button-selected {
           color: black;
           max-height: 20px;
-          padding: 10px;
           border-bottom: 2px solid rgba(${colors.primaryGreen});
           font-weight: bold;
         }
@@ -77,7 +76,6 @@ export const FeatureTableMobile = () => {
           border-bottom: solid 1px rgba(151, 151, 151, 0.15);
         }
         .feature-name {
-          padding-right: 50px;
         }
         @media only screen and (min-width: 769px) {
           .container {

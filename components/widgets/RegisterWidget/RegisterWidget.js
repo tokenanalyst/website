@@ -1,20 +1,22 @@
-import React, { useState, useContext, useEffect } from "react";
-import axios from "axios";
-import Cookies from "js-cookie";
-import { Icon } from "@blueprintjs/core";
-import Link from "next/link";
+import React, { useState, useContext, useEffect } from 'react';
+import axios from 'axios';
+import Cookies from 'js-cookie';
+import { Icon } from '@blueprintjs/core';
+import Link from 'next/link';
+import Router from 'next/router';
 
-import { LoginContext } from "../../../contexts/Login";
-import { colors } from "../../../constants/styles/colors";
-import { API_ERROR_MSG } from "../../../constants/apiErrors";
+import { LoginContext } from '../../../contexts/Login';
+import { colors } from '../../../constants/styles/colors';
+import { API_ERROR_MSG } from '../../../constants/apiErrors';
+import { COOKIES } from '../../../constants/cookies';
 
 export const RegisterWidget = () => {
   const loginCtx = useContext(LoginContext);
 
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordVerify, setPasswordVerify] = useState("");
+  const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordVerify, setPasswordVerify] = useState('');
   const [errorText, setErrorText] = useState(false);
   const [hasRegistered, setHasRegistered] = useState(false);
   const [profession, setProfession] = useState({
@@ -23,8 +25,10 @@ export const RegisterWidget = () => {
     isEnthusiast: false,
     isResearcher: false,
     isDeveloper: false,
-    isOther: false
+    isOther: false,
   });
+
+  const isRedirectedForFreeTier = loginCtx.paymentData.isFreeTier;
 
   const {
     isTrader,
@@ -32,17 +36,17 @@ export const RegisterWidget = () => {
     isEnthusiast,
     isResearcher,
     isDeveloper,
-    isOther
+    isOther,
   } = profession;
 
   const register = async () => {
     if (password !== passwordVerify) {
-      setErrorText("Passwords do not match");
+      setErrorText('Passwords do not match');
       return;
     }
 
     try {
-      await axios.post("https://api.tokenanalyst.io/auth/user", {
+      await axios.post('https://api.tokenanalyst.io/auth/user', {
         username: email,
         password,
         name: fullName,
@@ -51,30 +55,31 @@ export const RegisterWidget = () => {
         enthusiast: isEnthusiast,
         researcher: isResearcher,
         developer: isDeveloper,
-        other: isOther
+        other: isOther,
       });
 
       const response = await axios.post(
-        "https://api.tokenanalyst.io/auth/user/login",
+        'https://api.tokenanalyst.io/auth/user/login',
         {
           username: email,
-          password
+          password,
         }
       );
 
       const {
-        data: { apiKey, name, username, id }
+        data: { apiKey, name, username, id },
       } = response;
 
-      Cookies.set("apiKey", apiKey);
-      Cookies.set("loggedInAs", name);
-      Cookies.set("loggedInAsUsername", username);
-      Cookies.set("loggedInAsUserId", id);
+      Cookies.set(COOKIES.apiKey, apiKey);
+      Cookies.set(COOKIES.loggedInAs, name);
+      Cookies.set(COOKIES.loggedInAsUsername, username);
+      Cookies.set(COOKIES.loggedInAsUserId, id);
 
       loginCtx.setIsLoggedIn(true);
       loginCtx.setLoggedInAs(name);
       setErrorText(null);
       setHasRegistered(true);
+      loginCtx.intercom.setUser(name, username);
 
       if (
         loginCtx.paymentData.stripe &&
@@ -83,8 +88,11 @@ export const RegisterWidget = () => {
         loginCtx.setPaymentData({ ...loginCtx.paymentData, stripe: null });
         return loginCtx.paymentData.stripe.redirectFn({
           customerEmail: username,
-          clientReferenceId: id.toString()
+          clientReferenceId: id.toString(),
         });
+      } else if (loginCtx.paymentData.isFreeTier) {
+        loginCtx.setPaymentData({ ...loginCtx.paymentData, isFreeTier: false });
+        Router.push('/free-tier-success');
       }
     } catch (e) {
       if (
@@ -92,7 +100,7 @@ export const RegisterWidget = () => {
         e.response.data &&
         e.response.data.message === API_ERROR_MSG.USER_ALREADY_EXISTS
       ) {
-        setErrorText("You are already registered, please login.");
+        setErrorText('You are already registered, please login.');
       } else {
         setErrorText(
           "Please provide valid details and ensure that you haven't already registered"
@@ -157,7 +165,7 @@ export const RegisterWidget = () => {
                   onChange={() => {
                     return setProfession({
                       ...profession,
-                      isTrader: !isTrader
+                      isTrader: !isTrader,
                     });
                   }}
                 />
@@ -172,7 +180,7 @@ export const RegisterWidget = () => {
                   onChange={() =>
                     setProfession({
                       ...profession,
-                      isDeveloper: !isDeveloper
+                      isDeveloper: !isDeveloper,
                     })
                   }
                 />
@@ -187,7 +195,7 @@ export const RegisterWidget = () => {
                   onChange={() =>
                     setProfession({
                       ...profession,
-                      isEnthusiast: !isEnthusiast
+                      isEnthusiast: !isEnthusiast,
                     })
                   }
                 />
@@ -202,7 +210,7 @@ export const RegisterWidget = () => {
                   onChange={() =>
                     setProfession({
                       ...profession,
-                      isEnterprise: !isEnterprise
+                      isEnterprise: !isEnterprise,
                     })
                   }
                 />
@@ -217,7 +225,7 @@ export const RegisterWidget = () => {
                   onChange={() =>
                     setProfession({
                       ...profession,
-                      isResearcher: !isResearcher
+                      isResearcher: !isResearcher,
                     })
                   }
                 />
@@ -232,7 +240,7 @@ export const RegisterWidget = () => {
                   onChange={() =>
                     setProfession({
                       ...profession,
-                      isOther: !isOther
+                      isOther: !isOther,
                     })
                   }
                 />
@@ -243,6 +251,11 @@ export const RegisterWidget = () => {
               Register
             </div>
             {errorText && <div className="error">{errorText}</div>}
+            {isRedirectedForFreeTier ? (
+              <div className="message">
+                Please register to access your free tier.
+              </div>
+            ) : null}
           </>
         )}
       </div>
@@ -274,7 +287,7 @@ export const RegisterWidget = () => {
           width: 300px;
           border: none;
           border-bottom: 1px solid
-            rgba(${errorText ? colors.primaryRed : "00, 00, 00"});
+            rgba(${errorText ? colors.primaryRed : '00, 00, 00'});
           font-size: 18px;
         }
         .button {
@@ -300,6 +313,10 @@ export const RegisterWidget = () => {
           justify-content: space-between;
           padding-top: 15px;
           width: 250px;
+        }
+        .message {
+          padding-top: 10px;
+          text-align: center;
         }
         @media only screen and (max-width: 768px) {
           .input {
