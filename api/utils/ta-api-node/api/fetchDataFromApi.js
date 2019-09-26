@@ -1,43 +1,47 @@
-const axios = require("axios");
-const makeApiUrl = require("../lib/makeApiUrl");
+const axios = require('axios');
+const makeApiUrl = require('../lib/makeApiUrl');
 
 module.exports = endpointCallFn => async (taInstance, params) => {
   const {
-    config: { apiUrl, apiKey }
+    config: { apiUrl, apiKey },
   } = taInstance;
 
-  const apiCall = makeApiUrl(endpointCallFn(params), apiUrl, {
-    ...params,
-    key: apiKey
-  });
+  const apiCallArgs = !apiKey
+    ? params
+    : {
+        ...params,
+        key: apiKey,
+      };
+
+  const apiCall = makeApiUrl(endpointCallFn(params), apiUrl, apiCallArgs);
 
   let response;
 
   try {
     response = await axios.get(apiCall);
   } catch (err) {
-    if (error.response) {
+    if (err.response) {
       const {
-        response: { data, status }
-      } = error;
+        response: { data, status },
+      } = err;
 
       response = {
         status,
-        data
+        data,
       };
-    } else if (error.request) {
+    } else if (err.request) {
       const {
-        request: { response, status }
-      } = error;
+        request: { response, status },
+      } = err;
 
       response = {
         status,
-        data: response
+        data: response,
       };
     } else {
       response = {
         status: null,
-        data: error.message
+        data: err.message,
       };
     }
   }
