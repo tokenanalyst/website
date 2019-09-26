@@ -107,6 +107,7 @@ export const TokenSnapshot = ({
                     ? '/static/svg/up.svg'
                     : '/static/svg/nochange.svg'
                 }
+                alt="Price Change"
               />
               <span
                 className={
@@ -154,6 +155,7 @@ export const TokenSnapshot = ({
                           ? '/static/svg/up.svg'
                           : '/static/svg/nochange.svg'
                       }
+                      alt="Flow Change"
                     />
                     <span
                       className={

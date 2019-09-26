@@ -1,40 +1,40 @@
-import React, { useState, useEffect } from "react";
-import { Icon } from "@blueprintjs/core";
-import axios from "axios";
-import ReactGA from "react-ga";
+import React, { useState, useEffect } from 'react';
+import { Icon } from '@blueprintjs/core';
+import axios from 'axios';
+import ReactGA from 'react-ga';
 
-import { colors } from "../constants/styles/colors";
+import { colors } from '../constants/styles/colors';
 
 export const Newsletter = () => {
   const [isShown, setIsShown] = useState(false);
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState('');
   const [hasPosted, setHasPosted] = useState(false);
 
   useEffect(() => {
-    if (!window.localStorage.getItem("newsletterDismissed")) {
+    if (!window.localStorage.getItem('newsletterDismissed')) {
       setIsShown(true);
     }
   }, []);
 
   const register = async () => {
-    await axios.post("https://api.tokenanalyst.io/newsletter", { email });
+    await axios.post('https://api.tokenanalyst.io/newsletter', { email });
     setHasPosted(true);
     ReactGA.event({
-      category: "User",
+      category: 'User',
       action: `Subscribe newsletter`,
-      label: `Newsletter`
+      label: `Newsletter`,
     });
-    window.localStorage.setItem("newsletterDismissed", true);
+    window.localStorage.setItem('newsletterDismissed', true);
     setTimeout(() => setIsShown(false), 1000);
   };
 
   const dismiss = () => {
-    window.localStorage.setItem("newsletterDismissed", true);
+    window.localStorage.setItem('newsletterDismissed', true);
     setIsShown(false);
     ReactGA.event({
-      category: "User",
+      category: 'User',
       action: `Dismiss newsletter`,
-      label: `Newsletter`
+      label: `Newsletter`,
     });
   };
 
@@ -44,7 +44,11 @@ export const Newsletter = () => {
         <div className="top">
           <span className="header">Newsletter</span>
           <span className="close" onClick={dismiss}>
-            <img src="/static/svg/cross.svg" className="icon" />
+            <img
+              src="/static/svg/cross.svg"
+              className="icon"
+              alt="Close Newsletter Banner"
+            />
           </span>
         </div>
         <div className="shadow" />
@@ -89,7 +93,7 @@ export const Newsletter = () => {
           z-index: 10000;
           border-top: solid 3px rgba(151, 151, 151, 0.15);
           padding: 20px;
-          display: ${isShown ? "block" : "none"};
+          display: ${isShown ? 'block' : 'none'};
         }
         .top {
           display: flex;

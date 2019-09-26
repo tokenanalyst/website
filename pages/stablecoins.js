@@ -1,23 +1,24 @@
-import React, { useEffect, useState } from "react";
-import dynamic from "next/dynamic";
+import React, { useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
+import Head from 'next/head';
 
-import { getStableCoinTableData } from "../data-transformers/tables";
+import { getStableCoinTableData } from '../data-transformers/tables';
 import {
   getStablecoinVolumeDataSet,
-  getStablecoinTransactionsDataSet
-} from "../data-transformers/charts";
-import { useApi } from "../custom-hooks";
-import { StableCoinTable } from "../components/tables/StableCoinTable";
-import { LoadingSpinner } from "../components/LoadingSpinner";
-import { PageHeader } from "../components/PageHeader";
-import { PageSection } from "../components/PageSection";
-import { PricingLink } from "../components/PricingLink";
+  getStablecoinTransactionsDataSet,
+} from '../data-transformers/charts';
+import { useApi } from '../custom-hooks';
+import { StableCoinTable } from '../components/tables/StableCoinTable';
+import { LoadingSpinner } from '../components/LoadingSpinner';
+import { PageHeader } from '../components/PageHeader';
+import { PageSection } from '../components/PageSection';
+import { PricingLink } from '../components/PricingLink';
 
 // lightweight-charts must not be imported on the server (Bang!)
 const SimpleChart = dynamic(
-  () => import("../components/charts/SimpleChart").then(mod => mod.SimpleChart),
+  () => import('../components/charts/SimpleChart').then(mod => mod.SimpleChart),
   {
-    ssr: false
+    ssr: false,
   }
 );
 
@@ -26,18 +27,18 @@ const GRAPH_SIZE = {
     mobile: 300,
     tablet: 700,
     desktop: 650,
-    desktopLarge: 850
+    desktopLarge: 850,
   },
   height: {
     mobile: 300,
-    desktop: 450
-  }
+    desktop: 450,
+  },
 };
 
 const StableCoins = () => {
-  const tableApiData = useApi("/api/stablecoin-onchain-metrics");
-  const volumeChartApiData = useApi("/api/stablecoin-volumes");
-  const transactionsChartApiData = useApi("/api/stablecoin-transactions");
+  const tableApiData = useApi('/api/stablecoin-onchain-metrics');
+  const volumeChartApiData = useApi('/api/stablecoin-volumes');
+  const transactionsChartApiData = useApi('/api/stablecoin-transactions');
   const [tableData, setTableData] = useState(null);
   const [volumeChartData, setVolumeChartData] = useState(null);
   const [transactionsChartData, setTransactionsChartData] = useState(null);
@@ -59,32 +60,35 @@ const StableCoins = () => {
   return (
     <>
       <div>
-        <PageHeader text={"Stablecoins"} rightElement={<PricingLink />} />
+        <Head>
+          <title>TokenAnalyst - Stablecoins</title>
+        </Head>
+        <PageHeader text={'Stablecoins'} rightElement={<PricingLink />} />
       </div>
       <div className="container">
         <div className="charts">
           <div className="chart">
-            <PageSection text={"Volumes"} />
+            <PageSection text={'Volumes'} />
             {volumeChartData ? (
               <SimpleChart
                 dataSet={volumeChartData}
                 seriesType="line"
                 width={
-                  window.matchMedia("(min-width: 320px) and (max-width: 767px)")
+                  window.matchMedia('(min-width: 320px) and (max-width: 767px)')
                     .matches
                     ? GRAPH_SIZE.width.mobile
                     : window.matchMedia(
-                        "(min-width: 768px) and (max-width: 1399px)"
+                        '(min-width: 768px) and (max-width: 1399px)'
                       ).matches
                     ? GRAPH_SIZE.width.tablet
                     : window.matchMedia(
-                        "(min-width: 1400px) and (max-width: 1799px)"
+                        '(min-width: 1400px) and (max-width: 1799px)'
                       ).matches
                     ? GRAPH_SIZE.width.desktop
                     : GRAPH_SIZE.width.desktopLarge
                 }
                 height={
-                  window.matchMedia("(max-width: 768px)").matches ? 300 : 400
+                  window.matchMedia('(max-width: 768px)').matches ? 300 : 400
                 }
               />
             ) : (
@@ -92,27 +96,27 @@ const StableCoins = () => {
             )}
           </div>
           <div className="chart">
-            <PageSection text={"Transactions"} />
+            <PageSection text={'Transactions'} />
             {transactionsChartData ? (
               <SimpleChart
                 dataSet={transactionsChartData}
                 seriesType="line"
                 width={
-                  window.matchMedia("(min-width: 320px) and (max-width: 767px)")
+                  window.matchMedia('(min-width: 320px) and (max-width: 767px)')
                     .matches
                     ? GRAPH_SIZE.width.mobile
                     : window.matchMedia(
-                        "(min-width: 768px) and (max-width: 1399px)"
+                        '(min-width: 768px) and (max-width: 1399px)'
                       ).matches
                     ? GRAPH_SIZE.width.tablet
                     : window.matchMedia(
-                        "(min-width: 1400px) and (max-width: 1799px)"
+                        '(min-width: 1400px) and (max-width: 1799px)'
                       ).matches
                     ? GRAPH_SIZE.width.desktop
                     : GRAPH_SIZE.width.desktopLarge
                 }
                 height={
-                  window.matchMedia("(max-width: 768px)").matches ? 300 : 400
+                  window.matchMedia('(max-width: 768px)').matches ? 300 : 400
                 }
               />
             ) : (
@@ -123,7 +127,7 @@ const StableCoins = () => {
           </div>
         </div>
         <div className="table">
-          <PageSection text={"24 hr stats"} />
+          <PageSection text={'24 hr stats'} />
           {tableData ? (
             <StableCoinTable tableData={tableData} />
           ) : (

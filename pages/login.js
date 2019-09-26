@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Head from 'next/head';
 
 import { LoginWidget } from '../components/widgets/LoginWidget';
 
@@ -7,6 +8,9 @@ const Login = () => {
   return (
     <>
       <div className="container">
+        <Head>
+          <title>TokenAnalyst - Login</title>
+        </Head>
         <div className="header">Login</div>
         <div className="contents">
           <div className="login-form">

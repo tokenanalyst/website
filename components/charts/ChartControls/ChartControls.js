@@ -79,6 +79,7 @@ export const ChartControls = ({
                   <img
                     src={`/static/png/coins/${COIN_IMAGES[token]}`}
                     className="token-icon"
+                    alt={`Token ${token}`}
                   />
                 </div>
               </div>

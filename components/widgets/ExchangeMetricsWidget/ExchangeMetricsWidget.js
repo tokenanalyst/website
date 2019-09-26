@@ -47,6 +47,7 @@ export const ExchangeMetricsWidget = ({ token, exchange }) => {
                   <img
                     className="banner-banner-logo-img"
                     src={`/static/png/${EXCHANGE_IMAGES[exchange]}`}
+                    alt={`Exchange ${EXCHANGE_IMAGES[exchange]}`}
                   />
                 </div>
               </>
@@ -70,6 +71,7 @@ export const ExchangeMetricsWidget = ({ token, exchange }) => {
                           ? '/static/svg/up.svg'
                           : '/static/svg/nochange.svg'
                       }
+                      alt="Inflow Change"
                     />
                     <span
                       className={
@@ -108,6 +110,7 @@ export const ExchangeMetricsWidget = ({ token, exchange }) => {
                           ? '/static/svg/up.svg'
                           : '/static/svg/nochange.svg'
                       }
+                      alt="Outflow Change"
                     />
                     <span
                       className={
