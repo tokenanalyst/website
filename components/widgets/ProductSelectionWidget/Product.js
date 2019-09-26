@@ -156,6 +156,7 @@ export const Product = ({
           .container {
             width: 100%;
             min-width: 95%;
+            padding-right: 8px;
           }
           .features {
             padding-right: 2px;
