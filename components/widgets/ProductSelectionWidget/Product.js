@@ -70,7 +70,7 @@ export const Product = ({
               </ul>
             </div>
             <SimpleButton
-              backGrounColor={PRIMARY_GREEN}
+              backgrounColor={PRIMARY_GREEN}
               onClick={
                 name === PLAN_NAMES.ENTERPRISE
                   ? () => {
