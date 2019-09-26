@@ -63,7 +63,7 @@ const TOOL_TIP = {
 
 export const IoChartWidget = ({ token, exchange, formatter }) => {
   const [seriesType, setSeriesType] = useState(CHART_TYPES.line);
-  const [chartMode, setChartMode] = useState(CHART_MODES.logarithmic);
+  const [chartMode, setChartMode] = useState(CHART_MODES.linear);
   const [dataSet, setDataSet] = useState(null);
   const [timeWindow, setTimeWindow] = useState(TIME_WINDOWS.oneDay);
 

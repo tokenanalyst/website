@@ -375,6 +375,121 @@ export const DesktopNav = () => {
                   </div>
                 </Link>
               </div>
+              <div>
+                <Link
+                  href="/exchange/[token]/[exchange]"
+                  as="/exchange/USDT_OMNI/Kraken"
+                  passHref
+                >
+                  <div
+                    onClick={() => {
+                      ReactGA.event({
+                        category: 'User',
+                        action: `Click USDT_OMNI Kraken`,
+                        label: `Desktop Nav`,
+                      });
+                    }}
+                    className={classNames(
+                      'desktop-sub-link',
+                      setLinkActive(asPath, '/exchange/USDT/Kraken')
+                    )}
+                  >
+                    USDT Kraken
+                  </div>
+                </Link>
+              </div>
+              <div>
+                <Link
+                  href="/exchange/[token]/[exchange]"
+                  as="/exchange/USDT_OMNI/Okex"
+                  passHref
+                >
+                  <div
+                    onClick={() => {
+                      ReactGA.event({
+                        category: 'User',
+                        action: `Click USDT Okex`,
+                        label: `Desktop Nav`,
+                      });
+                    }}
+                    className={classNames(
+                      'desktop-sub-link',
+                      setLinkActive(asPath, '/exchange/USDT_OMNI/Okex')
+                    )}
+                  >
+                    USDT Okex
+                  </div>
+                </Link>
+              </div>
+              <div>
+                <Link
+                  href="/exchange/[token]/[exchange]"
+                  as="/exchange/USDC/Kraken"
+                  passHref
+                >
+                  <div
+                    onClick={() => {
+                      ReactGA.event({
+                        category: 'User',
+                        action: `Click USDC Kraken`,
+                        label: `Desktop Nav`,
+                      });
+                    }}
+                    className={classNames(
+                      'desktop-sub-link',
+                      setLinkActive(asPath, '/exchange/USDC/Kraken')
+                    )}
+                  >
+                    USDC Kraken
+                  </div>
+                </Link>
+              </div>
+              <div>
+                <Link
+                  href="/exchange/[token]/[exchange]"
+                  as="/exchange/USDC/Binance"
+                  passHref
+                >
+                  <div
+                    onClick={() => {
+                      ReactGA.event({
+                        category: 'User',
+                        action: `Click USDC Binance`,
+                        label: `Desktop Nav`,
+                      });
+                    }}
+                    className={classNames(
+                      'desktop-sub-link',
+                      setLinkActive(asPath, '/exchange/USDC/Binance')
+                    )}
+                  >
+                    USDC Binance
+                  </div>
+                </Link>
+              </div>
+              <div>
+                <Link
+                  href="/exchange/[token]/[exchange]"
+                  as="/exchange/TUSD/Binance"
+                  passHref
+                >
+                  <div
+                    onClick={() => {
+                      ReactGA.event({
+                        category: 'User',
+                        action: `Click TUSD Binance`,
+                        label: `Desktop Nav`,
+                      });
+                    }}
+                    className={classNames(
+                      'desktop-sub-link',
+                      setLinkActive(asPath, '/exchange/TUSD/Binance')
+                    )}
+                  >
+                    TUSD Binance
+                  </div>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
