@@ -73,7 +73,7 @@ const ta = (function ta() {
                 return outFlowEntry;
               });
               const netFlow = flows.netflow
-                .filter(value => value)
+                .filter(value => value) // Hack to fix data as the private API may return a different number of items for inflow and outflow, even if from and to date a set
                 .map(entry => {
                   return formatDate(entry, ['date', 'value_usd']);
                 });
