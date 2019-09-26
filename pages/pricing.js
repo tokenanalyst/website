@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactGA from 'react-ga';
-import Head from 'next/Head';
+import Head from 'next/head';
 
 import { PageHeader } from '../components/PageHeader';
 import { PageSection } from '../components/PageSection';
