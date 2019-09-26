@@ -28,8 +28,8 @@ module.exports = async (req, res) => {
       .subtract(90, 'days')
       .valueOf();
 
-    const filterSerie = serie =>
-      serie.filter(item => {
+    const filterSerie = series =>
+      series.filter(item => {
         return moment(item.date).valueOf() > ninetyDaysAgo;
       });
 
