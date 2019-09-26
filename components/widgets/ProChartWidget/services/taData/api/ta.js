@@ -4,7 +4,6 @@ import { map, filter } from 'rxjs/operators';
 import { forkJoin } from 'rxjs';
 import moment from 'moment';
 import { fetchDataFromApi$ } from '../lib/observables';
-import { fetchDataFromApi_2$ } from '../lib/observables/fetchDataFromApi';
 import { ETH, BTC, USDT_OMNI } from './const';
 
 const ta = (function ta() {
@@ -47,7 +46,7 @@ const ta = (function ta() {
         });
 
       const flowsData = async () =>
-        fetchDataFromApi_2$(flowsApiCall)
+        fetchDataFromApi$(flowsApiCall)
           .pipe(
             map(response => response.data.ta_response),
             map(flows => {
