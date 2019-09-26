@@ -1,26 +1,29 @@
-import { timer, from } from 'rxjs';
-import { tap, delayWhen, retryWhen, switchMap } from 'rxjs/operators';
+import { timer, from, Observable } from 'rxjs';
+import { delayWhen, retryWhen, switchMap } from 'rxjs/operators';
 
 export const fetchCandles$ = (restApiUrl, requestOptions = {}) => {
-  return from(fetch(restApiUrl, requestOptions)).pipe(
-    switchMap(async response => {
+  return Observable.create(async observer => {
+    try {
+      const response = await fetch(restApiUrl, requestOptions);
+
       if (response.status === 200) {
         const responseBody = await response.json();
 
         if (responseBody.data) {
-          return responseBody.data;
+          observer.next(responseBody.data);
+          observer.complete();
         }
-        return responseBody;
+      } else {
+        observer.error(Error(response.status));
       }
-      throw new Error(`Error ${response.status}`);
+    } catch (e) {
+      observer.error(Error(e));
+    }
+  }).pipe(
+    switchMap(response => {
+      return [response];
     }),
-    retryWhen(errors =>
-      errors.pipe(
-        // eslint-disable-next-line no-console
-        tap(() => console.log('Retrying...')),
-        delayWhen(() => timer(5000))
-      )
-    )
+    retryWhen(errors => errors.pipe(delayWhen(() => timer(5000))))
   );
 };
 

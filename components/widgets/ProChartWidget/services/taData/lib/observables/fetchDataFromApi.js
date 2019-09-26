@@ -1,20 +1,25 @@
-import { timer, from } from 'rxjs';
+import { timer, from, Observable } from 'rxjs';
 import { tap, delayWhen, retryWhen, switchMap, map } from 'rxjs/operators';
 
-const fetchDataFromApi$ = apiCall => {
-  return from(apiCall()).pipe(
+export const fetchDataFromApi$ = apiCall => {
+  return Observable.create(async observer => {
+    try {
+      const result = await apiCall();
+
+      if (result.status === 200) {
+        observer.next(result);
+        observer.complete();
+      } else {
+        observer.error(Error(result));
+      }
+    } catch (e) {
+      observer.error(Error(e));
+    }
+  }).pipe(
     switchMap(response => {
       return [response];
     }),
-    retryWhen(errors =>
-      errors.pipe(
-        map(val => {
-          return val;
-        }),
-        // tap(val => console.log(`Retrying...`)),
-        delayWhen(() => timer(5000))
-      )
-    )
+    retryWhen(errors => errors.pipe(delayWhen(() => timer(5000))))
   );
 };
 
