@@ -424,29 +424,6 @@ export const DesktopNav = () => {
               <div>
                 <Link
                   href="/exchange/[token]/[exchange]"
-                  as="/exchange/USDC/Kraken"
-                  passHref
-                >
-                  <div
-                    onClick={() => {
-                      ReactGA.event({
-                        category: 'User',
-                        action: `Click USDC Kraken`,
-                        label: `Desktop Nav`,
-                      });
-                    }}
-                    className={classNames(
-                      'desktop-sub-link',
-                      setLinkActive(asPath, '/exchange/USDC/Kraken')
-                    )}
-                  >
-                    USDC Kraken
-                  </div>
-                </Link>
-              </div>
-              <div>
-                <Link
-                  href="/exchange/[token]/[exchange]"
                   as="/exchange/USDC/Binance"
                   passHref
                 >
