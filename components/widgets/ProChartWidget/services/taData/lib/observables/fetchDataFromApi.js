@@ -19,15 +19,7 @@ export const fetchDataFromApi$ = apiCall => {
     switchMap(response => {
       return [response];
     }),
-    retryWhen(errors =>
-      errors.pipe(
-        map(val => {
-          return val;
-        }),
-        tap(val => console.log(`Retrying in 5 seconds...`)),
-        delayWhen(() => timer(5000))
-      )
-    )
+    retryWhen(errors => errors.pipe(delayWhen(() => timer(5000))))
   );
 };
 
