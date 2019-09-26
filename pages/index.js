@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Head from 'next/head';
 
 import { IoTable } from '../components/tables/IoTable';
 import { FilterNav } from '../components/navs';
@@ -16,6 +17,9 @@ const Exchange = () => {
 
   return (
     <>
+      <Head>
+        <title>TokenAnalyst - Latest On-Chain Flows</title>
+      </Head>
       <FilterNav
         dataWindow={dataWindow}
         setDataWindow={setDataWindow}

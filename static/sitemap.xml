@@ -8,30 +8,44 @@
 
 
 <url>
-  <loc>https://beta.tokenanalyst.io/</loc>
-  <lastmod>2019-09-03T11:20:55+00:00</lastmod>
+  <loc>https://www.tokenanalyst.io/</loc>
+  <lastmod>2019-09-26T12:51:50+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
-  <loc>https://beta.tokenanalyst.io/about</loc>
-  <lastmod>2019-09-03T11:20:55+00:00</lastmod>
+  <loc>https://www.tokenanalyst.io/about</loc>
+  <lastmod>2019-09-26T12:51:50+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://beta.tokenanalyst.io/stablecoins</loc>
-  <lastmod>2019-09-03T11:20:55+00:00</lastmod>
+  <loc>https://www.tokenanalyst.io/stablecoins</loc>
+  <lastmod>2019-09-26T12:51:50+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://beta.tokenanalyst.io/compare</loc>
-  <lastmod>2019-09-03T11:20:55+00:00</lastmod>
+  <loc>https://www.tokenanalyst.io/compare</loc>
+  <lastmod>2019-09-26T12:51:50+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://beta.tokenanalyst.io/pricing</loc>
-  <lastmod>2019-09-03T11:20:55+00:00</lastmod>
+  <loc>https://www.tokenanalyst.io/pricing</loc>
+  <lastmod>2019-09-26T12:51:50+00:00</lastmod>
   <priority>0.80</priority>
 </url>
-
+<url>
+  <loc>https://www.tokenanalyst.io/login</loc>
+  <lastmod>2019-09-26T12:51:50+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.tokenanalyst.io/register</loc>
+  <lastmod>2019-09-26T12:51:50+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.tokenanalyst.io/BTC/Binance</loc>
+  <lastmod>2019-09-26T12:51:50+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
 
 </urlset>

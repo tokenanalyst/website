@@ -23,7 +23,11 @@ export const MobileNav = () => {
         <div className="container">
           <div className="mobile">
             <Link href="/" passHref>
-              <img src={`/static/png/${LOGO_IMAGES['Mobile']}`} width="50px" />
+              <img
+                src={`/static/png/${LOGO_IMAGES['Mobile']}`}
+                width="50px"
+                alt="TokenAnalyst Home Page"
+              />
             </Link>
             <div className="menu-icon">
               <Icon

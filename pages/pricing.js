@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactGA from 'react-ga';
+import Head from 'next/head';
 
 import { PageHeader } from '../components/PageHeader';
 import { TestimonialsWidget } from '../components/widgets/TestimonialsWidget';
@@ -14,6 +15,9 @@ import {
 const Pricing = () => {
   return (
     <div className="container">
+      <Head>
+        <title>TokenAnalyst - Pricing</title>
+      </Head>
       <PageHeader text={'Plans'} />
       <ProductSelectionWidget />
       <div className="researcher">

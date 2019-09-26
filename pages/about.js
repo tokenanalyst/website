@@ -1,9 +1,13 @@
 import React from 'react';
+import Head from 'next/head';
 
 const About = () => {
   return (
     <>
       <div className="container">
+        <Head>
+          <title>TokenAnalyst - Company</title>
+        </Head>
         <div className="header">
           TokenAnalyst is on a mission to bring transparency to the
           decentralized economy
@@ -24,6 +28,7 @@ const About = () => {
                 src="/static/png/team/Jai.png"
                 height={200}
                 width={200}
+                alt="Jai"
               />
               <div className="details">
                 <div className="name">Jai Prasad</div>
@@ -32,6 +37,7 @@ const About = () => {
                     className="social-icons"
                     src="/static/png/twitter.png"
                     width={20}
+                    alt="Twitter"
                   />
                 </a>
                 <a
@@ -42,6 +48,7 @@ const About = () => {
                     className="social-icons"
                     src="/static/png/linkedin.png"
                     width={20}
+                    alt="LinkedIn"
                   />
                 </a>
               </div>
@@ -52,6 +59,7 @@ const About = () => {
                 src="/static/png/team/Sid.png"
                 height={200}
                 width={200}
+                alt="Sid"
               />
               <div className="details">
                 <div className="name">Sid Shekhar</div>
@@ -60,6 +68,7 @@ const About = () => {
                     className="social-icons"
                     src="/static/png/twitter.png"
                     width={20}
+                    alt="twitter"
                   />
                 </a>
                 <a
@@ -70,6 +79,7 @@ const About = () => {
                     className="social-icons"
                     src="/static/png/linkedin.png"
                     width={20}
+                    alt="LinkedIn"
                   />
                 </a>
               </div>
@@ -82,6 +92,7 @@ const About = () => {
                 src="/static/png/team/Jendrick.png"
                 height={200}
                 width={200}
+                alt="Jendrick"
               />
               <div className="details">
                 <div className="name">Jendrik Poloczek</div>
@@ -90,6 +101,7 @@ const About = () => {
                     className="social-icons"
                     src="/static/png/twitter.png"
                     width={20}
+                    alt="twitter"
                   />
                 </a>
                 <a
@@ -100,6 +112,7 @@ const About = () => {
                     className="social-icons"
                     src="/static/png/linkedin.png"
                     width={20}
+                    alt="LinkedIn"
                   />
                 </a>
               </div>
@@ -110,6 +123,7 @@ const About = () => {
                 src="/static/png/team/Ankit.png"
                 height={200}
                 width={200}
+                alt="Ankit"
               />
               <div className="details">
                 <div className="name">Ankit Chiplunkar, PhD</div>
@@ -118,6 +132,7 @@ const About = () => {
                     className="social-icons"
                     src="/static/png/twitter.png"
                     width={20}
+                    alt="twitter"
                   />
                 </a>
                 <a
@@ -128,6 +143,7 @@ const About = () => {
                     className="social-icons"
                     src="/static/png/linkedin.png"
                     width={20}
+                    alt="LinkedIn"
                   />
                 </a>
               </div>
@@ -140,6 +156,7 @@ const About = () => {
                 src="/static/png/team/Cesar.png"
                 height={200}
                 width={200}
+                alt="Cesar"
               />
               <div className="details">
                 <div className="name">Cesar Pantoja, PhD</div>
@@ -148,6 +165,7 @@ const About = () => {
                     className="social-icons"
                     src="/static/png/twitter.png"
                     width={20}
+                    alt="twitter"
                   />
                 </a>
                 <a
@@ -158,6 +176,7 @@ const About = () => {
                     className="social-icons"
                     src="/static/png/linkedin.png"
                     width={20}
+                    alt="LinkedIn"
                   />
                 </a>
               </div>
@@ -168,6 +187,7 @@ const About = () => {
                 src="/static/png/team/Simon.png"
                 height={200}
                 width={200}
+                alt="Simon"
               />
               <div className="details">
                 <div className="name">Simon O'Hanlon, PhD</div>
@@ -176,6 +196,7 @@ const About = () => {
                     className="social-icons"
                     src="/static/png/twitter.png"
                     width={20}
+                    alt="twitter"
                   />
                 </a>
                 <a
@@ -186,6 +207,7 @@ const About = () => {
                     className="social-icons"
                     src="/static/png/linkedin.png"
                     width={20}
+                    alt="LinkedIn"
                   />
                 </a>
               </div>
@@ -198,6 +220,7 @@ const About = () => {
                 src="/static/png/team/Lana.png"
                 height={200}
                 width={200}
+                alt="Lana"
               />
               <div className="details">
                 <div className="name">Lana Ivina</div>
@@ -206,6 +229,7 @@ const About = () => {
                     className="social-icons"
                     src="/static/png/twitter.png"
                     width={20}
+                    alt="twitter"
                   />
                 </a>
                 <a
@@ -216,6 +240,7 @@ const About = () => {
                     className="social-icons"
                     src="/static/png/linkedin.png"
                     width={20}
+                    alt="LinkedIn"
                   />
                 </a>
               </div>
@@ -226,6 +251,7 @@ const About = () => {
                 src="/static/png/team/James.png"
                 height={200}
                 width={200}
+                alt="James"
               />
               <div className="details">
                 <div className="name">James Ford</div>
@@ -234,6 +260,7 @@ const About = () => {
                     className="social-icons"
                     src="/static/png/twitter.png"
                     width={20}
+                    alt="twitter"
                   />
                 </a>
                 <a
@@ -244,6 +271,7 @@ const About = () => {
                     className="social-icons"
                     src="/static/png/linkedin.png"
                     width={20}
+                    alt="LinkedIn"
                   />
                 </a>
               </div>
@@ -256,6 +284,7 @@ const About = () => {
                 src="/static/png/team/David.png"
                 height={200}
                 width={200}
+                alt="David"
               />
               <div className="details">
                 <div className="name">David Fava</div>
@@ -264,6 +293,7 @@ const About = () => {
                     className="social-icons"
                     src="/static/png/twitter.png"
                     width={20}
+                    alt="twitter"
                   />
                 </a>
                 <a href="https://www.linkedin.com/in/favadavid/" target="blank">
@@ -271,6 +301,7 @@ const About = () => {
                     className="social-icons"
                     src="/static/png/linkedin.png"
                     width={20}
+                    alt="LinkedIn"
                   />
                 </a>
               </div>
@@ -288,6 +319,7 @@ const About = () => {
                 src="/static/png/featuredIn/bloomberg.png"
                 className="featured-image"
                 height={60}
+                alt="Bloomberg"
               />
             </a>
           </div>
@@ -300,6 +332,7 @@ const About = () => {
                 src="/static/png/featuredIn/forbes.png"
                 className="featured-image"
                 height={80}
+                alt="Forbes"
               />
             </a>
           </div>
@@ -312,6 +345,7 @@ const About = () => {
                 src="/static/png/featuredIn/business-insider.png"
                 className="featured-image"
                 height={80}
+                alt="Business Insider"
               />
             </a>
           </div>
@@ -324,6 +358,7 @@ const About = () => {
                 src="/static/png/featuredIn/yahoo.png"
                 className="featured-image"
                 height={70}
+                alt="Yahoo"
               />
             </a>
           </div>
@@ -336,6 +371,7 @@ const About = () => {
                 src="/static/png/featuredIn/bitmex.png"
                 className="featured-image"
                 height={40}
+                alt="BitMEX"
               />
             </a>
           </div>
@@ -348,6 +384,7 @@ const About = () => {
                 src="/static/png/featuredIn/techcrunch.png"
                 className="featured-image"
                 height={45}
+                alt="TechCrunch"
               />
             </a>
           </div>
@@ -360,6 +397,7 @@ const About = () => {
                 src="/static/png/featuredIn/producthunt.png"
                 className="featured-image"
                 height={70}
+                alt="ProductHunt"
               />
             </a>
           </div>

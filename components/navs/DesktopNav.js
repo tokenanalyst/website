@@ -58,22 +58,25 @@ export const DesktopNav = () => {
                   onMouseOver={() => {
                     collapseAllSubMenus();
                   }}
+                  alt="TokenAnalyst Home Page"
                 />
               </Link>
             </div>
             <div className={'links-metrics'}>
-              <div
-                className={classNames(
-                  'desktop-link',
-                  setLinkActive(asPath, '/')
-                )}
-                onMouseOver={() => {
-                  collapseAllSubMenus();
-                  setShownItems(prev => ({ ...prev, exchanges: true }));
-                }}
-              >
-                Exchange Flow
-              </div>
+              <Link href="/" passHref>
+                <div
+                  className={classNames(
+                    'desktop-link',
+                    setLinkActive(asPath, '/')
+                  )}
+                  onMouseOver={() => {
+                    collapseAllSubMenus();
+                    setShownItems(prev => ({ ...prev, exchanges: true }));
+                  }}
+                >
+                  Exchange Flows
+                </div>
+              </Link>
               <Link href="/stablecoins" passHref>
                 <div
                   className={classNames(

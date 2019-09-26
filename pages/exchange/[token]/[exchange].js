@@ -1,5 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 
 import { ExchangeMetricsWidget } from '../../../components/widgets/ExchangeMetricsWidget';
 import { IoChartWidget } from '../../../components/widgets/IoChartWidget';
@@ -13,6 +14,11 @@ const Exchange = () => {
 
   return (
     <div>
+      <Head>
+        <title>
+          TokenAnalyst - {exchange} - {token} Inflows and Outflows
+        </title>
+      </Head>
       <ExchangeMetricsWidget token={token} exchange={exchange} />
       {token &&
         exchange &&

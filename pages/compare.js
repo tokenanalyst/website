@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import Head from 'next/head';
 
 import { CompareChartWidget } from '../components/widgets/CompareChartWidget';
 import { PageHeader } from '../components/PageHeader';
@@ -11,6 +12,9 @@ const Compare = () => {
   return (
     <>
       <div className="container">
+        <Head>
+          <title>TokenAnalyst - Compare fundamental data</title>
+        </Head>
         <PageHeader
           text={'Compare'}
           rightElement={!loginCtx.isLoggedIn ? <PricingLink /> : <div />}
