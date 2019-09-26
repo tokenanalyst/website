@@ -28,12 +28,10 @@ module.exports = async (req, res) => {
       .subtract(90, 'days')
       .valueOf();
 
-    const filterSerie = serie =>
-      serie
-        .filter(item => typeof item !== 'undefined')
-        .filter(item => {
-          return moment(item.date).valueOf() > ninetyDaysAgo;
-        });
+    const filterSerie = series =>
+      series.filter(item => {
+        return moment(item.date).valueOf() > ninetyDaysAgo;
+      });
 
     const { inflow, netflow, outflow, price, overall } = result;
 
@@ -139,24 +137,30 @@ module.exports = async (req, res) => {
     priceApiCall,
   ]);
 
-  const netflow = inflowTxnCountApiResponse.data.map(
-    ({ inflow, inflow_usd, date, hour }, index) => {
-      if (outflowTxnCountApiResponse.data[index]) {
-        return {
-          date,
-          hour,
-          value: Number(
-            (inflow - outflowTxnCountApiResponse.data[index].outflow).toFixed(2)
-          ),
-          value_usd: Number(
-            (
-              inflow_usd - outflowTxnCountApiResponse.data[index].outflow_usd
-            ).toFixed(2)
-          ),
-        };
-      }
-    }
-  );
+  const netflow =
+    !from_date || !to_date
+      ? []
+      : inflowTxnCountApiResponse.data.map(
+          ({ inflow, inflow_usd, date, hour }, index) => {
+            if (outflowTxnCountApiResponse.data[index]) {
+              return {
+                date,
+                hour,
+                value: Number(
+                  (
+                    inflow - outflowTxnCountApiResponse.data[index].outflow
+                  ).toFixed(2)
+                ),
+                value_usd: Number(
+                  (
+                    inflow_usd -
+                    outflowTxnCountApiResponse.data[index].outflow_usd
+                  ).toFixed(2)
+                ),
+              };
+            }
+          }
+        );
 
   if (isStableCoin) {
     const filteredInflow = inflowTxnCountApiResponse.data.filter(
