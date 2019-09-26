@@ -34,10 +34,5 @@ export const SimpleButton = ({ backgrounColor, onClick, children }) => (
 SimpleButton.propTypes = {
   backgrounColor: PropTypes.oneOf([PRIMARY_RED, PRIMARY_GREEN, NEUTRAL_GREY]),
   children: PropTypes.node.isRequired,
-  onClick: PropTypes.func,
-};
-
-SimpleButton.defaultProps = {
-  backgrounColor: NEUTRAL_GREY,
-  onClick: () => null,
+  onClick: PropTypes.func.isRequired,
 };
