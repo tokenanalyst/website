@@ -75,7 +75,7 @@ const ta = (function ta() {
               const netFlow = flows.netflow
                 .filter(value => value) // Hack to fix data as the private API may return a different number of items for inflow and outflow, even if from and to date a set
                 .map(entry => {
-                  return formatDate(entry, ['date', 'value_usd']);
+                  return formatDate(entry, ['date', 'value']);
                 });
               const allFlows = merge(inFlow, outFlow, netFlow);
               return merge(allFlows);
@@ -89,7 +89,7 @@ const ta = (function ta() {
                     outflow,
                     inflow_avg_txn_value_usd,
                     outflow_avg_txn_value_usd,
-                    value_usd,
+                    value,
                   } = item;
                   const time = moment.utc(date).valueOf();
 
@@ -99,7 +99,7 @@ const ta = (function ta() {
                     close: Number(outflow),
                     high: Number(inflow_avg_txn_value_usd),
                     low: Number(outflow_avg_txn_value_usd),
-                    volume: Number(value_usd),
+                    volume: Number(value),
                   };
                 })
                 .filter(item => item.time > start && item.time < end);
