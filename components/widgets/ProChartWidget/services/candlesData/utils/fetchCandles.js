@@ -1,5 +1,5 @@
-import { concat } from 'rxjs';
-import { map, reduce } from 'rxjs/operators';
+import { forkJoin } from 'rxjs';
+import { map } from 'rxjs/operators';
 import moment from 'moment';
 import { debugError, makeTimeChunks } from '.';
 import { fetchCandles$ } from '../exchanges/observables';
@@ -41,16 +41,16 @@ const fetchCandles = async (pair, timeFrame, start, end, limit, opts) => {
     })
     .map(url => fetchCandles$(url, requestOptions));
 
-  return concat(...fetchCallsArray)
+  return forkJoin(...fetchCallsArray)
     .pipe(
-      reduce((acc, val) => [...acc, ...val], []),
-      map(data => {
-        const candles = data.map(candle => options.format(candle));
-        candles.sort((a, b) => new Date(a.time) - new Date(b.time));
-        return candles;
-      }),
-      map(data => {
-        return data.map(item => {
+      map(data => data.reduce((acc, item) => [...acc, ...item], [])),
+      map(data =>
+        data
+          .map(candle => options.format(candle))
+          .sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp))
+      ),
+      map(data =>
+        data.map(item => {
           const { close, high, low, open, time, volume } = item;
           return {
             time,
@@ -60,8 +60,8 @@ const fetchCandles = async (pair, timeFrame, start, end, limit, opts) => {
             open: Number(open),
             volume: Number(volume),
           };
-        });
-      })
+        })
+      )
     )
     .toPromise();
 };
