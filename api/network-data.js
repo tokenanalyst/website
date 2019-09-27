@@ -92,22 +92,16 @@ module.exports = async (req, res) => {
       ]
     : [
         axios.get(
-          token === NATIVE_TOKENS.BTC
-            ? createUrl(
-                `token_volume_window_historical`,
-                makeQuery({
-                  key: process.env.API_KEY,
-                  format: 'json',
-                  token,
-                  window: '1d',
-                }),
-                hasLimit
-              )
-            : createUrl(
-                `token_volume_historical`,
-                makeQuery({ key: process.env.API_KEY, format: 'json', token }),
-                hasLimit
-              )
+          createUrl(
+            `token_volume_window_historical`,
+            makeQuery({
+              key: process.env.API_KEY,
+              format: 'json',
+              token,
+              window: '1d',
+            }),
+            hasLimit
+          )
         ),
         axios.get(
           createUrl(
