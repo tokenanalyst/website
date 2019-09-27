@@ -7,7 +7,8 @@ import { Card } from '@blueprintjs/core';
 import { LoginContext } from '../../../contexts/Login';
 import { STRIPE } from '../../../constants/stripe';
 import { PLAN_NAMES } from '../../../constants/plans';
-import { colors } from '../../../constants/styles/colors';
+import { PRIMARY_GREEN } from '../../../constants/styles/colors';
+import { SimpleButton } from '../../SimpleButton';
 
 export const Product = ({
   name,
@@ -62,14 +63,14 @@ export const Product = ({
           </div>
           <div className="body">
             <div className="features">
-              {features.map(feature => (
-                <div key={feature} className="feature">
-                  {feature}
-                </div>
-              ))}
+              <ul className="feature">
+                {features.map(feature => (
+                  <li key={feature}>{feature}</li>
+                ))}
+              </ul>
             </div>
-            <div
-              className="purchase-button"
+            <SimpleButton
+              backgrounColor={PRIMARY_GREEN}
               onClick={
                 name === PLAN_NAMES.ENTERPRISE
                   ? () => {
@@ -102,7 +103,7 @@ export const Product = ({
               }
             >
               {buttonText}
-            </div>
+            </SimpleButton>
           </div>
         </Card>
       </div>
@@ -111,9 +112,8 @@ export const Product = ({
           font-family: Open Sans;
           display: flex;
           flex-direction: column;
-          min-width: ${isMaxWidth ? '100%' : '600px'};
-          max-width: 600px;
-          padding: 10px;
+          width: 33%;
+          margin: 5px;
         }
         .header {
           font-family: Space Grotesk;
@@ -140,19 +140,12 @@ export const Product = ({
           flex-direction: row;
           justify-content: space-between;
         }
-        .feature {
+        .features {
           padding-top: 4px;
           padding-bottom: 4px;
         }
-        .purchase-button {
-          color: white;
-          min-width: 110px;
-          text-align: center;
-          background-color: rgba(${colors.primaryGreen});
-          max-height: 40px;
-          padding: 10px;
-          border-radius: 20px;
-          cursor: pointer;
+        .feature {
+          padding-left: 20px;
         }
         @media (min-width: 1400px) and (max-width: 1799px) {
           .container {
@@ -161,12 +154,17 @@ export const Product = ({
         }
         @media only screen and (max-width: 768px) {
           .container {
-            padding: 5px;
+            width: 100%;
             min-width: 95%;
+            padding-right: 8px;
           }
-          .feature {
+          .features {
+            padding-right: 2px;
             padding-top: 2px;
             padding-bottom: 2px;
+          }
+          .feature {
+            padding-left: 20px;
           }
         }
       `}</style>

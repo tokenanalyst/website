@@ -25,8 +25,6 @@ export const ProductSelectionWidget = () => {
         .container {
           display: flex;
           flex-direction: row;
-          flex-wrap: wrap;
-          justify-content: space-between;
         }
         @media only screen and (max-width: 768px) {
           .container {

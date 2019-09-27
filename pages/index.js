@@ -8,6 +8,7 @@ import { underSubNav } from '../constants/styles/common-styled-jsx';
 import { TokenSnapshotWidget } from '../components/widgets/TokenSnapshotWidget';
 import { useApi } from '../custom-hooks';
 import { LoadingSpinner } from '../components/LoadingSpinner';
+import { TestimonialsWidget } from '../components/widgets/TestimonialsWidget';
 
 const Exchange = () => {
   const [dataWindow, setDataWindow] = useState(DATA_WINDOWS[0]);

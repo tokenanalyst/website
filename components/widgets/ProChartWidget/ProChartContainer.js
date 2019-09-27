@@ -15,7 +15,10 @@ const ProChart = dynamic(
   }
 );
 
-const taDataArgs = process.env.NODE_ENV !== 'development' ? {} : { apiUrl: 'http://localhost:3000/api' }
+const taDataArgs =
+  process.env.NODE_ENV !== 'development'
+    ? {}
+    : { apiUrl: 'http://localhost:3000/api' };
 
 export const ProChartContainer = ({
   timeFrame,
@@ -25,9 +28,7 @@ export const ProChartContainer = ({
   onChartRenderCb,
 }) => {
   const [isLoading, setIsLoading] = useState(true);
-  const tokenAnalystService = useRef(
-    taData(taDataArgs)
-  );
+  const tokenAnalystService = useRef(taData(taDataArgs));
   const kaikoService = useRef(candlesData(KAIKO));
   const tradingViewOptions = {
     ...TRADINVIEW_DEFAULT_OPTIONS,
