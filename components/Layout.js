@@ -16,6 +16,7 @@ export const Layout = ({ children }) => (
       <link href="/static/fonts/fonts.css" rel="stylesheet" />
       <script src="https://js.stripe.com/v3/" />
       <script src="/static/js/intercom.js" />
+      <script src="/static/js/hotjar.js" />
 
       <script
         type="text/javascript"
