@@ -1,16 +1,54 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 
 import { ExchangeMetricsWidget } from '../../../components/widgets/ExchangeMetricsWidget';
 import { IoChartWidget } from '../../../components/widgets/IoChartWidget';
 import { ProChartWidget } from '../../../components/widgets/ProChartWidget';
-import { EXCHANGE_TOKENS } from '../../../constants/exchanges';
+import { SUPPORTED_EXCHANGES } from '../../../constants/exchanges';
 import { NATIVE_TOKENS } from '../../../constants/tokens';
+import { TOKEN_TO_EXCHANGE } from '../../../constants/exchanges';
 
 const Exchange = () => {
   const router = useRouter();
   const { token, exchange } = router.query;
+
+  console.log(router.query);
+
+  // useEffect(()=>{
+  //   console.log('useEffect')
+  //   console.log(token)
+  // },[])
+
+  if (token) {
+    const supportedExchanges = Object.keys(SUPPORTED_EXCHANGES).reduce(
+      (acc, exchange) => {
+        SUPPORTED_EXCHANGES[exchange][token.toUpperCase()]
+          ? [...acc, exchange]
+          : acc;
+      },
+      []
+    );
+
+    const supportedTokens = SUPPORTED_EXCHANGES[exchange];
+
+    console.log(supportedExchanges);
+    console.log(supportedTokens);
+  }
+
+  // const supportedExchanges = Object.keys(SUPPORTED_EXCHANGES).reduce(
+  //   (acc, exchange) => {
+  //     SUPPORTED_EXCHANGES[exchange][token.toUpperCase()]
+  //       ? [...acc, exchange]
+  //       : acc;
+  //   },
+  //   []
+  // );
+
+  // const supportedTokens = SUPPORTED_EXCHANGES[exchange];
+
+  // console.log(supportedExchanges);
+  // console.log(supportedTokens);
 
   return (
     <div>
@@ -25,15 +63,15 @@ const Exchange = () => {
         (NATIVE_TOKENS[token] ? (
           <>
             <ProChartWidget
-              exchange={exchange}
-              token={token}
+              selectedExchange={exchange}
+              selectedToken={token}
               onChangeExchange={newExchange => {
                 router.push(
                   `/exchange/[token]/[exchange]`,
                   `/exchange/${
-                    EXCHANGE_TOKENS[newExchange].indexOf(token) > 0
+                    SUPPORTED_EXCHANGES[newExchange].indexOf(token) > 0
                       ? token
-                      : EXCHANGE_TOKENS[newExchange][0]
+                      : SUPPORTED_EXCHANGES[newExchange][0]
                   }/${newExchange}`
                 );
               }}

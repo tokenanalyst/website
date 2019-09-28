@@ -1,14 +1,14 @@
+import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import Router from 'next/router';
-import { Icon } from '@blueprintjs/core';
+import { Icon, HTMLSelect, Button, Switch } from '@blueprintjs/core';
 import dynamic from 'next/dynamic';
 import ReactGA from 'react-ga';
 
-import { HTMLSelect, Button, Switch } from '@blueprintjs/core';
 import { ProChartContainer } from './ProChartContainer.js';
 import {
   EXCHANGE_NAMES,
-  EXCHANGE_TOKENS,
+  SUPPORTED_EXCHANGES,
   EXCHANGE_DOLLARS,
 } from '../../../constants/exchanges';
 
@@ -79,7 +79,7 @@ export const ProChartWidget = ({
               <div className="label">Token:</div>
               <HTMLSelect
                 className="ta-select"
-                options={EXCHANGE_TOKENS[exchange]}
+                options={SUPPORTED_EXCHANGES[exchange]}
                 onChange={() => {
                   ReactGA.event({
                     category: 'User',
@@ -132,7 +132,7 @@ export const ProChartWidget = ({
                       studies.current.transactions.entityId = null;
                     }
                   }}
-                  defaultChecked={true}
+                  defaultChecked
                   large
                 />
               </div>
@@ -252,4 +252,11 @@ export const ProChartWidget = ({
       </style>
     </div>
   );
+};
+
+ProChartWidget.propTypes = {
+  exchange: PropTypes.string.isRequired,
+  token: PropTypes.string.isRequired,
+  onChangeExchange: PropTypes.func.isRequired,
+  onChangeToken: PropTypes.func.isRequired,
 };

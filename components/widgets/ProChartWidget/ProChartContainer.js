@@ -43,22 +43,32 @@ export const ProChartContainer = ({
   tokenAnalystService.current.setTradingPair(symbols);
 
   useEffect(() => {
-    kaikoService.current.start();
-    kaikoService.current.studies = makeStudiesCb(
-      tokenAnalystService.current,
-      exchangeName,
-      symbols[0]
-    );
-    kaikoService.current.ta = tokenAnalystService.current;
+    const initServices = async () => {
+      await kaikoService.current.start();
+      kaikoService.current.studies = makeStudiesCb(
+        tokenAnalystService.current,
+        exchangeName,
+        symbols[0]
+      );
+      kaikoService.current.ta = tokenAnalystService.current;
+    };
+    // kaikoService.current.start();
+    // kaikoService.current.studies = makeStudiesCb(
+    //   tokenAnalystService.current,
+    //   exchangeName,
+    //   symbols[0]
+    // );
+    // kaikoService.current.ta = tokenAnalystService.current;
+    initServices();
 
     setIsLoading(false);
-  }, [kaikoService]);
+  }, [exchangeName, kaikoService, symbols]);
 
   return (
     <>
       <div className="container">
         <div className="tv-chart">
-          {symbols && !isLoading && (
+          {/* {symbols && !isLoading && (
             <div>
               <ProChart
                 kaikoService={kaikoService.current}
@@ -68,7 +78,7 @@ export const ProChartContainer = ({
                 }}
               />
             </div>
-          )}
+          )} */}
         </div>
       </div>
 

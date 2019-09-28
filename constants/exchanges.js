@@ -1,15 +1,90 @@
-import { NATIVE_TOKENS, STABLE_TOKENS } from './tokens';
+import { NATIVE_TOKENS, STABLE_TOKENS, CURRENCIES } from './tokens';
+
+const { BTC, ETH } = NATIVE_TOKENS;
+const { USDT } = STABLE_TOKENS;
+const { USD } = CURRENCIES;
+
+const BINANCE = 'Binance';
+const BITFINEX = 'Bitfinex';
+const BITMEX = 'BitMEX';
+const BITSTAMP = 'Bitstamp';
+const BITTREX = 'Bittrex';
+const KRAKEN = 'Kraken';
+const KUCOIN = 'Kucoin';
+const POLONIEX = 'Poloniex';
+const OKEX = 'Okex';
+
+const TOKENS_PAIRS = {
+  [BTC]: {
+    [BINANCE]: {
+      quoteToken: USD,
+    },
+    [BITFINEX]: {
+      quoteToken: USDT,
+    },
+    [BITMEX]: {
+      quoteToken: USD,
+    },
+    [BITSTAMP]: {
+      quoteToken: USD,
+    },
+    [BITTREX]: {
+      quoteToken: USDT,
+    },
+    [KUCOIN]: {
+      quoteToken: USDT,
+    },
+    [KRAKEN]: {
+      quoteToken: USD,
+    },
+    [POLONIEX]: {
+      quoteToken: USDT,
+    },
+    [OKEX]: {
+      quoteToken: USD,
+    },
+  },
+  [ETH]: {
+    [BINANCE]: {
+      quoteToken: USD,
+    },
+    [BITFINEX]: {
+      quoteToken: USDT,
+    },
+    [BITMEX]: {
+      quoteToken: USD,
+    },
+    [BITSTAMP]: {
+      quoteToken: USD,
+    },
+    [BITTREX]: {
+      quoteToken: USDT,
+    },
+    [KUCOIN]: {
+      quoteToken: USDT,
+    },
+    [KRAKEN]: {
+      quoteToken: USD,
+    },
+    [POLONIEX]: {
+      quoteToken: USDT,
+    },
+    [OKEX]: {
+      quoteToken: USD,
+    },
+  },
+};
 
 export const EXCHANGE_NAMES = {
-  Binance: 'Binance',
-  Bitfinex: 'Bitfinex',
-  Bitmex: 'BitMEX',
-  Bitstamp: 'Bitstamp',
-  Bittrex: 'Bittrex',
-  Kraken: 'Kraken',
-  Kucoin: 'Kucoin',
-  Poloniex: 'Poloniex',
-  Okex: 'Okex',
+  BINANCE: 'Binance',
+  BITFINEX: 'Bitfinex',
+  BITMEX: 'BitMEX',
+  BITSTAMP: 'Bitstamp',
+  BITREX: 'Bittrex',
+  KRAKEN: 'Kraken',
+  KUCOIN: 'Kucoin',
+  POLONIEX: 'Poloniex',
+  OKEX: 'Okex',
 };
 
 export const EXCHANGE_DOLLARS = {
@@ -24,10 +99,10 @@ export const EXCHANGE_DOLLARS = {
   Okex: 'USD',
 };
 
-export const EXCHANGE_TOKENS = {
-  [EXCHANGE_NAMES.Binance]: [
-    NATIVE_TOKENS.BTC,
-    NATIVE_TOKENS.ETH,
+export const SUPPORTED_EXCHANGES = {
+  [EXCHANGE_NAMES.BINANCE]: [
+    BTC,
+    ETH,
     // STABLE_TOKENS.USDT_ERC20,
     // STABLE_TOKENS.USDC,
     // STABLE_TOKENS.PAX,
@@ -53,9 +128,9 @@ export const EXCHANGE_TOKENS = {
     // STABLE_TOKENS.NMR,
     // STABLE_TOKENS.MKR,
   ],
-  [EXCHANGE_NAMES.Bitfinex]: [
-    NATIVE_TOKENS.BTC,
-    NATIVE_TOKENS.ETH,
+  [EXCHANGE_NAMES.BITFINEX]: [
+    BTC,
+    ETH,
     // STABLE_TOKENS.USDT_ERC20,
     // STABLE_TOKENS.USDT_OMNI,
     // STABLE_TOKENS.ZRX,
@@ -82,11 +157,11 @@ export const EXCHANGE_TOKENS = {
     // STABLE_TOKENS.NMR,
     // STABLE_TOKENS.ZIL,
   ],
-  Bitmex: [NATIVE_TOKENS.BTC],
-  [EXCHANGE_NAMES.Bitstamp]: [NATIVE_TOKENS.BTC],
-  [EXCHANGE_NAMES.Bittrex]: [
-    NATIVE_TOKENS.BTC,
-    NATIVE_TOKENS.ETH,
+  [EXCHANGE_NAMES.BITMEX]: [BTC],
+  [EXCHANGE_NAMES.BITSTAMP]: [BTC],
+  [EXCHANGE_NAMES.BITTREX]: [
+    BTC,
+    ETH,
     // STABLE_TOKENS.USDT_ERC20,
     // STABLE_TOKENS.TUSD,
     // STABLE_TOKENS.ZRX,
@@ -113,8 +188,8 @@ export const EXCHANGE_TOKENS = {
     // STABLE_TOKENS.TKN,
     // STABLE_TOKENS.ZIL,
   ],
-  [EXCHANGE_NAMES.Kraken]: [
-    NATIVE_TOKENS.ETH,
+  [EXCHANGE_NAMES.KRAKEN]: [
+    ETH,
     // STABLE_TOKENS.USDT_OMNI,
     // STABLE_TOKENS.GUSD,
     // STABLE_TOKENS.TUSD,
@@ -139,8 +214,8 @@ export const EXCHANGE_TOKENS = {
     // STABLE_TOKENS.BAT,
     // STABLE_TOKENS.MKR,
   ],
-  [EXCHANGE_NAMES.Kucoin]: [
-    NATIVE_TOKENS.ETH,
+  [EXCHANGE_NAMES.KUCOIN]: [
+    ETH,
     // STABLE_TOKENS.USDT_OMNI,
     // STABLE_TOKENS.GUSD,
     // STABLE_TOKENS.TUSD,
@@ -165,9 +240,9 @@ export const EXCHANGE_TOKENS = {
     // STABLE_TOKENS.BAT,
     // STABLE_TOKENS.MKR,
   ],
-  [EXCHANGE_NAMES.Poloniex]: [
-    NATIVE_TOKENS.BTC,
-    NATIVE_TOKENS.ETH,
+  [EXCHANGE_NAMES.POLONIEX]: [
+    BTC,
+    ETH,
     // STABLE_TOKENS.USDT_OMNI,
     // STABLE_TOKENS.GUSD,
     // STABLE_TOKENS.TUSD,
@@ -192,5 +267,5 @@ export const EXCHANGE_TOKENS = {
     // STABLE_TOKENS.BAT,
     // STABLE_TOKENS.MKR,
   ],
-  [EXCHANGE_NAMES.Okex]: [STABLE_TOKENS.USDT_OMNI],
+  [EXCHANGE_NAMES.OKEX]: [STABLE_TOKENS.USDT_OMNI],
 };

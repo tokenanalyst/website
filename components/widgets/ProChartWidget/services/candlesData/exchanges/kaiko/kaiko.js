@@ -1,16 +1,17 @@
 import moment from 'moment';
+
 import { debugError, makeCandlesRestApiUrl, fetchCandles } from '../../utils';
 import {
   ERROR,
   restRootUrl,
   restRootUrlTAProxy,
-  timeFrames,
+  TIME_FRAMES,
   KAIKO_EXCHANGES,
   KAIKO_EXCHANGES_MAP,
-} from './const';
+} from './const/const';
 import { addTradingPair, makeOptions, removeTradingPair } from './utils';
-
 import { EXCHANGE_NAME } from '../../const';
+// import { INSTRUMENTS } from './const/instruments';
 
 const kaiko = (function kaiko() {
   let candlesData = {};
@@ -23,6 +24,8 @@ const kaiko = (function kaiko() {
     debug: false,
   };
 
+  const getInstrument = (symbol, exchangeName) => {};
+
   const supportedExchanges = () =>
     KAIKO_EXCHANGES.map(item => item.name.toLowerCase());
 
@@ -31,11 +34,20 @@ const kaiko = (function kaiko() {
   const DEFAULT_OPTIONS = { format: 'tradingview', apiLimit: 100 };
 
   return {
-    start: (opts = {}) => {
+    start: async (opts = {}) => {
+      // const instruments = await fetch(
+      //   'https://reference-data-api.kaiko.io/v1/instruments'
+      // );
+      // console.log(instruments);
+      // const instrument = INSTRUMENTS.filter(item => {
+      //   return item.base_asset === 'eth' && item.class === 'spot' && item.exchange_code === 'krkn';
+      // });
+      // console.log(instrument);
       options = makeOptions({ ...DEFAULT_OPTIONS, ...opts });
     },
 
     fetchCandles: async (pair, timeFrame, start, end, limit, exchangeName) => {
+      console.log(pair, timeFrame, start, end, limit, exchangeName);
       if (!KAIKO_EXCHANGES_MAP[exchangeName.toLowerCase()]) {
         return debugError(ERROR.EXCHANGE_NOT_SUPPORTED, status.debug);
       }
@@ -112,7 +124,7 @@ const kaiko = (function kaiko() {
 })();
 
 kaiko.options = {
-  timeFrames,
+  timeFrames: TIME_FRAMES,
 };
 
 export default kaiko;
