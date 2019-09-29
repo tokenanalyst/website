@@ -1,6 +1,6 @@
 import pick from 'lodash/pick';
 import merge from 'lodash/merge';
-import { map, filter } from 'rxjs/operators';
+import { map, filter, tap } from 'rxjs/operators';
 import { forkJoin } from 'rxjs';
 import moment from 'moment';
 import { fetchDataFromApi$ } from '../lib/observables';
@@ -61,6 +61,7 @@ const ta = (function ta() {
                   inFlowEntry.avg_txn_value_usd;
                 return inFlowEntry;
               });
+
               const outFlow = flows.outflow.map(entry => {
                 const outFlowEntry = formatDate(entry, [
                   'date',
@@ -77,6 +78,7 @@ const ta = (function ta() {
                 .map(entry => {
                   return formatDate(entry, ['date', 'value']);
                 });
+
               const allFlows = merge(inFlow, outFlow, netFlow);
               return merge(allFlows);
             }),

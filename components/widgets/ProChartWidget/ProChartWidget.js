@@ -6,11 +6,7 @@ import dynamic from 'next/dynamic';
 import ReactGA from 'react-ga';
 
 import { ProChartContainer } from './ProChartContainer.js';
-import {
-  EXCHANGE_NAMES,
-  SUPPORTED_EXCHANGES,
-  EXCHANGE_DOLLARS,
-} from '../../../constants/exchanges';
+import { QUOTE_TOKENS } from '../../../constants/exchanges';
 
 const TOOLTIP_TEXT = (
   <>
@@ -58,17 +54,27 @@ const SimpleToolTip = dynamic(
   }
 );
 
+const makeSymbols = (baseToken, exchangeName, quoteTokenMap) => {
+  const { quoteToken } = quoteTokenMap[baseToken.toUpperCase()][exchangeName];
+
+  return [baseToken, quoteToken];
+};
+
 export const ProChartWidget = ({
-  exchange,
   onChangeExchange,
-  token,
   onChangeToken,
+  supportedTokens,
+  supportedExchanges,
+  selectedExchange,
+  selectedToken,
 }) => {
   const tvInstance = useRef(null);
   const studies = useRef({
     flows: { entityId: null },
     transactions: { entityId: null },
   });
+
+  const symbols = makeSymbols(selectedToken, selectedExchange, QUOTE_TOKENS);
 
   return (
     <div>
@@ -79,7 +85,7 @@ export const ProChartWidget = ({
               <div className="label">Token:</div>
               <HTMLSelect
                 className="ta-select"
-                options={SUPPORTED_EXCHANGES[exchange]}
+                options={supportedTokens}
                 onChange={() => {
                   ReactGA.event({
                     category: 'User',
@@ -88,7 +94,7 @@ export const ProChartWidget = ({
                   });
                   onChangeToken(event.target.value);
                 }}
-                value={token}
+                value={selectedToken}
                 id="exchange-select"
               />
             </div>
@@ -96,9 +102,7 @@ export const ProChartWidget = ({
               <div className="label">Exchange:</div>
               <HTMLSelect
                 className="ta-select"
-                options={Object.keys(EXCHANGE_NAMES).filter(
-                  exchangeName => exchangeName != EXCHANGE_NAMES.Okex
-                )}
+                options={supportedExchanges}
                 onChange={() => {
                   ReactGA.event({
                     category: 'User',
@@ -107,7 +111,7 @@ export const ProChartWidget = ({
                   });
                   onChangeExchange(event.target.value);
                 }}
-                value={exchange}
+                value={selectedExchange}
                 id="exchange-select"
               />
             </div>
@@ -169,8 +173,8 @@ export const ProChartWidget = ({
           <ProChartContainer
             timeFrame="3D"
             interval="60"
-            symbols={[token, EXCHANGE_DOLLARS[exchange]]}
-            exchangeName={exchange}
+            symbols={symbols}
+            exchangeName={selectedExchange}
             onChartRenderCb={tvWidget => {
               tvInstance.current = tvWidget;
               studies.current.flows.entityId = tvInstance.current
@@ -255,8 +259,11 @@ export const ProChartWidget = ({
 };
 
 ProChartWidget.propTypes = {
-  exchange: PropTypes.string.isRequired,
-  token: PropTypes.string.isRequired,
   onChangeExchange: PropTypes.func.isRequired,
   onChangeToken: PropTypes.func.isRequired,
+  onChangeToken: PropTypes.func.isRequired,
+  selectedExchange: PropTypes.string.isRequired,
+  selectedToken: PropTypes.string.isRequired,
+  supportedExchanges: PropTypes.arrayOf(PropTypes.string),
+  supportedTokens: PropTypes.arrayOf(PropTypes.string),
 };

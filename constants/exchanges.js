@@ -1,7 +1,7 @@
 import { NATIVE_TOKENS, STABLE_TOKENS, CURRENCIES } from './tokens';
 
 const { BTC, ETH } = NATIVE_TOKENS;
-const { USDT } = STABLE_TOKENS;
+const { USDT, OMG, LINK, ZIL, ZRX, PAX, REP } = STABLE_TOKENS;
 const { USD } = CURRENCIES;
 
 const BINANCE = 'Binance';
@@ -14,10 +14,10 @@ const KUCOIN = 'Kucoin';
 const POLONIEX = 'Poloniex';
 const OKEX = 'Okex';
 
-const TOKENS_PAIRS = {
+export const QUOTE_TOKENS = {
   [BTC]: {
     [BINANCE]: {
-      quoteToken: USD,
+      quoteToken: USDT,
     },
     [BITFINEX]: {
       quoteToken: USDT,
@@ -46,7 +46,181 @@ const TOKENS_PAIRS = {
   },
   [ETH]: {
     [BINANCE]: {
+      quoteToken: USDT,
+    },
+    [BITFINEX]: {
+      quoteToken: USDT,
+    },
+    [BITMEX]: {
       quoteToken: USD,
+    },
+    [BITSTAMP]: {
+      quoteToken: USD,
+    },
+    [BITTREX]: {
+      quoteToken: USDT,
+    },
+    [KUCOIN]: {
+      quoteToken: USDT,
+    },
+    [KRAKEN]: {
+      quoteToken: USD,
+    },
+    [POLONIEX]: {
+      quoteToken: USDT,
+    },
+    [OKEX]: {
+      quoteToken: USD,
+    },
+  },
+  [LINK]: {
+    [BINANCE]: {
+      quoteToken: USDT,
+    },
+    [BITFINEX]: {
+      quoteToken: USDT,
+    },
+    [BITMEX]: {
+      quoteToken: USD,
+    },
+    [BITSTAMP]: {
+      quoteToken: USD,
+    },
+    [BITTREX]: {
+      quoteToken: USDT,
+    },
+    [KUCOIN]: {
+      quoteToken: USDT,
+    },
+    [KRAKEN]: {
+      quoteToken: USD,
+    },
+    [POLONIEX]: {
+      quoteToken: USDT,
+    },
+    [OKEX]: {
+      quoteToken: USD,
+    },
+  },
+  [OMG]: {
+    [BINANCE]: {
+      quoteToken: USDT,
+    },
+    [BITFINEX]: {
+      quoteToken: USDT,
+    },
+    [BITMEX]: {
+      quoteToken: USD,
+    },
+    [BITSTAMP]: {
+      quoteToken: USD,
+    },
+    [BITTREX]: {
+      quoteToken: USDT,
+    },
+    [KUCOIN]: {
+      quoteToken: USDT,
+    },
+    [KRAKEN]: {
+      quoteToken: USD,
+    },
+    [POLONIEX]: {
+      quoteToken: USDT,
+    },
+    [OKEX]: {
+      quoteToken: USD,
+    },
+  },
+  [PAX]: {
+    [BINANCE]: {
+      quoteToken: USDT,
+    },
+    [BITFINEX]: {
+      quoteToken: USDT,
+    },
+    [BITMEX]: {
+      quoteToken: USD,
+    },
+    [BITSTAMP]: {
+      quoteToken: USD,
+    },
+    [BITTREX]: {
+      quoteToken: USDT,
+    },
+    [KUCOIN]: {
+      quoteToken: USDT,
+    },
+    [KRAKEN]: {
+      quoteToken: USD,
+    },
+    [POLONIEX]: {
+      quoteToken: USDT,
+    },
+    [OKEX]: {
+      quoteToken: USD,
+    },
+  },
+  [REP]: {
+    [BINANCE]: {
+      quoteToken: USDT,
+    },
+    [BITFINEX]: {
+      quoteToken: USDT,
+    },
+    [BITMEX]: {
+      quoteToken: USD,
+    },
+    [BITSTAMP]: {
+      quoteToken: USD,
+    },
+    [BITTREX]: {
+      quoteToken: USDT,
+    },
+    [KUCOIN]: {
+      quoteToken: USDT,
+    },
+    [KRAKEN]: {
+      quoteToken: USD,
+    },
+    [POLONIEX]: {
+      quoteToken: USDT,
+    },
+    [OKEX]: {
+      quoteToken: USD,
+    },
+  },
+  [ZIL]: {
+    [BINANCE]: {
+      quoteToken: USDT,
+    },
+    [BITFINEX]: {
+      quoteToken: USDT,
+    },
+    [BITMEX]: {
+      quoteToken: USD,
+    },
+    [BITSTAMP]: {
+      quoteToken: USD,
+    },
+    [BITTREX]: {
+      quoteToken: USDT,
+    },
+    [KUCOIN]: {
+      quoteToken: USDT,
+    },
+    [KRAKEN]: {
+      quoteToken: USD,
+    },
+    [POLONIEX]: {
+      quoteToken: USDT,
+    },
+    [OKEX]: {
+      quoteToken: USD,
+    },
+  },
+  [ZRX]: {
+    [BINANCE]: {
+      quoteToken: USDT,
     },
     [BITFINEX]: {
       quoteToken: USDT,
@@ -80,7 +254,7 @@ export const EXCHANGE_NAMES = {
   BITFINEX: 'Bitfinex',
   BITMEX: 'BitMEX',
   BITSTAMP: 'Bitstamp',
-  BITREX: 'Bittrex',
+  BITTREX: 'Bittrex',
   KRAKEN: 'Kraken',
   KUCOIN: 'Kucoin',
   POLONIEX: 'Poloniex',
@@ -88,21 +262,26 @@ export const EXCHANGE_NAMES = {
 };
 
 export const EXCHANGE_DOLLARS = {
-  Binance: 'USDT',
-  Bitfinex: 'USDT',
+  BINANCE: 'USDT',
+  BITFINEX: 'USDT',
   Bitmex: 'USD',
-  Bitstamp: 'USD',
-  Bittrex: 'USDT',
-  Kraken: 'USD',
+  BITMEX: 'USD',
+  KUCOIN: 'USDT',
+  BITTREX: 'USD',
   Kucoin: 'USDT',
-  Poloniex: 'USDT',
-  Okex: 'USD',
+  KUCOIN: 'USDT',
+  OKEX: 'USD',
 };
 
 export const SUPPORTED_EXCHANGES = {
   [EXCHANGE_NAMES.BINANCE]: [
     BTC,
     ETH,
+    OMG,
+    LINK,
+    PAX,
+    ZIL,
+    ZRX,
     // STABLE_TOKENS.USDT_ERC20,
     // STABLE_TOKENS.USDC,
     // STABLE_TOKENS.PAX,
