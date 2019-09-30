@@ -37,7 +37,7 @@ export const ProductSelectionWidget = () => {
           flex: 1 1 0px;
           align-content: space-between;
         }
-        @media only screen and (max-width: 767px) {
+        @media only screen and (max-width: 768px) {
           .container {
             flex-direction: column;
           }
