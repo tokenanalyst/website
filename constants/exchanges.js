@@ -107,7 +107,7 @@ export const QUOTE_TOKENS = {
       quoteToken: USDT,
     },
     [BITFINEX]: {
-      quoteToken: USDT,
+      quoteToken: USD,
     },
     [BITMEX]: {
       quoteToken: USD,
@@ -310,6 +310,7 @@ export const SUPPORTED_EXCHANGES = {
   [EXCHANGE_NAMES.BITFINEX]: [
     BTC,
     ETH,
+    OMG,
     // STABLE_TOKENS.USDT_ERC20,
     // STABLE_TOKENS.USDT_OMNI,
     // STABLE_TOKENS.ZRX,
@@ -337,7 +338,7 @@ export const SUPPORTED_EXCHANGES = {
     // STABLE_TOKENS.ZIL,
   ],
   [EXCHANGE_NAMES.BITMEX]: [BTC],
-  [EXCHANGE_NAMES.BITSTAMP]: [BTC],
+  [EXCHANGE_NAMES.BITSTAMP]: [BTC, ETH],
   [EXCHANGE_NAMES.BITTREX]: [
     BTC,
     ETH,
