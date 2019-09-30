@@ -6,6 +6,9 @@ const isAuthorised = require('./auth/isAuthorised');
 const TA = require('./utils/ta-api-node/ta');
 const { NATIVE_TOKENS, STABLE_TOKENS } = require('../constants/tokens');
 const { TIME_WINDOWS } = require('../constants/filters');
+const { filterSeriesByExchange } = require('./utils/filterSeriesByExchange');
+const { makeNetFlowSeries } = require('./utils/makeNetFlowSeries');
+const { filterSeriesByTime } = require('./utils/filterSeriesByTime');
 
 module.exports = async (req, res) => {
   const urlParts = url.parse(req.url, true);
@@ -28,18 +31,13 @@ module.exports = async (req, res) => {
       .subtract(90, 'days')
       .valueOf();
 
-    const filterSerie = series =>
-      series
-        .filter(item => item)
-        .filter(item => moment(item.date).valueOf() > ninetyDaysAgo);
-
     const { inflow, netflow, outflow, price, overall } = result;
 
     return {
-      inflow: filterSerie(inflow),
-      outflow: filterSerie(outflow),
-      netflow: filterSerie(netflow),
-      price: filterSerie(price),
+      inflow: filterSeriesByTime(inflow, ninetyDaysAgo),
+      outflow: filterSeriesByTime(outflow, ninetyDaysAgo),
+      netflow: filterSeriesByTime(netflow, ninetyDaysAgo),
+      price: filterSeriesByTime(price, ninetyDaysAgo),
       overall,
     };
   };
@@ -137,64 +135,59 @@ module.exports = async (req, res) => {
     priceApiCall,
   ]);
 
-  const netflow =
-    !from_date || !to_date
-      ? []
-      : inflowTxnCountApiResponse.data.map(
-          ({ inflow, inflow_usd, date, hour }, index) => {
-            if (outflowTxnCountApiResponse.data[index]) {
-              return {
-                date,
-                hour,
-                value: Number(
-                  (
-                    inflow - outflowTxnCountApiResponse.data[index].outflow
-                  ).toFixed(2)
-                ),
-                value_usd: Number(
-                  (
-                    inflow_usd -
-                    outflowTxnCountApiResponse.data[index].outflow_usd
-                  ).toFixed(2)
-                ),
-              };
-            }
-          }
-        );
-
   if (isStableCoin) {
-    const filteredInflow = inflowTxnCountApiResponse.data.filter(
-      item => item.exchange === exchange
-    );
-    const filteredOutflow = outflowTxnCountApiResponse.data.filter(
-      item => item.exchange === exchange
-    );
-    const filteredPrice = tokenPriceApiResponse.data.filter(
-      item => item.exchange === exchange
+    const filteredInflow = filterSeriesByExchange(
+      inflowTxnCountApiResponse.data,
+      exchange
     );
 
-    res.send({
+    const filteredOutflow = filterSeriesByExchange(
+      outflowTxnCountApiResponse.data,
+      exchange
+    );
+
+    const filteredPrice = tokenPriceApiResponse.data;
+
+    const filteredNetFlow = makeNetFlowSeries(
+      filteredInflow,
+      filteredOutflow,
+      from_date,
+      to_date
+    );
+
+    return res.send({
       ta_response: limitDataForFreeUsers({
         inflow: filteredInflow,
         outflow: filteredOutflow,
+        netflow: filteredNetFlow,
         overall: publicApiResponse.data.filter(
-          item => item.token === token && item.exchange === exchange
+          item =>
+            item.token === token &&
+            item.exchange.toLowerCase() === exchange.toLowerCase()
         ),
-        netflow,
         price: filteredPrice,
       }),
     });
-  } else {
-    res.send({
-      ta_response: limitDataForFreeUsers({
-        inflow: inflowTxnCountApiResponse.data,
-        outflow: outflowTxnCountApiResponse.data,
-        netflow,
-        overall: publicApiResponse.data.filter(
-          item => item.token === token && item.exchange === exchange
-        ),
-        price: tokenPriceApiResponse.data,
-      }),
-    });
   }
+
+  const netflow = makeNetFlowSeries(
+    inflowTxnCountApiResponse.data,
+    outflowTxnCountApiResponse.data,
+    from_date,
+    to_date
+  );
+
+  return res.send({
+    ta_response: limitDataForFreeUsers({
+      inflow: inflowTxnCountApiResponse.data,
+      outflow: outflowTxnCountApiResponse.data,
+      netflow,
+      overall: publicApiResponse.data.filter(
+        item =>
+          item.token === token &&
+          item.exchange.toLowerCase() === exchange.toLowerCase()
+      ),
+      price: tokenPriceApiResponse.data,
+    }),
+  });
 };
