@@ -1,6 +1,9 @@
 export const filterSeriesByExchange = (series, exchangeName) => {
+  if (!exchangeName) {
+    return series;
+  }
+
   return series.filter(item => {
-    // console.log(item)
-    return item.exchange.toLowerCase() === exchangeName;
+    return item.exchange.toLowerCase() === exchangeName.toLowerCase();
   });
 };

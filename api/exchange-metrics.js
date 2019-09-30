@@ -159,14 +159,17 @@ module.exports = async (req, res) => {
       to_date
     );
 
+    const filteredOverall = filterSeriesByExchange(
+      publicApiResponse.data,
+      exchange
+    )
+
     return res.send({
       ta_response: limitDataForFreeUsers({
         inflow: filteredInflow,
         outflow: filteredOutflow,
         netflow: filteredNetFlow,
-        overall: publicApiResponse.data.filter(
-          item => item.token === token && item.exchange === exchange
-        ),
+        overall: filteredOverall,
         price: filteredPrice,
       }),
     });
@@ -184,8 +187,9 @@ module.exports = async (req, res) => {
       inflow: inflowTxnCountApiResponse.data,
       outflow: outflowTxnCountApiResponse.data,
       netflow,
-      overall: publicApiResponse.data.filter(
-        item => item.token === token && item.exchange === exchange
+      overall: filterSeriesByExchange(
+        publicApiResponse.data,
+        exchange
       ),
       price: tokenPriceApiResponse.data,
     }),
