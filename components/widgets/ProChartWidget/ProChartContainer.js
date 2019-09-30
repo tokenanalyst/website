@@ -52,7 +52,7 @@ export const ProChartContainer = ({
     kaikoService.current.ta = tokenAnalystService.current;
 
     setIsLoading(false);
-  }, [kaikoService]);
+  }, [kaikoService, exchangeName, symbols[0]]);
 
   return (
     <>
