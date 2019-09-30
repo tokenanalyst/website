@@ -132,11 +132,13 @@ const tvData = (exchangeService, exchangeName, symbols) => {
       );
 
       if (bars.length) {
-        console.log(
-          `Received bars from ${formatDate(bars[0].time)} to ${formatDate(
-            bars[bars.length - 1].time
-          )} for ${symbolInfo.name}`
-        );
+        if (process.env.NODE_ENV === 'development') {
+          console.log(
+            `Received bars from ${formatDate(bars[0].time)} to ${formatDate(
+              bars[bars.length - 1].time
+            )} for ${symbolInfo.name}`
+          );
+        }
         onHistoryCallback(bars, { noData: false });
       } else {
         onHistoryCallback(bars, { noData: true });
@@ -183,15 +185,21 @@ const tvData = (exchangeService, exchangeName, symbols) => {
     },
 
     unsubscribeBars: subscriberUID => {
-      console.log('===== unsubscribeBars running');
+      if (process.env.NODE_ENV === 'development') {
+        console.log('===== unsubscribeBars running');
+      }
     },
 
     calculateHistoryDepth: (resolution, resolutionBack, intervalBack) => {
-      console.log('===== calculateHistoryDepth running');
+      if (process.env.NODE_ENV === 'development') {
+        console.log('===== calculateHistoryDepth running');
+      }
     },
 
     getMarks: (symbolInfo, startDate, endDate, onDataCallback, resolution) => {
-      console.log('===== getMarks running');
+      if (process.env.NODE_ENV === 'development') {
+        console.log('===== getMarks running');
+      }
     },
 
     getTimeScaleMarks: (
@@ -201,11 +209,15 @@ const tvData = (exchangeService, exchangeName, symbols) => {
       onDataCallback,
       resolution
     ) => {
-      console.log('===== getTimeScaleMarks running');
+      if (process.env.NODE_ENV === 'development') {
+        console.log('===== getTimeScaleMarks running');
+      }
     },
 
     getServerTime: cb => {
-      console.log('===== getServerTime running');
+      if (process.env.NODE_ENV === 'development') {
+        console.log('===== getServerTime running');
+      }
     },
   };
 };
