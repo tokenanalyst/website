@@ -1,10 +1,11 @@
 import axios from 'axios';
+const { TIERS } = require('../../constants/plans');
 
 module.exports = async token => {
   if (!token) {
     return {
       isAuthorised: false,
-      data: {},
+      userData: { tier: TIERS['nologin'] },
     };
   }
 
@@ -19,13 +20,17 @@ module.exports = async token => {
 
     return {
       isAuthorised: true,
-      data: response.data,
+      userData: {
+        ...response.data,
+        tier: TIERS[response.data.profile],
+      },
     };
   } catch (e) {
     console.log(e);
     return {
       isAuthorised: false,
-      data: response.data,
+      userData: {},
+      userData: { tier: TIERS['nologin'] },
     };
   }
 };

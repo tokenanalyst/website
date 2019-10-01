@@ -2,54 +2,47 @@ const url = require('url');
 const moment = require('moment');
 
 const { API_ERROR_MSG } = require('../constants/apiErrors');
-const isAuthorised = require('./auth/isAuthorised');
+const getUserAuth = require('./auth/getUserAuth');
 const TA = require('./utils/ta-api-node/ta');
 const { NATIVE_TOKENS, STABLE_TOKENS } = require('../constants/tokens');
-const { TIME_WINDOWS } = require('../constants/filters');
+// const { TIME_WINDOWS } = require('../constants/filters');
 const { filterSeriesByExchange } = require('./utils/filterSeriesByExchange');
 const { makeNetFlowSeries } = require('./utils/makeNetFlowSeries');
-const { filterSeriesByTime } = require('./utils/filterSeriesByTime');
+const { limitDataForFreeUsers } = require('./utils/limitDataForFreeUsers');
 
 module.exports = async (req, res) => {
   const urlParts = url.parse(req.url, true);
   const { token, exchange, timeWindow, from_date, to_date } = urlParts.query;
-  const isUnlimited =
-    req.cookies.apiKey && (await isAuthorised(req.cookies.apiKey));
   const FORMAT = 'json';
   const PUBLIC_API_URL = 'https://api.tokenanalyst.io/analytics';
   const { ETH, BTC } = NATIVE_TOKENS;
-  const NINETY_DAYS_IN_HRS = '2160';
+  const { isAuthorised, userData } = await getUserAuth(req.cookies.apiKey);
 
-  let amountOfTimeUnits = '90';
-
-  const limitDataForFreeUsers = result => {
-    if (isUnlimited) {
-      return result;
-    }
-
-    const ninetyDaysAgo = moment()
-      .subtract(90, 'days')
-      .valueOf();
-
-    const { inflow, netflow, outflow, price, overall } = result;
-
-    return {
-      inflow: filterSeriesByTime(inflow, ninetyDaysAgo),
-      outflow: filterSeriesByTime(outflow, ninetyDaysAgo),
-      netflow: filterSeriesByTime(netflow, ninetyDaysAgo),
-      price: filterSeriesByTime(price, ninetyDaysAgo),
-      overall,
-    };
-  };
-
-  if (timeWindow === TIME_WINDOWS.oneHour) {
-    amountOfTimeUnits = NINETY_DAYS_IN_HRS;
-  }
+  console.log(userData);
+  console.log(timeWindow);
 
   if (!token || !exchange || !timeWindow) {
-    return res
-      .status(400)
-      .send({ message: API_ERROR_MSG.TOKEN_EXCHANGE_MISSING });
+    return res.status(400).send({ message: API_ERROR_MSG.PARAMS_MISSING });
+  }
+
+  const tierTimeLimit = userData.tier.timeLimits[timeWindow];
+
+  let seriesTimeLimit;
+
+  if (timeWindow === '1h') {
+    seriesTimeLimit = !isAuthorised
+      ? moment()
+          .subtract(tierTimeLimit, 'hours')
+          .valueOf()
+      : null;
+  }
+
+  if (timeWindow === '1d') {
+    seriesTimeLimit = !isAuthorised
+      ? moment()
+          .subtract(tierTimeLimit, 'days')
+          .valueOf()
+      : null;
   }
 
   const privateApi = TA({ apiKey: process.env.API_KEY });
@@ -65,10 +58,6 @@ module.exports = async (req, res) => {
       exchange,
       window: timeWindow,
     };
-
-    if (!isAuthorised) {
-      baseParams = { ...baseParams, limit: amountOfTimeUnits };
-    }
 
     if (direction) {
       baseParams = { ...baseParams, direction };
@@ -156,7 +145,7 @@ module.exports = async (req, res) => {
     );
 
     return res.send({
-      ta_response: limitDataForFreeUsers({
+      ta_response: limitDataForFreeUsers(seriesTimeLimit, {
         inflow: filteredInflow,
         outflow: filteredOutflow,
         netflow: filteredNetFlow,
@@ -178,7 +167,7 @@ module.exports = async (req, res) => {
   );
 
   return res.send({
-    ta_response: limitDataForFreeUsers({
+    ta_response: limitDataForFreeUsers(seriesTimeLimit, {
       inflow: inflowTxnCountApiResponse.data,
       outflow: outflowTxnCountApiResponse.data,
       netflow,

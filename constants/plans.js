@@ -4,18 +4,59 @@ export const PLAN_NAMES = {
   ENTERPRISE: 'Enterprise',
 };
 
+export const TIERS = {
+  ['nologin']: {
+    timeLimits: {
+      '1d': 90,
+      '1h': 0,
+    },
+  },
+  ['0']: {
+    timeLimits: {
+      '1d': 90,
+      '1h': 168, // 1 week
+    },
+  },
+  ['1']: {
+    timeLimits: {
+      '1d': null,
+      '1h': null,
+    },
+  },
+  ['2']: {
+    timeLimits: {
+      '1d': null,
+      '1h': null,
+    },
+  },
+};
+
 export const PLANS = {
   FREE: {
     name: PLAN_NAMES.FREE,
     price: '$0',
     features: ['Fundamental Analytics', '90 Day Data', 'CSV & API'],
     buttonText: 'Get',
+    tier: TIERS['0'],
+  },
+  PLATFORM: {
+    name: PLAN_NAMES.PLATFORM,
+    price: '$50',
+    features: [
+      'Exchange Flows',
+      'Full Historical Data',
+      'Web Platform Access Only',
+    ],
+    buttonText: 'Purchase',
+    tier: TIERS['1'],
+    stripePlan: 'plan_FuFH6oh6AGeUl0',
   },
   PRO: {
     name: PLAN_NAMES.PRO,
     price: '$799',
     features: ['Exchange Flows', 'Full Historical Data', 'CSV & API'],
     buttonText: 'Purchase',
+    tier: TIERS['2'],
     stripePlan: 'plan_FZwuSdyp2hRm98',
   },
   ENTERPRISE: {
@@ -27,6 +68,7 @@ export const PLANS = {
       'All Formats + Websockets',
     ],
     buttonText: 'Contact Us',
+    tier: TIERS['2'],
   },
 };
 
@@ -36,6 +78,7 @@ export const TEST_PLANS = {
     price: '$0',
     features: ['Fundamental Analytics', '90 Day Data', 'CSV & API'],
     buttonText: 'Get',
+    tier: -1,
   },
   HOBBYIST: {
     name: PLAN_NAMES.HOBBYIST,
