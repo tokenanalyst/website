@@ -1,20 +1,21 @@
 import React from 'react';
-import Link from 'next/link';
+import PropTypes from 'prop-types';
+import NextLink from 'next/link';
 
 import { colors } from '../constants/styles/colors';
 
-export const PricingLink = () => {
+export const Link = ({ href, desktopLabel, mobileLabel, onClick }) => {
   return (
     <>
-      <div className="desktop">
-        <Link href="/pricing">
-          <a>Access historical data</a>
-        </Link>
+      <div className="desktop" onClick={onClick}>
+        <NextLink href={href}>
+          <a>{desktopLabel}</a>
+        </NextLink>
       </div>
-      <div className="mobile">
-        <Link href="/pricing">
-          <a>Historical data</a>
-        </Link>
+      <div className="mobile" onClick={onClick}>
+        <NextLink href={href}>
+          <a>{mobileLabel ? mobileLabel : desktopLabel}</a>
+        </NextLink>
       </div>
       <style jsx>{`
         .mobile {
@@ -51,4 +52,11 @@ export const PricingLink = () => {
       `}</style>
     </>
   );
+};
+
+Link.propTypes = {
+  href: PropTypes.string.isRequired,
+  desktopLabel: PropTypes.string.isRequired,
+  mobileLabel: PropTypes.string,
+  onClick: PropTypes.func,
 };
