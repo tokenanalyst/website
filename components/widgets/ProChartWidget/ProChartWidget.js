@@ -1,8 +1,8 @@
-import React, { useRef } from 'react';
-import Router from 'next/router';
+import React, { useRef, useContext } from 'react';
 import { Icon } from '@blueprintjs/core';
 import dynamic from 'next/dynamic';
 import ReactGA from 'react-ga';
+import { useRouter } from 'next/router';
 
 import { HTMLSelect, Card, Switch } from '@blueprintjs/core';
 import { ProChartContainer } from './ProChartContainer.js';
@@ -12,6 +12,8 @@ import {
   EXCHANGE_DOLLARS,
 } from '../../../constants/exchanges';
 import { colors } from '../../../constants/styles/colors';
+import { Link } from '../../Link';
+import { LoginContext } from '../../../contexts/Login';
 
 const TOOLTIP_TEXT = (
   <>
@@ -71,6 +73,10 @@ export const ProChartWidget = ({
     transactions: { entityId: null },
   });
 
+  const router = useRouter();
+
+  const loginContext = useContext(LoginContext);
+
   return (
     <div>
       <div className="container">
@@ -97,33 +103,37 @@ export const ProChartWidget = ({
                 <div className="exchanges">
                   <div className="label">Exchange:</div>
                   <div className="exchange-list">
-                    {Object.keys(EXCHANGE_NAMES).map(exchangeName => (
-                      <div
-                        className="exchange"
-                        onClick={() => {
-                          onChangeExchange(exchangeName);
-                          ReactGA.event({
-                            category: 'User',
-                            action: `Pro Chart change exchange ${exchangeName}`,
-                            label: `Pro Charts`,
-                          });
-                        }}
-                      >
-                        <img
-                          src={`/static/png/${exchangeName}.png`}
-                          className="exchange-image"
-                        />{' '}
-                        <span
-                          className={`${
-                            exchangeName === exchange
-                              ? 'exchange-label-selected'
-                              : 'exchange-label'
-                          }`}
+                    {Object.keys(EXCHANGE_NAMES)
+                      .filter(
+                        exchangeName => exchangeName !== EXCHANGE_NAMES.Okex
+                      )
+                      .map(exchangeName => (
+                        <div
+                          className="exchange"
+                          onClick={() => {
+                            onChangeExchange(exchangeName);
+                            ReactGA.event({
+                              category: 'User',
+                              action: `Pro Chart change exchange ${exchangeName}`,
+                              label: `Pro Charts`,
+                            });
+                          }}
                         >
-                          {EXCHANGE_NAMES[exchangeName]}
-                        </span>
-                      </div>
-                    ))}
+                          <img
+                            src={`/static/png/${exchangeName}.png`}
+                            className="exchange-image"
+                          />{' '}
+                          <span
+                            className={`${
+                              exchangeName === exchange
+                                ? 'exchange-label-selected'
+                                : 'exchange-label'
+                            }`}
+                          >
+                            {EXCHANGE_NAMES[exchangeName]}
+                          </span>
+                        </div>
+                      ))}
                   </div>
                 </div>
               </div>
@@ -167,6 +177,22 @@ export const ProChartWidget = ({
               </div>
             </div>
           </Card>
+          <div className="pricing-link">
+            {!loginContext.isLoggedIn && (
+              <Link
+                desktopLabel="Sign Up for 1 Hour Granularity"
+                href="/register"
+                onClick={() => {
+                  loginContext.setPostRegisterRedirectUrl(router.asPath);
+                  ReactGA.event({
+                    category: 'User',
+                    action: `Click Sign Up CTA Exchange Page`,
+                    label: `Funnel`,
+                  });
+                }}
+              />
+            )}
+          </div>
         </div>
         <div className="pro-chart">
           <ProChartContainer
@@ -240,6 +266,15 @@ export const ProChartWidget = ({
             padding-left: 35px;
             width: 50%;
           }
+          .exchange:hover {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding-bottom: 5px;
+            padding-left: 35px;
+            width: 50%;
+            opacity: 0.5;
+          }
           .exchange-image {
             width: 24px;
             height: 24px;
@@ -256,10 +291,13 @@ export const ProChartWidget = ({
             display: flex;
           }
           .pro-chart {
-            width: 82%;
+            width: 80%;
           }
           .switch {
             padding-top: 10px;
+          }
+          .pricing-link {
+            padding-top: 30px;
           }
           @media (min-width: 320px) and (max-width: 767px) {
             .container {
@@ -274,6 +312,9 @@ export const ProChartWidget = ({
             }
             .controls {
               flex-direction: column;
+            }
+            .pricing-link {
+              text-align: center;
             }
         `}
       </style>

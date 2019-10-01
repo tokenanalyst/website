@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { Icon } from '@blueprintjs/core';
+import PropTypes from 'prop-types';
 
 import { ChartControls } from '../../charts/ChartControls';
 import { CHART_TYPES, CHART_MODES } from '../../../constants/chartTypes';
-import { PricingLink } from '../../../components/PricingLink';
+import { Link } from '../../../components/Link';
 import { LoadingSpinner } from '../../../components/LoadingSpinner';
 import { getExchangeDataSet } from '../../../data-transformers/charts/getExchangeDataSet';
 import { TIME_WINDOWS } from '../../../constants/filters';
@@ -149,7 +150,11 @@ export const IoChartWidget = ({ token, exchange, formatter }) => {
               setChartMode={setChartMode}
             />
             <div className="pricing-link">
-              <PricingLink />
+              <Link
+                href="/pricing"
+                desktopLabel="Access historical data"
+                mobileLabel="Historical data"
+              />
             </div>
           </div>
         </div>
@@ -210,4 +215,14 @@ export const IoChartWidget = ({ token, exchange, formatter }) => {
       `}</style>
     </>
   );
+};
+
+IoChartWidget.propTypes = {
+  token: PropTypes.string.isRequired,
+  exchange: PropTypes.string.isRequired,
+  formatter: PropTypes.func,
+};
+
+IoChartWidget.defaultProps = {
+  formatter: null,
 };
