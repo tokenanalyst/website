@@ -42,6 +42,7 @@ export const TestimonialsWidget = () => (
             'testimonial',
             `${index === 0 ? '' : 'hidden'}`
           )}
+          key={testimonial.name}
         >
           <TestimonialCard testimonial={testimonial} />
         </div>
