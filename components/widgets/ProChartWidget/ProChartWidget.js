@@ -100,7 +100,14 @@ export const ProChartWidget = ({
                     {Object.keys(EXCHANGE_NAMES).map(exchangeName => (
                       <div
                         className="exchange"
-                        onClick={() => onChangeExchange(exchangeName)}
+                        onClick={() => {
+                          onChangeExchange(exchangeName);
+                          ReactGA.event({
+                            category: 'User',
+                            action: `Pro Chart change exchange ${exchangeName}`,
+                            label: `Pro Charts`,
+                          });
+                        }}
                       >
                         <img
                           src={`/static/png/${exchangeName}.png`}
