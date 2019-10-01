@@ -77,7 +77,7 @@ export const Product = ({
               </div>
               <div className="button">
                 <SimpleButton
-                  backgrounColor={PRIMARY_GREEN}
+                  background={PRIMARY_GREEN}
                   onClick={
                     name === PLAN_NAMES.ENTERPRISE
                       ? () => {
