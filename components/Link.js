@@ -60,3 +60,8 @@ Link.propTypes = {
   mobileLabel: PropTypes.string,
   onClick: PropTypes.func,
 };
+
+Link.defaultProps = {
+  mobileLabel: null,
+  onClick: () => {},
+};

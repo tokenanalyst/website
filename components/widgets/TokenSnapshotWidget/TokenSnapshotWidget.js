@@ -18,7 +18,7 @@ export const TokenSnapshotWidget = ({ units, dataWindow }) => {
           {tokens.map((token, index) => (
             <>
               <TokenSnapshot
-                key={index}
+                key={token}
                 initialToken={token}
                 dataWindow={dataWindow}
                 units={units}

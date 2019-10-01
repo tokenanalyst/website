@@ -112,7 +112,7 @@ export const RegisterWidget = () => {
         });
         Router.push(
           `/exchange/[token]/[exchange]`,
-          loginCtx.postRegisterRedirectUrl
+          `${loginCtx.postRegisterRedirectUrl}?registered=true`
         );
       }
     } catch (e) {

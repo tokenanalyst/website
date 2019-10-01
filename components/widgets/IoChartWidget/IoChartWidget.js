@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { Icon } from '@blueprintjs/core';
+import PropTypes from 'prop-types';
 
 import { ChartControls } from '../../charts/ChartControls';
 import { CHART_TYPES, CHART_MODES } from '../../../constants/chartTypes';
@@ -214,4 +215,14 @@ export const IoChartWidget = ({ token, exchange, formatter }) => {
       `}</style>
     </>
   );
+};
+
+IoChartWidget.propTypes = {
+  token: PropTypes.string.isRequired,
+  exchange: PropTypes.string.isRequired,
+  formatter: PropTypes.func,
+};
+
+IoChartWidget.defaultProps = {
+  formatter: null,
 };

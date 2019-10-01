@@ -105,7 +105,7 @@ export const ProChartWidget = ({
                   <div className="exchange-list">
                     {Object.keys(EXCHANGE_NAMES)
                       .filter(
-                        exchangeName => exchangeName != EXCHANGE_NAMES.Okex
+                        exchangeName => exchangeName !== EXCHANGE_NAMES.Okex
                       )
                       .map(exchangeName => (
                         <div
