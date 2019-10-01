@@ -24,15 +24,13 @@ module.exports = async (req, res) => {
 
   const { isAuthorised, userData } = await getUserAuth(req.cookies.apiKey);
 
-  const tierTimeLimit = userData.tier.timeLimits[interval];
-
-  const seriesTimeLimit = makeUnixtimeLimit(
+  const tierTimeLimit = makeUnixtimeLimit(
     interval,
-    tierTimeLimit,
+    userData.tier.timeLimits[interval],
     isAuthorised
   );
 
-  if (end_time < seriesTimeLimit) {
+  if (end_time < tierTimeLimit) {
     return res.send({
       data: [],
     });
@@ -58,7 +56,7 @@ module.exports = async (req, res) => {
 
     const { data } = apiResult.data;
 
-    res.send({ data: filterSeriesByTime(data, seriesTimeLimit) });
+    res.send({ data: filterSeriesByTime(data, tierTimeLimit) });
   } catch (e) {
     console.log(e);
     res

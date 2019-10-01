@@ -4,10 +4,8 @@ const { API_ERROR_MSG } = require('../constants/apiErrors');
 const getUserAuth = require('./auth/getUserAuth');
 const TA = require('./utils/ta-api-node/ta');
 const { NATIVE_TOKENS, STABLE_TOKENS } = require('../constants/tokens');
-// const { TIME_WINDOWS } = require('../constants/filters');
 const filterSeriesByExchange = require('./utils/filterSeriesByExchange');
 const makeNetFlowSeries = require('./utils/makeNetFlowSeries');
-// const limitDataForFreeUsers = require('./utils/limitDataForFreeUsers');
 const makeUnixtimeLimit = require('./utils/makeUnixtimeLimit');
 const filterSeriesByTime = require('./utils/filterSeriesByTime');
 
@@ -24,11 +22,9 @@ module.exports = async (req, res) => {
 
   const { isAuthorised, userData } = await getUserAuth(req.cookies.apiKey);
 
-  const tierTimeLimit = userData.tier.timeLimits[timeWindow];
-
-  const seriesTimeLimit = makeUnixtimeLimit(
+  const tierTimeLimit = makeUnixtimeLimit(
     timeWindow,
-    tierTimeLimit,
+    userData.tier.timeLimits[timeWindow],
     isAuthorised
   );
 
@@ -36,7 +32,6 @@ module.exports = async (req, res) => {
   console.log('isAuthorised ' + isAuthorised);
   console.log('timeWindow ' + timeWindow);
   console.log('tierTimeLimit ' + tierTimeLimit);
-  console.log('seriesTimeLimit ' + seriesTimeLimit);
 
   const privateApi = TA({ apiKey: process.env.API_KEY });
 
@@ -139,15 +134,15 @@ module.exports = async (req, res) => {
 
     return res.send({
       ta_response: {
-        inflow: filterSeriesByTime(filteredInflow, seriesTimeLimit),
-        outflow: filterSeriesByTime(filteredOutflow, seriesTimeLimit),
-        netflow: filterSeriesByTime(filteredNetFlow, seriesTimeLimit),
+        inflow: filterSeriesByTime(filteredInflow, tierTimeLimit),
+        outflow: filterSeriesByTime(filteredOutflow, tierTimeLimit),
+        netflow: filterSeriesByTime(filteredNetFlow, tierTimeLimit),
         overall: publicApiResponse.data.filter(
           item =>
             item.token === token &&
             item.exchange.toLowerCase() === exchange.toLowerCase()
         ),
-        price: filterSeriesByTime(filteredPrice, timeLimits),
+        price: filterSeriesByTime(filteredPrice, tierTimeLimit),
       },
     });
   }
@@ -161,21 +156,18 @@ module.exports = async (req, res) => {
 
   return res.send({
     ta_response: {
-      inflow: filterSeriesByTime(
-        inflowTxnCountApiResponse.data,
-        seriesTimeLimit
-      ),
+      inflow: filterSeriesByTime(inflowTxnCountApiResponse.data, tierTimeLimit),
       outflow: filterSeriesByTime(
         outflowTxnCountApiResponse.data,
-        seriesTimeLimit
+        tierTimeLimit
       ),
-      netflow: filterSeriesByTime(netflow, seriesTimeLimit),
+      netflow: filterSeriesByTime(netflow, tierTimeLimit),
       overall: publicApiResponse.data.filter(
         item =>
           item.token === token &&
           item.exchange.toLowerCase() === exchange.toLowerCase()
       ),
-      price: filterSeriesByTime(tokenPriceApiResponse.data, seriesTimeLimit),
+      price: filterSeriesByTime(tokenPriceApiResponse.data, tierTimeLimit),
     },
   });
 };

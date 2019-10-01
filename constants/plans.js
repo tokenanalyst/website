@@ -19,14 +19,14 @@ export const TIERS = {
   },
   ['1']: {
     timeLimits: {
-      '1d': null,
-      '1h': null,
+      '1d': 3650, // 10 years
+      '1h': 87600, // 10 years
     },
   },
   ['2']: {
     timeLimits: {
-      '1d': null,
-      '1h': null,
+      '1d': 3650, // 10 years
+      '1h': 87600, // 10 years
     },
   },
 };

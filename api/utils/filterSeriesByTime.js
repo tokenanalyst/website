@@ -1,8 +1,10 @@
 const moment = require('moment');
 
 module.exports = (series, timeRange) => {
-  // console.log(series)
   const formatDate = item => {
+    if (!item) {
+      throw Error();
+    }
     if (item.timestamp) {
       return item.timestamp;
     }
@@ -14,7 +16,24 @@ module.exports = (series, timeRange) => {
     return item.date;
   };
 
-  return series
-    .filter(item => item)
-    .filter(item => moment.utc(formatDate(item)).valueOf() > timeRange);
+  try {
+    if (timeRange < moment.utc(formatDate(series[0]))) {
+      return series;
+    }
+  } catch (e) {}
+
+  let filteredArray = [];
+
+  for (let i = series.length - 1; (i -= 1); ) {
+    if (series[i] && moment.utc(formatDate(series[i])).valueOf() > timeRange) {
+      filteredArray.push(series[i]);
+    } else {
+      break;
+    }
+    if (i == 0) {
+      break;
+    }
+  }
+
+  return filteredArray;
 };

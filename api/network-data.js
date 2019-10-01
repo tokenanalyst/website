@@ -1,7 +1,6 @@
 const axios = require('axios');
 const url = require('url');
 
-// const isAuthorised = require('./auth/isAuthorised');
 const getUserAuth = require('./auth/getUserAuth');
 
 const { NATIVE_TOKENS } = require('../constants/tokens');
@@ -43,7 +42,7 @@ module.exports = async (req, res) => {
 
   const tierTimeLimit = userData.tier.timeLimits[WINDOW];
 
-  const seriesTimeLimit = makeUnixtimeLimit(
+  const filterTimeLimit = makeUnixtimeLimit(
     WINDOW,
     tierTimeLimit,
     isAuthorised
@@ -171,18 +170,18 @@ module.exports = async (req, res) => {
 
   const response = isStableCoin(token)
     ? {
-        volume: filterSeriesByTime(volume.data, seriesTimeLimit),
-        count: filterSeriesByTime(count.data, seriesTimeLimit),
-        address: filterSeriesByTime(address.data, seriesTimeLimit),
-        price: filterSeriesByTime(price.data, seriesTimeLimit),
+        volume: filterSeriesByTime(volume.data, filterTimeLimit),
+        count: filterSeriesByTime(count.data, filterTimeLimit),
+        address: filterSeriesByTime(address.data, filterTimeLimit),
+        price: filterSeriesByTime(price.data, filterTimeLimit),
       }
     : {
-        volume: filterSeriesByTime(volume.data, seriesTimeLimit),
-        count: filterSeriesByTime(count.data, seriesTimeLimit),
-        address: filterSeriesByTime(address.data, seriesTimeLimit),
-        price: filterSeriesByTime(price.data, seriesTimeLimit),
-        nvt: filterSeriesByTime(ntv.data, seriesTimeLimit),
-        fees: filterSeriesByTime(fees.data, seriesTimeLimit),
+        volume: filterSeriesByTime(volume.data, filterTimeLimit),
+        count: filterSeriesByTime(count.data, filterTimeLimit),
+        address: filterSeriesByTime(address.data, filterTimeLimit),
+        price: filterSeriesByTime(price.data, filterTimeLimit),
+        nvt: filterSeriesByTime(ntv.data, filterTimeLimit),
+        fees: filterSeriesByTime(fees.data, filterTimeLimit),
       };
 
   res.send({ ta_response: response });
