@@ -4,6 +4,7 @@ import Cookies from 'js-cookie';
 import { Icon, Checkbox } from '@blueprintjs/core';
 import Link from 'next/link';
 import Router from 'next/router';
+import ReactGA from 'react-ga';
 
 import { LoginContext } from '../../../contexts/Login';
 import { colors } from '../../../constants/styles/colors';
@@ -85,16 +86,30 @@ export const RegisterWidget = () => {
         loginCtx.paymentData.stripe &&
         loginCtx.paymentData.stripe.redirectFn
       ) {
+        ReactGA.event({
+          category: 'User',
+          action: `Registered to make a purchase`,
+          label: `Funnel`,
+        });
         loginCtx.setPaymentData({ ...loginCtx.paymentData, stripe: null });
         return loginCtx.paymentData.stripe.redirectFn({
           customerEmail: username,
           clientReferenceId: id.toString(),
         });
       } else if (loginCtx.paymentData.isFreeTier) {
+        ReactGA.event({
+          category: 'User',
+          action: `Registered to access free tier`,
+          label: `Funnel`,
+        });
         loginCtx.setPaymentData({ ...loginCtx.paymentData, isFreeTier: false });
         Router.push('/free-tier-success');
       } else if (loginCtx.postRegisterRedirectUrl) {
-        console.log('redirecting...');
+        ReactGA.event({
+          category: 'User',
+          action: `Registered via Exchange Page CTA`,
+          label: `Funnel`,
+        });
         Router.push(
           `/exchange/[token]/[exchange]`,
           loginCtx.postRegisterRedirectUrl
