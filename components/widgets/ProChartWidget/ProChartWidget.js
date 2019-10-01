@@ -11,6 +11,7 @@ import {
   EXCHANGE_TOKENS,
   EXCHANGE_DOLLARS,
 } from '../../../constants/exchanges';
+import { EXCHANGE_IMAGES } from '../../../constants/image-paths';
 import { colors } from '../../../constants/styles/colors';
 import { Link } from '../../Link';
 import { LoginContext } from '../../../contexts/Login';
@@ -120,7 +121,7 @@ export const ProChartWidget = ({
                           }}
                         >
                           <img
-                            src={`/static/png/${exchangeName}.png`}
+                            src={`/static/png/${EXCHANGE_IMAGES[exchangeName]}`}
                             className="exchange-image"
                           />{' '}
                           <span
