@@ -1,4 +1,4 @@
-import axios from 'axios';
+const axios = require('axios');
 const { TIERS } = require('../../constants/plans');
 
 module.exports = async token => {

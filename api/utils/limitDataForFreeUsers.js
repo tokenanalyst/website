@@ -1,8 +1,19 @@
-const { filterSeriesByTime } = require('./filterSeriesByTime');
+const filterSeriesByTime = require('./filterSeriesByTime');
 
-export const limitDataForFreeUsers = (timeLimit, series) => {
+module.exports = (timeLimit, series, endpoint) => {
   if (!timeLimit) {
     return series;
+  }
+
+  if (endpoint === 'kaiko') {
+    const { data } = series;
+
+    return {
+      ...series,
+      data: data.filter(item => {
+        return item.timestamp > timeLimit;
+      }),
+    };
   }
 
   const { inflow, netflow, outflow, price, overall } = series;

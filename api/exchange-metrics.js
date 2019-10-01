@@ -1,14 +1,15 @@
 const url = require('url');
-const moment = require('moment');
 
 const { API_ERROR_MSG } = require('../constants/apiErrors');
 const getUserAuth = require('./auth/getUserAuth');
 const TA = require('./utils/ta-api-node/ta');
 const { NATIVE_TOKENS, STABLE_TOKENS } = require('../constants/tokens');
 // const { TIME_WINDOWS } = require('../constants/filters');
-const { filterSeriesByExchange } = require('./utils/filterSeriesByExchange');
-const { makeNetFlowSeries } = require('./utils/makeNetFlowSeries');
-const { limitDataForFreeUsers } = require('./utils/limitDataForFreeUsers');
+const filterSeriesByExchange = require('./utils/filterSeriesByExchange');
+const makeNetFlowSeries = require('./utils/makeNetFlowSeries');
+// const limitDataForFreeUsers = require('./utils/limitDataForFreeUsers');
+const makeUnixtimeLimit = require('./utils/makeUnixtimeLimit');
+const filterSeriesByTime = require('./utils/filterSeriesByTime');
 
 module.exports = async (req, res) => {
   const urlParts = url.parse(req.url, true);
@@ -16,34 +17,26 @@ module.exports = async (req, res) => {
   const FORMAT = 'json';
   const PUBLIC_API_URL = 'https://api.tokenanalyst.io/analytics';
   const { ETH, BTC } = NATIVE_TOKENS;
-  const { isAuthorised, userData } = await getUserAuth(req.cookies.apiKey);
-
-  console.log(userData);
-  console.log(timeWindow);
 
   if (!token || !exchange || !timeWindow) {
     return res.status(400).send({ message: API_ERROR_MSG.PARAMS_MISSING });
   }
 
+  const { isAuthorised, userData } = await getUserAuth(req.cookies.apiKey);
+
   const tierTimeLimit = userData.tier.timeLimits[timeWindow];
 
-  let seriesTimeLimit;
+  const seriesTimeLimit = makeUnixtimeLimit(
+    timeWindow,
+    tierTimeLimit,
+    isAuthorised
+  );
 
-  if (timeWindow === '1h') {
-    seriesTimeLimit = !isAuthorised
-      ? moment()
-          .subtract(tierTimeLimit, 'hours')
-          .valueOf()
-      : null;
-  }
-
-  if (timeWindow === '1d') {
-    seriesTimeLimit = !isAuthorised
-      ? moment()
-          .subtract(tierTimeLimit, 'days')
-          .valueOf()
-      : null;
-  }
+  console.log(userData.tier.timeLimits[timeWindow]);
+  console.log('isAuthorised ' + isAuthorised);
+  console.log('timeWindow ' + timeWindow);
+  console.log('tierTimeLimit ' + tierTimeLimit);
+  console.log('seriesTimeLimit ' + seriesTimeLimit);
 
   const privateApi = TA({ apiKey: process.env.API_KEY });
 
@@ -145,17 +138,17 @@ module.exports = async (req, res) => {
     );
 
     return res.send({
-      ta_response: limitDataForFreeUsers(seriesTimeLimit, {
-        inflow: filteredInflow,
-        outflow: filteredOutflow,
-        netflow: filteredNetFlow,
+      ta_response: {
+        inflow: filterSeriesByTime(filteredInflow, seriesTimeLimit),
+        outflow: filterSeriesByTime(filteredOutflow, seriesTimeLimit),
+        netflow: filterSeriesByTime(filteredNetFlow, seriesTimeLimit),
         overall: publicApiResponse.data.filter(
           item =>
             item.token === token &&
             item.exchange.toLowerCase() === exchange.toLowerCase()
         ),
-        price: filteredPrice,
-      }),
+        price: filterSeriesByTime(filteredPrice, timeLimits),
+      },
     });
   }
 
@@ -167,16 +160,22 @@ module.exports = async (req, res) => {
   );
 
   return res.send({
-    ta_response: limitDataForFreeUsers(seriesTimeLimit, {
-      inflow: inflowTxnCountApiResponse.data,
-      outflow: outflowTxnCountApiResponse.data,
-      netflow,
+    ta_response: {
+      inflow: filterSeriesByTime(
+        inflowTxnCountApiResponse.data,
+        seriesTimeLimit
+      ),
+      outflow: filterSeriesByTime(
+        outflowTxnCountApiResponse.data,
+        seriesTimeLimit
+      ),
+      netflow: filterSeriesByTime(netflow, seriesTimeLimit),
       overall: publicApiResponse.data.filter(
         item =>
           item.token === token &&
           item.exchange.toLowerCase() === exchange.toLowerCase()
       ),
-      price: tokenPriceApiResponse.data,
-    }),
+      price: filterSeriesByTime(tokenPriceApiResponse.data, seriesTimeLimit),
+    },
   });
 };

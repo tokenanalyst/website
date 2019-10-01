@@ -1,8 +1,10 @@
 const axios = require('axios');
 const url = require('url');
-const moment = require('moment');
 
-const isAuthorised = require('./auth/isAuthorised');
+const getUserAuth = require('./auth/getUserAuth');
+
+const makeUnixtimeLimit = require('./utils/makeUnixtimeLimit');
+const filterSeriesByTime = require('./utils/filterSeriesByTime');
 
 const REGION = 'eu';
 const KAIKO_BASE_URL = `https://${REGION}.market-api.kaiko.io/v1/data`;
@@ -19,48 +21,28 @@ module.exports = async (req, res) => {
     instrument_class,
     instrument,
   } = URL_PARTS.query;
-  const isUnlimited =
-    req.cookies.apiKey && (await isAuthorised(req.cookies.apiKey));
 
-  let apiResult;
+  const { isAuthorised, userData } = await getUserAuth(req.cookies.apiKey);
 
-  const limitDataForFreeUsers = result => {
-    if (isUnlimited) {
-      return result;
-    }
+  const tierTimeLimit = userData.tier.timeLimits[interval];
 
-    const ninetyDaysAgo = moment()
-      .subtract(90, 'days')
-      .valueOf();
+  const seriesTimeLimit = makeUnixtimeLimit(
+    interval,
+    tierTimeLimit,
+    isAuthorised
+  );
 
-    const filterSerie = serie =>
-      serie.filter(item => {
-        return item.timestamp > ninetyDaysAgo;
-      });
-
-    const { data } = result;
-
-    return {
-      ...result,
-      data: filterSerie(data),
-    };
-  };
-
-  if (!isUnlimited) {
-    const threeDaysAgo = moment()
-      .subtract(90, 'days')
-      .valueOf();
-
-    if (end_time < threeDaysAgo) {
-      return res.send({
-        data: [],
-      });
-    }
+  if (end_time < seriesTimeLimit) {
+    return res.send({
+      data: [],
+    });
   }
 
   // console.log(
   //   `${KAIKO_BASE_URL}/${commodity}.${DATA_VERSION}/exchanges/${exchange}/${instrument_class}/${instrument}/aggregations/ohlcv?interval=${interval}&start_time=${start_time}&end_time=${end_time}`
   // );
+
+  let apiResult;
 
   try {
     apiResult = await axios.get(
@@ -73,8 +55,12 @@ module.exports = async (req, res) => {
         },
       }
     );
-    res.send(limitDataForFreeUsers(apiResult.data));
+
+    const { data } = apiResult.data;
+
+    res.send({ data: filterSeriesByTime(data, seriesTimeLimit) });
   } catch (e) {
+    console.log(e);
     res
       .status(e.response.status)
       .send({ error: e.response.statusText, reason: e.response.data.message });

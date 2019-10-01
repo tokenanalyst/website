@@ -1,6 +1,20 @@
 const moment = require('moment');
 
-export const filterSeriesByTime = (series, timeRange) =>
-  series
+module.exports = (series, timeRange) => {
+  // console.log(series)
+  const formatDate = item => {
+    if (item.timestamp) {
+      return item.timestamp;
+    }
+
+    if (item.hour && item.date) {
+      return `${item.date} ${item.hour}`;
+    }
+
+    return item.date;
+  };
+
+  return series
     .filter(item => item)
-    .filter(item => moment(item.date).valueOf() > timeRange);
+    .filter(item => moment.utc(formatDate(item)).valueOf() > timeRange);
+};
