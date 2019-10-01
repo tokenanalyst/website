@@ -103,33 +103,37 @@ export const ProChartWidget = ({
                 <div className="exchanges">
                   <div className="label">Exchange:</div>
                   <div className="exchange-list">
-                    {Object.keys(EXCHANGE_NAMES).map(exchangeName => (
-                      <div
-                        className="exchange"
-                        onClick={() => {
-                          onChangeExchange(exchangeName);
-                          ReactGA.event({
-                            category: 'User',
-                            action: `Pro Chart change exchange ${exchangeName}`,
-                            label: `Pro Charts`,
-                          });
-                        }}
-                      >
-                        <img
-                          src={`/static/png/${exchangeName}.png`}
-                          className="exchange-image"
-                        />{' '}
-                        <span
-                          className={`${
-                            exchangeName === exchange
-                              ? 'exchange-label-selected'
-                              : 'exchange-label'
-                          }`}
+                    {Object.keys(EXCHANGE_NAMES)
+                      .filter(
+                        exchangeName => exchangeName != EXCHANGE_NAMES.Okex
+                      )
+                      .map(exchangeName => (
+                        <div
+                          className="exchange"
+                          onClick={() => {
+                            onChangeExchange(exchangeName);
+                            ReactGA.event({
+                              category: 'User',
+                              action: `Pro Chart change exchange ${exchangeName}`,
+                              label: `Pro Charts`,
+                            });
+                          }}
                         >
-                          {EXCHANGE_NAMES[exchangeName]}
-                        </span>
-                      </div>
-                    ))}
+                          <img
+                            src={`/static/png/${exchangeName}.png`}
+                            className="exchange-image"
+                          />{' '}
+                          <span
+                            className={`${
+                              exchangeName === exchange
+                                ? 'exchange-label-selected'
+                                : 'exchange-label'
+                            }`}
+                          >
+                            {EXCHANGE_NAMES[exchangeName]}
+                          </span>
+                        </div>
+                      ))}
                   </div>
                 </div>
               </div>
