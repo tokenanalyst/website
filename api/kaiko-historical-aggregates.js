@@ -35,10 +35,6 @@ module.exports = async (req, res) => {
     });
   }
 
-  // console.log(
-  //   `${KAIKO_BASE_URL}/${commodity}.${DATA_VERSION}/exchanges/${exchange}/${instrument_class}/${instrument}/aggregations/ohlcv?interval=${interval}&start_time=${start_time}&end_time=${end_time}`
-  // );
-
   let apiResult;
 
   try {

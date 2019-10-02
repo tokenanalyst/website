@@ -3,7 +3,7 @@ const moment = require('moment');
 module.exports = (series, timeRange) => {
   const formatDate = item => {
     if (!item) {
-      throw Error();
+      return null;
     }
 
     if (item.timestamp) {
@@ -17,24 +17,18 @@ module.exports = (series, timeRange) => {
     return item.date;
   };
 
-  try {
-    if (timeRange < moment.utc(formatDate(series[0]))) {
-      return series;
-    }
-  } catch (e) {}
-
-  let filteredArray = [];
-
-  for (let i = series.length - 1; (i -= 1); ) {
-    if (series[i] && moment.utc(formatDate(series[i])).valueOf() > timeRange) {
-      filteredArray.unshift(series[i]);
-    } else {
-      break;
-    }
-    if (i == 0) {
-      break;
-    }
+  if (timeRange < moment.utc(formatDate(series[0]))) {
+    return series;
   }
+
+  const filteredArray = series
+    .reduce((acc, curr, index) => {
+      if (index === 0) return acc;
+      return curr && moment.utc(formatDate(curr)).valueOf() > timeRange
+        ? [curr, ...acc]
+        : acc;
+    }, [])
+    .reverse();
 
   return filteredArray;
 };

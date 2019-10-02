@@ -15,21 +15,21 @@ const Stablecoins = [
   STABLE_TOKENS.GUSD,
 ];
 
-const WINDOW = '1d';
+const PARAMS = { window: '1d', format: 'json' };
 
 module.exports = async (req, res) => {
   const { isAuthorised, userData } = await getUserAuth(req.cookies.apiKey);
 
   const tierTimeLimit = makeUnixtimeLimit(
-    WINDOW,
-    userData.tier.timeLimits[WINDOW],
+    PARAMS.window,
+    userData.tier.timeLimits[PARAMS.window],
     isAuthorised
   );
 
   const apiResponses = Stablecoins.map(
     async stablecoin =>
       await axios.get(
-        `https://api.tokenanalyst.io/analytics/private/v1/token_count_window_historical/last?key=${process.env.API_KEY}&format=json&token=${stablecoin}&window=${WINDOW}`
+        `https://api.tokenanalyst.io/analytics/private/v1/token_count_window_historical/last?key=${process.env.API_KEY}&format=${PARAMS.format}&token=${stablecoin}&window=${PARAMS.window}`
       )
   );
 

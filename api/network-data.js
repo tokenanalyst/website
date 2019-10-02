@@ -34,15 +34,14 @@ module.exports = async (req, res) => {
   if (!token) {
     return res.status(400).send({ message: API_ERROR_MSG.NO_TOKEN_PROVIDED });
   }
-  const WINDOW = '1d';
 
-  const FORMAT = 'json';
+  const PARAMS = { window: '1d', format: 'json' };
 
   const { userData } = await getUserAuth(req.cookies.apiKey);
 
-  const tierTimeLimit = userData.tier.timeLimits[WINDOW];
+  const tierTimeLimit = userData.tier.timeLimits[PARAMS.window];
 
-  const filterTimeLimit = makeUnixtimeLimit(WINDOW, tierTimeLimit);
+  const filterTimeLimit = makeUnixtimeLimit(PARAMS.window, tierTimeLimit);
 
   const apiResponse = isStableCoin(token)
     ? [
@@ -51,9 +50,9 @@ module.exports = async (req, res) => {
             `token_volume_window_historical`,
             makeQuery({
               key: process.env.API_KEY,
-              format: FORMAT,
+              format: PARAMS.format,
               token,
-              window: WINDOW,
+              window: PARAMS.window,
             })
           )
         ),
@@ -62,9 +61,9 @@ module.exports = async (req, res) => {
             `token_count_window_historical`,
             makeQuery({
               key: process.env.API_KEY,
-              format: FORMAT,
+              format: PARAMS.format,
               token,
-              window: WINDOW,
+              window: PARAMS.window,
             })
           )
         ),
@@ -73,9 +72,9 @@ module.exports = async (req, res) => {
             `token_active_address_window_historical`,
             makeQuery({
               key: process.env.API_KEY,
-              format: FORMAT,
+              format: PARAMS.format,
               token,
-              window: WINDOW,
+              window: PARAMS.window,
             })
           )
         ),
@@ -84,9 +83,9 @@ module.exports = async (req, res) => {
             `token_price_usd_window_historical`,
             makeQuery({
               key: process.env.API_KEY,
-              format: FORMAT,
+              format: PARAMS.format,
               token,
-              window: WINDOW,
+              window: PARAMS.window,
             })
           )
         ),
@@ -97,9 +96,9 @@ module.exports = async (req, res) => {
             `token_volume_window_historical`,
             makeQuery({
               key: process.env.API_KEY,
-              format: FORMAT,
+              format: PARAMS.format,
               token,
-              window: WINDOW,
+              window: PARAMS.window,
             })
           )
         ),
@@ -108,9 +107,9 @@ module.exports = async (req, res) => {
             `token_count_window_historical`,
             makeQuery({
               key: process.env.API_KEY,
-              format: FORMAT,
+              format: PARAMS.format,
               token,
-              window: WINDOW,
+              window: PARAMS.window,
             })
           )
         ),
@@ -119,9 +118,9 @@ module.exports = async (req, res) => {
             `token_active_address_window_historical`,
             makeQuery({
               key: process.env.API_KEY,
-              format: FORMAT,
+              format: PARAMS.format,
               token,
-              window: WINDOW,
+              window: PARAMS.window,
             })
           )
         ),
@@ -130,9 +129,9 @@ module.exports = async (req, res) => {
             `token_price_usd_window_historical`,
             makeQuery({
               key: process.env.API_KEY,
-              format: FORMAT,
+              format: PARAMS.format,
               token,
-              window: WINDOW,
+              window: PARAMS.window,
             })
           )
         ),
@@ -141,9 +140,9 @@ module.exports = async (req, res) => {
             `token_nvt_window_historical`,
             makeQuery({
               key: process.env.API_KEY,
-              format: FORMAT,
+              format: PARAMS.format,
               token,
-              window: WINDOW,
+              window: PARAMS.window,
             })
           )
         ),
@@ -152,9 +151,9 @@ module.exports = async (req, res) => {
             `token_fees_window_historical`,
             makeQuery({
               key: process.env.API_KEY,
-              format: FORMAT,
+              format: PARAMS.format,
               token,
-              window: WINDOW,
+              window: PARAMS.window,
             })
           )
         ),
