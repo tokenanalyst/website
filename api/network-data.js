@@ -1,11 +1,12 @@
-import axios from 'axios';
-import url from 'url';
+const axios = require('axios');
+const url = require('url');
 
-const isAuthorised = require('./auth/isAuthorised');
-import { NATIVE_TOKENS } from '../constants/tokens';
-import { API_ERROR_MSG } from '../constants/apiErrors';
+const getUserAuth = require('./auth/getUserAuth');
 
-const LIMITED_DAYS = 90;
+const { NATIVE_TOKENS } = require('../constants/tokens');
+const { API_ERROR_MSG } = require('../constants/apiErrors');
+const filterSeriesByTime = require('./utils/filterSeriesByTime');
+const makeUnixtimeLimit = require('./utils/makeUnixtimeLimit');
 
 function isStableCoin(token) {
   return token !== NATIVE_TOKENS.BTC && token !== NATIVE_TOKENS.ETH;
@@ -19,10 +20,9 @@ function makeQuery(params = {}) {
 
   return `${query.slice(0, -1)}`;
 }
-function createUrl(dataPoint, paramString, hasLimit) {
-  return `https://api.tokenanalyst.io/analytics/private/v1/${dataPoint}/last?${paramString}${
-    hasLimit ? `&limit=${LIMITED_DAYS}` : ``
-  }`;
+
+function createUrl(dataPoint, paramString) {
+  return `https://api.tokenanalyst.io/analytics/private/v1/${dataPoint}/last?${paramString}`;
 }
 
 module.exports = async (req, res) => {
@@ -35,9 +35,13 @@ module.exports = async (req, res) => {
     return res.status(400).send({ message: API_ERROR_MSG.NO_TOKEN_PROVIDED });
   }
 
-  const hasLimit = !(
-    req.cookies.apiKey && (await isAuthorised(req.cookies.apiKey))
-  );
+  const PARAMS = { window: '1d', format: 'json' };
+
+  const { userData } = await getUserAuth(req.cookies.apiKey);
+
+  const tierTimeLimit = userData.tier.timeLimits[PARAMS.window];
+
+  const filterTimeLimit = makeUnixtimeLimit(PARAMS.window, tierTimeLimit);
 
   const apiResponse = isStableCoin(token)
     ? [
@@ -46,11 +50,10 @@ module.exports = async (req, res) => {
             `token_volume_window_historical`,
             makeQuery({
               key: process.env.API_KEY,
-              format: 'json',
+              format: PARAMS.format,
               token,
-              window: '1d',
-            }),
-            hasLimit
+              window: PARAMS.window,
+            })
           )
         ),
         axios.get(
@@ -58,11 +61,10 @@ module.exports = async (req, res) => {
             `token_count_window_historical`,
             makeQuery({
               key: process.env.API_KEY,
-              format: 'json',
+              format: PARAMS.format,
               token,
-              window: '1d',
-            }),
-            hasLimit
+              window: PARAMS.window,
+            })
           )
         ),
         axios.get(
@@ -70,11 +72,10 @@ module.exports = async (req, res) => {
             `token_active_address_window_historical`,
             makeQuery({
               key: process.env.API_KEY,
-              format: 'json',
+              format: PARAMS.format,
               token,
-              window: '1d',
-            }),
-            hasLimit
+              window: PARAMS.window,
+            })
           )
         ),
         axios.get(
@@ -82,11 +83,10 @@ module.exports = async (req, res) => {
             `token_price_usd_window_historical`,
             makeQuery({
               key: process.env.API_KEY,
-              format: 'json',
+              format: PARAMS.format,
               token,
-              window: '1d',
-            }),
-            hasLimit
+              window: PARAMS.window,
+            })
           )
         ),
       ]
@@ -96,11 +96,10 @@ module.exports = async (req, res) => {
             `token_volume_window_historical`,
             makeQuery({
               key: process.env.API_KEY,
-              format: 'json',
+              format: PARAMS.format,
               token,
-              window: '1d',
-            }),
-            hasLimit
+              window: PARAMS.window,
+            })
           )
         ),
         axios.get(
@@ -108,11 +107,10 @@ module.exports = async (req, res) => {
             `token_count_window_historical`,
             makeQuery({
               key: process.env.API_KEY,
-              format: 'json',
+              format: PARAMS.format,
               token,
-              window: '1d',
-            }),
-            hasLimit
+              window: PARAMS.window,
+            })
           )
         ),
         axios.get(
@@ -120,35 +118,10 @@ module.exports = async (req, res) => {
             `token_active_address_window_historical`,
             makeQuery({
               key: process.env.API_KEY,
-              format: 'json',
+              format: PARAMS.format,
               token,
-              window: '1d',
-            }),
-            hasLimit
-          )
-        ),
-        axios.get(
-          createUrl(
-            `token_nvt_window_historical`,
-            makeQuery({
-              key: process.env.API_KEY,
-              format: 'json',
-              token,
-              window: '1d',
-            }),
-            hasLimit
-          )
-        ),
-        axios.get(
-          createUrl(
-            `token_fees_window_historical`,
-            makeQuery({
-              key: process.env.API_KEY,
-              format: 'json',
-              token,
-              window: '1d',
-            }),
-            hasLimit
+              window: PARAMS.window,
+            })
           )
         ),
         axios.get(
@@ -156,32 +129,55 @@ module.exports = async (req, res) => {
             `token_price_usd_window_historical`,
             makeQuery({
               key: process.env.API_KEY,
-              format: 'json',
+              format: PARAMS.format,
               token,
-              window: '1d',
-            }),
-            hasLimit
+              window: PARAMS.window,
+            })
+          )
+        ),
+        axios.get(
+          createUrl(
+            `token_nvt_window_historical`,
+            makeQuery({
+              key: process.env.API_KEY,
+              format: PARAMS.format,
+              token,
+              window: PARAMS.window,
+            })
+          )
+        ),
+        axios.get(
+          createUrl(
+            `token_fees_window_historical`,
+            makeQuery({
+              key: process.env.API_KEY,
+              format: PARAMS.format,
+              token,
+              window: PARAMS.window,
+            })
           )
         ),
       ];
 
   const results = await Promise.all(apiResponse);
 
+  const [volume, count, address, price, ntv, fees] = results;
+
   const response = isStableCoin(token)
     ? {
-        volume: results[0].data,
-        count: results[1].data,
-        address: results[2].data,
-        price: results[3].data,
+        volume: filterSeriesByTime(volume.data, filterTimeLimit),
+        count: filterSeriesByTime(count.data, filterTimeLimit),
+        address: filterSeriesByTime(address.data, filterTimeLimit),
+        price: filterSeriesByTime(price.data, filterTimeLimit),
       }
     : {
-        volume: results[0].data,
-        count: results[1].data,
-        address: results[2].data,
-        nvt: results[3].data,
-        fees: results[4].data,
-        price: results[5].data,
+        volume: filterSeriesByTime(volume.data, filterTimeLimit),
+        count: filterSeriesByTime(count.data, filterTimeLimit),
+        address: filterSeriesByTime(address.data, filterTimeLimit),
+        price: filterSeriesByTime(price.data, filterTimeLimit),
+        nvt: filterSeriesByTime(ntv.data, filterTimeLimit),
+        fees: filterSeriesByTime(fees.data, filterTimeLimit),
       };
 
-  res.send({ ta_response: response });
+  return res.send({ ta_response: response });
 };

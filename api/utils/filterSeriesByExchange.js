@@ -1,4 +1,4 @@
-export const filterSeriesByExchange = (series, exchangeName) => {
+module.exports = (series, exchangeName) => {
   if (!exchangeName) {
     return series;
   }

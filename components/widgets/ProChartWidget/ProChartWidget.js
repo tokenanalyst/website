@@ -110,6 +110,7 @@ export const ProChartWidget = ({
                       )
                       .map(exchangeName => (
                         <div
+                          key={exchangeName}
                           className="exchange"
                           onClick={() => {
                             onChangeExchange(exchangeName);
