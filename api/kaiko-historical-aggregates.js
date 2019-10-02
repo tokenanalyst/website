@@ -56,10 +56,9 @@ module.exports = async (req, res) => {
 
     const { data } = apiResult.data;
 
-    res.send({ data: filterSeriesByTime(data, tierTimeLimit) });
+    return res.send({ data: filterSeriesByTime(data, tierTimeLimit) });
   } catch (e) {
-    console.log(e);
-    res
+    return res
       .status(e.response.status)
       .send({ error: e.response.statusText, reason: e.response.data.message });
   }

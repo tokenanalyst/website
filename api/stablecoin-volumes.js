@@ -26,11 +26,6 @@ module.exports = async (req, res) => {
     isAuthorised
   );
 
-  console.log(userData.tier.timeLimits[WINDOW]);
-  console.log('isAuthorised ' + isAuthorised);
-  console.log('timeWindow ' + WINDOW);
-  console.log('tierTimeLimit ' + tierTimeLimit);
-
   const apiResponses = Stablecoins.map(
     async stablecoin =>
       await axios.get(
@@ -42,7 +37,6 @@ module.exports = async (req, res) => {
 
   const response = Stablecoins.map((stablecoin, index) => ({
     name: stablecoin,
-    // data: results[index].data,
     data: filterSeriesByTime(results[index].data, tierTimeLimit),
   }));
 

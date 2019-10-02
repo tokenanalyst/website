@@ -26,7 +26,6 @@ module.exports = async token => {
       },
     };
   } catch (e) {
-    console.log(e);
     return {
       isAuthorised: false,
       userData: {},

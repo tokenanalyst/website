@@ -28,11 +28,6 @@ module.exports = async (req, res) => {
     isAuthorised
   );
 
-  console.log(userData.tier.timeLimits[timeWindow]);
-  console.log('isAuthorised ' + isAuthorised);
-  console.log('timeWindow ' + timeWindow);
-  console.log('tierTimeLimit ' + tierTimeLimit);
-
   const privateApi = TA({ apiKey: process.env.API_KEY });
 
   const publicApi = TA({
