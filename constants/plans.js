@@ -1,8 +1,15 @@
 export const PLAN_NAMES = {
   FREE: 'Free',
-  // PLATFORM: 'Platform',
+  PLATFORM: 'Platform',
   PRO: 'Pro',
   ENTERPRISE: 'Enterprise',
+};
+
+export const PLAN_VALUES = {
+  FREE: 0,
+  PLATFORM: 1,
+  PRO: 2,
+  ENTERPRISE: 3,
 };
 
 export const PLANS = {
@@ -15,17 +22,17 @@ export const PLANS = {
     ],
     buttonText: 'Get',
   },
-  // PLATFORM: {
-  //   name: PLAN_NAMES.PLATFORM,
-  //   price: '$50',
-  //   features: [
-  //     'Exchange Flows',
-  //     'Full Historical Data',
-  //     'Web Platform Access Only',
-  //   ],
-  //   buttonText: 'Purchase',
-  //   stripePlan: 'plan_FuFH6oh6AGeUl0',
-  // },
+  PLATFORM: {
+    name: PLAN_NAMES.PLATFORM,
+    price: '$50',
+    features: [
+      'Exchange Flows',
+      'Full Historical Data',
+      'Web Platform Access Only',
+    ],
+    buttonText: 'Purchase',
+    stripePlan: 'plan_FuFH6oh6AGeUl0',
+  },
   PRO: {
     name: PLAN_NAMES.PRO,
     price: '$799',
@@ -56,17 +63,17 @@ export const TEST_PLANS = {
     features: ['Fundamental Analytics', '90 Day Data', 'CSV & API'],
     buttonText: 'Get',
   },
-  // PLATFORM: {
-  //   name: PLAN_NAMES.PLATFORM,
-  //   price: '$50',
-  //   features: [
-  //     'Exchange Flows',
-  //     'Full Historical Data',
-  //     'Web Platform Access Only',
-  //   ],
-  //   buttonText: 'Purchase',
-  //   stripePlan: 'plan_FuFaK78eUjiZ9L',
-  // },
+  PLATFORM: {
+    name: PLAN_NAMES.PLATFORM,
+    price: '$50',
+    features: [
+      'Exchange Flows',
+      'Full Historical Data',
+      'Web Platform Access Only',
+    ],
+    buttonText: 'Purchase',
+    stripePlan: 'plan_FuFaK78eUjiZ9L',
+  },
   HOBBYIST: {
     name: PLAN_NAMES.HOBBYIST,
     price: '$99',

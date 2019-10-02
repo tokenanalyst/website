@@ -1,9 +1,13 @@
-import React, { useRef, useContext } from 'react';
+import React, { useRef, useContext, useEffect, useState } from 'react';
 import { Icon } from '@blueprintjs/core';
 import dynamic from 'next/dynamic';
 import ReactGA from 'react-ga';
 import { useRouter } from 'next/router';
+import axios from 'axios';
+import Cookies from 'js-cookie';
 
+import { COOKIES } from '../../../constants/cookies';
+import { PLAN_VALUES } from '../../../constants/plans';
 import { HTMLSelect, Card, Switch } from '@blueprintjs/core';
 import { ProChartContainer } from './ProChartContainer.js';
 import {
@@ -77,6 +81,26 @@ export const ProChartWidget = ({
   const router = useRouter();
 
   const loginContext = useContext(LoginContext);
+
+  const [tier, setTier] = useState(null);
+
+  useEffect(() => {
+    const getTier = async () => {
+      const apiKey = Cookies.get(COOKIES.apiKey);
+
+      if (!apiKey) {
+        setTier(PLAN_VALUES.FREE);
+      } else {
+        const result = await axios.get(
+          'https://api.tokenanalyst.io/auth/user/profile',
+          { headers: { 'api-key': apiKey } }
+        );
+        setTier(result.data && result.data.profile);
+      }
+    };
+
+    getTier();
+  }, []);
 
   return (
     <div>
@@ -178,22 +202,36 @@ export const ProChartWidget = ({
               </div>
             </div>
           </Card>
-          <div className="pricing-link">
-            {!loginContext.isLoggedIn && (
-              <Link
-                desktopLabel="Sign Up for 1 Hour Granularity"
-                href="/register"
-                onClick={() => {
-                  loginContext.setPostRegisterRedirectUrl(router.asPath);
-                  ReactGA.event({
-                    category: 'User',
-                    action: `Click Sign Up CTA Exchange Page`,
-                    label: `Funnel`,
-                  });
-                }}
-              />
-            )}
-          </div>
+          {tier !== null && (
+            <div className="pricing-link">
+              {!loginContext.isLoggedIn ? (
+                <Link
+                  desktopLabel="Sign Up for 1 Hour Granularity"
+                  href="/register"
+                  onClick={() => {
+                    loginContext.setPostRegisterRedirectUrl(router.asPath);
+                    ReactGA.event({
+                      category: 'User',
+                      action: `Click Sign Up CTA Exchange Page`,
+                      label: `Funnel`,
+                    });
+                  }}
+                />
+              ) : tier < PLAN_VALUES.PRO ? (
+                <Link
+                  desktopLabel="Get Unlimited Data"
+                  href="/pricing"
+                  onClick={() => {
+                    ReactGA.event({
+                      category: 'User',
+                      action: `Click Upgrade CTA Exchange Page`,
+                      label: `Funnel`,
+                    });
+                  }}
+                />
+              ) : null}
+            </div>
+          )}
         </div>
         <div className="pro-chart">
           <ProChartContainer

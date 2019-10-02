@@ -10,14 +10,7 @@ import { PLAN_NAMES } from '../../../constants/plans';
 import { PRIMARY_GREEN } from '../../../constants/styles/colors';
 import { SimpleButton } from '../../SimpleButton';
 
-export const Product = ({
-  name,
-  price,
-  features,
-  buttonText,
-  stripePlan,
-  isMaxWidth,
-}) => {
+export const Product = ({ name, price, features, buttonText, stripePlan }) => {
   const loginCtx = useContext(LoginContext);
   const username = Cookies.get('loggedInAsUsername');
   const userId = Cookies.get('loggedInAsUserId');
