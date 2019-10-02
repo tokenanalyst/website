@@ -9,15 +9,15 @@ export const ProductSelectionWidget = () => {
       <div className="container">
         {PRODUCTS.map(
           ({ name, price, features, buttonText, stripePlan }, index) => (
-            <div className="product" key={name}>
-              <Product
-                name={name}
-                price={price}
-                features={features}
-                buttonText={buttonText}
-                stripePlan={stripePlan}
-              />
-            </div>
+            // <div className="product" key={name}>
+            <Product
+              name={name}
+              price={price}
+              features={features}
+              buttonText={buttonText}
+              stripePlan={stripePlan}
+            />
+            // </div>
           )
         )}
       </div>

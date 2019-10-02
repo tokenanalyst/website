@@ -49,11 +49,11 @@ export const Product = ({
   };
 
   return (
-    <div className="container">
+    <>
       <Card
         interactive={false}
         elevation={Elevation.ZERO}
-        style={{ width: '100%' }}
+        style={{ width: '100%', margin: '5px' }}
       >
         <div className="pricing">
           <div className="header">
@@ -159,6 +159,6 @@ export const Product = ({
           padding-left: 20px;
         }
       `}</style>
-    </div>
+    </>
   );
 };

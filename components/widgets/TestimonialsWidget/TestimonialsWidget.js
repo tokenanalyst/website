@@ -35,19 +35,16 @@ const TESTIMONIALS = [
 
 export const TestimonialsWidget = () => (
   <>
-    <div className={'container'}>
-      {TESTIMONIALS.map((testimonial, index) => (
-        <div
-          className={classNames(
-            'testimonial',
-            `${index === 0 ? '' : 'hidden'}`
-          )}
-          key={testimonial.name}
-        >
-          <TestimonialCard testimonial={testimonial} />
-        </div>
-      ))}
-    </div>
+    {/* <div className={'container'}> */}
+    {TESTIMONIALS.map((testimonial, index) => (
+      <div
+        className={classNames('testimonial', `${index === 0 ? '' : 'hidden'}`)}
+        key={testimonial.name}
+      >
+        <TestimonialCard testimonial={testimonial} />
+      </div>
+    ))}
+    {/* </div> */}
     <style jsx>
       {`
         .container {
