@@ -49,7 +49,7 @@ export const Product = ({
   };
 
   return (
-    <div className="container">
+    <>
       <Card
         interactive={false}
         elevation={Elevation.ZERO}
@@ -171,6 +171,6 @@ export const Product = ({
           padding-left: 20px;
         }
       `}</style>
-    </div>
+    </>
   );
 };

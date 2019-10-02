@@ -35,7 +35,6 @@ export const ProductSelectionWidget = () => {
           width: 100%;
           flex-grow: 1;
           font-family: Open Sans;
-          flex: 1 1 0px;
           align-content: space-between;
         }
         @media only screen and (max-width: 768px) {

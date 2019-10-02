@@ -7,7 +7,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
 import { COOKIES } from '../../../constants/cookies';
-import { PLAN_VALUES } from '../../../constants/plans';
+import { PLANS } from '../../../constants/plans';
 import { HTMLSelect, Card, Switch } from '@blueprintjs/core';
 import { ProChartContainer } from './ProChartContainer.js';
 import {
@@ -89,7 +89,7 @@ export const ProChartWidget = ({
       const apiKey = Cookies.get(COOKIES.apiKey);
 
       if (!apiKey) {
-        setTier(PLAN_VALUES.FREE);
+        setTier(PLANS.FREE.id);
       } else {
         const result = await axios.get(
           'https://api.tokenanalyst.io/auth/user/profile',
@@ -134,6 +134,7 @@ export const ProChartWidget = ({
                       )
                       .map(exchangeName => (
                         <div
+                          key={exchangeName}
                           className="exchange"
                           onClick={() => {
                             onChangeExchange(exchangeName);
@@ -217,7 +218,7 @@ export const ProChartWidget = ({
                     });
                   }}
                 />
-              ) : tier < PLAN_VALUES.PLATFORM ? (
+              ) : tier < PLANS.PLATFORM.id ? (
                 <Link
                   desktopLabel="Get Unlimited Data"
                   href="/pricing"

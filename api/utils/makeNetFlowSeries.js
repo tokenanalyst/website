@@ -1,9 +1,4 @@
-export const makeNetFlowSeries = (
-  inFlowSeries,
-  outFlowSeries,
-  fromDate,
-  toDate
-) => {
+module.exports = (inFlowSeries, outFlowSeries, fromDate, toDate) => {
   return !fromDate || !toDate
     ? []
     : inFlowSeries.map(({ inflow, inflow_usd, date, hour }, index) => {
