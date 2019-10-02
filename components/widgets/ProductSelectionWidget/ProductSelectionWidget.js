@@ -8,7 +8,7 @@ export const ProductSelectionWidget = () => {
     <>
       <div className="container">
         {PRODUCTS.map(
-          ({ name, price, features, buttonText, stripePlan }, index) => (
+          ({ name, price, features, buttonText, stripePlan, isNew }) => (
             <div className="product" key={name}>
               <Product
                 name={name}
@@ -16,6 +16,7 @@ export const ProductSelectionWidget = () => {
                 features={features}
                 buttonText={buttonText}
                 stripePlan={stripePlan}
+                isNew={isNew}
               />
             </div>
           )

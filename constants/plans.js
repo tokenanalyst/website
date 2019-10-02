@@ -1,6 +1,6 @@
 export const PLAN_NAMES = {
   FREE: 'Free',
-  // PLATFORM: 'Platform',
+  PLATFORM: 'Platform',
   PRO: 'Pro',
   ENTERPRISE: 'Enterprise',
 };
@@ -42,6 +42,7 @@ export const PLANS = {
     ],
     buttonText: 'Get',
     tier: TIERS['0'],
+    id: 0,
   },
   PLATFORM: {
     name: PLAN_NAMES.PLATFORM,
@@ -54,6 +55,8 @@ export const PLANS = {
     buttonText: 'Purchase',
     tier: TIERS['1'],
     stripePlan: 'plan_FuFH6oh6AGeUl0',
+    isNew: true,
+    id: 1,
   },
   PRO: {
     name: PLAN_NAMES.PRO,
@@ -66,6 +69,7 @@ export const PLANS = {
     buttonText: 'Purchase',
     tier: TIERS['2'],
     stripePlan: 'plan_FZwuSdyp2hRm98',
+    id: 2,
   },
   ENTERPRISE: {
     name: PLAN_NAMES.ENTERPRISE,
@@ -77,6 +81,7 @@ export const PLANS = {
     ],
     buttonText: 'Contact Us',
     tier: TIERS['2'],
+    id: 3,
   },
 };
 
@@ -88,17 +93,17 @@ export const TEST_PLANS = {
     buttonText: 'Get',
     tier: -1,
   },
-  // PLATFORM: {
-  //   name: PLAN_NAMES.PLATFORM,
-  //   price: '$50',
-  //   features: [
-  //     'Exchange Flows',
-  //     'Full Historical Data',
-  //     'Web Platform Access Only',
-  //   ],
-  //   buttonText: 'Purchase',
-  //   stripePlan: 'plan_FuFaK78eUjiZ9L',
-  // },
+  PLATFORM: {
+    name: PLAN_NAMES.PLATFORM,
+    price: '$50',
+    features: [
+      'Exchange Flows',
+      'Full Historical Data',
+      'Web Platform Access Only',
+    ],
+    buttonText: 'Purchase',
+    stripePlan: 'plan_FuFaK78eUjiZ9L',
+  },
   HOBBYIST: {
     name: PLAN_NAMES.HOBBYIST,
     price: '$99',
