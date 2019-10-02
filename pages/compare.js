@@ -3,7 +3,7 @@ import Head from 'next/head';
 
 import { CompareChartWidget } from '../components/widgets/CompareChartWidget';
 import { PageHeader } from '../components/PageHeader';
-import { PricingLink } from '../components/PricingLink';
+import { Link } from '../components/Link';
 import { LoginContext } from '../contexts/Login';
 
 const Compare = () => {
@@ -17,7 +17,17 @@ const Compare = () => {
         </Head>
         <PageHeader
           text={'Compare'}
-          rightElement={!loginCtx.isLoggedIn ? <PricingLink /> : <div />}
+          rightElement={
+            !loginCtx.isLoggedIn ? (
+              <Link
+                href="/pricing"
+                desktopLabel="Access historical data"
+                mobileLabel="Historical data"
+              />
+            ) : (
+              <div />
+            )
+          }
         />
         <CompareChartWidget />
       </div>

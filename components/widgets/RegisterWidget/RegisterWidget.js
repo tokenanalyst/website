@@ -1,9 +1,10 @@
 import React, { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import { Icon } from '@blueprintjs/core';
+import { Icon, Checkbox } from '@blueprintjs/core';
 import Link from 'next/link';
 import Router from 'next/router';
+import ReactGA from 'react-ga';
 
 import { LoginContext } from '../../../contexts/Login';
 import { colors } from '../../../constants/styles/colors';
@@ -85,14 +86,34 @@ export const RegisterWidget = () => {
         loginCtx.paymentData.stripe &&
         loginCtx.paymentData.stripe.redirectFn
       ) {
+        ReactGA.event({
+          category: 'User',
+          action: `Registered to make a purchase`,
+          label: `Funnel`,
+        });
         loginCtx.setPaymentData({ ...loginCtx.paymentData, stripe: null });
         return loginCtx.paymentData.stripe.redirectFn({
           customerEmail: username,
           clientReferenceId: id.toString(),
         });
       } else if (loginCtx.paymentData.isFreeTier) {
+        ReactGA.event({
+          category: 'User',
+          action: `Registered to access free tier`,
+          label: `Funnel`,
+        });
         loginCtx.setPaymentData({ ...loginCtx.paymentData, isFreeTier: false });
         Router.push('/free-tier-success');
+      } else if (loginCtx.postRegisterRedirectUrl) {
+        ReactGA.event({
+          category: 'User',
+          action: `Registered via Exchange Page CTA`,
+          label: `Funnel`,
+        });
+        Router.push(
+          `/exchange/[token]/[exchange]`,
+          `${loginCtx.postRegisterRedirectUrl}?registered=true`
+        );
       }
     } catch (e) {
       if (
@@ -158,94 +179,82 @@ export const RegisterWidget = () => {
             />
             <div className="label">Which apply to you?</div>
             <div className="profession">
-              <span>
-                <input
-                  type="checkbox"
-                  checked={isTrader}
-                  onChange={() => {
-                    return setProfession({
-                      ...profession,
-                      isTrader: !isTrader,
-                    });
-                  }}
-                />
-                <span>Trader</span>
-              </span>
+              <Checkbox
+                label="Trader"
+                type="checkbox"
+                checked={isTrader}
+                onChange={() => {
+                  return setProfession({
+                    ...profession,
+                    isTrader: !isTrader,
+                  });
+                }}
+              />
             </div>
             <div className="profession">
-              <span>
-                <input
-                  type="checkbox"
-                  checked={isDeveloper}
-                  onChange={() =>
-                    setProfession({
-                      ...profession,
-                      isDeveloper: !isDeveloper,
-                    })
-                  }
-                />
-                <span>Developer</span>
-              </span>
+              <Checkbox
+                type="checkbox"
+                checked={isDeveloper}
+                label="Developer"
+                onChange={() =>
+                  setProfession({
+                    ...profession,
+                    isDeveloper: !isDeveloper,
+                  })
+                }
+              />
             </div>
             <div className="profession">
-              <span>
-                <input
-                  type="checkbox"
-                  checked={isEnthusiast}
-                  onChange={() =>
-                    setProfession({
-                      ...profession,
-                      isEnthusiast: !isEnthusiast,
-                    })
-                  }
-                />
-                <span>Enthusiast</span>
-              </span>
+              <Checkbox
+                label="Enthusiast"
+                type="checkbox"
+                checked={isEnthusiast}
+                onChange={() =>
+                  setProfession({
+                    ...profession,
+                    isEnthusiast: !isEnthusiast,
+                  })
+                }
+              />
             </div>
             <div className="profession">
-              <span>
-                <input
-                  type="checkbox"
-                  checked={isEnterprise}
-                  onChange={() =>
-                    setProfession({
-                      ...profession,
-                      isEnterprise: !isEnterprise,
-                    })
-                  }
-                />
-                <span>Enterprise</span>
-              </span>
+              <Checkbox
+                label="Enterprise"
+                type="checkbox"
+                checked={isEnterprise}
+                onChange={() =>
+                  setProfession({
+                    ...profession,
+                    isEnterprise: !isEnterprise,
+                  })
+                }
+              />
             </div>
             <div className="profession">
-              <span>
-                <input
-                  type="checkbox"
-                  checked={isResearcher}
-                  onChange={() =>
-                    setProfession({
-                      ...profession,
-                      isResearcher: !isResearcher,
-                    })
-                  }
-                />
-                <span>Researcher</span>
-              </span>
+              <Checkbox
+                label="Researcher"
+                type="checkbox"
+                checked={isResearcher}
+                onChange={() =>
+                  setProfession({
+                    ...profession,
+                    isResearcher: !isResearcher,
+                  })
+                }
+              />
             </div>
             <div className="profession">
-              <span>
-                <input
-                  type="checkbox"
-                  checked={isOther}
-                  onChange={() =>
-                    setProfession({
-                      ...profession,
-                      isOther: !isOther,
-                    })
-                  }
-                />
-                <span>Other</span>
-              </span>
+              <Checkbox
+                label="Other"
+                type="checkbox"
+                checked={isOther}
+                onChange={() =>
+                  setProfession({
+                    ...profession,
+                    isOther: !isOther,
+                  })
+                }
+              />
             </div>
             <div className="button" onClick={register}>
               Register

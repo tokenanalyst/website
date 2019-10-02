@@ -86,6 +86,7 @@ export const TokenSnapshot = ({
                           updateToken(e.target.value, position);
                           setSnapshotToken(e.target.value);
                         }}
+                        key={token}
                       />
                     ))}
                   </RadioGroup>
