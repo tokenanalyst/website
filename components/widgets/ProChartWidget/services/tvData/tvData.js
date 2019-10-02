@@ -8,7 +8,7 @@ let subscrition;
 
 const formatDate = epoch => moment(epoch).format('DD/MM/YYYY, HH:mm:ss');
 
-const tvData = (exchangeService, exchangeName, symbols) => {
+const tvData = (exchangeService, exchangeName, symbols, isIntraday) => {
   const { makeTimeFrame } = config.kaiko;
 
   return {
@@ -57,7 +57,7 @@ const tvData = (exchangeService, exchangeName, symbols) => {
         data_status: 'streaming',
         description: '',
         exchange: exchangeName,
-        has_intraday: true,
+        has_intraday: isIntraday,
         intraday_multipliers,
         minmov: 1,
         name: `${symbols[0]}/${symbols[1]}`,
