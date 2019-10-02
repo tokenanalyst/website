@@ -21,8 +21,8 @@ module.exports = async (req, res) => {
   const { isAuthorised, userData } = await getUserAuth(req.cookies.apiKey);
 
   const tierTimeLimit = makeUnixtimeLimit(
-    WINDOW,
-    userData.tier.timeLimits[WINDOW],
+    PARAMS.window,
+    userData.tier.timeLimits[PARAMS.window],
     isAuthorised
   );
 
