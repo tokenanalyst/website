@@ -217,7 +217,7 @@ export const ProChartWidget = ({
                     });
                   }}
                 />
-              ) : tier < PLAN_VALUES.PRO ? (
+              ) : tier < PLAN_VALUES.PLATFORM ? (
                 <Link
                   desktopLabel="Get Unlimited Data"
                   href="/pricing"

@@ -32,6 +32,7 @@ export const PLANS = {
     ],
     buttonText: 'Purchase',
     stripePlan: 'plan_FuFH6oh6AGeUl0',
+    isNew: true,
   },
   PRO: {
     name: PLAN_NAMES.PRO,

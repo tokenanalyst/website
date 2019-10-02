@@ -10,7 +10,14 @@ import { PLAN_NAMES } from '../../../constants/plans';
 import { PRIMARY_GREEN } from '../../../constants/styles/colors';
 import { SimpleButton } from '../../SimpleButton';
 
-export const Product = ({ name, price, features, buttonText, stripePlan }) => {
+export const Product = ({
+  name,
+  price,
+  features,
+  buttonText,
+  stripePlan,
+  isNew,
+}) => {
   const loginCtx = useContext(LoginContext);
   const username = Cookies.get('loggedInAsUsername');
   const userId = Cookies.get('loggedInAsUserId');
@@ -50,7 +57,19 @@ export const Product = ({ name, price, features, buttonText, stripePlan }) => {
       >
         <div className="pricing">
           <div className="header">
-            <div className="title">{name}</div>
+            <div className="title">
+              {name}
+              {isNew && (
+                <img
+                  src="/static/png/new.png"
+                  style={{
+                    width: '30px',
+                    marginBottom: '10px',
+                    marginLeft: '2px',
+                  }}
+                />
+              )}
+            </div>
             <div className="price">
               {price ? (
                 <>
