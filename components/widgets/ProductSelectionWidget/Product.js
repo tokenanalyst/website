@@ -53,7 +53,7 @@ export const Product = ({
       <Card
         interactive={false}
         elevation={Elevation.ZERO}
-        style={{ width: '100%', margin: '5px' }}
+        style={{ width: '100%' }}
       >
         <div className="pricing">
           <div className="header">
