@@ -20,12 +20,11 @@ module.exports = async (req, res) => {
     return res.status(400).send({ message: API_ERROR_MSG.PARAMS_MISSING });
   }
 
-  const { isAuthorised, userData } = await getUserAuth(req.cookies.apiKey);
+  const { userData } = await getUserAuth(req.cookies.apiKey);
 
   const tierTimeLimit = makeUnixtimeLimit(
     timeWindow,
-    userData.tier.timeLimits[timeWindow],
-    isAuthorised
+    userData.tier.timeLimits[timeWindow]
   );
 
   const privateApi = TA({ apiKey: process.env.API_KEY });

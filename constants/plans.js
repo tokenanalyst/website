@@ -55,17 +55,6 @@ export const PLANS = {
     tier: TIERS['1'],
     stripePlan: 'plan_FuFH6oh6AGeUl0',
   },
-  // PLATFORM: {
-  //   name: PLAN_NAMES.PLATFORM,
-  //   price: '$50',
-  //   features: [
-  //     'Exchange Flows',
-  //     'Full Historical Data',
-  //     'Web Platform Access Only',
-  //   ],
-  //   buttonText: 'Purchase',
-  //   stripePlan: 'plan_FuFH6oh6AGeUl0',
-  // },
   PRO: {
     name: PLAN_NAMES.PRO,
     price: '$799',

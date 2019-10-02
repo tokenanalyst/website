@@ -5,6 +5,7 @@ module.exports = (series, timeRange) => {
     if (!item) {
       throw Error();
     }
+
     if (item.timestamp) {
       return item.timestamp;
     }

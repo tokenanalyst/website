@@ -22,12 +22,11 @@ module.exports = async (req, res) => {
     instrument,
   } = URL_PARTS.query;
 
-  const { isAuthorised, userData } = await getUserAuth(req.cookies.apiKey);
+  const { userData } = await getUserAuth(req.cookies.apiKey);
 
   const tierTimeLimit = makeUnixtimeLimit(
     interval,
-    userData.tier.timeLimits[interval],
-    isAuthorised
+    userData.tier.timeLimits[interval]
   );
 
   if (end_time < tierTimeLimit) {

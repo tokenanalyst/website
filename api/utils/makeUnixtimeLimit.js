@@ -1,11 +1,6 @@
 const moment = require('moment');
 
-module.exports = (timeWindow, tierTimeLimit, isAuthorised) =>
-  // isAuthorised
-  //   ? moment()
-  //       .subtract(tierTimeLimit, timeWindow === '1h' ? 'hours' : 'days')
-  //       .valueOf()
-  //   : moment().valueOf();
+module.exports = (timeWindow, tierTimeLimit) =>
   moment()
     .subtract(tierTimeLimit, timeWindow === '1h' ? 'hours' : 'days')
     .valueOf();

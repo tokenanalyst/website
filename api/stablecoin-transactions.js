@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { STABLE_TOKENS } from '../constants/tokens';
+const { STABLE_TOKENS } = require('../constants/tokens');
 const getUserAuth = require('./auth/getUserAuth');
 const filterSeriesByTime = require('./utils/filterSeriesByTime');
 const makeUnixtimeLimit = require('./utils/makeUnixtimeLimit');
@@ -40,5 +40,5 @@ module.exports = async (req, res) => {
     data: filterSeriesByTime(results[index].data, tierTimeLimit),
   }));
 
-  res.send({ ta_response: response });
+  return res.send({ ta_response: response });
 };

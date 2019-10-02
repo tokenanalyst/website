@@ -38,15 +38,11 @@ module.exports = async (req, res) => {
 
   const FORMAT = 'json';
 
-  const { isAuthorised, userData } = await getUserAuth(req.cookies.apiKey);
+  const { userData } = await getUserAuth(req.cookies.apiKey);
 
   const tierTimeLimit = userData.tier.timeLimits[WINDOW];
 
-  const filterTimeLimit = makeUnixtimeLimit(
-    WINDOW,
-    tierTimeLimit,
-    isAuthorised
-  );
+  const filterTimeLimit = makeUnixtimeLimit(WINDOW, tierTimeLimit);
 
   const apiResponse = isStableCoin(token)
     ? [
@@ -184,5 +180,5 @@ module.exports = async (req, res) => {
         fees: filterSeriesByTime(fees.data, filterTimeLimit),
       };
 
-  res.send({ ta_response: response });
+  return res.send({ ta_response: response });
 };

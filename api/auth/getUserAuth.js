@@ -28,7 +28,6 @@ module.exports = async token => {
   } catch (e) {
     return {
       isAuthorised: false,
-      userData: {},
       userData: { tier: TIERS['nologin'] },
     };
   }
