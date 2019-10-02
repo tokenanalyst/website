@@ -26,7 +26,7 @@ module.exports = (series, timeRange) => {
 
   for (let i = series.length - 1; (i -= 1); ) {
     if (series[i] && moment.utc(formatDate(series[i])).valueOf() > timeRange) {
-      filteredArray.push(series[i]);
+      filteredArray.unshift(series[i]);
     } else {
       break;
     }
