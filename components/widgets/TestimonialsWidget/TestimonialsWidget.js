@@ -35,16 +35,19 @@ const TESTIMONIALS = [
 
 export const TestimonialsWidget = () => (
   <>
-    {/* <div className={'container'}> */}
-    {TESTIMONIALS.map((testimonial, index) => (
-      <div
-        className={classNames('testimonial', `${index === 0 ? '' : 'hidden'}`)}
-        key={testimonial.name}
-      >
-        <TestimonialCard testimonial={testimonial} />
-      </div>
-    ))}
-    {/* </div> */}
+    <div className={'container'}>
+      {TESTIMONIALS.map((testimonial, index) => (
+        <div
+          className={classNames(
+            'testimonial',
+            `${index === 0 ? '' : 'hidden'}`
+          )}
+          key={testimonial.name}
+        >
+          <TestimonialCard testimonial={testimonial} />
+        </div>
+      ))}
+    </div>
     <style jsx>
       {`
         .container {
@@ -59,7 +62,6 @@ export const TestimonialsWidget = () => (
           width: 100%;
           flex-grow: 1;
           font-family: Open Sans;
-          flex: 1 1 0px;
           align-content: space-between;
         }
         @media only screen and (max-width: 767px) {

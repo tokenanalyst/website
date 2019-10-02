@@ -9,15 +9,15 @@ export const ProductSelectionWidget = () => {
       <div className="container">
         {PRODUCTS.map(
           ({ name, price, features, buttonText, stripePlan }, index) => (
-            // <div className="product" key={name}>
-            <Product
-              name={name}
-              price={price}
-              features={features}
-              buttonText={buttonText}
-              stripePlan={stripePlan}
-            />
-            // </div>
+            <div className="product" key={name}>
+              <Product
+                name={name}
+                price={price}
+                features={features}
+                buttonText={buttonText}
+                stripePlan={stripePlan}
+              />
+            </div>
           )
         )}
       </div>
@@ -34,7 +34,6 @@ export const ProductSelectionWidget = () => {
           width: 100%;
           flex-grow: 1;
           font-family: Open Sans;
-          flex: 1 1 0px;
           align-content: space-between;
         }
         @media only screen and (max-width: 768px) {
