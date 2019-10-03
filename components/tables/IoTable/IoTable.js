@@ -10,15 +10,14 @@ import { getIoTableData } from '../../../data-transformers/tables';
 import { filterCaseInsensitive } from '../helpers';
 import { colors } from '../../../constants/styles/colors';
 import { NextButton, PreviousButton } from './renderers';
-import { LoginContext } from '../../../contexts/Login';
 import { COOKIES } from '../../../constants/cookies';
 
 const TABLE_DATA = getIoTableData();
-const TIER = Cookies.get(COOKIES.tier);
 
 export const IoTable = ({ data, dataWindow, units }) => {
   const router = useRouter();
-  const loginCtx = useContext(LoginContext);
+
+  const TIER = Cookies.get(COOKIES.tier);
 
   const getColumns = units => [
     {
