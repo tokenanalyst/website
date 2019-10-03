@@ -1,37 +1,39 @@
-import React from "react";
-import ReactTable from "react-table";
-import { useRouter } from "next/router";
-import ReactGA from "react-ga";
-import "../../../node_modules/react-table/react-table.css";
+import React, { useContext } from 'react';
+import ReactTable from 'react-table';
+import { useRouter } from 'next/router';
+import ReactGA from 'react-ga';
+import '../../../node_modules/react-table/react-table.css';
 
-import { AmountCell, ChangeCell, ExchangeCell, HeaderCell } from "./renderers";
-import { getIoTableData } from "../../../data-transformers/tables";
-import { filterCaseInsensitive } from "../helpers";
-import { colors } from "../../../constants/styles/colors";
-import {NextButton, PreviousButton } from './renderers'
+import { AmountCell, ChangeCell, ExchangeCell, HeaderCell } from './renderers';
+import { getIoTableData } from '../../../data-transformers/tables';
+import { filterCaseInsensitive } from '../helpers';
+import { colors } from '../../../constants/styles/colors';
+import { NextButton, PreviousButton } from './renderers';
+import { LoginContext } from '../../../contexts/Login';
 
 const TABLE_DATA = getIoTableData();
 
 export const IoTable = ({ data, dataWindow, units }) => {
   const router = useRouter();
+  const loginCtx = useContext(LoginContext);
 
   const getColumns = units => [
     {
       Header: () => <HeaderCell value={TABLE_DATA.columnHeaders.exchange} />,
       accessor: TABLE_DATA.accessors.exchange,
       Cell: ({ value }) => <ExchangeCell value={value} />,
-      width: 150
+      width: 150,
     },
     {
       Header: () => <HeaderCell value={TABLE_DATA.columnHeaders.token} />,
-      accessor: TABLE_DATA.accessors.token
+      accessor: TABLE_DATA.accessors.token,
     },
     {
       Header: () => <HeaderCell value={TABLE_DATA.columnHeaders.inflow} />,
       accessor: TABLE_DATA.accessors[units].inflow,
       Cell: ({ value }) => <AmountCell value={value} units={units} />,
       filterable: false,
-      width: 135
+      width: 135,
     },
     {
       Header: () => (
@@ -39,14 +41,14 @@ export const IoTable = ({ data, dataWindow, units }) => {
       ),
       accessor: TABLE_DATA.accessors[units].inflowChange,
       Cell: ({ value }) => <ChangeCell value={value} />,
-      filterable: false
+      filterable: false,
     },
     {
       Header: () => <HeaderCell value={TABLE_DATA.columnHeaders.outflow} />,
       accessor: TABLE_DATA.accessors[units].outflow,
       Cell: ({ value }) => <AmountCell value={value} units={units} />,
       filterable: false,
-      width: 150
+      width: 150,
     },
     {
       Header: () => (
@@ -54,8 +56,8 @@ export const IoTable = ({ data, dataWindow, units }) => {
       ),
       accessor: TABLE_DATA.accessors[units].outflowChange,
       Cell: ({ value }) => <ChangeCell value={value} />,
-      filterable: false
-    }
+      filterable: false,
+    },
   ];
 
   return (
@@ -67,89 +69,89 @@ export const IoTable = ({ data, dataWindow, units }) => {
           data={data.filter(datum => datum.window === dataWindow)}
           columns={getColumns(units)}
           defaultSorted={[
-            { id: TABLE_DATA.accessors[units].inflow, desc: true }
+            { id: TABLE_DATA.accessors[units].inflow, desc: true },
           ]}
           noDataText="No results"
           className="-highlight"
           defaultPageSize={25}
           filterable={true}
           defaultFilterMethod={filterCaseInsensitive}
-          style={{ cursor: "pointer" }}
+          style={{ cursor: 'pointer' }}
           getTrProps={(_, rowInfo) => ({
             onClick: () => {
               const { token, exchange } = rowInfo.original;
               ReactGA.event({
-                category: "User",
+                category: 'User',
                 action: `Select IO table value ${token} ${exchange}`,
-                label: `IO table select`
+                label: `IO table select`,
               });
               router.push(
                 `/exchange/[token]/[exchange]`,
-                `/exchange/${token}/${exchange}`
+                `/exchange/${token}/${exchange}?tier=${loginCtx.tier}`
               );
             },
             style: {
-              border: "none"
-            }
+              border: 'none',
+            },
           })}
           getProps={() => ({
             style: {
-              border: "none"
-            }
+              border: 'none',
+            },
           })}
           getTdProps={() => ({
             style: {
-              border: "none"
-            }
+              border: 'none',
+            },
           })}
           getTheadFilterProps={() => ({
             onKeyUp: e =>
               ReactGA.event({
-                category: "User",
+                category: 'User',
                 action: `Filter IO table - Chars: ${e.target.value}`,
-                label: `IO table filter`
-              })
+                label: `IO table filter`,
+              }),
           })}
           getTheadThProps={(state, row, column) => {
             return {
               style: {
-                border: "none"
+                border: 'none',
               },
               onMouseUp: () => {
                 ReactGA.event({
-                  category: "User",
+                  category: 'User',
                   action: `Sort IO table: ${column.id}`,
-                  label: `IO table sort`
+                  label: `IO table sort`,
                 });
-              }
+              },
             };
           }}
           getTheadProps={() => {
             return {
               style: {
-                boxShadow: "none",
-                border: "none"
-              }
+                boxShadow: 'none',
+                border: 'none',
+              },
             };
           }}
           getTableProps={() => ({
             style: {
-              border: "none"
-            }
+              border: 'none',
+            },
           })}
           getPaginationProps={() => ({
             style: {
               color: `black`,
-              boxShadow: "none",
-              border: "none",
+              boxShadow: 'none',
+              border: 'none',
               textTransform: 'uppercase',
-              fontSize: '14px'
-            }
+              fontSize: '14px',
+            },
           })}
           getNoDataProps={() => ({
             style: {
-              color: `rgba(${colors.primaryRed}, 1)`
-            }
+              color: `rgba(${colors.primaryRed}, 1)`,
+            },
           })}
         />
       )}

@@ -27,7 +27,7 @@ export const LoginWidget = () => {
         }
       );
       const {
-        data: { apiKey, name, username, id },
+        data: { apiKey, name, username, id, profile },
       } = response;
 
       Cookies.set(COOKIES.apiKey, apiKey);
@@ -37,6 +37,7 @@ export const LoginWidget = () => {
       loginCtx.setIsLoggedIn(true);
       loginCtx.setLoggedInAs(name);
       loginCtx.intercom.setUser(name, username);
+      loginCtx.setTier(profile);
 
       if (
         loginCtx.paymentData.stripe &&

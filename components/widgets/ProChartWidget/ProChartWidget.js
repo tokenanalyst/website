@@ -82,31 +82,11 @@ export const ProChartWidget = ({
 
   const loginContext = useContext(LoginContext);
 
-  const [tier, setTier] = useState(null);
-
-  useEffect(() => {
-    const getTier = async () => {
-      const apiKey = Cookies.get(COOKIES.apiKey);
-
-      if (!apiKey) {
-        setTier(PLANS.FREE.id);
-      } else {
-        const result = await axios.get(
-          'https://api.tokenanalyst.io/auth/user/profile',
-          { headers: { 'api-key': apiKey } }
-        );
-        setTier(result.data && result.data.profile);
-      }
-    };
-
-    getTier();
-  }, []);
-
   return (
     <div>
       <div className="container">
         <div className="controls-card">
-          {tier !== null && (
+          {loginContext.tier !== null && (
             <div className="pricing-link">
               {!loginContext.isLoggedIn ? (
                 <Link
@@ -121,7 +101,7 @@ export const ProChartWidget = ({
                     });
                   }}
                 />
-              ) : tier < PLANS.PLATFORM.id ? (
+              ) : loginContext.tier < PLANS.PLATFORM.id ? (
                 <Link
                   desktopLabel="Get Unlimited Data"
                   href="/pricing?exchange=true"

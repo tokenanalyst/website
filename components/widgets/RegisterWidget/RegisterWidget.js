@@ -111,7 +111,7 @@ export const RegisterWidget = () => {
           label: `Funnel`,
         });
         Router.push(
-          `/exchange/[token]/[exchange]`,
+          `/exchange/[token]/[exchange]?tier=0`,
           `${loginCtx.postRegisterRedirectUrl}?registered=true`
         );
       } else {

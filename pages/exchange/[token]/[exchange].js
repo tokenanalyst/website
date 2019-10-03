@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 
@@ -7,9 +7,11 @@ import { IoChartWidget } from '../../../components/widgets/IoChartWidget';
 import { ProChartWidget } from '../../../components/widgets/ProChartWidget';
 import { EXCHANGE_TOKENS } from '../../../constants/exchanges';
 import { NATIVE_TOKENS } from '../../../constants/tokens';
+import { LoginContext } from '../../../contexts/Login';
 
 const Exchange = () => {
   const router = useRouter();
+  const loginCtx = useContext(LoginContext);
   const { token, exchange } = router.query;
 
   return (
@@ -34,7 +36,7 @@ const Exchange = () => {
                     EXCHANGE_TOKENS[newExchange].indexOf(token) > 0
                       ? token
                       : EXCHANGE_TOKENS[newExchange][0]
-                  }/${newExchange}`
+                  }/${newExchange}?tier=${loginCtx.tier}`
                 );
               }}
               onChangeToken={newToken => {
