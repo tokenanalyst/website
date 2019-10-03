@@ -3,6 +3,7 @@ import ReactTable from 'react-table';
 import { useRouter } from 'next/router';
 import ReactGA from 'react-ga';
 import '../../../node_modules/react-table/react-table.css';
+import Cookies from 'js-cookie';
 
 import { AmountCell, ChangeCell, ExchangeCell, HeaderCell } from './renderers';
 import { getIoTableData } from '../../../data-transformers/tables';
@@ -10,8 +11,10 @@ import { filterCaseInsensitive } from '../helpers';
 import { colors } from '../../../constants/styles/colors';
 import { NextButton, PreviousButton } from './renderers';
 import { LoginContext } from '../../../contexts/Login';
+import { COOKIES } from '../../../constants/cookies';
 
 const TABLE_DATA = getIoTableData();
+const TIER = Cookies.get(COOKIES.tier);
 
 export const IoTable = ({ data, dataWindow, units }) => {
   const router = useRouter();
@@ -87,7 +90,7 @@ export const IoTable = ({ data, dataWindow, units }) => {
               });
               router.push(
                 `/exchange/[token]/[exchange]`,
-                `/exchange/${token}/${exchange}?tier=${loginCtx.tier}`
+                `/exchange/${token}/${exchange}?tier=${TIER}`
               );
             },
             style: {

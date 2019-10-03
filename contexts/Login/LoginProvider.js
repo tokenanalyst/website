@@ -3,7 +3,6 @@ import Cookies from 'js-cookie';
 
 import { LoginContext } from './LoginContext';
 import { COOKIES } from '../../constants/cookies';
-import { PLANS } from '../../constants/plans';
 import { intercom, isUserCookiesValid } from './utils';
 
 export const LoginProvider = ({ children }) => {
@@ -11,7 +10,6 @@ export const LoginProvider = ({ children }) => {
   const [loggedInAs, setLoggedInAs] = useState(null);
   const [paymentData, setPaymentData] = useState({ stripe: null });
   const [postRegisterRedirectUrl, setPostRegisterRedirectUrl] = useState(null);
-  const [tier, setTier] = useState(PLANS.FREE.id);
 
   useEffect(() => {
     if (isUserCookiesValid()) {
@@ -28,6 +26,10 @@ export const LoginProvider = ({ children }) => {
       Cookies.remove(COOKIES.loggedInAsUsername);
       Cookies.remove(COOKIES.loggedInAsUserId);
     }
+
+    if (Cookies.get(COOKIES.tier) === undefined) {
+      Cookies.set(COOKIES.tier, -1);
+    }
   });
 
   const value = {
@@ -36,12 +38,10 @@ export const LoginProvider = ({ children }) => {
     paymentData,
     intercom,
     postRegisterRedirectUrl,
-    tier,
     setIsLoggedIn,
     setLoggedInAs,
     setPaymentData,
     setPostRegisterRedirectUrl,
-    setTier,
   };
 
   return (

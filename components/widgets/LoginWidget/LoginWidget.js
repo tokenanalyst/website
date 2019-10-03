@@ -34,10 +34,10 @@ export const LoginWidget = () => {
       Cookies.set(COOKIES.loggedInAs, name);
       Cookies.set(COOKIES.loggedInAsUsername, username);
       Cookies.set(COOKIES.loggedInAsUserId, id);
+      Cookies.set(COOKIES.tier, profile);
       loginCtx.setIsLoggedIn(true);
       loginCtx.setLoggedInAs(name);
       loginCtx.intercom.setUser(name, username);
-      loginCtx.setTier(profile);
 
       if (
         loginCtx.paymentData.stripe &&

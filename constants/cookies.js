@@ -3,4 +3,5 @@ export const COOKIES = {
   loggedInAs: 'loggedInAs',
   loggedInAsUsername: 'loggedInAsUsername',
   loggedInAsUserId: 'loggedInAsUserId',
+  tier: 'tier',
 };

@@ -41,7 +41,7 @@ export const DesktopNav = () => {
     }, 500);
   };
 
-  const tierParamString = `tier=${loginCtx.tier}`;
+  const tierParamString = `tier=${Cookies.get(COOKIES.tier)}`;
 
   return (
     <>

@@ -1,17 +1,17 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
+import Cookies from 'js-cookie';
 
 import { ExchangeMetricsWidget } from '../../../components/widgets/ExchangeMetricsWidget';
 import { IoChartWidget } from '../../../components/widgets/IoChartWidget';
 import { ProChartWidget } from '../../../components/widgets/ProChartWidget';
 import { EXCHANGE_TOKENS } from '../../../constants/exchanges';
 import { NATIVE_TOKENS } from '../../../constants/tokens';
-import { LoginContext } from '../../../contexts/Login';
+import { COOKIES } from '../../../constants/cookies';
 
 const Exchange = () => {
   const router = useRouter();
-  const loginCtx = useContext(LoginContext);
   const { token, exchange } = router.query;
 
   return (
@@ -36,7 +36,7 @@ const Exchange = () => {
                     EXCHANGE_TOKENS[newExchange].indexOf(token) > 0
                       ? token
                       : EXCHANGE_TOKENS[newExchange][0]
-                  }/${newExchange}?tier=${loginCtx.tier}`
+                  }/${newExchange}?tier=${Cookies.get(COOKIES.tier)}`
                 );
               }}
               onChangeToken={newToken => {
