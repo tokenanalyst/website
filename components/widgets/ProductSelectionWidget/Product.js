@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { useContext } from 'react';
 import ReactGA from 'react-ga';
 import Router from 'next/router';
@@ -23,12 +24,12 @@ export const Product = ({
   const userId = Cookies.get('loggedInAsUserId');
 
   const redirectToStripe = async stripeOptions => {
-    const stripe = Stripe(STRIPE.apiTestKey);
+    const stripe = Stripe(STRIPE.apiKey);
 
     const stripeOpt = {
       items: [
         {
-          plan: 'plan_FuFaK78eUjiZ9L',
+          plan: stripePlan,
           quantity: 1,
         },
       ],
@@ -175,4 +176,17 @@ export const Product = ({
       </style>
     </>
   );
+};
+
+Product.propTypes = {
+  name: PropTypes.string.isRequired,
+  price: PropTypes.string.isRequired,
+  features: PropTypes.arrayOf(PropTypes.string).isRequired,
+  buttonText: PropTypes.string.isRequired,
+  stripePlan: PropTypes.string.isRequired,
+  isNew: PropTypes.bool,
+};
+
+Product.defaultProps = {
+  isNew: false,
 };
