@@ -102,6 +102,9 @@ export const DesktopNav = () => {
             </div>
 
             <div className={'links-products'}>
+              <a href="https://websockets.tokenanalyst.io/" target="_blank">
+                WebSocket
+              </a>
               <a href="https://research.tokenanalyst.io/" target="_blank">
                 Research
               </a>
