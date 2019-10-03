@@ -106,6 +106,36 @@ export const ProChartWidget = ({
     <div>
       <div className="container">
         <div className="controls-card">
+          {tier !== null && (
+            <div className="pricing-link">
+              {!loginContext.isLoggedIn ? (
+                <Link
+                  desktopLabel="Sign Up for 1 Hour Granularity"
+                  href="/register"
+                  onClick={() => {
+                    loginContext.setPostRegisterRedirectUrl(router.asPath);
+                    ReactGA.event({
+                      category: 'User',
+                      action: `Click Sign Up CTA Exchange Page`,
+                      label: `Funnel`,
+                    });
+                  }}
+                />
+              ) : tier < PLANS.PLATFORM.id ? (
+                <Link
+                  desktopLabel="Get Unlimited Data"
+                  href="/pricing"
+                  onClick={() => {
+                    ReactGA.event({
+                      category: 'User',
+                      action: `Click Upgrade CTA Exchange Page`,
+                      label: `Funnel`,
+                    });
+                  }}
+                />
+              ) : null}
+            </div>
+          )}
           <Card>
             <div className="controls">
               <div className="control">
@@ -203,36 +233,6 @@ export const ProChartWidget = ({
               </div>
             </div>
           </Card>
-          {tier !== null && (
-            <div className="pricing-link">
-              {!loginContext.isLoggedIn ? (
-                <Link
-                  desktopLabel="Sign Up for 1 Hour Granularity"
-                  href="/register"
-                  onClick={() => {
-                    loginContext.setPostRegisterRedirectUrl(router.asPath);
-                    ReactGA.event({
-                      category: 'User',
-                      action: `Click Sign Up CTA Exchange Page`,
-                      label: `Funnel`,
-                    });
-                  }}
-                />
-              ) : tier < PLANS.PLATFORM.id ? (
-                <Link
-                  desktopLabel="Get Unlimited Data"
-                  href="/pricing"
-                  onClick={() => {
-                    ReactGA.event({
-                      category: 'User',
-                      action: `Click Upgrade CTA Exchange Page`,
-                      label: `Funnel`,
-                    });
-                  }}
-                />
-              ) : null}
-            </div>
-          )}
         </div>
         <div className="pro-chart">
           <ProChartContainer
@@ -263,9 +263,9 @@ export const ProChartWidget = ({
           }
           .controls-card {
             max-height: 75%;
-            min-width: 5%;
             padding-top: 20px;
             padding-left: 5px;
+            width: 11%;
           }
           .controls {
             flex-direction: column;
@@ -273,7 +273,7 @@ export const ProChartWidget = ({
           }
           .control {
             display: flex;
-            align-items: center;
+            flex-direction: column;
             justify-content: space-between;
             font-weight: bold;
             padding-bottom: 10px;
@@ -283,6 +283,7 @@ export const ProChartWidget = ({
           }
           .label {
             width: 50%;
+            padding-bottom: 10px;
           }
           .legend-flows {
             padding-left: 8px;
@@ -295,7 +296,7 @@ export const ProChartWidget = ({
           }
           .exchanges {
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             width: 100%;
           }
           .exchange {
@@ -303,7 +304,6 @@ export const ProChartWidget = ({
             align-items: center;
             cursor: pointer;
             padding-bottom: 5px;
-            padding-left: 35px;
             width: 50%;
           }
           .exchange:hover {
@@ -311,7 +311,6 @@ export const ProChartWidget = ({
             align-items: center;
             cursor: pointer;
             padding-bottom: 5px;
-            padding-left: 35px;
             width: 50%;
             opacity: 0.5;
           }
@@ -331,13 +330,24 @@ export const ProChartWidget = ({
             display: flex;
           }
           .pro-chart {
-            width: 80%;
+            width: 88%;
           }
           .switch {
             padding-top: 10px;
           }
           .pricing-link {
-            padding-top: 30px;
+            padding-bottom: 30px;
+          }
+          @media (min-width: 768px) and (max-width: 1440px) {
+            .controls-card {
+              max-height: 75%;
+              padding-top: 20px;
+              padding-left: 5px;
+              width: 14%;
+            }
+            .pro-chart {
+              width: 85%;
+            }
           }
           @media (min-width: 320px) and (max-width: 767px) {
             .container {
@@ -348,7 +358,7 @@ export const ProChartWidget = ({
               width: 100%;
             }
             .controls-card {
-              padding-top: 10px;
+              width: 100%;
             }
             .controls {
               flex-direction: column;
