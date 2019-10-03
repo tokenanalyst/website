@@ -17,11 +17,11 @@ SimpleProgressBar.propTypes = {
   stripes: PropTypes.bool,
   value: PropTypes.number,
   intent: PropTypes.oneOf([
+    Intent.DANGER,
     Intent.NONE,
     Intent.PRIMARY,
     Intent.SUCCESS,
     Intent.WARNING,
-    Intent.ERROR,
   ]),
 };
 
