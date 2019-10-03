@@ -5,7 +5,7 @@ export const PageHeader = ({ text, rightElement }) => {
   return (
     <>
       <div className="container">
-        <div className="text">{text}</div>
+        <h1>{text}</h1>
         <div className="right-element">{rightElement}</div>
       </div>
       <style jsx>{`
@@ -13,14 +13,14 @@ export const PageHeader = ({ text, rightElement }) => {
           font-family: Space Grotesk;
           display: flex;
           padding: 15px;
-          padding-top: 30px;
-          padding-bottom: 30px;
+          padding-top: 10px;
+          padding-bottom: 10px;
           border-bottom: 1px solid rgba(151, 151, 151, 0.15);
           margin-bottom: 20px;
           margin-left: -10px;
           margin-right: -10px;
         }
-        .text {
+        h1 {
           font-size: 32px;
           font-weight: bold;
           text-align: left;
@@ -38,7 +38,7 @@ export const PageHeader = ({ text, rightElement }) => {
             padding: 30px;
             flex-direction: column;
           }
-          .text {
+          h1 {
             font-size: 32px;
             font-weight: bold;
             text-align: center;

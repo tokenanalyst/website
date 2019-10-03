@@ -11,7 +11,7 @@ const Login = () => {
         <Head>
           <title>TokenAnalyst - Login</title>
         </Head>
-        <div className="header">Login</div>
+        <h1>Login</h1>
         <div className="contents">
           <div className="login-form">
             <LoginWidget />
@@ -37,12 +37,11 @@ const Login = () => {
           align-items: center;
           font-family: Space Grotesk;
         }
-        .header {
+        h1 {
           font-family: Space Grotesk;
           font-size: 32px;
           font-weight: bold;
           padding: 15px;
-          padding-top: 30px;
           text-align: center;
         }
         .register {
