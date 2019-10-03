@@ -114,6 +114,8 @@ export const RegisterWidget = () => {
           `/exchange/[token]/[exchange]`,
           `${loginCtx.postRegisterRedirectUrl}?registered=true`
         );
+      } else {
+        Router.push('/?registered=true');
       }
     } catch (e) {
       if (
