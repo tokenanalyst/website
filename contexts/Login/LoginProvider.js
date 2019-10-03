@@ -29,6 +29,10 @@ export const LoginProvider = ({ children }) => {
 
     if (Cookies.get(COOKIES.tier) === undefined) {
       Cookies.set(COOKIES.tier, -1);
+      Cookies.remove(COOKIES.apiKey);
+      Cookies.remove(COOKIES.loggedInAs);
+      Cookies.remove(COOKIES.loggedInAsUsername);
+      Cookies.remove(COOKIES.loggedInAsUserId);
     }
   });
 
