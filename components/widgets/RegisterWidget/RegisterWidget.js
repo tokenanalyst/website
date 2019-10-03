@@ -140,7 +140,7 @@ export const RegisterWidget = () => {
   return (
     <>
       <div className="container">
-        <div className="header">Register</div>
+        <h1>Register</h1>
         {hasRegistered ? (
           <>
             <Icon
@@ -286,11 +286,10 @@ export const RegisterWidget = () => {
           font-size: 24px;
           padding-bottom: 30px;
         }
-        .header {
+        h1 {
           font-size: 32px;
           font-weight: bold;
           padding: 15px;
-          padding-top: 30px;
           text-align: center;
         }
         .label {

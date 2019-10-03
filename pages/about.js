@@ -8,19 +8,19 @@ const About = () => {
         <Head>
           <title>TokenAnalyst - Company</title>
         </Head>
-        <div className="header">
+        <h1>
           TokenAnalyst is on a mission to bring transparency to the
           decentralized economy
-        </div>
-        <div className="sub-header">
+        </h1>
+        <h2>
           We are building the one place for all your blockchain data needs.
           <br />
           Leading hedge-funds, traders, and researchers use our proprietary data
           to gain unparalleled insights into what's going on in the crypto
           markets
-        </div>
+        </h2>
         <div className="team">
-          <div className="header">Meet the Team</div>
+          <h2>Meet the Team</h2>
           <div className="members">
             <div className="member">
               <img
@@ -410,14 +410,14 @@ const About = () => {
             text-align: center;
             padding-top: 20px;
           }
-          .header {
+          h1 {
             font-family: Space Grotesk;
             font-size: 24px;
             font-weight: bold;
             padding-top: 20px;
             padding-bottom: 20px;
           }
-          .sub-header {
+          h2 {
             font-size: 18px;
           }
           .team {
