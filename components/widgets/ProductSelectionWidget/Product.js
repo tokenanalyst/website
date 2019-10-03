@@ -23,12 +23,12 @@ export const Product = ({
   const userId = Cookies.get('loggedInAsUserId');
 
   const redirectToStripe = async stripeOptions => {
-    const stripe = Stripe(STRIPE.apiKey);
+    const stripe = Stripe(STRIPE.apiTestKey);
 
     const stripeOpt = {
       items: [
         {
-          plan: stripePlan,
+          plan: 'plan_FuFaK78eUjiZ9L',
           quantity: 1,
         },
       ],
@@ -128,49 +128,51 @@ export const Product = ({
           </div>
         </div>
       </Card>
-      <style jsx>{`
-        .container {
-          width: 100%;
-          display: flex;
-        }
-        .pricing {
-          display: flex;
-          flex-direction: column;
-          height: 100%;
-        }
-        .header {
-          font-family: Space Grotesk;
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          align-items: center;
-        }
-        .title {
-          font-size: 28px;
-          font-weight: bold;
-        }
-        .price {
-          font-size: 20px;
-          opacity: 0.4;
-        }
-        .monthly {
-          font-size: 16px;
-        }
-        .body {
-          padding-top: 10px;
-          padding-bottom: 10px;
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-        }
-        .features {
-          padding-top: 4px;
-          padding-bottom: 4px;
-        }
-        .feature {
-          padding-left: 20px;
-        }
-      `}</style>
+      <style jsx>
+        {`
+          .container {
+            width: 100%;
+            display: flex;
+          }
+          .pricing {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+          }
+          .header {
+            font-family: Space Grotesk;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+          }
+          .title {
+            font-size: 28px;
+            font-weight: bold;
+          }
+          .price {
+            font-size: 20px;
+            opacity: 0.4;
+          }
+          .monthly {
+            font-size: 16px;
+          }
+          .body {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+          }
+          .features {
+            padding-top: 4px;
+            padding-bottom: 4px;
+          }
+          .feature {
+            padding-left: 20px;
+          }
+        `}
+      </style>
     </>
   );
 };
