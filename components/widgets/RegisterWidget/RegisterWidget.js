@@ -114,6 +114,13 @@ export const RegisterWidget = () => {
           `/exchange/[token]/[exchange]`,
           `${loginCtx.postRegisterRedirectUrl}?registered=true`
         );
+      } else {
+        ReactGA.event({
+          category: 'User',
+          action: `Registered organically`,
+          label: `Funnel`,
+        });
+        Router.push('/?registered=true');
       }
     } catch (e) {
       if (

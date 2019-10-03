@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { Icon } from '@blueprintjs/core';
 import PropTypes from 'prop-types';
+import ReactGA from 'react-ga';
 
 import { ChartControls } from '../../charts/ChartControls';
 import { CHART_TYPES, CHART_MODES } from '../../../constants/chartTypes';
@@ -154,6 +155,13 @@ export const IoChartWidget = ({ token, exchange, formatter }) => {
                 href="/pricing"
                 desktopLabel="Access historical data"
                 mobileLabel="Historical data"
+                onClick={() =>
+                  ReactGA.event({
+                    category: 'User',
+                    action: `Access historical from IO Chart`,
+                    label: `Funnel`,
+                  })
+                }
               />
             </div>
           </div>
