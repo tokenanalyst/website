@@ -124,7 +124,7 @@ export const ProChartWidget = ({
               ) : tier < PLANS.PLATFORM.id ? (
                 <Link
                   desktopLabel="Get Unlimited Data"
-                  href="/pricing"
+                  href="/pricing?exchange=true"
                   onClick={() => {
                     ReactGA.event({
                       category: 'User',
