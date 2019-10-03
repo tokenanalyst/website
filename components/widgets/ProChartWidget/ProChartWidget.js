@@ -111,7 +111,7 @@ export const ProChartWidget = ({
               {!loginContext.isLoggedIn ? (
                 <Link
                   desktopLabel="Sign Up for 1 Hour Granularity"
-                  href="/register"
+                  href="/register?exchange=true"
                   onClick={() => {
                     loginContext.setPostRegisterRedirectUrl(router.asPath);
                     ReactGA.event({
