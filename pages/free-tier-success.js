@@ -7,7 +7,7 @@ const PurchaseSuccess = () => {
   return (
     <>
       <div className="container">
-        <div className="congratulations">Congratulations!</div>
+        <h1>Congratulations!</h1>
         <div>You have signed up for the Free Tier Plan.</div>
         <div>A confirmation email has been sent to your email address.</div>
         <div>
@@ -30,7 +30,7 @@ const PurchaseSuccess = () => {
           align-items: center;
           padding: 20px;
         }
-        .congratulations {
+        h1 {
           font-weight: bold;
           font-size: 24px;
           padding-bottom: 30px;

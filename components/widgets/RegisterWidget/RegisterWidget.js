@@ -70,6 +70,60 @@ export const RegisterWidget = () => {
     if (isSuccess) {
       setErrorText(null);
       setHasRegistered(true);
+      loginCtx.intercom.setUser(name, username);
+
+      if (
+        loginCtx.paymentData.stripe &&
+        loginCtx.paymentData.stripe.redirectFn
+      ) {
+        ReactGA.event({
+          category: 'User',
+          action: `Registered to make a purchase`,
+          label: `Funnel`,
+        });
+        loginCtx.setPaymentData({ ...loginCtx.paymentData, stripe: null });
+        return loginCtx.paymentData.stripe.redirectFn({
+          customerEmail: username,
+          clientReferenceId: id.toString(),
+        });
+      } else if (loginCtx.paymentData.isFreeTier) {
+        ReactGA.event({
+          category: 'User',
+          action: `Registered to access free tier`,
+          label: `Funnel`,
+        });
+        loginCtx.setPaymentData({ ...loginCtx.paymentData, isFreeTier: false });
+        Router.push('/free-tier-success');
+      } else if (loginCtx.postRegisterRedirectUrl) {
+        ReactGA.event({
+          category: 'User',
+          action: `Registered via Exchange Page CTA`,
+          label: `Funnel`,
+        });
+        Router.push(
+          `/exchange/[token]/[exchange]?tier=0`,
+          `${loginCtx.postRegisterRedirectUrl}?registered=true`
+        );
+      } else {
+        ReactGA.event({
+          category: 'User',
+          action: `Registered organically`,
+          label: `Funnel`,
+        });
+        Router.push('/?registered=true');
+      }
+    } catch (e) {
+      if (
+        e.response &&
+        e.response.data &&
+        e.response.data.message === API_ERROR_MSG.USER_ALREADY_EXISTS
+      ) {
+        setErrorText('You are already registered, please login.');
+      } else {
+        setErrorText(
+          "Please provide valid details and ensure that you haven't already registered"
+        );
+      }
       redirectFn();
     } else {
       setErrorText(errorMsg);
@@ -80,6 +134,7 @@ export const RegisterWidget = () => {
   return (
     <>
       <div className="container">
+        <h1>Register</h1>
         <div className="header">Register</div>
 
         {hasRegistered ? (
@@ -243,6 +298,67 @@ export const RegisterWidget = () => {
           </>
         )}
       </div>
+      <style jsx>{`
+        .container {
+          font-family: Open Sans;
+          padding: 30px;
+          flex-wrap: wrap;
+        }
+        .title {
+          font-weight: bold;
+          font-size: 24px;
+          padding-bottom: 30px;
+        }
+        h1 {
+          font-size: 32px;
+          font-weight: bold;
+          padding: 15px;
+          text-align: center;
+        }
+        .label {
+          font-size: 16px;
+          padding-top: 10px;
+          padding-bottom: 10px;
+        }
+        .input {
+          height: 24px;
+          width: 300px;
+          border: none;
+          border-bottom: 1px solid
+            rgba(${errorText ? colors.primaryRed : '00, 00, 00'});
+          font-size: 18px;
+        }
+        .button {
+          color: white;
+          min-width: 60px;
+          text-align: center;
+          background-color: rgba(${colors.primaryGreen});
+          max-height: 40px;
+          padding: 10px;
+          border-radius: 20px;
+          cursor: pointer;
+          margin-top: 20px;
+        }
+        .error {
+          color: rgba(${colors.primaryRed});
+          padding-top: 10px;
+          max-width: 300px;
+          text-align: center;
+        }
+        .profession {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          padding-top: 15px;
+          width: 250px;
+        }
+        .message {
+          padding-top: 10px;
+          text-align: center;
+        }
+        @media only screen and (max-width: 768px) {
+          .input {
+            width: 200px;
       <style jsx>
         {`
           .container {

@@ -23,6 +23,13 @@ const Compare = () => {
                 href="/pricing"
                 desktopLabel="Access historical data"
                 mobileLabel="Historical data"
+                onClick={() =>
+                  ReactGA.event({
+                    category: 'User',
+                    action: `Access historical from Compare`,
+                    label: `Funnel`,
+                  })
+                }
               />
             ) : (
               <div />

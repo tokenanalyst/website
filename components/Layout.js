@@ -54,6 +54,10 @@ export const Layout = ({ children }) => (
         content="TokenAnalyst is the leading provider of real-time and historical blockchain data."
       />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta
+        name="google-site-verification"
+        content="8zKrdD_6inTAzST2ucgyNW3NMZfGfkAKBz8Qky16lko"
+      />
     </Head>
     <Nav />
     <Newsletter />

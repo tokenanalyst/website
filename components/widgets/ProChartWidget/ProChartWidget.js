@@ -3,7 +3,6 @@ import { Icon } from '@blueprintjs/core';
 import dynamic from 'next/dynamic';
 import ReactGA from 'react-ga';
 import { useRouter } from 'next/router';
-import axios from 'axios';
 import Cookies from 'js-cookie';
 
 import { COOKIES } from '../../../constants/cookies';
@@ -82,30 +81,42 @@ export const ProChartWidget = ({
 
   const loginContext = useContext(LoginContext);
 
-  const [tier, setTier] = useState(null);
-
-  useEffect(() => {
-    const getTier = async () => {
-      const apiKey = Cookies.get(COOKIES.apiKey);
-
-      if (!apiKey) {
-        setTier(PLANS.FREE.id);
-      } else {
-        const result = await axios.get(
-          'https://api.tokenanalyst.io/auth/user/profile',
-          { headers: { 'api-key': apiKey } }
-        );
-        setTier(result.data && result.data.profile);
-      }
-    };
-
-    getTier();
-  }, []);
+  const TIER = Cookies.get(COOKIES.tier);
 
   return (
     <div>
       <div className="container">
         <div className="controls-card">
+          {TIER !== null && (
+            <div className="pricing-link">
+              {!loginContext.isLoggedIn ? (
+                <Link
+                  desktopLabel="Sign Up for 1 Hour Granularity"
+                  href="/register?exchange=true"
+                  onClick={() => {
+                    loginContext.setPostRegisterRedirectUrl(router.asPath);
+                    ReactGA.event({
+                      category: 'User',
+                      action: `Click Sign Up CTA Exchange Page`,
+                      label: `Funnel`,
+                    });
+                  }}
+                />
+              ) : TIER < PLANS.PLATFORM.id ? (
+                <Link
+                  desktopLabel="Get Unlimited Data"
+                  href="/pricing?exchange=true"
+                  onClick={() => {
+                    ReactGA.event({
+                      category: 'User',
+                      action: `Click Upgrade CTA Exchange Page`,
+                      label: `Funnel`,
+                    });
+                  }}
+                />
+              ) : null}
+            </div>
+          )}
           <Card>
             <div className="controls">
               <div className="control">
@@ -203,36 +214,6 @@ export const ProChartWidget = ({
               </div>
             </div>
           </Card>
-          {tier !== null && (
-            <div className="pricing-link">
-              {!loginContext.isLoggedIn ? (
-                <Link
-                  desktopLabel="Sign Up for 1 Hour Granularity"
-                  href="/register"
-                  onClick={() => {
-                    loginContext.setPostRegisterRedirectUrl(router.asPath);
-                    ReactGA.event({
-                      category: 'User',
-                      action: `Click Sign Up CTA Exchange Page`,
-                      label: `Funnel`,
-                    });
-                  }}
-                />
-              ) : tier < PLANS.PLATFORM.id ? (
-                <Link
-                  desktopLabel="Get Unlimited Data"
-                  href="/pricing"
-                  onClick={() => {
-                    ReactGA.event({
-                      category: 'User',
-                      action: `Click Upgrade CTA Exchange Page`,
-                      label: `Funnel`,
-                    });
-                  }}
-                />
-              ) : null}
-            </div>
-          )}
         </div>
         <div className="pro-chart">
           <ProChartContainer
@@ -263,9 +244,9 @@ export const ProChartWidget = ({
           }
           .controls-card {
             max-height: 75%;
-            min-width: 5%;
             padding-top: 20px;
             padding-left: 5px;
+            width: 11%;
           }
           .controls {
             flex-direction: column;
@@ -273,7 +254,7 @@ export const ProChartWidget = ({
           }
           .control {
             display: flex;
-            align-items: center;
+            flex-direction: column;
             justify-content: space-between;
             font-weight: bold;
             padding-bottom: 10px;
@@ -283,6 +264,7 @@ export const ProChartWidget = ({
           }
           .label {
             width: 50%;
+            padding-bottom: 10px;
           }
           .legend-flows {
             padding-left: 8px;
@@ -295,7 +277,7 @@ export const ProChartWidget = ({
           }
           .exchanges {
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             width: 100%;
           }
           .exchange {
@@ -303,7 +285,6 @@ export const ProChartWidget = ({
             align-items: center;
             cursor: pointer;
             padding-bottom: 5px;
-            padding-left: 35px;
             width: 50%;
           }
           .exchange:hover {
@@ -311,7 +292,6 @@ export const ProChartWidget = ({
             align-items: center;
             cursor: pointer;
             padding-bottom: 5px;
-            padding-left: 35px;
             width: 50%;
             opacity: 0.5;
           }
@@ -331,13 +311,24 @@ export const ProChartWidget = ({
             display: flex;
           }
           .pro-chart {
-            width: 80%;
+            width: 88%;
           }
           .switch {
             padding-top: 10px;
           }
           .pricing-link {
-            padding-top: 30px;
+            padding-bottom: 30px;
+          }
+          @media (min-width: 768px) and (max-width: 1440px) {
+            .controls-card {
+              max-height: 75%;
+              padding-top: 20px;
+              padding-left: 5px;
+              width: 14%;
+            }
+            .pro-chart {
+              width: 85%;
+            }
           }
           @media (min-width: 320px) and (max-width: 767px) {
             .container {
@@ -348,7 +339,7 @@ export const ProChartWidget = ({
               width: 100%;
             }
             .controls-card {
-              padding-top: 10px;
+              width: 100%;
             }
             .controls {
               flex-direction: column;

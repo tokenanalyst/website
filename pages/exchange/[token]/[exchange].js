@@ -1,12 +1,14 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
+import Cookies from 'js-cookie';
 
 import { ExchangeMetricsWidget } from '../../../components/widgets/ExchangeMetricsWidget';
 import { IoChartWidget } from '../../../components/widgets/IoChartWidget';
 import { ProChartWidget } from '../../../components/widgets/ProChartWidget';
 import { EXCHANGE_TOKENS } from '../../../constants/exchanges';
 import { NATIVE_TOKENS } from '../../../constants/tokens';
+import { COOKIES } from '../../../constants/cookies';
 
 const Exchange = () => {
   const router = useRouter();
@@ -34,7 +36,7 @@ const Exchange = () => {
                     EXCHANGE_TOKENS[newExchange].indexOf(token) > 0
                       ? token
                       : EXCHANGE_TOKENS[newExchange][0]
-                  }/${newExchange}`
+                  }/${newExchange}?tier=${Cookies.get(COOKIES.tier)}`
                 );
               }}
               onChangeToken={newToken => {
@@ -46,7 +48,11 @@ const Exchange = () => {
             />
             <div className="kaiko">
               Order book data by{' '}
-              <a href="http://kaiko.com" target="_blank" className="link">
+              <a
+                href="https://www.kaiko.com/?rfsn=3222089.6abb9f&utm_source=refersion&utm_medium=affiliate&utm_campaign=3222089.6abb9f"
+                target="_blank"
+                className="link"
+              >
                 Kaiko
               </a>
             </div>

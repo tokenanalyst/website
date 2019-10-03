@@ -8,7 +8,6 @@ import { underSubNav } from '../constants/styles/common-styled-jsx';
 import { TokenSnapshotWidget } from '../components/widgets/TokenSnapshotWidget';
 import { useApi } from '../custom-hooks';
 import { LoadingSpinner } from '../components/LoadingSpinner';
-import { TestimonialsWidget } from '../components/widgets/TestimonialsWidget';
 
 const Exchange = () => {
   const [dataWindow, setDataWindow] = useState(DATA_WINDOWS[0]);
@@ -28,9 +27,9 @@ const Exchange = () => {
       />
       <div className="under-sub-nav">
         <>
-          <div className="section-header">At a glance</div>
+          <h2>At a glance</h2>
           <TokenSnapshotWidget dataWindow={dataWindow} units={units} />
-          <div className="section-header">{dataWindow} Inflows/Outflows</div>
+          <h2>{dataWindow} Inflows/Outflows</h2>
           <div className="table">
             {ioTableData ? (
               <IoTable
@@ -52,13 +51,11 @@ const Exchange = () => {
           margin-left: 5px;
           margin-right: 5px;
         }
-        .section-header {
+        h2 {
           font-family: Space Grotesk;
           font-size: 22px;
           font-weight: bold;
           opacity: 0.4;
-          padding-bottom: 20px;
-          padding-top: 20px;
           padding-left: 10px;
         }
         .spinner {
