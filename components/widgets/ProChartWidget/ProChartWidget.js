@@ -3,7 +3,6 @@ import { Icon } from '@blueprintjs/core';
 import dynamic from 'next/dynamic';
 import ReactGA from 'react-ga';
 import { useRouter } from 'next/router';
-import axios from 'axios';
 import Cookies from 'js-cookie';
 
 import { COOKIES } from '../../../constants/cookies';
@@ -82,31 +81,13 @@ export const ProChartWidget = ({
 
   const loginContext = useContext(LoginContext);
 
-  const [tier, setTier] = useState(null);
-
-  useEffect(() => {
-    const getTier = async () => {
-      const apiKey = Cookies.get(COOKIES.apiKey);
-
-      if (!apiKey) {
-        setTier(PLANS.FREE.id);
-      } else {
-        const result = await axios.get(
-          'https://api.tokenanalyst.io/auth/user/profile',
-          { headers: { 'api-key': apiKey } }
-        );
-        setTier(result.data && result.data.profile);
-      }
-    };
-
-    getTier();
-  }, []);
+  const TIER = Cookies.get(COOKIES.tier);
 
   return (
     <div>
       <div className="container">
         <div className="controls-card">
-          {tier !== null && (
+          {TIER !== null && (
             <div className="pricing-link">
               {!loginContext.isLoggedIn ? (
                 <Link
@@ -121,7 +102,7 @@ export const ProChartWidget = ({
                     });
                   }}
                 />
-              ) : tier < PLANS.PLATFORM.id ? (
+              ) : TIER < PLANS.PLATFORM.id ? (
                 <Link
                   desktopLabel="Get Unlimited Data"
                   href="/pricing?exchange=true"
