@@ -1,5 +1,5 @@
 export const PLAN_NAMES = {
-  FREE: 'Free',
+  // FREE: 'Free',
   PLATFORM: 'Platform',
   PRO: 'Pro',
   ENTERPRISE: 'Enterprise',
@@ -33,17 +33,17 @@ export const TIERS = {
 };
 
 export const PLANS = {
-  FREE: {
-    name: PLAN_NAMES.FREE,
-    price: '$0',
-    features: [
-      'Fundamental Analytics',
-      '90 day daily data + 1 Week hourly data',
-    ],
-    buttonText: 'Get',
-    tier: TIERS['0'],
-    id: 0,
-  },
+  // FREE: {
+  //   name: PLAN_NAMES.FREE,
+  //   price: '$0',
+  //   features: [
+  //     'Fundamental Analytics',
+  //     '90 day daily data & 1 Week hourly data',
+  //   ],
+  //   buttonText: 'Get',
+  //   tier: TIERS['0'],
+  //   id: 0,
+  // },
   PLATFORM: {
     name: PLAN_NAMES.PLATFORM,
     price: '$49',
@@ -64,13 +64,12 @@ export const PLANS = {
     features: [
       'Full Historical Data',
       'Real-Time Updates',
-      'Access via API, CSV, and Web Platform',
-      '50+ Assets and 70+ Metrics',
-      '70+ Metrics',
+      'Access via API, CSV, & Web Platform',
+      '50+ Assets & 70+ Metrics',
       'Exchange Flows, Miner Flows, Whale Balances',
       'Stablecoin Mints & Burns, Supply & Demand',
       'Smart Contract & DeFi Metrics',
-      'Raw transaction and block level data',
+      'Raw transaction & block level data',
     ],
     buttonText: 'Purchase',
     tier: TIERS['2'],
@@ -82,10 +81,10 @@ export const PLANS = {
     name: PLAN_NAMES.ENTERPRISE,
     price: '-',
     features: [
-      'All Pro +',
-      'World’s Fastest BTC Flow WebSocket',
+      'Complete Data Access',
+      'World’s Fastest Bitcoin Websocket',
       'Custom Metrics Such as Miner to Exchange Flows',
-      'Transaction Level Flow Data for Modeling + Backtesting',
+      'Transaction Level Flow Data for Modeling & Backtesting',
       'Slack/Telegram Engineering Support',
     ],
     buttonText: 'Contact Us',
@@ -96,13 +95,13 @@ export const PLANS = {
 };
 
 export const TEST_PLANS = {
-  FREE: {
-    name: PLAN_NAMES.FREE,
-    price: '$0',
-    features: ['Fundamental Analytics', '90 Day Data', 'CSV & API'],
-    buttonText: 'Get',
-    tier: -1,
-  },
+  // FREE: {
+  //   name: PLAN_NAMES.FREE,
+  //   price: '$0',
+  //   features: ['Fundamental Analytics', '90 Day Data', 'CSV & API'],
+  //   buttonText: 'Get',
+  //   tier: -1,
+  // },
   PLATFORM: {
     name: PLAN_NAMES.PLATFORM,
     price: '$50',

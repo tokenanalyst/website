@@ -127,17 +127,17 @@ export const Product = ({
                           emitProductEvent(name);
                           window.location = 'mailto:info@tokenanalyst.io';
                         }
-                      : name === PLAN_NAMES.FREE
-                      ? () => {
-                          emitProductEvent(name);
-                          if (!loginCtx.isLoggedIn) {
-                            loginCtx.setPaymentData({
-                              isFreeTier: true,
-                            });
-                          }
-                          return Router.push('/register');
-                        }
-                      : async () => {
+                      : // : name === PLAN_NAMES.FREE
+                        // ? () => {
+                        //     emitProductEvent(name);
+                        //     if (!loginCtx.isLoggedIn) {
+                        //       loginCtx.setPaymentData({
+                        //         isFreeTier: true,
+                        //       });
+                        //     }
+                        //     return Router.push('/register');
+                        //   }
+                        async () => {
                           emitProductEvent(name);
                           if (!loginCtx.isLoggedIn) {
                             loginCtx.setPaymentData({

@@ -24,7 +24,7 @@ export const SimpleButton = ({
       {`
         div > :global(.bp3-button:not([class*='bp3-intent-'])) {
           background-color: rgba(${colors[background]}, 1);
-          color: ${(background === PRIMARY_GREEN) | (background === PRIMARY_RED)
+          color: ${background === PRIMARY_GREEN || background === PRIMARY_RED
             ? 'white'
             : 'black'};
           min-width: 110px;
