@@ -42,7 +42,7 @@ export const PLANS = {
     ],
     buttonText: 'Purchase',
     tier: TIERS['1'],
-    stripePlan: 'plan_FuFH6oh6AGeUl0',
+    stripePlan: 'plan_FvkdK0jbdCnu1d',
     isNew: true,
     id: 1,
   },
