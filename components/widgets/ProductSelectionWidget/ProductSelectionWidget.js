@@ -8,29 +8,38 @@ export const ProductSelectionWidget = () => {
     <>
       <div className="container">
         {PRODUCTS.map(
-          ({ name, price, features, buttonText, stripePlan }, index) => (
-            <React.Fragment key={name}>
+          ({ name, price, features, buttonText, stripePlan, isNew }) => (
+            <div className="product" key={name}>
               <Product
                 name={name}
                 price={price}
                 features={features}
                 buttonText={buttonText}
                 stripePlan={stripePlan}
+                isNew={isNew}
               />
-            </React.Fragment>
+            </div>
           )
         )}
       </div>
       <style jsx>{`
         .container {
-          display: flex;
+          font-family: Open Sans;
           flex-direction: row;
+          display: flex;
+          justify-content: space-between;
+        }
+        .product {
+          margin: 5px;
+          display: flex;
+          width: 100%;
+          flex-grow: 1;
+          font-family: Open Sans;
+          align-content: space-between;
         }
         @media only screen and (max-width: 768px) {
           .container {
             flex-direction: column;
-            width: 100%;
-            padding-top: 10px;
           }
         }
       `}</style>

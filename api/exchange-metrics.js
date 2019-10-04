@@ -1,60 +1,31 @@
 const url = require('url');
-const moment = require('moment');
 
 const { API_ERROR_MSG } = require('../constants/apiErrors');
-const isAuthorised = require('./auth/isAuthorised');
+const getUserAuth = require('./auth/getUserAuth');
 const TA = require('./utils/ta-api-node/ta');
 const { NATIVE_TOKENS, STABLE_TOKENS } = require('../constants/tokens');
-const { TIME_WINDOWS } = require('../constants/filters');
-const { filterSeriesByExchange } = require('./utils/filterSeriesByExchange');
-const { makeNetFlowSeries } = require('./utils/makeNetFlowSeries');
+const filterSeriesByExchange = require('./utils/filterSeriesByExchange');
+const makeNetFlowSeries = require('./utils/makeNetFlowSeries');
+const makeUnixtimeLimit = require('./utils/makeUnixtimeLimit');
+const filterSeriesByTime = require('./utils/filterSeriesByTime');
 
 module.exports = async (req, res) => {
   const urlParts = url.parse(req.url, true);
   const { token, exchange, timeWindow, from_date, to_date } = urlParts.query;
-  const isUnlimited =
-    req.cookies.apiKey && (await isAuthorised(req.cookies.apiKey));
   const FORMAT = 'json';
   const PUBLIC_API_URL = 'https://api.tokenanalyst.io/analytics';
   const { ETH, BTC } = NATIVE_TOKENS;
-  const NINETY_DAYS_IN_HRS = '2160';
-
-  let amountOfTimeUnits = '90';
-
-  const limitDataForFreeUsers = result => {
-    if (isUnlimited) {
-      return result;
-    }
-
-    const ninetyDaysAgo = moment()
-      .subtract(90, 'days')
-      .valueOf();
-
-    const filterSerie = series =>
-      series
-        .filter(item => item)
-        .filter(item => moment(item.date).valueOf() > ninetyDaysAgo);
-
-    const { inflow, netflow, outflow, price, overall } = result;
-
-    return {
-      inflow: filterSerie(inflow),
-      outflow: filterSerie(outflow),
-      netflow: filterSerie(netflow),
-      price: filterSerie(price),
-      overall,
-    };
-  };
-
-  if (timeWindow === TIME_WINDOWS.oneHour) {
-    amountOfTimeUnits = NINETY_DAYS_IN_HRS;
-  }
 
   if (!token || !exchange || !timeWindow) {
-    return res
-      .status(400)
-      .send({ message: API_ERROR_MSG.TOKEN_EXCHANGE_MISSING });
+    return res.status(400).send({ message: API_ERROR_MSG.PARAMS_MISSING });
   }
+
+  const { userData } = await getUserAuth(req.cookies.apiKey);
+
+  const tierTimeLimit = makeUnixtimeLimit(
+    timeWindow,
+    userData.tier.timeLimits[timeWindow]
+  );
 
   const privateApi = TA({ apiKey: process.env.API_KEY });
 
@@ -69,10 +40,6 @@ module.exports = async (req, res) => {
       exchange,
       window: timeWindow,
     };
-
-    if (!isAuthorised) {
-      baseParams = { ...baseParams, limit: amountOfTimeUnits };
-    }
 
     if (direction) {
       baseParams = { ...baseParams, direction };
@@ -159,19 +126,18 @@ module.exports = async (req, res) => {
       to_date
     );
 
-    const filteredOverall = filterSeriesByExchange(
-      publicApiResponse.data,
-      exchange
-    )
-
     return res.send({
-      ta_response: limitDataForFreeUsers({
-        inflow: filteredInflow,
-        outflow: filteredOutflow,
-        netflow: filteredNetFlow,
-        overall: filteredOverall,
-        price: filteredPrice,
-      }),
+      ta_response: {
+        inflow: filterSeriesByTime(filteredInflow, tierTimeLimit),
+        outflow: filterSeriesByTime(filteredOutflow, tierTimeLimit),
+        netflow: filterSeriesByTime(filteredNetFlow, tierTimeLimit),
+        overall: publicApiResponse.data.filter(
+          item =>
+            item.token === token &&
+            item.exchange.toLowerCase() === exchange.toLowerCase()
+        ),
+        price: filterSeriesByTime(filteredPrice, tierTimeLimit),
+      },
     });
   }
 
@@ -183,15 +149,19 @@ module.exports = async (req, res) => {
   );
 
   return res.send({
-    ta_response: limitDataForFreeUsers({
-      inflow: inflowTxnCountApiResponse.data,
-      outflow: outflowTxnCountApiResponse.data,
-      netflow,
-      overall: filterSeriesByExchange(
-        publicApiResponse.data,
-        exchange
+    ta_response: {
+      inflow: filterSeriesByTime(inflowTxnCountApiResponse.data, tierTimeLimit),
+      outflow: filterSeriesByTime(
+        outflowTxnCountApiResponse.data,
+        tierTimeLimit
       ),
-      price: tokenPriceApiResponse.data,
-    }),
+      netflow: filterSeriesByTime(netflow, tierTimeLimit),
+      overall: publicApiResponse.data.filter(
+        item =>
+          item.token === token &&
+          item.exchange.toLowerCase() === exchange.toLowerCase()
+      ),
+      price: filterSeriesByTime(tokenPriceApiResponse.data, tierTimeLimit),
+    },
   });
 };

@@ -12,7 +12,7 @@ import { StableCoinTable } from '../components/tables/StableCoinTable';
 import { LoadingSpinner } from '../components/LoadingSpinner';
 import { PageHeader } from '../components/PageHeader';
 import { PageSection } from '../components/PageSection';
-import { PricingLink } from '../components/PricingLink';
+import { Link } from '../components/Link';
 
 // lightweight-charts must not be imported on the server (Bang!)
 const SimpleChart = dynamic(
@@ -63,7 +63,23 @@ const StableCoins = () => {
         <Head>
           <title>TokenAnalyst - Stablecoins</title>
         </Head>
-        <PageHeader text={'Stablecoins'} rightElement={<PricingLink />} />
+        <PageHeader
+          text={'Stablecoins'}
+          rightElement={
+            <Link
+              href="/pricing"
+              desktopLabel="Access historical data"
+              mobileLabel="Historical data"
+              onClick={() =>
+                ReactGA.event({
+                  category: 'User',
+                  action: `Access historical from Stablecoins`,
+                  label: `Funnel`,
+                })
+              }
+            />
+          }
+        />
       </div>
       <div className="container">
         <div className="charts">

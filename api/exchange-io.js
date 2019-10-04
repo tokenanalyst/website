@@ -1,5 +1,6 @@
-import axios from 'axios';
-import { setResponseCache } from './utils/setResponseCache';
+const axios = require('axios');
+
+const setResponseCache = require('./utils/setResponseCache');
 
 module.exports = async (_, res) => {
   const { data } = await axios.get(

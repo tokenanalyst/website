@@ -1,12 +1,14 @@
 /* eslint-disable import/prefer-default-export */
 import PropTypes from 'prop-types';
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import dynamic from 'next/dynamic';
+
 import tvData from './services/tvData';
 import taData from './services/taData';
 import { TRADINVIEW_DEFAULT_OPTIONS, KAIKO_TIME_FRAMES, KAIKO } from './const';
 import candlesData from './services/candlesData';
 import { makeStudiesCb } from './utils';
+import { LoginContext } from '../../../contexts/Login';
 
 const ProChart = dynamic(
   () => import('../../charts/ProChart').then(mod => mod.default),
@@ -30,11 +32,18 @@ export const ProChartContainer = ({
   const [isLoading, setIsLoading] = useState(true);
   const tokenAnalystService = useRef(taData(taDataArgs));
   const kaikoService = useRef(candlesData(KAIKO));
+  const loginCtx = useContext(LoginContext);
+
   const tradingViewOptions = {
     ...TRADINVIEW_DEFAULT_OPTIONS,
     timeframe: timeFrame,
     interval,
-    datafeed: tvData(kaikoService.current, exchangeName, symbols),
+    datafeed: tvData(
+      kaikoService.current,
+      exchangeName,
+      symbols,
+      loginCtx.isLoggedIn
+    ),
     symbol: `${symbols[0]}/${symbols[1]}`,
     time_frames: KAIKO_TIME_FRAMES,
     debug: false,
@@ -52,7 +61,7 @@ export const ProChartContainer = ({
     kaikoService.current.ta = tokenAnalystService.current;
 
     setIsLoading(false);
-  }, [exchangeName, kaikoService, symbols]);
+  }, [kaikoService, exchangeName, symbols]);
 
   return (
     <>

@@ -1,7 +1,9 @@
-import axios from 'axios';
+const axios = require('axios');
 
-import { STABLE_TOKENS } from '../constants/tokens';
-import { setResponseCache } from './utils/setResponseCache';
+const { STABLE_TOKENS } = require('../constants/tokens');
+const getUserAuth = require('./auth/getUserAuth');
+const filterSeriesByTime = require('./utils/filterSeriesByTime');
+const makeUnixtimeLimit = require('./utils/makeUnixtimeLimit');
 
 const Stablecoins = [
   STABLE_TOKENS.USDT_OMNI,
@@ -13,11 +15,21 @@ const Stablecoins = [
   STABLE_TOKENS.GUSD,
 ];
 
+const PARAMS = { window: '1d', format: 'json' };
+
 module.exports = async (req, res) => {
+  const { isAuthorised, userData } = await getUserAuth(req.cookies.apiKey);
+
+  const tierTimeLimit = makeUnixtimeLimit(
+    PARAMS.window,
+    userData.tier.timeLimits[PARAMS.window],
+    isAuthorised
+  );
+
   const apiResponses = Stablecoins.map(
     async stablecoin =>
       await axios.get(
-        `https://api.tokenanalyst.io/analytics/private/v1/token_volume_window_historical/last?key=${process.env.API_KEY}&format=json&token=${stablecoin}&window=1d&limit=30`
+        `https://api.tokenanalyst.io/analytics/private/v1/token_volume_window_historical/last?key=${process.env.API_KEY}&format=${PARAMS.format}&token=${stablecoin}&window=${PARAMS.window}`
       )
   );
 
@@ -25,11 +37,8 @@ module.exports = async (req, res) => {
 
   const response = Stablecoins.map((stablecoin, index) => ({
     name: stablecoin,
-    data: results[index].data,
+    data: filterSeriesByTime(results[index].data, tierTimeLimit),
   }));
 
-  setResponseCache().map(cacheHeader => {
-    res.setHeader(...cacheHeader);
-  });
   res.send({ ta_response: response });
 };

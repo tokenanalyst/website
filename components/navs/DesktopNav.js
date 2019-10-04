@@ -41,6 +41,8 @@ export const DesktopNav = () => {
     }, 500);
   };
 
+  const tierParamString = `tier=${Cookies.get(COOKIES.tier)}`;
+
   return (
     <>
       <div className="container">
@@ -102,6 +104,9 @@ export const DesktopNav = () => {
             </div>
 
             <div className={'links-products'}>
+              <a href="https://websockets.tokenanalyst.io/" target="_blank">
+                WebSocket
+              </a>
               <a href="https://research.tokenanalyst.io/" target="_blank">
                 Research
               </a>
@@ -289,7 +294,7 @@ export const DesktopNav = () => {
               <div>
                 <Link
                   href="/exchange/[token]/[exchange]"
-                  as="/exchange/BTC/Binance"
+                  as={`/exchange/BTC/Binance?${tierParamString}`}
                   passHref
                 >
                   <div
@@ -302,7 +307,10 @@ export const DesktopNav = () => {
                     }}
                     className={classNames(
                       'desktop-sub-link',
-                      setLinkActive(asPath, '/exchange/BTC/Binance')
+                      setLinkActive(
+                        asPath,
+                        `/exchange/BTC/Binance?${tierParamString}`
+                      )
                     )}
                   >
                     BTC Binance
@@ -312,7 +320,7 @@ export const DesktopNav = () => {
               <div>
                 <Link
                   href="/exchange/[token]/[exchange]"
-                  as="/exchange/BTC/Bitstamp"
+                  as={`/exchange/BTC/Bitstamp?${tierParamString}`}
                   passHref
                 >
                   <div
@@ -325,7 +333,10 @@ export const DesktopNav = () => {
                     }}
                     className={classNames(
                       'desktop-sub-link',
-                      setLinkActive(asPath, '/exchange/BTC/Bitstamp')
+                      setLinkActive(
+                        asPath,
+                        `/exchange/BTC/Bitstamp?${tierParamString}`
+                      )
                     )}
                   >
                     BTC Bitstamp
@@ -335,7 +346,7 @@ export const DesktopNav = () => {
               <div>
                 <Link
                   href="/exchange/[token]/[exchange]"
-                  as="/exchange/ETH/Bitfinex"
+                  as={`/exchange/ETH/Bitfinex?${tierParamString}`}
                   passHref
                 >
                   <div
@@ -348,7 +359,10 @@ export const DesktopNav = () => {
                     }}
                     className={classNames(
                       'desktop-sub-link',
-                      setLinkActive(asPath, '/exchange/ETH/Bitfinex')
+                      setLinkActive(
+                        asPath,
+                        `/exchange/ETH/Bitfinex?${tierParamString}`
+                      )
                     )}
                   >
                     ETH Bitfinex
@@ -358,7 +372,7 @@ export const DesktopNav = () => {
               <div>
                 <Link
                   href="/exchange/[token]/[exchange]"
-                  as="/exchange/ETH/Bittrex"
+                  as={`/exchange/ETH/Bittrex?${tierParamString}`}
                   passHref
                 >
                   <div
@@ -371,7 +385,10 @@ export const DesktopNav = () => {
                     }}
                     className={classNames(
                       'desktop-sub-link',
-                      setLinkActive(asPath, '/exchange/ETH/Bittrex')
+                      setLinkActive(
+                        asPath,
+                        `/exchange/ETH/Bittrex?${tierParamString}`
+                      )
                     )}
                   >
                     ETH Bittrex

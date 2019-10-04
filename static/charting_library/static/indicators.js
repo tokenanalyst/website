@@ -196,7 +196,7 @@ __customIndicators = [
         this._input = inputCallback;
         // console.warn(context);
 
-        var symbol = '#NET_FLOWS';
+        var symbol = '#FLOWS';
         this._context.new_sym(
           symbol,
           PineJS.Std.period(this._context),

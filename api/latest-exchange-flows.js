@@ -1,10 +1,10 @@
-import axios from 'axios';
-import url from 'url';
-import { API_ERROR_MSG } from '../constants/apiErrors';
+const axios = require('axios');
+const url = require('url');
 
-import { DATA_WINDOWS } from '../constants/filters';
-import { formatApiError } from './utils/formatApiError';
-import { setResponseCache } from './utils/setResponseCache';
+const { API_ERROR_MSG } = require('../constants/apiErrors');
+const { DATA_WINDOWS } = require('../constants/filters');
+const formatApiError = require('./utils/formatApiError');
+const setResponseCache = require('./utils/setResponseCache');
 
 module.exports = async (req, res) => {
   const urlParts = url.parse(req.url, true);

@@ -74,6 +74,11 @@ export const MobileNav = () => {
             </a>
           </div>
           <div className="mobile-link">
+            <a href="https://websockets.tokenanalyst.io/" target="_blank">
+              WebSocket
+            </a>
+          </div>
+          <div className="mobile-link">
             <a href="https://docs.tokenanalyst.io/#/api" target="_blank">
               API
             </a>

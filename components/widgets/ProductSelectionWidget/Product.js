@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import ReactGA from 'react-ga';
 import Router from 'next/router';
 import Cookies from 'js-cookie';
-import { Card } from '@blueprintjs/core';
+import { Card, Elevation } from '@blueprintjs/core';
 
 import { LoginContext } from '../../../contexts/Login';
 import { STRIPE } from '../../../constants/stripe';
@@ -16,7 +16,7 @@ export const Product = ({
   features,
   buttonText,
   stripePlan,
-  isMaxWidth,
+  isNew,
 }) => {
   const loginCtx = useContext(LoginContext);
   const username = Cookies.get('loggedInAsUsername');
@@ -24,6 +24,7 @@ export const Product = ({
 
   const redirectToStripe = async stripeOptions => {
     const stripe = Stripe(STRIPE.apiKey);
+
     const stripeOpt = {
       items: [
         {
@@ -49,10 +50,26 @@ export const Product = ({
 
   return (
     <>
-      <div className="container">
-        <Card>
+      <Card
+        interactive={false}
+        elevation={Elevation.ZERO}
+        style={{ width: '100%' }}
+      >
+        <div className="pricing">
           <div className="header">
-            <div className="title">{name}</div>
+            <div className="title">
+              {name}
+              {isNew && (
+                <img
+                  src="/static/png/new.png"
+                  style={{
+                    width: '30px',
+                    marginBottom: '10px',
+                    marginLeft: '2px',
+                  }}
+                />
+              )}
+            </div>
             <div className="price">
               {price ? (
                 <>
@@ -61,59 +78,65 @@ export const Product = ({
               ) : null}
             </div>
           </div>
-          <div className="body">
-            <div className="features">
-              <ul className="feature">
-                {features.map(feature => (
-                  <li key={feature}>{feature}</li>
-                ))}
-              </ul>
+          <div className="description">
+            <div className="body">
+              <div className="features">
+                <ul className="feature">
+                  {features.map(feature => (
+                    <li key={feature}>{feature}</li>
+                  ))}
+                </ul>
+              </div>
+              <div className="button">
+                <SimpleButton
+                  background={PRIMARY_GREEN}
+                  onClick={
+                    name === PLAN_NAMES.ENTERPRISE
+                      ? () => {
+                          emitProductEvent(name);
+                          window.location = 'mailto:info@tokenanalyst.io';
+                        }
+                      : name === PLAN_NAMES.FREE
+                      ? () => {
+                          emitProductEvent(name);
+                          if (!loginCtx.isLoggedIn) {
+                            loginCtx.setPaymentData({
+                              isFreeTier: true,
+                            });
+                          }
+                          return Router.push('/register');
+                        }
+                      : async () => {
+                          emitProductEvent(name);
+                          if (!loginCtx.isLoggedIn) {
+                            loginCtx.setPaymentData({
+                              stripe: { redirectFn: redirectToStripe },
+                            });
+                            return Router.push('/login');
+                          }
+                          await redirectToStripe({
+                            customerEmail: username,
+                            clientReferenceId: userId.toString(),
+                          });
+                        }
+                  }
+                >
+                  {buttonText}
+                </SimpleButton>
+              </div>
             </div>
-            <SimpleButton
-              backgrounColor={PRIMARY_GREEN}
-              onClick={
-                name === PLAN_NAMES.ENTERPRISE
-                  ? () => {
-                      emitProductEvent(name);
-                      window.location = 'mailto:info@tokenanalyst.io';
-                    }
-                  : name === PLAN_NAMES.FREE
-                  ? () => {
-                      emitProductEvent(name);
-                      if (!loginCtx.isLoggedIn) {
-                        loginCtx.setPaymentData({
-                          isFreeTier: true,
-                        });
-                      }
-                      return Router.push('/register');
-                    }
-                  : async () => {
-                      emitProductEvent(name);
-                      if (!loginCtx.isLoggedIn) {
-                        loginCtx.setPaymentData({
-                          stripe: { redirectFn: redirectToStripe },
-                        });
-                        return Router.push('/login');
-                      }
-                      await redirectToStripe({
-                        customerEmail: username,
-                        clientReferenceId: userId.toString(),
-                      });
-                    }
-              }
-            >
-              {buttonText}
-            </SimpleButton>
           </div>
-        </Card>
-      </div>
+        </div>
+      </Card>
       <style jsx>{`
         .container {
-          font-family: Open Sans;
+          width: 100%;
+          display: flex;
+        }
+        .pricing {
           display: flex;
           flex-direction: column;
-          width: 33%;
-          margin: 5px;
+          height: 100%;
         }
         .header {
           font-family: Space Grotesk;
@@ -146,26 +169,6 @@ export const Product = ({
         }
         .feature {
           padding-left: 20px;
-        }
-        @media (min-width: 1400px) and (max-width: 1799px) {
-          .container {
-            min-width: 450px;
-          }
-        }
-        @media only screen and (max-width: 768px) {
-          .container {
-            width: 100%;
-            min-width: 95%;
-            padding-right: 8px;
-          }
-          .features {
-            padding-right: 2px;
-            padding-top: 2px;
-            padding-bottom: 2px;
-          }
-          .feature {
-            padding-left: 20px;
-          }
         }
       `}</style>
     </>

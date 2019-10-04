@@ -20,7 +20,6 @@ module.exports = endpointCallFn => async (taInstance, params) => {
   try {
     response = await axios.get(apiCall);
   } catch (err) {
-    console.log(err);
     if (err.response) {
       const {
         response: { data, status },

@@ -1,16 +1,30 @@
 import PropTypes from 'prop-types';
-import React, { useRef } from 'react';
-import Router from 'next/router';
-import { Icon, HTMLSelect, Button, Switch } from '@blueprintjs/core';
+import React, { useRef, useContext, useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import { Icon, HTMLSelect, Button, Switch, Card } from '@blueprintjs/core';
 import dynamic from 'next/dynamic';
 import ReactGA from 'react-ga';
 
+import Cookies from 'js-cookie';
+
 import { ProChartContainer } from './ProChartContainer.js';
-import { QUOTE_TOKENS } from '../../../constants/exchanges';
+import {
+  QUOTE_TOKENS,
+  EXCHANGE_NAMES,
+  EXCHANGE_TOKENS,
+  EXCHANGE_DOLLARS,
+} from '../../../constants/exchanges';
+import { COOKIES } from '../../../constants/cookies';
+import { PLANS } from '../../../constants/plans';
+
+import { EXCHANGE_IMAGES } from '../../../constants/image-paths';
+import { colors } from '../../../constants/styles/colors';
+import { Link } from '../../Link';
+import { LoginContext } from '../../../contexts/Login';
 
 const TOOLTIP_TEXT = (
   <>
-    <div>Below is the legend for each of the charts displayed</div>
+    <div>Below is the legend for each of the charts displayed:</div>
     <div>
       All units are displayed in terms of the selected asset except for the
       Price which is displayed in USD, USDT or appropriate stablecoin
@@ -76,98 +90,143 @@ export const ProChartWidget = ({
 
   const symbols = makeSymbols(selectedToken, selectedExchange, QUOTE_TOKENS);
 
+  const router = useRouter();
+
+  const loginContext = useContext(LoginContext);
+
+  const TIER = Cookies.get(COOKIES.tier);
+
   return (
     <div>
       <div className="container">
-        <div className="controls">
-          <div className="controls-lhs">
-            <div className="control">
-              <div className="label">Token:</div>
-              <HTMLSelect
-                className="ta-select"
-                options={supportedTokens}
-                onChange={() => {
-                  ReactGA.event({
-                    category: 'User',
-                    action: `Pro Chart change token ${event.target.value}`,
-                    label: `Pro Charts`,
-                  });
-                  onChangeToken(event.target.value);
-                }}
-                value={selectedToken}
-                id="exchange-select"
-              />
+        <div className="controls-card">
+          {TIER !== null && (
+            <div className="pricing-link">
+              {!loginContext.isLoggedIn ? (
+                <Link
+                  desktopLabel="Sign Up for 1 Hour Granularity"
+                  href="/register?exchange=true"
+                  onClick={() => {
+                    loginContext.setPostRegisterRedirectUrl(router.asPath);
+                    ReactGA.event({
+                      category: 'User',
+                      action: `Click Sign Up CTA Exchange Page`,
+                      label: `Funnel`,
+                    });
+                  }}
+                />
+              ) : TIER < PLANS.PLATFORM.id ? (
+                <Link
+                  desktopLabel="Get Unlimited Data"
+                  href="/pricing?exchange=true"
+                  onClick={() => {
+                    ReactGA.event({
+                      category: 'User',
+                      action: `Click Upgrade CTA Exchange Page`,
+                      label: `Funnel`,
+                    });
+                  }}
+                />
+              ) : null}
             </div>
-            <div className="control">
-              <div className="label">Exchange:</div>
-              <HTMLSelect
-                className="ta-select"
-                options={supportedExchanges}
-                onChange={() => {
-                  ReactGA.event({
-                    category: 'User',
-                    action: `Pro Chart change exchange ${event.target.value}`,
-                    label: `Pro Charts`,
-                  });
-                  onChangeExchange(event.target.value);
-                }}
-                value={selectedExchange}
-                id="exchange-select"
-              />
-            </div>
-            <div className="control">
-              <div className="label">Net Flows:</div>
-              <div className="switch">
-                <Switch
+          )}
+          <Card>
+            <div className="controls">
+              <div className="control">
+                <div className="label">Token:</div>
+                <HTMLSelect
+                  className="token-select"
+                  options={EXCHANGE_TOKENS[exchange]}
                   onChange={() => {
                     ReactGA.event({
                       category: 'User',
-                      action: `Pro Chart toggle netflow`,
+                      action: `Pro Chart change token ${event.target.value}`,
                       label: `Pro Charts`,
                     });
-                    if (!studies.current.transactions.entityId) {
-                      studies.current.transactions.entityId = tvInstance.current
-                        .chart()
-                        .createStudy(STUDIES.NET_FLOWS, false, true);
-                    } else {
-                      tvInstance.current
-                        .chart()
-                        .removeEntity(studies.current.transactions.entityId);
-                      studies.current.transactions.entityId = null;
-                    }
+                    onChangeToken(event.target.value);
                   }}
-                  defaultChecked
-                  large
+                  value={token}
                 />
               </div>
-            </div>
-            <div className="control">
-              <SimpleToolTip
-                dataFor={'header-tooltip'}
-                toolTip={TOOLTIP_TEXT}
-                type="dark"
-                effect="solid"
-              >
-                <div data-tip data-for="header-tooltip">
-                  <Icon icon="info-sign" color="gray" />
+              <div className="control">
+                <div className="exchanges">
+                  <div className="label">Exchange:</div>
+                  <div className="exchange-list">
+                    {Object.keys(EXCHANGE_NAMES)
+                      .filter(
+                        exchangeName => exchangeName !== EXCHANGE_NAMES.Okex
+                      )
+                      .map(exchangeName => (
+                        <div
+                          key={exchangeName}
+                          className="exchange"
+                          onClick={() => {
+                            onChangeExchange(exchangeName);
+                            ReactGA.event({
+                              category: 'User',
+                              action: `Pro Chart change exchange ${exchangeName}`,
+                              label: `Pro Charts`,
+                            });
+                          }}
+                        >
+                          <img
+                            src={`/static/png/${EXCHANGE_IMAGES[exchangeName]}`}
+                            className="exchange-image"
+                          />
+                          <span
+                            className={`${
+                              exchangeName === exchange
+                                ? 'exchange-label-selected'
+                                : 'exchange-label'
+                            }`}
+                          >
+                            {EXCHANGE_NAMES[exchangeName]}
+                          </span>
+                        </div>
+                      ))}
+                  </div>
                 </div>
-              </SimpleToolTip>
+              </div>
+              <div className="control">
+                <div className="label">Net Flows:</div>
+                <div className="switch">
+                  <Switch
+                    onChange={() => {
+                      ReactGA.event({
+                        category: 'User',
+                        action: `Pro Chart toggle netflow`,
+                        label: `Pro Charts`,
+                      });
+                      if (!studies.current.transactions.entityId) {
+                        studies.current.transactions.entityId = tvInstance.current
+                          .chart()
+                          .createStudy(STUDIES.NET_FLOWS, false, true);
+                      } else {
+                        tvInstance.current
+                          .chart()
+                          .removeEntity(studies.current.transactions.entityId);
+                        studies.current.transactions.entityId = null;
+                      }
+                    }}
+                    defaultChecked
+                    large
+                  />
+                </div>
+              </div>
+              <div className="control">
+                <SimpleToolTip
+                  dataFor="header-tooltip"
+                  toolTip={TOOLTIP_TEXT}
+                  type="dark"
+                  effect="solid"
+                >
+                  <div data-tip data-for="header-tooltip">
+                    <Icon icon="info-sign" color="gray" />
+                  </div>
+                </SimpleToolTip>
+              </div>
             </div>
-          </div>
-          <div className="api-button">
-            <Button
-              onClick={() => {
-                ReactGA.event({
-                  category: 'User',
-                  action: `Click get API Access Button`,
-                  label: `Pro Charts`,
-                });
-                Router.push('/pricing');
-              }}
-            >
-              Get API Access
-            </Button>
-          </div>
+          </Card>
         </div>
         <div className="pro-chart">
           <ProChartContainer
@@ -192,29 +251,33 @@ export const ProChartWidget = ({
         {`
           .container {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             padding-right: 20px;
-            justify-content: flex-start;
+            justify-content: space-between;
+          }
+          .controls-card {
+            max-height: 75%;
+            padding-top: 20px;
+            padding-left: 5px;
+            width: 11%;
           }
           .controls {
-            flex-direction: row;
-            display: flex;
-            padding: 20px;
-            justify-content: space-between;
-            min-width: 100%;
-          }
-          .controls-lhs {
+            flex-direction: column;
             display: flex;
           }
           .control {
-            padding: 5px;
             display: flex;
-            align-items: center;
+            flex-direction: column;
+            justify-content: space-between;
             font-weight: bold;
+            padding-bottom: 10px;
+          }
+          .token-select {
+            width: 120px;
           }
           .label {
-            padding-right: 10px;
-            padding-left: 5px;
+            width: 50%;
+            padding-bottom: 10px;
           }
           .legend-flows {
             padding-left: 8px;
@@ -222,36 +285,81 @@ export const ProChartWidget = ({
           .legend-flows-inflow {
             color: #7cfc00;
           }
-
           .legend-flows-outflow {
             color: #ff0000;
           }
-
+          .exchanges {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+          }
+          .exchange {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding-bottom: 5px;
+            width: 50%;
+          }
+          .exchange:hover {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding-bottom: 5px;
+            width: 50%;
+            opacity: 0.5;
+          }
+          .exchange-image {
+            width: 24px;
+            height: 24px;
+          }
+          .exchange-label {
+            margin-left: 5px;
+          }
+          .exchange-label-selected {
+            margin-left: 5px;
+            border-bottom: 2px solid rgba(${colors.primaryGreen}, 1);
+          }
           .card {
             padding-bottom: 10px;
             display: flex;
           }
           .pro-chart {
-            width: 100%;
+            width: 88%;
           }
           .switch {
             padding-top: 10px;
           }
+          .pricing-link {
+            padding-bottom: 30px;
+          }
+          @media (min-width: 768px) and (max-width: 1440px) {
+            .controls-card {
+              max-height: 75%;
+              padding-top: 20px;
+              padding-left: 5px;
+              width: 14%;
+            }
+            .pro-chart {
+              width: 85%;
+            }
+          }
           @media (min-width: 320px) and (max-width: 767px) {
-            .controls-lhs {
-              flex-direction: column;
+            .container {
+              flex-direction: column-reverse;
+            }
+            .pro-chart {
+              padding-top: 5px;
+              width: 100%;
+            }
+            .controls-card {
+              width: 100%;
             }
             .controls {
               flex-direction: column;
             }
-            .control {
-              justify-content: space-between;
+            .pricing-link {
+              text-align: center;
             }
-            .api-button {
-              display: flex;
-              justify-content: center;
-            }
-          }
         `}
       </style>
     </div>

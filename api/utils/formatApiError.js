@@ -1,6 +1,9 @@
-import {API_ERROR_MSG, API_ERROR_REASON} from '../../constants/apiErrors'
+const {
+  API_ERROR_MSG,
+  API_ERROR_REASON,
+} = require('../../constants/apiErrors');
 
-export const formatApiError = error => {
+module.exports = error => {
   let errorResponse;
   if (error.response) {
     // The request was made and the server responded with a status code
@@ -10,8 +13,8 @@ export const formatApiError = error => {
       status,
       body: {
         message: data,
-        reason: API_ERROR_REASON.BACKEND_API_ERROR
-      }
+        reason: API_ERROR_REASON.BACKEND_API_ERROR,
+      },
     };
   } else if (error.request) {
     // The request was made but no response was received
@@ -21,8 +24,8 @@ export const formatApiError = error => {
       status: 500,
       body: {
         message: API_ERROR_MSG.NO_RESPONSE_FROM_API,
-        reason: API_ERROR_REASON.BACKEND_API_ERROR
-      }
+        reason: API_ERROR_REASON.BACKEND_API_ERROR,
+      },
     };
   } else {
     // Something happened in setting up the request that triggered an Error
@@ -30,8 +33,8 @@ export const formatApiError = error => {
       status: 500,
       body: {
         message: error.message || error,
-        reason: API_ERROR_REASON.PROXY_ERROR
-      }
+        reason: API_ERROR_REASON.PROXY_ERROR,
+      },
     };
   }
 

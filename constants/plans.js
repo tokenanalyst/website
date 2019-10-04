@@ -1,22 +1,75 @@
 export const PLAN_NAMES = {
   FREE: 'Free',
+  PLATFORM: 'Platform',
   PRO: 'Pro',
   ENTERPRISE: 'Enterprise',
+};
+
+export const TIERS = {
+  ['nologin']: {
+    timeLimits: {
+      '1d': 90,
+      '1h': 0,
+    },
+  },
+  ['0']: {
+    timeLimits: {
+      '1d': 90,
+      '1h': 168, // 1 week
+    },
+  },
+  ['1']: {
+    timeLimits: {
+      '1d': 3650, // 10 years
+      '1h': 87600, // 10 years
+    },
+  },
+  ['2']: {
+    timeLimits: {
+      '1d': 3650, // 10 years
+      '1h': 87600, // 10 years
+    },
+  },
 };
 
 export const PLANS = {
   FREE: {
     name: PLAN_NAMES.FREE,
     price: '$0',
-    features: ['Fundamental Analytics', '90 Day Data', 'CSV & API'],
+    features: [
+      'Fundamental Analytics',
+      '90 day daily data + 1 Week hourly data',
+    ],
     buttonText: 'Get',
+    tier: TIERS['0'],
+    id: 0,
+  },
+  PLATFORM: {
+    name: PLAN_NAMES.PLATFORM,
+    price: '$50',
+    features: [
+      'Exchange Flows',
+      'Full Historical Data',
+      'Web Platform Access Only',
+    ],
+    buttonText: 'Purchase',
+    tier: TIERS['1'],
+    stripePlan: 'plan_FuFH6oh6AGeUl0',
+    isNew: true,
+    id: 1,
   },
   PRO: {
     name: PLAN_NAMES.PRO,
     price: '$799',
-    features: ['Exchange Flows', 'Full Historical Data', 'CSV & API'],
+    features: [
+      'Exchange Flows',
+      'Full Historical Data',
+      'Web Platform, CSV, and API',
+    ],
     buttonText: 'Purchase',
+    tier: TIERS['2'],
     stripePlan: 'plan_FZwuSdyp2hRm98',
+    id: 2,
   },
   ENTERPRISE: {
     name: PLAN_NAMES.ENTERPRISE,
@@ -27,6 +80,8 @@ export const PLANS = {
       'All Formats + Websockets',
     ],
     buttonText: 'Contact Us',
+    tier: TIERS['2'],
+    id: 3,
   },
 };
 
@@ -36,6 +91,18 @@ export const TEST_PLANS = {
     price: '$0',
     features: ['Fundamental Analytics', '90 Day Data', 'CSV & API'],
     buttonText: 'Get',
+    tier: -1,
+  },
+  PLATFORM: {
+    name: PLAN_NAMES.PLATFORM,
+    price: '$50',
+    features: [
+      'Exchange Flows',
+      'Full Historical Data',
+      'Web Platform Access Only',
+    ],
+    buttonText: 'Purchase',
+    stripePlan: 'plan_FuFaK78eUjiZ9L',
   },
   HOBBYIST: {
     name: PLAN_NAMES.HOBBYIST,
