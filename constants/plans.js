@@ -1,5 +1,4 @@
 export const PLAN_NAMES = {
-  // FREE: 'Free',
   PLATFORM: 'Platform',
   PRO: 'Pro',
   ENTERPRISE: 'Enterprise',
@@ -33,17 +32,6 @@ export const TIERS = {
 };
 
 export const PLANS = {
-  // FREE: {
-  //   name: PLAN_NAMES.FREE,
-  //   price: '$0',
-  //   features: [
-  //     'Fundamental Analytics',
-  //     '90 day daily data & 1 Week hourly data',
-  //   ],
-  //   buttonText: 'Get',
-  //   tier: TIERS['0'],
-  //   id: 0,
-  // },
   PLATFORM: {
     name: PLAN_NAMES.PLATFORM,
     price: '$49',
@@ -95,13 +83,6 @@ export const PLANS = {
 };
 
 export const TEST_PLANS = {
-  // FREE: {
-  //   name: PLAN_NAMES.FREE,
-  //   price: '$0',
-  //   features: ['Fundamental Analytics', '90 Day Data', 'CSV & API'],
-  //   buttonText: 'Get',
-  //   tier: -1,
-  // },
   PLATFORM: {
     name: PLAN_NAMES.PLATFORM,
     price: '$50',
