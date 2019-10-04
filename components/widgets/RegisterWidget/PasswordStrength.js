@@ -38,7 +38,7 @@ export const PasswordStrength = ({ score }) => {
   return (
     <div className="container">
       <div className="level">
-        <div>Password strenght</div>
+        <div>Password strength</div>
         <div>{scoreLevel[score].text}</div>
       </div>
       <div className="bar">
