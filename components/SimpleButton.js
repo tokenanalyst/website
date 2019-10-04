@@ -16,7 +16,9 @@ export const SimpleButton = ({ background, onClick, children }) => (
       {`
         div > :global(.bp3-button:not([class*='bp3-intent-'])) {
           background-color: rgba(${colors[background]}, 1);
-          color: ${background === PRIMARY_GREEN ? 'white' : 'black'};
+          color: ${(background === PRIMARY_GREEN) | (background === PRIMARY_RED)
+            ? 'white'
+            : 'black'};
           min-width: 110px;
           text-align: center;
           max-height: 40px;
