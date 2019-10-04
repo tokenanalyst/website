@@ -3,18 +3,18 @@ import React from 'react';
 import { ProgressBar } from '@blueprintjs/core';
 import { Intent } from '../constants/styles/colors';
 
-export const SimpleProgressBar = ({ animate, stripes, value, intent }) => (
+export const SimpleProgressBar = ({ isAnimate, isStripes, value, intent }) => (
   <ProgressBar
-    animate={animate}
-    stripes={stripes}
+    animate={isAnimate}
+    stripes={isStripes}
     value={value}
     intent={intent}
   />
 );
 
 SimpleProgressBar.propTypes = {
-  animate: PropTypes.bool,
-  stripes: PropTypes.bool,
+  isAnimate: PropTypes.bool,
+  isStripes: PropTypes.bool,
   value: PropTypes.number,
   intent: PropTypes.oneOf([
     Intent.DANGER,
@@ -26,8 +26,8 @@ SimpleProgressBar.propTypes = {
 };
 
 SimpleProgressBar.defaultProps = {
-  animate: false,
-  stripes: false,
+  isAnimate: false,
+  isStripes: false,
   value: 0,
   intent: Intent.NONE,
 };

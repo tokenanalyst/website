@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { InputGroup } from '@blueprintjs/core';
 
-export const SimpleTextInput = ({ fill, ...props }) => (
+export const SimpleTextInput = ({ fill, ...restProps }) => (
   <div>
-    <InputGroup {...props} fill />
+    <InputGroup {...restProps} fill />
     <style jsx>
       {`
         div :global(.bp3-input) {

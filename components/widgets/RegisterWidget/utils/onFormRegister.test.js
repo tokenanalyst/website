@@ -96,7 +96,7 @@ describe('onFormRegister function', () => {
     };
     const expectedResult = {
       isSuccess: false,
-      errorMsg: 'Your password is weak. Please choose a stronger password',
+      errorMsg: 'Please choose a stronger password',
       redirectFn: () => null,
     };
     const result = await onFormRegister(loginCtx, formValues);
@@ -187,7 +187,7 @@ describe('onFormRegister function', () => {
     });
   });
 
-  it('should redirect to /free-tier-success', async () => {
+  it('should redirect to /free-tier-success if user registered to access free tier', async () => {
     const formValues = {
       email: 'test@test.com',
       fullName: 'testName',
@@ -236,7 +236,7 @@ describe('onFormRegister function', () => {
       isFreeTier: false,
     });
   });
-  it('should redirect to exchange', async () => {
+  it('should redirect to exchange if user registered via Exchange page CTA', async () => {
     const formValues = {
       email: 'test@test.com',
       fullName: 'testName',

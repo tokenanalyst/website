@@ -27,11 +27,13 @@ export const onFormRegister = async (loginCtx, formValues) => {
     redirectFn: () => null,
   };
 
-  if (password.strength < 3) {
+  const MIN_STRENGTH_SCORE = 3;
+
+  if (password.strength < MIN_STRENGTH_SCORE) {
     return {
       ...result,
       isSuccess: false,
-      errorMsg: 'Your password is weak. Please choose a stronger password',
+      errorMsg: 'Please choose a stronger password',
     };
   }
 

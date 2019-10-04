@@ -183,10 +183,11 @@ Product.propTypes = {
   price: PropTypes.string.isRequired,
   features: PropTypes.arrayOf(PropTypes.string).isRequired,
   buttonText: PropTypes.string.isRequired,
-  stripePlan: PropTypes.string.isRequired,
+  stripePlan: PropTypes.string,
   isNew: PropTypes.bool,
 };
 
 Product.defaultProps = {
   isNew: false,
+  stripePlan: null,
 };

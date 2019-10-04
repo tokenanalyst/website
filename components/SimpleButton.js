@@ -33,7 +33,6 @@ export const SimpleButton = ({
           cursor: pointer;
           background-image: none;
           box-shadow: none;
-          stroke: #ffffff;
         }
       `}
     </style>

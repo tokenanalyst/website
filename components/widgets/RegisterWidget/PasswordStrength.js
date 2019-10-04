@@ -7,33 +7,33 @@ import { Intent } from '../../../constants/styles/colors';
 export const PasswordStrength = ({ score }) => {
   // TODO: agree on a common set of colors
 
-  const scoreLevel = {
-    '0': {
+  const scoreLevel = [
+    {
       text: 'Weak',
-      style: '#FF7373',
+      style: '(255, 115, 115)',
       intent: Intent.DANGER,
     },
-    '1': {
+    {
       text: 'Weak',
-      style: '#FF7373',
+      style: '(255, 115, 115)',
       intent: Intent.DANGER,
     },
-    '2': {
+    {
       text: 'Medium',
-      style: '#FFB366',
+      style: '(255, 179, 102)',
       intent: Intent.WARNING,
     },
-    '3': {
+    {
       text: 'Strong',
-      style: '#3DCC91',
+      style: '(61, 204, 145)',
       intent: Intent.SUCCESS,
     },
-    '4': {
+    {
       text: 'Strong',
-      style: '#3DCC91',
+      style: '(61, 204, 145)',
       intent: Intent.SUCCESS,
     },
-  };
+  ];
 
   return (
     <div className="container">
@@ -57,7 +57,7 @@ export const PasswordStrength = ({ score }) => {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
-            color: ${scoreLevel[score].style}};
+            color: rgba(${scoreLevel[score].style}}, 1);
           }
           .bar {
             width: 100%;

@@ -36,7 +36,7 @@ export const SimpleFormGroup = ({
 
 SimpleFormGroup.propTypes = {
   disabled: PropTypes.bool,
-  helperText: PropTypes.string,
+  helperText: PropTypes.node,
   inline: PropTypes.bool,
   intent: PropTypes.string,
   label: PropTypes.string,
