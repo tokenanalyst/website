@@ -9,9 +9,17 @@ import {
   NEUTRAL_GREY,
 } from '../constants/styles/colors';
 
-export const SimpleButton = ({ background, onClick, children }) => (
+export const SimpleButton = ({
+  background,
+  fill,
+  loading,
+  onClick,
+  children,
+}) => (
   <div>
-    <Button onClick={onClick}>{children}</Button>
+    <Button onClick={onClick} fill={fill} loading={loading}>
+      {children}
+    </Button>
     <style jsx>
       {`
         div > :global(.bp3-button:not([class*='bp3-intent-'])) {
@@ -34,5 +42,13 @@ export const SimpleButton = ({ background, onClick, children }) => (
 SimpleButton.propTypes = {
   background: PropTypes.oneOf([PRIMARY_RED, PRIMARY_GREEN, NEUTRAL_GREY]),
   children: PropTypes.node.isRequired,
+  fill: PropTypes.bool,
+  loading: PropTypes.bool,
   onClick: PropTypes.func.isRequired,
+};
+
+SimpleButton.defaultProps = {
+  background: NEUTRAL_GREY,
+  fill: false,
+  loading: false,
 };
