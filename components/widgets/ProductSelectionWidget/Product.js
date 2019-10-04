@@ -14,7 +14,7 @@ import { Link } from '../../Link';
 
 const getScrollDistance = () =>
   window.matchMedia('(min-width: 320px) and (max-width: 767px)').matches
-    ? 1750
+    ? 1500
     : 800;
 
 export const Product = ({
