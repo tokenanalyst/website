@@ -1,5 +1,13 @@
 import React, { useRef, useContext, useEffect, useState } from 'react';
-import { Icon } from '@blueprintjs/core';
+import {
+  Icon,
+  Popover,
+  HTMLSelect,
+  Card,
+  Switch,
+  Position,
+  Button,
+} from '@blueprintjs/core';
 import dynamic from 'next/dynamic';
 import ReactGA from 'react-ga';
 import { useRouter } from 'next/router';
@@ -7,7 +15,6 @@ import Cookies from 'js-cookie';
 
 import { COOKIES } from '../../../constants/cookies';
 import { PLANS } from '../../../constants/plans';
-import { HTMLSelect, Card, Switch } from '@blueprintjs/core';
 import { ProChartContainer } from './ProChartContainer.js';
 import {
   EXCHANGE_NAMES,
@@ -78,6 +85,9 @@ export const ProChartWidget = ({
   });
 
   const router = useRouter();
+  const [isSignUpMessageVisible, setIsSignUpMessageVisible] = useState(false);
+
+  setTimeout(() => setIsSignUpMessageVisible(true), 15000);
 
   const loginContext = useContext(LoginContext);
 
@@ -215,6 +225,24 @@ export const ProChartWidget = ({
             </div>
           </Card>
         </div>
+        <div className="testr">
+          <div className="test">
+            <Popover
+              position={Position.BOTTOM}
+              content={
+                <div className="popover-contents">
+                  <div>Access 1 Hour Granularity by signing up</div>
+                  <Button
+                    text="OK"
+                    onClick={() => setIsSignUpMessageVisible(false)}
+                  />
+                </div>
+              }
+              target={<div />}
+              isOpen={isSignUpMessageVisible}
+            />
+          </div>
+        </div>
         <div className="pro-chart">
           <ProChartContainer
             timeFrame="3D"
@@ -302,7 +330,7 @@ export const ProChartWidget = ({
           .exchange-label {
             margin-left: 5px;
           }
-          .exchange-label-selected {
+          .exchange-label-select {
             margin-left: 5px;
             border-bottom: 2px solid rgba(${colors.primaryGreen}, 1);
           }
@@ -312,6 +340,21 @@ export const ProChartWidget = ({
           }
           .pro-chart {
             width: 88%;
+            
+          }
+          .testr {
+            position: relative;
+          }
+          .test {
+            position: absolute;
+            z-index: 100;
+            top: 10px;
+            left: 75px;
+          }
+          .popover-contents {
+            max-width: 150px;
+            text-align: center;
+            padding: 5px;
           }
           .switch {
             padding-top: 10px;
