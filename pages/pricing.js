@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import ReactGA from 'react-ga';
 import Head from 'next/head';
+import Router from 'next/router';
 
 import { PageHeader } from '../components/PageHeader';
 import { TestimonialsWidget } from '../components/widgets/TestimonialsWidget';
 import { PageSection } from '../components/PageSection';
+import { Link } from '../components/Link';
+import { LoginContext } from '../contexts/Login';
 
 import {
   ProductSelectionWidget,
@@ -13,6 +16,8 @@ import {
 } from '../components/widgets/ProductSelectionWidget';
 
 const Pricing = () => {
+  const loginCtx = useContext(LoginContext);
+
   return (
     <div className="container">
       <Head>
@@ -21,22 +26,25 @@ const Pricing = () => {
       <PageHeader text={'Plans'} />
       <ProductSelectionWidget />
       <div className="researcher">
-        If you are a <strong>researcher</strong> or an <strong>analyst</strong>,{' '}
-        <a
-          href="mailto:info@tokenanalyst.io"
-          target="_blank"
-          className="item"
-          onClick={() =>
+        If you are a <strong>researcher</strong> or an <strong>analyst</strong>,
+        {` `}
+        <Link
+          desktopLabel="contact us"
+          onClick={() => {
             ReactGA.event({
               category: 'User',
-              action: `Contact Researcher`,
-              label: `Research`,
-            })
-          }
-        >
-          contact us
-        </a>{' '}
-        to get a small sample of our data for your specific use case
+              action: `Plan select Free`,
+              label: `Plans`,
+            });
+            if (!loginCtx.isLoggedIn) {
+              loginCtx.setPaymentData({
+                isFreeTier: true,
+              });
+            }
+            return Router.push('/register');
+          }}
+        />
+        {` `}to get free access to small set of our data
       </div>
       <PageSection text={'Testimonials'} />
       <div>

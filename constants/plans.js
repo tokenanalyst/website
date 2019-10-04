@@ -1,5 +1,4 @@
 export const PLAN_NAMES = {
-  FREE: 'Free',
   PLATFORM: 'Platform',
   PRO: 'Pro',
   ENTERPRISE: 'Enterprise',
@@ -33,24 +32,13 @@ export const TIERS = {
 };
 
 export const PLANS = {
-  FREE: {
-    name: PLAN_NAMES.FREE,
-    price: '$0',
-    features: [
-      'Fundamental Analytics',
-      '90 day daily data + 1 Week hourly data',
-    ],
-    buttonText: 'Get',
-    tier: TIERS['0'],
-    id: 0,
-  },
   PLATFORM: {
     name: PLAN_NAMES.PLATFORM,
-    price: '$50',
+    price: '$49',
     features: [
-      'Exchange Flows',
       'Full Historical Data',
       'Web Platform Access Only',
+      'Power-User Charting Tools',
     ],
     buttonText: 'Purchase',
     tier: TIERS['1'],
@@ -62,37 +50,39 @@ export const PLANS = {
     name: PLAN_NAMES.PRO,
     price: '$799',
     features: [
-      'Exchange Flows',
       'Full Historical Data',
-      'Web Platform, CSV, and API',
+      'Real-Time Updates',
+      'Access via API, CSV, & Web Platform',
+      '50+ Assets & 70+ Metrics',
+      'Exchange Flows, Miner Flows, Whale Balances',
+      'Stablecoin Mints & Burns, Supply & Demand',
+      'Smart Contract & DeFi Metrics',
+      'Raw transaction & block level data',
     ],
     buttonText: 'Purchase',
     tier: TIERS['2'],
     stripePlan: 'plan_FZwuSdyp2hRm98',
     id: 2,
+    isFeatured: true,
   },
   ENTERPRISE: {
     name: PLAN_NAMES.ENTERPRISE,
     price: '-',
     features: [
-      'Custom Metrics',
-      'Full Historical Data',
-      'All Formats + Websockets',
+      'Complete Data Access',
+      'World’s Fastest Bitcoin Websocket',
+      'Custom Metrics Such as Miner to Exchange Flows',
+      'Transaction Level Flow Data for Modeling & Backtesting',
+      'Slack/Telegram Engineering Support',
     ],
     buttonText: 'Contact Us',
     tier: TIERS['2'],
     id: 3,
+    isPremier: true,
   },
 };
 
 export const TEST_PLANS = {
-  FREE: {
-    name: PLAN_NAMES.FREE,
-    price: '$0',
-    features: ['Fundamental Analytics', '90 Day Data', 'CSV & API'],
-    buttonText: 'Get',
-    tier: -1,
-  },
   PLATFORM: {
     name: PLAN_NAMES.PLATFORM,
     price: '$50',
