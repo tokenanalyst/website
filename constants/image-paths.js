@@ -1,13 +1,51 @@
+import {
+  BINANCE,
+  BITFINEX,
+  BITMEX,
+  BITSTAMP,
+  BITTREX,
+  KRAKEN,
+  KUCOIN,
+  POLONIEX,
+  OKEX,
+} from './exchanges';
+
+// console.log(EXCHANGE_NAMES);
+
+// const {
+//   BINANCE,
+//   BITFINEX,
+//   BITMEX,
+//   BITSTAMP,
+//   BITTREX,
+//   KRAKEN,
+//   KUCOIN,
+//   POLONIEX,
+//   OKEX,
+// } = EXCHANGE_NAMES;
+
+console.log(
+  BINANCE,
+  BITFINEX,
+  BITMEX,
+  BITSTAMP,
+  BITTREX,
+  KRAKEN,
+  KUCOIN,
+  POLONIEX,
+  OKEX
+);
+
 export const EXCHANGE_IMAGES = {
-  Binance: 'binance.png',
-  Bitfinex: 'bitfinex.png',
-  Bitmex: 'bitmex.png',
-  Bitstamp: 'bitstamp.png',
-  Bittrex: 'bittrex.png',
-  Kraken: 'kraken.png',
-  Kucoin: 'kucoin.png',
-  Poloniex: 'poloniex.png',
-  Okex: 'okex.png',
+  [BINANCE]: 'binance.png',
+  [BITFINEX]: 'bitfinex.png',
+  [BITMEX]: 'bitmex.png',
+  [BITSTAMP]: 'bitstamp.png',
+  [BITTREX]: 'bittrex.png',
+  [KRAKEN]: 'kraken.png',
+  [KUCOIN]: 'kucoin.png',
+  [POLONIEX]: 'poloniex.png',
+  [OKEX]: 'okex.png',
 };
 
 export const COIN_IMAGES = {

@@ -40,7 +40,7 @@ export const ExchangeMetricsWidget = ({ token, exchange }) => {
                     {token.replace('_', ' ')}
                   </span>
                   <span className="banner-banner-header-exchange-name">
-                    {EXCHANGE_NAMES[exchange.toUpperCase()]}
+                    {EXCHANGE_NAMES[exchange]}
                   </span>
                 </div>
                 <div className="banner-logo-img-container">

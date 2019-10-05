@@ -6,82 +6,86 @@ import Cookies from 'js-cookie';
 import { ExchangeMetricsWidget } from '../../../components/widgets/ExchangeMetricsWidget';
 import { IoChartWidget } from '../../../components/widgets/IoChartWidget';
 import { ProChartWidget } from '../../../components/widgets/ProChartWidget';
-import { SUPPORTED_EXCHANGES } from '../../../constants/exchanges';
-import { EXCHANGE_TOKENS } from '../../../constants/exchanges';
-import { NATIVE_TOKENS } from '../../../constants/tokens';
+import { SUPPORTED_TOKENS } from '../../../constants/exchanges';
 import { COOKIES } from '../../../constants/cookies';
 
 const Exchange = () => {
   const router = useRouter();
   const { token, exchange } = router.query;
-  const [supportedExchanges, setSupportedExchanges] = useState(null);
-  const [supportedTokens, setSupportedTokens] = useState(null);
+  const [proChartsupportedExchanges, setproChartSupportedExchanges] = useState(
+    []
+  );
+  const [proChartsupportedTokens, setproChartSupportedTokens] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const exchanges = Object.keys(SUPPORTED_EXCHANGES).reduce(
-      (acc, exchange) => {
-        if (SUPPORTED_EXCHANGES[exchange].indexOf(token) !== -1) {
-          return [...acc, exchange];
+    const supportedExchanges = Object.keys(SUPPORTED_TOKENS).reduce(
+      (acc, exchangeName) => {
+        if (SUPPORTED_TOKENS[exchangeName].indexOf(token) !== -1) {
+          return [...acc, exchangeName];
         }
 
         return acc;
       },
       []
     );
-
-    setSupportedExchanges(exchanges);
-    setSupportedTokens(SUPPORTED_EXCHANGES[exchange]);
+    console.log(exchange);
+    console.log(supportedExchanges, SUPPORTED_TOKENS.BitMEX);
+    console.log(SUPPORTED_TOKENS[exchange]);
+    setproChartSupportedExchanges(supportedExchanges);
+    setproChartSupportedTokens(SUPPORTED_TOKENS);
     if (token && exchange) {
       setIsLoading(false);
     }
   }, [token, exchange]);
 
+  console.log(exchange);
+
   return (
     <div>
       <Head>
         <title>
-          TokenAnalyst - {exchange} - {token} Inflows and Outflows
+          {`TokenAnalyst - ${exchange} - ${token} Inflows and Outflows`}
         </title>
       </Head>
       <ExchangeMetricsWidget token={token} exchange={exchange} />
-      {token &&
-        exchange &&
-        supportedExchanges.length && !isLoading ? (
-          <>
-            <ProChartWidget
+      {token && exchange && proChartsupportedExchanges.length && !isLoading ? (
+        <>
+          <ProChartWidget
             selectedExchange={exchange}
             selectedToken={token}
-            supportedTokens={supportedTokens}
-            supportedExchanges={supportedExchanges}
-              onChangeExchange={newExchange => {
-                router.push(
-                  `/exchange/[token]/[exchange]`,
-                  `/exchange/${
-                    SUPPORTED_EXCHANGES[newExchange].indexOf(token) > 0
+            supportedTokens={proChartsupportedTokens}
+            supportedExchanges={proChartsupportedExchanges}
+            onChangeExchange={newExchange => {
+              router.push(
+                `/exchange/[token]/[exchange]`,
+                `/exchange/${
+                  SUPPORTED_TOKENS[newExchange].indexOf(token) > 0
                     ? token
-                    : SUPPORTED_EXCHANGES[newExchange][0]
-                  }/${newExchange}?tier=${Cookies.get(COOKIES.tier)}`
-                );
-              }}
-              onChangeToken={newToken => {
-                router.push(
-                  `/exchange/[token]/[exchange]`,
-                  `/exchange/${newToken}/${exchange}`
-                );
-              }}
-            />
-            <div className="kaiko">
-              Order book data by{' '}
-              <a
-                href="https://www.kaiko.com/?rfsn=3222089.6abb9f&utm_source=refersion&utm_medium=affiliate&utm_campaign=3222089.6abb9f"
-                target="_blank"
-                className="link"
-              >
-                Kaiko
-              </a>
-            </div>
-            <style jsx>{`
+                    : SUPPORTED_TOKENS[newExchange][0]
+                }/${newExchange}?tier=${Cookies.get(COOKIES.tier)}`
+              );
+            }}
+            onChangeToken={newToken => {
+              router.push(
+                `/exchange/[token]/[exchange]`,
+                `/exchange/${newToken}/${exchange}`
+              );
+            }}
+          />
+          <div className="kaiko">
+            Order book data by
+            <a
+              href="https://www.kaiko.com/?rfsn=3222089.6abb9f&utm_source=refersion&utm_medium=affiliate&utm_campaign=3222089.6abb9f"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link"
+            >
+              Kaiko
+            </a>
+          </div>
+          <style jsx>
+            {`
               .kaiko {
                 padding: 20px;
                 display: flex;
@@ -91,11 +95,12 @@ const Exchange = () => {
               .link {
                 padding-left: 3px;
               }
-            `}</style>
-          </>
-        ) : (
-          !isLoading && <IoChartWidget token={token} exchange={exchange} />
-        ))}
+            `}
+          </style>
+        </>
+      ) : (
+        !isLoading && <IoChartWidget token={token} exchange={exchange} />
+      )}
     </div>
   );
 };

@@ -1,65 +1,33 @@
 import PropTypes from 'prop-types';
-import React, { useRef, useContext, useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import { Icon, HTMLSelect, Button, Switch, Card } from '@blueprintjs/core';
+import React, { useRef, useContext } from 'react';
+import Router, { useRouter } from 'next/router';
+import { Icon, Switch, Card } from '@blueprintjs/core';
 import dynamic from 'next/dynamic';
 import ReactGA from 'react-ga';
-
 import Cookies from 'js-cookie';
 
 import { ProChartContainer } from './ProChartContainer.js';
-import {
-  QUOTE_TOKENS,
-  EXCHANGE_NAMES,
-  EXCHANGE_TOKENS,
-  EXCHANGE_DOLLARS,
-} from '../../../constants/exchanges';
+import { QUOTE_TOKENS, EXCHANGE_NAMES } from '../../../constants/exchanges';
+import { STABLE_TOKENS, NATIVE_TOKENS } from '../../../constants/tokens';
 import { COOKIES } from '../../../constants/cookies';
 import { PLANS } from '../../../constants/plans';
-
 import { EXCHANGE_IMAGES } from '../../../constants/image-paths';
 import { colors } from '../../../constants/styles/colors';
 import { Link } from '../../Link';
 import { LoginContext } from '../../../contexts/Login';
-
-const TOOLTIP_TEXT = (
-  <>
-    <div>Below is the legend for each of the charts displayed:</div>
-    <div>
-      All units are displayed in terms of the selected asset except for the
-      Price which is displayed in USD, USDT or appropriate stablecoin
-    </div>
-    <br />
-    <div>
-      1: Price of the selected asset on the selected exchange in either USD or
-      USDT
-    </div>
-    <br />
-    <div>
-      2: Trading volume of the pair shown above on the selected exchange.
-      Expressed in terms of the selected asset
-    </div>
-    <br />
-    <div>
-      3: Inflows and outflows of the selected asset into and out of the selected
-      exchange on the blockchain
-    </div>
-    <br />
-    <div>
-      4: "Net" flows of the asset into the exchange on the blockchain. This is
-      the sum of inflows minus the outflows
-    </div>
-    <div>
-      Negative net flows mean more funds left the exchange than came in during
-      the time interval and vice versa for positive net flows
-    </div>
-  </>
-);
+import { TokenSelect } from './TokenSelect';
+import { TOOLTIP_TEXT } from './ToolTipText';
 
 const STUDIES = {
   FLOWS: 'Flows',
   NET_FLOWS: 'NetFlows',
 };
+
+const TA_SUPPORTED_TOKENS = [
+  ...Object.values(NATIVE_TOKENS),
+  STABLE_TOKENS.OMG,
+  STABLE_TOKENS.ZRX,
+];
 
 const SimpleToolTip = dynamic(
   () => import('../../SimpleToolTip').then(mod => mod.SimpleToolTip),
@@ -77,8 +45,6 @@ const makeSymbols = (baseToken, exchangeName, quoteTokenMap) => {
 export const ProChartWidget = ({
   onChangeExchange,
   onChangeToken,
-  supportedTokens,
-  supportedExchanges,
   selectedExchange,
   selectedToken,
 }) => {
@@ -96,68 +62,92 @@ export const ProChartWidget = ({
 
   const TIER = Cookies.get(COOKIES.tier);
 
+  const renderCATElement = () => {
+    if (TIER !== null) {
+      return (
+        <Link
+          desktopLabel="Sign Up for 1 Hour Granularity"
+          href="/register?exchange=true"
+          onClick={() => {
+            loginContext.setPostRegisterRedirectUrl(router.asPath);
+            ReactGA.event({
+              category: 'User',
+              action: `Click Sign Up CTA Exchange Page`,
+              label: `Funnel`,
+            });
+          }}
+        />
+      );
+    }
+    if (TIER < PLANS.PLATFORM.id) {
+      return (
+        <Link
+          desktopLabel="Get Unlimited Data"
+          href="/pricing?exchange=true"
+          onClick={() => {
+            ReactGA.event({
+              category: 'User',
+              action: `Click Upgrade CTA Exchange Page`,
+              label: `Funnel`,
+            });
+          }}
+        />
+      );
+    }
+
+    return null;
+  };
+
   return (
     <div>
       <div className="container">
         <div className="controls-card">
-          {TIER !== null && (
-            <div className="pricing-link">
-              {!loginContext.isLoggedIn ? (
-                <Link
-                  desktopLabel="Sign Up for 1 Hour Granularity"
-                  href="/register?exchange=true"
-                  onClick={() => {
-                    loginContext.setPostRegisterRedirectUrl(router.asPath);
-                    ReactGA.event({
-                      category: 'User',
-                      action: `Click Sign Up CTA Exchange Page`,
-                      label: `Funnel`,
-                    });
-                  }}
-                />
-              ) : TIER < PLANS.PLATFORM.id ? (
-                <Link
-                  desktopLabel="Get Unlimited Data"
-                  href="/pricing?exchange=true"
-                  onClick={() => {
-                    ReactGA.event({
-                      category: 'User',
-                      action: `Click Upgrade CTA Exchange Page`,
-                      label: `Funnel`,
-                    });
-                  }}
-                />
-              ) : null}
-            </div>
-          )}
+          <div className="cat-link">{renderCATElement()}</div>
+
           <Card>
             <div className="controls">
               <div className="control">
                 <div className="label">Token:</div>
-                <HTMLSelect
+                <TokenSelect
                   className="token-select"
-                  options={EXCHANGE_TOKENS[exchange]}
-                  onChange={() => {
+                  tokensList={TA_SUPPORTED_TOKENS}
+                  selectedToken={selectedToken}
+                  onItemSelect={token => {
                     ReactGA.event({
                       category: 'User',
-                      action: `Pro Chart change token ${event.target.value}`,
+                      action: `Pro Chart change token ${token}`,
                       label: `Pro Charts`,
                     });
-                    onChangeToken(event.target.value);
+                    console.log(token);
+                    console.log(selectedExchange);
+                    console.log(
+                      QUOTE_TOKENS[token.toUpperCase()][selectedExchange]
+                    );
+                    if (
+                      !QUOTE_TOKENS[token.toUpperCase()] ||
+                      !QUOTE_TOKENS[token.toUpperCase()][selectedExchange]
+                    ) {
+                      // Temporary full page reload while we are in transition with adding all tokens to TV
+                      Router.push(
+                        `/exchange/${token.toUpperCase()}/${selectedExchange}`
+                      );
+                    } else {
+                      onChangeToken(token);
+                    }
                   }}
-                  value={token}
                 />
               </div>
               <div className="control">
                 <div className="exchanges">
                   <div className="label">Exchange:</div>
                   <div className="exchange-list">
-                    {Object.keys(EXCHANGE_NAMES)
-                      .filter(
-                        exchangeName => exchangeName !== EXCHANGE_NAMES.Okex
-                      )
+                    {Object.values(EXCHANGE_NAMES)
+                      .filter(exchangeName => {
+                        return exchangeName !== EXCHANGE_NAMES.Okex;
+                      })
                       .map(exchangeName => (
                         <div
+                          role="link"
                           key={exchangeName}
                           className="exchange"
                           onClick={() => {
@@ -175,7 +165,7 @@ export const ProChartWidget = ({
                           />
                           <span
                             className={`${
-                              exchangeName === exchange
+                              exchangeName === selectedExchange
                                 ? 'exchange-label-selected'
                                 : 'exchange-label'
                             }`}
@@ -271,6 +261,9 @@ export const ProChartWidget = ({
             justify-content: space-between;
             font-weight: bold;
             padding-bottom: 10px;
+          }
+          .cat-link {
+            padding-bottom: 10px
           }
           .token-select {
             width: 120px;
@@ -369,9 +362,6 @@ export const ProChartWidget = ({
 ProChartWidget.propTypes = {
   onChangeExchange: PropTypes.func.isRequired,
   onChangeToken: PropTypes.func.isRequired,
-  onChangeToken: PropTypes.func.isRequired,
   selectedExchange: PropTypes.string.isRequired,
   selectedToken: PropTypes.string.isRequired,
-  supportedExchanges: PropTypes.arrayOf(PropTypes.string),
-  supportedTokens: PropTypes.arrayOf(PropTypes.string),
 };

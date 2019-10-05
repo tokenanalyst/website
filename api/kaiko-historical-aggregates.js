@@ -37,17 +37,18 @@ module.exports = async (req, res) => {
 
   let apiResult;
 
+  const kaikoCall = `${KAIKO_BASE_URL}/${commodity}.${DATA_VERSION}/exchanges/${exchange}/${instrument_class}/${instrument}/aggregations/ohlcv?interval=${interval}&start_time=${start_time}&end_time=${end_time}`;
+
+  console.log(kaikoCall);
+
   try {
-    apiResult = await axios.get(
-      `${KAIKO_BASE_URL}/${commodity}.${DATA_VERSION}/exchanges/${exchange}/${instrument_class}/${instrument}/aggregations/ohlcv?interval=${interval}&start_time=${start_time}&end_time=${end_time}`,
-      {
-        headers: {
-          'x-api-key': process.env.KAIKO_KEY,
-          Accept: 'application/json',
-          'Accept-Encoding': 'gzip',
-        },
-      }
-    );
+    apiResult = await axios.get(kaikoCall, {
+      headers: {
+        'x-api-key': process.env.KAIKO_KEY,
+        Accept: 'application/json',
+        'Accept-Encoding': 'gzip',
+      },
+    });
 
     const { data } = apiResult.data;
 

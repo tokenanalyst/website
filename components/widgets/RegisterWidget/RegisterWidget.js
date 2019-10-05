@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { Icon, Checkbox } from '@blueprintjs/core';

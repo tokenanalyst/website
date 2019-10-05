@@ -36,3 +36,7 @@ SimpleButton.propTypes = {
   children: PropTypes.node.isRequired,
   onClick: PropTypes.func.isRequired,
 };
+
+SimpleButton.defaultProps = {
+  background: NEUTRAL_GREY,
+};
