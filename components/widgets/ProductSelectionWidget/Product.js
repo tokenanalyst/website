@@ -1,14 +1,21 @@
+import PropTypes from 'prop-types';
 import React, { useContext } from 'react';
 import ReactGA from 'react-ga';
 import Router from 'next/router';
 import Cookies from 'js-cookie';
-import { Card, Elevation } from '@blueprintjs/core';
+import { Card, Elevation, Icon } from '@blueprintjs/core';
 
 import { LoginContext } from '../../../contexts/Login';
 import { STRIPE } from '../../../constants/stripe';
 import { PLAN_NAMES } from '../../../constants/plans';
-import { PRIMARY_GREEN } from '../../../constants/styles/colors';
+import { PRIMARY_GREEN, PRIMARY_RED } from '../../../constants/styles/colors';
 import { SimpleButton } from '../../SimpleButton';
+import { Link } from '../../Link';
+
+const getScrollDistance = () =>
+  window.matchMedia('(min-width: 320px) and (max-width: 767px)').matches
+    ? 1500
+    : 800;
 
 export const Product = ({
   name,
@@ -17,6 +24,8 @@ export const Product = ({
   buttonText,
   stripePlan,
   isNew,
+  isFeatured,
+  isPremier,
 }) => {
   const loginCtx = useContext(LoginContext);
   const username = Cookies.get('loggedInAsUsername');
@@ -52,13 +61,20 @@ export const Product = ({
     <>
       <Card
         interactive={false}
-        elevation={Elevation.ZERO}
+        elevation={isFeatured ? Elevation.FOUR : Elevation.TWO}
         style={{ width: '100%' }}
       >
         <div className="pricing">
           <div className="header">
             <div className="title">
               {name}
+              {isPremier && (
+                <Icon
+                  icon="globe-network"
+                  iconSize={28}
+                  style={{ paddingLeft: '10px' }}
+                />
+              )}
               {isNew && (
                 <img
                   src="/static/png/new.png"
@@ -86,25 +102,30 @@ export const Product = ({
                     <li key={feature}>{feature}</li>
                   ))}
                 </ul>
+                <Link
+                  href="#"
+                  desktopLabel="See more"
+                  onClick={() => {
+                    window.scrollTo({
+                      top: getScrollDistance(),
+                      behavior: 'smooth',
+                    });
+                    ReactGA.event({
+                      category: 'User',
+                      action: `See More info for ${name}`,
+                      label: `Plans`,
+                    });
+                  }}
+                />
               </div>
               <div className="button">
                 <SimpleButton
-                  background={PRIMARY_GREEN}
+                  background={isPremier ? PRIMARY_RED : PRIMARY_GREEN}
                   onClick={
                     name === PLAN_NAMES.ENTERPRISE
                       ? () => {
                           emitProductEvent(name);
                           window.location = 'mailto:info@tokenanalyst.io';
-                        }
-                      : name === PLAN_NAMES.FREE
-                      ? () => {
-                          emitProductEvent(name);
-                          if (!loginCtx.isLoggedIn) {
-                            loginCtx.setPaymentData({
-                              isFreeTier: true,
-                            });
-                          }
-                          return Router.push('/register');
                         }
                       : async () => {
                           emitProductEvent(name);
@@ -128,49 +149,65 @@ export const Product = ({
           </div>
         </div>
       </Card>
-      <style jsx>{`
-        .container {
-          width: 100%;
-          display: flex;
-        }
-        .pricing {
-          display: flex;
-          flex-direction: column;
-          height: 100%;
-        }
-        .header {
-          font-family: Space Grotesk;
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          align-items: center;
-        }
-        .title {
-          font-size: 28px;
-          font-weight: bold;
-        }
-        .price {
-          font-size: 20px;
-          opacity: 0.4;
-        }
-        .monthly {
-          font-size: 16px;
-        }
-        .body {
-          padding-top: 10px;
-          padding-bottom: 10px;
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-        }
-        .features {
-          padding-top: 4px;
-          padding-bottom: 4px;
-        }
-        .feature {
-          padding-left: 20px;
-        }
-      `}</style>
+      <style jsx>
+        {`
+          .container {
+            width: 100%;
+            display: flex;
+          }
+          .pricing {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+          }
+          .header {
+            font-family: Space Grotesk;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+          }
+          .title {
+            font-size: 28px;
+            font-weight: bold;
+          }
+          .price {
+            font-size: 20px;
+            opacity: 0.4;
+          }
+          .monthly {
+            font-size: 16px;
+          }
+          .body {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+          }
+          .features {
+            padding-top: 4px;
+            padding-bottom: 4px;
+          }
+          .feature {
+            padding-left: 20px;
+          }
+        `}
+      </style>
     </>
   );
+};
+
+Product.propTypes = {
+  name: PropTypes.string.isRequired,
+  price: PropTypes.string.isRequired,
+  features: PropTypes.arrayOf(PropTypes.string).isRequired,
+  buttonText: PropTypes.string.isRequired,
+  stripePlan: PropTypes.string,
+  isNew: PropTypes.bool,
+};
+
+Product.defaultProps = {
+  isNew: false,
+  stripePlan: null,
 };

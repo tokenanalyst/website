@@ -1,7 +1,7 @@
 import { PLANS, TEST_PLANS } from '../../../../constants/plans';
 
 export const PRODUCTS = [
-  PLANS.FREE,
+  // PLANS.FREE,
   PLANS.PLATFORM,
   PLANS.PRO,
   PLANS.ENTERPRISE,

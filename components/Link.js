@@ -7,16 +7,16 @@ import { colors } from '../constants/styles/colors';
 export const Link = ({ href, desktopLabel, mobileLabel, onClick }) => {
   return (
     <>
-      <div className="desktop" onClick={onClick}>
+      <span className="desktop" onClick={onClick}>
         <NextLink href={href}>
           <a>{desktopLabel}</a>
         </NextLink>
-      </div>
-      <div className="mobile" onClick={onClick}>
+      </span>
+      <span className="mobile" onClick={onClick}>
         <NextLink href={href}>
           <a>{mobileLabel ? mobileLabel : desktopLabel}</a>
         </NextLink>
-      </div>
+      </span>
       <style jsx>{`
         .mobile {
           display: none;
