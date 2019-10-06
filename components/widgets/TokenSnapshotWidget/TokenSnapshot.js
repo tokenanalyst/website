@@ -8,7 +8,11 @@ import ReactGA from 'react-ga';
 
 import { colors } from '../../../constants/styles/colors';
 import { LoadingSpinner } from '../../LoadingSpinner';
-import { NATIVE_TOKENS, STABLE_TOKENS } from '../../../constants/tokens';
+import {
+  NATIVE_TOKENS,
+  STABLE_TOKENS,
+  ERC20_TOKENS,
+} from '../../../constants/tokens';
 import { TOKEN_NAMES } from '../../../constants/token-names';
 import { updateToken } from './helpers';
 import { getTokenSnapshotData } from '../../../data-transformers/widgets/getTokenSnapshot';
@@ -18,9 +22,9 @@ const TOKEN_OPTIONS = [
   NATIVE_TOKENS.ETH,
   STABLE_TOKENS.DAI,
   STABLE_TOKENS.PAX,
-  STABLE_TOKENS.OMG,
+  ERC20_TOKENS.OMG,
   STABLE_TOKENS.TUSD,
-  STABLE_TOKENS.LINK,
+  ERC20_TOKENS.LINK,
 ];
 
 export const TokenSnapshot = ({
@@ -46,7 +50,7 @@ export const TokenSnapshot = ({
 
     setData(null);
     getData();
-  }, [snapshotToken]);
+  }, [dataWindow, snapshotToken, units]);
 
   useEffect(() => {
     if (data) {
@@ -54,7 +58,7 @@ export const TokenSnapshot = ({
         getTokenSnapshotData(apiResponse, snapshotToken, units, dataWindow)
       );
     }
-  }, [units, dataWindow]);
+  }, [units, dataWindow, data, apiResponse, snapshotToken]);
 
   return (
     <>

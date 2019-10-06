@@ -1,33 +1,29 @@
 import PropTypes from 'prop-types';
 import React, { useRef, useContext } from 'react';
-import Router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import { Icon, Switch, Card } from '@blueprintjs/core';
 import dynamic from 'next/dynamic';
 import ReactGA from 'react-ga';
 import Cookies from 'js-cookie';
+import { makeTVSymbols } from './utils/makeTVSymbols';
 
-import { ProChartContainer } from './ProChartContainer.js';
-import { QUOTE_TOKENS, EXCHANGE_NAMES } from '../../../constants/exchanges';
-import { STABLE_TOKENS, NATIVE_TOKENS } from '../../../constants/tokens';
+import { ProChartContainer } from './ProChartContainer';
+import {
+  TOKENS_EXCHANGE_SUPPORT,
+  EXCHANGE_NAMES,
+} from '../../../constants/exchanges';
 import { COOKIES } from '../../../constants/cookies';
 import { PLANS } from '../../../constants/plans';
-import { EXCHANGE_IMAGES } from '../../../constants/image-paths';
-import { colors } from '../../../constants/styles/colors';
 import { Link } from '../../Link';
 import { LoginContext } from '../../../contexts/Login';
 import { TokenSelect } from './TokenSelect';
 import { TOOLTIP_TEXT } from './ToolTipText';
+import { ExchangeList } from './ExchangeList';
 
 const STUDIES = {
   FLOWS: 'Flows',
   NET_FLOWS: 'NetFlows',
 };
-
-const TA_SUPPORTED_TOKENS = [
-  ...Object.values(NATIVE_TOKENS),
-  STABLE_TOKENS.OMG,
-  STABLE_TOKENS.ZRX,
-];
 
 const SimpleToolTip = dynamic(
   () => import('../../SimpleToolTip').then(mod => mod.SimpleToolTip),
@@ -36,17 +32,12 @@ const SimpleToolTip = dynamic(
   }
 );
 
-const makeSymbols = (baseToken, exchangeName, quoteTokenMap) => {
-  const { quoteToken } = quoteTokenMap[baseToken.toUpperCase()][exchangeName];
-
-  return [baseToken, quoteToken];
-};
-
 export const ProChartWidget = ({
   onChangeExchange,
   onChangeToken,
   selectedExchange,
   selectedToken,
+  tokensDb,
 }) => {
   const tvInstance = useRef(null);
   const studies = useRef({
@@ -54,7 +45,11 @@ export const ProChartWidget = ({
     transactions: { entityId: null },
   });
 
-  const symbols = makeSymbols(selectedToken, selectedExchange, QUOTE_TOKENS);
+  const TVSymbols = makeTVSymbols(
+    selectedToken,
+    selectedExchange,
+    TOKENS_EXCHANGE_SUPPORT
+  );
 
   const router = useRouter();
 
@@ -62,7 +57,18 @@ export const ProChartWidget = ({
 
   const TIER = Cookies.get(COOKIES.tier);
 
-  const renderCATElement = () => {
+  const {
+    tokens: {
+      groupName: { NATIVE, STABLE, ERC20 },
+    },
+  } = tokensDb;
+  const nativeTokens = tokensDb.getTokensList(NATIVE, selectedExchange);
+  const stableTokens = tokensDb.getTokensList(STABLE, selectedExchange);
+  const erc20Tokens = tokensDb.getTokensList(ERC20, selectedExchange);
+
+  const tokensList = [nativeTokens, stableTokens, erc20Tokens];
+
+  const renderCatLink = () => {
     if (TIER !== null) {
       return (
         <Link
@@ -102,7 +108,7 @@ export const ProChartWidget = ({
     <div>
       <div className="container">
         <div className="controls-card">
-          <div className="cat-link">{renderCATElement()}</div>
+          <div className="cat-link">{renderCatLink()}</div>
 
           <Card>
             <div className="controls">
@@ -110,7 +116,8 @@ export const ProChartWidget = ({
                 <div className="label">Token:</div>
                 <TokenSelect
                   className="token-select"
-                  tokensList={TA_SUPPORTED_TOKENS}
+                  items={tokensList}
+                  groups={['Native coins', 'Stable tokens', 'ERC20 tokens']}
                   selectedToken={selectedToken}
                   onItemSelect={token => {
                     ReactGA.event({
@@ -121,60 +128,22 @@ export const ProChartWidget = ({
                     console.log(token);
                     console.log(selectedExchange);
                     console.log(
-                      QUOTE_TOKENS[token.toUpperCase()][selectedExchange]
+                      TOKENS_EXCHANGE_SUPPORT[token.toUpperCase()][
+                        selectedExchange
+                      ]
                     );
-                    if (
-                      !QUOTE_TOKENS[token.toUpperCase()] ||
-                      !QUOTE_TOKENS[token.toUpperCase()][selectedExchange]
-                    ) {
-                      // Temporary full page reload while we are in transition with adding all tokens to TV
-                      Router.push(
-                        `/exchange/${token.toUpperCase()}/${selectedExchange}`
-                      );
-                    } else {
-                      onChangeToken(token);
-                    }
+                    onChangeToken(token);
                   }}
                 />
               </div>
               <div className="control">
                 <div className="exchanges">
                   <div className="label">Exchange:</div>
-                  <div className="exchange-list">
-                    {Object.values(EXCHANGE_NAMES)
-                      .filter(exchangeName => {
-                        return exchangeName !== EXCHANGE_NAMES.Okex;
-                      })
-                      .map(exchangeName => (
-                        <div
-                          role="link"
-                          key={exchangeName}
-                          className="exchange"
-                          onClick={() => {
-                            onChangeExchange(exchangeName);
-                            ReactGA.event({
-                              category: 'User',
-                              action: `Pro Chart change exchange ${exchangeName}`,
-                              label: `Pro Charts`,
-                            });
-                          }}
-                        >
-                          <img
-                            src={`/static/png/${EXCHANGE_IMAGES[exchangeName]}`}
-                            className="exchange-image"
-                          />
-                          <span
-                            className={`${
-                              exchangeName === selectedExchange
-                                ? 'exchange-label-selected'
-                                : 'exchange-label'
-                            }`}
-                          >
-                            {EXCHANGE_NAMES[exchangeName]}
-                          </span>
-                        </div>
-                      ))}
-                  </div>
+                  <ExchangeList
+                    exchanges={EXCHANGE_NAMES}
+                    onChangeExchange={onChangeExchange}
+                    selectedExchange={selectedExchange}
+                  />
                 </div>
               </div>
               <div className="control">
@@ -222,7 +191,8 @@ export const ProChartWidget = ({
           <ProChartContainer
             timeFrame="3D"
             interval="60"
-            symbols={symbols}
+            TVSymbols={TVSymbols}
+            TASymbol={selectedToken}
             exchangeName={selectedExchange}
             onChartRenderCb={tvWidget => {
               tvInstance.current = tvWidget;
@@ -263,7 +233,7 @@ export const ProChartWidget = ({
             padding-bottom: 10px;
           }
           .cat-link {
-            padding-bottom: 10px
+            padding-bottom: 10px;
           }
           .token-select {
             width: 120px;
@@ -285,32 +255,6 @@ export const ProChartWidget = ({
             display: flex;
             flex-direction: column;
             width: 100%;
-          }
-          .exchange {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            padding-bottom: 5px;
-            width: 50%;
-          }
-          .exchange:hover {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            padding-bottom: 5px;
-            width: 50%;
-            opacity: 0.5;
-          }
-          .exchange-image {
-            width: 24px;
-            height: 24px;
-          }
-          .exchange-label {
-            margin-left: 5px;
-          }
-          .exchange-label-selected {
-            margin-left: 5px;
-            border-bottom: 2px solid rgba(${colors.primaryGreen}, 1);
           }
           .card {
             padding-bottom: 10px;
@@ -353,6 +297,7 @@ export const ProChartWidget = ({
             .pricing-link {
               text-align: center;
             }
+          }
         `}
       </style>
     </div>
@@ -364,4 +309,7 @@ ProChartWidget.propTypes = {
   onChangeToken: PropTypes.func.isRequired,
   selectedExchange: PropTypes.string.isRequired,
   selectedToken: PropTypes.string.isRequired,
+  tokensDb: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.func, PropTypes.object])
+  ).isRequired,
 };

@@ -10,32 +10,6 @@ import {
   OKEX,
 } from './exchanges';
 
-// console.log(EXCHANGE_NAMES);
-
-// const {
-//   BINANCE,
-//   BITFINEX,
-//   BITMEX,
-//   BITSTAMP,
-//   BITTREX,
-//   KRAKEN,
-//   KUCOIN,
-//   POLONIEX,
-//   OKEX,
-// } = EXCHANGE_NAMES;
-
-console.log(
-  BINANCE,
-  BITFINEX,
-  BITMEX,
-  BITSTAMP,
-  BITTREX,
-  KRAKEN,
-  KUCOIN,
-  POLONIEX,
-  OKEX
-);
-
 export const EXCHANGE_IMAGES = {
   [BINANCE]: 'binance.png',
   [BITFINEX]: 'bitfinex.png',
@@ -48,7 +22,7 @@ export const EXCHANGE_IMAGES = {
   [OKEX]: 'okex.png',
 };
 
-export const COIN_IMAGES = {
+export const TOKEN_IMAGES = {
   USDT: 'usdt.png',
   DAI: 'dai.png',
   GUSD: 'gusd.png',
@@ -83,6 +57,7 @@ export const COIN_IMAGES = {
   TKN: 'tkn.png',
   USDSB: 'usdsb.png',
   USDT_ERC20: 'usdt (erc20).png',
+  USDT_OMNI: 'omni.png',
   ZIL: 'zil.png',
   ZRX: 'zrx.png',
 };

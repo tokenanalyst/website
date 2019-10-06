@@ -1,7 +1,13 @@
-import { NATIVE_TOKENS, STABLE_TOKENS, CURRENCIES } from './tokens';
+import {
+  NATIVE_TOKENS,
+  STABLE_TOKENS,
+  CURRENCIES,
+  ERC20_TOKENS,
+} from './tokens';
 
 const { BTC, ETH } = NATIVE_TOKENS;
-const { USDT, OMG, LINK, ZIL, ZRX, PAX, REP, USDT_OMNI } = STABLE_TOKENS;
+const { USDT, PAX, USDT_OMNI, USDT_ERC20 } = STABLE_TOKENS;
+const { OMG, LINK, ZIL, ZRX, REP } = ERC20_TOKENS;
 const { USD } = CURRENCIES;
 
 export const BINANCE = 'Binance';
@@ -35,7 +41,7 @@ export const EXCHANGE_DOLLARS = {
   OKEX: 'USD',
 };
 
-export const QUOTE_TOKENS = {
+export const TOKENS_EXCHANGE_SUPPORT = {
   [BTC]: {
     [BINANCE]: {
       quoteToken: USDT,
@@ -207,18 +213,12 @@ export const QUOTE_TOKENS = {
       quoteToken: USD,
     },
   },
-  [USDT]: {
+  [USDT_ERC20]: {
     [BINANCE]: {
       quoteToken: USDT,
     },
     [BITFINEX]: {
       quoteToken: USDT,
-    },
-    [BITMEX]: {
-      quoteToken: USD,
-    },
-    [BITSTAMP]: {
-      quoteToken: USD,
     },
     [BITTREX]: {
       quoteToken: USDT,
@@ -226,14 +226,8 @@ export const QUOTE_TOKENS = {
     [KUCOIN]: {
       quoteToken: USDT,
     },
-    [KRAKEN]: {
-      quoteToken: USD,
-    },
     [POLONIEX]: {
       quoteToken: USDT,
-    },
-    [OKEX]: {
-      quoteToken: USD,
     },
   },
   [ZIL]: {
@@ -293,14 +287,14 @@ export const QUOTE_TOKENS = {
   },
 };
 
-export const SUPPORTED_TOKENS = {
-  [BINANCE]: [BTC, ETH, OMG, ZRX],
-  [BITFINEX]: [BTC, ETH, OMG, ZRX],
+export const TOKENS_TV_SUPPORT = {
+  [BINANCE]: [BTC, ETH, OMG, ZRX, USDT_ERC20],
+  [BITFINEX]: [BTC, ETH, USDT_ERC20],
   [BITMEX]: [BTC, ETH],
-  [BITSTAMP]: [BTC, ETH, OMG, ZRX],
-  [BITTREX]: [BTC, ETH, OMG, ZRX],
-  [KRAKEN]: [BTC, ETH, OMG, ZRX],
-  [KUCOIN]: [BTC, ETH, OMG, ZRX],
-  [POLONIEX]: [BTC, ETH, OMG, ZRX],
+  [BITSTAMP]: [BTC, ETH],
+  [BITTREX]: [BTC, ETH, USDT_ERC20],
+  [KRAKEN]: [BTC, ETH],
+  [KUCOIN]: [BTC, ETH, USDT_ERC20],
+  [POLONIEX]: [BTC, ETH, USDT_ERC20],
   [OKEX]: [USDT_OMNI],
 };

@@ -7,7 +7,7 @@ import { fetchDataFromApi$ } from '../lib/observables';
 import { ETH, BTC, USDT_OMNI } from './const';
 
 const ta = (function ta() {
-  let tradingPair;
+  let tokenMetrics;
 
   let api;
 
@@ -210,11 +210,11 @@ const ta = (function ta() {
       return flowsData();
     },
 
-    setTradingPair: tp => {
-      tradingPair = tp;
+    setToken: tp => {
+      tokenMetrics = tp;
     },
 
-    getTradingPair: () => tradingPair,
+    getToken: () => tokenMetrics,
 
     setApi: taInstance => {
       api = taInstance;
