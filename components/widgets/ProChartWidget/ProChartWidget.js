@@ -33,11 +33,10 @@ const SimpleToolTip = dynamic(
 );
 
 export const ProChartWidget = ({
-  onChangeExchange,
-  onChangeToken,
   selectedExchange,
   selectedToken,
   tokensDb,
+  onChange,
 }) => {
   const tvInstance = useRef(null);
   const studies = useRef({
@@ -68,7 +67,7 @@ export const ProChartWidget = ({
 
   const tokensList = [nativeTokens, stableTokens, erc20Tokens];
 
-  const renderCatLink = () => {
+  const renderCTALink = () => {
     if (TIER !== null) {
       return (
         <Link
@@ -108,7 +107,7 @@ export const ProChartWidget = ({
     <div>
       <div className="container">
         <div className="controls-card">
-          <div className="cat-link">{renderCatLink()}</div>
+          <div className="cat-link">{renderCTALink()}</div>
 
           <Card>
             <div className="controls">
@@ -119,20 +118,13 @@ export const ProChartWidget = ({
                   items={tokensList}
                   groups={['Native coins', 'Stable tokens', 'ERC20 tokens']}
                   selectedToken={selectedToken}
-                  onItemSelect={token => {
+                  onItemSelect={newToken => {
                     ReactGA.event({
                       category: 'User',
-                      action: `Pro Chart change token ${token}`,
+                      action: `Pro Chart change token ${newToken}`,
                       label: `Pro Charts`,
                     });
-                    console.log(token);
-                    console.log(selectedExchange);
-                    console.log(
-                      TOKENS_EXCHANGE_SUPPORT[token.toUpperCase()][
-                        selectedExchange
-                      ]
-                    );
-                    onChangeToken(token);
+                    onChange(newToken, selectedExchange);
                   }}
                 />
               </div>
@@ -141,7 +133,9 @@ export const ProChartWidget = ({
                   <div className="label">Exchange:</div>
                   <ExchangeList
                     exchanges={EXCHANGE_NAMES}
-                    onChangeExchange={onChangeExchange}
+                    onChangeExchange={newExchange => {
+                      onChange(selectedToken, newExchange);
+                    }}
                     selectedExchange={selectedExchange}
                   />
                 </div>
@@ -305,8 +299,7 @@ export const ProChartWidget = ({
 };
 
 ProChartWidget.propTypes = {
-  onChangeExchange: PropTypes.func.isRequired,
-  onChangeToken: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
   selectedExchange: PropTypes.string.isRequired,
   selectedToken: PropTypes.string.isRequired,
   tokensDb: PropTypes.objectOf(

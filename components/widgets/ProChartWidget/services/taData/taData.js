@@ -6,7 +6,6 @@ let instance;
 const taData = options =>
   (() => {
     if (!instance) {
-      // const taInstance = taApiClient({ apiKey });
       const taInstance = taApiClient(options);
       ta.setApi(taInstance);
       instance = ta;

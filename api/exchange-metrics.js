@@ -3,11 +3,9 @@ const url = require('url');
 const { API_ERROR_MSG } = require('../constants/apiErrors');
 const getUserAuth = require('./auth/getUserAuth');
 const TA = require('./utils/ta-api-node/ta');
-const filterSeriesByExchange = require('./utils/filterSeriesByExchange');
 const makeNetFlowSeries = require('./utils/makeNetFlowSeries');
 const makeUnixtimeLimit = require('./utils/makeUnixtimeLimit');
 const filterSeriesByTime = require('./utils/filterSeriesByTime');
-const { tokensDb } = require('../utils/tokensDb');
 const { makeCallParams } = require('./utils/makeCallParams');
 
 module.exports = async (req, res) => {

@@ -6,50 +6,28 @@ import Cookies from 'js-cookie';
 import { ExchangeMetricsWidget } from '../../../components/widgets/ExchangeMetricsWidget';
 import { IoChartWidget } from '../../../components/widgets/IoChartWidget';
 import { ProChartWidget } from '../../../components/widgets/ProChartWidget';
-import {
-  TOKENS_TV_SUPPORT,
-  TOKENS_EXCHANGE_SUPPORT,
-} from '../../../constants/exchanges';
 import { COOKIES } from '../../../constants/cookies';
-import {
-  NATIVE_TOKENS,
-  ERC20_TOKENS,
-  STABLE_TOKENS,
-} from '../../../constants/tokens';
-import { tokensDb } from '../../../utils/tokensDb';
+import { tokensDb } from '../../../services/tokensDb';
 
 const Exchange = () => {
   const router = useRouter();
   const { token, exchange } = router.query;
-  const [proChartsupportedExchanges, setProChartSupportedExchanges] = useState(
-    []
-  );
-  const [proChartsupportedTokens, setProChartSupportedTokens] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isTVSupported, setIsTVSupported] = useState(false);
 
   useEffect(() => {
-    console.log(tokensDb);
-    const supportedExchanges = Object.keys(TOKENS_TV_SUPPORT).reduce(
-      (acc, exchangeName) => {
-        if (TOKENS_TV_SUPPORT[exchangeName].indexOf(token) !== -1) {
-          return [...acc, exchangeName];
-        }
+    const exchangeSupport = tokensDb.getTokenSupportOnExchange(token, exchange);
 
-        return acc;
-      },
-      []
-    );
-    console.log(exchange);
-    console.log(supportedExchanges, TOKENS_TV_SUPPORT.BitMEX);
-    console.log(TOKENS_TV_SUPPORT[exchange]);
-    setProChartSupportedExchanges(supportedExchanges);
-    setProChartSupportedTokens(TOKENS_TV_SUPPORT);
-    if (token && exchange) {
-      setIsLoading(false);
+    if (exchangeSupport) {
+      setIsTVSupported(true);
     }
   }, [token, exchange]);
 
-  console.log(exchange);
+  const pushToPage = (newToken, newExchange) => {
+    router.push(
+      `/exchange/[token]/[exchange]`,
+      `/exchange/${newToken}/${newExchange}?tier=${Cookies.get(COOKIES.tier)}`
+    );
+  };
 
   return (
     <div>
@@ -59,30 +37,13 @@ const Exchange = () => {
         </title>
       </Head>
       <ExchangeMetricsWidget token={token} exchange={exchange} />
-      {token && exchange && proChartsupportedExchanges.length && !isLoading ? (
+      {token && exchange && isTVSupported ? (
         <>
           <ProChartWidget
             selectedExchange={exchange}
             selectedToken={token}
-            supportedTokens={proChartsupportedTokens}
-            supportedExchanges={proChartsupportedExchanges}
             tokensDb={tokensDb}
-            onChangeExchange={newExchange => {
-              router.push(
-                `/exchange/[token]/[exchange]`,
-                `/exchange/${
-                  TOKENS_TV_SUPPORT[newExchange].indexOf(token) > 0
-                    ? token
-                    : TOKENS_TV_SUPPORT[newExchange][0]
-                }/${newExchange}?tier=${Cookies.get(COOKIES.tier)}`
-              );
-            }}
-            onChangeToken={newToken => {
-              router.push(
-                `/exchange/[token]/[exchange]`,
-                `/exchange/${newToken}/${exchange}`
-              );
-            }}
+            onChange={pushToPage}
           />
           <div className="kaiko">
             Order book data by
@@ -110,7 +71,7 @@ const Exchange = () => {
           </style>
         </>
       ) : (
-        !isLoading && <IoChartWidget token={token} exchange={exchange} />
+        token && exchange && <IoChartWidget token={token} exchange={exchange} />
       )}
     </div>
   );

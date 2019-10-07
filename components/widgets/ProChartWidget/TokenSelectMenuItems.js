@@ -3,7 +3,7 @@ import React from 'react';
 import { Menu, Divider } from '@blueprintjs/core';
 import { Scrollbars } from 'react-custom-scrollbars';
 
-const renderGroup = (tokens, query, renderItem) =>
+const renderGroupItems = (tokens, query, renderItem) =>
   Object.values(tokens)
     .filter(item => item.symbol.includes(query.toUpperCase()))
     .map(token => {
@@ -26,7 +26,7 @@ const renderGroup = (tokens, query, renderItem) =>
 
 const renderTokens = (groups, tokens, renderItem, query) =>
   groups.map((group, index) => {
-    const menuItems = renderGroup(tokens[index], query, renderItem);
+    const menuItems = renderGroupItems(tokens[index], query, renderItem);
 
     return (
       <div key={group}>
@@ -64,47 +64,45 @@ const renderTokens = (groups, tokens, renderItem, query) =>
     );
   });
 
-export const TokenSelectMenuItems = ({ groups, tokens, renderItem, query }) => {
-  return (
-    <>
-      <div className="container">
-        <Menu style={{ height: '400px' }}>
-          <Scrollbars
-            // autoHeight
-            autoHideTimeout={1000}
-            renderThumbHorizontal={({ style, ...props }) => (
-              <div
-                // eslint-disable-next-line react/jsx-props-no-spreading
-                {...props}
-                style={{
-                  ...style,
-                  opacity: '0.9',
-                }}
-              />
-            )}
-          >
-            <div className="token-list">
-              {renderTokens(groups, tokens, renderItem, query)}
-            </div>
-          </Scrollbars>
-        </Menu>
-      </div>
-      <style jsx>
-        {`
-          .token-list {
-            padding: 5px;
-            height: 400px;
-          }
-          .token {
-            padding: 5px;
-          }
-        `}
-      </style>
-    </>
-  );
-};
+export const TokenSelectMenuItems = ({ groups, tokens, renderItem, query }) => (
+  <>
+    <div className="container">
+      <Menu style={{ height: '400px' }}>
+        <Scrollbars
+          autoHideTimeout={1000}
+          renderThumbHorizontal={({ style, ...props }) => (
+            <div
+              // eslint-disable-next-line react/jsx-props-no-spreading
+              {...props}
+              style={{
+                ...style,
+                opacity: '0.9',
+              }}
+            />
+          )}
+        >
+          <div className="token-list">
+            {renderTokens(groups, tokens, renderItem, query)}
+          </div>
+        </Scrollbars>
+      </Menu>
+    </div>
+    <style jsx>
+      {`
+        .token-list {
+          padding: 5px;
+          height: 400px;
+        }
+        .token {
+          padding: 5px;
+        }
+      `}
+    </style>
+  </>
+);
 
 TokenSelectMenuItems.propTypes = {
+  groups: PropTypes.arrayOf(PropTypes.string).isRequired,
   tokens: PropTypes.arrayOf(PropTypes.object).isRequired,
   renderItem: PropTypes.func.isRequired,
   query: PropTypes.string.isRequired,

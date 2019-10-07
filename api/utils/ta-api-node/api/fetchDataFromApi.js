@@ -16,7 +16,7 @@ module.exports = endpointCallFn => async (taInstance, params) => {
   const apiCall = makeApiUrl(endpointCallFn(params), apiUrl, apiCallArgs);
 
   let response;
-console.log(apiCall)
+
   try {
     response = await axios.get(apiCall);
   } catch (err) {

@@ -2,12 +2,12 @@ import {
   NATIVE_TOKENS,
   ERC20_TOKENS,
   STABLE_TOKENS,
-} from '../constants/tokens';
+} from '../../constants/tokens';
 import {
   EXCHANGE_NAMES,
   TOKENS_EXCHANGE_SUPPORT,
   TOKENS_TV_SUPPORT,
-} from '../constants/exchanges';
+} from '../../constants/exchanges';
 
 let instance;
 
@@ -37,12 +37,12 @@ const initTokensDb = () => {
   const erc20Tokens = makeList(ERC20_TOKENS, ERC20);
 
   const tokensList = { ...nativeTokens, ...erc20Tokens, ...stableTokens };
-  console.log(tokensList);
+
   const getTokenDetails = token => {
     if (!token) {
       return null;
     }
-    console.log(tokensList[token.toUpperCase()]);
+
     return tokensList[token.toUpperCase()];
   };
 
@@ -91,7 +91,7 @@ const initTokensDb = () => {
       if (!(token && exchange)) {
         return null;
       }
-      const { exchangeSupport } = tokensList[token];
+      const { exchangeSupport } = tokensList[token.toUpperCase()];
 
       if (exchangeSupport && exchangeSupport[exchange]) {
         return exchangeSupport[exchange];

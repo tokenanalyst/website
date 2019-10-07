@@ -5,6 +5,9 @@ module.exports = (inFlowSeries, outFlowSeries, fromDate, toDate) => {
     return [];
   }
 
+  // TODO: make sure the data returned always is correct if any misalignment
+  // in inflow and outflow series
+
   const safeResultsNumber = Math.min(inFlowSeries.length, outFlowSeries.length);
 
   const trimmedInFlow = takeRight(inFlowSeries, safeResultsNumber);

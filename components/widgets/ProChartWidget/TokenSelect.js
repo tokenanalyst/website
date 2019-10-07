@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
-import React, { useCallback } from 'react';
+import React, { useMemo } from 'react';
 import { Button } from '@blueprintjs/core';
 import { Select } from '@blueprintjs/select';
 import { TokenSelectMenuItems } from './TokenSelectMenuItems';
 import { TokenIcon } from '../../TokenIcon';
 
-const createList = (items, groups) => ({
-  items,
+const createList = (listItems, groups) => ({
+  items: listItems,
   itemRenderer: (item, itemProps) => {
     return (
       <TokenIcon
@@ -29,7 +29,7 @@ const createList = (items, groups) => ({
 });
 
 export const TokenSelect = ({ groups, items, onItemSelect, selectedToken }) => {
-  const select = useCallback(createList(items, groups), [items]);
+  const select = useMemo(() => createList(items, groups), [items, groups]);
 
   return (
     <Select
@@ -39,7 +39,6 @@ export const TokenSelect = ({ groups, items, onItemSelect, selectedToken }) => {
       itemListRenderer={select.itemListRenderer}
       popoverProps={{
         minimal: true,
-        // isOpen: true,
       }}
       onItemSelect={onItemSelect}
     >
