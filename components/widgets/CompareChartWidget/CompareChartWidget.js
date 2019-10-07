@@ -101,68 +101,6 @@ export const CompareChartWidget = () => {
       ) : (
         <LoadingSpinner />
       )}
-      <style jsx>{underSubNav}</style>
-      <style jsx>{`
-        .container {
-          font-family: Open Sans;
-          display: flex;
-          flex-direction: row;
-          justify-content: space-around;
-        }
-        @media (min-width: 768px) and (max-width: 1399px) {
-          .container {
-            flex-direction: column;
-          }
-          .chart {
-            padding-top: 20px;
-            padding-bottom: 20px;
-          }
-        }
-        @media (min-width: 320px) and (max-width: 767px) {
-          .container {
-            flex-direction: column;
-          }
-          .coins {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            padding-bottom: 10px;
-          }
-          .coin {
-            width: 36px;
-            padding-bottom: 10px;
-          }
-          .coin-info {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-          }
-          .chart {
-            padding-top: 20px;
-            padding-bottom: 20px;
-          }
-          .divider {
-            display: flex;
-            justify-content: space-around;
-            padding-left: 15px;
-            padding-right: 15px;
-            padding-top: 10px;
-            padding-bottom: 10px;
-            align-items: center;
-          }
-          .token-1 {
-            color: rgba(${colors.primaryRed});
-          }
-          .token-2 {
-            color: rgba(${colors.primaryGreen});
-          }
-          .change-button {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-          }
-        }
-      `}</style>
     </>
   );
 };
