@@ -1,14 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Head from 'next/head';
 
 import { CompareChartWidget } from '../components/widgets/CompareChartWidget';
 import { PageHeader } from '../components/PageHeader';
-import { Link } from '../components/Link';
-import { LoginContext } from '../contexts/Login';
 
 const Compare = () => {
-  const loginCtx = useContext(LoginContext);
-
   return (
     <>
       <div className="container">
