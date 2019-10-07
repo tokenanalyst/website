@@ -6,7 +6,16 @@ import {
 } from './tokens';
 
 const { BTC, ETH } = NATIVE_TOKENS;
-const { USDT, PAX, USDT_OMNI, USDT_ERC20 } = STABLE_TOKENS;
+const {
+  USDT,
+  PAX,
+  USDT_OMNI,
+  USDT_ERC20,
+  OMNI,
+  USDC,
+  TUSD,
+  DAI,
+} = STABLE_TOKENS;
 const { OMG, LINK, ZIL, ZRX, REP } = ERC20_TOKENS;
 const { USD } = CURRENCIES;
 
@@ -30,15 +39,6 @@ export const EXCHANGE_NAMES = {
   [KUCOIN]: KUCOIN,
   [POLONIEX]: POLONIEX,
   [OKEX]: OKEX,
-};
-
-export const EXCHANGE_DOLLARS = {
-  BINANCE: 'USDT',
-  BITFINEX: 'USDT',
-  BITMEX: 'USD',
-  BITTREX: 'USD',
-  KUCOIN: 'USDT',
-  OKEX: 'USD',
 };
 
 export const TOKENS_EXCHANGE_SUPPORT = {
@@ -100,6 +100,12 @@ export const TOKENS_EXCHANGE_SUPPORT = {
       quoteToken: USD,
     },
   },
+  [DAI]: {
+    [BITTREX]: {
+      baseToken: BTC,
+      quoteToken: USD,
+    },
+  },
   [LINK]: {
     [BINANCE]: {
       quoteToken: USDT,
@@ -157,31 +163,16 @@ export const TOKENS_EXCHANGE_SUPPORT = {
   },
   [PAX]: {
     [BINANCE]: {
+      baseToken: BTC,
       quoteToken: USDT,
     },
     [BITFINEX]: {
+      baseToken: BTC,
       quoteToken: USDT,
-    },
-    [BITMEX]: {
-      quoteToken: USD,
-    },
-    [BITSTAMP]: {
-      quoteToken: USD,
     },
     [BITTREX]: {
+      baseToken: BTC,
       quoteToken: USDT,
-    },
-    [KUCOIN]: {
-      quoteToken: USDT,
-    },
-    [KRAKEN]: {
-      quoteToken: USD,
-    },
-    [POLONIEX]: {
-      quoteToken: USDT,
-    },
-    [OKEX]: {
-      quoteToken: USD,
     },
   },
   [REP]: {
@@ -213,6 +204,26 @@ export const TOKENS_EXCHANGE_SUPPORT = {
       quoteToken: USD,
     },
   },
+  [TUSD]: {
+    [BITFINEX]: {
+      baseToken: BTC,
+      quoteToken: USD,
+    },
+    [BINANCE]: {
+      baseToken: BTC,
+      quoteToken: USDT,
+    },
+  },
+  [USDC]: {
+    [BITFINEX]: {
+      baseToken: BTC,
+      quoteToken: USD,
+    },
+    [BINANCE]: {
+      baseToken: BTC,
+      quoteToken: USDT,
+    },
+  },
   [USDT_ERC20]: {
     [BINANCE]: {
       quoteToken: USDT,
@@ -228,6 +239,24 @@ export const TOKENS_EXCHANGE_SUPPORT = {
     },
     [POLONIEX]: {
       quoteToken: USDT,
+    },
+  },
+  [USDT_OMNI]: {
+    [BITFINEX]: {
+      baseToken: OMNI,
+      quoteToken: BTC,
+    },
+    [KUCOIN]: {
+      baseToken: OMNI,
+      quoteToken: BTC,
+    },
+    [KRAKEN]: {
+      baseToken: BTC,
+      quoteToken: USD,
+    },
+    [POLONIEX]: {
+      baseToken: OMNI,
+      quoteToken: BTC,
     },
   },
   [ZIL]: {
@@ -288,13 +317,13 @@ export const TOKENS_EXCHANGE_SUPPORT = {
 };
 
 export const TOKENS_TV_SUPPORT = {
-  [BINANCE]: [BTC, ETH, OMG, ZRX, USDT_ERC20],
-  [BITFINEX]: [BTC, ETH, USDT_ERC20],
+  [BINANCE]: [BTC, ETH, OMG, ZRX, USDT_ERC20, USDC, PAX, TUSD],
+  [BITFINEX]: [BTC, ETH, USDT_ERC20, USDT_OMNI, USDC, PAX, TUSD],
   [BITMEX]: [BTC, ETH],
   [BITSTAMP]: [BTC, ETH],
-  [BITTREX]: [BTC, ETH, USDT_ERC20],
-  [KRAKEN]: [BTC, ETH],
-  [KUCOIN]: [BTC, ETH, USDT_ERC20],
-  [POLONIEX]: [BTC, ETH, USDT_ERC20],
-  [OKEX]: [USDT_OMNI],
+  [BITTREX]: [BTC, ETH, USDT_ERC20, USDT_OMNI, PAX, DAI],
+  [KRAKEN]: [BTC, ETH, USDT_OMNI],
+  [KUCOIN]: [BTC, ETH, USDT_ERC20, USDT_OMNI],
+  [POLONIEX]: [BTC, ETH, USDT_ERC20, USDT_OMNI],
+  [OKEX]: [],
 };

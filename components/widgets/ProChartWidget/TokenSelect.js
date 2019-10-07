@@ -39,6 +39,9 @@ export const TokenSelect = ({ groups, items, onItemSelect, selectedToken }) => {
       itemListRenderer={select.itemListRenderer}
       popoverProps={{
         minimal: true,
+        // isOpen: true,
+        // usePortal: false,
+        // lazy: false,
       }}
       onItemSelect={onItemSelect}
     >
