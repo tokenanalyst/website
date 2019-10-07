@@ -1,11 +1,6 @@
 import { tokensDb } from '../../../../services/tokensDb';
 
-export const makeTVSymbols = (baseToken, exchangeName) => {
-  const exchangeSupport = tokensDb.getTokenSupportOnExchange(
-    baseToken,
-    exchangeName
-  );
-
+export const makeTVSymbols = (baseToken, exchangeSupport) => {
   if (!exchangeSupport) {
     return null;
   }

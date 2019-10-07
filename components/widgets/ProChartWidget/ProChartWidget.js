@@ -8,10 +8,6 @@ import Cookies from 'js-cookie';
 import { makeTVSymbols } from './utils/makeTVSymbols';
 
 import { ProChartContainer } from './ProChartContainer';
-import {
-  TOKENS_EXCHANGE_SUPPORT,
-  EXCHANGE_NAMES,
-} from '../../../constants/exchanges';
 import { COOKIES } from '../../../constants/cookies';
 import { PLANS } from '../../../constants/plans';
 import { Link } from '../../Link';
@@ -44,11 +40,12 @@ export const ProChartWidget = ({
     transactions: { entityId: null },
   });
 
-  const TVSymbols = makeTVSymbols(
+  const exchangeSupport = tokensDb.getTokenSupportOnExchange(
     selectedToken,
-    selectedExchange,
-    TOKENS_EXCHANGE_SUPPORT
+    selectedExchange
   );
+
+  const TVSymbols = makeTVSymbols(selectedToken, exchangeSupport);
 
   const router = useRouter();
 
@@ -132,7 +129,7 @@ export const ProChartWidget = ({
                 <div className="exchanges">
                   <div className="label">Exchange:</div>
                   <ExchangeList
-                    exchanges={EXCHANGE_NAMES}
+                    exchanges={tokensDb.getExchangesList()}
                     onChangeExchange={newExchange => {
                       onChange(selectedToken, newExchange);
                     }}

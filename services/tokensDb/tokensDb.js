@@ -99,18 +99,6 @@ const initTokensDb = () => {
 
       return null;
     },
-    getTokenType: token => {
-      if (!token) {
-        return null;
-      }
-      const tokenDetails = getTokenDetails(token);
-
-      if (tokenDetails) {
-        return tokenDetails.tokenType;
-      }
-
-      return null;
-    },
     getExchangesList: () => EXCHANGE_NAMES,
     isNative: token => token in nativeTokens,
     isStable: token => token in stableTokens,
