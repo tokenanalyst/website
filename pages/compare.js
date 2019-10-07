@@ -15,27 +15,7 @@ const Compare = () => {
         <Head>
           <title>TokenAnalyst - Compare fundamental data</title>
         </Head>
-        <PageHeader
-          text={'Compare'}
-          rightElement={
-            !loginCtx.isLoggedIn ? (
-              <Link
-                href="/pricing"
-                desktopLabel="Access historical data"
-                mobileLabel="Historical data"
-                onClick={() =>
-                  ReactGA.event({
-                    category: 'User',
-                    action: `Access historical from Compare`,
-                    label: `Funnel`,
-                  })
-                }
-              />
-            ) : (
-              <div />
-            )
-          }
-        />
+        <PageHeader text={'Compare'} />
         <CompareChartWidget />
       </div>
       <style jsx>{`

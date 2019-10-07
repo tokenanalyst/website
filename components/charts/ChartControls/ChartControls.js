@@ -62,7 +62,7 @@ export const ChartControls = ({
   setChartMode,
   setDataPoint,
   setTimeWindow,
-  borderColor,
+  onPressDismiss,
 }) => {
   const selectedTimeWindow =
     (dataSet && dataSet[0] && dataSet[0].timeWindow) || TIME_WINDOWS.oneDay;
@@ -71,6 +71,11 @@ export const ChartControls = ({
     <>
       <Card>
         <div className="controls">
+          {onPressDismiss && (
+            <div className="close-button" onClick={onPressDismiss}>
+              <img src="/static/svg/cross.svg" />
+            </div>
+          )}
           {setToken && (
             <div className="control">
               <div className="select-token">
@@ -390,6 +395,18 @@ export const ChartControls = ({
           .select-boxes {
             display: flex;
             flex-direction: column;
+          }
+          .select-token {
+            flex-direction: row;
+          }
+          .token-header {
+            padding-right: 10px;
+          }
+          .close-button {
+            display: flex;
+            justify-content: flex-end;
+            width: 100%;
+            opacity: 0.5;
           }
         }
       `}</style>
