@@ -22,7 +22,7 @@ const createList = (listItems, groups) => ({
     <TokenSelectMenuItems
       groups={groups}
       tokens={items}
-      renderItem={renderItem}
+      renderItemFn={renderItem}
       query={query}
     />
   ),
@@ -39,9 +39,6 @@ export const TokenSelect = ({ groups, items, onItemSelect, selectedToken }) => {
       itemListRenderer={select.itemListRenderer}
       popoverProps={{
         minimal: true,
-        // isOpen: true,
-        // usePortal: false,
-        // lazy: false,
       }}
       onItemSelect={onItemSelect}
     >

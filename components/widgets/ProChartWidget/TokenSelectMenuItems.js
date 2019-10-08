@@ -3,13 +3,13 @@ import React from 'react';
 import { Menu, Divider } from '@blueprintjs/core';
 import { Scrollbars } from 'react-custom-scrollbars';
 
-const renderGroupItems = (tokens, query, renderItem) =>
+const renderGroupItems = (tokens, query, renderItemFn) =>
   Object.values(tokens)
     .filter(item => item.symbol.includes(query.toUpperCase()))
     .map(token => {
       return (
         <div key={token.symbol} className="container">
-          <div className="token">{renderItem(token.symbol)}</div>
+          <div className="token">{renderItemFn(token.symbol)}</div>
           <style jsx>
             {`
               .container {
@@ -24,9 +24,9 @@ const renderGroupItems = (tokens, query, renderItem) =>
       );
     });
 
-const renderTokens = (groups, tokens, renderItem, query) =>
+const renderTokens = (groups, tokens, renderItemFn, query) =>
   groups.map((group, index) => {
-    const menuItems = renderGroupItems(tokens[index], query, renderItem);
+    const menuItems = renderGroupItems(tokens[index], query, renderItemFn);
 
     return (
       <div key={group}>
@@ -64,7 +64,12 @@ const renderTokens = (groups, tokens, renderItem, query) =>
     );
   });
 
-export const TokenSelectMenuItems = ({ groups, tokens, renderItem, query }) => (
+export const TokenSelectMenuItems = ({
+  groups,
+  tokens,
+  renderItemFn,
+  query,
+}) => (
   <>
     <div className="container">
       <Menu style={{ height: '400px' }}>
@@ -82,7 +87,7 @@ export const TokenSelectMenuItems = ({ groups, tokens, renderItem, query }) => (
           )}
         >
           <div className="token-list">
-            {renderTokens(groups, tokens, renderItem, query)}
+            {renderTokens(groups, tokens, renderItemFn, query)}
           </div>
         </Scrollbars>
       </Menu>
@@ -104,6 +109,6 @@ export const TokenSelectMenuItems = ({ groups, tokens, renderItem, query }) => (
 TokenSelectMenuItems.propTypes = {
   groups: PropTypes.arrayOf(PropTypes.string).isRequired,
   tokens: PropTypes.arrayOf(PropTypes.object).isRequired,
-  renderItem: PropTypes.func.isRequired,
+  renderItemFn: PropTypes.func.isRequired,
   query: PropTypes.string.isRequired,
 };
