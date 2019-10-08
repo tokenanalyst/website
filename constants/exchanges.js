@@ -1,196 +1,333 @@
-import { NATIVE_TOKENS, STABLE_TOKENS } from './tokens';
+import {
+  NATIVE_TOKENS,
+  STABLE_TOKENS,
+  CURRENCIES,
+  ERC20_TOKENS,
+} from './tokens';
+
+const { BTC, ETH } = NATIVE_TOKENS;
+const {
+  USDT,
+  PAX,
+  USDT_OMNI,
+  USDT_ERC20,
+  OMNI,
+  USDC,
+  TUSD,
+  DAI,
+} = STABLE_TOKENS;
+const { OMG, LINK, ZIL, ZRX, REP } = ERC20_TOKENS;
+const { USD } = CURRENCIES;
+
+export const BINANCE = 'Binance';
+export const BITFINEX = 'Bitfinex';
+export const BITMEX = 'BitMEX';
+export const BITSTAMP = 'Bitstamp';
+export const BITTREX = 'Bittrex';
+export const KRAKEN = 'Kraken';
+export const KUCOIN = 'Kucoin';
+export const POLONIEX = 'Poloniex';
+export const OKEX = 'Okex';
 
 export const EXCHANGE_NAMES = {
-  Binance: 'Binance',
-  Bitfinex: 'Bitfinex',
-  Bitmex: 'BitMEX',
-  Bitstamp: 'Bitstamp',
-  Bittrex: 'Bittrex',
-  Kraken: 'Kraken',
-  Kucoin: 'Kucoin',
-  Poloniex: 'Poloniex',
-  Okex: 'Okex',
+  [BINANCE]: BINANCE,
+  [BITFINEX]: BITFINEX,
+  [BITMEX]: BITMEX,
+  [BITSTAMP]: BITSTAMP,
+  [BITTREX]: BITTREX,
+  [KRAKEN]: KRAKEN,
+  [KUCOIN]: KUCOIN,
+  [POLONIEX]: POLONIEX,
+  [OKEX]: OKEX,
 };
 
-export const EXCHANGE_DOLLARS = {
-  Binance: 'USDT',
-  Bitfinex: 'USDT',
-  Bitmex: 'USD',
-  Bitstamp: 'USD',
-  Bittrex: 'USDT',
-  Kraken: 'USD',
-  Kucoin: 'USDT',
-  Poloniex: 'USDT',
-  Okex: 'USD',
+export const TOKENS_EXCHANGE_SUPPORT = {
+  [BTC]: {
+    [BINANCE]: {
+      quoteToken: USDT,
+    },
+    [BITFINEX]: {
+      quoteToken: USDT,
+    },
+    [BITMEX]: {
+      quoteToken: USD,
+    },
+    [BITSTAMP]: {
+      quoteToken: USD,
+    },
+    [BITTREX]: {
+      quoteToken: USDT,
+    },
+    [KUCOIN]: {
+      quoteToken: USDT,
+    },
+    [KRAKEN]: {
+      quoteToken: USD,
+    },
+    [POLONIEX]: {
+      quoteToken: USDT,
+    },
+    [OKEX]: {
+      quoteToken: USD,
+    },
+  },
+  [ETH]: {
+    [BINANCE]: {
+      quoteToken: USDT,
+    },
+    [BITFINEX]: {
+      quoteToken: USDT,
+    },
+    [BITMEX]: {
+      quoteToken: USD,
+    },
+    [BITSTAMP]: {
+      quoteToken: USD,
+    },
+    [BITTREX]: {
+      quoteToken: USDT,
+    },
+    [KUCOIN]: {
+      quoteToken: USDT,
+    },
+    [KRAKEN]: {
+      quoteToken: USD,
+    },
+    [POLONIEX]: {
+      quoteToken: USDT,
+    },
+    [OKEX]: {
+      quoteToken: USD,
+    },
+  },
+  [DAI]: {
+    [BITTREX]: {
+      baseToken: BTC,
+      quoteToken: USD,
+    },
+  },
+  [LINK]: {
+    [BINANCE]: {
+      quoteToken: USDT,
+    },
+    [BITFINEX]: {
+      quoteToken: USDT,
+    },
+    [BITMEX]: {
+      quoteToken: USD,
+    },
+    [BITSTAMP]: {
+      quoteToken: USD,
+    },
+    [BITTREX]: {
+      quoteToken: USDT,
+    },
+    [KUCOIN]: {
+      quoteToken: USDT,
+    },
+    [KRAKEN]: {
+      quoteToken: USD,
+    },
+    [POLONIEX]: {
+      quoteToken: USDT,
+    },
+    [OKEX]: {
+      quoteToken: USD,
+    },
+  },
+  [OMG]: {
+    [BINANCE]: {
+      quoteToken: USDT,
+    },
+    [BITFINEX]: {
+      quoteToken: USD,
+    },
+    [BITSTAMP]: {
+      quoteToken: USD,
+    },
+    [BITTREX]: {
+      quoteToken: USDT,
+    },
+    [KUCOIN]: {
+      quoteToken: USDT,
+    },
+    [KRAKEN]: {
+      quoteToken: USD,
+    },
+    [POLONIEX]: {
+      quoteToken: USDT,
+    },
+    [OKEX]: {
+      quoteToken: USD,
+    },
+  },
+  [PAX]: {
+    [BINANCE]: {
+      baseToken: BTC,
+      quoteToken: USDT,
+    },
+    [BITFINEX]: {
+      baseToken: BTC,
+      quoteToken: USDT,
+    },
+    [BITTREX]: {
+      baseToken: BTC,
+      quoteToken: USDT,
+    },
+  },
+  [REP]: {
+    [BINANCE]: {
+      quoteToken: USDT,
+    },
+    [BITFINEX]: {
+      quoteToken: USDT,
+    },
+    [BITMEX]: {
+      quoteToken: USD,
+    },
+    [BITSTAMP]: {
+      quoteToken: USD,
+    },
+    [BITTREX]: {
+      quoteToken: USDT,
+    },
+    [KUCOIN]: {
+      quoteToken: USDT,
+    },
+    [KRAKEN]: {
+      quoteToken: USD,
+    },
+    [POLONIEX]: {
+      quoteToken: USDT,
+    },
+    [OKEX]: {
+      quoteToken: USD,
+    },
+  },
+  [TUSD]: {
+    [BITFINEX]: {
+      baseToken: BTC,
+      quoteToken: USD,
+    },
+    [BINANCE]: {
+      baseToken: BTC,
+      quoteToken: USDT,
+    },
+  },
+  [USDC]: {
+    [BITFINEX]: {
+      baseToken: BTC,
+      quoteToken: USD,
+    },
+    [BINANCE]: {
+      baseToken: BTC,
+      quoteToken: USDT,
+    },
+  },
+  [USDT_ERC20]: {
+    [BINANCE]: {
+      quoteToken: USDT,
+    },
+    [BITFINEX]: {
+      quoteToken: USDT,
+    },
+    [BITTREX]: {
+      quoteToken: USDT,
+    },
+    [KUCOIN]: {
+      quoteToken: USDT,
+    },
+    [POLONIEX]: {
+      quoteToken: USDT,
+    },
+  },
+  [USDT_OMNI]: {
+    [BITFINEX]: {
+      baseToken: OMNI,
+      quoteToken: BTC,
+    },
+    [KUCOIN]: {
+      baseToken: OMNI,
+      quoteToken: BTC,
+    },
+    [KRAKEN]: {
+      baseToken: BTC,
+      quoteToken: USD,
+    },
+    [POLONIEX]: {
+      baseToken: OMNI,
+      quoteToken: BTC,
+    },
+  },
+  [ZIL]: {
+    [BINANCE]: {
+      quoteToken: USDT,
+    },
+    [BITFINEX]: {
+      quoteToken: USDT,
+    },
+    [BITMEX]: {
+      quoteToken: USD,
+    },
+    [BITSTAMP]: {
+      quoteToken: USD,
+    },
+    [BITTREX]: {
+      quoteToken: USDT,
+    },
+    [KUCOIN]: {
+      quoteToken: USDT,
+    },
+    [KRAKEN]: {
+      quoteToken: USD,
+    },
+    [POLONIEX]: {
+      quoteToken: USDT,
+    },
+    [OKEX]: {
+      quoteToken: USD,
+    },
+  },
+  [ZRX]: {
+    [BINANCE]: {
+      quoteToken: USDT,
+    },
+    [BITFINEX]: {
+      quoteToken: USD,
+    },
+    [BITSTAMP]: {
+      quoteToken: USD,
+    },
+    [BITTREX]: {
+      quoteToken: USDT,
+    },
+    [KUCOIN]: {
+      quoteToken: USDT,
+    },
+    [KRAKEN]: {
+      quoteToken: USD,
+    },
+    [POLONIEX]: {
+      quoteToken: USDT,
+    },
+    [OKEX]: {
+      quoteToken: USD,
+    },
+  },
 };
 
-export const EXCHANGE_TOKENS = {
-  [EXCHANGE_NAMES.Binance]: [
-    NATIVE_TOKENS.BTC,
-    NATIVE_TOKENS.ETH,
-    // STABLE_TOKENS.USDT_ERC20,
-    // STABLE_TOKENS.USDC,
-    // STABLE_TOKENS.PAX,
-    // STABLE_TOKENS.TUSD,
-    // STABLE_TOKENS.LINK,
-    // STABLE_TOKENS.ZRX,
-    // STABLE_TOKENS.LOOM,
-    // STABLE_TOKENS.BAT,
-    // STABLE_TOKENS.REP,
-    // STABLE_TOKENS.CVC,
-    // STABLE_TOKENS.OMG,
-    // STABLE_TOKENS.GNT,
-    // STABLE_TOKENS.KNC,
-    // STABLE_TOKENS.SNT,
-    // STABLE_TOKENS.MANA,
-    // STABLE_TOKENS.FET,
-    // STABLE_TOKENS.RLC,
-    // STABLE_TOKENS.BNT,
-    // STABLE_TOKENS.DAI,
-    // STABLE_TOKENS.ZIL,
-    // STABLE_TOKENS.GUSD,
-    // STABLE_TOKENS.TKN,
-    // STABLE_TOKENS.NMR,
-    // STABLE_TOKENS.MKR,
-  ],
-  [EXCHANGE_NAMES.Bitfinex]: [
-    NATIVE_TOKENS.BTC,
-    NATIVE_TOKENS.ETH,
-    // STABLE_TOKENS.USDT_ERC20,
-    // STABLE_TOKENS.USDT_OMNI,
-    // STABLE_TOKENS.ZRX,
-    // STABLE_TOKENS.OMG,
-    // STABLE_TOKENS.USDC,
-    // STABLE_TOKENS.LINK,
-    // STABLE_TOKENS.DAI,
-    // STABLE_TOKENS.PAX,
-    // STABLE_TOKENS.GUSD,
-    // STABLE_TOKENS.MKR,
-    // STABLE_TOKENS.TUSD,
-    // STABLE_TOKENS.BAT,
-    // STABLE_TOKENS.GNT,
-    // STABLE_TOKENS.CVC,
-    // STABLE_TOKENS.SNT,
-    // STABLE_TOKENS.REP,
-    // STABLE_TOKENS.MANA,
-    // STABLE_TOKENS.KNC,
-    // STABLE_TOKENS.FET,
-    // STABLE_TOKENS.RLC,
-    // STABLE_TOKENS.LOOM,
-    // STABLE_TOKENS.BNT,
-    // STABLE_TOKENS.TKN,
-    // STABLE_TOKENS.NMR,
-    // STABLE_TOKENS.ZIL,
-  ],
-  Bitmex: [NATIVE_TOKENS.BTC],
-  [EXCHANGE_NAMES.Bitstamp]: [NATIVE_TOKENS.BTC],
-  [EXCHANGE_NAMES.Bittrex]: [
-    NATIVE_TOKENS.BTC,
-    NATIVE_TOKENS.ETH,
-    // STABLE_TOKENS.USDT_ERC20,
-    // STABLE_TOKENS.TUSD,
-    // STABLE_TOKENS.ZRX,
-    // STABLE_TOKENS.LOOM,
-    // STABLE_TOKENS.MANA,
-    // STABLE_TOKENS.MKR,
-    // STABLE_TOKENS.OMG,
-    // STABLE_TOKENS.PAX,
-    // STABLE_TOKENS.BAT,
-    // STABLE_TOKENS.DAI,
-    // STABLE_TOKENS.GNT,
-    // STABLE_TOKENS.NMR,
-    // STABLE_TOKENS.REP,
-    // STABLE_TOKENS.USDT_OMNI,
-    // STABLE_TOKENS.GUSD,
-    // STABLE_TOKENS.USDC,
-    // STABLE_TOKENS.LINK,
-    // STABLE_TOKENS.FET,
-    // STABLE_TOKENS.RLC,
-    // STABLE_TOKENS.KNC,
-    // STABLE_TOKENS.CVC,
-    // STABLE_TOKENS.SNT,
-    // STABLE_TOKENS.BNT,
-    // STABLE_TOKENS.TKN,
-    // STABLE_TOKENS.ZIL,
-  ],
-  [EXCHANGE_NAMES.Kraken]: [
-    NATIVE_TOKENS.ETH,
-    // STABLE_TOKENS.USDT_OMNI,
-    // STABLE_TOKENS.GUSD,
-    // STABLE_TOKENS.TUSD,
-    // STABLE_TOKENS.PAX,
-    // STABLE_TOKENS.USDC,
-    // STABLE_TOKENS.LINK,
-    // STABLE_TOKENS.FET,
-    // STABLE_TOKENS.RLC,
-    // STABLE_TOKENS.KNC,
-    // STABLE_TOKENS.CVC,
-    // STABLE_TOKENS.SNT,
-    // STABLE_TOKENS.LOOM,
-    // STABLE_TOKENS.BNT,
-    // STABLE_TOKENS.TKN,
-    // STABLE_TOKENS.NMR,
-    // STABLE_TOKENS.MANA,
-    // STABLE_TOKENS.ZIL,
-    // STABLE_TOKENS.ZRX,
-    // STABLE_TOKENS.GNT,
-    // STABLE_TOKENS.REP,
-    // STABLE_TOKENS.OMG,
-    // STABLE_TOKENS.BAT,
-    // STABLE_TOKENS.MKR,
-  ],
-  [EXCHANGE_NAMES.Kucoin]: [
-    NATIVE_TOKENS.ETH,
-    // STABLE_TOKENS.USDT_OMNI,
-    // STABLE_TOKENS.GUSD,
-    // STABLE_TOKENS.TUSD,
-    // STABLE_TOKENS.PAX,
-    // STABLE_TOKENS.USDC,
-    // STABLE_TOKENS.LINK,
-    // STABLE_TOKENS.FET,
-    // STABLE_TOKENS.RLC,
-    // STABLE_TOKENS.KNC,
-    // STABLE_TOKENS.CVC,
-    // STABLE_TOKENS.SNT,
-    // STABLE_TOKENS.LOOM,
-    // STABLE_TOKENS.BNT,
-    // STABLE_TOKENS.TKN,
-    // STABLE_TOKENS.NMR,
-    // STABLE_TOKENS.MANA,
-    // STABLE_TOKENS.ZIL,
-    // STABLE_TOKENS.ZRX,
-    // STABLE_TOKENS.GNT,
-    // STABLE_TOKENS.REP,
-    // STABLE_TOKENS.OMG,
-    // STABLE_TOKENS.BAT,
-    // STABLE_TOKENS.MKR,
-  ],
-  [EXCHANGE_NAMES.Poloniex]: [
-    NATIVE_TOKENS.BTC,
-    NATIVE_TOKENS.ETH,
-    // STABLE_TOKENS.USDT_OMNI,
-    // STABLE_TOKENS.GUSD,
-    // STABLE_TOKENS.TUSD,
-    // STABLE_TOKENS.PAX,
-    // STABLE_TOKENS.USDC,
-    // STABLE_TOKENS.LINK,
-    // STABLE_TOKENS.FET,
-    // STABLE_TOKENS.RLC,
-    // STABLE_TOKENS.KNC,
-    // STABLE_TOKENS.CVC,
-    // STABLE_TOKENS.SNT,
-    // STABLE_TOKENS.LOOM,
-    // STABLE_TOKENS.BNT,
-    // STABLE_TOKENS.TKN,
-    // STABLE_TOKENS.NMR,
-    // STABLE_TOKENS.MANA,
-    // STABLE_TOKENS.ZIL,
-    // STABLE_TOKENS.ZRX,
-    // STABLE_TOKENS.GNT,
-    // STABLE_TOKENS.REP,
-    // STABLE_TOKENS.OMG,
-    // STABLE_TOKENS.BAT,
-    // STABLE_TOKENS.MKR,
-  ],
-  [EXCHANGE_NAMES.Okex]: [STABLE_TOKENS.USDT_OMNI],
+export const TOKENS_TV_SUPPORT = {
+  [BINANCE]: [BTC, ETH, OMG, ZRX, USDT_ERC20, USDC, PAX, TUSD],
+  [BITFINEX]: [BTC, ETH, USDT_ERC20, USDT_OMNI, USDC, PAX, TUSD],
+  [BITMEX]: [BTC, ETH],
+  [BITSTAMP]: [BTC, ETH],
+  [BITTREX]: [BTC, ETH, USDT_ERC20, USDT_OMNI, PAX, DAI],
+  [KRAKEN]: [BTC, ETH, USDT_OMNI],
+  [KUCOIN]: [BTC, ETH, USDT_ERC20, USDT_OMNI],
+  [POLONIEX]: [BTC, ETH, USDT_ERC20, USDT_OMNI],
+  [OKEX]: [],
+};
+
+export const EXCHANGE_DISPLAY_NAME = {
+  Bitmex: BITMEX,
 };

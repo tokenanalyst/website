@@ -2,9 +2,9 @@ import moment from 'moment';
 
 const formatDate = epoch => moment(epoch).format('DD/MM/YYYY, HH:mm:ss');
 
-export const makeStudiesCb = (ta, exchangeName, symbol) => ({
+export const makeStudiesCb = (ta, exchangeName, TAsymbol) => ({
   getData: {
-    ['#FLOWS']: async (from, to, resolution) => {
+    '#FLOWS': async (from, to, resolution) => {
       if (process.env.NODE_ENV === 'development') {
         console.log(
           `Requesting bars from ${formatDate(from * 1000)} to ${formatDate(
@@ -15,7 +15,7 @@ export const makeStudiesCb = (ta, exchangeName, symbol) => ({
 
       const flow = await ta.fetchFromTAProxy(
         exchangeName,
-        symbol,
+        TAsymbol,
         resolution,
         from * 1000,
         to * 1000
@@ -37,7 +37,7 @@ export const makeStudiesCb = (ta, exchangeName, symbol) => ({
     },
   },
   getSymbol: {
-    ['#FLOWS']: () => {
+    '#FLOWS': () => {
       const symbolStub = {
         data_status: 'streaming',
         description: '',
