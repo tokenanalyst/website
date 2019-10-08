@@ -44,6 +44,9 @@ module.exports = userConfig => {
   ta.exchangeFlowsAllTokensV5 = compose(
     fetchDataFromApi(ENDPOINTS.public.exchange_flows_all_tokens_v5)
   );
+  ta.exchangeFlowsAllTokens48hV5 = compose(
+    fetchDataFromApi(ENDPOINTS.public.exchange_flows_all_tokens_48h_v5)
+  );
   ta.exchangeFlowsAllTokens30Day = compose(
     fetchDataFromApi(ENDPOINTS.public.exchange_flows_all_tokens_30_day)
   );

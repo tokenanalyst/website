@@ -7,6 +7,7 @@ const makeNetFlowSeries = require('./utils/makeNetFlowSeries');
 const makeUnixtimeLimit = require('./utils/makeUnixtimeLimit');
 const filterSeriesByTime = require('./utils/filterSeriesByTime');
 const { makeCallParams } = require('./utils/makeCallParams');
+const formatApiError = require('./utils/formatApiError');
 
 module.exports = async (req, res) => {
   const urlParts = url.parse(req.url, true);
@@ -38,18 +39,18 @@ module.exports = async (req, res) => {
     window: timeWindow,
   };
 
-  const priceApiCall = privateApi.tokenPriceUsdWindowHistorical(
+  const priceApiRequest = privateApi.tokenPriceUsdWindowHistorical(
     makeCallParams(baseParams, null, from_date, to_date)
   );
 
-  const exchangeFlowsAllTokensCall = publicApi.exchangeFlowsAllTokens({
+  const exchangeFlowsAllTokensRequest = publicApi.exchangeFlowsAllTokens({
     format: FORMAT,
   });
 
-  const inFlowApiCall = privateApi.exchangeFlowWindowHistorical(
+  const inFlowApiRequest = privateApi.exchangeFlowWindowHistorical(
     makeCallParams(baseParams, 'inflow', from_date, to_date)
   );
-  const outFlowApiCall = privateApi.exchangeFlowWindowHistorical(
+  const outFlowApiRequest = privateApi.exchangeFlowWindowHistorical(
     makeCallParams(baseParams, 'outflow', from_date, to_date)
   );
 
@@ -59,11 +60,14 @@ module.exports = async (req, res) => {
     publicApiResponse,
     tokenPriceApiResponse,
   ] = await Promise.all([
-    inFlowApiCall,
-    outFlowApiCall,
-    exchangeFlowsAllTokensCall,
-    priceApiCall,
-  ]);
+    inFlowApiRequest,
+    outFlowApiRequest,
+    exchangeFlowsAllTokensRequest,
+    priceApiRequest,
+  ]).catch(err => {
+    const { code, body } = formatApiError(err);
+    return res.status(code).send(body);
+  });
 
   const inFlow = inflowTxnCountApiResponse.data;
   const outFlow = outflowTxnCountApiResponse.data;
