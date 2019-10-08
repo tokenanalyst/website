@@ -327,3 +327,7 @@ export const TOKENS_TV_SUPPORT = {
   [POLONIEX]: [BTC, ETH, USDT_ERC20, USDT_OMNI],
   [OKEX]: [],
 };
+
+export const EXCHANGE_DISPLAY_NAME = {
+  Bitmex: BITMEX,
+};

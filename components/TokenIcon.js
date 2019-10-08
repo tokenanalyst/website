@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { TOKEN_IMAGES } from '../constants/image-paths';
 
-export const TokenIcon = ({ token, size, withText, onClick }) => {
+export const TokenIcon = ({ token, size, hasText, onClick }) => {
   return (
     <>
       <div
@@ -18,7 +18,7 @@ export const TokenIcon = ({ token, size, withText, onClick }) => {
             alt={`Token ${token}`}
           />
         </div>
-        {withText && <div className="text">{token.replace('_', ' ')}</div>}
+        {hasText && <div className="text">{token.replace('_', ' ')}</div>}
       </div>
       <style jsx>
         {`
@@ -44,11 +44,11 @@ TokenIcon.propTypes = {
   token: PropTypes.string.isRequired,
   size: PropTypes.number,
   onClick: PropTypes.func,
-  withText: PropTypes.bool,
+  hasText: PropTypes.bool,
 };
 
 TokenIcon.defaultProps = {
   size: 32,
-  withText: false,
+  hasText: false,
   onClick: () => null,
 };

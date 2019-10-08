@@ -12,7 +12,7 @@ const createList = (listItems, groups) => ({
       <TokenIcon
         token={item}
         key={item}
-        withText
+        hasText
         size={24}
         onClick={itemProps.handleClick}
       />
@@ -48,7 +48,7 @@ export const TokenSelect = ({ groups, items, onItemSelect, selectedToken }) => {
           <TokenIcon
             token={selectedToken}
             key={selectedToken}
-            withText
+            hasText
             size={24}
           />
         }
