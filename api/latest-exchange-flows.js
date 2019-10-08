@@ -51,7 +51,7 @@ module.exports = async (req, res) => {
     return res.status(code).send(body);
   });
 
-  let ta_response = {};
+  const ta_response = {};
 
   latestPriceResponses.forEach(
     response =>
