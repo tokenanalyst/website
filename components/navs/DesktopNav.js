@@ -104,10 +104,18 @@ export const DesktopNav = () => {
             </div>
 
             <div className={'links-products'}>
-              <a href="https://websockets.tokenanalyst.io/" target="_blank">
+              <a
+                href="https://websockets.tokenanalyst.io/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 WebSocket
               </a>
-              <a href="https://research.tokenanalyst.io/" target="_blank">
+              <a
+                href="https://research.tokenanalyst.io/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Research
               </a>
               <Link href="/pricing" passHref>
@@ -124,6 +132,7 @@ export const DesktopNav = () => {
                 href="https://docs.tokenanalyst.io/#/api"
                 target="_blank"
                 onMouseOver={collapseAllSubMenus}
+                rel="noopener noreferrer"
               >
                 API
               </a>
@@ -245,6 +254,7 @@ export const DesktopNav = () => {
                       label: `Desktop Nav`,
                     });
                   }}
+                  rel="noopener noreferrer"
                 >
                   Follow Us
                 </a>
@@ -260,6 +270,7 @@ export const DesktopNav = () => {
                       label: `Desktop Nav`,
                     });
                   }}
+                  rel="noopener noreferrer"
                 >
                   Telegram
                 </a>
@@ -275,6 +286,7 @@ export const DesktopNav = () => {
                       label: `Desktop Nav`,
                     });
                   }}
+                  rel="noopener noreferrer"
                 >
                   Contact
                 </a>
