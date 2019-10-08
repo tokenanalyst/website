@@ -22,9 +22,7 @@ export const ExchangeCell = ({ value }) => (
         src={`/static/png/${
           EXCHANGE_IMAGES[EXCHANGE_DISPLAY_NAME[value] || value]
         }`}
-        alt={`Exchange ${
-          EXCHANGE_IMAGES[EXCHANGE_DISPLAY_NAME[value] || value]
-        }`}
+        alt={`Exchange ${EXCHANGE_DISPLAY_NAME[value] || value}`}
       />
       {EXCHANGE_NAMES[EXCHANGE_DISPLAY_NAME[value] || value]}
     </span>
