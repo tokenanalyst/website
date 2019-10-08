@@ -26,5 +26,5 @@ module.exports = async (_, res) => {
     res.setHeader(...cacheHeader);
   });
 
-  res.send({ ta_response: exchangeFlows.data });
+  return res.send({ ta_response: exchangeFlows.data });
 };
