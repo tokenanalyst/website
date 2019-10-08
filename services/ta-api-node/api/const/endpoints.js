@@ -17,7 +17,9 @@ module.exports = {
         'last?job=exchange_flows_all_tokens_v5&',
       latest_price_v5: ({ token }) => `last?job=${token}_latest_price_v5&`,
       exchange_flows_all_tokens_30_day: () =>
-        'exchange_flows_all_tokens_30day&',
+        'last?job=exchange_flows_all_tokens_30day_v5&',
+      exchange_flows_all_tokens_48h_v5: () =>
+        'last?job=exchange_flows_all_tokens_48h_v5&',
       all_exchange_flows_all_tokens_v5: () =>
         'last?job=all_exchange_flows_all_tokens_v5&',
       miner_hashrate_30day_v5: () => ({ token }) =>
