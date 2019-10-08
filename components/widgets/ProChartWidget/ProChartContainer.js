@@ -25,7 +25,8 @@ const taDataArgs =
 export const ProChartContainer = ({
   timeFrame,
   interval,
-  symbols,
+  TVSymbols,
+  TASymbol,
   exchangeName,
   onChartRenderCb,
 }) => {
@@ -41,33 +42,33 @@ export const ProChartContainer = ({
     datafeed: tvData(
       kaikoService.current,
       exchangeName,
-      symbols,
+      TVSymbols,
       loginCtx.isLoggedIn
     ),
-    symbol: `${symbols[0]}/${symbols[1]}`,
+    symbol: `${TVSymbols[0]}/${TVSymbols[1]}`,
     time_frames: KAIKO_TIME_FRAMES,
     debug: false,
   };
 
-  tokenAnalystService.current.setTradingPair(symbols);
+  tokenAnalystService.current.setToken(TASymbol);
 
   useEffect(() => {
     kaikoService.current.start();
     kaikoService.current.studies = makeStudiesCb(
       tokenAnalystService.current,
       exchangeName,
-      symbols[0]
+      TASymbol
     );
     kaikoService.current.ta = tokenAnalystService.current;
 
     setIsLoading(false);
-  }, [kaikoService, exchangeName, symbols]);
+  }, [kaikoService, exchangeName, TVSymbols, TASymbol]);
 
   return (
     <>
       <div className="container">
         <div className="tv-chart">
-          {symbols && !isLoading && (
+          {TVSymbols && !isLoading && (
             <div>
               <ProChart
                 kaikoService={kaikoService.current}
@@ -97,9 +98,10 @@ export const ProChartContainer = ({
 };
 
 ProChartContainer.propTypes = {
+  TASymbol: PropTypes.PropTypes.string.isRequired,
+  TVSymbols: PropTypes.arrayOf(PropTypes.string).isRequired,
   exchangeName: PropTypes.string.isRequired,
   interval: PropTypes.string.isRequired,
   onChartRenderCb: PropTypes.func.isRequired,
-  symbols: PropTypes.arrayOf(PropTypes.string).isRequired,
   timeFrame: PropTypes.string.isRequired,
 };

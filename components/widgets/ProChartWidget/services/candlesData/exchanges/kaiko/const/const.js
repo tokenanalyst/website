@@ -7,7 +7,7 @@ export const restRootUrlTAProxy =
     ? 'https://www.tokenanalyst.io/api'
     : `http://localhost:${process.env.PORT || 3000}/api`;
 
-export const timeFrames = {
+export const TIME_FRAMES = {
   '1m': '1m',
   '5m': '5m',
   '15m': '15m',

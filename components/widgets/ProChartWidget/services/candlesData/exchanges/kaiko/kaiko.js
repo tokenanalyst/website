@@ -1,15 +1,15 @@
 import moment from 'moment';
+
 import { debugError, makeCandlesRestApiUrl, fetchCandles } from '../../utils';
 import {
   ERROR,
   restRootUrl,
   restRootUrlTAProxy,
-  timeFrames,
+  TIME_FRAMES,
   KAIKO_EXCHANGES,
   KAIKO_EXCHANGES_MAP,
-} from './const';
+} from './const/const';
 import { addTradingPair, makeOptions, removeTradingPair } from './utils';
-
 import { EXCHANGE_NAME } from '../../const';
 
 const kaiko = (function kaiko() {
@@ -112,7 +112,7 @@ const kaiko = (function kaiko() {
 })();
 
 kaiko.options = {
-  timeFrames,
+  timeFrames: TIME_FRAMES,
 };
 
 export default kaiko;

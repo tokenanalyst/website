@@ -7,6 +7,7 @@ import { Footer } from './Footer';
 
 import '../node_modules/normalize.css/normalize.css';
 import '../node_modules/@blueprintjs/core/lib/css/blueprint.css';
+import '../node_modules/@blueprintjs/select/lib/css/blueprint-select.css';
 
 export const Layout = ({ children }) => (
   <div className="layout">
@@ -21,7 +22,7 @@ export const Layout = ({ children }) => (
       <script
         type="text/javascript"
         src="/static/charting_library/charting_library.min.js"
-      ></script>
+      />
 
       <meta
         name="description"

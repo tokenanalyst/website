@@ -5,9 +5,13 @@ import ReactGA from 'react-ga';
 
 import { Skeleton } from '../../Skeleton';
 import { CHART_TYPES } from '../../../constants/chartTypes';
-import { STABLE_TOKENS, NATIVE_TOKENS } from '../../../constants/tokens';
+import {
+  STABLE_TOKENS,
+  NATIVE_TOKENS,
+  ERC20_TOKENS,
+} from '../../../constants/tokens';
 import { TOKEN_NAMES } from '../../../constants/token-names';
-import { COIN_IMAGES } from '../../../constants/image-paths';
+import { TOKEN_IMAGES } from '../../../constants/image-paths';
 import { colors } from '../../../constants/styles/colors';
 import { TIME_WINDOWS } from '../../../constants/filters';
 
@@ -82,7 +86,7 @@ export const ChartControls = ({
                 <div className="token-header">{TOKEN_NAMES[token]}</div>
                 <div>
                   <img
-                    src={`/static/png/coins/${COIN_IMAGES[token]}`}
+                    src={`/static/png/coins/${TOKEN_IMAGES[token]}`}
                     className="token-icon"
                     alt={`Token ${token}`}
                   />
@@ -103,6 +107,7 @@ export const ChartControls = ({
                 >
                   {[
                     ...Object.keys(NATIVE_TOKENS),
+                    ...Object.keys(ERC20_TOKENS),
                     ...Object.keys(STABLE_TOKENS).filter(
                       token =>
                         token !== STABLE_TOKENS.USDT_OMNI &&
@@ -266,116 +271,59 @@ export const ChartControls = ({
           </div>
         </div>
       </Card>
-      <style jsx>{`
-        .controls {
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          padding: 20px;
-        }
-        .control {
-          padding-bottom: 20px;
-        }
-        .control-select-wrapper {
-          height: 20px;
-          width: 160px;
-          padding-bottom: 20px;
-        }
-        .control-select {
-          border: 1px solid rgba(151, 151, 151, 0.15);
-          padding: 5px;
-          border-radius: 2px;
-          background-color: #ffffff;
-          width: 160px;
-        }
-        .control-select:hover {
-          background-color: rgba(156, 156, 156, 0.4);
-        }
-        .token-control {
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          align-items: center;
-          padding-bottom: 10px;
-        }
-        .token-icon {
-          padding-bottom: 10px;
-          width: 36px;
-          height: 44px;
-        }
-        .header {
-          padding-top: 10px;
-          padding-bottom: 10px;
-          font-weight: bold;
-        }
-        .select-token {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          padding-bottom: 10px;
-          font-size: 18px;
-          font-weight: bold;
-        }
-        .token-header {
-          padding-bottom: 10px;
-        }
-        .select-header {
-          padding-bottom: 15px;
-          padding-top: 5px;
-          font-weight: bold;
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-        }
-        .option {
-          cursor: pointer;
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          width: 160px;
-          justify-content: space-between;
-        }
-        .option-scaling {
-          cursor: pointer;
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          width: 160px;
-          justify-content: space-between;
-          height: 28px;
-        }
-        .button {
-          margin-right: 10px;
-        }
-        .button-selected {
-          font-weight: bold;
-          border-bottom: 2px solid rgba(${colors.primaryGreen});
-          margin-right: 10px;
-        }
-        .icon {
-          padding-top: 5px;
-        }
-        @media (min-width: 768px) and (max-width: 1399px) {
+      <style jsx>
+        {`
           .controls {
-            flex-direction: row;
-            justify-content: center;
-            max-width: 100%;
-            padding: 10px;
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 20px;
           }
           .control {
-            width: 100%;
-            padding-left: 10px;
-            padding-right: 10px;
+            padding-bottom: 20px;
           }
           .control-select-wrapper {
             height: 20px;
-            width: 90%;
+            width: 160px;
+            padding-bottom: 20px;
+          }
+          .control-select {
+            border: 1px solid rgba(151, 151, 151, 0.15);
+            padding: 5px;
+            border-radius: 2px;
+            background-color: #ffffff;
+            width: 160px;
+          }
+          .control-select:hover {
+            background-color: rgba(156, 156, 156, 0.4);
+          }
+          .token-control {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
             padding-bottom: 10px;
           }
-          .select-boxes {
+          .token-icon {
+            padding-bottom: 10px;
+            width: 36px;
+            height: 44px;
+          }
+          .header {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            font-weight: bold;
+          }
+          .select-token {
             display: flex;
-            min-width: 50%;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 10px;
+            font-size: 18px;
+            font-weight: bold;
+          }
+          .token-header {
+            padding-bottom: 10px;
           }
           .select-header {
             padding-bottom: 15px;
@@ -383,33 +331,92 @@ export const ChartControls = ({
             font-weight: bold;
             display: flex;
             flex-direction: row;
-            align-items: center;
-            justify-content: flex-start;
+            justify-content: space-between;
           }
-          .token-icon {
-            width: 26px;
-            height: 34px;
-          }
-        }
-        @media (min-width: 320px) and (max-width: 767px) {
-          .select-boxes {
+          .option {
+            cursor: pointer;
             display: flex;
-            flex-direction: column;
-          }
-          .select-token {
             flex-direction: row;
+            align-items: center;
+            width: 160px;
+            justify-content: space-between;
           }
-          .token-header {
-            padding-right: 10px;
-          }
-          .close-button {
+          .option-scaling {
+            cursor: pointer;
             display: flex;
-            justify-content: flex-end;
-            width: 100%;
-            opacity: 0.5;
+            flex-direction: row;
+            align-items: center;
+            width: 160px;
+            justify-content: space-between;
+            height: 28px;
           }
-        }
-      `}</style>
+          .button {
+            margin-right: 10px;
+          }
+          .button-selected {
+            font-weight: bold;
+            border-bottom: 2px solid rgba(${colors.primaryGreen});
+            margin-right: 10px;
+          }
+          .icon {
+            padding-top: 5px;
+          }
+          @media (min-width: 768px) and (max-width: 1399px) {
+            .controls {
+              flex-direction: row;
+              justify-content: center;
+              max-width: 100%;
+              padding: 10px;
+              text-align: center;
+            }
+            .control {
+              width: 100%;
+              padding-left: 10px;
+              padding-right: 10px;
+            }
+            .control-select-wrapper {
+              height: 20px;
+              width: 90%;
+              padding-bottom: 10px;
+            }
+            .select-boxes {
+              display: flex;
+              min-width: 50%;
+            }
+            .select-header {
+              padding-bottom: 15px;
+              padding-top: 5px;
+              font-weight: bold;
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              justify-content: flex-start;
+            }
+            .token-icon {
+              width: 26px;
+              height: 34px;
+            }
+          }
+          @media (min-width: 320px) and (max-width: 767px) {
+            .select-boxes {
+              display: flex;
+              flex-direction: column;
+            }
+            .select-token {
+              flex-direction: row;
+            }
+            .token-header {
+              padding-right: 10px;
+            }
+            .close-button {
+              display: flex;
+              justify-content: flex-end;
+              width: 100%;
+              opacity: 0.5;
+            }
+          }
+        `}
+      </style>
     </>
   );
 };

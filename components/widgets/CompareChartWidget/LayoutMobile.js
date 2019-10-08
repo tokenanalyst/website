@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic';
 import { ChartControls } from '../../charts/ChartControls';
 import { colors } from '../../../constants/styles/colors';
 import { underSubNav } from '../../../constants/styles/common-styled-jsx';
-import { COIN_IMAGES } from '../../../constants/image-paths';
+import { TOKEN_IMAGES } from '../../../constants/image-paths';
 import { TOKEN_NAMES } from '../../../constants/token-names';
 import { CHART_TYPES } from '../../../constants/chartTypes';
 
@@ -82,7 +82,7 @@ export const LayoutMobile = ({
         <div className="coins">
           <div className="coin-info">
             <img
-              src={`/static/png/coins/${COIN_IMAGES[tokenLhs]}`}
+              src={`/static/png/coins/${TOKEN_IMAGES[tokenLhs]}`}
               className="coin"
             />
             {TOKEN_NAMES[tokenLhs]}
@@ -90,7 +90,7 @@ export const LayoutMobile = ({
           <Icon icon="arrows-horizontal" iconSize={24} />
           <div className="coin-info">
             <img
-              src={`/static/png/coins/${COIN_IMAGES[tokenRhs]}`}
+              src={`/static/png/coins/${TOKEN_IMAGES[tokenRhs]}`}
               className="coin"
             />
             {TOKEN_NAMES[tokenRhs]}

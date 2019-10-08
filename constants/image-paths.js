@@ -1,16 +1,28 @@
+import {
+  BINANCE,
+  BITFINEX,
+  BITMEX,
+  BITSTAMP,
+  BITTREX,
+  KRAKEN,
+  KUCOIN,
+  POLONIEX,
+  OKEX,
+} from './exchanges';
+
 export const EXCHANGE_IMAGES = {
-  Binance: 'binance.png',
-  Bitfinex: 'bitfinex.png',
-  Bitmex: 'bitmex.png',
-  Bitstamp: 'bitstamp.png',
-  Bittrex: 'bittrex.png',
-  Kraken: 'kraken.png',
-  Kucoin: 'kucoin.png',
-  Poloniex: 'poloniex.png',
-  Okex: 'okex.png',
+  [BINANCE]: 'binance.png',
+  [BITFINEX]: 'bitfinex.png',
+  [BITMEX]: 'bitmex.png',
+  [BITSTAMP]: 'bitstamp.png',
+  [BITTREX]: 'bittrex.png',
+  [KRAKEN]: 'kraken.png',
+  [KUCOIN]: 'kucoin.png',
+  [POLONIEX]: 'poloniex.png',
+  [OKEX]: 'okex.png',
 };
 
-export const COIN_IMAGES = {
+export const TOKEN_IMAGES = {
   USDT: 'usdt.png',
   DAI: 'dai.png',
   GUSD: 'gusd.png',
@@ -45,6 +57,7 @@ export const COIN_IMAGES = {
   TKN: 'tkn.png',
   USDSB: 'usdsb.png',
   USDT_ERC20: 'usdt (erc20).png',
+  USDT_OMNI: 'omni.png',
   ZIL: 'zil.png',
   ZRX: 'zrx.png',
 };

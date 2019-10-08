@@ -1,13 +1,13 @@
 import pick from 'lodash/pick';
 import merge from 'lodash/merge';
-import { map, filter } from 'rxjs/operators';
+import { map, filter, tap } from 'rxjs/operators';
 import { forkJoin } from 'rxjs';
 import moment from 'moment';
 import { fetchDataFromApi$ } from '../lib/observables';
 import { ETH, BTC, USDT_OMNI } from './const';
 
 const ta = (function ta() {
-  let tradingPair;
+  let tokenMetrics;
 
   let api;
 
@@ -61,6 +61,7 @@ const ta = (function ta() {
                   inFlowEntry.avg_txn_value_usd;
                 return inFlowEntry;
               });
+
               const outFlow = flows.outflow.map(entry => {
                 const outFlowEntry = formatDate(entry, [
                   'date',
@@ -77,6 +78,7 @@ const ta = (function ta() {
                 .map(entry => {
                   return formatDate(entry, ['date', 'value']);
                 });
+
               const allFlows = merge(inFlow, outFlow, netFlow);
               return merge(allFlows);
             }),
@@ -208,11 +210,11 @@ const ta = (function ta() {
       return flowsData();
     },
 
-    setTradingPair: tp => {
-      tradingPair = tp;
+    setToken: tp => {
+      tokenMetrics = tp;
     },
 
-    getTradingPair: () => tradingPair,
+    getToken: () => tokenMetrics,
 
     setApi: taInstance => {
       api = taInstance;
