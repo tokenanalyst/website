@@ -50,7 +50,8 @@ export const TokenSnapshot = ({
 
     setData(null);
     getData();
-  }, [dataWindow, snapshotToken, units]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [snapshotToken]);
 
   useEffect(() => {
     if (data) {
@@ -58,7 +59,8 @@ export const TokenSnapshot = ({
         getTokenSnapshotData(apiResponse, snapshotToken, units, dataWindow)
       );
     }
-  }, [units, dataWindow, data, apiResponse, snapshotToken]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [units, dataWindow]);
 
   return (
     <>
@@ -188,100 +190,75 @@ export const TokenSnapshot = ({
           <LoadingSpinner />
         </div>
       )}
-      <style jsx>{`
-        .container {
-          font-family: Open Sans;
-          min-width: 300px;
-          max-width: 300px;
-          padding-left: 5px;
-          padding-right: 5px;
-        }
-        .header {
-          font-family: Space Grotesk;
-          font-size: 32px;
-          font-weight: bold;
-          padding-bottom: 30px;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-        }
-        .top-row {
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          align-items: center;
-          padding-bottom: 10px;
-        }
-        .token-value {
-          font-family: Space Grotesk;
-          font-size: 20px;
-          opacity: 0.4;
-        }
-        .change-negative {
-          color: rgba(${colors.primaryRed});
-        }
-        .change-positive {
-          color: rgba(${colors.primaryGreen});
-        }
-        .change-neutral {
-          color: #4a4a4a;
-          opacity: 0.4;
-        }
-        .section {
-          padding-top: 20px;
-        }
-        .row {
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          border-bottom: solid 1px rgba(151, 151, 151, 0.15);
-          padding-bottom: 20px;
-        }
-        .last-row {
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          padding-bottom: 20px;
-        }
-        .sparkline-header {
-          font-weight: 700;
-          font-size: 18px;
-        }
-        .sparkline-row {
-          display: flex;
-          justify-content: space-between;
-          height: 40px;
-        }
-        .sparkline {
-          height: 40px;
-          width: 150px;
-          opacity: 1;
-        }
-        .token-flow-variation {
-          text-align: left;
-        }
-        .token-flow-value {
-          text-align: left;
-          width: 150px;
-        }
-        .spinner {
-          min-width: 300px;
-          max-width: 300px;
-        }
-        .radio-group {
-          padding: 10px;
-        }
-        .chevron {
-          cursor: pointer;
-        }
-        @media only screen and (max-width: 768px) {
+      <style jsx>
+        {`
           .container {
-            min-width: 100%;
+            font-family: Open Sans;
+            min-width: 300px;
+            max-width: 300px;
+            padding-left: 5px;
+            padding-right: 5px;
+          }
+          .header {
+            font-family: Space Grotesk;
+            font-size: 32px;
+            font-weight: bold;
+            padding-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          }
+          .top-row {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 10px;
+          }
+          .token-value {
+            font-family: Space Grotesk;
+            font-size: 20px;
+            opacity: 0.4;
+          }
+          .change-negative {
+            color: rgba(${colors.primaryRed});
+          }
+          .change-positive {
+            color: rgba(${colors.primaryGreen});
+          }
+          .change-neutral {
+            color: #4a4a4a;
+            opacity: 0.4;
+          }
+          .section {
+            padding-top: 20px;
+          }
+          .row {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            border-bottom: solid 1px rgba(151, 151, 151, 0.15);
+            padding-bottom: 20px;
+          }
+          .last-row {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding-bottom: 20px;
           }
           .sparkline-header {
             font-weight: 700;
             font-size: 18px;
-            width: 50%;
+          }
+          .sparkline-row {
+            display: flex;
+            justify-content: space-between;
+            height: 40px;
+          }
+          .sparkline {
+            height: 40px;
+            width: 150px;
+            opacity: 1;
           }
           .token-flow-variation {
             text-align: left;
@@ -290,41 +267,68 @@ export const TokenSnapshot = ({
             text-align: left;
             width: 150px;
           }
-          .row {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            border-bottom: solid 1px rgba(151, 151, 151, 0.15);
-            padding-bottom: 20px;
-            margin-left: -20px;
-            margin-right: -20px;
-            padding-left: 20px;
-            padding-right: 20px;
+          .spinner {
+            min-width: 300px;
+            max-width: 300px;
           }
-          .last-row {
-            visibility: visible;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            border-bottom: solid 1px rgba(151, 151, 151, 0.15);
-            padding-bottom: 20px;
-            margin-left: -20px;
-            margin-right: -20px;
-            padding-left: 20px;
-            padding-right: 20px;
+          .radio-group {
+            padding: 10px;
           }
-          .shadow {
-            height: 4px;
-            box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.1);
-            margin-left: -20px;
-            margin-right: -20px;
+          .chevron {
+            cursor: pointer;
           }
-          .header {
-            padding-bottom: 5px;
-            padding-top: 10px;
+          @media only screen and (max-width: 768px) {
+            .container {
+              min-width: 100%;
+            }
+            .sparkline-header {
+              font-weight: 700;
+              font-size: 18px;
+              width: 50%;
+            }
+            .token-flow-variation {
+              text-align: left;
+            }
+            .token-flow-value {
+              text-align: left;
+              width: 150px;
+            }
+            .row {
+              display: flex;
+              flex-direction: row;
+              justify-content: space-between;
+              border-bottom: solid 1px rgba(151, 151, 151, 0.15);
+              padding-bottom: 20px;
+              margin-left: -20px;
+              margin-right: -20px;
+              padding-left: 20px;
+              padding-right: 20px;
+            }
+            .last-row {
+              visibility: visible;
+              display: flex;
+              flex-direction: row;
+              justify-content: space-between;
+              border-bottom: solid 1px rgba(151, 151, 151, 0.15);
+              padding-bottom: 20px;
+              margin-left: -20px;
+              margin-right: -20px;
+              padding-left: 20px;
+              padding-right: 20px;
+            }
+            .shadow {
+              height: 4px;
+              box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.1);
+              margin-left: -20px;
+              margin-right: -20px;
+            }
+            .header {
+              padding-bottom: 5px;
+              padding-top: 10px;
+            }
           }
-        }
-      `}</style>
+        `}
+      </style>
     </>
   );
 };
