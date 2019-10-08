@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import { Sparklines, SparklinesLine } from 'react-sparklines';
@@ -50,7 +51,6 @@ export const TokenSnapshot = ({
 
     setData(null);
     getData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [snapshotToken]);
 
   useEffect(() => {
@@ -59,7 +59,6 @@ export const TokenSnapshot = ({
         getTokenSnapshotData(apiResponse, snapshotToken, units, dataWindow)
       );
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [units, dataWindow]);
 
   return (
