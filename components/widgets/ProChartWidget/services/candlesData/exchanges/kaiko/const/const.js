@@ -71,6 +71,10 @@ export const KAIKO_EXCHANGES_MAP = {
     code: 'kcon',
     name: 'KuCoin',
   },
+  huobi: {
+    code: 'huob',
+    name: 'Huobi',
+  },
 };
 
 export const KAIKO_EXCHANGES = [
