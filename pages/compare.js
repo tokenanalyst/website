@@ -1,41 +1,17 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Head from 'next/head';
 
 import { CompareChartWidget } from '../components/widgets/CompareChartWidget';
 import { PageHeader } from '../components/PageHeader';
-import { Link } from '../components/Link';
-import { LoginContext } from '../contexts/Login';
 
 const Compare = () => {
-  const loginCtx = useContext(LoginContext);
-
   return (
     <>
       <div className="container">
         <Head>
           <title>TokenAnalyst - Compare fundamental data</title>
         </Head>
-        <PageHeader
-          text={'Compare'}
-          rightElement={
-            !loginCtx.isLoggedIn ? (
-              <Link
-                href="/pricing"
-                desktopLabel="Access historical data"
-                mobileLabel="Historical data"
-                onClick={() =>
-                  ReactGA.event({
-                    category: 'User',
-                    action: `Access historical from Compare`,
-                    label: `Funnel`,
-                  })
-                }
-              />
-            ) : (
-              <div />
-            )
-          }
-        />
+        <PageHeader text="Compare" />
         <CompareChartWidget />
       </div>
       <style jsx>{`

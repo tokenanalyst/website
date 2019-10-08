@@ -35,18 +35,19 @@ export const PageHeader = ({ text, rightElement }) => {
           .container {
             font-family: Space Grotesk;
             display: flex;
-            padding: 30px;
+
             flex-direction: column;
           }
           h1 {
             font-size: 32px;
             font-weight: bold;
             text-align: center;
+            padding: 0px;
           }
           .right-element {
             text-align: center;
             margin-top: 20px;
-            margin-bottom: auto;
+
             margin-left: unset;
           }
         }
