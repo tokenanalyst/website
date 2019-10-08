@@ -414,13 +414,26 @@ export const ChartControls = ({
   );
 };
 
-ChartControls.ChartControls = {
-  seriesType: PropTypes.string.isRequired,
-  setSeriesType: PropTypes.func.isRequired,
+ChartControls.defaultProps = {
+  seriesType: null,
+  setSeriesType: null,
+  token: null,
+  setToken: null,
+  timeWindow: null,
+  setTimeWindow: null,
+  onPressDismiss: null,
+  setDataPoint: null,
+};
+
+ChartControls.propTypes = {
+  seriesType: PropTypes.string,
+  setSeriesType: PropTypes.func,
   dataSet: PropTypes.arrayOf(PropTypes.object).isRequired,
   setDataSet: PropTypes.func.isRequired,
-  token: PropTypes.string.isRequired,
-  setToken: PropTypes.func.isRequired,
-  borderColor: PropTypes.string.isRequired,
-  setDataPoint: PropTypes.func.isRequired,
+  token: PropTypes.string,
+  setToken: PropTypes.func,
+  setDataPoint: PropTypes.func,
+  timeWindow: PropTypes.string,
+  setTimeWindow: PropTypes.string,
+  onPressDismiss: PropTypes.func,
 };

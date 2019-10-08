@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import dynamic from 'next/dynamic';
 
 import { ChartControls } from '../../charts/ChartControls';
@@ -93,4 +94,18 @@ export const LayoutDesktop = ({
       `}</style>
     </>
   );
+};
+
+LayoutDesktop.propTypes = {
+  tokenLhs: PropTypes.string.isRequired,
+  setTokenLhs: PropTypes.func.isRequired,
+  tokenDataSetLhs: PropTypes.object.isRequired,
+  setTokenDataSetLhs: PropTypes.func.isRequired,
+  tokenRhs: PropTypes.string.isRequired,
+  setTokenRhs: PropTypes.func.isRequired,
+  tokenDataSetRhs: PropTypes.object.isRequired,
+  setTokenDataSetRhs: PropTypes.func.isRequired,
+  chartMode: PropTypes.number.isRequired,
+  setChartMode: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };

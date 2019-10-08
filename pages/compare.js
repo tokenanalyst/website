@@ -11,7 +11,7 @@ const Compare = () => {
         <Head>
           <title>TokenAnalyst - Compare fundamental data</title>
         </Head>
-        <PageHeader text={'Compare'} />
+        <PageHeader text="Compare" />
         <CompareChartWidget />
       </div>
       <style jsx>{`

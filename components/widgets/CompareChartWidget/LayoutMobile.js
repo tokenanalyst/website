@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Drawer, Position, Icon, Button } from '@blueprintjs/core';
 import dynamic from 'next/dynamic';
 
@@ -159,4 +160,18 @@ export const LayoutMobile = ({
       `}</style>
     </>
   );
+};
+
+LayoutMobile.propTypes = {
+  tokenLhs: PropTypes.string.isRequired,
+  setTokenLhs: PropTypes.func.isRequired,
+  tokenDataSetLhs: PropTypes.object.isRequired,
+  setTokenDataSetLhs: PropTypes.func.isRequired,
+  tokenRhs: PropTypes.string.isRequired,
+  setTokenRhs: PropTypes.func.isRequired,
+  tokenDataSetRhs: PropTypes.object.isRequired,
+  setTokenDataSetRhs: PropTypes.func.isRequired,
+  chartMode: PropTypes.number.isRequired,
+  setChartMode: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
