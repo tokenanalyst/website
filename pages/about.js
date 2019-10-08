@@ -351,6 +351,19 @@ const About = () => {
           </div>
           <div>
             <a
+              href="https://www.vice.com/en_uk/article/bjwjpd/someone-just-moved-a-billion-dollars-in-bitcoin-and-no-one-knows-why"
+              target="_blank"
+            >
+              <img
+                src="/static/png/featuredIn/vice.png"
+                className="featured-image"
+                height={70}
+                alt="Vice"
+              />
+            </a>
+          </div>
+          <div>
+            <a
               href="https://finance.yahoo.com/news/crypto-projects-promise-decentralisation-data-shows-thats-far-true-070013815.html"
               target="_blank"
             >
