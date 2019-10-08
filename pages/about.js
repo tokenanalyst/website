@@ -314,6 +314,7 @@ const About = () => {
             <a
               href="https://www.bloomberg.com/news/articles/2019-08-15/bitcoin-drop-not-likely-triggered-by-scam-dump-researcher-says"
               target="_blank"
+              rel="noopener noreferrer"
             >
               <img
                 src="/static/png/featuredIn/bloomberg.png"
@@ -327,6 +328,7 @@ const About = () => {
             <a
               href="https://www.forbes.com/sites/jeffkauflin/2018/10/29/where-did-the-money-go-inside-the-big-crypto-icos-of-2017/"
               target="_blank"
+              rel="noopener noreferrer"
             >
               <img
                 src="/static/png/featuredIn/forbes.png"
@@ -340,6 +342,7 @@ const About = () => {
             <a
               href="https://www.businessinsider.com/bitcoin-spike-led-by-market-whales-tokenanalyst-2019-4?r=US&IR=T"
               target="_blank"
+              rel="noopener noreferrer"
             >
               <img
                 src="/static/png/featuredIn/business-insider.png"
@@ -351,8 +354,23 @@ const About = () => {
           </div>
           <div>
             <a
+              href="https://www.vice.com/en_uk/article/bjwjpd/someone-just-moved-a-billion-dollars-in-bitcoin-and-no-one-knows-why"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src="/static/png/featuredIn/vice.png"
+                className="featured-image"
+                height={70}
+                alt="Vice"
+              />
+            </a>
+          </div>
+          <div>
+            <a
               href="https://finance.yahoo.com/news/crypto-projects-promise-decentralisation-data-shows-thats-far-true-070013815.html"
               target="_blank"
+              rel="noopener noreferrer"
             >
               <img
                 src="/static/png/featuredIn/yahoo.png"
@@ -366,6 +384,7 @@ const About = () => {
             <a
               href="https://blog.bitmex.com/tracking-us-25-billion-of-tokens-ico-makers-allocated-themselves/"
               target="_blank"
+              rel="noopener noreferrer"
             >
               <img
                 src="/static/png/featuredIn/bitmex.png"
@@ -379,6 +398,7 @@ const About = () => {
             <a
               href="https://techcrunch.com/2018/03/22/meet-the-startups-that-pitched-at-efs-9th-demo-day-in-london/"
               target="_blank"
+              rel="noopener noreferrer"
             >
               <img
                 src="/static/png/featuredIn/techcrunch.png"
@@ -392,6 +412,7 @@ const About = () => {
             <a
               href="https://www.producthunt.com/posts/tokenanalyst"
               target="_blank"
+              rel="noopener noreferrer"
             >
               <img
                 src="/static/png/featuredIn/producthunt.png"

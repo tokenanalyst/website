@@ -36,6 +36,7 @@ export const Footer = () => {
               href="https://twitter.com/thetokenanalyst"
               target="_blank"
               className="item"
+              rel="noopener noreferrer"
             >
               Follow Us
             </a>
@@ -43,6 +44,7 @@ export const Footer = () => {
               href="https://t.me/joinchat/AAAAAEXMAvSpOZao3fRvJA"
               target="_blank"
               className="item"
+              rel="noopener noreferrer"
             >
               Telegram
             </a>
@@ -51,6 +53,7 @@ export const Footer = () => {
                 href="mailto:info@tokenanalyst.io"
                 target="_blank"
                 className="item"
+                rel="noopener noreferrer"
               >
                 Contact
               </a>

@@ -52,6 +52,7 @@ const Exchange = () => {
                 href="https://www.kaiko.com/?rfsn=3222089.6abb9f&utm_source=refersion&utm_medium=affiliate&utm_campaign=3222089.6abb9f"
                 target="_blank"
                 className="link"
+                rel="noopener noreferrer"
               >
                 Kaiko
               </a>

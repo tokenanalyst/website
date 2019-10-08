@@ -69,17 +69,29 @@ export const MobileNav = () => {
             </div>
           </Link>
           <div className="mobile-link">
-            <a href="https://research.tokenanalyst.io/" target="_blank">
+            <a
+              href="https://research.tokenanalyst.io/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Research
             </a>
           </div>
           <div className="mobile-link">
-            <a href="https://websockets.tokenanalyst.io/" target="_blank">
+            <a
+              href="https://websockets.tokenanalyst.io/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               WebSocket
             </a>
           </div>
           <div className="mobile-link">
-            <a href="https://docs.tokenanalyst.io/#/api" target="_blank">
+            <a
+              href="https://docs.tokenanalyst.io/#/api"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               API
             </a>
           </div>
