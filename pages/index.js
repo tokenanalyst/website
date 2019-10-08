@@ -29,7 +29,7 @@ const Exchange = () => {
         <>
           <h2>At a glance</h2>
           <TokenSnapshotWidget dataWindow={dataWindow} units={units} />
-          <h2>{dataWindow} Inflows/Outflows</h2>
+          <h2>{`${dataWindow} Inflows/Outflows`}</h2>
           <div className="table">
             {ioTableData ? (
               <IoTable
@@ -46,31 +46,33 @@ const Exchange = () => {
         </>
       </div>
       <style jsx>{underSubNav}</style>
-      <style jsx>{`
-        .table {
-          margin-left: 5px;
-          margin-right: 5px;
-        }
-        h2 {
-          font-family: Space Grotesk;
-          font-size: 22px;
-          font-weight: bold;
-          opacity: 0.4;
-          padding-left: 10px;
-        }
-        .spinner {
-          height: 296px;
-        }
-        @media only screen and (max-width: 768px) {
+      <style jsx>
+        {`
           .table {
             margin-left: 5px;
             margin-right: 5px;
           }
-          .section-header {
-            display: none;
+          h2 {
+            font-family: Space Grotesk;
+            font-size: 22px;
+            font-weight: bold;
+            opacity: 0.4;
+            padding-left: 10px;
           }
-        }
-      `}</style>
+          .spinner {
+            height: 296px;
+          }
+          @media only screen and (max-width: 768px) {
+            .table {
+              margin-left: 5px;
+              margin-right: 5px;
+            }
+            .section-header {
+              display: none;
+            }
+          }
+        `}
+      </style>
     </>
   );
 };
