@@ -51,11 +51,31 @@ const Exchange = () => {
           ctaText="Sign Up"
         >
           <>
-            <img src="/static/png/chart-demo.png" className="image" />
+            <img
+              src="/static/png/chart-register-desktop.png"
+              className="image-desktop"
+            />
+            <img
+              src="/static/png/chart-register-mobile.png"
+              className="image-mobile"
+            />
             <style jsx>
               {`
-                .image {
+                .image-desktop {
                   width: 800px;
+                  display: block;
+                }
+                .image-mobile {
+                  display: none;
+                }
+                @media only screen and (max-width: 768px) {
+                  .image-mobile {
+                    width: 280px;
+                    display: block;
+                  }
+                  .image-desktop {
+                    display: none;
+                  }
                 }
               `}
             </style>

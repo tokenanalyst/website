@@ -14,8 +14,10 @@ export const SimpleDialog = ({
     <Dialog
       isOpen={isOpen}
       style={{
-        width: '900px',
+        minWidth: '300px',
+        width: '45%',
         backgroundColor: 'white',
+        marginTop: '80px',
       }}
     >
       <>
