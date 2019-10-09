@@ -1,24 +1,28 @@
-const axios = require('axios');
+const TA = require('../services/ta-api-node/ta');
 
-const { STABLE_TOKENS } = require('../constants/tokens');
 const getUserAuth = require('./auth/getUserAuth');
 const filterSeriesByTime = require('./utils/filterSeriesByTime');
 const makeUnixtimeLimit = require('./utils/makeUnixtimeLimit');
+const { tokensDb } = require('../services/tokensDb');
+const formatApiError = require('./utils/formatApiError');
 
-const Stablecoins = [
-  STABLE_TOKENS.USDT_OMNI,
-  STABLE_TOKENS.USDT_ERC20,
-  STABLE_TOKENS.USDC,
-  STABLE_TOKENS.PAX,
-  STABLE_TOKENS.DAI,
-  STABLE_TOKENS.TUSD,
-  STABLE_TOKENS.GUSD,
-];
+const {
+  USDT_OMNI,
+  USDT_ERC20,
+  USDC,
+  PAX,
+  DAI,
+  TUSD,
+  GUSD,
+} = tokensDb.tokens.group.stable;
+
+const STABLE_COINS = [USDT_OMNI, USDT_ERC20, USDC, PAX, DAI, TUSD, GUSD];
 
 const PARAMS = { window: '1d', format: 'json' };
 
 module.exports = async (req, res) => {
   const { isAuthorised, userData } = await getUserAuth(req.cookies.apiKey);
+  const privateApi = TA({ apiKey: process.env.API_KEY });
 
   const tierTimeLimit = makeUnixtimeLimit(
     PARAMS.window,
@@ -26,19 +30,27 @@ module.exports = async (req, res) => {
     isAuthorised
   );
 
-  const apiResponses = Stablecoins.map(
-    async stablecoin =>
-      await axios.get(
-        `https://api.tokenanalyst.io/analytics/private/v1/token_volume_window_historical/last?key=${process.env.API_KEY}&format=${PARAMS.format}&token=${stablecoin}&window=${PARAMS.window}`
-      )
+  const apiResponses = STABLE_COINS.map(async token =>
+    privateApi.tokenVolumeWindowHistorical({
+      format: PARAMS.format,
+      token,
+      window: PARAMS.window,
+    })
   );
 
-  const results = await Promise.all(apiResponses);
+  let results;
 
-  const response = Stablecoins.map((stablecoin, index) => ({
+  try {
+    results = await Promise.all(apiResponses);
+  } catch (err) {
+    const { code, body } = formatApiError(err);
+    return res.status(code).send(body);
+  }
+
+  const response = STABLE_COINS.map((stablecoin, index) => ({
     name: stablecoin,
     data: filterSeriesByTime(results[index].data, tierTimeLimit),
   }));
 
-  res.send({ ta_response: response });
+  return res.send({ ta_response: response });
 };
