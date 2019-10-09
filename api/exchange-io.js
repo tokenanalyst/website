@@ -18,8 +18,8 @@ module.exports = async (_, res) => {
       format: FORMAT,
     });
   } catch (err) {
-    const { code, body } = formatApiError(err);
-    return res.status(code).send(body);
+    const { status, body } = formatApiError(err);
+    return res.status(status).send(body);
   }
 
   setResponseCache().forEach(cacheHeader => {

@@ -25,6 +25,18 @@ module.exports = (error, errorMsg = API_ERROR_REASON.BACKEND_API_ERROR) => {
     };
   }
 
+  if (error.data) {
+    const errorResponse = {
+      status: error.data.status,
+      body: {
+        message: error.data.message,
+        reason: errorMsg,
+      },
+    };
+
+    return errorResponse;
+  }
+
   return {
     status: 500,
     body: {

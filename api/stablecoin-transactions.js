@@ -43,8 +43,8 @@ module.exports = async (req, res) => {
   try {
     results = await Promise.all(apiResponses);
   } catch (err) {
-    const { code, body } = formatApiError(err);
-    return res.status(code).send(body);
+    const { status, body } = formatApiError(err);
+    return res.status(status).send(body);
   }
 
   const response = STABLE_COINS.map((stablecoin, index) => ({

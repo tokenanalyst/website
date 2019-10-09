@@ -27,8 +27,8 @@ module.exports = async (req, res) => {
 
   const latestPriceResponses = await Promise.all(latestPriceRequests).catch(
     err => {
-      const { code, body } = formatApiError(err);
-      return res.status(code).send(body);
+      const { status, body } = formatApiError(err);
+      return res.status(status).send(body);
     }
   );
 
@@ -53,8 +53,8 @@ module.exports = async (req, res) => {
     allExchangeFlowsAllTokensRequest,
     allExchangeFlows24hAllTokensRequest,
   ]).catch(err => {
-    const { code, body } = formatApiError(err);
-    return res.status(code).send(body);
+    const { status, body } = formatApiError(err);
+    return res.status(status).send(body);
   });
 
   const ta_response = {};

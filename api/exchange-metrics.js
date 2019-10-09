@@ -65,9 +65,17 @@ module.exports = async (req, res) => {
     exchangeFlowsAllTokensRequest,
     priceApiRequest,
   ]).catch(err => {
-    const { code, body } = formatApiError(err);
-    return res.status(code).send(body);
+    const { status, body } = formatApiError(err);
+    return res.status(status).send(body);
   });
+
+  if (
+    inflowTxnCountApiResponse.data.status ||
+    outflowTxnCountApiResponse.data.status
+  ) {
+    const { status, body } = formatApiError(inflowTxnCountApiResponse);
+    return res.status(status).send(body);
+  }
 
   const inFlow = inflowTxnCountApiResponse.data;
   const outFlow = outflowTxnCountApiResponse.data;
