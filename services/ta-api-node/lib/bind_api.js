@@ -27,10 +27,10 @@ module.exports = userConfig => {
   ta.exchangeFlowWindowHistorical = compose(
     fetchDataFromApi(ENDPOINTS.private.exchange_flow_window_historical)
   );
-  ta.tokenCountHistorical = compose(
+  ta.tokenCountWindowHistorical = compose(
     fetchDataFromApi(ENDPOINTS.private.token_count_window_historical)
   );
-  ta.tokenVolumeHistorical = compose(
+  ta.tokenVolumeWindowHistorical = compose(
     fetchDataFromApi(ENDPOINTS.private.token_volume_window_historical)
   );
   ta.tokenPriceUsdWindowHistorical = compose(
