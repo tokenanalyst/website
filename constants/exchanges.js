@@ -239,9 +239,8 @@ export const TOKENS_EXCHANGE_SUPPORT = {
       baseToken: OMNI,
       quoteToken: BTC,
     },
-    [KUCOIN]: {
-      baseToken: OMNI,
-      quoteToken: BTC,
+    [BITTREX]: {
+      quoteToken: USDT,
     },
     [KRAKEN]: {
       baseToken: BTC,
