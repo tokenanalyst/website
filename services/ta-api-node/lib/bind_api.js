@@ -36,6 +36,15 @@ module.exports = userConfig => {
   ta.tokenPriceUsdWindowHistorical = compose(
     fetchDataFromApi(ENDPOINTS.private.token_price_usd_window_historical)
   );
+  ta.tokenActiveAddressWindowHistorical = compose(
+    fetchDataFromApi(ENDPOINTS.private.token_active_address_window_historical)
+  );
+  ta.tokenNvtWindowHistorical = compose(
+    fetchDataFromApi(ENDPOINTS.private.token_nvt_window_historical)
+  );
+  ta.tokenFeesWindowHistorical = compose(
+    fetchDataFromApi(ENDPOINTS.private.token_fees_window_historical)
+  );
 
   // Public endpoints
   ta.allExchangeFlowsAllTokensV5 = compose(

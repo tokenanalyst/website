@@ -1,29 +1,12 @@
-const axios = require('axios');
 const url = require('url');
+const TA = require('../services/ta-api-node/ta');
+const formatApiError = require('./utils/formatApiError');
 
 const getUserAuth = require('./auth/getUserAuth');
-
-const { NATIVE_TOKENS } = require('../constants/tokens');
 const { API_ERROR_MSG } = require('../constants/apiErrors');
 const filterSeriesByTime = require('./utils/filterSeriesByTime');
 const makeUnixtimeLimit = require('./utils/makeUnixtimeLimit');
-
-function isStableCoin(token) {
-  return token !== NATIVE_TOKENS.BTC && token !== NATIVE_TOKENS.ETH;
-}
-
-function makeQuery(params = {}) {
-  const query = Object.keys(params).reduce(
-    (acc, param) => `${acc}${param}=${params[param]}&`,
-    ''
-  );
-
-  return `${query.slice(0, -1)}`;
-}
-
-function createUrl(dataPoint, paramString) {
-  return `https://api.tokenanalyst.io/analytics/private/v1/${dataPoint}/last?${paramString}`;
-}
+const { tokensDb } = require('../services/tokensDb');
 
 module.exports = async (req, res) => {
   const urlParts = url.parse(req.url, true);
@@ -37,133 +20,50 @@ module.exports = async (req, res) => {
 
   const PARAMS = { window: '1d', format: 'json' };
 
+  const privateApi = TA({ apiKey: process.env.API_KEY });
+
   const { userData } = await getUserAuth(req.cookies.apiKey);
 
   const tierTimeLimit = userData.tier.timeLimits[PARAMS.window];
 
   const filterTimeLimit = makeUnixtimeLimit(PARAMS.window, tierTimeLimit);
 
-  const apiResponse = isStableCoin(token)
-    ? [
-        axios.get(
-          createUrl(
-            `token_volume_window_historical`,
-            makeQuery({
-              key: process.env.API_KEY,
-              format: PARAMS.format,
-              token,
-              window: PARAMS.window,
-            })
-          )
-        ),
-        axios.get(
-          createUrl(
-            `token_count_window_historical`,
-            makeQuery({
-              key: process.env.API_KEY,
-              format: PARAMS.format,
-              token,
-              window: PARAMS.window,
-            })
-          )
-        ),
-        axios.get(
-          createUrl(
-            `token_active_address_window_historical`,
-            makeQuery({
-              key: process.env.API_KEY,
-              format: PARAMS.format,
-              token,
-              window: PARAMS.window,
-            })
-          )
-        ),
-        axios.get(
-          createUrl(
-            `token_price_usd_window_historical`,
-            makeQuery({
-              key: process.env.API_KEY,
-              format: PARAMS.format,
-              token,
-              window: PARAMS.window,
-            })
-          )
-        ),
-      ]
-    : [
-        axios.get(
-          createUrl(
-            `token_volume_window_historical`,
-            makeQuery({
-              key: process.env.API_KEY,
-              format: PARAMS.format,
-              token,
-              window: PARAMS.window,
-            })
-          )
-        ),
-        axios.get(
-          createUrl(
-            `token_count_window_historical`,
-            makeQuery({
-              key: process.env.API_KEY,
-              format: PARAMS.format,
-              token,
-              window: PARAMS.window,
-            })
-          )
-        ),
-        axios.get(
-          createUrl(
-            `token_active_address_window_historical`,
-            makeQuery({
-              key: process.env.API_KEY,
-              format: PARAMS.format,
-              token,
-              window: PARAMS.window,
-            })
-          )
-        ),
-        axios.get(
-          createUrl(
-            `token_price_usd_window_historical`,
-            makeQuery({
-              key: process.env.API_KEY,
-              format: PARAMS.format,
-              token,
-              window: PARAMS.window,
-            })
-          )
-        ),
-        axios.get(
-          createUrl(
-            `token_nvt_window_historical`,
-            makeQuery({
-              key: process.env.API_KEY,
-              format: PARAMS.format,
-              token,
-              window: PARAMS.window,
-            })
-          )
-        ),
-        axios.get(
-          createUrl(
-            `token_fees_window_historical`,
-            makeQuery({
-              key: process.env.API_KEY,
-              format: PARAMS.format,
-              token,
-              window: PARAMS.window,
-            })
-          )
-        ),
-      ];
+  const params = {
+    key: process.env.API_KEY,
+    format: PARAMS.format,
+    token,
+    window: PARAMS.window,
+  };
 
-  const results = await Promise.all(apiResponse);
+  const starndardRequests = [
+    privateApi.tokenVolumeWindowHistorical(params),
+    privateApi.tokenCountWindowHistorical(params),
+    privateApi.tokenActiveAddressWindowHistorical(params),
+    privateApi.tokenPriceUsdWindowHistorical(params),
+  ];
+
+  const allRequests = [
+    ...starndardRequests,
+    privateApi.tokenNvtWindowHistorical(params),
+    privateApi.tokenFeesWindowHistorical(params),
+  ];
+
+  const apiRequests = !tokensDb.isNative(token)
+    ? starndardRequests
+    : allRequests;
+
+  let results;
+
+  try {
+    results = await Promise.all(apiRequests);
+  } catch (err) {
+    const { code, body } = formatApiError(err);
+    return res.status(code).send(body);
+  }
 
   const [volume, count, address, price, ntv, fees] = results;
 
-  const response = isStableCoin(token)
+  const response = !tokensDb.isNative(token)
     ? {
         volume: filterSeriesByTime(volume.data, filterTimeLimit),
         count: filterSeriesByTime(count.data, filterTimeLimit),
