@@ -8,6 +8,7 @@ import { IoChartWidget } from '../../../components/widgets/IoChartWidget';
 import { ProChartWidget } from '../../../components/widgets/ProChartWidget';
 import { COOKIES } from '../../../constants/cookies';
 import { tokensDb } from '../../../services/tokensDb';
+import { DelayedDialog } from '../../../components/DelayedDialog';
 
 const Exchange = () => {
   const router = useRouter();
@@ -36,6 +37,51 @@ const Exchange = () => {
           {`TokenAnalyst - ${exchange} - ${token} Inflows and Outflows`}
         </title>
       </Head>
+
+      {!Cookies.get(COOKIES.hasSeenRegisterDialog) && (
+        <DelayedDialog
+          header="Need More Granularity?"
+          subHeader="Sign up now for FREE to access TokenAnalyst charts in a 1 hour granularity across ALL tokens and exchanges!"
+          timeout={25000}
+          onCtaClick={() => {
+            router.push('/register?exchange=true');
+            Cookies.set(COOKIES.hasSeenRegisterDialog, true);
+          }}
+          onClose={() => Cookies.set(COOKIES.hasSeenRegisterDialog, true)}
+          ctaText="Sign Up"
+        >
+          <>
+            <img
+              src="/static/png/chart-register-desktop.png"
+              className="image-desktop"
+            />
+            <img
+              src="/static/png/chart-register-mobile.png"
+              className="image-mobile"
+            />
+            <style jsx>
+              {`
+                .image-desktop {
+                  width: 800px;
+                  display: block;
+                }
+                .image-mobile {
+                  display: none;
+                }
+                @media only screen and (max-width: 768px) {
+                  .image-mobile {
+                    width: 280px;
+                    display: block;
+                  }
+                  .image-desktop {
+                    display: none;
+                  }
+                }
+              `}
+            </style>
+          </>
+        </DelayedDialog>
+      )}
       <ExchangeMetricsWidget token={token} exchange={exchange} />
       {token && exchange && isTVSupported ? (
         <>
