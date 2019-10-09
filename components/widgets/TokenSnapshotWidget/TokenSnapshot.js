@@ -137,8 +137,8 @@ export const TokenSnapshot = ({
                       <SparklinesLine
                         style={{ strokeWidth: 6, fill: 'none', width: 200 }}
                         color={setValueChangeStatus(flow.change, [
-                          `rgba(${colors.primaryGreen})`,
                           `rgba(${colors.primaryRed})`,
+                          `rgba(${colors.primaryGreen})`,
                           `rgba(${colors.neutralGrey})`,
                         ])}
                       />
@@ -159,8 +159,8 @@ export const TokenSnapshot = ({
                     />
                     <span
                       className={setValueChangeStatus(flow.change, [
-                        'change-positive',
                         'change-negative',
+                        'change-positive',
                         'change-neutral',
                       ])}
                     >
