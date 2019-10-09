@@ -358,6 +358,32 @@ export const DesktopNav = () => {
               <div>
                 <Link
                   href="/exchange/[token]/[exchange]"
+                  as={`/exchange/BTC/Huobi?${tierParamString}`}
+                  passHref
+                >
+                  <div
+                    onClick={() => {
+                      ReactGA.event({
+                        category: 'User',
+                        action: `Click BTC Huobi`,
+                        label: `Desktop Nav`,
+                      });
+                    }}
+                    className={classNames(
+                      'desktop-sub-link',
+                      setLinkActive(
+                        asPath,
+                        `/exchange/BTC/Huobi?${tierParamString}`
+                      )
+                    )}
+                  >
+                    BTC Huobi
+                  </div>
+                </Link>
+              </div>
+              <div>
+                <Link
+                  href="/exchange/[token]/[exchange]"
                   as={`/exchange/ETH/Bitfinex?${tierParamString}`}
                   passHref
                 >

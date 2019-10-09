@@ -8,6 +8,7 @@ import {
   KUCOIN,
   POLONIEX,
   OKEX,
+  HUOBI,
 } from './exchanges';
 
 export const EXCHANGE_IMAGES = {
@@ -20,6 +21,7 @@ export const EXCHANGE_IMAGES = {
   [KUCOIN]: 'kucoin.png',
   [POLONIEX]: 'poloniex.png',
   [OKEX]: 'okex.png',
+  [HUOBI]: 'huobi.png',
 };
 
 export const TOKEN_IMAGES = {
