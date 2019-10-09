@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Dialog, Button, Intent } from '@blueprintjs/core';
 
 export const SimpleDialog = ({
@@ -26,7 +27,7 @@ export const SimpleDialog = ({
             <img src="/static/svg/cross.svg" />
           </div>
           <div className="header">{header}</div>
-          <div className="sub-header">{subHeader}</div>
+          {subHeader && <div className="sub-header">{subHeader}</div>}
           <div className="button">
             <Button
               className="button"
@@ -76,4 +77,19 @@ export const SimpleDialog = ({
       </>
     </Dialog>
   );
+};
+
+SimpleDialog.propTypes = {
+  header: PropTypes.string.isRequired,
+  subHeader: PropTypes.string,
+  children: PropTypes.element,
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  ctaText: PropTypes.string.isRequired,
+  onCtaClick: PropTypes.func.isRequired,
+};
+
+SimpleDialog.defaultProps = {
+  subHeader: null,
+  children: null,
 };

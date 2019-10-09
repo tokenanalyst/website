@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { SimpleDialog } from './SimpleDialog';
 
 export const DelayedDialog = ({
@@ -31,4 +32,20 @@ export const DelayedDialog = ({
       onCtaClick={onCtaClick}
     />
   );
+};
+
+DelayedDialog.propTypes = {
+  header: PropTypes.string.isRequired,
+  subHeader: PropTypes.string,
+  children: PropTypes.element,
+  timeout: PropTypes.number.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  ctaText: PropTypes.string.isRequired,
+  onCtaClick: PropTypes.func.isRequired,
+};
+
+DelayedDialog.defaultProps = {
+  subHeader: null,
+  children: null,
 };
