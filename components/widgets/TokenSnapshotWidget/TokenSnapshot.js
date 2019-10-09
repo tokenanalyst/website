@@ -31,14 +31,14 @@ const TOKEN_OPTIONS = [
 
 const setValueChangeStatus = (value, status) => {
   if (value < 0) {
-    return status[0];
+    return status.negative;
   }
 
   if (value > 0) {
-    return status[1];
+    return status.positive;
   }
 
-  return status[2];
+  return status.neutral;
 };
 
 export const TokenSnapshot = ({
@@ -108,19 +108,19 @@ export const TokenSnapshot = ({
             </span>
             <span>
               <img
-                src={setValueChangeStatus(data.change, [
-                  '/static/svg/down.svg',
-                  '/static/svg/up.svg',
-                  '/static/svg/nochange.svg',
-                ])}
+                src={setValueChangeStatus(data.change, {
+                  negative: '/static/svg/down.svg',
+                  positive: '/static/svg/up.svg',
+                  neutral: '/static/svg/nochange.svg',
+                })}
                 alt="Price Change"
               />
               <span
-                className={setValueChangeStatus(data.change, [
-                  'change-negative',
-                  'change-positive',
-                  'change-neutral',
-                ])}
+                className={setValueChangeStatus(data.change, {
+                  negative: 'change-negative',
+                  positive: 'change-positive',
+                  neutral: 'change-neutral',
+                })}
               >
                 {`${data.change.toFixed(2)}%`}
               </span>
@@ -136,11 +136,11 @@ export const TokenSnapshot = ({
                     <Sparklines data={flow.sparkline}>
                       <SparklinesLine
                         style={{ strokeWidth: 6, fill: 'none', width: 200 }}
-                        color={setValueChangeStatus(flow.change, [
-                          `rgba(${colors.primaryRed})`,
-                          `rgba(${colors.primaryGreen})`,
-                          `rgba(${colors.neutralGrey})`,
-                        ])}
+                        color={setValueChangeStatus(flow.change, {
+                          negative: `rgba(${colors.primaryRed})`,
+                          positive: `rgba(${colors.primaryGreen})`,
+                          neutral: `rgba(${colors.neutralGrey})`,
+                        })}
                       />
                     </Sparklines>
                   </div>
@@ -150,19 +150,19 @@ export const TokenSnapshot = ({
                 <div className={index === 1 ? 'last-row' : 'row'}>
                   <div className="token-flow-variation">
                     <img
-                      src={setValueChangeStatus(flow.change, [
-                        '/static/svg/down.svg',
-                        '/static/svg/up.svg',
-                        '/static/svg/nochange.svg',
-                      ])}
+                      src={setValueChangeStatus(flow.change, {
+                        negative: '/static/svg/down.svg',
+                        positive: '/static/svg/up.svg',
+                        neutral: '/static/svg/nochange.svg',
+                      })}
                       alt="Flow Change"
                     />
                     <span
-                      className={setValueChangeStatus(flow.change, [
-                        'change-negative',
-                        'change-positive',
-                        'change-neutral',
-                      ])}
+                      className={setValueChangeStatus(flow.change, {
+                        negative: `change-negative`,
+                        positive: `change-positive`,
+                        neutral: `change-neutral`,
+                      })}
                     >
                       {`${flow.change.toFixed(2)}%`}
                     </span>
