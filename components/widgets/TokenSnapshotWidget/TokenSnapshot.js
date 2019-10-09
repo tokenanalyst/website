@@ -117,8 +117,8 @@ export const TokenSnapshot = ({
               />
               <span
                 className={setValueChangeStatus(data.change, [
-                  'change-positive',
                   'change-negative',
+                  'change-positive',
                   'change-neutral',
                 ])}
               >
