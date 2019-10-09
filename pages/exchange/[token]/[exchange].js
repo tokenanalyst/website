@@ -8,13 +8,12 @@ import { IoChartWidget } from '../../../components/widgets/IoChartWidget';
 import { ProChartWidget } from '../../../components/widgets/ProChartWidget';
 import { COOKIES } from '../../../constants/cookies';
 import { tokensDb } from '../../../services/tokensDb';
-import { SimpleDialog } from '../../../components/SimpleDialog';
+import { DelayedDialog } from '../../../components/DelayedDialog';
 
 const Exchange = () => {
   const router = useRouter();
   const { token, exchange } = router.query;
   const [isTVSupported, setIsTVSupported] = useState(false);
-  const [isDialogShown, setIsDialogShown] = useState(false);
 
   useEffect(() => {
     const exchangeSupport = tokensDb.getTokenSupportOnExchange(token, exchange);
@@ -23,10 +22,6 @@ const Exchange = () => {
       setIsTVSupported(true);
     }
   }, [token, exchange]);
-
-  useEffect(() => {
-    setTimeout(() => setIsDialogShown(true), 3000);
-  }, []);
 
   const pushToPage = (newToken, newExchange) => {
     router.push(
@@ -42,11 +37,24 @@ const Exchange = () => {
           {`TokenAnalyst - ${exchange} - ${token} Inflows and Outflows`}
         </title>
       </Head>
-      <SimpleDialog
-        header="Need more granularity?"
-        body="Sign up now for FREE to access our charts in a 1 hour granularity across ALL tokens and exchanges"
-        isShown={isDialogShown}
-      />
+
+      <DelayedDialog
+        header="Need More Granularity?"
+        subHeader="Sign up now for FREE to access TokenAnalyst charts in a 1 hour granularity across ALL tokens and exchanges!"
+        timeout={5000}
+        onCtaClick={() => router.push('/register')}
+      >
+        <>
+          <img src="/static/png/chart-demo.png" className="image" />
+          <style jsx>
+            {`
+              .image {
+                width: 800px;
+              }
+            `}
+          </style>
+        </>
+      </DelayedDialog>
       <ExchangeMetricsWidget token={token} exchange={exchange} />
       {token && exchange && isTVSupported ? (
         <>
@@ -77,10 +85,6 @@ const Exchange = () => {
               }
               .link {
                 padding-left: 3px;
-              }
-              .dialog {
-                padding-left: 5px;
-                color: blue;
               }
             `}
           </style>

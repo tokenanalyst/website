@@ -1,47 +1,76 @@
 import React from 'react';
 import { Dialog, Button, Intent } from '@blueprintjs/core';
 
-export const SimpleDialog = ({ header, body, isShown }) => (
-  <Dialog isOpen={true}>
-    <>
-      <div className="container">
-        <div className="header">{header}</div>
-        <div className="body">{body}</div>
-        <div className="buttons">
+export const SimpleDialog = ({
+  header,
+  subHeader,
+  children,
+  isOpen,
+  onClose,
+  onCtaClick,
+}) => {
+  return (
+    <Dialog
+      isOpen={isOpen}
+      style={{
+        width: '900px',
+        backgroundColor: 'white',
+      }}
+    >
+      <>
+        <div className="container">
+          <div className="cross" onClick={() => onClose()}>
+            <img src="/static/svg/cross.svg" />
+          </div>
+          <div className="header">{header}</div>
+          <div className="sub-header">{subHeader}</div>
           <div className="button">
             <Button
               className="button"
               icon="arrow-right"
               intent={Intent.SUCCESS}
+              onClick={onCtaClick}
             >
               Sign Up
             </Button>
           </div>
+          {children}
           <div className="button">
-            <Button>Later</Button>
+            <Button
+              className="button"
+              icon="arrow-right"
+              intent={Intent.SUCCESS}
+              onClick={onCtaClick}
+            >
+              Sign Up
+            </Button>
           </div>
         </div>
-      </div>
-      <style jsx>{`
-        .container {
-          padding: 10px;
-        }
-        .header {
-          font-size: 24px;
-        }
-        .body {
-          padding-top: 10px;
-        }
-        .buttons {
-          display: flex;
-          justify-content: flex-end;
-          padding: 10px;
-        }
-        .button {
-          padding-left: 2px;
-          padding-right: 2px;
-        }
-      `}</style>
-    </>
-  </Dialog>
-);
+        <style jsx>{`
+          .container {
+            padding: 20px;
+          }
+          .header {
+            font-size: 24px;
+            font-weight: bold;
+          }
+          .sub-header {
+            padding-top: 10px;
+            padding-bottom: 10px;
+          }
+          .button {
+            display: flex;
+            justify-content: flex-end;
+            padding: 20px;
+          }
+          .cross {
+            display: flex;
+            justify-content: flex-end;
+            cursor: pointer;
+            opacity: 0.3;
+          }
+        `}</style>
+      </>
+    </Dialog>
+  );
+};
