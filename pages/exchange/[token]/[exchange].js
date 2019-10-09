@@ -38,23 +38,30 @@ const Exchange = () => {
         </title>
       </Head>
 
-      <DelayedDialog
-        header="Need More Granularity?"
-        subHeader="Sign up now for FREE to access TokenAnalyst charts in a 1 hour granularity across ALL tokens and exchanges!"
-        timeout={5000}
-        onCtaClick={() => router.push('/register')}
-      >
-        <>
-          <img src="/static/png/chart-demo.png" className="image" />
-          <style jsx>
-            {`
-              .image {
-                width: 800px;
-              }
-            `}
-          </style>
-        </>
-      </DelayedDialog>
+      {!Cookies.get(COOKIES.hasSeenRegisterDialog) && (
+        <DelayedDialog
+          header="Need More Granularity?"
+          subHeader="Sign up now for FREE to access TokenAnalyst charts in a 1 hour granularity across ALL tokens and exchanges!"
+          timeout={2000}
+          onCtaClick={() => {
+            router.push('/register?exchange=true');
+            Cookies.set(COOKIES.hasSeenRegisterDialog, true);
+          }}
+          onClose={() => Cookies.set(COOKIES.hasSeenRegisterDialog, true)}
+          ctaText="Sign Up"
+        >
+          <>
+            <img src="/static/png/chart-demo.png" className="image" />
+            <style jsx>
+              {`
+                .image {
+                  width: 800px;
+                }
+              `}
+            </style>
+          </>
+        </DelayedDialog>
+      )}
       <ExchangeMetricsWidget token={token} exchange={exchange} />
       {token && exchange && isTVSupported ? (
         <>

@@ -7,6 +7,7 @@ export const SimpleDialog = ({
   children,
   isOpen,
   onClose,
+  ctaText,
   onCtaClick,
 }) => {
   return (
@@ -31,7 +32,7 @@ export const SimpleDialog = ({
               intent={Intent.SUCCESS}
               onClick={onCtaClick}
             >
-              Sign Up
+              {ctaText}
             </Button>
           </div>
           {children}
@@ -42,7 +43,7 @@ export const SimpleDialog = ({
               intent={Intent.SUCCESS}
               onClick={onCtaClick}
             >
-              Sign Up
+              {ctaText}
             </Button>
           </div>
         </div>

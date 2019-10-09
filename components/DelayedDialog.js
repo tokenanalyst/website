@@ -6,6 +6,8 @@ export const DelayedDialog = ({
   subHeader,
   children,
   timeout,
+  ctaText,
+  onClose,
   onCtaClick,
 }) => {
   const [isShown, setIsShown] = useState(false);
@@ -21,7 +23,11 @@ export const DelayedDialog = ({
       subHeader={subHeader}
       children={children}
       isOpen={isShown}
-      onClose={() => setIsShown(false)}
+      onClose={() => {
+        onClose();
+        setIsShown(false);
+      }}
+      ctaText={ctaText}
       onCtaClick={onCtaClick}
     />
   );
