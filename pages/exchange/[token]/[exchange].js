@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Cookies from 'js-cookie';
+import ReactGA from 'react-ga';
 
 import { ExchangeMetricsWidget } from '../../../components/widgets/ExchangeMetricsWidget';
 import { IoChartWidget } from '../../../components/widgets/IoChartWidget';
@@ -62,9 +63,28 @@ const Exchange = () => {
           onCtaClick={() => {
             router.push('/register?exchange=true');
             Cookies.set(COOKIES.hasSeenRegisterDialog, true);
+            ReactGA.event({
+              category: 'User',
+              action: `Register Dialog Sign Up Clicked`,
+              label: `Funnel`,
+            });
           }}
-          onClose={() => Cookies.set(COOKIES.hasSeenRegisterDialog, true)}
+          onClose={() => {
+            Cookies.set(COOKIES.hasSeenRegisterDialog, true);
+            ReactGA.event({
+              category: 'User',
+              action: `Register Dialog Dismissed`,
+              label: `Funnel`,
+            });
+          }}
           ctaText="Sign Up"
+          onDisplay={() =>
+            ReactGA.event({
+              category: 'User',
+              action: `Register Dialog Shown`,
+              label: `Funnel`,
+            })
+          }
         >
           <>
             <img

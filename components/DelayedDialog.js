@@ -10,11 +10,15 @@ export const DelayedDialog = ({
   ctaText,
   onCtaClick,
   onClose,
+  onDisplay,
 }) => {
   const [isShown, setIsShown] = useState(false);
 
   useEffect(() => {
-    const timeoutHandle = setTimeout(() => setIsShown(true), timeout);
+    const timeoutHandle = setTimeout(() => {
+      setIsShown(true);
+      onDisplay();
+    }, timeout);
     return () => clearTimeout(timeoutHandle);
   }, []);
 
@@ -42,10 +46,12 @@ DelayedDialog.propTypes = {
   onClose: PropTypes.func,
   ctaText: PropTypes.string.isRequired,
   onCtaClick: PropTypes.func.isRequired,
+  onDisplay: PropTypes.func,
 };
 
 DelayedDialog.defaultProps = {
   subHeader: null,
   children: null,
   onClose: () => {},
+  onDisplay: () => {},
 };
