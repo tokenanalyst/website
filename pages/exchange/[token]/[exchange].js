@@ -42,7 +42,7 @@ const Exchange = () => {
         <DelayedDialog
           header="Need More Granularity?"
           subHeader="Sign up now for FREE to access TokenAnalyst charts in a 1 hour granularity across ALL tokens and exchanges!"
-          timeout={2000}
+          timeout={25000}
           onCtaClick={() => {
             router.push('/register?exchange=true');
             Cookies.set(COOKIES.hasSeenRegisterDialog, true);
