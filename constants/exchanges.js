@@ -28,6 +28,7 @@ export const KRAKEN = 'Kraken';
 export const KUCOIN = 'Kucoin';
 export const POLONIEX = 'Poloniex';
 export const OKEX = 'Okex';
+export const HUOBI = 'Huobi';
 
 export const EXCHANGE_NAMES = {
   [BINANCE]: BINANCE,
@@ -39,6 +40,7 @@ export const EXCHANGE_NAMES = {
   [KUCOIN]: KUCOIN,
   [POLONIEX]: POLONIEX,
   [OKEX]: OKEX,
+  [HUOBI]: HUOBI,
 };
 
 export const TOKENS_EXCHANGE_SUPPORT = {
@@ -69,6 +71,9 @@ export const TOKENS_EXCHANGE_SUPPORT = {
     },
     [OKEX]: {
       quoteToken: USD,
+    },
+    [HUOBI]: {
+      quoteToken: USDT,
     },
   },
   [ETH]: {
@@ -258,6 +263,10 @@ export const TOKENS_EXCHANGE_SUPPORT = {
       baseToken: OMNI,
       quoteToken: BTC,
     },
+    [HUOBI]: {
+      baseToken: BTC,
+      quoteToken: USDT,
+    },
   },
   [ZIL]: {
     [BINANCE]: {
@@ -326,6 +335,7 @@ export const TOKENS_TV_SUPPORT = {
   [KUCOIN]: [BTC, ETH, USDT_ERC20, USDT_OMNI],
   [POLONIEX]: [BTC, ETH, USDT_ERC20, USDT_OMNI],
   [OKEX]: [],
+  [HUOBI]: [BTC, USDT_OMNI],
 };
 
 export const EXCHANGE_DISPLAY_NAME = {
