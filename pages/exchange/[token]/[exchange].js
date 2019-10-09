@@ -58,7 +58,7 @@ const Exchange = () => {
         <DelayedDialog
           header="Need More Granularity?"
           subHeader="Sign up now for FREE to access TokenAnalyst charts in a 1 hour granularity across ALL tokens and exchanges!"
-          timeout={25000}
+          timeout={100}
           onCtaClick={() => {
             router.push('/register?exchange=true');
             Cookies.set(COOKIES.hasSeenRegisterDialog, true);
@@ -78,7 +78,7 @@ const Exchange = () => {
             <style jsx>
               {`
                 .image-desktop {
-                  width: 800px;
+                  width: 100%;
                   display: block;
                 }
                 .image-mobile {
