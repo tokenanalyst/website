@@ -263,6 +263,10 @@ export const TOKENS_EXCHANGE_SUPPORT = {
       baseToken: OMNI,
       quoteToken: BTC,
     },
+    [HUOBI]: {
+      baseToken: BTC,
+      quoteToken: USDT,
+    },
   },
   [ZIL]: {
     [BINANCE]: {
@@ -331,7 +335,7 @@ export const TOKENS_TV_SUPPORT = {
   [KUCOIN]: [BTC, ETH, USDT_ERC20, USDT_OMNI],
   [POLONIEX]: [BTC, ETH, USDT_ERC20, USDT_OMNI],
   [OKEX]: [],
-  [HUOBI]: [BTC],
+  [HUOBI]: [BTC, USDT_OMNI],
 };
 
 export const EXCHANGE_DISPLAY_NAME = {
