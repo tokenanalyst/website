@@ -59,6 +59,18 @@ module.exports = userConfig => {
   ta.minerRewards30DayV5 = compose(
     fetchDataFromApi(ENDPOINTS.public.miner_rewards_30day_v5)
   );
+  ta.holderAddress24hRollingV5 = compose(
+    fetchDataFromApi(ENDPOINTS.public.holder_address_24h_rolling_v5)
+  );
+  ta.volume24HRollingV5 = compose(
+    fetchDataFromApi(ENDPOINTS.public.volume_24h_rolling_v5)
+  );
+  ta.count24HRollingV5 = compose(
+    fetchDataFromApi(ENDPOINTS.public.count_24h_rolling_v5)
+  );
+  ta.publicTotalSupplyV5 = compose(
+    fetchDataFromApi(ENDPOINTS.public.public_total_supply_v5)
+  );
 
   // Custom endpoints
   if (userConfig.extend) {

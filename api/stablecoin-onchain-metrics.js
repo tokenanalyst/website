@@ -1,35 +1,50 @@
-const axios = require('axios');
+const TA = require('../services/ta-api-node/ta');
+const formatApiError = require('./utils/formatApiError');
 
-const { STABLE_TOKENS } = require('../constants/tokens');
 const setResponseCache = require('./utils/setResponseCache');
+const { tokensDb } = require('../services/tokensDb');
 
-const Stablecoins = [
-  STABLE_TOKENS.USDT_ERC20,
-  STABLE_TOKENS.USDC,
-  STABLE_TOKENS.PAX,
-  STABLE_TOKENS.DAI,
-  STABLE_TOKENS.TUSD,
-  STABLE_TOKENS.GUSD,
-];
+const { USDT_ERC20, USDC, PAX, DAI, TUSD, GUSD } = tokensDb.tokens.group.stable;
+
+const STABLE_COINS = [USDT_ERC20, USDC, PAX, DAI, TUSD, GUSD];
 
 module.exports = async (req, res) => {
-  const apiResponses = Stablecoins.map(async stablecoin => [
-    await axios.get(
-      `https://api.tokenanalyst.io/analytics/last?job=${stablecoin}_holder_address_24h_rolling_v5&format=json`
-    ),
-    await axios.get(
-      `https://api.tokenanalyst.io/analytics/last?job=${stablecoin}_volume_24h_rolling_v5&format=json`
-    ),
-    await axios.get(
-      `https://api.tokenanalyst.io/analytics/last?job=${stablecoin}_count_24h_rolling_v5&format=json`
-    ),
-    await axios.get(
-      `https://api.tokenanalyst.io/analytics/last?job=public_${stablecoin}_total_supply_v5&format=json`
-    ),
-  ]);
+  const FORMAT = 'json';
+  const PUBLIC_API_URL = 'https://api.tokenanalyst.io/analytics';
 
-  const results = await Promise.all(apiResponses);
+  const publicApi = TA({
+    apiUrl: PUBLIC_API_URL,
+  });
 
+  const apiRequests = STABLE_COINS.map(token =>
+    Promise.all([
+      publicApi.holderAddress24hRollingV5({
+        token,
+        format: FORMAT,
+      }),
+      publicApi.volume24HRollingV5({
+        token,
+        format: FORMAT,
+      }),
+      publicApi.count24HRollingV5({
+        token,
+        format: FORMAT,
+      }),
+      publicApi.publicTotalSupplyV5({
+        token,
+        format: FORMAT,
+      }),
+    ])
+  );
+
+  let results;
+
+  try {
+    results = await Promise.all(apiRequests);
+  } catch (err) {
+    const { code, body } = formatApiError(err);
+    return res.status(code).send(body);
+  }
   const response = results.reduce(
     (acc, curr) => [
       ...acc,
@@ -43,7 +58,7 @@ module.exports = async (req, res) => {
     []
   );
 
-  setResponseCache().map(cacheHeader => {
+  setResponseCache().forEach(cacheHeader => {
     res.setHeader(...cacheHeader);
   });
 

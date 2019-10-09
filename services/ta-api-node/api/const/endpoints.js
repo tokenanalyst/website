@@ -26,6 +26,14 @@ module.exports = {
         `last?job=${token}_miner_hashrate_30day_v5&`,
       miner_rewards_30day_v5: () => ({ token }) =>
         `last?job=${token}_miner_rewards_30day_v5&`,
+      holder_address_24h_rolling_v5: ({ token }) =>
+        `last?job=${token}_holder_address_24h_rolling_v5&`,
+      volume_24h_rolling_v5: ({ token }) =>
+        `last?job=${token}_volume_24h_rolling_v5&`,
+      count_24h_rolling_v5: ({ token }) =>
+        `last?job=${token}_count_24h_rolling_v5&`,
+      public_total_supply_v5: ({ token }) =>
+        `last?job=public_${token}_total_supply_v5&`,
     },
   },
 };
