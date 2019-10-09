@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Icon, Checkbox, Card } from '@blueprintjs/core';
+import { Icon, Card } from '@blueprintjs/core';
 import Link from 'next/link';
 import zxcvbn from 'zxcvbn';
 
@@ -18,31 +18,14 @@ export const RegisterWidget = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState({
     value: null,
-    verify: null,
     strength: 0,
   });
   const [errorText, setErrorText] = useState(null);
   const [hasRegistered, setHasRegistered] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [profession, setProfession] = useState({
-    isTrader: false,
-    isEnterprise: false,
-    isEnthusiast: false,
-    isResearcher: false,
-    isDeveloper: false,
-    isOther: false,
-  });
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const isRedirectedForFreeTier = loginCtx.paymentData.isFreeTier;
-
-  const {
-    isTrader,
-    isEnterprise,
-    isEnthusiast,
-    isResearcher,
-    isDeveloper,
-    isOther,
-  } = profession;
 
   const onPasswordChange = e => {
     const passwordStrength = zxcvbn(e.target.value);
@@ -59,7 +42,6 @@ export const RegisterWidget = () => {
       email,
       fullName,
       password,
-      profession,
     };
     const result = await onFormRegister(loginCtx, formValues);
 
@@ -70,7 +52,7 @@ export const RegisterWidget = () => {
     if (isSuccess) {
       setErrorText(null);
       setHasRegistered(true);
-      redirectFn();
+      redirectFn && redirectFn();
     } else {
       setErrorText(errorMsg);
       setIsSubmitted(false);
@@ -121,109 +103,17 @@ export const RegisterWidget = () => {
                   helperText={<PasswordStrength score={password.strength} />}
                 >
                   <SimpleTextInput
-                    type="password"
+                    type={isPasswordVisible ? 'text' : 'password'}
                     id="registration-password"
                     onChange={onPasswordChange}
-                    rightElement={<Icon icon="lock" />}
-                  />
-                </SimpleFormGroup>
-
-                <SimpleFormGroup
-                  label="Repeat Password"
-                  labelFor="registration-password-verify"
-                >
-                  <SimpleTextInput
-                    type="password"
-                    id="registration-password-verify"
-                    onChange={e =>
-                      setPassword({ ...password, verify: e.target.value })
+                    rightElement={
+                      <Icon
+                        icon={isPasswordVisible ? 'eye-off' : 'eye-open'}
+                        onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+                      />
                     }
-                    rightElement={<Icon icon="lock" />}
                   />
                 </SimpleFormGroup>
-
-                <div className="label">Which apply to you?</div>
-                <div className="professions-list">
-                  <div className="profession">
-                    <Checkbox
-                      label="Trader"
-                      type="checkbox"
-                      checked={isTrader}
-                      onChange={() => {
-                        return setProfession({
-                          ...profession,
-                          isTrader: !isTrader,
-                        });
-                      }}
-                    />
-                  </div>
-                  <div className="profession">
-                    <Checkbox
-                      type="checkbox"
-                      checked={isDeveloper}
-                      label="Developer"
-                      onChange={() =>
-                        setProfession({
-                          ...profession,
-                          isDeveloper: !isDeveloper,
-                        })
-                      }
-                    />
-                  </div>
-                  <div className="profession">
-                    <Checkbox
-                      label="Enthusiast"
-                      type="checkbox"
-                      checked={isEnthusiast}
-                      onChange={() =>
-                        setProfession({
-                          ...profession,
-                          isEnthusiast: !isEnthusiast,
-                        })
-                      }
-                    />
-                  </div>
-                  <div className="profession">
-                    <Checkbox
-                      label="Enterprise"
-                      type="checkbox"
-                      checked={isEnterprise}
-                      onChange={() =>
-                        setProfession({
-                          ...profession,
-                          isEnterprise: !isEnterprise,
-                        })
-                      }
-                    />
-                  </div>
-                  <div className="profession">
-                    <Checkbox
-                      label="Researcher"
-                      type="checkbox"
-                      checked={isResearcher}
-                      onChange={() =>
-                        setProfession({
-                          ...profession,
-                          isResearcher: !isResearcher,
-                        })
-                      }
-                    />
-                  </div>
-                  <div className="profession">
-                    <Checkbox
-                      label="Other"
-                      type="checkbox"
-                      checked={isOther}
-                      onChange={() =>
-                        setProfession({
-                          ...profession,
-                          isOther: !isOther,
-                        })
-                      }
-                    />
-                  </div>
-                </div>
-
                 <SimpleButton
                   background={PRIMARY_GREEN}
                   fill
@@ -277,16 +167,6 @@ export const RegisterWidget = () => {
             max-width: 300px;
             text-align: center;
           }
-          .profession {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            padding-top: 15px;
-            width: 250px;
-          }
-          .professions-list {
-            padding-bottom: 15px;
-          }
           .message {
             padding-top: 10px;
             text-align: center;
@@ -296,9 +176,6 @@ export const RegisterWidget = () => {
               font-family: Open Sans;
               flex-wrap: wrap;
               width: 98%;
-            }
-            .profession {
-              width: 200px;
             }
             .error {
               max-width: 200px;
