@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useRef, useContext } from 'react';
 import { useRouter } from 'next/router';
-import { Icon, Switch, Card } from '@blueprintjs/core';
-import dynamic from 'next/dynamic';
 import ReactGA from 'react-ga';
 import Cookies from 'js-cookie';
 import { makeTVSymbols } from './utils/makeTVSymbols';
@@ -12,21 +10,7 @@ import { COOKIES } from '../../../constants/cookies';
 import { PLANS } from '../../../constants/plans';
 import { Link } from '../../Link';
 import { LoginContext } from '../../../contexts/Login';
-import { TokenSelect } from './TokenSelect';
-import { TOOLTIP_TEXT } from './ToolTipText';
-import { ExchangeList } from './ExchangeList';
-
-const STUDIES = {
-  FLOWS: 'Flows',
-  NET_FLOWS: 'NetFlows',
-};
-
-const SimpleToolTip = dynamic(
-  () => import('../../SimpleToolTip').then(mod => mod.SimpleToolTip),
-  {
-    ssr: false,
-  }
-);
+import { LeftSidePanel } from './LeftSidePanel';
 
 export const ProChartWidget = ({
   selectedExchange,
@@ -52,17 +36,6 @@ export const ProChartWidget = ({
   const loginContext = useContext(LoginContext);
 
   const TIER = Cookies.get(COOKIES.tier);
-
-  const {
-    tokens: {
-      groupName: { NATIVE, STABLE, ERC20 },
-    },
-  } = tokensDb;
-  const nativeTokens = tokensDb.getTokensList(NATIVE, selectedExchange);
-  const stableTokens = tokensDb.getTokensList(STABLE, selectedExchange);
-  const erc20Tokens = tokensDb.getTokensList(ERC20, selectedExchange);
-
-  const tokensList = [nativeTokens, stableTokens, erc20Tokens];
 
   const renderCTALink = () => {
     if (TIER !== null) {
@@ -105,78 +78,12 @@ export const ProChartWidget = ({
       <div className="container">
         <div className="controls-card">
           <div className="cat-link">{renderCTALink()}</div>
-
-          <Card>
-            <div className="controls">
-              <div className="control">
-                <div className="label">Token:</div>
-                <TokenSelect
-                  className="token-select"
-                  items={tokensList}
-                  groups={['Native coins', 'Stable tokens', 'ERC20 tokens']}
-                  selectedToken={selectedToken}
-                  onItemSelect={newToken => {
-                    ReactGA.event({
-                      category: 'User',
-                      action: `Pro Chart change token ${newToken}`,
-                      label: `Pro Charts`,
-                    });
-                    onChange(newToken, selectedExchange);
-                  }}
-                />
-              </div>
-              <div className="control">
-                <div className="exchanges">
-                  <div className="label">Exchange:</div>
-                  <ExchangeList
-                    exchanges={tokensDb.getExchangesList()}
-                    onChangeExchange={newExchange => {
-                      onChange(selectedToken, newExchange);
-                    }}
-                    selectedExchange={selectedExchange}
-                  />
-                </div>
-              </div>
-              <div className="control">
-                <div className="label">Net Flows:</div>
-                <div className="switch">
-                  <Switch
-                    onChange={() => {
-                      ReactGA.event({
-                        category: 'User',
-                        action: `Pro Chart toggle netflow`,
-                        label: `Pro Charts`,
-                      });
-                      if (!studies.current.transactions.entityId) {
-                        studies.current.transactions.entityId = tvInstance.current
-                          .chart()
-                          .createStudy(STUDIES.NET_FLOWS, false, true);
-                      } else {
-                        tvInstance.current
-                          .chart()
-                          .removeEntity(studies.current.transactions.entityId);
-                        studies.current.transactions.entityId = null;
-                      }
-                    }}
-                    defaultChecked
-                    large
-                  />
-                </div>
-              </div>
-              <div className="control">
-                <SimpleToolTip
-                  dataFor="header-tooltip"
-                  toolTip={TOOLTIP_TEXT}
-                  type="dark"
-                  effect="solid"
-                >
-                  <div data-tip data-for="header-tooltip">
-                    <Icon icon="info-sign" color="gray" />
-                  </div>
-                </SimpleToolTip>
-              </div>
-            </div>
-          </Card>
+          <LeftSidePanel
+            selectedExchange={selectedExchange}
+            selectedToken={selectedToken}
+            tokensDb={tokensDb}
+            onChange={onChange}
+          />
         </div>
         <div className="pro-chart">
           <ProChartContainer
@@ -197,7 +104,6 @@ export const ProChartWidget = ({
           />
         </div>
       </div>
-
       <style jsx>
         {`
           .container {
@@ -212,53 +118,11 @@ export const ProChartWidget = ({
             padding-left: 5px;
             width: 11%;
           }
-          .controls {
-            flex-direction: column;
-            display: flex;
-          }
-          .control {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            font-weight: bold;
-            padding-bottom: 10px;
-          }
           .cat-link {
             padding-bottom: 10px;
           }
-          .token-select {
-            width: 120px;
-          }
-          .label {
-            width: 50%;
-            padding-bottom: 10px;
-          }
-          .legend-flows {
-            padding-left: 8px;
-          }
-          .legend-flows-inflow {
-            color: #7cfc00;
-          }
-          .legend-flows-outflow {
-            color: #ff0000;
-          }
-          .exchanges {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-          }
-          .card {
-            padding-bottom: 10px;
-            display: flex;
-          }
           .pro-chart {
             width: 88%;
-          }
-          .switch {
-            padding-top: 10px;
-          }
-          .pricing-link {
-            padding-bottom: 30px;
           }
           @media (min-width: 768px) and (max-width: 1440px) {
             .controls-card {
@@ -281,12 +145,6 @@ export const ProChartWidget = ({
             }
             .controls-card {
               width: 100%;
-            }
-            .controls {
-              flex-direction: column;
-            }
-            .pricing-link {
-              text-align: center;
             }
           }
         `}

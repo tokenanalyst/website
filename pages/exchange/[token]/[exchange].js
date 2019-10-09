@@ -16,16 +16,31 @@ const Exchange = () => {
 
   useEffect(() => {
     const exchangeSupport = tokensDb.getTokenSupportOnExchange(token, exchange);
-
     if (exchangeSupport) {
       setIsTVSupported(true);
     }
   }, [token, exchange]);
 
   const pushToPage = (newToken, newExchange) => {
+    const exchangeSupport = tokensDb.getTokenSupportOnExchange(
+      newToken,
+      newExchange
+    );
+    if (exchangeSupport) {
+      router.push(
+        `/exchange/[token]/[exchange]`,
+        `/exchange/${newToken}/${newExchange}?tier=${Cookies.get(COOKIES.tier)}`
+      );
+    }
+    const tokensList = tokensDb.getTokensList('all', newExchange);
+
+    const defaultToken = Object.keys(tokensList)[0];
+
     router.push(
       `/exchange/[token]/[exchange]`,
-      `/exchange/${newToken}/${newExchange}?tier=${Cookies.get(COOKIES.tier)}`
+      `/exchange/${defaultToken}/${newExchange}?tier=${Cookies.get(
+        COOKIES.tier
+      )}`
     );
   };
 
