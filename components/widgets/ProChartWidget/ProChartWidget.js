@@ -51,7 +51,7 @@ export const ProChartWidget = ({
 
   const loginContext = useContext(LoginContext);
 
-  const TIER = Cookies.get(COOKIES.tier);
+  const TIER = Number(Cookies.get(COOKIES.tier));
 
   const {
     tokens: {
@@ -66,35 +66,38 @@ export const ProChartWidget = ({
 
   const renderCTALink = () => {
     if (TIER !== null) {
-      return (
-        <Link
-          desktopLabel="Sign Up for 1 Hour Granularity"
-          href="/register?exchange=true"
-          onClick={() => {
-            loginContext.setPostRegisterRedirectUrl(router.asPath);
-            ReactGA.event({
-              category: 'User',
-              action: `Click Sign Up CTA Exchange Page`,
-              label: `Funnel`,
-            });
-          }}
-        />
-      );
-    }
-    if (TIER < PLANS.PLATFORM.id) {
-      return (
-        <Link
-          desktopLabel="Get Unlimited Data"
-          href="/pricing?exchange=true"
-          onClick={() => {
-            ReactGA.event({
-              category: 'User',
-              action: `Click Upgrade CTA Exchange Page`,
-              label: `Funnel`,
-            });
-          }}
-        />
-      );
+      if (TIER === PLANS.SIGNED_OUT.id) {
+        return (
+          <Link
+            desktopLabel="Sign Up for 1 Hour Granularity"
+            href="/register?exchange=true"
+            onClick={() => {
+              loginContext.setPostRegisterRedirectUrl(router.asPath);
+              ReactGA.event({
+                category: 'User',
+                action: `Click Sign Up CTA Exchange Page`,
+                label: `Funnel`,
+              });
+            }}
+          />
+        );
+      } else if (TIER < PLANS.PLATFORM.id) {
+        return (
+          <Link
+            desktopLabel="Get Unlimited Data"
+            href="/pricing?exchange=true"
+            onClick={() => {
+              ReactGA.event({
+                category: 'User',
+                action: `Click Upgrade CTA Exchange Page`,
+                label: `Funnel`,
+              });
+            }}
+          />
+        );
+      } else {
+        return null;
+      }
     }
 
     return null;

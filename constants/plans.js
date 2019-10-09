@@ -80,6 +80,9 @@ export const PLANS = {
     id: 3,
     isPremier: true,
   },
+  SIGNED_OUT: {
+    id: -1,
+  },
 };
 
 export const TEST_PLANS = {
