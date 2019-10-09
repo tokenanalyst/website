@@ -7,19 +7,7 @@ import { COOKIES } from '../../../../constants/cookies';
 import { API_ERROR_MSG } from '../../../../constants/apiErrors';
 
 export const onFormRegister = async (loginCtx, formValues) => {
-  const {
-    email,
-    fullName,
-    password,
-    profession: {
-      isTrader,
-      isEnterprise,
-      isEnthusiast,
-      isResearcher,
-      isDeveloper,
-      isOther,
-    },
-  } = formValues;
+  const { email, fullName, password } = formValues;
 
   const result = {
     isSuccess: true,
@@ -37,21 +25,11 @@ export const onFormRegister = async (loginCtx, formValues) => {
     };
   }
 
-  if (password.value !== password.verify) {
-    return { ...result, isSuccess: false, errorMsg: 'Passwords do not match' };
-  }
-
   try {
     await axios.post('https://api.tokenanalyst.io/auth/user', {
       username: email,
       password: password.value,
       name: fullName,
-      trader: isTrader,
-      enterprise: isEnterprise,
-      enthusiast: isEnthusiast,
-      researcher: isResearcher,
-      developer: isDeveloper,
-      other: isOther,
     });
 
     const response = await axios.post(
