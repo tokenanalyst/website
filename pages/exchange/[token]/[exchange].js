@@ -26,8 +26,10 @@ const Exchange = () => {
       newToken,
       newExchange
     );
+    console.log(newToken, newExchange);
+    console.log(exchangeSupport);
     if (exchangeSupport) {
-      router.push(
+      return router.push(
         `/exchange/[token]/[exchange]`,
         `/exchange/${newToken}/${newExchange}?tier=${Cookies.get(COOKIES.tier)}`
       );
@@ -36,7 +38,7 @@ const Exchange = () => {
 
     const defaultToken = Object.keys(tokensList)[0];
 
-    router.push(
+    return router.push(
       `/exchange/[token]/[exchange]`,
       `/exchange/${defaultToken}/${newExchange}?tier=${Cookies.get(
         COOKIES.tier
