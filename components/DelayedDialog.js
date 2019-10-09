@@ -8,8 +8,8 @@ export const DelayedDialog = ({
   children,
   timeout,
   ctaText,
-  onClose,
   onCtaClick,
+  onClose,
 }) => {
   const [isShown, setIsShown] = useState(false);
 
@@ -39,8 +39,7 @@ DelayedDialog.propTypes = {
   subHeader: PropTypes.string,
   children: PropTypes.element,
   timeout: PropTypes.number.isRequired,
-  isOpen: PropTypes.bool.isRequired,
-  onClose: PropTypes.func.isRequired,
+  onClose: PropTypes.func,
   ctaText: PropTypes.string.isRequired,
   onCtaClick: PropTypes.func.isRequired,
 };
@@ -48,4 +47,5 @@ DelayedDialog.propTypes = {
 DelayedDialog.defaultProps = {
   subHeader: null,
   children: null,
+  onClose: () => {},
 };
