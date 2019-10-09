@@ -1,4 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react/jsx-wrap-multilines */
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import { Sparklines, SparklinesLine } from 'react-sparklines';
@@ -9,14 +9,15 @@ import ReactGA from 'react-ga';
 
 import { colors } from '../../../constants/styles/colors';
 import { LoadingSpinner } from '../../LoadingSpinner';
-import {
-  NATIVE_TOKENS,
-  STABLE_TOKENS,
-  ERC20_TOKENS,
-} from '../../../constants/tokens';
+import { CURRENCIES } from '../../../constants/tokens';
+import { tokensDb } from '../../../services/tokensDb';
 import { TOKEN_NAMES } from '../../../constants/token-names';
 import { updateToken } from './helpers';
 import { getTokenSnapshotData } from '../../../data-transformers/widgets/getTokenSnapshot';
+
+const NATIVE_TOKENS = tokensDb.tokens.group.native;
+const STABLE_TOKENS = tokensDb.tokens.group.stable;
+const ERC20_TOKENS = tokensDb.tokens.group.ERC20;
 
 const TOKEN_OPTIONS = [
   NATIVE_TOKENS.BTC,
@@ -28,13 +29,24 @@ const TOKEN_OPTIONS = [
   ERC20_TOKENS.LINK,
 ];
 
+const setValueChangeStatus = (value, status) => {
+  if (value < 0) {
+    return status[0];
+  }
+
+  if (value > 0) {
+    return status[1];
+  }
+
+  return status[2];
+};
+
 export const TokenSnapshot = ({
   initialToken,
   dataWindow,
   units,
   position,
 }) => {
-  const [data, setData] = useState(null);
   const [apiResponse, setApiResponse] = useState(null);
   const [snapshotToken, setSnapshotToken] = useState(initialToken);
 
@@ -44,22 +56,15 @@ export const TokenSnapshot = ({
         `/api/latest-exchange-flows?tokens=${snapshotToken}`
       );
       setApiResponse(result.data);
-      setData(
-        getTokenSnapshotData(result.data, snapshotToken, units, dataWindow)
-      );
     };
-
-    setData(null);
     getData();
   }, [snapshotToken]);
 
-  useEffect(() => {
-    if (data) {
-      setData(
-        getTokenSnapshotData(apiResponse, snapshotToken, units, dataWindow)
-      );
-    }
-  }, [units, dataWindow]);
+  let data;
+
+  if (apiResponse) {
+    data = getTokenSnapshotData(apiResponse, snapshotToken, units, dataWindow);
+  }
 
   return (
     <>
@@ -75,24 +80,21 @@ export const TokenSnapshot = ({
               }
               content={
                 <div className="radio-group">
-                  <RadioGroup selectedValue={snapshotToken}>
+                  <RadioGroup
+                    selectedValue={snapshotToken}
+                    onChange={e => {
+                      setApiResponse(null);
+                      ReactGA.event({
+                        category: 'User',
+                        action: `At a glance change ${e.target.value}`,
+                        label: `At a glance`,
+                      });
+                      updateToken(e.target.value, position);
+                      setSnapshotToken(e.target.value);
+                    }}
+                  >
                     {TOKEN_OPTIONS.map(token => (
-                      <Radio
-                        defaultChecked
-                        label={token}
-                        value={token}
-                        onClick={e => {
-                          setData(null);
-                          ReactGA.event({
-                            category: 'User',
-                            action: `At a glance change ${e.target.value}`,
-                            label: `At a glance`,
-                          });
-                          updateToken(e.target.value, position);
-                          setSnapshotToken(e.target.value);
-                        }}
-                        key={token}
-                      />
+                      <Radio label={token} value={token} key={token} />
                     ))}
                   </RadioGroup>
                 </div>
@@ -102,29 +104,25 @@ export const TokenSnapshot = ({
           </div>
           <div className="top-row">
             <span className="token-value">
-              ${numeral(data.price).format('0,0')}
+              {`$ ${numeral(data.price).format('0,0')}`}
             </span>
             <span>
               <img
-                src={
-                  data.change < 0
-                    ? '/static/svg/down.svg'
-                    : data.change > 0
-                    ? '/static/svg/up.svg'
-                    : '/static/svg/nochange.svg'
-                }
+                src={setValueChangeStatus(data.change, [
+                  '/static/svg/down.svg',
+                  '/static/svg/up.svg',
+                  '/static/svg/nochange.svg',
+                ])}
                 alt="Price Change"
               />
               <span
-                className={
-                  data.change > 0
-                    ? 'change-positive'
-                    : data.change < 0
-                    ? 'change-negative'
-                    : 'change-neutral'
-                }
+                className={setValueChangeStatus(data.change, [
+                  'change-positive',
+                  'change-negative',
+                  'change-neutral',
+                ])}
               >
-                {data.change.toFixed(2)}%
+                {`${data.change.toFixed(2)}%`}
               </span>
             </span>
           </div>
@@ -138,13 +136,11 @@ export const TokenSnapshot = ({
                     <Sparklines data={flow.sparkline}>
                       <SparklinesLine
                         style={{ strokeWidth: 6, fill: 'none', width: 200 }}
-                        color={
-                          flow.change > 0
-                            ? `rgba(${colors.primaryGreen})`
-                            : flow.change < 0
-                            ? `rgba(${colors.primaryRed})`
-                            : `rgba(${colors.neutralGrey})`
-                        }
+                        color={setValueChangeStatus(flow.change, [
+                          `rgba(${colors.primaryGreen})`,
+                          `rgba(${colors.primaryRed})`,
+                          `rgba(${colors.neutralGrey})`,
+                        ])}
                       />
                     </Sparklines>
                   </div>
@@ -154,29 +150,25 @@ export const TokenSnapshot = ({
                 <div className={index === 1 ? 'last-row' : 'row'}>
                   <div className="token-flow-variation">
                     <img
-                      src={
-                        flow.change < 0
-                          ? '/static/svg/down.svg'
-                          : flow.change > 0
-                          ? '/static/svg/up.svg'
-                          : '/static/svg/nochange.svg'
-                      }
+                      src={setValueChangeStatus(flow.change, [
+                        '/static/svg/down.svg',
+                        '/static/svg/up.svg',
+                        '/static/svg/nochange.svg',
+                      ])}
                       alt="Flow Change"
                     />
                     <span
-                      className={
-                        flow.change > 0
-                          ? 'change-positive'
-                          : flow.change < 0
-                          ? 'change-negative'
-                          : 'change-neutral'
-                      }
+                      className={setValueChangeStatus(flow.change, [
+                        'change-positive',
+                        'change-negative',
+                        'change-neutral',
+                      ])}
                     >
-                      {flow.change.toFixed(2)}%
+                      {`${flow.change.toFixed(2)}%`}
                     </span>
                   </div>
                   <div className="token-flow-value">
-                    {units === 'USD' ? '$' : ''}
+                    {units === CURRENCIES.USD ? '$' : ''}
                     {numeral(flow.value).format('0.0a')}
                   </div>
                 </div>

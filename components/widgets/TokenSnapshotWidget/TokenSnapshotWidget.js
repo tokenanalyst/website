@@ -16,33 +16,34 @@ export const TokenSnapshotWidget = ({ units, dataWindow }) => {
       {tokens && (
         <div className="container">
           {tokens.map((token, index) => (
-            <>
+            <div key={token + index}>
               <TokenSnapshot
-                key={token}
                 initialToken={token}
                 dataWindow={dataWindow}
                 units={units}
                 position={index}
               />
-              {index != tokens.length - 1 && <Separator />}
-            </>
+              {index !== tokens.length - 1 && <Separator />}
+            </div>
           ))}
         </div>
       )}
-      <style jsx>{`
-        .container {
-          display: flex;
-          flex-direction: row;
-          flex-wrap: wrap;
-          justify-content: space-between;
-          padding: 5px;
-        }
-        @media only screen and (max-width: 768px) {
+      <style jsx>
+        {`
           .container {
-            flex-direction: column;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 5px;
           }
-        }
-      `}</style>
+          @media only screen and (max-width: 768px) {
+            .container {
+              flex-direction: column;
+            }
+          }
+        `}
+      </style>
     </>
   );
 };
@@ -50,11 +51,13 @@ export const TokenSnapshotWidget = ({ units, dataWindow }) => {
 const Separator = () => (
   <>
     <div className="container" />
-    <style jsx>{`
-      .container {
-        border-right: 1px solid rgb(203, 203, 203, 0.3);
-      }
-    `}</style>
+    <style jsx>
+      {`
+        .container {
+          border-right: 1px solid rgb(203, 203, 203, 0.3);
+        }
+      `}
+    </style>
   </>
 );
 
