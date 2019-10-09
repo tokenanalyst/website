@@ -26,8 +26,7 @@ const Exchange = () => {
       newToken,
       newExchange
     );
-    console.log(newToken, newExchange);
-    console.log(exchangeSupport);
+
     if (exchangeSupport) {
       return router.push(
         `/exchange/[token]/[exchange]`,
