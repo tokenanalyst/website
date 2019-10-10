@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /purchase-success
+Noindex: /purchase-success
+Disallow: /free-tier-success
+Noindex: /free-tier-success
+Sitemap: https://www.tokenanalyst.io/static/sitemap.xml
