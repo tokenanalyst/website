@@ -9,6 +9,7 @@ import { LoginContext } from '../../contexts/Login';
 import { LOGO_IMAGES } from '../../constants/image-paths';
 import { colors } from '../../constants/styles/colors';
 import { COOKIES } from '../../constants/cookies';
+import { PLANS } from '../../constants/plans';
 
 export const setLinkActive = (pathName, link) =>
   pathName === link ? 'active' : '';
@@ -164,7 +165,7 @@ export const DesktopNav = () => {
                     Cookies.remove(COOKIES.loggedInAs);
                     Cookies.remove(COOKIES.loggedInAsUsername);
                     Cookies.remove(COOKIES.loggedInAsUserId);
-                    Cookies.set(COOKIES.tier, -1);
+                    Cookies.set(COOKIES.tier, PLANS.SIGNED_OUT.id);
                     loginCtx.setIsLoggedIn(false);
                     loginCtx.intercom.removeUser();
 
