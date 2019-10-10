@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { DemoCallOutPricingWidget } from '../components/widgets/DemoCallOutPricingWidget';
+import { DemoCallOutPricingWidget } from '../components/DemoCallOutPricing';
 
 const Pricing = () => {
   return (
@@ -35,7 +35,7 @@ const Pricing = () => {
           }
           .products-container {
             height: 643px;
-            background: url('/static/png/products_list_brg.png');
+            background: url('/static/png/pricing/products_list_brg.png');
           }
           .products {
             border-style: solid;

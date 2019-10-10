@@ -1,7 +1,6 @@
 import React from 'react';
 
 export const DemoCallOutPricingWidget = () => {
-  console.log('render demo call out');
   return (
     <div className="container">
       <div className="slogan">
@@ -27,7 +26,7 @@ export const DemoCallOutPricingWidget = () => {
       </div>
       <div className="intelligence-image">
         <img
-          src="/static/svg/pricing_callout.svg"
+          src="/static/svg/pricing/pricing_callout.svg"
           alt="Blockchain Intelligence"
         />
       </div>
