@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Cookies from 'js-cookie';
@@ -10,9 +10,11 @@ import { ProChartWidget } from '../../../components/widgets/ProChartWidget';
 import { COOKIES } from '../../../constants/cookies';
 import { tokensDb } from '../../../services/tokensDb';
 import { DelayedDialog } from '../../../components/DelayedDialog';
+import { LoginContext } from '../../../contexts/Login';
 
 const Exchange = () => {
   const router = useRouter();
+  const loginCtx = useContext(LoginContext);
   const { token, exchange } = router.query;
   const [isTVSupported, setIsTVSupported] = useState(false);
 
@@ -61,6 +63,7 @@ const Exchange = () => {
           subHeader="Sign up now for FREE to access TokenAnalyst charts in a 1 hour granularity across ALL tokens and exchanges!"
           timeout={25000}
           onCtaClick={() => {
+            loginCtx.setPostRegisterRedirectUrl(router.asPath.split('?')[0]);
             router.push('/register?exchange=true');
             Cookies.set(COOKIES.hasSeenRegisterDialog, true);
             ReactGA.event({

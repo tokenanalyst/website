@@ -164,6 +164,7 @@ export const DesktopNav = () => {
                     Cookies.remove(COOKIES.loggedInAs);
                     Cookies.remove(COOKIES.loggedInAsUsername);
                     Cookies.remove(COOKIES.loggedInAsUserId);
+                    Cookies.set(COOKIES.tier, -1);
                     loginCtx.setIsLoggedIn(false);
                     loginCtx.intercom.removeUser();
 

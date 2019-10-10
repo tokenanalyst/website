@@ -12,7 +12,7 @@ export const onFormRegister = async (loginCtx, formValues) => {
   const result = {
     isSuccess: true,
     errorMsg: null,
-    redirectFn: () => null,
+    redirectFn: () => {},
   };
 
   const MIN_STRENGTH_SCORE = 3;
@@ -48,6 +48,7 @@ export const onFormRegister = async (loginCtx, formValues) => {
     Cookies.set(COOKIES.loggedInAs, name);
     Cookies.set(COOKIES.loggedInAsUsername, username);
     Cookies.set(COOKIES.loggedInAsUserId, id);
+    Cookies.set(COOKIES.tier, 0);
 
     loginCtx.setIsLoggedIn(true);
     loginCtx.setLoggedInAs(name);
@@ -56,37 +57,47 @@ export const onFormRegister = async (loginCtx, formValues) => {
     let redirectFn;
 
     if (loginCtx.paymentData.stripe && loginCtx.paymentData.stripe.redirectFn) {
-      ReactGA.event({
-        category: 'User',
-        action: `Registered to make a purchase`,
-        label: `Funnel`,
-      });
       loginCtx.setPaymentData({ ...loginCtx.paymentData, stripe: null });
 
-      redirectFn = () =>
+      redirectFn = () => {
+        ReactGA.event({
+          category: 'User',
+          action: `Registered to make a purchase`,
+          label: `Funnel`,
+        });
         loginCtx.paymentData.stripe.redirectFn({
           customerEmail: username,
           clientReferenceId: id.toString(),
         });
+      };
     } else if (loginCtx.paymentData.isFreeTier) {
-      ReactGA.event({
-        category: 'User',
-        action: `Registered to access free tier`,
-        label: `Funnel`,
-      });
       loginCtx.setPaymentData({ ...loginCtx.paymentData, isFreeTier: false });
-      redirectFn = () => Router.push('/free-tier-success');
+      redirectFn = () => {
+        ReactGA.event({
+          category: 'User',
+          action: `Registered to access free tier`,
+          label: `Funnel`,
+        });
+        Router.push('/free-tier-success');
+      };
     } else if (loginCtx.postRegisterRedirectUrl) {
-      ReactGA.event({
-        category: 'User',
-        action: `Registered via Exchange Page CTA`,
-        label: `Funnel`,
-      });
-      redirectFn = () =>
+      redirectFn = () => {
+        ReactGA.event({
+          category: 'User',
+          action: `Registered via Exchange Page CTA`,
+          label: `Funnel`,
+        });
         Router.push(
           `/exchange/[token]/[exchange]`,
           `${loginCtx.postRegisterRedirectUrl}?registered=true`
         );
+      };
+    } else {
+      ReactGA.event({
+        category: 'User',
+        action: `Registered organically`,
+        label: `Funnel`,
+      });
     }
     return { ...result, isSuccess: true, redirectFn };
   } catch (e) {
