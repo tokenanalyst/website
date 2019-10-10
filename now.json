@@ -3,5 +3,6 @@
   "env": {
     "API_KEY": "@api-key",
     "KAIKO_KEY": "@kaiko-key"
-  }
+  },
+  "routes": [{ "src": "/robots.txt", "dest": "/static/robots.txt" }]
 }
