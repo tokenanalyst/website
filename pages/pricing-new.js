@@ -1,10 +1,14 @@
 import React from 'react';
 
+import { DemoCallOutPricing } from '../components/DemoCallOutPricing';
+
 const Pricing = () => {
   return (
     <div className="container">
       <div className="callout-container">
-        <div className="callout">Callout</div>
+        <div className="callout">
+          <DemoCallOutPricing />
+        </div>
       </div>
       <div className="products-container">
         <div className="products">Plans</div>
@@ -31,7 +35,7 @@ const Pricing = () => {
           }
           .products-container {
             height: 643px;
-            background: url('/static/png/products_list_brg.png');
+            background: url('/static/png/pricing/products_list_brg.png');
           }
           .products {
             border-style: solid;
