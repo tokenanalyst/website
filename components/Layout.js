@@ -26,7 +26,7 @@ export const Layout = ({ children }) => (
 
       <meta
         name="description"
-        content="TokenAnalyst is the leading provider of real-time and historical blockchain data. Our offering includes on-chain inflow and outflow from exchanges and low-latency alerts on significant transactions."
+        content="Access comprehensive real-time and historical blockchain data including exchange flows, volumes, and other key trading metrics."
       />
       <meta
         name="keywords"
