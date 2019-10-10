@@ -1,10 +1,14 @@
 import React from 'react';
 
+import { DemoCallOutPricingWidget } from '../components/widgets/DemoCallOutPricingWidget';
+
 const Pricing = () => {
   return (
     <div className="container">
       <div className="callout-container">
-        <div className="callout">Callout</div>
+        <div className="callout">
+          <DemoCallOutPricingWidget />
+        </div>
       </div>
       <div className="products-container">
         <div className="products">Plans</div>
