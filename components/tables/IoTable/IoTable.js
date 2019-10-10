@@ -5,12 +5,23 @@ import ReactGA from 'react-ga';
 import '../../../node_modules/react-table/react-table.css';
 import Cookies from 'js-cookie';
 
-import { AmountCell, ChangeCell, ExchangeCell, HeaderCell } from './renderers';
+import {
+  AmountCell,
+  ChangeCell,
+  ExchangeCell,
+  HeaderCell,
+  NextButton,
+  PreviousButton,
+} from './renderers';
 import { getIoTableData } from '../../../data-transformers/tables';
 import { filterCaseInsensitive } from '../helpers';
 import { colors } from '../../../constants/styles/colors';
-import { NextButton, PreviousButton } from './renderers';
+
 import { COOKIES } from '../../../constants/cookies';
+import {
+  EXCHANGE_NAMES,
+  EXCHANGE_DISPLAY_NAME,
+} from '../../../constants/exchanges';
 
 const TABLE_DATA = getIoTableData();
 
@@ -76,7 +87,7 @@ export const IoTable = ({ data, dataWindow, units }) => {
           noDataText="No results"
           className="-highlight"
           defaultPageSize={25}
-          filterable={true}
+          filterable
           defaultFilterMethod={filterCaseInsensitive}
           style={{ cursor: 'pointer' }}
           getTrProps={(_, rowInfo) => ({
@@ -89,7 +100,9 @@ export const IoTable = ({ data, dataWindow, units }) => {
               });
               router.push(
                 `/exchange/[token]/[exchange]`,
-                `/exchange/${token}/${exchange}?tier=${TIER}`
+                `/exchange/${token}/${
+                  EXCHANGE_NAMES[EXCHANGE_DISPLAY_NAME[exchange] || exchange]
+                }?tier=${TIER}`
               );
             },
             style: {
@@ -158,24 +171,26 @@ export const IoTable = ({ data, dataWindow, units }) => {
         />
       )}
 
-      <style jsx>{`
-        .container {
-          font-family: Open Sans;
-        }
-        .section-header {
-          font-size: 22px;
-          font-weight: bold;
-          opacity: 0.4;
-          padding-bottom: 20px;
-          padding-top: 20px;
-          padding-left: 5px;
-        }
-        @media only screen and (max-width: 768px) {
-          .information-header {
-            padding: 30px 30px;
+      <style jsx>
+        {`
+          .container {
+            font-family: Open Sans;
           }
-        }
-      `}</style>
+          .section-header {
+            font-size: 22px;
+            font-weight: bold;
+            opacity: 0.4;
+            padding-bottom: 20px;
+            padding-top: 20px;
+            padding-left: 5px;
+          }
+          @media only screen and (max-width: 768px) {
+            .information-header {
+              padding: 30px 30px;
+            }
+          }
+        `}
+      </style>
     </div>
   );
 };
