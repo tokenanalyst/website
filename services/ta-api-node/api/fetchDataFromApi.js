@@ -14,7 +14,6 @@ module.exports = endpointCallFn => async (taInstance, params) => {
       };
 
   const apiCall = makeApiUrl(endpointCallFn(params), apiUrl, apiCallArgs);
-  console.log(apiCall);
 
   let response;
 

@@ -11,6 +11,10 @@ module.exports = {
         'erc20_exchanges_flow_window_historical/last',
       token_price_usd_window_historical: () =>
         'token_price_usd_window_historical/last',
+      token_active_address_window_historical: () =>
+        'token_active_address_window_historical/last',
+      token_nvt_window_historical: () => 'token_nvt_window_historical/last',
+      token_fees_window_historical: () => 'token_fees_window_historical/last',
     },
     public: {
       exchange_flows_all_tokens_v5: () =>
