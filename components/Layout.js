@@ -24,7 +24,6 @@ export const Layout = ({ children }) => (
         src="/static/charting_library/charting_library.min.js"
       />
 
-      <meta http-equiv="content-language" content="en-us" />
       <meta
         name="description"
         content="Access comprehensive real-time and historical blockchain data including exchange flows, volumes, and other key trading metrics."
