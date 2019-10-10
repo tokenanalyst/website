@@ -10,3 +10,22 @@ export const underSubNav = css`
     }
   }
 `;
+
+export const pricingButton = css`
+  button {
+    background-color: #fff;
+    width: 154px;
+    height: 37px;
+    border-radius: 8px;
+    border: solid 2px #35caab;
+    font-family: Space Grotesk;
+    font-size: 15px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: 0.13px;
+    text-align: center;
+    color: #642c2c;
+  }
+`;

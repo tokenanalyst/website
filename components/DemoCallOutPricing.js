@@ -1,6 +1,8 @@
 import React from 'react';
 
-export const DemoCallOutPricingWidget = () => {
+import { pricingButton } from '../constants/styles/common-styled-jsx';
+
+export const DemoCallOutPricing = () => {
   return (
     <div className="container">
       <div className="slogan">
@@ -30,7 +32,7 @@ export const DemoCallOutPricingWidget = () => {
           alt="Blockchain Intelligence"
         />
       </div>
-
+      <style jsx>{pricingButton}</style>
       <style jsx>
         {`
           .container {
@@ -70,22 +72,6 @@ export const DemoCallOutPricingWidget = () => {
             letter-spacing: 0.26px;
             color: #000000;
             margin-bottom: 50px;
-          }
-          button {
-            background-color: #fff;
-            width: 154px;
-            height: 37px;
-            border-radius: 8px;
-            border: solid 2px #35caab;
-            font-family: Space Grotesk;
-            font-size: 15px;
-            font-weight: bold;
-            font-style: normal;
-            font-stretch: normal;
-            line-height: normal;
-            letter-spacing: 0.13px;
-            text-align: center;
-            color: #642c2c;
           }
         `}
       </style>
