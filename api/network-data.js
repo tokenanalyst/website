@@ -35,7 +35,7 @@ module.exports = async (req, res) => {
     window: PARAMS.window,
   };
 
-  const starndardRequests = [
+  const standardRequests = [
     privateApi.tokenVolumeWindowHistorical(params),
     privateApi.tokenCountWindowHistorical(params),
     privateApi.tokenActiveAddressWindowHistorical(params),
@@ -43,13 +43,13 @@ module.exports = async (req, res) => {
   ];
 
   const allRequests = [
-    ...starndardRequests,
+    ...standardRequests,
     privateApi.tokenNvtWindowHistorical(params),
     privateApi.tokenFeesWindowHistorical(params),
   ];
 
   const apiRequests = !tokensDb.isNative(token)
-    ? starndardRequests
+    ? standardRequests
     : allRequests;
 
   let results;
