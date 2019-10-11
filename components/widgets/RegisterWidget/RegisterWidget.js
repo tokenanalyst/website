@@ -20,6 +20,7 @@ export const RegisterWidget = () => {
     value: null,
     strength: 0,
   });
+  const [company, setCompany] = useState(null);
   const [errorText, setErrorText] = useState(null);
   const [hasRegistered, setHasRegistered] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -42,6 +43,7 @@ export const RegisterWidget = () => {
       email,
       fullName,
       password,
+      company,
     };
     const result = await onFormRegister(loginCtx, formValues);
 
@@ -112,6 +114,12 @@ export const RegisterWidget = () => {
                         onClick={() => setIsPasswordVisible(!isPasswordVisible)}
                       />
                     }
+                  />
+                </SimpleFormGroup>
+                <SimpleFormGroup label="Company (optional)" labelFor="company">
+                  <SimpleTextInput
+                    id="company"
+                    onChange={e => setCompany(e.target.value)}
                   />
                 </SimpleFormGroup>
                 <SimpleButton
