@@ -7,7 +7,7 @@ import { COOKIES } from '../../../../constants/cookies';
 import { API_ERROR_MSG } from '../../../../constants/apiErrors';
 
 export const onFormRegister = async (loginCtx, formValues) => {
-  const { email, fullName, password } = formValues;
+  const { email, fullName, password, company } = formValues;
 
   const result = {
     isSuccess: true,
@@ -30,6 +30,7 @@ export const onFormRegister = async (loginCtx, formValues) => {
       username: email,
       password: password.value,
       name: fullName,
+      company,
     });
 
     const response = await axios.post(
