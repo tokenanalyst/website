@@ -154,15 +154,11 @@ export const DesktopNav = () => {
           <div className="right-side">
             {loginCtx.isLoggedIn ? (
               <>
-                <div style={{ color: 'white' }}>
-                  Welcome, {Cookies.get('loggedInAs')}
-                </div>
                 <div
                   className="login-button"
                   onClick={() => {
                     // TO DO: put all auth logic into its own module
                     Cookies.remove(COOKIES.apiKey);
-                    Cookies.remove(COOKIES.loggedInAs);
                     Cookies.remove(COOKIES.loggedInAsUsername);
                     Cookies.remove(COOKIES.loggedInAsUserId);
                     Cookies.set(COOKIES.tier, PLANS.SIGNED_OUT.id);

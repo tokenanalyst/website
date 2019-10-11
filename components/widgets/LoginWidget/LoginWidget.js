@@ -32,7 +32,6 @@ export const LoginWidget = () => {
       } = response;
 
       Cookies.set(COOKIES.apiKey, apiKey);
-      Cookies.set(COOKIES.loggedInAs, name);
       Cookies.set(COOKIES.loggedInAsUsername, username);
       Cookies.set(COOKIES.loggedInAsUserId, id);
       Cookies.set(COOKIES.tier, profile);

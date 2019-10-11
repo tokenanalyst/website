@@ -5,7 +5,6 @@ import { COOKIES } from '../../../constants/cookies';
 export const isUserCookiesValid = () => {
   return !!(
     Cookies.get(COOKIES.apiKey) &&
-    Cookies.get(COOKIES.loggedInAs) &&
     Cookies.get(COOKIES.loggedInAsUsername) &&
     Cookies.get(COOKIES.loggedInAsUserId)
   );

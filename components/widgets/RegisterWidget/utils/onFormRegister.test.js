@@ -30,7 +30,6 @@ const id = 'testId';
 
 const expectCookies = () => {
   expect(Cookies.set).toHaveBeenNthCalledWith(1, COOKIES.apiKey, apiKey);
-  expect(Cookies.set).toHaveBeenNthCalledWith(2, COOKIES.loggedInAs, name);
   expect(Cookies.set).toHaveBeenNthCalledWith(
     3,
     COOKIES.loggedInAsUsername,
