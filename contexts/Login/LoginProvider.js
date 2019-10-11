@@ -7,22 +7,17 @@ import { intercom, isUserCookiesValid } from './utils';
 
 export const LoginProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [loggedInAs, setLoggedInAs] = useState(null);
   const [paymentData, setPaymentData] = useState({ stripe: null });
   const [postRegisterRedirectUrl, setPostRegisterRedirectUrl] = useState(null);
 
   useEffect(() => {
     if (isUserCookiesValid()) {
-      intercom.setUser(
-        Cookies.get(COOKIES.loggedInAs),
-        Cookies.get(COOKIES.loggedInAsUsername)
-      );
+      intercom.setUser(Cookies.get(COOKIES.loggedInAsUsername));
       setIsLoggedIn(true);
     } else {
       intercom.removeUser();
       setIsLoggedIn(false);
       Cookies.remove(COOKIES.apiKey);
-      Cookies.remove(COOKIES.loggedInAs);
       Cookies.remove(COOKIES.loggedInAsUsername);
       Cookies.remove(COOKIES.loggedInAsUserId);
     }
@@ -30,7 +25,6 @@ export const LoginProvider = ({ children }) => {
     if (Cookies.get(COOKIES.tier) === undefined) {
       Cookies.set(COOKIES.tier, -1);
       Cookies.remove(COOKIES.apiKey);
-      Cookies.remove(COOKIES.loggedInAs);
       Cookies.remove(COOKIES.loggedInAsUsername);
       Cookies.remove(COOKIES.loggedInAsUserId);
     }
@@ -38,12 +32,10 @@ export const LoginProvider = ({ children }) => {
 
   const value = {
     isLoggedIn,
-    loggedInAs,
     paymentData,
     intercom,
     postRegisterRedirectUrl,
     setIsLoggedIn,
-    setLoggedInAs,
     setPaymentData,
     setPostRegisterRedirectUrl,
   };
