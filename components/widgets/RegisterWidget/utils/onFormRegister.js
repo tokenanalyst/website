@@ -7,6 +7,10 @@ import { COOKIES } from '../../../../constants/cookies';
 import { API_ERROR_MSG } from '../../../../constants/apiErrors';
 
 export const onFormRegister = async (loginCtx, formValues) => {
+  const API_BASE =
+    process.env.NODE_ENV === 'development'
+      ? 'https://deb8b069-8fe4-4886-9e86-69ead8b3c28b.mock.pstmn.io'
+      : 'https://api.tokenanalyst.io';
   const { email, fullName, password, company } = formValues;
 
   const result = {
@@ -26,20 +30,17 @@ export const onFormRegister = async (loginCtx, formValues) => {
   }
 
   try {
-    await axios.post('https://api.tokenanalyst.io/auth/user', {
+    await axios.post(`${API_BASE}/auth/user`, {
       username: email,
       password: password.value,
       name: fullName,
       company,
     });
 
-    const response = await axios.post(
-      'https://api.tokenanalyst.io/auth/user/login',
-      {
-        username: email,
-        password: password.value,
-      }
-    );
+    const response = await axios.post(`${API_BASE}/auth/user/login`, {
+      username: email,
+      password: password.value,
+    });
 
     const {
       data: { apiKey, name, username, id },
