@@ -1,0 +1,91 @@
+import React from 'react';
+
+import { ProductCard } from './ProductCard';
+import { PRODUCTS } from './data/productsData';
+import { PLAN_NAMES } from '../../../constants/plans';
+
+const { PLATFORM, PRO, ENTERPRISE } = PLAN_NAMES;
+
+const makePrice = (product, price) => {
+  const PRICE_TEXT = {
+    [PLATFORM]: `Just ${price}/month`,
+    [PRO]: `${price}/month`,
+    [ENTERPRISE]: `Tailored services `,
+  };
+
+  return PRICE_TEXT[product];
+};
+
+export const ProductSelectionWidget = () => {
+  return (
+    <>
+      <div className="container">
+        <div className="product-container">
+          <h2 className="products-header">Our Products</h2>
+          <div className="products">
+            {PRODUCTS.map(({ card, name, price }) => {
+              const {
+                title,
+                links,
+                description,
+                isIncludesPlatform,
+                image,
+              } = card;
+
+              return (
+                <div className="product" key={name}>
+                  <ProductCard
+                    name={name}
+                    description={description}
+                    image={image}
+                    isIncludesPlatform={isIncludesPlatform || false}
+                    links={links}
+                    price={makePrice(name, price)}
+                    title={title}
+                    isActive={name === PRO}
+                  />
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+      <style jsx>
+        {`
+          .container {
+            display: flex;
+            flex-direction: column;
+          }
+          .products {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+          }
+          .product-container {
+            margin-left: 100px;
+            margin-right: 100px;
+          }
+          .products-header {
+            padding-top: 40px;
+            padding-bottom: 40px;
+            font-family: Space Grotesk;
+            font-size: 30px;
+            font-weight: bold;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: 0.26px;
+            color: #000000;
+          }
+          .product {
+          }
+          @media only screen and (max-width: 768px) {
+            .container {
+              flex-direction: column;
+            }
+          }
+        `}
+      </style>
+    </>
+  );
+};

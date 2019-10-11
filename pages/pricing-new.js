@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { DemoCallOutPricing } from '../components/DemoCallOutPricing';
+import { ProductSelectionWidget } from '../components/widgets/NewProductSelectionWidget';
 
 const Pricing = () => {
   return (
@@ -11,7 +12,9 @@ const Pricing = () => {
         </div>
       </div>
       <div className="products-container">
-        <div className="products">Plans</div>
+        <div className="products">
+          <ProductSelectionWidget />
+        </div>
       </div>
       <div className="products-details-container">
         <div className="products-details">Plans details</div>
@@ -21,17 +24,19 @@ const Pricing = () => {
           .container {
             width: 100%;
             height: 1312px;
+            width: 1440px;
+            margin: auto;
           }
           .callout-container {
             height: 669px;
           }
           .callout {
+            padding-left: 100px;
+            padding-right: 100px;
             border-style: solid;
             border-width: 1px;
             border-color: lightblue;
             height: 100%;
-            margin-right: 115px;
-            margin-left: 115px;
           }
           .products-container {
             height: 643px;
@@ -42,8 +47,6 @@ const Pricing = () => {
             border-width: 1px;
             border-color: lightblue;
             height: 100%;
-            margin-right: 115px;
-            margin-left: 115px;
           }
           .products-details-container {
           }
@@ -52,8 +55,6 @@ const Pricing = () => {
             border-width: 1px;
             border-color: lightblue;
             height: 100%;
-            margin-right: 115px;
-            margin-left: 115px;
           }
           @media only screen and (max-width: 768px) {
             .products-container {

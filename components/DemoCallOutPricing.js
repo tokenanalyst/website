@@ -6,14 +6,14 @@ export const DemoCallOutPricing = () => {
   return (
     <div className="container">
       <div className="slogan">
-        <div className="title">
+        <h1 className="title">
           Blockchain
           <br />
           Intelligence
           <br />
           for Markets
-        </div>
-        <div className="description">
+        </h1>
+        <p className="description">
           Intelligence based on
           <br />
           proprietary models of
@@ -21,9 +21,9 @@ export const DemoCallOutPricing = () => {
           wallet behavior
           <br />
           and exchange flows.
-        </div>
+        </p>
         <div className="button">
-          <button>Request a Demo</button>
+          <button type="button">Request a Demo</button>
         </div>
       </div>
       <div className="intelligence-image">
@@ -39,13 +39,13 @@ export const DemoCallOutPricing = () => {
             position: relative;
           }
           .intelligence-image {
-            width: 1000px;
-            height: 1000px;
+            width: 653px;
+            height: 693px;
             top: 0;
             right: 0;
             position: absolute;
             text-align: right;
-            margin-right: -40px;
+            margin-right: 50px;
           }
           .slogan {
             margin-top: 90px;
