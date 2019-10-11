@@ -36,7 +36,6 @@ export const LoginWidget = () => {
       Cookies.set(COOKIES.loggedInAsUserId, id);
       Cookies.set(COOKIES.tier, profile);
       loginCtx.setIsLoggedIn(true);
-      loginCtx.setLoggedInAs(name);
       loginCtx.intercom.setUser(name, username);
 
       if (

@@ -36,7 +36,6 @@ export const LoginProvider = ({ children }) => {
     intercom,
     postRegisterRedirectUrl,
     setIsLoggedIn,
-    setLoggedInAs,
     setPaymentData,
     setPostRegisterRedirectUrl,
   };

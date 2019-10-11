@@ -17,7 +17,6 @@ let loginCtx = {
   paymentData: {},
   setPaymentData: jest.fn(),
   setIsLoggedIn: jest.fn(),
-  setLoggedInAs: jest.fn(),
   intercom: {
     setUser: jest.fn(),
   },
@@ -60,7 +59,6 @@ describe('onFormRegister function', () => {
     mocksClear([
       loginCtx.setPaymentData,
       loginCtx.setIsLoggedIn,
-      loginCtx.setLoggedInAs,
       loginCtx.intercom.setUser,
       Cookies.set,
     ]);
@@ -68,7 +66,6 @@ describe('onFormRegister function', () => {
       paymentData: {},
       setPaymentData: jest.fn(),
       setIsLoggedIn: jest.fn(),
-      setLoggedInAs: jest.fn(),
       intercom: {
         setUser: jest.fn(),
       },
@@ -173,7 +170,6 @@ describe('onFormRegister function', () => {
     });
     expectCookies();
     expect(loginCtx.setIsLoggedIn).toHaveBeenCalledWith(true);
-    expect(loginCtx.setLoggedInAs).toHaveBeenCalledWith(name);
     expect(loginCtx.intercom.setUser).toHaveBeenCalledWith(name, username);
     expect(ReactGA.event).toHaveBeenCalledWith({
       category: 'User',
@@ -223,7 +219,6 @@ describe('onFormRegister function', () => {
 
     expectCookies();
     expect(loginCtx.setIsLoggedIn).toHaveBeenCalledWith(true);
-    expect(loginCtx.setLoggedInAs).toHaveBeenCalledWith(name);
     expect(loginCtx.intercom.setUser).toHaveBeenCalledWith(name, username);
     expect(ReactGA.event).toHaveBeenCalledWith({
       category: 'User',
@@ -275,7 +270,6 @@ describe('onFormRegister function', () => {
 
     expectCookies();
     expect(loginCtx.setIsLoggedIn).toHaveBeenCalledWith(true);
-    expect(loginCtx.setLoggedInAs).toHaveBeenCalledWith(name);
     expect(loginCtx.intercom.setUser).toHaveBeenCalledWith(name, username);
     expect(ReactGA.event).toHaveBeenCalledWith({
       category: 'User',

@@ -51,7 +51,6 @@ export const onFormRegister = async (loginCtx, formValues) => {
     Cookies.set(COOKIES.tier, 0);
 
     loginCtx.setIsLoggedIn(true);
-    loginCtx.setLoggedInAs(name);
     loginCtx.intercom.setUser(name, username);
 
     let redirectFn;
