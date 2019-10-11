@@ -6,21 +6,10 @@ export const DemoCallOutPricing = () => {
   return (
     <div className="container">
       <div className="slogan">
-        <h1 className="title">
-          Blockchain
-          <br />
-          Intelligence
-          <br />
-          for Markets
-        </h1>
+        <h1 className="title">Blockchain Intelligence for Markets</h1>
         <p className="description">
-          Intelligence based on
-          <br />
-          proprietary models of
-          <br />
-          wallet behavior
-          <br />
-          and exchange flows.
+          Intelligence based on proprietary models of wallet behavior and
+          exchange flows.
         </p>
         <div className="button">
           <button type="button">Request a Demo</button>
@@ -61,6 +50,7 @@ export const DemoCallOutPricing = () => {
             letter-spacing: -0.31px;
             color: #000000;
             margin-bottom: 35px;
+            max-width: 300px;
           }
           .description {
             font-family: Cardo;
@@ -72,6 +62,7 @@ export const DemoCallOutPricing = () => {
             letter-spacing: 0.26px;
             color: #000000;
             margin-bottom: 50px;
+            max-width: 350px;
           }
         `}
       </style>
