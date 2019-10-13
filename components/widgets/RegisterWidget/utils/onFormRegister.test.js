@@ -17,7 +17,6 @@ let loginCtx = {
   paymentData: {},
   setPaymentData: jest.fn(),
   setIsLoggedIn: jest.fn(),
-  setLoggedInAs: jest.fn(),
   intercom: {
     setUser: jest.fn(),
   },
@@ -30,7 +29,6 @@ const id = 'testId';
 
 const expectCookies = () => {
   expect(Cookies.set).toHaveBeenNthCalledWith(1, COOKIES.apiKey, apiKey);
-  expect(Cookies.set).toHaveBeenNthCalledWith(2, COOKIES.loggedInAs, name);
   expect(Cookies.set).toHaveBeenNthCalledWith(
     3,
     COOKIES.loggedInAsUsername,
@@ -61,7 +59,6 @@ describe('onFormRegister function', () => {
     mocksClear([
       loginCtx.setPaymentData,
       loginCtx.setIsLoggedIn,
-      loginCtx.setLoggedInAs,
       loginCtx.intercom.setUser,
       Cookies.set,
     ]);
@@ -69,7 +66,6 @@ describe('onFormRegister function', () => {
       paymentData: {},
       setPaymentData: jest.fn(),
       setIsLoggedIn: jest.fn(),
-      setLoggedInAs: jest.fn(),
       intercom: {
         setUser: jest.fn(),
       },
@@ -174,7 +170,6 @@ describe('onFormRegister function', () => {
     });
     expectCookies();
     expect(loginCtx.setIsLoggedIn).toHaveBeenCalledWith(true);
-    expect(loginCtx.setLoggedInAs).toHaveBeenCalledWith(name);
     expect(loginCtx.intercom.setUser).toHaveBeenCalledWith(name, username);
     expect(ReactGA.event).toHaveBeenCalledWith({
       category: 'User',
@@ -224,7 +219,6 @@ describe('onFormRegister function', () => {
 
     expectCookies();
     expect(loginCtx.setIsLoggedIn).toHaveBeenCalledWith(true);
-    expect(loginCtx.setLoggedInAs).toHaveBeenCalledWith(name);
     expect(loginCtx.intercom.setUser).toHaveBeenCalledWith(name, username);
     expect(ReactGA.event).toHaveBeenCalledWith({
       category: 'User',
@@ -276,7 +270,6 @@ describe('onFormRegister function', () => {
 
     expectCookies();
     expect(loginCtx.setIsLoggedIn).toHaveBeenCalledWith(true);
-    expect(loginCtx.setLoggedInAs).toHaveBeenCalledWith(name);
     expect(loginCtx.intercom.setUser).toHaveBeenCalledWith(name, username);
     expect(ReactGA.event).toHaveBeenCalledWith({
       category: 'User',

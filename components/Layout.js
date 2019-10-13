@@ -9,6 +9,14 @@ import '../node_modules/normalize.css/normalize.css';
 import '../node_modules/@blueprintjs/core/lib/css/blueprint.css';
 import '../node_modules/@blueprintjs/select/lib/css/blueprint-select.css';
 
+const STRUCTURED_DATA = JSON.stringify({
+  '@context': 'http://schema.org',
+  '@type': 'Organization',
+  name: 'TokenAnalyst',
+  logo: 'https://www.tokenanalyst.io/static/png/logo_desktop.png',
+  url: 'https://www.tokenanalyst.io',
+});
+
 export const Layout = ({ children }) => (
   <div className="layout">
     <Head>
@@ -18,6 +26,8 @@ export const Layout = ({ children }) => (
       <script src="https://js.stripe.com/v3/" />
       <script src="/static/js/intercom.js" />
       <script src="/static/js/hotjar.js" />
+
+      <script type="application/ld+json">{STRUCTURED_DATA}</script>
 
       <script
         type="text/javascript"

@@ -14,7 +14,6 @@ import { SimpleButton } from '../../SimpleButton';
 export const RegisterWidget = () => {
   const loginCtx = useContext(LoginContext);
 
-  const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState({
     value: null,
@@ -40,7 +39,6 @@ export const RegisterWidget = () => {
   const onRegister = async () => {
     const formValues = {
       email,
-      fullName,
       password,
     };
     const result = await onFormRegister(loginCtx, formValues);
@@ -71,7 +69,7 @@ export const RegisterWidget = () => {
               color={`rgba(${colors.primaryGreen})`}
               iconSize={48}
             />
-            <div className="success">{`Thanks for registering ${fullName}!`}</div>
+            <div className="success">{`Thanks for registering!`}</div>
             <br />
             <div className="success">
               An email will shortly be with you containing all your details
@@ -85,12 +83,6 @@ export const RegisterWidget = () => {
           <>
             <div className="register-form">
               <Card>
-                <SimpleFormGroup label="Name" labelFor="registration-name">
-                  <SimpleTextInput
-                    id="registration-name"
-                    onChange={e => setFullName(e.target.value)}
-                  />
-                </SimpleFormGroup>
                 <SimpleFormGroup label="Email" labelFor="registration-email">
                   <SimpleTextInput
                     id="registration-email"
