@@ -22,13 +22,14 @@ const Pricing = () => {
       <style jsx>
         {`
           .container {
-            width: 100%;
-            height: 1312px;
+            height: 100%;
             width: 1440px;
             margin: auto;
+            display: flex;
+            flex-direction: column;
           }
           .callout-container {
-            height: 669px;
+            height: 100%;
           }
           .callout {
             padding-left: 100px;
@@ -37,9 +38,10 @@ const Pricing = () => {
             border-width: 1px;
             border-color: lightblue;
             height: 100%;
+            padding-bottom: 35px;
           }
           .products-container {
-            height: 643px;
+            height: 100%;
             background: url('/static/png/pricing/products_list_brg.png');
           }
           .products {
@@ -57,10 +59,25 @@ const Pricing = () => {
             height: 100%;
           }
           @media only screen and (max-width: 768px) {
+            .container {
+              width: 100%;
+              margin: auto;
+            }
+            .callout-container {
+            }
+            .callout {
+              padding-left: 0px;
+              padding-right: 0px;
+              border-style: solid;
+              border-width: 1px;
+              border-color: lightblue;
+              height: 100%;
+              padding-bottom: 15px;
+            }
             .products-container {
               display: flex;
               flex-direction: column;
-              background-color: gray;
+              height: 100%;
             }
           }
         `}

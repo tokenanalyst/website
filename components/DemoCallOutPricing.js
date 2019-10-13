@@ -62,7 +62,46 @@ export const DemoCallOutPricing = () => {
             letter-spacing: 0.26px;
             color: #000000;
             margin-bottom: 50px;
-            max-width: 350px;
+            max-width: 320px;
+          }
+          @media only screen and (max-width: 768px) {
+            .slogan {
+              margin-top: 0px;
+              margin-left: 0px;
+            }
+            .title {
+              font-family: Space Grotesk;
+              font-size: 30px;
+              font-weight: bold;
+              font-style: normal;
+              font-stretch: normal;
+              line-height: 1.11;
+              letter-spacing: -0.31px;
+              color: #000000;
+              margin-bottom: 35px;
+              max-width: 300px;
+            }
+            .description {
+              font-family: Cardo;
+              font-size: 20px;
+              font-weight: normal;
+              font-style: normal;
+              font-stretch: normal;
+              line-height: normal;
+              letter-spacing: 0.26px;
+              color: #000000;
+              margin-bottom: 20px;
+              max-width: 350px;
+            }
+            .intelligence-image {
+              display: none;
+            }
+            .title {
+              max-width: 100%;
+            }
+            .description {
+              max-width: 100%;
+            }
           }
         `}
       </style>

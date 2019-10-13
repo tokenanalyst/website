@@ -208,6 +208,14 @@ export const ProductCard = ({
             top: 10px;
             right: 20px;
           }
+          @media only screen and (max-width: 768px) {
+            .container {
+              width: 100%;
+              padding: 5px;
+              height: 100%;
+              padding-bottom: 20px;
+            }
+          }
         `}
       </style>
     </>

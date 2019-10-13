@@ -55,11 +55,15 @@ export const ProductSelectionWidget = () => {
           .container {
             display: flex;
             flex-direction: column;
+            padding-bottom: 77px;
           }
           .products {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
+          }
+          .product {
+            margin-right: 50px;
           }
           .product-container {
             margin-left: 100px;
@@ -77,11 +81,34 @@ export const ProductSelectionWidget = () => {
             letter-spacing: 0.26px;
             color: #000000;
           }
-          .product {
-          }
           @media only screen and (max-width: 768px) {
             .container {
+              padding-bottom: 20px;
+            }
+            .products {
+              display: flex;
               flex-direction: column;
+              justify-content: space-between;
+            }
+            .product {
+              margin-right: 0px;
+              margin-bottom: 15px;
+            }
+            .product-container {
+              margin-left: 0px;
+              margin-right: 0px;
+            }
+            .products-header {
+              padding-top: 0px;
+              padding-bottom: 0px;
+              font-family: Space Grotesk;
+              font-size: 30px;
+              font-weight: bold;
+              font-style: normal;
+              font-stretch: normal;
+              line-height: normal;
+              letter-spacing: 0.26px;
+              color: #000000;
             }
           }
         `}
