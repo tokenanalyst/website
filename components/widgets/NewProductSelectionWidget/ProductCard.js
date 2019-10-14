@@ -86,9 +86,9 @@ export const ProductCard = ({
         </div>
         <div className="price-container">
           <div className="price-text">{price}</div>
-          <div className="price-platform">
-            {isPlatformInclusive ? '(includes Platform)' : ''}
-          </div>
+          {isPlatformInclusive && (
+            <div className="price-platform">includes Platform)</div>
+          )}
         </div>
         <div className="description">{description}</div>
         <div className="links">{renderLinks(links)}</div>

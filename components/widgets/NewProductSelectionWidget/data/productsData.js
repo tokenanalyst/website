@@ -54,7 +54,4 @@ const CARD_CONTENT = {
 
 export const PRODUCTS = Object.keys(PLANS)
   .filter(plan => PLANS[plan].id >= 0)
-  .reduce((acc, plan) => {
-    console.log(plan);
-    return [...acc, { ...PLANS[plan], card: CARD_CONTENT[plan] }];
-  }, []);
+  .map(plan => ({ ...PLANS[plan], card: CARD_CONTENT[plan] }));
