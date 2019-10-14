@@ -2,28 +2,31 @@ export const PLAN_NAMES = {
   PLATFORM: 'Platform',
   PRO: 'Pro',
   ENTERPRISE: 'Enterprise',
+  HOBBYIST: 'Hobbyist',
 };
 
+const { PLATFORM, PRO, ENTERPRISE, HOBBYIST } = PLAN_NAMES;
+
 export const TIERS = {
-  ['nologin']: {
+  nologin: {
     timeLimits: {
       '1d': 90,
       '1h': 0,
     },
   },
-  ['0']: {
+  '0': {
     timeLimits: {
       '1d': 90,
       '1h': 168, // 1 week
     },
   },
-  ['1']: {
+  '1': {
     timeLimits: {
       '1d': 3650, // 10 years
       '1h': 87600, // 10 years
     },
   },
-  ['2']: {
+  '2': {
     timeLimits: {
       '1d': 3650, // 10 years
       '1h': 87600, // 10 years
@@ -33,7 +36,7 @@ export const TIERS = {
 
 export const PLANS = {
   PLATFORM: {
-    name: PLAN_NAMES.PLATFORM,
+    name: PLATFORM,
     price: '$49',
     features: [
       'Full Historical Data',
@@ -47,7 +50,7 @@ export const PLANS = {
     id: 1,
   },
   PRO: {
-    name: PLAN_NAMES.PRO,
+    name: PRO,
     price: '$799',
     features: [
       'Full Historical Data',
@@ -66,8 +69,8 @@ export const PLANS = {
     isFeatured: true,
   },
   ENTERPRISE: {
-    name: PLAN_NAMES.ENTERPRISE,
-    price: '-',
+    name: ENTERPRISE,
+    price: '',
     features: [
       'Complete Data Access',
       'World’s Fastest Bitcoin Websocket',
@@ -87,7 +90,7 @@ export const PLANS = {
 
 export const TEST_PLANS = {
   PLATFORM: {
-    name: PLAN_NAMES.PLATFORM,
+    name: PLATFORM,
     price: '$50',
     features: [
       'Exchange Flows',
@@ -98,7 +101,7 @@ export const TEST_PLANS = {
     stripePlan: 'plan_FuFaK78eUjiZ9L',
   },
   HOBBYIST: {
-    name: PLAN_NAMES.HOBBYIST,
+    name: HOBBYIST,
     price: '$99',
     features: ['Advanced Analytics', 'Full Historical Data', 'CSV & API'],
     buttonText: 'Purchase',

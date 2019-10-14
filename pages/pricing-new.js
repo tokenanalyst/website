@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { DemoCallOutPricing } from '../components/DemoCallOutPricing';
+import { ProductSelectionWidget } from '../components/widgets/NewProductSelectionWidget';
 
 const Pricing = () => {
   return (
@@ -11,7 +12,9 @@ const Pricing = () => {
         </div>
       </div>
       <div className="products-container">
-        <div className="products">Plans</div>
+        <div className="products">
+          <ProductSelectionWidget />
+        </div>
       </div>
       <div className="products-details-container">
         <div className="products-details">Plans details</div>
@@ -19,22 +22,26 @@ const Pricing = () => {
       <style jsx>
         {`
           .container {
-            width: 100%;
-            height: 1312px;
+            height: 100%;
+            width: 1440px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
           }
           .callout-container {
-            height: 669px;
+            height: 100%;
           }
           .callout {
+            padding-left: 100px;
+            padding-right: 100px;
             border-style: solid;
             border-width: 1px;
             border-color: lightblue;
             height: 100%;
-            margin-right: 115px;
-            margin-left: 115px;
+            padding-bottom: 35px;
           }
           .products-container {
-            height: 643px;
+            height: 100%;
             background: url('/static/png/pricing/products_list_brg.png');
           }
           .products {
@@ -42,8 +49,6 @@ const Pricing = () => {
             border-width: 1px;
             border-color: lightblue;
             height: 100%;
-            margin-right: 115px;
-            margin-left: 115px;
           }
           .products-details-container {
           }
@@ -52,14 +57,27 @@ const Pricing = () => {
             border-width: 1px;
             border-color: lightblue;
             height: 100%;
-            margin-right: 115px;
-            margin-left: 115px;
           }
           @media only screen and (max-width: 768px) {
+            .container {
+              width: 100%;
+              margin: auto;
+            }
+            .callout-container {
+            }
+            .callout {
+              padding-left: 0px;
+              padding-right: 0px;
+              border-style: solid;
+              border-width: 1px;
+              border-color: lightblue;
+              height: 100%;
+              padding-bottom: 15px;
+            }
             .products-container {
               display: flex;
               flex-direction: column;
-              background-color: gray;
+              height: 100%;
             }
           }
         `}
