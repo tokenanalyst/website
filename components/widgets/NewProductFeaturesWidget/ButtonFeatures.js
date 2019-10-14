@@ -10,6 +10,7 @@ export const ButtonFeatures = ({
   isExternal,
   text,
   isActive,
+  onClick,
   stripePlan,
 }) => {
   return (
@@ -30,7 +31,7 @@ export const ButtonFeatures = ({
         <button
           className={isActive ? 'buttonActive' : ''}
           type="button"
-          onClick={() => {}}
+          onClick={onClick}
         >
           View Plan
         </button>
@@ -70,6 +71,7 @@ ButtonFeatures.propTypes = {
   text: PropTypes.string.isRequired,
   isActive: PropTypes.bool,
   stripePlan: PropTypes.string,
+  onClick: PropTypes.func,
 };
 
 ButtonFeatures.defaultProps = {
@@ -77,4 +79,5 @@ ButtonFeatures.defaultProps = {
   stripePlan: null,
   isExternal: false,
   isActive: false,
+  onClick: () => {},
 };
