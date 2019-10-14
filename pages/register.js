@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic';
 import Head from 'next/head';
 
 import { LoginContext } from '../contexts/Login';
+import { RegistrationBenefits } from '../components/marketing/registration';
 
 const RegisterWidget = dynamic(
   () =>
@@ -30,25 +31,18 @@ const Register = () => {
         <title>TokenAnalyst - Register</title>
       </Head>
 
-      <div className="container">
-        {!loginCtx.isLoggedIn && (
-          <>
-            <div className="contents">
-              <RegisterWidget />
-            </div>
-            <div
-              style={{
-                borderLeft: 'solid 1px gray',
-                opacity: 0.3,
-                height: '100%',
-              }}
-            />
-            <div className="benefits">
-              <div className="benefit"></div>
-            </div>
-          </>
-        )}
-      </div>
+      {/* <div className="container"> */}
+      {!loginCtx.isLoggedIn && (
+        <div className="container">
+          <div className="contents">
+            <RegisterWidget />
+          </div>
+          <div className="benefits">
+            <RegistrationBenefits />
+          </div>
+        </div>
+      )}
+      {/* </div> */}
       <style jsx>
         {`
           .container {
@@ -77,8 +71,20 @@ const Register = () => {
             width: 40%;
           }
           @media only screen and (max-width: 768px) {
+            .container {
+              padding-top: 0px;
+              flex-direction: column;
+              height: 100%;
+            }
             .contents {
               flex-direction: column;
+              padding-bottom: 20px;
+            }
+            .contents {
+              width: 90%;
+            }
+            .benefits {
+              width: 90%;
             }
           }
         `}
