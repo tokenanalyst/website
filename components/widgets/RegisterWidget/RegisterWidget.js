@@ -61,7 +61,7 @@ export const RegisterWidget = () => {
   return (
     <>
       <div className="container">
-        <div className="header">Register</div>
+        <div className="header">Sign Up</div>
 
         {hasRegistered ? (
           <>
@@ -112,7 +112,7 @@ export const RegisterWidget = () => {
                 onClick={onRegister}
                 loading={isSubmitted}
               >
-                Register
+                Sign Up
               </SimpleButton>
               {errorText && <div className="error">{errorText}</div>}
               {isRedirectedForFreeTier ? (
