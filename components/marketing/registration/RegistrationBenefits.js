@@ -12,7 +12,7 @@ export const RegistrationBenefits = () => {
       <div className="container">
         <div className="title">Immediate free access to:</div>
         {BENEFITS.map(benefit => (
-          <div className="benefit">
+          <div className="benefit" key={benefit}>
             <img src="/static/svg/marketing/checkbox.svg" height="30px" />
             <div className="benefit-text">{benefit}</div>
           </div>
