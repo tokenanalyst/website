@@ -10,24 +10,34 @@ export const ButtonFeatures = ({
   isExternal,
   text,
   isActive,
+  onClick,
   stripePlan,
 }) => {
   return (
     <div>
       {url ? (
-        <div className="button">
+        <div className="buttonLink">
           {isExternal ? (
-            <a href={url} target="_blank" rel="noopener noreferrer">
+            <a
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={onClick}
+            >
               {text}
             </a>
           ) : (
             <Link href={url}>
-              <a>{text}</a>
+              <a onClick={onClick}>{text}</a>
             </Link>
           )}
         </div>
       ) : (
-        <button className="buttonText" type="button" onClick={() => {}}>
+        <button
+          className={isActive ? 'buttonActive' : ''}
+          type="button"
+          onClick={onClick}
+        >
           View Plan
         </button>
       )}
@@ -54,11 +64,6 @@ export const ButtonFeatures = ({
           a:visited {
             color: #642c2c;
           }
-          .buttonText {
-            cursor: pointer;
-            color: #ffffff;
-            background-color: ${isActive ? `#35caab` : `#ffffff`};
-          }
         `}
       </style>
     </div>
@@ -71,6 +76,7 @@ ButtonFeatures.propTypes = {
   text: PropTypes.string.isRequired,
   isActive: PropTypes.bool,
   stripePlan: PropTypes.string,
+  onClick: PropTypes.func,
 };
 
 ButtonFeatures.defaultProps = {
@@ -78,4 +84,5 @@ ButtonFeatures.defaultProps = {
   stripePlan: null,
   isExternal: false,
   isActive: false,
+  onClick: () => {},
 };

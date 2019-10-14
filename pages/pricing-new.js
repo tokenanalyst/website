@@ -2,6 +2,8 @@ import React from 'react';
 
 import { DemoCallOutPricing } from '../components/DemoCallOutPricing';
 import { ProductSelectionWidget } from '../components/widgets/NewProductSelectionWidget';
+import { ProductFeaturesWidget } from '../components/widgets/NewProductFeaturesWidget';
+import { TestimonialsPricing } from '../components/TestimonialsPricing';
 
 const Pricing = () => {
   return (
@@ -11,14 +13,23 @@ const Pricing = () => {
           <DemoCallOutPricing />
         </div>
       </div>
+
       <div className="products-container">
         <div className="products">
           <ProductSelectionWidget />
         </div>
       </div>
-      <div className="products-details-container">
-        <div className="products-details">Plans details</div>
+      <div className="testimonials-container">
+        <div className="testimonials">
+          <TestimonialsPricing />
+        </div>
       </div>
+      <div className="products-features-container">
+        <div className="products-features">
+          <ProductFeaturesWidget />
+        </div>
+      </div>
+
       <style jsx>
         {`
           .container {
@@ -34,28 +45,23 @@ const Pricing = () => {
           .callout {
             padding-left: 100px;
             padding-right: 100px;
-            border-style: solid;
-            border-width: 1px;
-            border-color: lightblue;
             height: 100%;
             padding-bottom: 35px;
+          }
+          .testimonials {
+            padding-left: 100px;
+            padding-right: 100px;
           }
           .products-container {
             height: 100%;
             background: url('/static/png/pricing/products_list_brg.png');
           }
           .products {
-            border-style: solid;
-            border-width: 1px;
-            border-color: lightblue;
             height: 100%;
           }
-          .products-details-container {
+          .products-features-container {
           }
-          .products-details {
-            border-style: solid;
-            border-width: 1px;
-            border-color: lightblue;
+          .products-features {
             height: 100%;
           }
           @media only screen and (max-width: 768px) {
@@ -68,11 +74,12 @@ const Pricing = () => {
             .callout {
               padding-left: 0px;
               padding-right: 0px;
-              border-style: solid;
-              border-width: 1px;
-              border-color: lightblue;
               height: 100%;
               padding-bottom: 15px;
+            }
+            .testimonials {
+              padding-left: 0px;
+              padding-right: 0px;
             }
             .products-container {
               display: flex;
