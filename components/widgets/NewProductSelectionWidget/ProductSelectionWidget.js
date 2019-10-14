@@ -28,7 +28,7 @@ export const ProductSelectionWidget = () => {
                 title,
                 links,
                 description,
-                isIncludesPlatform,
+                isPlatformInclusive,
                 image,
               } = card;
 
@@ -38,7 +38,7 @@ export const ProductSelectionWidget = () => {
                     name={name}
                     description={description}
                     image={image}
-                    isIncludesPlatform={isIncludesPlatform || false}
+                    isPlatformInclusive={isPlatformInclusive || false}
                     links={links}
                     price={makePrice(name, price)}
                     title={title}

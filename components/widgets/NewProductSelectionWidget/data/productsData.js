@@ -16,7 +16,7 @@ const CARD_CONTENT = {
     description: `Programmatic access to our historial
   data set and real-time feeds, using 
   HTTP REST endpoints and WebSocket.`,
-    isIncludesPlatform: true,
+    isPlatformInclusive: true,
     image: '/static/svg/pricing/api_websocket_small.svg',
     links: [
       {
@@ -54,7 +54,4 @@ const CARD_CONTENT = {
 
 export const PRODUCTS = Object.keys(PLANS)
   .filter(plan => PLANS[plan].id >= 0)
-  .reduce((acc, plan) => {
-    console.log(plan);
-    return [...acc, { ...PLANS[plan], card: CARD_CONTENT[plan] }];
-  }, []);
+  .map(plan => ({ ...PLANS[plan], card: CARD_CONTENT[plan] }));

@@ -71,7 +71,7 @@ export const ProductCard = ({
   description,
   image,
   isActive,
-  isIncludesPlatform,
+  isPlatformInclusive,
 }) => {
   return (
     <>
@@ -86,9 +86,9 @@ export const ProductCard = ({
         </div>
         <div className="price-container">
           <div className="price-text">{price}</div>
-          <div className="price-platform">
-            {isIncludesPlatform ? '(includes Platform)' : ''}
-          </div>
+          {isPlatformInclusive && (
+            <div className="price-platform">includes Platform)</div>
+          )}
         </div>
         <div className="description">{description}</div>
         <div className="links">{renderLinks(links)}</div>
@@ -231,11 +231,11 @@ ProductCard.propTypes = {
   description: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   isActive: PropTypes.bool,
-  isIncludesPlatform: PropTypes.bool,
+  isPlatformInclusive: PropTypes.bool,
 };
 
 ProductCard.defaultProps = {
   links: [],
   isActive: false,
-  isIncludesPlatform: false,
+  isPlatformInclusive: false,
 };
