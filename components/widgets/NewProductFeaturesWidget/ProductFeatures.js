@@ -4,8 +4,6 @@ import React from 'react';
 import kebabCase from 'lodash/kebabCase';
 import { ButtonFeatures } from './ButtonFeatures';
 
-import { pricingButton } from '../../../constants/styles/common-styled-jsx';
-
 const renderFeatures = features =>
   features.map(feature => {
     return (

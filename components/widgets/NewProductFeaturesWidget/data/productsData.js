@@ -87,6 +87,4 @@ const FEATURES_CONTENT = {
 
 export const PRODUCTS = Object.keys(PLANS)
   .filter(plan => PLANS[plan].id >= 0)
-  .reduce((acc, plan) => {
-    return [...acc, { ...PLANS[plan], details: FEATURES_CONTENT[plan] }];
-  }, []);
+  .map(plan => ({ ...PLANS[plan], details: FEATURES_CONTENT[plan] }));
