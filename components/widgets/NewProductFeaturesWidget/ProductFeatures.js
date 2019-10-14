@@ -1,8 +1,14 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useContext } from 'react';
 import kebabCase from 'lodash/kebabCase';
+import ReactGA from 'react-ga';
+import Cookies from 'js-cookie';
+import Router from 'next/router';
+
 import { ButtonFeatures } from './ButtonFeatures';
+import { LoginContext } from '../../../contexts/Login';
+import { STRIPE } from '../../../constants/stripe';
 
 const renderFeatures = features =>
   features.map(feature => {
@@ -43,7 +49,35 @@ const renderFeatures = features =>
     );
   });
 
+const emitProductEvent = action => {
+  ReactGA.event({
+    category: 'User',
+    action,
+    label: `Plans`,
+  });
+};
+
+const redirectToStripe = stripePlan => async stripeOptions => {
+  console.log(stripePlan, stripeOptions);
+  const stripe = Stripe(STRIPE.apiKey);
+
+  const stripeOpt = {
+    items: [
+      {
+        plan: stripePlan,
+        quantity: 1,
+      },
+    ],
+    successUrl: 'https://www.tokenanalyst.io/purchase-success',
+    cancelUrl: 'https://www.tokenanalyst.io/',
+    ...stripeOptions,
+  };
+
+  await stripe.redirectToCheckout(stripeOpt);
+};
+
 export const ProductFeatures = ({
+  name,
   title,
   features,
   buttons,
@@ -51,6 +85,10 @@ export const ProductFeatures = ({
   stripePlan,
   image,
 }) => {
+  const loginCtx = useContext(LoginContext);
+  const username = Cookies.get('loggedInAsUsername');
+  const userId = Cookies.get('loggedInAsUserId');
+
   return (
     <>
       <div className="container">
@@ -63,6 +101,28 @@ export const ProductFeatures = ({
         <div className="buttons-container">
           {buttons.map(button => {
             const { url, isExternal, text, isBuy } = button;
+
+            const onClick = async () => {
+              if (url) {
+                const action = `Plan click ${text}`;
+                return emitProductEvent(action);
+              }
+
+              const action = `Plan select ${name}`;
+              emitProductEvent(action);
+
+              if (!loginCtx.isLoggedIn) {
+                loginCtx.setPaymentData({
+                  stripe: { redirectFn: redirectToStripe(stripePlan) },
+                });
+                return Router.push('/login');
+              }
+              return redirectToStripe(stripePlan, {
+                customerEmail: username,
+                clientReferenceId: userId.toString(),
+              });
+            };
+
             return (
               <div key={kebabCase(text)} className="button">
                 <ButtonFeatures
@@ -71,6 +131,7 @@ export const ProductFeatures = ({
                   text={text}
                   stripePlan={stripePlan}
                   isActive={isBuy}
+                  onClick={() => onClick()}
                 />
               </div>
             );
@@ -219,6 +280,7 @@ export const ProductFeatures = ({
 };
 
 ProductFeatures.propTypes = {
+  name: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   buttons: PropTypes.arrayOf(PropTypes.object).isRequired,
   features: PropTypes.arrayOf(PropTypes.string).isRequired,

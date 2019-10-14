@@ -15,6 +15,7 @@ export const ProductFeaturesWidget = () => {
               return (
                 <div className="product" key={name}>
                   <ProductFeatures
+                    name={name}
                     description={description}
                     image={image}
                     features={features}

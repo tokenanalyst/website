@@ -38,7 +38,7 @@ export const ButtonFeatures = ({
           type="button"
           onClick={onClick}
         >
-          View Plan
+          {text}
         </button>
       )}
       <style jsx>{pricingButton}</style>
