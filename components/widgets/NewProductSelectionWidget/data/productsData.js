@@ -26,7 +26,7 @@ const CARD_CONTENT = {
       },
       {
         text: 'Examples',
-        url: 'https://github.com/tokenanalyst/samplecoder',
+        url: 'https://github.com/tokenanalyst/samplecode',
         isExternal: true,
       },
     ],

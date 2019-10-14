@@ -263,16 +263,17 @@ export const TestimonialsPricing = () => (
           margin-bottom: 16px;
         }
         a {
-          color: #252525;
+          color: #ffffff;
+          text-decoration: none;
         }
         a:hover {
-          color: #252525;
+          color: #ffffff;
         }
         a:active {
-          color: #252525;
+          color: #ffffff;
         }
         a:visited {
-          color: #252525;
+          color: #ffffff;
         }
 
         @media only screen and (max-width: 767px) {
