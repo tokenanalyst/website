@@ -2,11 +2,13 @@ import React from 'react';
 
 import { DemoCallOutPricing } from '../components/DemoCallOutPricing';
 import { ProductSelectionWidget } from '../components/widgets/NewProductSelectionWidget';
+import { ProductFeaturesWidget } from '../components/widgets/NewProductFeaturesWidget';
+import { TestimonialsPricing } from '../components/TestimonialsPricing';
 
 const Pricing = () => {
   return (
     <div className="container">
-      <div className="callout-container">
+      {/* <div className="callout-container">
         <div className="callout">
           <DemoCallOutPricing />
         </div>
@@ -16,8 +18,15 @@ const Pricing = () => {
           <ProductSelectionWidget />
         </div>
       </div>
-      <div className="products-details-container">
-        <div className="products-details">Plans details</div>
+      <div className="products-features-container">
+        <div className="products-features">
+          <ProductFeaturesWidget />
+        </div>
+      </div> */}
+      <div className="testimonials-container">
+        <div className="testimonials">
+          <TestimonialsPricing />
+        </div>
       </div>
       <style jsx>
         {`
@@ -50,9 +59,9 @@ const Pricing = () => {
             border-color: lightblue;
             height: 100%;
           }
-          .products-details-container {
+          .products-features-container {
           }
-          .products-details {
+          .products-features {
             border-style: solid;
             border-width: 1px;
             border-color: lightblue;
