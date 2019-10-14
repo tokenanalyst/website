@@ -47,7 +47,7 @@ export const pricingButton = css`
     cursor: pointer;
   }
   .buttonLink {
-    padding-top: 9px;
+    padding-top: 7px;
     padding-bottom: 9px;
     padding-right: 15px;
     padding-left: 15px;
