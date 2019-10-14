@@ -164,7 +164,6 @@ export const TestimonialsPricing = () => (
         </a>
       </div>
       <div className="links-container">{renderLinks()}</div>
-      <div className="links-container">{renderLinks()}</div>
     </div>
     <style jsx>{pricingButton}</style>
     <style jsx>
