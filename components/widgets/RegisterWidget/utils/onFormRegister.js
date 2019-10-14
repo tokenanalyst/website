@@ -92,11 +92,14 @@ export const onFormRegister = async (loginCtx, formValues) => {
         );
       };
     } else {
-      ReactGA.event({
-        category: 'User',
-        action: `Registered organically`,
-        label: `Funnel`,
-      });
+      redirectFn = () => {
+        ReactGA.event({
+          category: 'User',
+          action: `Registered organically`,
+          label: `Funnel`,
+        });
+        Router.push('/?registered=true');
+      };
     }
     return { ...result, isSuccess: true, redirectFn };
   } catch (e) {

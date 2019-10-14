@@ -36,6 +36,14 @@ const Register = () => {
             <div className="contents">
               <RegisterWidget />
             </div>
+            <div
+              style={{
+                borderLeft: 'solid 1px gray',
+                opacity: 0.3,
+                height: '100%',
+              }}
+            />
+            <div className="benefits">Perks</div>
           </>
         )}
       </div>
@@ -44,12 +52,17 @@ const Register = () => {
           .container {
             display: flex;
             font-family: Space Grotesk;
-            flex-direction: column;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+            height: 800px;
           }
           .contents {
             display: flex;
             align-items: center;
             justify-content: center;
+            width: 40%;
+            padding-bottom: 300px;
           }
           .header {
             font-size: 32px;
@@ -57,6 +70,9 @@ const Register = () => {
             padding: 15px;
             padding-top: 30px;
             text-align: center;
+          }
+          .benefits {
+            width: 40%;
           }
           @media only screen and (max-width: 768px) {
             .contents {
