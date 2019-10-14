@@ -43,7 +43,9 @@ const Register = () => {
                 height: '100%',
               }}
             />
-            <div className="benefits">Perks</div>
+            <div className="benefits">
+              <div className="benefit"></div>
+            </div>
           </>
         )}
       </div>
