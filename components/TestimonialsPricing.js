@@ -2,8 +2,30 @@ import React from 'react';
 import kebabCase from 'lodash/kebabCase';
 import Link from 'next/link';
 import classNames from 'classnames';
+import css from 'styled-jsx/css';
 
 import { pricingButton } from '../constants/styles/common-styled-jsx';
+
+const reviewsStyle = css`
+  p {
+    font-family: Cardo;
+    font-size: 23px;
+    font-weight: normal;
+    font-style: italic;
+    font-stretch: normal;
+    line-height: 1.61;
+    letter-spacing: 0.73px;
+    color: #000000;
+    padding-bottom: 50px;
+  }
+  @media only screen and (max-width: 767px) {
+    p {
+      font-size: 20px;
+      line-height: 1.3;
+      padding-bottom: 10px;
+    }
+  }
+`;
 
 const TESTIMONIALS = [
   {
@@ -17,18 +39,7 @@ const TESTIMONIALS = [
           of our research, and the intuitive API makes data integration very
           straightforward
         </p>
-        <style jsx>
-          {`
-            p {
-              padding-bottom: 50px;
-            }
-            @media only screen and (max-width: 767px) {
-              p {
-                font-size: 20px;
-              }
-            }
-          `}
-        </style>
+        <style jsx>{reviewsStyle}</style>
       </>
     ),
   },
@@ -41,15 +52,7 @@ const TESTIMONIALS = [
           I would say something nice (a few things actually), but if I do,
           you’ll sign up and take my alpha. so there.
         </p>
-        <style jsx>
-          {`
-            @media only screen and (max-width: 767px) {
-              p {
-                font-size: 20px;
-              }
-            }
-          `}
-        </style>
+        <style jsx>{reviewsStyle}</style>
       </>
     ),
   },
@@ -67,19 +70,7 @@ const TESTIMONIALS = [
           The team’s laser focus for on-chain analytics with the depth/ breadth
           provided and a clear focus on a contextual layer is impressive.
         </p>
-
-        <style jsx>
-          {`
-            p {
-              padding-bottom: 50px;
-            }
-            @media only screen and (max-width: 767px) {
-              p {
-                font-size: 20px;
-              }
-            }
-          `}
-        </style>
+        <style jsx>{reviewsStyle}</style>
       </div>
     ),
   },
@@ -87,7 +78,7 @@ const TESTIMONIALS = [
 
 const renderLinks = () => {
   return (
-    <>
+    <div className="container">
       <Link href="/#">
         <a className="link">Platform</a>
       </Link>
@@ -97,9 +88,15 @@ const renderLinks = () => {
       <Link href="/#">
         <a className="link">Enterprise</a>
       </Link>
-      <style jsx>{pricingButton}</style>
       <style jsx>
         {`
+          .container {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            bottom: 40px;
+            right: 20px;
+          }
           .link {
             background-image: url('/static/svg/pricing/arrow.svg');
             background-repeat: no-repeat;
@@ -124,9 +121,16 @@ const renderLinks = () => {
           a:visited {
             color: #252525;
           }
+          @media only screen and (max-width: 767px) {
+            .container {
+              display: flex;
+              flex-direction: row;
+              position: relative;
+            }
+          }
         `}
       </style>
-    </>
+    </div>
   );
 };
 
@@ -152,9 +156,6 @@ export const TestimonialsPricing = () => (
         })}
       </div>
       <div className="button-container">
-        {/* <button className="buttonActive" type="button" onClick={() => {}}>
-          Request a demo
-        </button> */}
         <a
           className={classNames('buttonLink', 'buttonActive')}
           href="mailto:info@tokenanalyst.io"
@@ -162,6 +163,7 @@ export const TestimonialsPricing = () => (
           Request a demo
         </a>
       </div>
+      <div className="links-container">{renderLinks()}</div>
       <div className="links-container">{renderLinks()}</div>
     </div>
     <style jsx>{pricingButton}</style>
@@ -173,9 +175,9 @@ export const TestimonialsPricing = () => (
           flex-direction: column;
           background-image: url('/static/svg/pricing/testimonial_background.svg');
           background-repeat: no-repeat;
-          background-position: right 120px top 150px;
+          background-position: right 40px top 170px;
           padding-top: 100px;
-          background-size: 750px;
+          background-size: 450px;
           padding-bottom: 90px;
           position: relative;
         }
@@ -184,7 +186,7 @@ export const TestimonialsPricing = () => (
           flex-direction: column;
           flex-wrap: wrap;
           justify-content: space-between;
-          max-height: 510px;
+          max-height: 700px;
         }
         .review {
           max-width: 550px;
@@ -241,12 +243,14 @@ export const TestimonialsPricing = () => (
           padding-top: 27px;
         }
         .links-container {
-          display: flex;
-          flex-direction: column;
           position: absolute;
-          max-width: 450px;
-          right: 350px;
-          bottom: 90px;
+          width: 500px;
+          height: 300px;
+          right: 150px;
+          bottom: 50px;
+          background-image: url('/static/svg/pricing/testimonial_background_links.svg');
+          background-repeat: no-repeat;
+          background-position: left;
         }
         .link {
           background-image: url('/static/svg/pricing/arrow.svg');
@@ -276,6 +280,18 @@ export const TestimonialsPricing = () => (
           .container {
             flex-direction: column;
             background-image: none;
+            padding-top: 20px;
+          }
+          .title {
+            font-family: Space Grotesk;
+            font-size: 30px;
+            font-weight: bold;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: 0.26px;
+            color: #000000;
+            margin-bottom: 20px;
           }
           .reviews {
             display: flex;
@@ -286,8 +302,23 @@ export const TestimonialsPricing = () => (
             font-size: 20px;
           }
           .links-container {
+            display: none;
+          }
+          .name-container {
+            font-family: Cardo;
+            font-size: 16px;
+            font-weight: normal;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            letter-spacing: 0.14px;
+            color: #000000;
             display: flex;
-            flex-direction: column;
+            justify-content: flex-start;
+            padding-bottom: 20px;
+          }
+          .separator {
+            display: none;
           }
         }
       `}

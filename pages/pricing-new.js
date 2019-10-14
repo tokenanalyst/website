@@ -48,6 +48,10 @@ const Pricing = () => {
             height: 100%;
             padding-bottom: 35px;
           }
+          .testimonials {
+            padding-left: 100px;
+            padding-right: 100px;
+          }
           .products-container {
             height: 100%;
             background: url('/static/png/pricing/products_list_brg.png');
@@ -72,6 +76,10 @@ const Pricing = () => {
               padding-right: 0px;
               height: 100%;
               padding-bottom: 15px;
+            }
+            .testimonials {
+              padding-left: 0px;
+              padding-right: 0px;
             }
             .products-container {
               display: flex;
