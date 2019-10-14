@@ -18,12 +18,17 @@ export const ButtonFeatures = ({
       {url ? (
         <div className="buttonLink">
           {isExternal ? (
-            <a href={url} target="_blank" rel="noopener noreferrer">
+            <a
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={onClick}
+            >
               {text}
             </a>
           ) : (
             <Link href={url}>
-              <a>{text}</a>
+              <a onClick={onClick}>{text}</a>
             </Link>
           )}
         </div>
