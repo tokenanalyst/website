@@ -31,7 +31,6 @@ const Register = () => {
         <title>TokenAnalyst - Register</title>
       </Head>
 
-      {/* <div className="container"> */}
       {!loginCtx.isLoggedIn && (
         <div className="container">
           <div className="contents">
@@ -42,7 +41,6 @@ const Register = () => {
           </div>
         </div>
       )}
-      {/* </div> */}
       <style jsx>
         {`
           .container {
