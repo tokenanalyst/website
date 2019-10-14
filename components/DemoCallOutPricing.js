@@ -11,7 +11,7 @@ export const DemoCallOutPricing = () => {
           Intelligence based on proprietary models of wallet behavior and
           exchange flows.
         </p>
-        <div className="button">
+        <div>
           <button type="button">Request a Demo</button>
         </div>
       </div>

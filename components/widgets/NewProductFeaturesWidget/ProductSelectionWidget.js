@@ -2,47 +2,25 @@ import React from 'react';
 
 import { ProductFeatures } from './ProductFeatures';
 import { PRODUCTS } from './data/productsData';
-import { PLAN_NAMES } from '../../../constants/plans';
 
-const { PLATFORM, PRO, ENTERPRISE } = PLAN_NAMES;
-
-const makePrice = (product, price) => {
-  const PRICE_TEXT = {
-    [PLATFORM]: `Just ${price}/month`,
-    [PRO]: `${price}/month`,
-    [ENTERPRISE]: `Tailored services `,
-  };
-
-  return PRICE_TEXT[product];
-};
-
-export const ProductSelectionWidget = () => {
+export const ProductFeaturesWidget = () => {
   return (
     <>
       <div className="container">
-        <div className="product-container">
-          <h2 className="products-header">Our Products</h2>
+        <div className="products-container">
           <div className="products">
-            {PRODUCTS.map(({ card, name, price }) => {
-              const {
-                title,
-                links,
-                description,
-                isIncludesPlatform,
-                image,
-              } = card;
+            {PRODUCTS.map(({ details, name, stripePlan }) => {
+              const { buttons, description, features, image, title } = details;
 
               return (
                 <div className="product" key={name}>
                   <ProductFeatures
-                    name={name}
                     description={description}
                     image={image}
-                    isIncludesPlatform={isIncludesPlatform || false}
-                    links={links}
-                    price={makePrice(name, price)}
+                    features={features}
+                    buttons={buttons}
                     title={title}
-                    isActive={name === PRO}
+                    stripePlan={stripePlan}
                   />
                 </div>
               );
@@ -59,15 +37,13 @@ export const ProductSelectionWidget = () => {
           }
           .products {
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             justify-content: space-between;
           }
           .product {
-            margin-right: 50px;
           }
-          .product-container {
+          .products-container {
             margin-left: 100px;
-            margin-right: 100px;
           }
           .products-header {
             padding-top: 40px;
@@ -94,7 +70,7 @@ export const ProductSelectionWidget = () => {
               margin-right: 0px;
               margin-bottom: 15px;
             }
-            .product-container {
+            .products-container {
               margin-left: 0px;
               margin-right: 0px;
             }

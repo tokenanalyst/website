@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ReactGA from 'react-ga';
 import Link from 'next/link';
+import kebabCase from 'lodash/kebabCase';
 
 import { pricingButton } from '../../../constants/styles/common-styled-jsx';
 
@@ -11,7 +12,7 @@ const renderLinks = links =>
     const { url, isExternal, text } = link;
 
     return (
-      <div key={text}>
+      <div key={kebabCase(text)}>
         <div className="link">
           {isExternal ? (
             <a href={url} target="_blank" rel="noopener noreferrer">

@@ -7,7 +7,7 @@ const FEATURES_CONTENT = {
     TradingView support, interactive data 
     dashboards, and historical data across a 
     variety of assets and exchanges.`,
-    image: '/static/svg/pricing/platform_small.svg',
+    image: '/static/svg/pricing/features_platform.svg',
     features: [
       `Historical Order Book & Exchange Flows`,
       `Web Platform Access Only`,
@@ -20,7 +20,7 @@ const FEATURES_CONTENT = {
       },
       {
         text: 'Buy Plan',
-        url: '',
+        url: null,
         isBuy: true,
       },
     ],
@@ -31,7 +31,7 @@ const FEATURES_CONTENT = {
     historical and real-time metrics across 
     a wide-array of assets via API 
     and WebSocket.`,
-    image: '/static/svg/pricing/api_websocket_small.svg',
+    image: '/static/svg/pricing/features_pro.svg',
     features: [
       `Full Historical Data + Real-Time Updates`,
       `Access via API, CSV, & Web Platform`,
@@ -52,7 +52,7 @@ const FEATURES_CONTENT = {
       },
       {
         text: 'Buy Plan',
-        url: 'https://docs.tokenanalyst.io/#/api',
+        url: null,
         isBuy: true,
       },
     ],
@@ -62,7 +62,7 @@ const FEATURES_CONTENT = {
     description: `Access data faster than the competition 
     and gain unparalleled insights using our 
     proprietary datasets.`,
-    image: '/static/svg/pricing/enterprise_small.svg',
+    image: '/static/svg/pricing/features_enterprise.svg',
     features: [
       `Complete Data Access`,
       `Customized Metrics`,
@@ -78,7 +78,7 @@ const FEATURES_CONTENT = {
       },
       {
         text: 'Buy Plan',
-        url: 'https://docs.tokenanalyst.io/#/api',
+        url: null,
         isBuy: true,
       },
     ],
@@ -88,6 +88,5 @@ const FEATURES_CONTENT = {
 export const PRODUCTS = Object.keys(PLANS)
   .filter(plan => PLANS[plan].id >= 0)
   .reduce((acc, plan) => {
-    console.log(plan);
-    return [...acc, { ...PLANS[plan], features: FEATURES_CONTENT[plan] }];
+    return [...acc, { ...PLANS[plan], details: FEATURES_CONTENT[plan] }];
   }, []);

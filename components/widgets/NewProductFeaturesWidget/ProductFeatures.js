@@ -1,52 +1,43 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import PropTypes from 'prop-types';
 import React from 'react';
-import ReactGA from 'react-ga';
-import Link from 'next/link';
+import kebabCase from 'lodash/kebabCase';
+import { ButtonFeatures } from './ButtonFeatures';
 
 import { pricingButton } from '../../../constants/styles/common-styled-jsx';
 
-const renderLinks = links =>
-  links.map(link => {
-    const { url, isExternal, text } = link;
-
+const renderFeatures = features =>
+  features.map(feature => {
     return (
-      <div key={text}>
-        <div className="link">
-          {isExternal ? (
-            <a href={url} target="_blank" rel="noopener noreferrer">
-              {text}
-            </a>
-          ) : (
-            <Link href={url}>
-              <a>{text}</a>
-            </Link>
-          )}
+      <div key={kebabCase(feature)}>
+        <div className="feature">
+          <div>{feature}</div>
         </div>
         <style jsx>
           {`
-            .link {
-              background-image: url('/static/svg/pricing/arrow.svg');
+            .feature {
+              height: 40px;
+              background-image: url('/static/svg/pricing/checkbox.svg');
               background-repeat: no-repeat;
               background-position: left;
-              font-family: Open Sans;
               font-size: 15px;
-              font-weight: 700;
+              font-family: Space Grotesk;
+              font-weight: bold;
               font-style: normal;
               font-stretch: normal;
+              line-height: normal;
+              letter-spacing: 0.13px;
+              color: #642c2c;
+              display: flex;
+              align-items: center;
+              padding-left: 50px;
+              margin-bottom: 13px;
+              max-width: 370px;
             }
-            a {
-              padding-left: 25px;
-              color: #252525;
-            }
-            a:hover {
-              color: #252525;
-            }
-            a:active {
-              color: #252525;
-            }
-            a:visited {
-              color: #252525;
+            @media only screen and (max-width: 768px) {
+              .feature {
+                background-size: 30px 30px;
+              }
             }
           `}
         </style>
@@ -54,20 +45,12 @@ const renderLinks = links =>
     );
   });
 
-const emitProductEvent = name => {
-  ReactGA.event({
-    category: 'User',
-    action: `View Plan ${name}`,
-    label: `New Plans`,
-  });
-};
-
 export const ProductFeatures = ({
-  name,
   title,
   features,
   buttons,
   description,
+  stripePlan,
   image,
 }) => {
   return (
@@ -75,62 +58,71 @@ export const ProductFeatures = ({
       <div className="container">
         <div className="title-container">
           <div className="title">{title}</div>
+          <div className="title-image" />
         </div>
-        {/* <div className="image-container">
-          <div className="image">
-            <img src={image} alt={`Product ${title}`} />
-          </div>
-        </div> */}
         <div className="description">{description}</div>
-        <div className="features">{renderLinks(links)}</div>
+        <div className="features">{renderFeatures(features)}</div>
         <div className="buttons-container">
-          <button
-            className="button"
-            type="button"
-            onClick={() => emitProductEvent(name)}
-          >
-            View Plan
-          </button>
+          {buttons.map(button => {
+            const { url, isExternal, text, isBuy } = button;
+            return (
+              <div key={kebabCase(text)} className="button">
+                <ButtonFeatures
+                  url={url}
+                  isExternal={isExternal}
+                  text={text}
+                  stripePlan={stripePlan}
+                  isActive={isBuy}
+                />
+              </div>
+            );
+          })}
         </div>
       </div>
-      <style jsx>{pricingButton}</style>
       <style jsx>
         {`
           .container {
-            width: 381px;
-            height: 446px;
             background-color: #ffffff;
-            padding-left: 40px;
-            padding-top: 30px;
-            padding-right: 40px;
+            padding-top: 110px;
+            background-image: url(${image});
+            background-repeat: no-repeat;
+            background-position: right;
+            height: 774px;
           }
           .title-container {
             font-family: Space Grotesk;
-            font-size: 25px;
+            font-size: 30px;
             font-weight: bold;
             font-style: normal;
             font-stretch: normal;
             line-height: normal;
-            letter-spacing: 0.22px;
+            letter-spacing: 0.26px;
             color: #000000;
-            display: inline-block;
-            border-bottom-style: solid;
-            border-bottom-width: 2px;
-            border-bottom-color: #35caab;
+            margin-bottom: 58px;
+            display: flex;
+            flex-direction: row;
           }
           .title {
-            padding-bottom: 2px;
+          }
+          .title-image {
+            background-image: url('/static/svg/pricing/feature_title.svg');
+            background-repeat: no-repeat;
+            background-position: left;
+            width: 500px;
+            margin-left: 40px;
           }
           .description {
-            font-family: Open Sans;
-            font-size: 15px;
-            font-weight: 500;
+            width: 503px;
+            height: 164px;
+            font-family: Cardo;
+            font-size: 30px;
+            font-weight: normal;
             font-style: normal;
             font-stretch: normal;
             line-height: normal;
-            letter-spacing: 0.13px;
-            color: #2d2d2d;
-            padding-bottom: 20px;
+            letter-spacing: 0.26px;
+            color: #000000;
+            margin-bottom: 61px;
           }
           .features {
             font-family: Open Sans;
@@ -141,10 +133,11 @@ export const ProductFeatures = ({
             line-height: normal;
             letter-spacing: normal;
             color: #252525;
-            padding-bottom: 20px;
             display: flex;
-            flex-direction: row;
-            justify-content: space-between;
+            flex-direction: column;
+            flex-wrap: wrap;
+            height: 200px;
+            max-width: 800px;
           }
           .text {
             font-size: 22px;
@@ -154,10 +147,11 @@ export const ProductFeatures = ({
             flex: 1;
           }
           .buttons-container {
-            text-align: center;
+            display: flex;
+            flex-direction: row;
           }
           .button {
-            cursor: pointer;
+            padding-right: 17px;
           }
           .image-container {
             position: relative;
@@ -177,6 +171,47 @@ export const ProductFeatures = ({
               padding: 5px;
               height: 100%;
               padding-bottom: 20px;
+              background-image: none;
+            }
+            .description {
+              width: 100%;
+              height: 100%;
+              font-size: 20px;
+              margin-bottom: 20px;
+            }
+            .buttons-container {
+              display: flex;
+              flex-direction: column;
+            }
+            .button {
+              padding-bottom: 10px;
+            }
+            .title-container {
+              margin-bottom: 20px;
+            }
+            .title {
+              font-size: 30px;
+              max-width: 100%;
+              background-image: none;
+            }
+            .title-image {
+              display: none;
+            }
+            .features {
+              font-family: Open Sans;
+              font-size: 15px;
+              font-weight: 500;
+              font-style: normal;
+              font-stretch: normal;
+              line-height: normal;
+              letter-spacing: normal;
+              color: #252525;
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+              height: 100%;
+              max-width: 100%;
+              padding-bottom: 20px;
             }
           }
         `}
@@ -186,18 +221,14 @@ export const ProductFeatures = ({
 };
 
 ProductFeatures.propTypes = {
-  name: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  price: PropTypes.string.isRequired,
-  links: PropTypes.arrayOf(PropTypes.object),
-  description: PropTypes.string.isRequired,
+  buttons: PropTypes.arrayOf(PropTypes.object).isRequired,
+  features: PropTypes.arrayOf(PropTypes.string).isRequired,
+  stripePlan: PropTypes.string,
   image: PropTypes.string.isRequired,
-  isActive: PropTypes.bool,
-  isIncludesPlatform: PropTypes.bool,
+  description: PropTypes.string.isRequired,
 };
 
 ProductFeatures.defaultProps = {
-  links: [],
-  isActive: false,
-  isIncludesPlatform: false,
+  stripePlan: null,
 };
