@@ -15,7 +15,7 @@ export const ButtonFeatures = ({
   return (
     <div>
       {url ? (
-        <div className="button">
+        <div className="buttonLink">
           {isExternal ? (
             <a href={url} target="_blank" rel="noopener noreferrer">
               {text}
@@ -27,7 +27,11 @@ export const ButtonFeatures = ({
           )}
         </div>
       ) : (
-        <button className="buttonText" type="button" onClick={() => {}}>
+        <button
+          className={isActive ? 'buttonActive' : ''}
+          type="button"
+          onClick={() => {}}
+        >
           View Plan
         </button>
       )}
@@ -54,11 +58,11 @@ export const ButtonFeatures = ({
           a:visited {
             color: #642c2c;
           }
-          .buttonText {
+          {/* .buttonText {
             cursor: pointer;
             color: #ffffff;
             background-color: ${isActive ? `#35caab` : `#ffffff`};
-          }
+          } */}
         `}
       </style>
     </div>

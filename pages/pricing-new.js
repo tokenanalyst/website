@@ -8,26 +8,28 @@ import { TestimonialsPricing } from '../components/TestimonialsPricing';
 const Pricing = () => {
   return (
     <div className="container">
-      {/* <div className="callout-container">
+      <div className="callout-container">
         <div className="callout">
           <DemoCallOutPricing />
         </div>
       </div>
+
       <div className="products-container">
         <div className="products">
           <ProductSelectionWidget />
+        </div>
+      </div>
+      <div className="testimonials-container">
+        <div className="testimonials">
+          <TestimonialsPricing />
         </div>
       </div>
       <div className="products-features-container">
         <div className="products-features">
           <ProductFeaturesWidget />
         </div>
-      </div> */}
-      <div className="testimonials-container">
-        <div className="testimonials">
-          <TestimonialsPricing />
-        </div>
       </div>
+
       <style jsx>
         {`
           .container {
@@ -43,9 +45,6 @@ const Pricing = () => {
           .callout {
             padding-left: 100px;
             padding-right: 100px;
-            border-style: solid;
-            border-width: 1px;
-            border-color: lightblue;
             height: 100%;
             padding-bottom: 35px;
           }
@@ -54,17 +53,11 @@ const Pricing = () => {
             background: url('/static/png/pricing/products_list_brg.png');
           }
           .products {
-            border-style: solid;
-            border-width: 1px;
-            border-color: lightblue;
             height: 100%;
           }
           .products-features-container {
           }
           .products-features {
-            border-style: solid;
-            border-width: 1px;
-            border-color: lightblue;
             height: 100%;
           }
           @media only screen and (max-width: 768px) {
@@ -77,9 +70,6 @@ const Pricing = () => {
             .callout {
               padding-left: 0px;
               padding-right: 0px;
-              border-style: solid;
-              border-width: 1px;
-              border-color: lightblue;
               height: 100%;
               padding-bottom: 15px;
             }
