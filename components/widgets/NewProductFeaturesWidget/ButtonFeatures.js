@@ -58,11 +58,6 @@ export const ButtonFeatures = ({
           a:visited {
             color: #642c2c;
           }
-          {/* .buttonText {
-            cursor: pointer;
-            color: #ffffff;
-            background-color: ${isActive ? `#35caab` : `#ffffff`};
-          } */}
         `}
       </style>
     </div>
