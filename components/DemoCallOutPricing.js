@@ -12,7 +12,14 @@ export const DemoCallOutPricing = () => {
           exchange flows.
         </p>
         <div>
-          <button type="button">Request a Demo</button>
+          <a
+            href="mailto:info@tokenanalyst.io"
+            target="_blank"
+            className="buttonLink"
+            rel="noopener noreferrer"
+          >
+            Request a Demo
+          </a>
         </div>
       </div>
       <div className="intelligence-image">
@@ -63,6 +70,19 @@ export const DemoCallOutPricing = () => {
             color: #000000;
             margin-bottom: 50px;
             max-width: 320px;
+          }
+          a {
+            color: #642c2c;
+          }
+          a:hover {
+            color: #642c2c;
+            text-decoration: none;
+          }
+          a:active {
+            color: #642c2c;
+          }
+          a:visited {
+            color: #642c2c;
           }
           @media only screen and (max-width: 768px) {
             .slogan {
