@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Icon, Card } from '@blueprintjs/core';
+import { Icon } from '@blueprintjs/core';
 import Link from 'next/link';
 import zxcvbn from 'zxcvbn';
 
@@ -41,11 +41,12 @@ export const RegisterWidget = () => {
       email,
       password,
     };
+
+    setIsSubmitted(true);
+
     const result = await onFormRegister(loginCtx, formValues);
 
     const { isSuccess, errorMsg, redirectFn } = result;
-
-    setIsSubmitted(true);
 
     if (isSuccess) {
       setErrorText(null);
@@ -60,7 +61,7 @@ export const RegisterWidget = () => {
   return (
     <>
       <div className="container">
-        <div className="header">Register</div>
+        <div className="header">Sign Up</div>
 
         {hasRegistered ? (
           <>
@@ -82,45 +83,43 @@ export const RegisterWidget = () => {
         ) : (
           <>
             <div className="register-form">
-              <Card>
-                <SimpleFormGroup label="Email" labelFor="registration-email">
-                  <SimpleTextInput
-                    id="registration-email"
-                    onChange={e => setEmail(e.target.value)}
-                  />
-                </SimpleFormGroup>
-                <SimpleFormGroup
-                  label="Password"
-                  labelFor="registration-password"
-                  helperText={<PasswordStrength score={password.strength} />}
-                >
-                  <SimpleTextInput
-                    type={isPasswordVisible ? 'text' : 'password'}
-                    id="registration-password"
-                    onChange={onPasswordChange}
-                    rightElement={
-                      <Icon
-                        icon={isPasswordVisible ? 'eye-off' : 'eye-open'}
-                        onClick={() => setIsPasswordVisible(!isPasswordVisible)}
-                      />
-                    }
-                  />
-                </SimpleFormGroup>
-                <SimpleButton
-                  background={PRIMARY_GREEN}
-                  fill
-                  onClick={onRegister}
-                  loading={isSubmitted}
-                >
-                  Register
-                </SimpleButton>
-                {errorText && <div className="error">{errorText}</div>}
-                {isRedirectedForFreeTier ? (
-                  <div className="message">
-                    Please register to access your free tier.
-                  </div>
-                ) : null}
-              </Card>
+              <SimpleFormGroup label="Email" labelFor="registration-email">
+                <SimpleTextInput
+                  id="registration-email"
+                  onChange={e => setEmail(e.target.value)}
+                />
+              </SimpleFormGroup>
+              <SimpleFormGroup
+                label="Password"
+                labelFor="registration-password"
+                helperText={<PasswordStrength score={password.strength} />}
+              >
+                <SimpleTextInput
+                  type={isPasswordVisible ? 'text' : 'password'}
+                  id="registration-password"
+                  onChange={onPasswordChange}
+                  rightElement={
+                    <Icon
+                      icon={isPasswordVisible ? 'eye-off' : 'eye-open'}
+                      onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+                    />
+                  }
+                />
+              </SimpleFormGroup>
+              <SimpleButton
+                background={PRIMARY_GREEN}
+                fill
+                onClick={onRegister}
+                loading={isSubmitted}
+              >
+                Sign Up
+              </SimpleButton>
+              {errorText && <div className="error">{errorText}</div>}
+              {isRedirectedForFreeTier ? (
+                <div className="message">
+                  Please register to access your free tier.
+                </div>
+              ) : null}
             </div>
           </>
         )}
