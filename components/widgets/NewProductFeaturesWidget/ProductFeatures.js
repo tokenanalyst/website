@@ -53,7 +53,7 @@ export const ProductFeatures = ({
 }) => {
   return (
     <>
-      <div className="container">
+      <div className="container" id={kebabCase(title)}>
         <div className="title-container">
           <div className="title">{title}</div>
           <div className="title-image" />

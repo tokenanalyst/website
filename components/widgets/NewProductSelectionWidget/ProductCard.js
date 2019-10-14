@@ -93,13 +93,14 @@ export const ProductCard = ({
         <div className="description">{description}</div>
         <div className="links">{renderLinks(links)}</div>
         <div className="button-container">
-          <button
-            className="button"
-            type="button"
-            onClick={() => emitProductEvent(name)}
-          >
-            View Plan
-          </button>
+          <div className="buttonLink">
+            <a
+              href={`#${kebabCase(title)}`}
+              onClick={() => emitProductEvent(name)}
+            >
+              View Plan
+            </a>
+          </div>
         </div>
       </div>
       <style jsx>{pricingButton}</style>
@@ -193,6 +194,8 @@ export const ProductCard = ({
           }
           .button-container {
             text-align: center;
+            display: flex;
+            justify-content: center;
           }
           .button {
             cursor: pointer;
@@ -208,6 +211,19 @@ export const ProductCard = ({
             position: absolute;
             top: 10px;
             right: 20px;
+          }
+          a {
+            color: #642c2c;
+          }
+          a:hover {
+            text-decoration: none;
+            color: #642c2c;
+          }
+          a:active {
+            color: #642c2c;
+          }
+          a:visited {
+            color: #642c2c;
           }
           @media only screen and (max-width: 768px) {
             .container {
