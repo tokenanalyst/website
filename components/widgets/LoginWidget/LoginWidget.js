@@ -5,8 +5,9 @@ import Cookies from 'js-cookie';
 import { Card } from '@blueprintjs/core';
 
 import { LoginContext } from '../../../contexts/Login';
-import { colors } from '../../../constants/styles/colors';
 import { COOKIES } from '../../../constants/cookies';
+import { SimpleButton } from '../../SimpleButton';
+import { colors, PRIMARY_GREEN } from '../../../constants/styles/colors';
 
 export const LoginWidget = () => {
   const router = useRouter();
@@ -15,11 +16,13 @@ export const LoginWidget = () => {
   const [isError, setIsError] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const isToRedirectToStripe = loginCtx.paymentData.stripe;
 
   const login = async () => {
     try {
+      setIsSubmitted(true);
       const response = await axios.post(
         'https://api.tokenanalyst.io/auth/user/login',
         {
@@ -51,6 +54,7 @@ export const LoginWidget = () => {
 
       router.push('/');
     } catch (e) {
+      setIsSubmitted(false);
       setIsError(true);
     }
   };
@@ -72,8 +76,15 @@ export const LoginWidget = () => {
             type="password"
             onChange={e => setPassword(e.target.value)}
           />
-          <div className="login-button" onClick={login}>
-            Login
+          <div className="login-button">
+            <SimpleButton
+              background={PRIMARY_GREEN}
+              fill
+              onClick={login}
+              loading={isSubmitted}
+            >
+              Login
+            </SimpleButton>
           </div>
           {isError ? (
             <div className="error">Incorrect email or password</div>
@@ -111,15 +122,7 @@ export const LoginWidget = () => {
             font-size: 18px;
           }
           .login-button {
-            color: white;
-            min-width: 60px;
-            text-align: center;
-            background-color: rgba(${colors.primaryGreen});
-            max-height: 40px;
-            padding: 10px;
-            border-radius: 20px;
-            cursor: pointer;
-            margin-top: 20px;
+            padding-top: 10px;
           }
           .error {
             color: rgba(${colors.primaryRed}, 1);
