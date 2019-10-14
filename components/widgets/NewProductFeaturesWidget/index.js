@@ -1,1 +1,1 @@
-export * from './ProductSelectionWidget';
+export * from './ProductFeaturesWidget';
