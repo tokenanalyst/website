@@ -34,12 +34,15 @@ const Pricing = () => {
         {`
           .container {
             height: 100%;
-            width: 1440px;
+            width: 100%;
             margin: auto;
             display: flex;
             flex-direction: column;
+            justify-content: center;
           }
           .callout-container {
+            margin: auto;
+            width: 1440px;
             height: 100%;
           }
           .callout {
@@ -47,6 +50,11 @@ const Pricing = () => {
             padding-right: 100px;
             height: 100%;
             padding-bottom: 35px;
+          }
+          .testimonials-container {
+            margin: auto;
+            width: 1440px;
+            height: 100%;
           }
           .testimonials {
             padding-left: 100px;
@@ -57,9 +65,14 @@ const Pricing = () => {
             background: url('/static/png/pricing/products_list_brg.png');
           }
           .products {
+            margin: auto;
             height: 100%;
+            width: 1440px;
           }
           .products-features-container {
+            margin: auto;
+            height: 100%;
+            width: 1440px;
           }
           .products-features {
             height: 100%;
@@ -70,12 +83,16 @@ const Pricing = () => {
               margin: auto;
             }
             .callout-container {
+              width: 100%;
             }
             .callout {
               padding-left: 0px;
               padding-right: 0px;
               height: 100%;
               padding-bottom: 15px;
+            }
+            .testimonials-container {
+              width: 100%;
             }
             .testimonials {
               padding-left: 0px;
@@ -85,6 +102,12 @@ const Pricing = () => {
               display: flex;
               flex-direction: column;
               height: 100%;
+            }
+            .products {
+              width: 100%;
+            }
+            .products-features-container {
+              width: 100%;
             }
           }
         `}
