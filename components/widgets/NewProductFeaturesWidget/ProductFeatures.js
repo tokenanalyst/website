@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import PropTypes from 'prop-types';
 import React, { useContext } from 'react';
@@ -57,8 +58,7 @@ const emitProductEvent = action => {
   });
 };
 
-const redirectToStripe = stripePlan => async stripeOptions => {
-  console.log(stripePlan, stripeOptions);
+const redirectToStripe = async (stripePlan, stripeOptions) => {
   const stripe = Stripe(STRIPE.apiKey);
 
   const stripeOpt = {
