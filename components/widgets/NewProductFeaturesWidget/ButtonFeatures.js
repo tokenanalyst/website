@@ -11,7 +11,6 @@ export const ButtonFeatures = ({
   text,
   isActive,
   onClick,
-  stripePlan,
 }) => {
   return (
     <div>
@@ -28,7 +27,14 @@ export const ButtonFeatures = ({
             </a>
           ) : (
             <Link href={url}>
-              <a onClick={onClick}>{text}</a>
+              <a
+                onClick={onClick}
+                onKeyDown={onClick}
+                role="button"
+                tabIndex="0"
+              >
+                {text}
+              </a>
             </Link>
           )}
         </div>
@@ -75,13 +81,11 @@ ButtonFeatures.propTypes = {
   isExternal: PropTypes.bool,
   text: PropTypes.string.isRequired,
   isActive: PropTypes.bool,
-  stripePlan: PropTypes.string,
   onClick: PropTypes.func,
 };
 
 ButtonFeatures.defaultProps = {
   url: null,
-  stripePlan: null,
   isExternal: false,
   isActive: false,
   onClick: () => {},
