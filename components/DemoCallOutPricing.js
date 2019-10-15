@@ -91,7 +91,7 @@ export const DemoCallOutPricing = () => {
             }
             .title {
               font-family: Space Grotesk;
-              font-size: 30px;
+              font-size: 25px;
               font-weight: bold;
               font-style: normal;
               font-stretch: normal;
@@ -103,7 +103,7 @@ export const DemoCallOutPricing = () => {
             }
             .description {
               font-family: Cardo;
-              font-size: 20px;
+              font-size: 15px;
               font-weight: normal;
               font-style: normal;
               font-stretch: normal;
