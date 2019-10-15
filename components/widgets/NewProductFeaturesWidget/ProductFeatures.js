@@ -58,7 +58,7 @@ const emitProductEvent = action => {
   });
 };
 
-const redirectToStripe = async (stripePlan, stripeOptions) => {
+const redirectToStripe = stripePlan => async stripeOptions => {
   const stripe = Stripe(STRIPE.apiKey);
 
   const stripeOpt = {
@@ -117,7 +117,7 @@ export const ProductFeatures = ({
                 });
                 return Router.push('/login');
               }
-              return redirectToStripe(stripePlan, {
+              return redirectToStripe(stripePlan)({
                 customerEmail: username,
                 clientReferenceId: userId.toString(),
               });
@@ -131,7 +131,7 @@ export const ProductFeatures = ({
                   text={text}
                   stripePlan={stripePlan}
                   isActive={isBuy}
-                  onClick={() => onClick()}
+                  onClick={onClick}
                 />
               </div>
             );

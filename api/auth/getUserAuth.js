@@ -5,7 +5,7 @@ module.exports = async token => {
   if (!token) {
     return {
       isAuthorised: false,
-      userData: { tier: TIERS['nologin'] },
+      userData: { tier: TIERS.nologin },
     };
   }
 
@@ -28,7 +28,7 @@ module.exports = async token => {
   } catch (e) {
     return {
       isAuthorised: false,
-      userData: { tier: TIERS['nologin'] },
+      userData: { tier: TIERS.nologin },
     };
   }
 };

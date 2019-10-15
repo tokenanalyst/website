@@ -2,6 +2,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import Link from 'next/link';
+import classNames from 'classnames';
 
 import { pricingButton } from '../../../constants/styles/common-styled-jsx';
 
@@ -12,10 +13,17 @@ export const ButtonFeatures = ({
   isActive,
   onClick,
 }) => {
+  const linkColor = isActive ? '#ffffff' : '#642c2c';
+
   return (
     <div>
       {url ? (
-        <div className="buttonLink">
+        <div
+          className={classNames(
+            'buttonLink',
+            `${isActive ? 'buttonActive' : ''}`
+          )}
+        >
           {isExternal ? (
             <a
               href={url}
@@ -50,25 +58,18 @@ export const ButtonFeatures = ({
       <style jsx>{pricingButton}</style>
       <style jsx>
         {`
-          .link {
-            font-family: Open Sans;
-            font-size: 15px;
-            font-weight: 700;
-            font-style: normal;
-            font-stretch: normal;
-          }
           a {
-            color: #642c2c;
+            color: ${linkColor};
           }
           a:hover {
-            color: #642c2c;
+            color: ${linkColor};
             text-decoration: none;
           }
           a:active {
-            color: #642c2c;
+            color: ${linkColor};
           }
           a:visited {
-            color: #642c2c;
+            color: ${linkColor};
           }
         `}
       </style>
