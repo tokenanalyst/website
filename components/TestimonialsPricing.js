@@ -172,7 +172,6 @@ export const TestimonialsPricing = () => (
           color: #252525;
           display: flex;
           flex-direction: column;
-          background-image: url('/static/svg/pricing/testimonial_background.svg');
           background-repeat: no-repeat;
           background-position: right 40px top 170px;
           padding-top: 100px;
