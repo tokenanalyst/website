@@ -78,7 +78,7 @@ const FEATURES_CONTENT = {
       },
       {
         text: 'Buy Plan',
-        url: null,
+        url: 'mailto:info@tokenanalyst.io',
         isBuy: true,
       },
     ],
