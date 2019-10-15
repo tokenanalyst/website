@@ -11,7 +11,7 @@ const CARD_CONTENT = {
     links: [{ text: 'Try free version', url: '/register' }],
   },
   PRO: {
-    title: 'API and WebSocket',
+    title: 'TokenAnalyst Pro',
     priceText: `${PLANS.PRO.price}/month`,
     description: `Programmatic access to our historial
   data set and real-time feeds, using 

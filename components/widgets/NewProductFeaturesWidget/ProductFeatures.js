@@ -102,9 +102,9 @@ export const ProductFeatures = ({
         <div className="features">{renderFeatures(features)}</div>
         <div className="buttons-container">
           {buttons.map(button => {
-            const { url, isExternal, text, isBuy } = button;
+            const { url, isExternal, text, isBuy, isIntercom } = button;
 
-            const onClick = async () => {
+            const onBuyPlan = async () => {
               if (url) {
                 const action = `Plan click ${text}`;
                 return emitProductEvent(action);
@@ -124,6 +124,10 @@ export const ProductFeatures = ({
                 clientReferenceId: userId.toString(),
               });
             };
+
+            const onClick = isIntercom
+              ? () => window.Intercom('show')
+              : onBuyPlan;
 
             return (
               <div key={kebabCase(text)} className="button">
