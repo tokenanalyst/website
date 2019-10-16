@@ -1,16 +1,8 @@
 import PropTypes from 'prop-types';
-import React, { useRef, useContext } from 'react';
-import { useRouter } from 'next/router';
-import ReactGA from 'react-ga';
-import Cookies from 'js-cookie';
+import React, { useRef } from 'react';
 import { makeTVSymbols } from './utils/makeTVSymbols';
 
 import { ProChartContainer } from './ProChartContainer';
-import { ExchangeMetricsWidget } from '../ProExchangeMetricsWidget';
-import { COOKIES } from '../../../constants/cookies';
-import { PLANS } from '../../../constants/plans';
-import { Link } from '../../Link';
-import { LoginContext } from '../../../contexts/Login';
 import { LeftSidePanel } from './LeftSidePanel';
 
 export const ProChartWidget = ({
@@ -31,12 +23,6 @@ export const ProChartWidget = ({
   );
 
   const TVSymbols = makeTVSymbols(selectedToken, exchangeSupport);
-
-  const router = useRouter();
-
-  const loginContext = useContext(LoginContext);
-
-  const TIER = Number(Cookies.get(COOKIES.tier));
 
   return (
     <>
@@ -111,6 +97,7 @@ export const ProChartWidget = ({
           .kaiko-link {
             padding-left: 3px;
           }
+
           @media (min-width: 768px) and (max-width: 1440px) {
             .controls-card {
             }
@@ -119,7 +106,7 @@ export const ProChartWidget = ({
           }
           @media (min-width: 320px) and (max-width: 767px) {
             .container {
-              flex-direction: column-reverse;
+              flex-direction: column;
             }
             .pro-chart {
               padding-top: 5px;

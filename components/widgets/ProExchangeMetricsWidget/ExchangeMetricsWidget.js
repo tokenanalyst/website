@@ -268,6 +268,7 @@ export const ExchangeMetricsWidget = ({ token, exchange }) => {
             }
             .banner-metric-container {
               height: 60px;
+              margin: auto;
             }
             .banner-item {
               font-family: Space Grotesk;
