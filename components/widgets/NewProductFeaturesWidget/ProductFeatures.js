@@ -42,6 +42,8 @@ const renderFeatures = features =>
             @media only screen and (max-width: 768px) {
               .feature {
                 background-size: 30px 30px;
+                padding-left: 40px;
+                margin-bottom: 5px;
               }
             }
           `}
@@ -100,9 +102,9 @@ export const ProductFeatures = ({
         <div className="features">{renderFeatures(features)}</div>
         <div className="buttons-container">
           {buttons.map(button => {
-            const { url, isExternal, text, isBuy } = button;
+            const { url, isExternal, text, isBuy, isIntercom } = button;
 
-            const onClick = async () => {
+            const onBuyPlan = async () => {
               if (url) {
                 const action = `Plan click ${text}`;
                 return emitProductEvent(action);
@@ -122,6 +124,10 @@ export const ProductFeatures = ({
                 clientReferenceId: userId.toString(),
               });
             };
+
+            const onClick = isIntercom
+              ? () => window.Intercom('show')
+              : onBuyPlan;
 
             return (
               <div key={kebabCase(text)} className="button">
@@ -235,7 +241,7 @@ export const ProductFeatures = ({
             .description {
               width: 100%;
               height: 100%;
-              font-size: 20px;
+              font-size: 15px;
               margin-bottom: 20px;
             }
             .buttons-container {
@@ -249,7 +255,7 @@ export const ProductFeatures = ({
               margin-bottom: 20px;
             }
             .title {
-              font-size: 30px;
+              font-size: 20px;
               max-width: 100%;
               background-image: none;
             }

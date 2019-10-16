@@ -102,7 +102,7 @@ export const ProductSelectionWidget = () => {
               padding-top: 0px;
               padding-bottom: 0px;
               font-family: Space Grotesk;
-              font-size: 30px;
+              font-size: 20px;
               font-weight: bold;
               font-style: normal;
               font-stretch: normal;
