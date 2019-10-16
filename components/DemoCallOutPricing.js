@@ -11,14 +11,13 @@ export const DemoCallOutPricing = () => {
           Enterprise Grade Blockchain Data and Infrastructure.
         </p>
         <div>
-          <a
-            href="mailto:info@tokenanalyst.io"
-            target="_blank"
-            className="buttonLink"
-            rel="noopener noreferrer"
+          <button
+            className="button"
+            type="button"
+            onClick={() => window.Intercom('show')}
           >
-            Request a Demo
-          </a>
+            Request a demo
+          </button>
         </div>
       </div>
       <div className="image-container">
@@ -35,13 +34,13 @@ export const DemoCallOutPricing = () => {
             position: relative;
           }
           .image-container {
-            top: 0;
-            right: 0;
+            top: -20px;
+            right: 25px;
             position: absolute;
             text-align: right;
           }
           .intelligence-img {
-            height: 580px;
+            height: 550px;
             width: 651px;
           }
           .slogan {

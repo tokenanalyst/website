@@ -156,12 +156,13 @@ export const TestimonialsPricing = () => (
         })}
       </div>
       <div className="button-container">
-        <a
-          className={classNames('buttonLink', 'buttonActive')}
-          href="mailto:info@tokenanalyst.io"
+        <button
+          className={classNames('button', 'buttonActive')}
+          type="button"
+          onClick={() => window.Intercom('show')}
         >
           Request a demo
-        </a>
+        </button>
       </div>
       <div className="links-container">{renderLinks()}</div>
     </div>
