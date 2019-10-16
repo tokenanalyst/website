@@ -12,6 +12,7 @@ import { PLANS } from '../../../constants/plans';
 import { Link } from '../../Link';
 import { COOKIES } from '../../../constants/cookies';
 import { LoginContext } from '../../../contexts/Login';
+import { CTALink } from './CTALink';
 
 export const LeftSidePanel = ({
   selectedExchange,
@@ -79,7 +80,9 @@ export const LeftSidePanel = ({
 
   return (
     <div className="container">
-      <div className="cat-link">{renderCTALink()}</div>
+      <div className="cat">
+        <CTALink />
+      </div>
       <div className="metrics">
         <ExchangeMetricsWidget
           token={selectedToken}
@@ -159,7 +162,7 @@ export const LeftSidePanel = ({
             flex-direction: column;
             width: 100%;
           }
-          .cat-link {
+          .cat {
             padding-top: 10px;
             padding-bottom: 10px;
           }
@@ -167,7 +170,7 @@ export const LeftSidePanel = ({
             .controls {
               flex-direction: column;
             }
-            .cat-link {
+            .cat {
               text-align: center;
             }
           }

@@ -106,7 +106,7 @@ export const ProChartWidget = ({
           }
           @media (min-width: 320px) and (max-width: 767px) {
             .container {
-              flex-direction: column;
+              flex-direction: column-reverse;
             }
             .pro-chart {
               padding-top: 5px;
