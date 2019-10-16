@@ -31,7 +31,6 @@
     "react": "16.8.6",
     "react-custom-scrollbars": "^4.2.1",
     "react-dom": "16.8.6",
-    "react-flexbox-grid": "^2.1.2",
     "react-ga": "^2.6.0",
     "react-sparklines": "^1.7.0",
     "react-spinners": "^0.6.0",
