@@ -6,9 +6,9 @@ export const DemoCallOutPricing = () => {
   return (
     <div className="container">
       <div className="slogan">
-        <h1 className="title">Blockchain Data Infrastructure</h1>
+        <h1 className="title">Blockchain Market Intelligence</h1>
         <p className="description">
-          Enterprise Grade Blockchain Data and Infrastructure.
+          Enterprise-grade data and tools to understand and access blockchains.
         </p>
         <div>
           <button
