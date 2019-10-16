@@ -1,24 +1,11 @@
 import PropTypes from 'prop-types';
-import React, { useRef } from 'react';
-import { Icon, Switch, Card } from '@blueprintjs/core';
-import dynamic from 'next/dynamic';
+import React from 'react';
+import { Card } from '@blueprintjs/core';
 import ReactGA from 'react-ga';
 
 import { TokenSelect } from './TokenSelect';
-import { TOOLTIP_TEXT } from './ToolTipText';
 import { ExchangeList } from './ExchangeList';
-
-const STUDIES = {
-  FLOWS: 'Flows',
-  NET_FLOWS: 'NetFlows',
-};
-
-const SimpleToolTip = dynamic(
-  () => import('../../SimpleToolTip').then(mod => mod.SimpleToolTip),
-  {
-    ssr: false,
-  }
-);
+import { ExchangeMetricsWidget } from '../ProExchangeMetricsWidget';
 
 export const LeftSidePanel = ({
   selectedExchange,
@@ -26,12 +13,6 @@ export const LeftSidePanel = ({
   tokensDb,
   onChange,
 }) => {
-  const tvInstance = useRef(null);
-  const studies = useRef({
-    flows: { entityId: null },
-    transactions: { entityId: null },
-  });
-
   const {
     tokens: {
       groupName: { NATIVE, STABLE, ERC20 },
@@ -45,83 +26,60 @@ export const LeftSidePanel = ({
   const tokensList = [nativeTokens, stableTokens, erc20Tokens];
 
   return (
-    <>
-      <Card>
-        <div className="controls">
-          <div className="control">
-            <div className="label">Token:</div>
-            <TokenSelect
-              className="token-select"
-              items={tokensList}
-              groups={['Native coins', 'Stable tokens', 'ERC20 tokens']}
-              selectedToken={selectedToken}
-              onItemSelect={newToken => {
-                ReactGA.event({
-                  category: 'User',
-                  action: `Pro Chart change token ${newToken}`,
-                  label: `Pro Charts`,
-                });
-                onChange(newToken, selectedExchange);
-              }}
-            />
-          </div>
-          <div className="control">
-            <div className="exchanges">
-              <div className="label">Exchange:</div>
-              <ExchangeList
-                selectedExchange={selectedExchange}
-                exchanges={tokensDb.getExchangesList()}
-                onChangeExchange={newExchange => {
-                  onChange(selectedToken, newExchange);
-                }}
-              />
-            </div>
-          </div>
-          <div className="control">
-            <div className="label">Net Flows:</div>
-            <div className="switch">
-              <Switch
-                onChange={() => {
+    <div className="container">
+      <div className="metrics">
+        <ExchangeMetricsWidget
+          token={selectedToken}
+          exchange={selectedExchange}
+        />
+      </div>
+      <div className="controls-container">
+        <Card>
+          <div className="controls">
+            <div className="control">
+              <div className="label">Token:</div>
+              <TokenSelect
+                className="token-select"
+                items={tokensList}
+                groups={['Native coins', 'Stable tokens', 'ERC20 tokens']}
+                selectedToken={selectedToken}
+                onItemSelect={newToken => {
                   ReactGA.event({
                     category: 'User',
-                    action: `Pro Chart toggle netflow`,
+                    action: `Pro Chart change token ${newToken}`,
                     label: `Pro Charts`,
                   });
-                  if (!studies.current.transactions.entityId) {
-                    studies.current.transactions.entityId = tvInstance.current
-                      .chart()
-                      .createStudy(STUDIES.NET_FLOWS, false, true);
-                  } else {
-                    tvInstance.current
-                      .chart()
-                      .removeEntity(studies.current.transactions.entityId);
-                    studies.current.transactions.entityId = null;
-                  }
+                  onChange(newToken, selectedExchange);
                 }}
-                defaultChecked
-                large
               />
             </div>
-          </div>
-          <div className="control">
-            <SimpleToolTip
-              dataFor="header-tooltip"
-              toolTip={TOOLTIP_TEXT}
-              type="dark"
-              effect="solid"
-            >
-              <div data-tip data-for="header-tooltip">
-                <Icon icon="info-sign" color="gray" />
+            <div className="control">
+              <div className="exchanges">
+                <div className="label">Exchange:</div>
+                <ExchangeList
+                  selectedExchange={selectedExchange}
+                  exchanges={tokensDb.getExchangesList()}
+                  onChangeExchange={newExchange => {
+                    onChange(selectedToken, newExchange);
+                  }}
+                />
               </div>
-            </SimpleToolTip>
+            </div>
           </div>
-        </div>
-      </Card>
+        </Card>
+      </div>
       <style jsx>
         {`
+          .metrics {
+            padding-bottom: 10px;
+          }
           .controls {
             flex-direction: column;
             display: flex;
+            margin-top: -10px;
+            margin-bottom: -5px;
+            margin-left: -5px;
+            margin-right: -5px;
           }
           .control {
             display: flex;
@@ -143,7 +101,6 @@ export const LeftSidePanel = ({
           .legend-flows {
             padding-left: 8px;
           }
-
           .exchanges {
             display: flex;
             flex-direction: column;
@@ -156,7 +113,7 @@ export const LeftSidePanel = ({
           }
         `}
       </style>
-    </>
+    </div>
   );
 };
 
