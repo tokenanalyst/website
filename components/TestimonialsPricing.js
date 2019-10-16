@@ -83,7 +83,7 @@ const renderLinks = () => {
         <a className="link">Platform</a>
       </Link>
       <Link href="/#">
-        <a className="link">API and WebSocket</a>
+        <a className="link">TokenAnalyst Pro</a>
       </Link>
       <Link href="/#">
         <a className="link">Enterprise</a>
