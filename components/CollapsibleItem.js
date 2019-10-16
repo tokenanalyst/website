@@ -8,13 +8,12 @@ export const CollapsibleItem = ({ header, body }) => {
 
   return (
     <>
-      <Card>
-        <div className="header" onClick={() => setIsOpen(!isOpen)}>
-          {header}
-          <Icon icon={isOpen ? 'chevron-up' : 'chevron-down'} iconSize={20} />
-        </div>
-        <Collapse isOpen={isOpen}>{body}</Collapse>
-      </Card>
+      <div className="header" onClick={() => setIsOpen(!isOpen)}>
+        {header}
+        <Icon icon={isOpen ? 'chevron-up' : 'chevron-down'} iconSize={20} />
+      </div>
+      <Collapse isOpen={isOpen}>{body}</Collapse>
+
       <style jsx>
         {`
           .header {
@@ -25,6 +24,7 @@ export const CollapsibleItem = ({ header, body }) => {
             justify-content: space-between;
             align-items: center;
             padding-bottom: 10px;
+            padding-top: 10px;
           }
         `}
       </style>

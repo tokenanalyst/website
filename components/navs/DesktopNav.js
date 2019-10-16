@@ -91,6 +91,17 @@ export const DesktopNav = () => {
                   Stablecoins
                 </div>
               </Link>
+              <Link href="/metrics" passHref>
+                <div
+                  className={classNames(
+                    'desktop-link',
+                    setLinkActive(asPath, '/metrics')
+                  )}
+                  onMouseOver={collapseAllSubMenus}
+                >
+                  Metrics
+                </div>
+              </Link>
               <Link href="/compare" passHref>
                 <div
                   className={classNames(
