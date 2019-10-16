@@ -70,8 +70,8 @@ export const ProductSelectionWidget = () => {
             margin-right: 100px;
           }
           .products-header {
-            padding-top: 40px;
-            padding-bottom: 40px;
+            padding-top: 10px;
+            padding-bottom: 10px;
             font-family: Space Grotesk;
             font-size: 30px;
             font-weight: bold;

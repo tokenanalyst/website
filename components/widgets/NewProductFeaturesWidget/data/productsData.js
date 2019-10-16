@@ -1,5 +1,116 @@
 import { PLANS } from '../../../../constants/plans';
 
+export const FEATURES = {
+  columns: ['Platform', 'Pro', 'Enterprise'],
+  categories: [
+    {
+      name: 'Core Blockchain Data',
+      items: [
+        {
+          name: 'Blocks, Transactions, & Address stats',
+          entitled: [true, true, true],
+        },
+        {
+          name: 'ERC20 Token Transfers',
+          entitled: [true, true, true],
+        },
+        {
+          name: 'Smart Contract Function Calls & Events',
+          entitled: [false, true, true],
+        },
+        {
+          name: 'Mempool Transactions',
+          entitled: [false, false, true],
+        },
+      ],
+    },
+    {
+      name: 'Visual Analytics',
+      items: [
+        {
+          name: 'Stablecoin/ERC20 Volumes',
+          entitled: [true, true, true],
+        },
+        {
+          name: 'Supply Metrics',
+          entitled: [true, true, true],
+        },
+        {
+          name: 'Network stats (address growth, NVT, etc.)',
+          entitled: [true, true, true],
+        },
+        {
+          name: 'Security Metrics (hashrate, miner rewards, uncle rates)',
+          entitled: [true, true, true],
+        },
+      ],
+    },
+    {
+      name: 'Advanced API Analytics',
+      items: [
+        {
+          name: 'Stablecoin/ERC20 Volumes',
+          entitled: [false, true, true],
+        },
+        {
+          name: 'Supply Metrics',
+          entitled: [false, true, true],
+        },
+        {
+          name: 'Network stats (address growth, NVT, etc.)',
+          entitled: [false, true, true],
+        },
+        {
+          name: 'Security Metrics (hashrate, miner rewards, uncle rates)',
+          entitled: [false, true, true],
+        },
+      ],
+    },
+    {
+      name: 'Exchange Flows',
+      items: [
+        {
+          name: 'BTC & ETH inflow/outflow',
+          entitled: [true, true, true],
+        },
+        {
+          name: 'ERC20/Stablecoin inflow/outflow',
+          entitled: [true, true, true],
+        },
+        {
+          name: 'Significant Transactions into/out of Exchanges',
+          entitled: [false, true, true],
+        },
+        {
+          name: 'DEX Order Books',
+          entitled: [false, false, true],
+        },
+      ],
+    },
+    {
+      name: 'Support',
+      items: [
+        {
+          name: 'Personalized Support	',
+          entitled: [false, true, true],
+        },
+        {
+          name: 'SLAs and Integration	',
+          entitled: [false, true, true],
+        },
+        {
+          name: 'Custom Metrics	',
+          entitled: [false, false, true],
+        },
+        {
+          name: 'Bespoke Dashboards',
+          entitled: [false, false, true],
+        },
+      ],
+    },
+  ],
+};
+
 const FEATURES_CONTENT = {
   PLATFORM: {
     title: 'Platform',

@@ -21,10 +21,11 @@ export const DemoCallOutPricing = () => {
           </a>
         </div>
       </div>
-      <div className="intelligence-image">
+      <div className="image-container">
         <img
           src="/static/svg/pricing/pricing_callout.svg"
           alt="Blockchain Intelligence"
+          className="intelligence-img"
         />
       </div>
       <style jsx>{pricingButton}</style>
@@ -33,17 +34,18 @@ export const DemoCallOutPricing = () => {
           .container {
             position: relative;
           }
-          .intelligence-image {
-            width: 653px;
-            height: 693px;
+          .image-container {
             top: 0;
             right: 0;
             position: absolute;
             text-align: right;
-            margin-right: 50px;
+          }
+          .intelligence-img {
+            height: 580px;
+            width: 651px;
           }
           .slogan {
-            margin-top: 90px;
+            margin-top: 50px;
             margin-left: 5px;
           }
           .title {
@@ -112,7 +114,7 @@ export const DemoCallOutPricing = () => {
               margin-bottom: 20px;
               max-width: 350px;
             }
-            .intelligence-image {
+            .image-container {
               display: none;
             }
             .title {
