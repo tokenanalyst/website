@@ -135,9 +135,10 @@ const FEATURES_CONTENT = {
         isBuy: true,
       },
     ],
+    index: 1,
   },
   PRO: {
-    title: 'API and WebSocket',
+    title: 'TokenAnalyst Pro',
     description: `Our signature plan, offering proprietary 
     historical and real-time metrics across 
     a wide-array of assets via API 
@@ -154,7 +155,7 @@ const FEATURES_CONTENT = {
     buttons: [
       {
         text: 'Request a Demo',
-        url: 'mailto:info@tokenanalyst.io',
+        isIntercom: true,
       },
       {
         text: 'Documentation',
@@ -167,6 +168,7 @@ const FEATURES_CONTENT = {
         isBuy: true,
       },
     ],
+    index: 0,
   },
   ENTERPRISE: {
     title: 'Enterprise',
@@ -185,7 +187,7 @@ const FEATURES_CONTENT = {
     buttons: [
       {
         text: 'Request a Demo',
-        url: 'mailto:info@tokenanalyst.io',
+        isIntercom: true,
       },
       {
         text: 'Buy Plan',
@@ -193,9 +195,13 @@ const FEATURES_CONTENT = {
         isBuy: true,
       },
     ],
+    index: 2,
   },
 };
 
 export const PRODUCTS = Object.keys(PLANS)
   .filter(plan => PLANS[plan].id >= 0)
-  .map(plan => ({ ...PLANS[plan], details: FEATURES_CONTENT[plan] }));
+  .map(plan => ({ ...PLANS[plan], details: FEATURES_CONTENT[plan] }))
+  .sort((a, b) => {
+    return a.details.index - b.details.index;
+  });

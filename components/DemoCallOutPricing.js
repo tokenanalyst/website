@@ -6,10 +6,9 @@ export const DemoCallOutPricing = () => {
   return (
     <div className="container">
       <div className="slogan">
-        <h1 className="title">Blockchain Intelligence for Markets</h1>
+        <h1 className="title">Blockchain Data Infrastructure</h1>
         <p className="description">
-          Intelligence based on proprietary models of wallet behavior and
-          exchange flows.
+          Enterprise Grade Blockchain Data and Infrastructure.
         </p>
         <div>
           <a
@@ -93,7 +92,7 @@ export const DemoCallOutPricing = () => {
             }
             .title {
               font-family: Space Grotesk;
-              font-size: 30px;
+              font-size: 25px;
               font-weight: bold;
               font-style: normal;
               font-stretch: normal;
@@ -105,7 +104,7 @@ export const DemoCallOutPricing = () => {
             }
             .description {
               font-family: Cardo;
-              font-size: 20px;
+              font-size: 15px;
               font-weight: normal;
               font-style: normal;
               font-stretch: normal;

@@ -45,6 +45,8 @@ const renderFeatures = features =>
             @media only screen and (max-width: 768px) {
               .feature {
                 background-size: 30px 30px;
+                padding-left: 40px;
+                margin-bottom: 5px;
               }
             }
           `}
@@ -131,70 +133,72 @@ export const ProductFeatures = ({
 
   return (
     <>
-      <div>
-        <div className="container" id={kebabCase(title)}>
-          <div className="title-container">
-            <div className="title">{title}</div>
-            <div className="title-image" />
-          </div>
-          <div className="description">{description}</div>
-          <div className="features">{renderFeatures(features)}</div>
-          <div className="buttons-container">
-            {buttons.map(button => {
-              const { url, isExternal, text, isBuy } = button;
-
-              const onClick = async () => {
-                if (url) {
-                  const action = `Plan click ${text}`;
-                  return emitProductEvent(action);
-                }
-
-                const action = `Plan select ${name}`;
-                emitProductEvent(action);
-
-                if (!loginCtx.isLoggedIn) {
-                  loginCtx.setPaymentData({
-                    stripe: { redirectFn: redirectToStripe(stripePlan) },
-                  });
-                  return Router.push('/login');
-                }
-                return redirectToStripe(stripePlan)({
-                  customerEmail: username,
-                  clientReferenceId: userId.toString(),
-                });
-              };
-
-              return (
-                <div key={kebabCase(text)} className="button">
-                  <ButtonFeatures
-                    url={url}
-                    isExternal={isExternal}
-                    text={text}
-                    stripePlan={stripePlan}
-                    isActive={isBuy}
-                    onClick={onClick}
-                  />
-                </div>
-              );
-            })}
-          </div>
+      <div className="container" id={kebabCase(title)}>
+        <div className="title-container">
+          <div className="title">{title}</div>
+          <div className="title-image" />
         </div>
-        <div className="fetures-details">
-          <div style={{ width: '100%', height: '100%', margin: 0 }}>
-            <div
-              onClick={() => setIsDetailsOpen(!isDetailsOpen)}
-              role="button"
-              onKeyDown={() => setIsDetailsOpen(!isDetailsOpen)}
-              tabIndex="-1"
-            >
-              {renderCollapseControl(isDetailsOpen)}
-            </div>
-            <Collapse isOpen={isDetailsOpen}>
-              <div className="features-collapse" />
-              <FeatureTableDesktop />
-              <FeatureTableMobile />
-            </Collapse>
+        <div className="description">{description}</div>
+        <div className="features">{renderFeatures(features)}</div>
+        <div className="buttons-container">
+          {buttons.map(button => {
+            const { url, isExternal, text, isBuy, isIntercom } = button;
+
+            const onBuyPlan = async () => {
+              if (url) {
+                const action = `Plan click ${text}`;
+                return emitProductEvent(action);
+              }
+
+              const action = `Plan select ${name}`;
+              emitProductEvent(action);
+
+              if (!loginCtx.isLoggedIn) {
+                loginCtx.setPaymentData({
+                  stripe: { redirectFn: redirectToStripe(stripePlan) },
+                });
+                return Router.push('/login');
+              }
+              return redirectToStripe(stripePlan)({
+                customerEmail: username,
+                clientReferenceId: userId.toString(),
+              });
+            };
+
+            const onClick = isIntercom
+              ? () => window.Intercom('show')
+              : onBuyPlan;
+
+            return (
+              <div key={kebabCase(text)} className="button">
+                <ButtonFeatures
+                  url={url}
+                  isExternal={isExternal}
+                  text={text}
+                  stripePlan={stripePlan}
+                  isActive={isBuy}
+                  onClick={onClick}
+                />
+              </div>
+            );
+          })}
+        </div>
+      </div>
+      <div className="fetures-details">
+        <div style={{ width: '100%', height: '100%', margin: 0 }}>
+          <div
+            onClick={() => setIsDetailsOpen(!isDetailsOpen)}
+            role="button"
+            onKeyDown={() => setIsDetailsOpen(!isDetailsOpen)}
+            tabIndex="-1"
+          >
+            {renderCollapseControl(isDetailsOpen)}
           </div>
+          <Collapse isOpen={isDetailsOpen}>
+            <div className="features-collapse" />
+            <FeatureTableDesktop />
+            <FeatureTableMobile />
+          </Collapse>
         </div>
       </div>
       <style jsx>
@@ -299,7 +303,7 @@ export const ProductFeatures = ({
             .description {
               width: 100%;
               height: 100%;
-              font-size: 20px;
+              font-size: 15px;
               margin-bottom: 20px;
             }
             .buttons-container {
@@ -313,7 +317,7 @@ export const ProductFeatures = ({
               margin-bottom: 20px;
             }
             .title {
-              font-size: 30px;
+              font-size: 20px;
               max-width: 100%;
               background-image: none;
             }
