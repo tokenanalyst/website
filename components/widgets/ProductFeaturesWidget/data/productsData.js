@@ -4,82 +4,60 @@ export const FEATURES = {
   columns: ['Platform', 'Pro', 'Enterprise'],
   categories: [
     {
-      name: 'Core Blockchain Data',
+      name: 'Blockchain Fundamentals',
       items: [
         {
-          name: 'Blocks, Transactions, & Address stats',
+          name: 'On-chain Volumes & Transaction Counts',
           entitled: [true, true, true],
         },
         {
-          name: 'ERC20 Token Transfers',
+          name: 'Network Stats (Address Growth, NVT, Fees) ',
           entitled: [true, true, true],
         },
         {
-          name: 'Smart Contract Function Calls & Events',
+          name: 'Supply Metrics',
+          entitled: [true, true, true],
+        },
+        {
+          name: 'Security Metrics (hashrate & block rewards by miner)',
           entitled: [false, true, true],
         },
         {
-          name: 'Mempool Transactions',
+          name: 'Detailed UTXO Age Band Metrics',
           entitled: [false, false, true],
         },
       ],
     },
     {
-      name: 'Visual Analytics',
+      name: 'On-Chain Flows',
       items: [
         {
-          name: 'Stablecoin/ERC20 Volumes',
+          name: 'BTC & ETH Exchange inflow/outflow',
           entitled: [true, true, true],
         },
         {
-          name: 'Supply Metrics',
-          entitled: [true, true, true],
-        },
-        {
-          name: 'Network stats (address growth, NVT, etc.)',
-          entitled: [true, true, true],
-        },
-        {
-          name: 'Security Metrics (hashrate, miner rewards, uncle rates)',
-          entitled: [true, true, true],
-        },
-      ],
-    },
-    {
-      name: 'Advanced API Analytics',
-      items: [
-        {
-          name: 'Stablecoin/ERC20 Volumes',
-          entitled: [false, true, true],
-        },
-        {
-          name: 'Supply Metrics',
-          entitled: [false, true, true],
-        },
-        {
-          name: 'Network stats (address growth, NVT, etc.)',
-          entitled: [false, true, true],
-        },
-        {
-          name: 'Security Metrics (hashrate, miner rewards, uncle rates)',
-          entitled: [false, true, true],
-        },
-      ],
-    },
-    {
-      name: 'Exchange Flows',
-      items: [
-        {
-          name: 'BTC & ETH inflow/outflow',
-          entitled: [true, true, true],
-        },
-        {
-          name: 'ERC20/Stablecoin inflow/outflow',
+          name: 'ERC20/Stablecoin Exchange inflow/outflow',
           entitled: [true, true, true],
         },
         {
           name: 'Significant Transactions into/out of Exchanges',
           entitled: [false, true, true],
+        },
+        {
+          name: 'Exchange Cluster Balances ',
+          entitled: [false, true, true],
+        },
+        {
+          name: 'Miner Cluster Balances',
+          entitled: [false, true, true],
+        },
+        {
+          name: 'Miner inflows/outflows',
+          entitled: [false, true, true],
+        },
+        {
+          name: 'Miner to Exchange flows',
+          entitled: [false, false, true],
         },
         {
           name: 'DEX Order Books',
@@ -88,22 +66,64 @@ export const FEATURES = {
       ],
     },
     {
-      name: 'Support',
+      name: 'Advanced Metrics',
       items: [
         {
-          name: 'Personalized Support	',
-          entitled: [false, true, true],
-        },
-        {
-          name: 'SLAs and Integration	',
-          entitled: [false, true, true],
-        },
-        {
-          name: 'Custom Metrics	',
+          name: 'Entity Labels (Miners, Exchanges, OTC Desks)',
           entitled: [false, false, true],
         },
         {
+          name: 'Smart Contract Function Calls & Events',
+          entitled: [false, false, true],
+        },
+        {
+          name: `ETH 'Internal' Transactions`,
+          entitled: [false, false, true],
+        },
+        {
+          name: 'Mempool Datasets',
+          entitled: [false, false, true],
+        },
+      ],
+    },
+    {
+      name: 'Access',
+      items: [
+        {
+          name: 'Web Platform (updated hourly)',
+          entitled: [true, true, true],
+        },
+        {
+          name: 'API (updated hourly)',
+          entitled: [false, true, true],
+        },
+        {
+          name: 'WebSocket (real-time)',
+          entitled: [false, true, true],
+        },
+        {
           name: 'Bespoke Dashboards',
+          entitled: [false, false, true],
+        },
+        {
+          name: 'Full Transaction Level Data Transfer',
+          entitled: [false, false, true],
+        },
+      ],
+    },
+    {
+      name: 'Support',
+      items: [
+        {
+          name: 'Intercom Support',
+          entitled: [true, true, true],
+        },
+        {
+          name: 'Email Support',
+          entitled: [false, true, true],
+        },
+        {
+          name: 'Speak with a TokenAnalyst Engineer ',
           entitled: [false, false, true],
         },
       ],
