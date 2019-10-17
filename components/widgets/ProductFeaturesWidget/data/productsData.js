@@ -193,7 +193,7 @@ const FEATURES_CONTENT = {
   ENTERPRISE: {
     title: 'Enterprise',
     description: `Access data faster than the competition 
-    and gain unparalleled insights using our 
+    and gain insights using our 
     proprietary datasets.`,
     image: '/static/svg/pricing/features_enterprise.svg',
     features: [

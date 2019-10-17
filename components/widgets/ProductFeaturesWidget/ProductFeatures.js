@@ -35,7 +35,7 @@ const renderFeatures = features =>
               font-stretch: normal;
               line-height: normal;
               letter-spacing: 0.13px;
-              color: #642c2c;
+              color: #252525;
               display: flex;
               align-items: center;
               padding-left: 50px;

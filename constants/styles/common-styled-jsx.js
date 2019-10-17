@@ -26,7 +26,7 @@ export const pricingButton = css`
     line-height: normal;
     letter-spacing: 0.13px;
     text-align: center;
-    color: #642c2c;
+    color: #222222;
     cursor: pointer;
   }
   .button {
@@ -43,7 +43,7 @@ export const pricingButton = css`
     line-height: normal;
     letter-spacing: 0.13px;
     text-align: center;
-    color: #642c2c;
+    color: #222222;
     cursor: pointer;
   }
   .buttonLink {
@@ -64,7 +64,7 @@ export const pricingButton = css`
     line-height: normal;
     letter-spacing: 0.13px;
     text-align: center;
-    color: #642c2c;
+    color: #252525;
     cursor: pointer;
   }
   .buttonActive {

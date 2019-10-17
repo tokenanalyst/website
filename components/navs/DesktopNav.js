@@ -679,7 +679,7 @@ export const DesktopNav = () => {
             color: white;
             min-width: 80px;
             text-align: center;
-            background-color: rgba(${colors.primaryGreen});
+            background-color: #222222;
             max-height: 40px;
             padding: 10px;
             border-radius: 20px;

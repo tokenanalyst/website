@@ -44,8 +44,7 @@ export const DemoCallOutPricing = () => {
             width: 651px;
           }
           .slogan {
-            margin-top: 50px;
-            margin-left: 5px;
+            margin-top: 100px;
           }
           .title {
             font-family: Space Grotesk;
