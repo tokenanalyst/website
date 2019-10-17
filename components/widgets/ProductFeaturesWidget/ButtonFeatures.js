@@ -13,7 +13,7 @@ export const ButtonFeatures = ({
   isActive,
   onClick,
 }) => {
-  const linkColor = isActive ? '#ffffff' : '#642c2c';
+  const linkColor = isActive ? '#ffffff' : '#222';
 
   return (
     <div>
