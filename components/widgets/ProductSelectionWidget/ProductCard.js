@@ -108,7 +108,7 @@ export const ProductCard = ({
         {`
           .container {
             width: 381px;
-            height: 446px;
+            height: 450px;
             background-color: #ffffff;
             padding-left: 40px;
             padding-top: 30px;
@@ -170,6 +170,7 @@ export const ProductCard = ({
             letter-spacing: 0.13px;
             color: #2d2d2d;
             padding-bottom: 20px;
+            min-height: 100px;
           }
           .links {
             font-family: Open Sans;
