@@ -158,7 +158,7 @@ const FEATURES_CONTENT = {
     index: 1,
   },
   PRO: {
-    title: 'TokenAnalyst Pro',
+    title: 'Professional',
     description: `Our signature plan, offering proprietary 
     historical and real-time metrics across 
     a wide-array of assets via API 
