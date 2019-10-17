@@ -34,5 +34,5 @@ export const CollapsibleItem = ({ header, body }) => {
 
 CollapsibleItem.propTypes = {
   header: PropTypes.string,
-  body: PropTypes.string,
+  body: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
 };

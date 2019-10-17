@@ -6,115 +6,49 @@ import { tokensDb } from '../services/tokensDb';
 import { CollapsibleItem } from '../components/CollapsibleItem';
 import { TOKEN_NAMES } from '../constants/token-names';
 import { ProChartContainer } from '../components/widgets/ProChartWidget/ProChartContainer';
+import { METRICS } from '../constants/tokens';
 
-const MetricsList = () => {
+const MetricsList = ({ token }) => {
   return (
     <>
       <div className="container">
         <div className="card">
           <Card>
             <div className="header">Fundamentals:</div>
-            <CollapsibleItem
-              header="Volumes"
-              body={
-                <>
-                  <div className="item">USD</div>
-                  <div className="item">Real</div>
-                </>
-              }
-            />
-            <CollapsibleItem
-              header="Transactions"
-              body={
-                <>
-                  <div className="item">Number</div>
-                </>
-              }
-            />
-            <CollapsibleItem
-              header="Addresses"
-              body={
-                <>
-                  <div className="item">Senders</div>
-                  <div className="item">Recipients</div>
-                </>
-              }
-            />
-            <CollapsibleItem
-              header="Supply"
-              body={
-                <>
-                  <div className="item">Amount</div>
-                </>
-              }
-            />
-            <CollapsibleItem
-              header="NVT"
-              body={
-                <>
-                  <div className="item">USD</div>
-                  <div className="item">Market Cap</div>
-                </>
-              }
-            />
-            <CollapsibleItem
-              header="NVT"
-              body={
-                <>
-                  <div className="item">USD</div>
-                  <div className="item">Market Cap</div>
-                </>
-              }
-            />
-            <CollapsibleItem
-              header="NVT"
-              body={
-                <>
-                  <div className="item">USD</div>
-                  <div className="item">Market Cap</div>
-                </>
-              }
-            />
-            <CollapsibleItem
-              header="NVT"
-              body={
-                <>
-                  <div className="item">USD</div>
-                  <div className="item">Market Cap</div>
-                </>
-              }
-            />
-            <CollapsibleItem
-              header="NVT"
-              body={
-                <>
-                  <div className="item">USD</div>
-                  <div className="item">Market Cap</div>
-                </>
-              }
-            />
-            <CollapsibleItem
-              header="NVT"
-              body={
-                <>
-                  <div className="item">USD</div>
-                  <div className="item">Market Cap</div>
-                </>
-              }
-            />
+            {METRICS[token].map(metric => (
+              <CollapsibleItem
+                key={metric.category}
+                header={metric.category}
+                body={
+                  <>
+                    {metric.values.map(value => (
+                      <div className="item" key={value.apiValue}>
+                        {value.name}
+                      </div>
+                    ))}
+                  </>
+                }
+              />
+            ))}
           </Card>
         </div>
       </div>
       <style jsx>{`
         .card {
-          width: 1000%;
-          max-height: 800px;
+          max-height: 600px;
           overflow: scroll;
           border: 1px solid rgba(0, 0, 0, 0.2);
           border-radius: 5px;
         }
         .item {
-          padding: 5px;
+          margin-left: 5px;
+          margin-bottom: 5px;
+        }
+        .item-selected {
+          margin-left: 5px;
+          margin-bottom: 5px;
+          font-weight: bold;
+          border-bottom: 2px solid rgba(63, 205, 171, 1);
         }
         .header {
           font-size: 16px;
@@ -128,6 +62,7 @@ const MetricsList = () => {
 
 const Metrics = () => {
   const [selectedToken, setSelectedToken] = useState('BTC');
+  const [selectedMetric, setSelectedMetric] = useState('volume_usd');
 
   const {
     tokens: {
@@ -160,10 +95,18 @@ const Metrics = () => {
               onItemSelect={newToken => setSelectedToken(newToken)}
             />
           </Card>
-          <MetricsList />
+          <div className="metrics-list">
+            <MetricsList token={selectedToken} />
+          </div>
         </div>
         <div className="rhs">
-          <div>Yo</div>
+          <ProChartContainer
+            timeFrame="3D"
+            interval="60"
+            TVSymbols={['BTC', 'USDT']}
+            TASymbol={selectedToken}
+            exchangeName="Binance"
+          />
         </div>
       </div>
       <style jsx>{`
@@ -172,6 +115,10 @@ const Metrics = () => {
         }
         .lhs {
           width: 25%;
+          padding-right: 10px;
+        }
+        .rhs {
+          width: 75%;
         }
         .title {
           display: flex;
@@ -185,6 +132,9 @@ const Metrics = () => {
           font-size: 20px;
           font-weight: bold;
           padding-left: 10px;
+        }
+        .metrics-list {
+          padding-top: 10px;
         }
       `}</style>
     </>
