@@ -588,6 +588,7 @@ export const DesktopNav = () => {
             padding-left: 10px;
           }
           .logo-desktop {
+            margin-left: 10px;
             cursor: pointer;
           }
           .desktop-links {
