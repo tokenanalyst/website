@@ -62,7 +62,10 @@ export const Footer = () => {
         </div>
         <div className="bottom">
           <Link href="/about">
-            <a>© 2019 TokenAnalyst Limited</a>
+            <div>
+              <a>© 2019 TokenAnalyst Limited</a> - Icons from the Noun Project,
+              created by Matthias Hartmann, Frühstück
+            </div>
           </Link>
         </div>
       </div>
@@ -79,6 +82,8 @@ export const Footer = () => {
           display: flex;
           flex-direction: row;
           justify-content: space-around;
+          padding-top: 50px;
+          padding-bottom: 50px;
         }
         .bottom {
           display: flex;
