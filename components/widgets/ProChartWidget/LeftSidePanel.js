@@ -167,8 +167,14 @@ export const LeftSidePanel = ({
             padding-bottom: 10px;
           }
           @media (min-width: 320px) and (max-width: 767px) {
+            .control {
+              margin: auto;
+            }
             .controls {
               flex-direction: column;
+            }
+            .label {
+              margin: auto;
             }
             .cat {
               text-align: center;
