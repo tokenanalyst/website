@@ -1,4 +1,11 @@
-import { PLANS } from '../../../../constants/plans';
+import { PLANS, PLAN_NAMES } from '../../../../constants/plans';
+
+const { PLATFORM, PRO } = PLAN_NAMES;
+
+export const GA_GOAL_NAME = {
+  [PLATFORM]: PLATFORM,
+  [PRO]: PRO,
+};
 
 export const FEATURES = {
   columns: ['Platform', 'Pro', 'Enterprise'],
