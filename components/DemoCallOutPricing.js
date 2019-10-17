@@ -71,17 +71,17 @@ export const DemoCallOutPricing = () => {
             max-width: 320px;
           }
           a {
-            color: #642c2c;
+            color: #222;
           }
           a:hover {
-            color: #642c2c;
+            color: #222;
             text-decoration: none;
           }
           a:active {
-            color: #642c2c;
+            color: #222;
           }
           a:visited {
-            color: #642c2c;
+            color: #222;
           }
           @media only screen and (max-width: 768px) {
             .slogan {

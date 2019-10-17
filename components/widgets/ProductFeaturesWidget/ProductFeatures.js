@@ -76,7 +76,7 @@ const renderCollapseControl = isOpen => {
             font-weight: 700;
             font-style: normal;
             font-stretch: normal;
-            color: #642c2c;
+            color: #222;
             cursor: pointer;
           }
           .image {
