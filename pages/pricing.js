@@ -1,98 +1,113 @@
-import React, { useContext } from 'react';
-import ReactGA from 'react-ga';
-import Head from 'next/head';
-import Router from 'next/router';
+import React from 'react';
 
-import { PageHeader } from '../components/PageHeader';
-import { TestimonialsWidget } from '../components/widgets/TestimonialsWidget';
-import { PageSection } from '../components/PageSection';
-import { Link } from '../components/Link';
-import { LoginContext } from '../contexts/Login';
-
-import {
-  ProductSelectionWidget,
-  FeatureTableDesktop,
-  FeatureTableMobile,
-} from '../components/widgets/ProductSelectionWidget';
+import { DemoCallOutPricing } from '../components/DemoCallOutPricing';
+import { ProductSelectionWidget } from '../components/widgets/ProductSelectionWidget';
+import { ProductFeaturesWidget } from '../components/widgets/ProductFeaturesWidget';
+import { TestimonialsPricing } from '../components/TestimonialsPricing';
 
 const Pricing = () => {
-  const loginCtx = useContext(LoginContext);
-
   return (
     <div className="container">
-      <Head>
-        <title>TokenAnalyst - Pricing</title>
-      </Head>
-      <PageHeader text={'Plans'} />
-      <ProductSelectionWidget />
-      <div className="researcher">
-        If you are a <strong>researcher</strong> or an <strong>analyst</strong>,
-        {` `}
-        <Link
-          desktopLabel="contact us"
-          onClick={() => {
-            ReactGA.event({
-              category: 'User',
-              action: `Plan select Free`,
-              label: `Plans`,
-            });
-            if (!loginCtx.isLoggedIn) {
-              loginCtx.setPaymentData({
-                isFreeTier: true,
-              });
-            }
-            return Router.push('/register');
-          }}
-        />
-        {` `}to get free access to small set of our data
+      <div className="callout-container">
+        <div className="callout">
+          <DemoCallOutPricing />
+        </div>
       </div>
-      <PageSection text={'Testimonials'} />
-      <div>
-        <TestimonialsWidget />
+
+      <div className="products-container">
+        <div className="products">
+          <ProductSelectionWidget />
+        </div>
       </div>
-      <PageSection text={'What you get'} />
-      <div className="feature-table">
-        <FeatureTableDesktop />
-        <FeatureTableMobile />
+      <div className="testimonials-container">
+        <div className="testimonials">
+          <TestimonialsPricing />
+        </div>
       </div>
+      <div className="products-features-container">
+        <div className="products-features">
+          <ProductFeaturesWidget />
+        </div>
+      </div>
+
       <style jsx>
         {`
           .container {
+            height: 100%;
+            width: 100%;
+            margin: auto;
             display: flex;
             flex-direction: column;
-            font-family: Space Grotesk;
+            justify-content: center;
           }
-          .header {
-            font-size: 32px;
-            font-weight: bold;
-            padding: 15px;
-            padding-top: 30px;
+          .callout-container {
+            margin: auto;
+            width: 1440px;
+            height: 100%;
           }
-          .sub-header {
-            font-size: 32px;
-            font-weight: bold;
-            padding: 15px;
-            padding-top: 30px;
-            opacity: 0.3;
+          .callout {
+            padding-left: 100px;
+            padding-right: 100px;
+            height: 100%;
+            padding-bottom: 35px;
           }
-          .product-widget {
-            min-width: 100%;
-            padding-left: 7px;
-            margin-right: 60px;
+          .testimonials-container {
+            margin: auto;
+            width: 1440px;
+            height: 100%;
           }
-          .feature-table {
-            padding-top: 10px;
+          .testimonials {
+            padding-left: 100px;
+            padding-right: 100px;
           }
-          .researcher {
-            font-size: 18px;
-            padding: 10px;
+          .products-container {
+            height: 100%;
+            background: url('/static/png/pricing/products_list_brg.png');
+          }
+          .products {
+            margin: auto;
+            height: 100%;
+            width: 1440px;
+          }
+          .products-features-container {
+            margin: auto;
+            height: 100%;
+            width: 1440px;
+          }
+          .products-features {
+            height: 100%;
           }
           @media only screen and (max-width: 768px) {
-            .header {
-              text-align: center;
+            .container {
+              width: 100%;
+              margin: auto;
             }
-            .product-widget {
-              padding-left: 2px;
+            .callout-container {
+              width: 100%;
+            }
+            .callout {
+              padding-left: 0px;
+              padding-right: 0px;
+              height: 100%;
+              padding-bottom: 15px;
+            }
+            .testimonials-container {
+              width: 100%;
+            }
+            .testimonials {
+              padding-left: 0px;
+              padding-right: 0px;
+            }
+            .products-container {
+              display: flex;
+              flex-direction: column;
+              height: 100%;
+            }
+            .products {
+              width: 100%;
+            }
+            .products-features-container {
+              width: 100%;
             }
           }
         `}

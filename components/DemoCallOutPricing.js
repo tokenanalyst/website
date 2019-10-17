@@ -6,26 +6,25 @@ export const DemoCallOutPricing = () => {
   return (
     <div className="container">
       <div className="slogan">
-        <h1 className="title">Blockchain Intelligence for Markets</h1>
+        <h1 className="title">Blockchain Market Intelligence</h1>
         <p className="description">
-          Intelligence based on proprietary models of wallet behavior and
-          exchange flows.
+          Enterprise-grade data and tools to understand and access blockchains.
         </p>
         <div>
-          <a
-            href="mailto:info@tokenanalyst.io"
-            target="_blank"
-            className="buttonLink"
-            rel="noopener noreferrer"
+          <button
+            className="button"
+            type="button"
+            onClick={() => window.Intercom('show')}
           >
-            Request a Demo
-          </a>
+            Request a demo
+          </button>
         </div>
       </div>
-      <div className="intelligence-image">
+      <div className="image-container">
         <img
           src="/static/svg/pricing/pricing_callout.svg"
           alt="Blockchain Intelligence"
+          className="intelligence-img"
         />
       </div>
       <style jsx>{pricingButton}</style>
@@ -34,17 +33,18 @@ export const DemoCallOutPricing = () => {
           .container {
             position: relative;
           }
-          .intelligence-image {
-            width: 653px;
-            height: 693px;
-            top: 0;
-            right: 0;
+          .image-container {
+            top: -20px;
+            right: 25px;
             position: absolute;
             text-align: right;
-            margin-right: 50px;
+          }
+          .intelligence-img {
+            height: 550px;
+            width: 651px;
           }
           .slogan {
-            margin-top: 90px;
+            margin-top: 50px;
             margin-left: 5px;
           }
           .title {
@@ -91,7 +91,7 @@ export const DemoCallOutPricing = () => {
             }
             .title {
               font-family: Space Grotesk;
-              font-size: 30px;
+              font-size: 25px;
               font-weight: bold;
               font-style: normal;
               font-stretch: normal;
@@ -103,7 +103,7 @@ export const DemoCallOutPricing = () => {
             }
             .description {
               font-family: Cardo;
-              font-size: 20px;
+              font-size: 15px;
               font-weight: normal;
               font-style: normal;
               font-stretch: normal;
@@ -113,7 +113,7 @@ export const DemoCallOutPricing = () => {
               margin-bottom: 20px;
               max-width: 350px;
             }
-            .intelligence-image {
+            .image-container {
               display: none;
             }
             .title {

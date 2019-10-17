@@ -42,38 +42,40 @@ export const FeatureTableDesktop = () => {
           ))}
         </tbody>
       </table>
-      <style jsx>{`
-        .container {
-          font-family: Open Sans;
-          font-size: 16px;
-          line-height: 24px;
-        }
-        .row-header {
-          border-bottom: solid 1px rgba(151, 151, 151, 0.15);
-          margin-bottom: 3px;
-        }
-        .column-header {
-          width: 5%;
-          font-weight: bold;
-          padding-left: 20px;
-          padding-right: 10%;
-          padding-bottom: 5px;
-          padding-top: 10px;
-          background-color: rgba(151, 151, 151, 0.15);
-        }
-        .feature {
-          padding-left: 20px;
-          padding-right: 90px;
-        }
-        table {
-          border-spacing: 0px;
-        }
-        @media only screen and (max-width: 768px) {
+      <style jsx>
+        {`
           .container {
-            display: none;
+            font-family: Open Sans;
+            font-size: 16px;
+            line-height: 24px;
           }
-        }
-      `}</style>
+          .row-header {
+            border-bottom: solid 1px rgba(249, 249, 249, 1);
+            margin-bottom: 3px;
+          }
+          .column-header {
+            width: 5%;
+            font-weight: bold;
+            padding-left: 20px;
+            padding-right: 10%;
+            padding-bottom: 5px;
+            padding-top: 10px;
+            background-color: rgba(249, 249, 249, 1);
+          }
+          .feature {
+            padding-left: 20px;
+            padding-right: 90px;
+          }
+          table {
+            border-spacing: 0px;
+          }
+          @media only screen and (max-width: 768px) {
+            .container {
+              display: none;
+            }
+          }
+        `}
+      </style>
     </div>
   );
 };

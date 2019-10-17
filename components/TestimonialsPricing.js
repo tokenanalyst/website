@@ -20,7 +20,7 @@ const reviewsStyle = css`
   }
   @media only screen and (max-width: 767px) {
     p {
-      font-size: 20px;
+      font-size: 15px;
       line-height: 1.3;
       padding-bottom: 10px;
     }
@@ -83,7 +83,7 @@ const renderLinks = () => {
         <a className="link">Platform</a>
       </Link>
       <Link href="/#">
-        <a className="link">API and WebSocket</a>
+        <a className="link">TokenAnalyst Pro</a>
       </Link>
       <Link href="/#">
         <a className="link">Enterprise</a>
@@ -156,12 +156,13 @@ export const TestimonialsPricing = () => (
         })}
       </div>
       <div className="button-container">
-        <a
-          className={classNames('buttonLink', 'buttonActive')}
-          href="mailto:info@tokenanalyst.io"
+        <button
+          className={classNames('button', 'buttonActive')}
+          type="button"
+          onClick={() => window.Intercom('show')}
         >
           Request a demo
-        </a>
+        </button>
       </div>
       <div className="links-container">{renderLinks()}</div>
     </div>
@@ -172,7 +173,6 @@ export const TestimonialsPricing = () => (
           color: #252525;
           display: flex;
           flex-direction: column;
-          background-image: url('/static/svg/pricing/testimonial_background.svg');
           background-repeat: no-repeat;
           background-position: right 40px top 170px;
           padding-top: 100px;
@@ -284,7 +284,7 @@ export const TestimonialsPricing = () => (
           }
           .title {
             font-family: Space Grotesk;
-            font-size: 30px;
+            font-size: 20px;
             font-weight: bold;
             font-style: normal;
             font-stretch: normal;
@@ -306,7 +306,7 @@ export const TestimonialsPricing = () => (
           }
           .name-container {
             font-family: Cardo;
-            font-size: 16px;
+            font-size: 12px;
             font-weight: normal;
             font-style: normal;
             font-stretch: normal;

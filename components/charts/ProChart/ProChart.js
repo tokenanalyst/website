@@ -73,7 +73,7 @@ const ProChart = ({ kaikoService, tradingViewOptions, onChartRenderCb }) => {
         <style jsx>
           {`
             .tvCharContainer {
-              height: calc(100vh - 80px);
+              height: calc(100vh - 90px);
             }
           `}
         </style>

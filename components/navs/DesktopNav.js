@@ -54,18 +54,21 @@ export const DesktopNav = () => {
                 <img
                   src={
                     loginCtx.isLoggedIn
-                      ? `/static/png/${LOGO_IMAGES['DesktopPro']}`
-                      : `/static/png/${LOGO_IMAGES['Desktop']}`
+                      ? `/static/png/${LOGO_IMAGES.DesktopPro}`
+                      : `/static/png/${LOGO_IMAGES.Desktop}`
                   }
                   width="180px"
                   onMouseOver={() => {
+                    collapseAllSubMenus();
+                  }}
+                  onFocus={() => {
                     collapseAllSubMenus();
                   }}
                   alt="TokenAnalyst Home Page"
                 />
               </Link>
             </div>
-            <div className={'links-metrics'}>
+            <div className="links-metrics">
               <Link href="/" passHref>
                 <div
                   className={classNames(
@@ -73,6 +76,10 @@ export const DesktopNav = () => {
                     setLinkActive(asPath, '/')
                   )}
                   onMouseOver={() => {
+                    collapseAllSubMenus();
+                    setShownItems(prev => ({ ...prev, exchanges: true }));
+                  }}
+                  onFocus={() => {
                     collapseAllSubMenus();
                     setShownItems(prev => ({ ...prev, exchanges: true }));
                   }}
@@ -87,6 +94,7 @@ export const DesktopNav = () => {
                     setLinkActive(asPath, '/stablecoins')
                   )}
                   onMouseOver={collapseAllSubMenus}
+                  onFocus={collapseAllSubMenus}
                 >
                   Stablecoins
                 </div>
@@ -109,13 +117,14 @@ export const DesktopNav = () => {
                     setLinkActive(asPath, '/compare')
                   )}
                   onMouseOver={collapseAllSubMenus}
+                  onFocus={collapseAllSubMenus}
                 >
                   Compare
                 </div>
               </Link>
             </div>
 
-            <div className={'links-products'}>
+            <div className="links-products">
               <a
                 href="https://websockets.tokenanalyst.io/"
                 target="_blank"
@@ -144,6 +153,7 @@ export const DesktopNav = () => {
                 href="https://docs.tokenanalyst.io/#/api"
                 target="_blank"
                 onMouseOver={collapseAllSubMenus}
+                onFocus={collapseAllSubMenus}
                 rel="noopener noreferrer"
               >
                 API
@@ -157,6 +167,10 @@ export const DesktopNav = () => {
                   collapseAllSubMenus();
                   setShownItems(prev => ({ ...prev, contact: true }));
                 }}
+                onFocus={() => {
+                  collapseAllSubMenus();
+                  setShownItems(prev => ({ ...prev, contact: true }));
+                }}
               >
                 About Us
               </div>
@@ -167,8 +181,22 @@ export const DesktopNav = () => {
               <>
                 <div
                   className="login-button"
+                  tabIndex="0"
                   onClick={() => {
-                    // TO DO: put all auth logic into its own module
+                    Cookies.remove(COOKIES.apiKey);
+                    Cookies.remove(COOKIES.loggedInAsUsername);
+                    Cookies.remove(COOKIES.loggedInAsUserId);
+                    Cookies.set(COOKIES.tier, PLANS.SIGNED_OUT.id);
+                    loginCtx.setIsLoggedIn(false);
+                    loginCtx.intercom.removeUser();
+
+                    ReactGA.event({
+                      category: 'User',
+                      action: `Click Logout`,
+                      label: `Desktop Nav`,
+                    });
+                  }}
+                  onKeyDown={() => {
                     Cookies.remove(COOKIES.apiKey);
                     Cookies.remove(COOKIES.loggedInAsUsername);
                     Cookies.remove(COOKIES.loggedInAsUserId);
@@ -185,21 +213,43 @@ export const DesktopNav = () => {
                   onMouseOver={() => {
                     collapseAllSubMenus();
                   }}
+                  role="button"
+                  onFocus={() => {
+                    collapseAllSubMenus();
+                  }}
                 >
                   Logout
                 </div>
               </>
             ) : (
-              <Link href="/login" passHref>
-                <div
-                  className="login-button"
-                  onMouseOver={() => {
-                    collapseAllSubMenus();
-                  }}
-                >
-                  Login
-                </div>
-              </Link>
+              <div className="not-logged-in">
+                <Link href="/register" passHref>
+                  <div
+                    onMouseOver={() => {
+                      collapseAllSubMenus();
+                    }}
+                    onFocus={() => {
+                      collapseAllSubMenus();
+                    }}
+                    className="signup"
+                  >
+                    Sign Up
+                  </div>
+                </Link>
+                <Link href="/login" passHref>
+                  <div
+                    className="login-button"
+                    onMouseOver={() => {
+                      collapseAllSubMenus();
+                    }}
+                    onFocus={() => {
+                      collapseAllSubMenus();
+                    }}
+                  >
+                    Login
+                  </div>
+                </Link>
+              </div>
             )}
           </div>
         </div>
@@ -207,7 +257,10 @@ export const DesktopNav = () => {
       <div className="desktop-sub-links-container">
         <div
           className="desktop-contact-sub-link-container"
+          role="link"
           onClick={collapseAllSubMenus}
+          onKeyDown={collapseAllSubMenus}
+          tabIndex="0"
         >
           <div className="desktop-sub-links">
             <div
@@ -515,135 +568,149 @@ export const DesktopNav = () => {
           </div>
         </div>
       </div>
-      <style jsx>{`
-        .container {
-          font-family: Open Sans;
-          color: white;
-          position: fixed;
-          background-color: black;
-          z-index: 100;
-          width: 100%;
-        }
-        .desktop {
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          align-items: center;
-          padding-left: 10px;
-          height: 60px;
-        }
-        .left-side {
-          display: flex;
-          flex-direction: row;
-          width: 100%;
-          align-items: center;
-        }
-        .right-side {
-          margin-right: 10px;
-          display: flex;
-          padding-left: 10px;
-        }
-        .logo-desktop {
-          cursor: pointer;
-        }
-        .desktop-links {
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          align-items: center;
-          width: 100%;
-        }
-        .desktop-link,
-        a {
-          opacity: 0.5;
-          padding-left: 10px;
-          padding-right: 10px;
-          text-decoration: none;
-          color: white;
-        }
-        .active {
-          opacity: 1 !important;
-        }
-        .links-metrics {
-          display: flex;
-        }
-        .links-products {
-          display: flex;
-          flex-grow: 1;
-          justify-content: flex-end;
-        }
-        .desktop-link:hover,
-        a:hover {
-          opacity: 1;
-          cursor: pointer;
-        }
-        .desktop-about-sub-link-container {
-          width: 125px;
-          background: black;
-          position: fixed;
-          color: white;
-          z-index: 10000;
-          top: 60px;
-          margin-left: 400px;
-          padding-left: 10px;
-          border-radius: 0px 0px 5px 5px;
-        }
-        .desktop-contact-sub-link-container {
-          width: 125px;
-          background: black;
-          position: fixed;
-          color: white;
-          z-index: 10000;
-          top: 60px;
-          right: 75px;
-          padding-left: 10px;
-          border-radius: 0px 0px 5px 5px;
-        }
-        .desktop-exchanges-sub-link-container {
-          width: 125px;
-          background: black;
-          position: fixed;
-          color: white;
-          z-index: 10000;
-          top: 60px;
-          margin-left: 190px;
-          padding-left: 10px;
-          border-radius: 0px 0px 5px 5px;
-        }
-        .desktop-sub-link {
-          padding-top: 10px;
-          padding-bottom: 10px;
-          opacity: 0.5;
-        }
-        .desktop-sub-link > a {
-          padding-left: 0px;
-          opacity: 1;
-        }
-        .desktop-sub-link:hover {
-          cursor: pointer;
-          opacity: 1;
-        }
-        .desktop-about-sub-links {
-          display: ${shownItems.about ? 'block' : 'none'};
-        }
-        .desktop-contact-sub-links {
-          display: ${shownItems.contact ? 'block' : 'none'};
-        }
-        .desktop-exchanges-sub-links {
-          display: ${shownItems.exchanges ? 'block' : 'none'};
-        }
-        .login-button {
-          color: white;
-          min-width: 80px;
-          text-align: center;
-          background-color: rgba(${colors.primaryGreen});
-          max-height: 40px;
-          padding: 10px;
-          border-radius: 20px;
-          cursor: pointer;
-          margin-left: 20px;
-        }
-      `}</style>
+      <style jsx>
+        {`
+          .container {
+            font-family: Open Sans;
+            color: white;
+            position: fixed;
+            background-color: black;
+            z-index: 100;
+            width: 100%;
+          }
+          .desktop {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: 10px;
+            height: 60px;
+          }
+          .left-side {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            align-items: center;
+          }
+          .right-side {
+            margin-right: 10px;
+            display: flex;
+            padding-left: 10px;
+          }
+          .logo-desktop {
+            cursor: pointer;
+          }
+          .desktop-links {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+          }
+          .desktop-link,
+          a {
+            opacity: 0.5;
+            padding-left: 10px;
+            padding-right: 10px;
+            text-decoration: none;
+            color: white;
+          }
+          .active {
+            opacity: 1 !important;
+          }
+          .links-metrics {
+            display: flex;
+          }
+          .links-products {
+            display: flex;
+            flex-grow: 1;
+            justify-content: flex-end;
+          }
+          .desktop-link:hover,
+          a:hover {
+            opacity: 1;
+            cursor: pointer;
+          }
+          .desktop-about-sub-link-container {
+            width: 125px;
+            background: black;
+            position: fixed;
+            color: white;
+            z-index: 10000;
+            top: 60px;
+            margin-left: 400px;
+            padding-left: 10px;
+            border-radius: 0px 0px 5px 5px;
+          }
+          .desktop-contact-sub-link-container {
+            width: 125px;
+            background: black;
+            position: fixed;
+            color: white;
+            z-index: 10000;
+            top: 60px;
+            right: 170px;
+            padding-left: 10px;
+            border-radius: 0px 0px 5px 5px;
+          }
+          .desktop-exchanges-sub-link-container {
+            width: 125px;
+            background: black;
+            position: fixed;
+            color: white;
+            z-index: 10000;
+            top: 60px;
+            margin-left: 190px;
+            padding-left: 10px;
+            border-radius: 0px 0px 5px 5px;
+          }
+          .desktop-sub-link {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            opacity: 0.5;
+          }
+          .desktop-sub-link > a {
+            padding-left: 0px;
+            opacity: 1;
+          }
+          .desktop-sub-link:hover {
+            cursor: pointer;
+            opacity: 1;
+          }
+          .desktop-about-sub-links {
+            display: ${shownItems.about ? 'block' : 'none'};
+          }
+          .desktop-contact-sub-links {
+            display: ${shownItems.contact ? 'block' : 'none'};
+          }
+          .desktop-exchanges-sub-links {
+            display: ${shownItems.exchanges ? 'block' : 'none'};
+          }
+          .login-button {
+            color: white;
+            min-width: 80px;
+            text-align: center;
+            background-color: rgba(${colors.primaryGreen});
+            max-height: 40px;
+            padding: 10px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-left: 20px;
+            font-weight: 700;
+          }
+          .signup {
+            cursor: pointer;
+            margin-left: 20px;
+            font-weight: 700;
+          }
+          .not-logged-in {
+            margin-left: 20px;
+            display: flex;
+            min-width: 180px;
+            align-items: center;
+          }
+        `}
+      </style>
     </>
   );
 };

@@ -93,10 +93,12 @@ const Exchange = () => {
             <img
               src="/static/png/chart-register-desktop.png"
               className="image-desktop"
+              alt="register-desktop"
             />
             <img
               src="/static/png/chart-register-mobile.png"
               className="image-mobile"
+              alt="redirect-mobile"
             />
             <style jsx>
               {`
@@ -121,7 +123,6 @@ const Exchange = () => {
           </>
         </DelayedDialog>
       )}
-      <ExchangeMetricsWidget token={token} exchange={exchange} />
       {token && exchange && isTVSupported ? (
         <>
           <ProChartWidget
@@ -130,33 +131,15 @@ const Exchange = () => {
             tokensDb={tokensDb}
             onChange={pushToPage}
           />
-          <div className="kaiko">
-            Order book data by
-            <a
-              href="https://www.kaiko.com/?rfsn=3222089.6abb9f&utm_source=refersion&utm_medium=affiliate&utm_campaign=3222089.6abb9f"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="link"
-            >
-              Kaiko
-            </a>
-          </div>
-          <style jsx>
-            {`
-              .kaiko {
-                padding: 20px;
-                display: flex;
-                align-items: center;
-                justify-content: flex-end;
-              }
-              .link {
-                padding-left: 3px;
-              }
-            `}
-          </style>
         </>
       ) : (
-        token && exchange && <IoChartWidget token={token} exchange={exchange} />
+        token &&
+        exchange && (
+          <>
+            <ExchangeMetricsWidget token={token} exchange={exchange} />
+            <IoChartWidget token={token} exchange={exchange} />
+          </>
+        )
       )}
     </div>
   );

@@ -24,7 +24,7 @@ export const MobileNav = () => {
           <div className="mobile">
             <Link href="/" passHref>
               <img
-                src={`/static/png/${LOGO_IMAGES['Mobile']}`}
+                src={`/static/png/${LOGO_IMAGES.Mobile}`}
                 width="50px"
                 alt="TokenAnalyst Home Page"
               />
@@ -116,75 +116,82 @@ export const MobileNav = () => {
               Logout
             </div>
           ) : (
-            <Link href="/login" passHref>
-              <div className="mobile-link">Login</div>
-            </Link>
+            <>
+              <Link href="/register" passHref>
+                <div className="mobile-link">Sign Up</div>
+              </Link>
+              <Link href="/login" passHref>
+                <div className="mobile-link">Login</div>
+              </Link>
+            </>
           )}
         </div>
       </div>
-      <style jsx>{`
-        .top {
-          font-family: DIN Alternate Medium;
-          color: white;
-        }
-        .container {
-          position: fixed;
-          background-color: black;
-          z-index: 100;
-          width: 100%;
-        }
-        .mobile {
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          align-items: center;
-          padding-left: 10px;
-          height: 60px;
-        }
-        .menu-icon {
-          padding-right: 20px;
-        }
-        .mobile-sub-links-container {
-          position: fixed;
-          color: white;
-          font-size: 18px;
-          z-index: 10000;
-          top: 60px;
-          display: flex;
-          justify-content: flex-end;
-          display: ${isVisible ? 'block' : 'none'};
-          background-color: black;
-          width: 100%;
-          text-align: center;
-        }
-        .mobile-link,
-        a {
-          opacity: 0.5;
-          padding-top: 10px;
-          padding-bottom: 10px;
-          text-decoration: none;
-          color: white;
-        }
-        .mobile-link-active {
-          opacity: 1;
-          padding-top: 10px;
-          padding-bottom: 10px;
-          text-decoration: none;
-          color: white;
-        }
-        a {
-          opacity: 1;
-          color: white;
-          text-decoration: none;
-          padding-top: 10px;
-          padding-bottom: 10px;
-        }
-        @media only screen and (min-width: 769px) {
+      <style jsx>
+        {`
           .top {
-            display: none;
+            font-family: DIN Alternate Medium;
+            color: white;
           }
-        }
-      `}</style>
+          .container {
+            position: fixed;
+            background-color: black;
+            z-index: 100;
+            width: 100%;
+          }
+          .mobile {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: 10px;
+            height: 60px;
+          }
+          .menu-icon {
+            padding-right: 20px;
+          }
+          .mobile-sub-links-container {
+            position: fixed;
+            color: white;
+            font-size: 18px;
+            z-index: 10000;
+            top: 60px;
+            display: flex;
+            justify-content: flex-end;
+            display: ${isVisible ? 'block' : 'none'};
+            background-color: black;
+            width: 100%;
+            text-align: center;
+          }
+          .mobile-link,
+          a {
+            opacity: 0.5;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            text-decoration: none;
+            color: white;
+          }
+          .mobile-link-active {
+            opacity: 1;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            text-decoration: none;
+            color: white;
+          }
+          a {
+            opacity: 1;
+            color: white;
+            text-decoration: none;
+            padding-top: 10px;
+            padding-bottom: 10px;
+          }
+          @media only screen and (min-width: 769px) {
+            .top {
+              display: none;
+            }
+          }
+        `}
+      </style>
     </>
   );
 };

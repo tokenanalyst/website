@@ -87,7 +87,7 @@ export const ProductCard = ({
         <div className="price-container">
           <div className="price-text">{price}</div>
           {isPlatformInclusive && (
-            <div className="price-platform">includes Platform)</div>
+            <div className="price-platform">(includes Platform)</div>
           )}
         </div>
         <div className="description">{description}</div>
@@ -231,6 +231,12 @@ export const ProductCard = ({
               padding: 5px;
               height: 100%;
               padding-bottom: 20px;
+            }
+            .title-container {
+              font-size: 20px;
+            }
+            .price-text {
+              font-size: 15px;
             }
           }
         `}

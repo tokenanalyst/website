@@ -1,15 +1,18 @@
 /* eslint-disable no-undef */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import PropTypes from 'prop-types';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import kebabCase from 'lodash/kebabCase';
 import ReactGA from 'react-ga';
 import Cookies from 'js-cookie';
 import Router from 'next/router';
+import { Collapse } from '@blueprintjs/core';
 
 import { ButtonFeatures } from './ButtonFeatures';
 import { LoginContext } from '../../../contexts/Login';
 import { STRIPE } from '../../../constants/stripe';
+import { FeatureTableDesktop } from './FeatureTableDesktop';
+import { FeatureTableMobile } from './FeatureTableMobile';
 
 const renderFeatures = features =>
   features.map(feature => {
@@ -42,6 +45,8 @@ const renderFeatures = features =>
             @media only screen and (max-width: 768px) {
               .feature {
                 background-size: 30px 30px;
+                padding-left: 40px;
+                margin-bottom: 5px;
               }
             }
           `}
@@ -49,6 +54,42 @@ const renderFeatures = features =>
       </div>
     );
   });
+
+const renderCollapseControl = isOpen => {
+  return (
+    <>
+      <div className="container">
+        <img className="image" src="/static/svg/pricing/arrow.svg" />
+        <div className="link">Compare plans and product details</div>
+      </div>
+      <style jsx>
+        {`
+          .container {
+            position: relative;
+          }
+          .link {
+            position: absolute;
+            top: 0;
+            left: 25px;
+            font-family: Open Sans;
+            font-size: 15px;
+            font-weight: 700;
+            font-style: normal;
+            font-stretch: normal;
+            color: #642c2c;
+            cursor: pointer;
+          }
+          .image {
+            transform: rotate(${isOpen ? '90deg' : '0deg'});
+          }
+          .image > * {
+            transform: rotate(${isOpen ? '-90deg' : '0deg'});
+          }
+        `}
+      </style>
+    </>
+  );
+};
 
 const emitProductEvent = action => {
   ReactGA.event({
@@ -88,6 +129,7 @@ export const ProductFeatures = ({
   const loginCtx = useContext(LoginContext);
   const username = Cookies.get('loggedInAsUsername');
   const userId = Cookies.get('loggedInAsUserId');
+  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
 
   return (
     <>
@@ -100,9 +142,9 @@ export const ProductFeatures = ({
         <div className="features">{renderFeatures(features)}</div>
         <div className="buttons-container">
           {buttons.map(button => {
-            const { url, isExternal, text, isBuy } = button;
+            const { url, isExternal, text, isBuy, isIntercom } = button;
 
-            const onClick = async () => {
+            const onBuyPlan = async () => {
               if (url) {
                 const action = `Plan click ${text}`;
                 return emitProductEvent(action);
@@ -123,6 +165,10 @@ export const ProductFeatures = ({
               });
             };
 
+            const onClick = isIntercom
+              ? () => window.Intercom('show')
+              : onBuyPlan;
+
             return (
               <div key={kebabCase(text)} className="button">
                 <ButtonFeatures
@@ -138,6 +184,23 @@ export const ProductFeatures = ({
           })}
         </div>
       </div>
+      <div className="fetures-details">
+        <div style={{ width: '100%', height: '100%', margin: 0 }}>
+          <div
+            onClick={() => setIsDetailsOpen(!isDetailsOpen)}
+            role="button"
+            onKeyDown={() => setIsDetailsOpen(!isDetailsOpen)}
+            tabIndex="-1"
+          >
+            {renderCollapseControl(isDetailsOpen)}
+          </div>
+          <Collapse isOpen={isDetailsOpen}>
+            <div className="features-collapse" />
+            <FeatureTableDesktop />
+            <FeatureTableMobile />
+          </Collapse>
+        </div>
+      </div>
       <style jsx>
         {`
           .container {
@@ -146,7 +209,6 @@ export const ProductFeatures = ({
             background-image: url(${image});
             background-repeat: no-repeat;
             background-position: right;
-            height: 774px;
           }
           .title-container {
             font-family: Space Grotesk;
@@ -224,6 +286,12 @@ export const ProductFeatures = ({
             top: 10px;
             right: 20px;
           }
+          .fetures-details {
+            padding-top: 55px;
+          }
+          .features-collapse {
+            padding-bottom: 20px;
+          }
           @media only screen and (max-width: 768px) {
             .container {
               width: 100%;
@@ -235,7 +303,7 @@ export const ProductFeatures = ({
             .description {
               width: 100%;
               height: 100%;
-              font-size: 20px;
+              font-size: 15px;
               margin-bottom: 20px;
             }
             .buttons-container {
@@ -249,7 +317,7 @@ export const ProductFeatures = ({
               margin-bottom: 20px;
             }
             .title {
-              font-size: 30px;
+              font-size: 20px;
               max-width: 100%;
               background-image: none;
             }
@@ -271,6 +339,9 @@ export const ProductFeatures = ({
               height: 100%;
               max-width: 100%;
               padding-bottom: 20px;
+            }
+            .fetures-details {
+              padding-top: 0px;
             }
           }
         `}
