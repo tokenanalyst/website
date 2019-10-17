@@ -562,6 +562,7 @@ export const DesktopNav = () => {
           .container {
             font-family: Open Sans;
             color: white;
+            font-weight: bold;
             position: fixed;
             background-color: black;
             z-index: 100;
@@ -587,6 +588,7 @@ export const DesktopNav = () => {
             padding-left: 10px;
           }
           .logo-desktop {
+            margin-left: 10px;
             cursor: pointer;
           }
           .desktop-links {
@@ -682,15 +684,15 @@ export const DesktopNav = () => {
             background-color: #222222;
             max-height: 40px;
             padding: 10px;
-            border-radius: 20px;
+            border-radius: 10px;
             cursor: pointer;
             margin-left: 20px;
-            font-weight: 700;
+          }
+          .login-button:hover {
+            background-color: #333;
           }
           .signup {
             cursor: pointer;
-            margin-left: 20px;
-            font-weight: 700;
           }
           .not-logged-in {
             margin-left: 20px;
