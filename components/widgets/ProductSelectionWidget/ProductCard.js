@@ -147,7 +147,7 @@ export const ProductCard = ({
             font-stretch: normal;
             line-height: normal;
             letter-spacing: 0.17px;
-            color: #642c2c;
+            color: #222222;
           }
           .price-platform {
             opacity: 0.46;
@@ -213,17 +213,17 @@ export const ProductCard = ({
             right: 20px;
           }
           a {
-            color: #642c2c;
+            color: #222222;
           }
           a:hover {
             text-decoration: none;
-            color: #642c2c;
+            color: #222222;
           }
           a:active {
-            color: #642c2c;
+            color: #222222;
           }
           a:visited {
-            color: #642c2c;
+            color: #222222;
           }
           @media only screen and (max-width: 768px) {
             .container {
