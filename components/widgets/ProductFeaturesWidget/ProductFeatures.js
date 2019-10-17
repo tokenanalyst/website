@@ -13,6 +13,7 @@ import { LoginContext } from '../../../contexts/Login';
 import { STRIPE } from '../../../constants/stripe';
 import { FeatureTableDesktop } from './FeatureTableDesktop';
 import { FeatureTableMobile } from './FeatureTableMobile';
+import { GA_GOAL_NAME } from './data/productsData';
 
 const renderFeatures = features =>
   features.map(feature => {
@@ -59,7 +60,11 @@ const renderCollapseControl = isOpen => {
   return (
     <>
       <div className="container">
-        <img className="image" src="/static/svg/pricing/arrow.svg" />
+        <img
+          className="image"
+          src="/static/svg/pricing/arrow.svg"
+          alt="arrow"
+        />
         <div className="link">Compare plans and product details</div>
       </div>
       <style jsx>
@@ -99,17 +104,20 @@ const emitProductEvent = action => {
   });
 };
 
-const redirectToStripe = stripePlan => async stripeOptions => {
-  const stripe = Stripe(STRIPE.apiKey);
+const redirectToStripe = (stripePlan, product) => async stripeOptions => {
+  const stripe = Stripe(STRIPE.apiTestKey);
 
   const stripeOpt = {
     items: [
       {
-        plan: stripePlan,
+        // plan: stripePlan,
+        plan: 'plan_F7W6tgvMEc0yRM',
         quantity: 1,
       },
     ],
-    successUrl: 'https://www.tokenanalyst.io/purchase-success',
+    successUrl: `https://www.tokenanalyst.io/purchase-success${
+      product ? `?p=${product.toLowerCase()}` : ''
+    }`,
     cancelUrl: 'https://www.tokenanalyst.io/',
     ...stripeOptions,
   };
@@ -155,11 +163,16 @@ export const ProductFeatures = ({
 
               if (!loginCtx.isLoggedIn) {
                 loginCtx.setPaymentData({
-                  stripe: { redirectFn: redirectToStripe(stripePlan) },
+                  stripe: {
+                    redirectFn: redirectToStripe(
+                      stripePlan,
+                      GA_GOAL_NAME[name]
+                    ),
+                  },
                 });
                 return Router.push('/login');
               }
-              return redirectToStripe(stripePlan)({
+              return redirectToStripe(stripePlan, GA_GOAL_NAME[name])({
                 customerEmail: username,
                 clientReferenceId: userId.toString(),
               });
