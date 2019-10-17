@@ -105,13 +105,12 @@ const emitProductEvent = action => {
 };
 
 const redirectToStripe = (stripePlan, product) => async stripeOptions => {
-  const stripe = Stripe(STRIPE.apiTestKey);
+  const stripe = Stripe(STRIPE.apiKey);
 
   const stripeOpt = {
     items: [
       {
-        // plan: stripePlan,
-        plan: 'plan_F7W6tgvMEc0yRM',
+        plan: stripePlan,
         quantity: 1,
       },
     ],
