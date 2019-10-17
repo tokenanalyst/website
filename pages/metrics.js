@@ -6,24 +6,43 @@ import { tokensDb } from '../services/tokensDb';
 import { CollapsibleItem } from '../components/CollapsibleItem';
 import { TOKEN_NAMES } from '../constants/token-names';
 import { ProChartContainer } from '../components/widgets/ProChartWidget/ProChartContainer';
-import { METRICS } from '../constants/tokens';
+import { NATIVE_TOKENS, METRICS } from '../constants/tokens';
 
-const MetricsList = ({ token }) => {
+const MetricsList = ({ token, selectedMetric, setSelectedMetric }) => {
   return (
     <>
       <div className="container">
         <div className="card">
           <Card>
             <div className="header">Fundamentals:</div>
-            {METRICS[token].map(metric => (
+            {METRICS[
+              token === NATIVE_TOKENS.BTC || token === NATIVE_TOKENS.ETH
+                ? token
+                : 'ERC_20'
+            ].map(metric => (
               <CollapsibleItem
                 key={metric.category}
                 header={metric.category}
                 body={
                   <>
                     {metric.values.map(value => (
-                      <div className="item" key={value.apiValue}>
-                        {value.name}
+                      <div className="item-row">
+                        <span
+                          className={
+                            selectedMetric.metricApiValue === value.apiValue
+                              ? 'item-selected'
+                              : 'item'
+                          }
+                          key={value.apiValue}
+                          onClick={() =>
+                            setSelectedMetric({
+                              endpointValue: metric.apiValue,
+                              metricApiValue: value.apiValue,
+                            })
+                          }
+                        >
+                          {value.name}
+                        </span>
                       </div>
                     ))}
                   </>
@@ -40,15 +59,21 @@ const MetricsList = ({ token }) => {
           border: 1px solid rgba(0, 0, 0, 0.2);
           border-radius: 5px;
         }
+        .item-row {
+          padding-top: 5px;
+          padding-bottom: 5px;
+        }
         .item {
           margin-left: 5px;
           margin-bottom: 5px;
+          cursor: pointer;
         }
         .item-selected {
           margin-left: 5px;
           margin-bottom: 5px;
           font-weight: bold;
           border-bottom: 2px solid rgba(63, 205, 171, 1);
+          cursor: pointer;
         }
         .header {
           font-size: 16px;
@@ -62,7 +87,10 @@ const MetricsList = ({ token }) => {
 
 const Metrics = () => {
   const [selectedToken, setSelectedToken] = useState('BTC');
-  const [selectedMetric, setSelectedMetric] = useState('volume_usd');
+  const [selectedMetric, setSelectedMetric] = useState({
+    endpointValue: 'token_volume_window_historical',
+    metricApiValue: 'volume_real_usd',
+  });
 
   const {
     tokens: {
@@ -96,7 +124,11 @@ const Metrics = () => {
             />
           </Card>
           <div className="metrics-list">
-            <MetricsList token={selectedToken} />
+            <MetricsList
+              token={selectedToken}
+              selectedMetric={selectedMetric}
+              setSelectedMetric={setSelectedMetric}
+            />
           </div>
         </div>
         <div className="rhs">
@@ -114,11 +146,11 @@ const Metrics = () => {
           display: flex;
         }
         .lhs {
-          width: 25%;
+          width: 15%;
           padding-right: 10px;
         }
         .rhs {
-          width: 75%;
+          width: 85%;
         }
         .title {
           display: flex;

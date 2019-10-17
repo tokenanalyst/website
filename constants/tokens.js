@@ -132,7 +132,7 @@ export const METRICS = {
         },
         {
           name: 'Averge Size (Bytes)',
-          apiValue: 'total_fee',
+          apiValue: 'avg_size_bytes',
         },
         {
           name: 'Averge Satoshis per Byte',
@@ -271,6 +271,80 @@ export const METRICS = {
         {
           name: 'Market Cap',
           apiValue: 'marketcap_usd',
+        },
+      ],
+    },
+    {
+      category: 'Fees',
+      apiValue: 'token_fees_window_historical',
+      values: [
+        {
+          name: 'Total (Real)',
+          apiValue: 'total_fee',
+        },
+        {
+          name: 'Total (USD)',
+          apiValue: 'total_fee_usd',
+        },
+        {
+          name: 'Average (Real)',
+          apiValue: 'avg_fee',
+        },
+        {
+          name: 'Average (USD)',
+          apiValue: 'avg_fee_usd',
+        },
+        {
+          name: 'Average Gas',
+          apiValue: 'avg_gas',
+        },
+        {
+          name: 'Average Gas Price Wei',
+          apiValue: 'avg_gas_price_wei',
+        },
+      ],
+    },
+  ],
+  ERC_20: [
+    {
+      category: 'Volume',
+      apiValue: 'token_volume_window_historical',
+      values: [
+        {
+          name: 'USD',
+          apiValue: 'volume_usd',
+        },
+        {
+          name: 'Real',
+          apiValue: 'volume',
+        },
+        {
+          name: 'Change',
+          apiValue: 'volume_change',
+        },
+      ],
+    },
+    {
+      category: 'Transactions',
+      apiValue: 'token_count_window_historical',
+      values: [
+        {
+          name: 'Number',
+          apiValue: 'number_of_txns',
+        },
+      ],
+    },
+    {
+      category: 'Addresses',
+      apiValue: 'token_active_address_window_historical',
+      values: [
+        {
+          name: 'Senders',
+          apiValue: 'active_senders',
+        },
+        {
+          name: 'Recipients',
+          apiValue: 'active_recipients',
         },
       ],
     },
