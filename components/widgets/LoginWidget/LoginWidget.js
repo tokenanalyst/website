@@ -67,7 +67,7 @@ export const LoginWidget = () => {
           <input
             type="text"
             className="input"
-            onChange={e => setEmail(e.target.value)}
+            onChange={e => setEmail(e.target.value.trim())}
           />
           <div className="header">Password</div>
           <input
