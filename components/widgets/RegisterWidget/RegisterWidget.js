@@ -86,7 +86,7 @@ export const RegisterWidget = () => {
               <SimpleFormGroup label="Email" labelFor="registration-email">
                 <SimpleTextInput
                   id="registration-email"
-                  onChange={e => setEmail(e.target.value)}
+                  onChange={e => setEmail(e.target.value.trim())}
                 />
               </SimpleFormGroup>
               <SimpleFormGroup
