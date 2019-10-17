@@ -42,7 +42,7 @@ const Pricing = () => {
           }
           .callout-container {
             margin: auto;
-            width: calc(1440px - 30px);
+            width: calc(1440px - 40px);
             height: 100%;
           }
           .callout {
@@ -53,7 +53,7 @@ const Pricing = () => {
           }
           .testimonials-container {
             margin: auto;
-            width: calc(1440px - 30px);
+            width: calc(1440px - 40px);
             height: 100%;
           }
           .testimonials {
@@ -67,12 +67,12 @@ const Pricing = () => {
           .products {
             margin: auto;
             height: 100%;
-            width: calc(1440px - 30px);
+            width: calc(1440px - 40px);
           }
           .products-features-container {
             margin: auto;
             height: 100%;
-            width: calc(1440px - 30px);
+            width: calc(1440px - 40px);
           }
           .products-features {
             height: 100%;
