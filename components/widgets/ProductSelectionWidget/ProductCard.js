@@ -201,6 +201,7 @@ export const ProductCard = ({
             display: flex;
             flex-direction: row;
             justify-content: space-between;
+            min-height: 40px;
           }
           .text {
             font-size: 22px;

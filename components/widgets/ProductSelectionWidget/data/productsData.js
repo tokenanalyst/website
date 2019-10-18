@@ -3,16 +3,15 @@ import { PLANS } from '../../../../constants/plans';
 const CARD_CONTENT = {
   PLATFORM: {
     title: 'Platform',
-    priceText: `Just ${PLANS.PLATFORM.price}/month`,
-    description: `Combining all important market data 
-    sources into one integrated trading
-    intelligence platform.`,
+    description: `Providing starter market data 
+    into one integrated trading
+    intelligence web platform.`,
     image: '/static/svg/pricing/platform_small.svg',
-    links: [{ text: 'Try free version', url: '/register' }],
+    // links: [{ text: 'Try free version', url: '/register' }],
+    links: [],
   },
   PRO: {
     title: 'Professional',
-    priceText: `${PLANS.PRO.price}/month`,
     description: `Access to a plethora of proprietary metrics and insights via historical data APIs and real-time WebSockets.`,
     isPlatformInclusive: true,
     image: '/static/svg/pricing/api_websocket_small.svg',
@@ -31,7 +30,6 @@ const CARD_CONTENT = {
   },
   ENTERPRISE: {
     title: 'Enterprise',
-    priceText: `Tailored services`,
     description: `We provide deep blockchain intelligence
     reports such as functional calls, smart 
     contract events, miner statistics etc.`,
