@@ -137,6 +137,7 @@ export const ProductFeatures = ({
   const username = Cookies.get('loggedInAsUsername');
   const userId = Cookies.get('loggedInAsUserId');
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   return (
     <>
@@ -152,6 +153,7 @@ export const ProductFeatures = ({
             const { url, isExternal, text, isBuy, isIntercom } = button;
 
             const onBuyPlan = async () => {
+              setIsLoading(true);
               if (url) {
                 const action = `Plan click ${text}`;
                 return emitProductEvent(action);
@@ -191,6 +193,7 @@ export const ProductFeatures = ({
                   stripePlan={stripePlan}
                   isActive={isBuy}
                   onClick={onClick}
+                  isLoading={isBuy ? isLoading : false}
                 />
               </div>
             );
