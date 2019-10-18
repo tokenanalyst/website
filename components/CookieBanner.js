@@ -44,7 +44,7 @@ export const CookieBanner = () => {
           font-family: Space Grotesk;
           position: fixed;
           bottom: 223px;
-          height: 150px;
+          height: 100px;
           background-color: white;
           width: 100%;
           z-index: 10000;
