@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Card } from '@blueprintjs/core';
 
 import { TokenSelect } from '../components/widgets/ProChartWidget/TokenSelect';
@@ -92,6 +92,12 @@ const Metrics = () => {
     metricApiValue: 'volume_real_usd',
   });
 
+  const tvInstance = useRef(null);
+  const studies = useRef({
+    flows: { entityId: null },
+    transactions: { entityId: null },
+  });
+
   const {
     tokens: {
       groupName: { NATIVE, STABLE, ERC20 },
@@ -138,6 +144,12 @@ const Metrics = () => {
             TVSymbols={['BTC', 'USDT']}
             TASymbol={selectedToken}
             exchangeName="Binance"
+            onChartRenderCb={tvWidget => {
+              tvInstance.current = tvWidget;
+              studies.current.flows.entityId = tvInstance.current
+                .chart()
+                .createStudy('Transactions', false, true);
+            }}
           />
         </div>
       </div>

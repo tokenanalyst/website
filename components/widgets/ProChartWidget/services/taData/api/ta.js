@@ -113,7 +113,64 @@ const ta = (function ta() {
 
       return flowsData();
     },
+    fetchTransactionsTAProxy: async (symbol, timeFrame, start, end) => {
+      const startDate = moment(start).format('YYYY-MM-DD');
+      const endDate = moment(end).format('YYYY-MM-DD');
+      let window;
 
+      window = timeFrame;
+
+      if (timeFrame === 'D') {
+        window = '1d';
+      }
+
+      if (timeFrame === '60') {
+        window = '1h';
+      }
+
+      const apiCall = async () =>
+        api.tokenCountHistorical({
+          token: symbol.toUpperCase(),
+          timeWindow: window,
+          from_date: startDate,
+          to_date: endDate,
+        });
+
+      const transactionsData = async () =>
+        fetchDataFromApi$(apiCall)
+          .pipe(
+            map(response => response.data),
+            map(data => {
+              const transactions = data.map(entry => {
+                return formatDate(entry, ['date', 'number_of_txns']);
+              });
+
+              return transactions;
+            }),
+            map(flows => {
+              const flowsData = flows
+                .map(item => {
+                  const { date, number_of_txns } = item;
+                  const time = moment.utc(date).valueOf();
+
+                  return {
+                    time,
+                    open: Number(number_of_txns),
+                    close: null,
+                    high: null,
+                    low: null,
+                    volume: null,
+                  };
+                })
+                .filter(item => item.time > start && item.time < end);
+
+              return flowsData;
+            })
+          )
+          .toPromise();
+
+      return transactionsData();
+    },
     fetchExchangeFlow: async (exchange, symbol, timeFrame, start, end) => {
       const startDate = moment(start).format('YYYY-MM-DD');
       const endDate = moment(end).format('YYYY-MM-DD');

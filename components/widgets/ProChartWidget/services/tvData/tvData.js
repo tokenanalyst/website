@@ -99,6 +99,7 @@ const tvData = (exchangeService, exchangeName, symbols, isIntraday) => {
         const getTAData = exchangeService.studies.getData[symbolInfo.name];
         const taData = await getTAData(from, to, resolution);
 
+        console.log(`*(&*^&**^&^&R${taData} (*&^^&**)&^&*&`);
         if (taData.length) {
           return onHistoryCallback(taData, { noData: false });
         }
