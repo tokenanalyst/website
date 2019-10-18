@@ -69,6 +69,7 @@ export const METRICS = {
         {
           name: 'Number',
           apiValue: 'number_of_txns',
+          indicator: 'Transactions',
         },
       ],
     },

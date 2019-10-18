@@ -4,7 +4,16 @@ const formatDate = epoch => moment(epoch).format('DD/MM/YYYY, HH:mm:ss');
 
 const METRICS_STUDIES_DATA = (ta, TAsymbol) =>
   [
-    { symbol: '#TRANSACTIONS', urlSlug: 'token_count_window_historical' },
+    {
+      symbol: '#TRANSACTIONS',
+      urlSlug: 'token_count_window_historical',
+      dataPoint: 'number_of_txns',
+    },
+    {
+      symbol: '#VOLUMEUSD',
+      urlSlug: 'token_volume_window_historical',
+      dataPoint: 'volume_real_usd',
+    },
   ].reduce(
     (acc, curr) => ({
       ...acc,
@@ -21,7 +30,8 @@ const METRICS_STUDIES_DATA = (ta, TAsymbol) =>
           resolution,
           from * 1000,
           to * 1000,
-          curr.urlSlug
+          curr.urlSlug,
+          curr.dataPoint
         );
 
         if (!flow.length) {
@@ -43,7 +53,7 @@ const METRICS_STUDIES_DATA = (ta, TAsymbol) =>
   );
 
 const METRICS_STUDIES_SYMBOLS = exchangeName =>
-  [{ symbol: '#TRANSACTIONS' }].reduce(
+  [{ symbol: '#TRANSACTIONS' }, { symbol: '#VOLUMEUSD' }].reduce(
     (acc, curr) => ({
       ...acc,
       [curr.symbol]: () => {

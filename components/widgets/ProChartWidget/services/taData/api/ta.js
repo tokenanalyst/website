@@ -113,7 +113,14 @@ const ta = (function ta() {
 
       return flowsData();
     },
-    fetchSingleMetricProxy: async (symbol, timeFrame, start, end, metric) => {
+    fetchSingleMetricProxy: async (
+      symbol,
+      timeFrame,
+      start,
+      end,
+      metric,
+      dataPoint
+    ) => {
       const startDate = moment(start).format('YYYY-MM-DD');
       const endDate = moment(end).format('YYYY-MM-DD');
       let window;
@@ -143,7 +150,7 @@ const ta = (function ta() {
             map(response => response.data),
             map(data => {
               const transactions = data.map(entry => {
-                return formatDate(entry, ['date', 'number_of_txns']);
+                return formatDate(entry, ['date', dataPoint]);
               });
 
               return transactions;
@@ -151,12 +158,12 @@ const ta = (function ta() {
             map(flows => {
               const flowsData = flows
                 .map(item => {
-                  const { date, number_of_txns } = item;
+                  const { date } = item;
                   const time = moment.utc(date).valueOf();
 
                   return {
                     time,
-                    open: Number(number_of_txns),
+                    open: Number(item[dataPoint]),
                     close: null,
                     high: null,
                     low: null,

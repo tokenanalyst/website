@@ -5,6 +5,7 @@
 
 const METRIC_INDICATORS = [
   { title: 'Transactions', symbol: '#TRANSACTIONS' },
+  { title: 'VolumeUsd', symbol: '#VOLUMEUSD' },
 ].map(metricIndicator => ({
   name: metricIndicator.title,
   metainfo: {

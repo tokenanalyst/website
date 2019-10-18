@@ -8,7 +8,7 @@ import { TOKEN_NAMES } from '../constants/token-names';
 import { ProChartContainer } from '../components/widgets/ProChartWidget/ProChartContainer';
 import { NATIVE_TOKENS, METRICS } from '../constants/tokens';
 
-const MetricsList = ({ token, selectedMetric, setSelectedMetric }) => {
+const MetricsList = ({ token, selectedIndicator, setSelectedIndicator }) => {
   return (
     <>
       <div className="container">
@@ -29,17 +29,12 @@ const MetricsList = ({ token, selectedMetric, setSelectedMetric }) => {
                       <div className="item-row">
                         <span
                           className={
-                            selectedMetric.metricApiValue === value.apiValue
+                            selectedIndicator === value.indicator
                               ? 'item-selected'
                               : 'item'
                           }
                           key={value.apiValue}
-                          onClick={() =>
-                            setSelectedMetric({
-                              endpointValue: metric.apiValue,
-                              metricApiValue: value.apiValue,
-                            })
-                          }
+                          onClick={() => setSelectedIndicator(value.indicator)}
                         >
                           {value.name}
                         </span>
@@ -89,10 +84,7 @@ const MetricsList = ({ token, selectedMetric, setSelectedMetric }) => {
 
 const Metrics = () => {
   const [selectedToken, setSelectedToken] = useState('BTC');
-  const [selectedMetric, setSelectedMetric] = useState({
-    endpointValue: 'token_volume_window_historical',
-    metricApiValue: 'volume_real_usd',
-  });
+  const [selectedIndicator, setSelectedIndicator] = useState('Transactions');
 
   const tvInstance = useRef(null);
   const studies = useRef({
@@ -134,8 +126,8 @@ const Metrics = () => {
           <div className="metrics-list">
             <MetricsList
               token={selectedToken}
-              selectedMetric={selectedMetric}
-              setSelectedMetric={setSelectedMetric}
+              selectedIndicator={selectedIndicator}
+              setSelectedIndicator={setSelectedIndicator}
             />
           </div>
         </div>
@@ -150,7 +142,7 @@ const Metrics = () => {
               tvInstance.current = tvWidget;
               studies.current.flows.entityId = tvInstance.current
                 .chart()
-                .createStudy('Transactions', false, true);
+                .createStudy('VolumeUsd', false, true);
             }}
           />
         </div>
