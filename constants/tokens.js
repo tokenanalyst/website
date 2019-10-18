@@ -96,7 +96,7 @@ export const METRICS = {
       values: [
         {
           name: 'Amount',
-          apiValue: 'supply',
+          indicator: 'Supply',
         },
       ],
     },
@@ -106,11 +106,11 @@ export const METRICS = {
       values: [
         {
           name: 'NVT',
-          apiValue: 'nvt',
+          indicator: 'NVT',
         },
         {
           name: 'Market Cap',
-          apiValue: 'marketcap_usd',
+          indicator: 'Market Cap',
         },
       ],
     },

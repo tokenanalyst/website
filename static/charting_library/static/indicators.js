@@ -9,8 +9,11 @@ const METRIC_INDICATORS = [
   { title: 'Volume Real', symbol: '#VOLUMEREAL' },
   { title: 'Volume Change USD', symbol: '#VOLUMECHANGEUSD' },
   { title: 'Volume CHANGE Real', symbol: '#VOLUMECHANGEREAL' },
-  { title: 'Active Senders', symbol: '#ADDRESSSENDERS' },
-  { title: 'Active Recipients', symbol: '#ADDRESSRECIPIENTS' },
+  { title: 'Active Senders', symbol: '#ACTIVESENDERS' },
+  { title: 'Active Recipients', symbol: '#ACTIVERECIPIENTS' },
+  { title: 'Supply', symbol: '#SUPPLY' },
+  { title: 'NVT', symbol: '#NVT' },
+  { title: 'Market Cap', symbol: '#MARKETCAP' },
 ].map(metricIndicator => ({
   name: metricIndicator.title,
   metainfo: {

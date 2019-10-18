@@ -39,6 +39,21 @@ const METRICS_STUDIES_DATA = (ta, TAsymbol) =>
       urlSlug: 'token_active_address_window_historical',
       dataPoint: 'active_recipients',
     },
+    {
+      symbol: '#SUPPLY',
+      urlSlug: 'token_supply_window_historical',
+      dataPoint: 'supply',
+    },
+    {
+      symbol: '#NVT',
+      urlSlug: 'token_supply_window_historical',
+      dataPoint: 'supply',
+    },
+    {
+      symbol: '#MARKETCAP',
+      urlSlug: 'token_supply_window_historical',
+      dataPoint: 'supply',
+    },
   ].reduce(
     (acc, curr) => ({
       ...acc,
@@ -86,6 +101,9 @@ const METRICS_STUDIES_SYMBOLS = exchangeName =>
     { symbol: '#VOLUMECHANGEREAL' },
     { symbol: '#ACTIVESENDERS' },
     { symbol: '#ACTIVERECIPIENTS' },
+    { symbol: '#SUPPLY' },
+    { symbol: '#NVT' },
+    { symbol: '#MARKETCAP' },
   ].reduce(
     (acc, curr) => ({
       ...acc,
