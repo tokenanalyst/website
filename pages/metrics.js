@@ -33,7 +33,7 @@ const MetricsList = ({ token, selectedIndicator, setSelectedIndicator }) => {
                               ? 'item-selected'
                               : 'item'
                           }
-                          key={value.apiValue}
+                          key={value.indicator}
                           onClick={() => setSelectedIndicator(value.indicator)}
                         >
                           {value.name}
@@ -142,7 +142,7 @@ const Metrics = () => {
               tvInstance.current = tvWidget;
               studies.current.flows.entityId = tvInstance.current
                 .chart()
-                .createStudy('VolumeUsd', false, true);
+                .createStudy(selectedIndicator, false, true);
             }}
           />
         </div>

@@ -14,6 +14,31 @@ const METRICS_STUDIES_DATA = (ta, TAsymbol) =>
       urlSlug: 'token_volume_window_historical',
       dataPoint: 'volume_real_usd',
     },
+    {
+      symbol: '#VOLUMEREAL',
+      urlSlug: 'token_volume_window_historical',
+      dataPoint: 'volume_real',
+    },
+    {
+      symbol: '#VOLUMECHANGEUSD',
+      urlSlug: 'token_volume_window_historical',
+      dataPoint: 'volume_change_usd',
+    },
+    {
+      symbol: '#VOLUMECHANGEREAL',
+      urlSlug: 'token_volume_window_historical',
+      dataPoint: 'volume_change',
+    },
+    {
+      symbol: '#ACTIVESENDERS',
+      urlSlug: 'token_active_address_window_historical',
+      dataPoint: 'active_senders',
+    },
+    {
+      symbol: '#ACTIVERECIPIENTS',
+      urlSlug: 'token_active_address_window_historical',
+      dataPoint: 'active_recipients',
+    },
   ].reduce(
     (acc, curr) => ({
       ...acc,
@@ -53,7 +78,15 @@ const METRICS_STUDIES_DATA = (ta, TAsymbol) =>
   );
 
 const METRICS_STUDIES_SYMBOLS = exchangeName =>
-  [{ symbol: '#TRANSACTIONS' }, { symbol: '#VOLUMEUSD' }].reduce(
+  [
+    { symbol: '#TRANSACTIONS' },
+    { symbol: '#VOLUMEUSD' },
+    { symbol: '#VOLUMEREAL' },
+    { symbol: '#VOLUMECHANGEUSD' },
+    { symbol: '#VOLUMECHANGEREAL' },
+    { symbol: '#ACTIVESENDERS' },
+    { symbol: '#ACTIVERECIPIENTS' },
+  ].reduce(
     (acc, curr) => ({
       ...acc,
       [curr.symbol]: () => {

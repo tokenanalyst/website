@@ -50,15 +50,19 @@ export const METRICS = {
       values: [
         {
           name: 'USD',
-          apiValue: 'volume_real_usd',
+          indicator: 'Volume USD',
         },
         {
           name: 'Real',
-          apiValue: 'volume_real',
+          indicator: 'Volume Real',
         },
         {
-          name: 'Change',
-          apiValue: 'volume_change',
+          name: 'Change USD',
+          indicator: 'Volume Change USD',
+        },
+        {
+          name: 'Change Real',
+          indicator: 'Volume Change Real',
         },
       ],
     },
@@ -68,7 +72,6 @@ export const METRICS = {
       values: [
         {
           name: 'Number',
-          apiValue: 'number_of_txns',
           indicator: 'Transactions',
         },
       ],
@@ -79,11 +82,11 @@ export const METRICS = {
       values: [
         {
           name: 'Senders',
-          apiValue: 'active_senders',
+          indicator: 'Active Senders',
         },
         {
           name: 'Recipients',
-          apiValue: 'active_recipients',
+          indicator: 'Active Recipients',
         },
       ],
     },

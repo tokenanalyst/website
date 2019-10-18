@@ -5,7 +5,12 @@
 
 const METRIC_INDICATORS = [
   { title: 'Transactions', symbol: '#TRANSACTIONS' },
-  { title: 'VolumeUsd', symbol: '#VOLUMEUSD' },
+  { title: 'Volume USD', symbol: '#VOLUMEUSD' },
+  { title: 'Volume Real', symbol: '#VOLUMEREAL' },
+  { title: 'Volume Change USD', symbol: '#VOLUMECHANGEUSD' },
+  { title: 'Volume CHANGE Real', symbol: '#VOLUMECHANGEREAL' },
+  { title: 'Active Senders', symbol: '#ADDRESSSENDERS' },
+  { title: 'Active Recipients', symbol: '#ADDRESSRECIPIENTS' },
 ].map(metricIndicator => ({
   name: metricIndicator.title,
   metainfo: {
