@@ -63,6 +63,11 @@ const emitProductEvent = name => {
   });
 };
 
+const scrollToElement = id => {
+  const el = document.querySelector(`#${id}`);
+  el.scrollIntoView({ behavior: 'smooth' });
+};
+
 export const ProductCard = ({
   name,
   title,
@@ -93,13 +98,20 @@ export const ProductCard = ({
         <div className="description">{description}</div>
         <div className="links">{renderLinks(links)}</div>
         <div className="button-container">
-          <div className="buttonLink">
-            <a
-              href={`#${kebabCase(title)}`}
-              onClick={() => emitProductEvent(name)}
+          <div>
+            <button
+              type="button"
+              onKeyDown={() => {
+                emitProductEvent(name);
+                scrollToElement(kebabCase(title));
+              }}
+              onClick={() => {
+                emitProductEvent(name);
+                scrollToElement(kebabCase(title));
+              }}
             >
               View Plan
-            </a>
+            </button>
           </div>
         </div>
       </div>
