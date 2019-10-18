@@ -4,6 +4,7 @@ import React from 'react';
 import ReactGA from 'react-ga';
 import Link from 'next/link';
 import kebabCase from 'lodash/kebabCase';
+import { scroller } from 'react-scroll';
 
 import { pricingButton } from '../../../constants/styles/common-styled-jsx';
 
@@ -63,11 +64,6 @@ const emitProductEvent = name => {
   });
 };
 
-const scrollToElement = id => {
-  const el = document.querySelector(`#${id}`);
-  el.scrollIntoView({ behavior: 'smooth' });
-};
-
 export const ProductCard = ({
   name,
   title,
@@ -103,11 +99,19 @@ export const ProductCard = ({
               type="button"
               onKeyDown={() => {
                 emitProductEvent(name);
-                scrollToElement(kebabCase(title));
+                scroller.scrollTo(kebabCase(title), {
+                  duration: 800,
+                  delay: 0,
+                  smooth: 'easeInOutQuart',
+                });
               }}
               onClick={() => {
                 emitProductEvent(name);
-                scrollToElement(kebabCase(title));
+                scroller.scrollTo(kebabCase(title), {
+                  duration: 800,
+                  delay: 0,
+                  smooth: 'easeInOutQuart',
+                });
               }}
             >
               View Plan
