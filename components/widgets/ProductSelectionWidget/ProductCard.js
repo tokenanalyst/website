@@ -4,6 +4,7 @@ import React from 'react';
 import ReactGA from 'react-ga';
 import Link from 'next/link';
 import kebabCase from 'lodash/kebabCase';
+import { scroller } from 'react-scroll';
 
 import { pricingButton } from '../../../constants/styles/common-styled-jsx';
 
@@ -93,13 +94,28 @@ export const ProductCard = ({
         <div className="description">{description}</div>
         <div className="links">{renderLinks(links)}</div>
         <div className="button-container">
-          <div className="buttonLink">
-            <a
-              href={`#${kebabCase(title)}`}
-              onClick={() => emitProductEvent(name)}
+          <div>
+            <button
+              type="button"
+              onKeyDown={() => {
+                emitProductEvent(name);
+                scroller.scrollTo(kebabCase(title), {
+                  duration: 800,
+                  delay: 0,
+                  smooth: 'easeInOutQuart',
+                });
+              }}
+              onClick={() => {
+                emitProductEvent(name);
+                scroller.scrollTo(kebabCase(title), {
+                  duration: 800,
+                  delay: 0,
+                  smooth: 'easeInOutQuart',
+                });
+              }}
             >
               View Plan
-            </a>
+            </button>
           </div>
         </div>
       </div>
