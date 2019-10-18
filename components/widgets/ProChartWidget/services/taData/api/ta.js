@@ -113,7 +113,7 @@ const ta = (function ta() {
 
       return flowsData();
     },
-    fetchTransactionsTAProxy: async (symbol, timeFrame, start, end) => {
+    fetchSingleMetricProxy: async (symbol, timeFrame, start, end, metric) => {
       const startDate = moment(start).format('YYYY-MM-DD');
       const endDate = moment(end).format('YYYY-MM-DD');
       let window;
@@ -129,11 +129,12 @@ const ta = (function ta() {
       }
 
       const apiCall = async () =>
-        api.tokenCountHistorical({
+        api.singleMetric({
           token: symbol.toUpperCase(),
-          timeWindow: window,
+          window,
           from_date: startDate,
           to_date: endDate,
+          metric,
         });
 
       const transactionsData = async () =>

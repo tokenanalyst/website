@@ -2,6 +2,84 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable func-names */
 /* eslint-disable object-shorthand */
+
+const METRIC_INDICATORS = [
+  { title: 'Transactions', symbol: '#TRANSACTIONS' },
+].map(metricIndicator => ({
+  name: metricIndicator.title,
+  metainfo: {
+    _metainfoVersion: 40,
+    id: `${metricIndicator.title}@tv-basicstudies-1`,
+    scriptIdPart: '',
+    name: metricIndicator.title,
+    description: metricIndicator.title,
+    shortDescription: metricIndicator.title,
+
+    is_hidden_study: false,
+    is_price_study: false,
+    isCustomIndicator: true,
+
+    plots: [{ id: 'plot_0', type: 'line' }],
+    defaults: {
+      styles: {
+        plot_0: {
+          linestyle: 0,
+          visible: true,
+
+          // Make the line thinner
+          linewidth: 2,
+
+          // Plot type is Line
+          plottype: 2,
+
+          // Show price line
+          trackPrice: false,
+
+          transparency: 40,
+
+          color: '#3FCDAB',
+        },
+      },
+      precision: 0,
+
+      inputs: {},
+    },
+    styles: {
+      plot_0: {
+        // Output name will be displayed in the Style window
+        title: metricIndicator.title,
+        histogramBase: 0,
+      },
+    },
+    inputs: [],
+  },
+  constructor: function() {
+    this.init = function(context, inputCallback) {
+      // console.warn(context);
+      this._context = context;
+      this._input = inputCallback;
+
+      const symbol = metricIndicator.symbol;
+      this._context.new_sym(
+        symbol,
+        PineJS.Std.period(this._context),
+        PineJS.Std.period(this._context)
+      );
+    };
+
+    this.main = function(context, inputCallback) {
+      this._context = context;
+      this._input = inputCallback;
+      this._context.select_sym(1);
+
+      const inFlow = PineJS.Std.open(this._context);
+      const outFlow = PineJS.Std.close(this._context);
+
+      return [inFlow, outFlow];
+    };
+  },
+}));
+
 __customIndicators = [
   {
     name: 'Flows',
@@ -97,81 +175,7 @@ __customIndicators = [
       };
     },
   },
-  {
-    name: 'Transactions',
-    metainfo: {
-      _metainfoVersion: 40,
-      id: 'Transactions@tv-basicstudies-1',
-      scriptIdPart: '',
-      name: 'Transactions',
-      description: 'Transactions',
-      shortDescription: 'Transactions',
-
-      is_hidden_study: false,
-      is_price_study: false,
-      isCustomIndicator: true,
-
-      plots: [{ id: 'plot_0', type: 'line' }],
-      defaults: {
-        styles: {
-          plot_0: {
-            linestyle: 0,
-            visible: true,
-
-            // Make the line thinner
-            linewidth: 2,
-
-            // Plot type is Line
-            plottype: 2,
-
-            // Show price line
-            trackPrice: false,
-
-            transparency: 40,
-
-            color: '#3FCDAB',
-          },
-        },
-        precision: 0,
-
-        inputs: {},
-      },
-      styles: {
-        plot_0: {
-          // Output name will be displayed in the Style window
-          title: 'Transactions',
-          histogramBase: 0,
-        },
-      },
-      inputs: [],
-    },
-    constructor: function() {
-      this.init = function(context, inputCallback) {
-        // console.warn(context);
-        this._context = context;
-        this._input = inputCallback;
-
-        const symbol = '#TRANSACTIONS';
-        this._context.new_sym(
-          symbol,
-          PineJS.Std.period(this._context),
-          PineJS.Std.period(this._context)
-        );
-      };
-
-      this.main = function(context, inputCallback) {
-        this._context = context;
-        this._input = inputCallback;
-        this._context.select_sym(1);
-
-        const inFlow = PineJS.Std.open(this._context);
-        const outFlow = PineJS.Std.close(this._context);
-
-        return [inFlow, outFlow];
-      };
-    },
-  },
-
+  ...METRIC_INDICATORS,
   {
     name: 'NetFlows',
     metainfo: {
