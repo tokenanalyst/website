@@ -47,7 +47,7 @@ export const ProChartContainer = ({
     ),
     symbol: `${TVSymbols[0]}/${TVSymbols[1]}`,
     time_frames: KAIKO_TIME_FRAMES,
-    debug: true,
+    debug: false,
   };
 
   tokenAnalystService.current.setToken(TASymbol);

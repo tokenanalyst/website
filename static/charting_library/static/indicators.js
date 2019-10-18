@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable func-names */
 /* eslint-disable object-shorthand */
 __customIndicators = [
@@ -75,7 +77,7 @@ __customIndicators = [
         this._context = context;
         this._input = inputCallback;
 
-        var symbol = '#FLOWS';
+        const symbol = '#FLOWS';
         this._context.new_sym(
           symbol,
           PineJS.Std.period(this._context),
@@ -88,8 +90,8 @@ __customIndicators = [
         this._input = inputCallback;
         this._context.select_sym(1);
 
-        var inFlow = PineJS.Std.open(this._context);
-        var outFlow = PineJS.Std.close(this._context);
+        const inFlow = PineJS.Std.open(this._context);
+        const outFlow = PineJS.Std.close(this._context);
 
         return [inFlow, outFlow];
       };
@@ -129,51 +131,47 @@ __customIndicators = [
 
             color: '#3FCDAB',
           },
-
-          // Precision is set to one digit, e.g. 777.7
-          precision: 0,
-
-          inputs: {},
         },
-        styles: {
-          plot_0: {
-            // Output name will be displayed in the Style window
-            title: 'Transactions',
-            histogramBase: 0,
-          },
+        precision: 0,
+
+        inputs: {},
+      },
+      styles: {
+        plot_0: {
+          // Output name will be displayed in the Style window
+          title: 'Transactions',
+          histogramBase: 0,
         },
-        inputs: [],
       },
+      inputs: [],
+    },
+    constructor: function() {
+      this.init = function(context, inputCallback) {
+        // console.warn(context);
+        this._context = context;
+        this._input = inputCallback;
 
-      constructor: function() {
-        this.init = function(context, inputCallback) {
-          // console.warn(context);
-          console.log('(&*^%&^*&*(* IN *)(&*^&$^%*&*(');
-          this._context = context;
-          this._input = inputCallback;
+        const symbol = '#TRANSACTIONS';
+        this._context.new_sym(
+          symbol,
+          PineJS.Std.period(this._context),
+          PineJS.Std.period(this._context)
+        );
+      };
 
-          var symbol = '#TRANSACTIONS';
-          this._context.new_sym(
-            symbol,
-            PineJS.Std.period(this._context),
-            PineJS.Std.period(this._context)
-          );
-        };
+      this.main = function(context, inputCallback) {
+        this._context = context;
+        this._input = inputCallback;
+        this._context.select_sym(1);
 
-        this.main = function(context, inputCallback) {
-          console.log('(&*^%&^*&*(* IN *)(&*^&$^%*&*(');
-          this._context = context;
-          this._input = inputCallback;
-          this._context.select_sym(1);
+        const inFlow = PineJS.Std.open(this._context);
+        const outFlow = PineJS.Std.close(this._context);
 
-          var inFlow = PineJS.Std.open(this._context);
-          var outFlow = PineJS.Std.close(this._context);
-
-          return [inFlow, outFlow];
-        };
-      },
+        return [inFlow, outFlow];
+      };
     },
   },
+
   {
     name: 'NetFlows',
     metainfo: {
@@ -275,7 +273,7 @@ __customIndicators = [
         this._input = inputCallback;
         // console.warn(context);
 
-        var symbol = '#FLOWS';
+        const symbol = '#FLOWS';
         this._context.new_sym(
           symbol,
           PineJS.Std.period(this._context),
@@ -289,7 +287,7 @@ __customIndicators = [
 
         this._context.select_sym(1);
 
-        var netFlowValue = PineJS.Std.volume(this._context);
+        const netFlowValue = PineJS.Std.volume(this._context);
 
         return [
           {

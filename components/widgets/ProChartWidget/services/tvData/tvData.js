@@ -41,7 +41,7 @@ const tvData = (exchangeService, exchangeName, symbols, isIntraday) => {
       if (process.env.NODE_ENV === 'development') {
         console.log('====== resolveSymbol running');
       }
-
+      console.log(symbolName);
       if (exchangeService.studies.getSymbol[symbolName]) {
         const getSymbol = exchangeService.studies.getSymbol[symbolName];
 
@@ -99,7 +99,6 @@ const tvData = (exchangeService, exchangeName, symbols, isIntraday) => {
         const getTAData = exchangeService.studies.getData[symbolInfo.name];
         const taData = await getTAData(from, to, resolution);
 
-        console.log(`*(&*^&**^&^&R${taData} (*&^^&**)&^&*&`);
         if (taData.length) {
           return onHistoryCallback(taData, { noData: false });
         }

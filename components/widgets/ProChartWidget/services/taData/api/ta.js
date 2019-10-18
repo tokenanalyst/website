@@ -171,6 +171,7 @@ const ta = (function ta() {
 
       return transactionsData();
     },
+
     fetchExchangeFlow: async (exchange, symbol, timeFrame, start, end) => {
       const startDate = moment(start).format('YYYY-MM-DD');
       const endDate = moment(end).format('YYYY-MM-DD');

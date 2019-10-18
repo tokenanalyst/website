@@ -52,35 +52,37 @@ const MetricsList = ({ token, selectedMetric, setSelectedMetric }) => {
           </Card>
         </div>
       </div>
-      <style jsx>{`
-        .card {
-          max-height: 600px;
-          overflow: scroll;
-          border: 1px solid rgba(0, 0, 0, 0.2);
-          border-radius: 5px;
-        }
-        .item-row {
-          padding-top: 5px;
-          padding-bottom: 5px;
-        }
-        .item {
-          margin-left: 5px;
-          margin-bottom: 5px;
-          cursor: pointer;
-        }
-        .item-selected {
-          margin-left: 5px;
-          margin-bottom: 5px;
-          font-weight: bold;
-          border-bottom: 2px solid rgba(63, 205, 171, 1);
-          cursor: pointer;
-        }
-        .header {
-          font-size: 16px;
-          font-weight: bold;
-          padding-bottom: 10px;
-        }
-      `}</style>
+      <style jsx>
+        {`
+          .card {
+            max-height: 600px;
+            overflow: scroll;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+          }
+          .item-row {
+            padding-top: 5px;
+            padding-bottom: 5px;
+          }
+          .item {
+            margin-left: 5px;
+            margin-bottom: 5px;
+            cursor: pointer;
+          }
+          .item-selected {
+            margin-left: 5px;
+            margin-bottom: 5px;
+            font-weight: bold;
+            border-bottom: 2px solid rgba(63, 205, 171, 1);
+            cursor: pointer;
+          }
+          .header {
+            font-size: 16px;
+            font-weight: bold;
+            padding-bottom: 10px;
+          }
+        `}
+      </style>
     </>
   );
 };
@@ -153,34 +155,36 @@ const Metrics = () => {
           />
         </div>
       </div>
-      <style jsx>{`
-        .container {
-          display: flex;
-        }
-        .lhs {
-          width: 15%;
-          padding-right: 10px;
-        }
-        .rhs {
-          width: 85%;
-        }
-        .title {
-          display: flex;
-          align-items: center;
-          padding: 20px;
-        }
-        .title-image {
-          width: 60px;
-        }
-        .title-name {
-          font-size: 20px;
-          font-weight: bold;
-          padding-left: 10px;
-        }
-        .metrics-list {
-          padding-top: 10px;
-        }
-      `}</style>
+      <style jsx>
+        {`
+          .container {
+            display: flex;
+          }
+          .lhs {
+            width: 15%;
+            padding-right: 10px;
+          }
+          .rhs {
+            width: 85%;
+          }
+          .title {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+          }
+          .title-image {
+            width: 60px;
+          }
+          .title-name {
+            font-size: 20px;
+            font-weight: bold;
+            padding-left: 10px;
+          }
+          .metrics-list {
+            padding-top: 10px;
+          }
+        `}
+      </style>
     </>
   );
 };
