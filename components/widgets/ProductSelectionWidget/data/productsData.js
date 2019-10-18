@@ -7,8 +7,7 @@ const CARD_CONTENT = {
     into one integrated trading
     intelligence web platform.`,
     image: '/static/svg/pricing/platform_small.svg',
-    // links: [{ text: 'Try free version', url: '/register' }],
-    links: [],
+    links: [{ text: 'Try free version', url: '/register' }],
   },
   PRO: {
     title: 'Professional',
