@@ -7,7 +7,6 @@ import ReactGA from 'react-ga';
 
 import { LoginContext } from '../../contexts/Login';
 import { LOGO_IMAGES } from '../../constants/image-paths';
-import { colors } from '../../constants/styles/colors';
 import { COOKIES } from '../../constants/cookies';
 import { PLANS } from '../../constants/plans';
 
@@ -640,7 +639,7 @@ export const DesktopNav = () => {
             color: white;
             z-index: 10000;
             top: 60px;
-            right: 170px;
+            right: ${loginCtx.isLoggedIn ? '80px' : '180px'};
             padding-left: 10px;
             border-radius: 0px 0px 5px 5px;
           }
@@ -651,7 +650,7 @@ export const DesktopNav = () => {
             color: white;
             z-index: 10000;
             top: 60px;
-            margin-left: 190px;
+            margin-left: 200px;
             padding-left: 10px;
             border-radius: 0px 0px 5px 5px;
           }
