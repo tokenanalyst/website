@@ -4,20 +4,12 @@
 /* eslint-disable object-shorthand */
 
 const BTC_INDICATORS = [
-  // { title: 'Transactions', symbol: '#TRANSACTIONS' },
   { title: 'Volume USD', symbol: '#VOLUMEUSD' },
   { title: 'Volume Real', symbol: '#VOLUMEREAL' },
   { title: 'Volume Change USD', symbol: '#VOLUMECHANGEUSD' },
   { title: 'Volume CHANGE Real', symbol: '#VOLUMECHANGEREAL' },
-  // { title: 'Active Senders', symbol: '#ACTIVESENDERS' },
-  // { title: 'Active Recipients', symbol: '#ACTIVERECIPIENTS' },
-  // { title: 'Supply', symbol: '#SUPPLY' },
-  // { title: 'NVT', symbol: '#NVT' },
-  // { title: 'Market Cap', symbol: '#MARKETCAP' },
-  // { title: 'Total Fees Real', symbol: '#TOTALFEESREAL' },
-  // { title: 'Total Fees USD', symbol: '#TOTALFEESUSD' },
-  // { title: 'Average Fees Real', symbol: '#AVERAGEFEESREAL' },
-  // { title: 'Average Fees USD', symbol: '#AVERAGEFEESUSD' },
+  { title: 'Average Size in Bytes', symbol: '#AVERAGESIZEBYTES' },
+  { title: 'Average Satoshis per Byte', symbol: '#AVERAGESATOSHIS' },
   { title: 'UTXO < 1 day', symbol: '#<1D' },
   { title: 'UTXO 1-3 months', symbol: '#1-3M' },
   { title: 'UTXO 3-6 months', symbol: '#3-6M' },
@@ -39,6 +31,8 @@ const ETH_INDICATORS = [
   { title: 'External Volume USD', symbol: '#VOLUMEEXTERNALUSD' },
   { title: 'Gross Volume Real', symbol: '#VOLUMEEXTERNALREAL' },
   { title: 'Gross Volume USD', symbol: '#VOLUMEEXTERNALUSD' },
+  { title: 'Average Gas', symbol: '#AVERAGEGAS' },
+  { title: 'Average Gas Price (Wei)', symbol: '#AVERAGEGASPRICEWEI' },
 ];
 
 const COMMON_INDICATORS = [
@@ -54,10 +48,16 @@ const COMMON_INDICATORS = [
   { title: 'Average Fees USD', symbol: '#AVERAGEFEESUSD' },
 ];
 
+const ERC20_INDICATORS = [
+  { title: 'ERC20 Volume', symbol: '#ERC20VOLUME' },
+  { title: 'ERC20 Volume USD', symbol: '#ERC20VOLUMEUSD' },
+];
+
 const METRIC_INDICATORS = [
   ...BTC_INDICATORS,
   ...ETH_INDICATORS,
   ...COMMON_INDICATORS,
+  ...ERC20_INDICATORS,
 ].map(metricIndicator => ({
   name: metricIndicator.title,
   metainfo: {

@@ -46,7 +46,6 @@ export const METRICS = {
   [NATIVE_TOKENS.BTC]: [
     {
       category: 'Volume',
-      apiValue: 'token_volume_window_historical',
       values: [
         {
           name: 'USD',
@@ -236,7 +235,7 @@ export const METRICS = {
       values: [
         {
           name: 'Number',
-          apiValue: 'number_of_txns',
+          indicator: 'Transactions',
         },
       ],
     },
@@ -246,11 +245,11 @@ export const METRICS = {
       values: [
         {
           name: 'Senders',
-          apiValue: 'active_senders',
+          indicator: 'Active Senders',
         },
         {
           name: 'Recipients',
-          apiValue: 'active_recipients',
+          indicator: 'Active Recipients',
         },
       ],
     },
@@ -260,7 +259,7 @@ export const METRICS = {
       values: [
         {
           name: 'Amount',
-          apiValue: 'supply',
+          indicator: 'Supply',
         },
       ],
     },
@@ -270,11 +269,11 @@ export const METRICS = {
       values: [
         {
           name: 'NVT',
-          apiValue: 'nvt',
+          indicator: 'NVT',
         },
         {
           name: 'Market Cap',
-          apiValue: 'marketcap_usd',
+          indicator: 'Market Cap',
         },
       ],
     },
@@ -283,28 +282,28 @@ export const METRICS = {
       apiValue: 'token_fees_window_historical',
       values: [
         {
-          name: 'Total (Real)',
-          apiValue: 'total_fee',
+          name: 'Total Real',
+          indicator: 'Total Fees Real',
         },
         {
-          name: 'Total (USD)',
-          apiValue: 'total_fee_usd',
+          name: 'Total USD',
+          indicator: 'Total Fees USD',
         },
         {
-          name: 'Average (Real)',
-          apiValue: 'avg_fee',
+          name: 'Avg. Real',
+          indicator: 'Average Fees Real',
         },
         {
-          name: 'Average (USD)',
-          apiValue: 'avg_fee_usd',
+          name: 'Avg. USD',
+          indicator: 'Average Fees USD',
         },
         {
-          name: 'Average Gas',
-          apiValue: 'avg_gas',
+          name: 'Avg. Gas',
+          indicator: 'Average Gas',
         },
         {
-          name: 'Average Gas Price Wei',
-          apiValue: 'avg_gas_price_wei',
+          name: 'Avg. Gas Price (Wei)',
+          indicator: 'Average Gas Price (Wei)',
         },
       ],
     },
@@ -316,15 +315,11 @@ export const METRICS = {
       values: [
         {
           name: 'USD',
-          apiValue: 'volume_usd',
+          indicator: 'ERC20 Volume USD',
         },
         {
           name: 'Real',
-          apiValue: 'volume',
-        },
-        {
-          name: 'Change',
-          apiValue: 'volume_change',
+          indicator: 'ERC20 Volume',
         },
       ],
     },
@@ -334,7 +329,7 @@ export const METRICS = {
       values: [
         {
           name: 'Number',
-          apiValue: 'number_of_txns',
+          indicator: 'Transactions',
         },
       ],
     },
@@ -344,11 +339,11 @@ export const METRICS = {
       values: [
         {
           name: 'Senders',
-          apiValue: 'active_senders',
+          indicator: 'Active Senders',
         },
         {
           name: 'Recipients',
-          apiValue: 'active_recipients',
+          indicator: 'Active Recipients',
         },
       ],
     },

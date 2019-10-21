@@ -29,6 +29,16 @@ export const ETH_STUDIES = [
     urlSlug: 'token_volume_window_historical',
     dataPoint: 'volume_gross_usd',
   },
+  {
+    symbol: '#AVERAGEGAS',
+    urlSlug: 'token_fees_window_historical',
+    dataPoint: 'avg_gas',
+  },
+  {
+    symbol: '#AVERAGEGASPRICEWEI',
+    urlSlug: 'token_fees_window_historical',
+    dataPoint: 'avg_gas_price_wei',
+  },
 ];
 export const ETH_SYMBOLS = [
   { symbol: '#VOLUMEINTERNALREAL' },
@@ -37,4 +47,6 @@ export const ETH_SYMBOLS = [
   { symbol: '#VOLUMEEXTERNALUSD' },
   { symbol: '#VOLUMEGROSSREAL' },
   { symbol: '#VOLUMEGROSSUSD' },
+  { symbol: '#AVERAGEGAS' },
+  { symbol: '#AVERAGEGASPRICEWEI' },
 ];

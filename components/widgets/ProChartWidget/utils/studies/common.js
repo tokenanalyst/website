@@ -50,6 +50,7 @@ export const COMMON_STUDIES = [
     dataPoint: 'avg_fee_usd',
   },
 ];
+
 export const COMMON_SYMBOLS = [
   { symbol: '#TRANSACTIONS' },
   { symbol: '#ACTIVESENDERS' },
