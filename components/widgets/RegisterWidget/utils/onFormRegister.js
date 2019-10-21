@@ -11,7 +11,7 @@ export const onFormRegister = async (loginCtx, formValues) => {
     process.env.NODE_ENV === 'development'
       ? 'https://deb8b069-8fe4-4886-9e86-69ead8b3c28b.mock.pstmn.io'
       : 'https://api.tokenanalyst.io';
-  const { email, fullName, password } = formValues;
+  const { email, fullName, password, company } = formValues;
 
   const result = {
     isSuccess: true,
@@ -34,6 +34,7 @@ export const onFormRegister = async (loginCtx, formValues) => {
       username: email,
       password: password.value,
       name: fullName,
+      company,
     });
 
     const response = await axios.post(`${API_BASE}/auth/user/login`, {

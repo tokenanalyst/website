@@ -39,7 +39,7 @@ SimpleFormGroup.propTypes = {
   helperText: PropTypes.node,
   inline: PropTypes.bool,
   intent: PropTypes.string,
-  label: PropTypes.string,
+  label: PropTypes.node,
   labelFor: PropTypes.string,
   labelInfo: PropTypes.string,
   children: PropTypes.node.isRequired,
