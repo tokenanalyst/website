@@ -1,60 +1,10 @@
 import moment from 'moment';
+import { BTC_STUDIES, BTC_SYMBOLS } from './studies/btc';
 
 const formatDate = epoch => moment(epoch).format('DD/MM/YYYY, HH:mm:ss');
 
 const METRICS_STUDIES_DATA = (ta, TAsymbol) =>
-  [
-    {
-      symbol: '#TRANSACTIONS',
-      urlSlug: 'token_count_window_historical',
-      dataPoint: 'number_of_txns',
-    },
-    {
-      symbol: '#VOLUMEUSD',
-      urlSlug: 'token_volume_window_historical',
-      dataPoint: 'volume_real_usd',
-    },
-    {
-      symbol: '#VOLUMEREAL',
-      urlSlug: 'token_volume_window_historical',
-      dataPoint: 'volume_real',
-    },
-    {
-      symbol: '#VOLUMECHANGEUSD',
-      urlSlug: 'token_volume_window_historical',
-      dataPoint: 'volume_change_usd',
-    },
-    {
-      symbol: '#VOLUMECHANGEREAL',
-      urlSlug: 'token_volume_window_historical',
-      dataPoint: 'volume_change',
-    },
-    {
-      symbol: '#ACTIVESENDERS',
-      urlSlug: 'token_active_address_window_historical',
-      dataPoint: 'active_senders',
-    },
-    {
-      symbol: '#ACTIVERECIPIENTS',
-      urlSlug: 'token_active_address_window_historical',
-      dataPoint: 'active_recipients',
-    },
-    {
-      symbol: '#SUPPLY',
-      urlSlug: 'token_supply_window_historical',
-      dataPoint: 'supply',
-    },
-    {
-      symbol: '#NVT',
-      urlSlug: 'token_supply_window_historical',
-      dataPoint: 'supply',
-    },
-    {
-      symbol: '#MARKETCAP',
-      urlSlug: 'token_supply_window_historical',
-      dataPoint: 'supply',
-    },
-  ].reduce(
+  [...BTC_STUDIES].reduce(
     (acc, curr) => ({
       ...acc,
       [curr.symbol]: async (from, to, resolution) => {
@@ -93,18 +43,7 @@ const METRICS_STUDIES_DATA = (ta, TAsymbol) =>
   );
 
 const METRICS_STUDIES_SYMBOLS = exchangeName =>
-  [
-    { symbol: '#TRANSACTIONS' },
-    { symbol: '#VOLUMEUSD' },
-    { symbol: '#VOLUMEREAL' },
-    { symbol: '#VOLUMECHANGEUSD' },
-    { symbol: '#VOLUMECHANGEREAL' },
-    { symbol: '#ACTIVESENDERS' },
-    { symbol: '#ACTIVERECIPIENTS' },
-    { symbol: '#SUPPLY' },
-    { symbol: '#NVT' },
-    { symbol: '#MARKETCAP' },
-  ].reduce(
+  [...BTC_SYMBOLS].reduce(
     (acc, curr) => ({
       ...acc,
       [curr.symbol]: () => {
