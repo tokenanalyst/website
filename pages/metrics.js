@@ -29,12 +29,17 @@ const MetricsList = ({ token, selectedIndicator, setSelectedIndicator }) => {
                       <div className="item-row">
                         <span
                           className={
-                            selectedIndicator === value.indicator
+                            selectedIndicator.name === value.indicator
                               ? 'item-selected'
                               : 'item'
                           }
                           key={value.indicator}
-                          onClick={() => setSelectedIndicator(value.indicator)}
+                          onClick={() =>
+                            setSelectedIndicator({
+                              name: value.indicator,
+                              isIntraDay: value.isIntraDay,
+                            })
+                          }
                         >
                           {value.name}
                         </span>
@@ -84,7 +89,10 @@ const MetricsList = ({ token, selectedIndicator, setSelectedIndicator }) => {
 
 const Metrics = () => {
   const [selectedToken, setSelectedToken] = useState('BTC');
-  const [selectedIndicator, setSelectedIndicator] = useState('Transactions');
+  const [selectedIndicator, setSelectedIndicator] = useState({
+    name: 'Transactions',
+    isIntraDay: true,
+  });
 
   const tvInstance = useRef(null);
   const studies = useRef({
@@ -138,11 +146,12 @@ const Metrics = () => {
             TVSymbols={['BTC', 'USDT']}
             TASymbol={selectedToken}
             exchangeName="Binance"
+            isIntraDay={selectedIndicator.isIntraDay}
             onChartRenderCb={tvWidget => {
               tvInstance.current = tvWidget;
               studies.current.flows.entityId = tvInstance.current
                 .chart()
-                .createStudy(selectedIndicator, false, true);
+                .createStudy(selectedIndicator.name, false, true);
             }}
           />
         </div>

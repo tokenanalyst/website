@@ -50,34 +50,37 @@ export const METRICS = {
         {
           name: 'USD',
           indicator: 'Volume USD',
+          isIntraDay: true,
         },
         {
           name: 'Real',
           indicator: 'Volume Real',
+          isIntraDay: true,
         },
         {
           name: 'Change USD',
           indicator: 'Volume Change USD',
+          isIntraDay: true,
         },
         {
           name: 'Change Real',
           indicator: 'Volume Change Real',
+          isIntraDay: true,
         },
       ],
     },
     {
       category: 'Transactions',
-      apiValue: 'token_count_window_historical',
       values: [
         {
           name: 'Number',
           indicator: 'Transactions',
+          isIntraDay: true,
         },
       ],
     },
     {
       category: 'Addresses',
-      apiValue: 'token_active_address_window_historical',
       values: [
         {
           name: 'Senders',
@@ -91,7 +94,6 @@ export const METRICS = {
     },
     {
       category: 'Supply',
-      apiValue: 'token_supply_window_historical',
       values: [
         {
           name: 'Amount',
@@ -101,7 +103,6 @@ export const METRICS = {
     },
     {
       category: 'NVT',
-      apiValue: 'token_nvt_window_historical',
       values: [
         {
           name: 'NVT',
@@ -115,7 +116,6 @@ export const METRICS = {
     },
     {
       category: 'Fees',
-      apiValue: 'token_fees_window_historical',
       values: [
         {
           name: 'Total Real',
@@ -145,7 +145,6 @@ export const METRICS = {
     },
     {
       category: 'UTXO Age',
-      apiValue: 'token_utxo_age_window_historical',
       values: [
         {
           name: '< 1 day',
@@ -201,47 +200,51 @@ export const METRICS = {
   [NATIVE_TOKENS.ETH]: [
     {
       category: 'Volume',
-      apiValue: 'token_volume_window_historical',
       values: [
         {
           name: 'Internal (Real)',
           indicator: 'Internal Volume Real',
+          isIntraDay: true,
         },
         {
           name: 'Internal (USD)',
           indicator: 'Internal Volume USD',
+          isIntraDay: true,
         },
         {
           name: 'External (Real)',
           indicator: 'External Volume Real',
+          isIntraDay: true,
         },
         {
           name: 'External (USD)',
           indicator: 'External Volume USD',
+          isIntraDay: true,
         },
         {
           name: 'Gross (Real)',
           indicator: 'Gross Volume Real',
+          isIntraDay: true,
         },
         {
           name: 'Gross (USD)',
           indicator: 'Gross Volume USD',
+          isIntraDay: true,
         },
       ],
     },
     {
       category: 'Transactions',
-      apiValue: 'token_count_window_historical',
       values: [
         {
           name: 'Number',
           indicator: 'Transactions',
+          isIntraDay: true,
         },
       ],
     },
     {
       category: 'Addresses',
-      apiValue: 'token_active_address_window_historical',
       values: [
         {
           name: 'Senders',
@@ -255,7 +258,6 @@ export const METRICS = {
     },
     {
       category: 'Supply',
-      apiValue: 'token_supply_window_historical',
       values: [
         {
           name: 'Amount',
@@ -265,7 +267,6 @@ export const METRICS = {
     },
     {
       category: 'NVT',
-      apiValue: 'token_nvt_window_historical',
       values: [
         {
           name: 'NVT',
@@ -279,7 +280,6 @@ export const METRICS = {
     },
     {
       category: 'Fees',
-      apiValue: 'token_fees_window_historical',
       values: [
         {
           name: 'Total Real',
@@ -311,31 +311,31 @@ export const METRICS = {
   ERC_20: [
     {
       category: 'Volume',
-      apiValue: 'token_volume_window_historical',
       values: [
         {
           name: 'USD',
           indicator: 'ERC20 Volume USD',
+          isIntraDay: true,
         },
         {
           name: 'Real',
           indicator: 'ERC20 Volume',
+          isIntraDay: true,
         },
       ],
     },
     {
       category: 'Transactions',
-      apiValue: 'token_count_window_historical',
       values: [
         {
           name: 'Number',
           indicator: 'Transactions',
+          isIntraDay: true,
         },
       ],
     },
     {
       category: 'Addresses',
-      apiValue: 'token_active_address_window_historical',
       values: [
         {
           name: 'Senders',
