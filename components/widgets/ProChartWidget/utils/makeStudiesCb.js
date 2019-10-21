@@ -1,10 +1,12 @@
 import moment from 'moment';
 import { BTC_STUDIES, BTC_SYMBOLS } from './studies/btc';
+import { ETH_STUDIES, ETH_SYMBOLS } from './studies/eth';
+import { COMMON_STUDIES, COMMON_SYMBOLS } from './studies/common';
 
 const formatDate = epoch => moment(epoch).format('DD/MM/YYYY, HH:mm:ss');
 
 const METRICS_STUDIES_DATA = (ta, TAsymbol) =>
-  [...BTC_STUDIES].reduce(
+  [...BTC_STUDIES, ...ETH_STUDIES, ...COMMON_STUDIES].reduce(
     (acc, curr) => ({
       ...acc,
       [curr.symbol]: async (from, to, resolution) => {
@@ -43,7 +45,7 @@ const METRICS_STUDIES_DATA = (ta, TAsymbol) =>
   );
 
 const METRICS_STUDIES_SYMBOLS = exchangeName =>
-  [...BTC_SYMBOLS].reduce(
+  [...BTC_SYMBOLS, ...ETH_SYMBOLS, ...COMMON_SYMBOLS].reduce(
     (acc, curr) => ({
       ...acc,
       [curr.symbol]: () => {

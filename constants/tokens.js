@@ -206,27 +206,27 @@ export const METRICS = {
       values: [
         {
           name: 'Internal (Real)',
-          apiValue: 'volume_internal',
+          indicator: 'Internal Volume Real',
         },
         {
           name: 'Internal (USD)',
-          apiValue: 'volume_internal_usd',
+          indicator: 'Internal Volume USD',
         },
         {
           name: 'External (Real)',
-          apiValue: 'volume_external',
+          indicator: 'External Volume Real',
         },
         {
           name: 'External (USD)',
-          apiValue: 'volume_external_usd',
+          indicator: 'External Volume USD',
         },
         {
           name: 'Gross (Real)',
-          apiValue: 'volume_gross',
+          indicator: 'Gross Volume Real',
         },
         {
           name: 'Gross (USD)',
-          apiValue: 'volume_gross_usd',
+          indicator: 'Gross Volume USD',
         },
       ],
     },

@@ -3,21 +3,21 @@
 /* eslint-disable func-names */
 /* eslint-disable object-shorthand */
 
-const METRIC_INDICATORS = [
-  { title: 'Transactions', symbol: '#TRANSACTIONS' },
+const BTC_INDICATORS = [
+  // { title: 'Transactions', symbol: '#TRANSACTIONS' },
   { title: 'Volume USD', symbol: '#VOLUMEUSD' },
   { title: 'Volume Real', symbol: '#VOLUMEREAL' },
   { title: 'Volume Change USD', symbol: '#VOLUMECHANGEUSD' },
   { title: 'Volume CHANGE Real', symbol: '#VOLUMECHANGEREAL' },
-  { title: 'Active Senders', symbol: '#ACTIVESENDERS' },
-  { title: 'Active Recipients', symbol: '#ACTIVERECIPIENTS' },
-  { title: 'Supply', symbol: '#SUPPLY' },
-  { title: 'NVT', symbol: '#NVT' },
-  { title: 'Market Cap', symbol: '#MARKETCAP' },
-  { title: 'Total Fees Real', symbol: '#TOTALFEESREAL' },
-  { title: 'Total Fees USD', symbol: '#TOTALFEESUSD' },
-  { title: 'Average Fees Real', symbol: '#AVERAGEFEESREAL' },
-  { title: 'Average Fees USD', symbol: '#AVERAGEFEESUSD' },
+  // { title: 'Active Senders', symbol: '#ACTIVESENDERS' },
+  // { title: 'Active Recipients', symbol: '#ACTIVERECIPIENTS' },
+  // { title: 'Supply', symbol: '#SUPPLY' },
+  // { title: 'NVT', symbol: '#NVT' },
+  // { title: 'Market Cap', symbol: '#MARKETCAP' },
+  // { title: 'Total Fees Real', symbol: '#TOTALFEESREAL' },
+  // { title: 'Total Fees USD', symbol: '#TOTALFEESUSD' },
+  // { title: 'Average Fees Real', symbol: '#AVERAGEFEESREAL' },
+  // { title: 'Average Fees USD', symbol: '#AVERAGEFEESUSD' },
   { title: 'UTXO < 1 day', symbol: '#<1D' },
   { title: 'UTXO 1-3 months', symbol: '#1-3M' },
   { title: 'UTXO 3-6 months', symbol: '#3-6M' },
@@ -30,6 +30,34 @@ const METRIC_INDICATORS = [
   { title: 'UTXO 3 years-5 years', symbol: '#3Y-5Y' },
   { title: 'UTXO 5 years-10 years', symbol: '#5Y-10Y' },
   { title: 'UTXO > 10 years', symbol: '#>10Y' },
+];
+
+const ETH_INDICATORS = [
+  { title: 'Internal Volume Real', symbol: '#VOLUMEINTERNALREAL' },
+  { title: 'Internal Volume USD', symbol: '#VOLUMEINTERNALUSD' },
+  { title: 'External Volume Real', symbol: '#VOLUMEEXTERNALREAL' },
+  { title: 'External Volume USD', symbol: '#VOLUMEEXTERNALUSD' },
+  { title: 'Gross Volume Real', symbol: '#VOLUMEEXTERNALREAL' },
+  { title: 'Gross Volume USD', symbol: '#VOLUMEEXTERNALUSD' },
+];
+
+const COMMON_INDICATORS = [
+  { title: 'Transactions', symbol: '#TRANSACTIONS' },
+  { title: 'Active Senders', symbol: '#ACTIVESENDERS' },
+  { title: 'Active Recipients', symbol: '#ACTIVERECIPIENTS' },
+  { title: 'Supply', symbol: '#SUPPLY' },
+  { title: 'NVT', symbol: '#NVT' },
+  { title: 'Market Cap', symbol: '#MARKETCAP' },
+  { title: 'Total Fees Real', symbol: '#TOTALFEESREAL' },
+  { title: 'Total Fees USD', symbol: '#TOTALFEESUSD' },
+  { title: 'Average Fees Real', symbol: '#AVERAGEFEESREAL' },
+  { title: 'Average Fees USD', symbol: '#AVERAGEFEESUSD' },
+];
+
+const METRIC_INDICATORS = [
+  ...BTC_INDICATORS,
+  ...ETH_INDICATORS,
+  ...COMMON_INDICATORS,
 ].map(metricIndicator => ({
   name: metricIndicator.title,
   metainfo: {
