@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useContext } from 'react';
 import { Card } from '@blueprintjs/core';
 
 import { TokenSelect } from '../components/widgets/ProChartWidget/TokenSelect';
@@ -7,11 +7,24 @@ import { CollapsibleItem } from '../components/CollapsibleItem';
 import { TOKEN_NAMES } from '../constants/token-names';
 import { ProChartContainer } from '../components/widgets/ProChartWidget/ProChartContainer';
 import { NATIVE_TOKENS, METRICS } from '../constants/tokens';
+import { LoginContext } from '../contexts/Login';
+import { SimpleDialog } from '../components/SimpleDialog';
 
 const MetricsList = ({ token, selectedIndicator, setSelectedIndicator }) => {
+  const loginCtx = useContext(LoginContext);
+
+  const [isRegisterDialogShown, setIsRegisterDialogShown] = useState(false);
+
   return (
     <>
       <div className="container">
+        <SimpleDialog
+          header="Sign Up for FREE Access top this Metric and Many, Many more!"
+          subHeader="TokenAnalyst provides a World Class amount of metrics across all major tokens and blockchains. By signing up you will have access to all metrics, in both daily and hourly granularities (depending on metrics)"
+          ctaText="Sign Up"
+          isOpen={isRegisterDialogShown}
+          onClose={() => setIsRegisterDialogShown(false)}
+        ></SimpleDialog>
         <div className="card">
           <Card>
             <div className="header">Fundamentals:</div>
@@ -30,16 +43,24 @@ const MetricsList = ({ token, selectedIndicator, setSelectedIndicator }) => {
                       <div className="item-row">
                         <span
                           className={
-                            selectedIndicator.name === value.indicator
+                            value.requiresLogin
+                              ? loginCtx.isLoggedIn
+                                ? selectedIndicator.name === value.indicator
+                                  ? 'item-selected'
+                                  : 'item'
+                                : 'item-greyed'
+                              : selectedIndicator.name === value.indicator
                               ? 'item-selected'
                               : 'item'
                           }
                           key={value.indicator}
                           onClick={() =>
-                            setSelectedIndicator({
-                              name: value.indicator,
-                              isIntraDay: value.isIntraDay,
-                            })
+                            loginCtx.isLoggedIn || !value.requiresLogin
+                              ? setSelectedIndicator({
+                                  name: value.indicator,
+                                  isIntraDay: value.isIntraDay,
+                                })
+                              : setIsRegisterDialogShown(true)
                           }
                         >
                           {value.name}
@@ -56,7 +77,7 @@ const MetricsList = ({ token, selectedIndicator, setSelectedIndicator }) => {
       <style jsx>
         {`
           .card {
-            max-height: 600px;
+            max-height: 500px;
             overflow: scroll;
             border: 1px solid rgba(0, 0, 0, 0.2);
             border-radius: 5px;
@@ -71,6 +92,13 @@ const MetricsList = ({ token, selectedIndicator, setSelectedIndicator }) => {
             margin-left: 5px;
             margin-bottom: 5px;
             cursor: pointer;
+          }
+          .item-greyed {
+            margin-left: 5px;
+            margin-bottom: 5px;
+            cursor: pointer;
+            opacity: 0.5;
+            font-style: italic;
           }
           .item-selected {
             margin-left: 5px;
@@ -96,6 +124,7 @@ const Metrics = () => {
     name: 'Volume USD',
     isIntraDay: true,
   });
+  // const [isRegisterDialogShown, setIsRegisterDialogShown] = useState(false);
 
   const tvInstance = useRef(null);
   const studies = useRef({
@@ -121,7 +150,7 @@ const Metrics = () => {
         <div className="lhs">
           <div className="title">
             <img
-              src={`/static/png/coins/${selectedToken}.png`}
+              src={`/static/png/coins/${selectedToken.toLowerCase()}.png`}
               className="title-image"
             />
             <div className="title-name">{TOKEN_NAMES[selectedToken]}</div>

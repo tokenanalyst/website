@@ -39,16 +39,6 @@ export const SimpleDialog = ({
             </Button>
           </div>
           {children}
-          <div className="button">
-            <Button
-              className="button"
-              icon="arrow-right"
-              intent={Intent.SUCCESS}
-              onClick={onCtaClick}
-            >
-              {ctaText}
-            </Button>
-          </div>
         </div>
         <style jsx>{`
           .container {
