@@ -3,9 +3,7 @@ import { PLANS } from '../../../../constants/plans';
 const CARD_CONTENT = {
   PLATFORM: {
     title: 'Platform',
-    description: `Providing starter market data 
-    into one integrated trading
-    intelligence web platform.`,
+    description: `Providing key on-chain and market data into one integrated trading platform.`,
     image: '/static/svg/pricing/platform_small.svg',
     links: [{ text: 'Try free version', url: '/register' }],
   },
