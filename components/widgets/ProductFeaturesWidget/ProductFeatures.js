@@ -13,6 +13,7 @@ import { LoginContext } from '../../../contexts/Login';
 import { STRIPE } from '../../../constants/stripe';
 import { FeatureTableDesktop } from './FeatureTableDesktop';
 import { FeatureTableMobile } from './FeatureTableMobile';
+import { GA_GOAL_NAME } from './data/productsData';
 
 const renderFeatures = features =>
   features.map(feature => {
@@ -35,7 +36,7 @@ const renderFeatures = features =>
               font-stretch: normal;
               line-height: normal;
               letter-spacing: 0.13px;
-              color: #642c2c;
+              color: #252525;
               display: flex;
               align-items: center;
               padding-left: 50px;
@@ -59,7 +60,11 @@ const renderCollapseControl = isOpen => {
   return (
     <>
       <div className="container">
-        <img className="image" src="/static/svg/pricing/arrow.svg" />
+        <img
+          className="image"
+          src="/static/svg/pricing/arrow.svg"
+          alt="arrow"
+        />
         <div className="link">Compare plans and product details</div>
       </div>
       <style jsx>
@@ -76,7 +81,7 @@ const renderCollapseControl = isOpen => {
             font-weight: 700;
             font-style: normal;
             font-stretch: normal;
-            color: #642c2c;
+            color: #222;
             cursor: pointer;
           }
           .image {
@@ -99,7 +104,7 @@ const emitProductEvent = action => {
   });
 };
 
-const redirectToStripe = stripePlan => async stripeOptions => {
+const redirectToStripe = (stripePlan, product) => async stripeOptions => {
   const stripe = Stripe(STRIPE.apiKey);
 
   const stripeOpt = {
@@ -109,7 +114,9 @@ const redirectToStripe = stripePlan => async stripeOptions => {
         quantity: 1,
       },
     ],
-    successUrl: 'https://www.tokenanalyst.io/purchase-success',
+    successUrl: `https://www.tokenanalyst.io/purchase-success${
+      product ? `?p=${product.toLowerCase()}` : ''
+    }`,
     cancelUrl: 'https://www.tokenanalyst.io/',
     ...stripeOptions,
   };
@@ -130,6 +137,7 @@ export const ProductFeatures = ({
   const username = Cookies.get('loggedInAsUsername');
   const userId = Cookies.get('loggedInAsUserId');
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   return (
     <>
@@ -145,6 +153,7 @@ export const ProductFeatures = ({
             const { url, isExternal, text, isBuy, isIntercom } = button;
 
             const onBuyPlan = async () => {
+              setIsLoading(true);
               if (url) {
                 const action = `Plan click ${text}`;
                 return emitProductEvent(action);
@@ -155,11 +164,17 @@ export const ProductFeatures = ({
 
               if (!loginCtx.isLoggedIn) {
                 loginCtx.setPaymentData({
-                  stripe: { redirectFn: redirectToStripe(stripePlan) },
+                  stripe: {
+                    redirectFn: redirectToStripe(
+                      stripePlan,
+                      GA_GOAL_NAME[name]
+                    ),
+                  },
                 });
+                document.documentElement.scrollTop = 0;
                 return Router.push('/login');
               }
-              return redirectToStripe(stripePlan)({
+              return redirectToStripe(stripePlan, GA_GOAL_NAME[name])({
                 customerEmail: username,
                 clientReferenceId: userId.toString(),
               });
@@ -178,6 +193,7 @@ export const ProductFeatures = ({
                   stripePlan={stripePlan}
                   isActive={isBuy}
                   onClick={onClick}
+                  isLoading={isBuy ? isLoading : false}
                 />
               </div>
             );

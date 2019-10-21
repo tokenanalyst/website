@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Link from 'next/link';
 import classNames from 'classnames';
+import { Spinner } from '@blueprintjs/core';
 
 import { pricingButton } from '../../../constants/styles/common-styled-jsx';
 
@@ -12,8 +13,9 @@ export const ButtonFeatures = ({
   text,
   isActive,
   onClick,
+  isLoading,
 }) => {
-  const linkColor = isActive ? '#ffffff' : '#642c2c';
+  const linkColor = isActive ? '#ffffff' : '#222';
 
   return (
     <div>
@@ -52,7 +54,7 @@ export const ButtonFeatures = ({
           type="button"
           onClick={onClick}
         >
-          {text}
+          {isLoading ? <Spinner size={22} /> : text}
         </button>
       )}
       <style jsx>{pricingButton}</style>
@@ -82,6 +84,7 @@ ButtonFeatures.propTypes = {
   isExternal: PropTypes.bool,
   text: PropTypes.string.isRequired,
   isActive: PropTypes.bool,
+  isLoading: PropTypes.bool,
   onClick: PropTypes.func,
 };
 
@@ -89,5 +92,6 @@ ButtonFeatures.defaultProps = {
   url: null,
   isExternal: false,
   isActive: false,
+  isLoading: false,
   onClick: () => {},
 };

@@ -4,6 +4,7 @@ import React from 'react';
 import ReactGA from 'react-ga';
 import Link from 'next/link';
 import kebabCase from 'lodash/kebabCase';
+import { scroller } from 'react-scroll';
 
 import { pricingButton } from '../../../constants/styles/common-styled-jsx';
 
@@ -93,13 +94,28 @@ export const ProductCard = ({
         <div className="description">{description}</div>
         <div className="links">{renderLinks(links)}</div>
         <div className="button-container">
-          <div className="buttonLink">
-            <a
-              href={`#${kebabCase(title)}`}
-              onClick={() => emitProductEvent(name)}
+          <div>
+            <button
+              type="button"
+              onKeyDown={() => {
+                emitProductEvent(name);
+                scroller.scrollTo(kebabCase(title), {
+                  duration: 800,
+                  delay: 0,
+                  smooth: 'easeInOutQuart',
+                });
+              }}
+              onClick={() => {
+                emitProductEvent(name);
+                scroller.scrollTo(kebabCase(title), {
+                  duration: 800,
+                  delay: 0,
+                  smooth: 'easeInOutQuart',
+                });
+              }}
             >
               View Plan
-            </a>
+            </button>
           </div>
         </div>
       </div>
@@ -108,7 +124,7 @@ export const ProductCard = ({
         {`
           .container {
             width: 381px;
-            height: 446px;
+            height: 450px;
             background-color: #ffffff;
             padding-left: 40px;
             padding-top: 30px;
@@ -147,7 +163,7 @@ export const ProductCard = ({
             font-stretch: normal;
             line-height: normal;
             letter-spacing: 0.17px;
-            color: #642c2c;
+            color: #222222;
           }
           .price-platform {
             opacity: 0.46;
@@ -170,6 +186,7 @@ export const ProductCard = ({
             letter-spacing: 0.13px;
             color: #2d2d2d;
             padding-bottom: 20px;
+            min-height: 100px;
           }
           .links {
             font-family: Open Sans;
@@ -213,17 +230,17 @@ export const ProductCard = ({
             right: 20px;
           }
           a {
-            color: #642c2c;
+            color: #222222;
           }
           a:hover {
             text-decoration: none;
-            color: #642c2c;
+            color: #222222;
           }
           a:active {
-            color: #642c2c;
+            color: #222222;
           }
           a:visited {
-            color: #642c2c;
+            color: #222222;
           }
           @media only screen and (max-width: 768px) {
             .container {

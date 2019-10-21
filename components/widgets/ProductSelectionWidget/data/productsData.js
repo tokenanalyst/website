@@ -11,9 +11,9 @@ const CARD_CONTENT = {
     links: [{ text: 'Try free version', url: '/register' }],
   },
   PRO: {
-    title: 'TokenAnalyst Pro',
+    title: 'Professional',
     priceText: `${PLANS.PRO.price}/month`,
-    description: `Access to a plethora of proprietary metrics and unparalleled insights via historical data APIs and real-time WebSockets.`,
+    description: `Access to a plethora of proprietary metrics and insights via historical data APIs and real-time WebSockets.`,
     isPlatformInclusive: true,
     image: '/static/svg/pricing/api_websocket_small.svg',
     links: [

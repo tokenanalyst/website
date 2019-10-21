@@ -1,4 +1,11 @@
-import { PLANS } from '../../../../constants/plans';
+import { PLANS, PLAN_NAMES } from '../../../../constants/plans';
+
+const { PLATFORM, PRO } = PLAN_NAMES;
+
+export const GA_GOAL_NAME = {
+  [PLATFORM]: PLATFORM,
+  [PRO]: PRO,
+};
 
 export const FEATURES = {
   columns: ['Platform', 'Pro', 'Enterprise'],
@@ -158,7 +165,7 @@ const FEATURES_CONTENT = {
     index: 1,
   },
   PRO: {
-    title: 'TokenAnalyst Pro',
+    title: 'Professional',
     description: `Our signature plan, offering proprietary 
     historical and real-time metrics across 
     a wide-array of assets via API 
@@ -193,7 +200,7 @@ const FEATURES_CONTENT = {
   ENTERPRISE: {
     title: 'Enterprise',
     description: `Access data faster than the competition 
-    and gain unparalleled insights using our 
+    and gain insights using our 
     proprietary datasets.`,
     image: '/static/svg/pricing/features_enterprise.svg',
     features: [
