@@ -26,15 +26,17 @@ const apiKey = 'abcApiKey';
 const name = 'testName';
 const username = 'testUserName';
 const id = 'testId';
+const tier = 0;
 
 const expectCookies = () => {
   expect(Cookies.set).toHaveBeenNthCalledWith(1, COOKIES.apiKey, apiKey);
   expect(Cookies.set).toHaveBeenNthCalledWith(
-    3,
+    2,
     COOKIES.loggedInAsUsername,
     username
   );
-  expect(Cookies.set).toHaveBeenNthCalledWith(4, COOKIES.loggedInAsUserId, id);
+  expect(Cookies.set).toHaveBeenNthCalledWith(3, COOKIES.loggedInAsUserId, id);
+  expect(Cookies.set).toHaveBeenNthCalledWith(4, COOKIES.tier, tier);
 };
 
 axios.post.mockImplementation(async url => {
@@ -93,35 +95,6 @@ describe('onFormRegister function', () => {
     const expectedResult = {
       isSuccess: false,
       errorMsg: 'Please choose a stronger password',
-      redirectFn: () => null,
-    };
-    const result = await onFormRegister(loginCtx, formValues);
-
-    expect(result.isSuccess).toEqual(expectedResult.isSuccess);
-    expect(result.errorMsg).toEqual(expectedResult.errorMsg);
-    expect(result.redirectFn).toBeInstanceOf(Function);
-  });
-
-  it('should verify password', async () => {
-    const formValues = {
-      email: 'test@test.com',
-      fullName: 'testName',
-      password: {
-        value: '123',
-        verify: '1234',
-      },
-      profession: {
-        isTrader: true,
-        isEnterprise: true,
-        isEnthusiast: true,
-        isResearcher: true,
-        isDeveloper: true,
-        isOther: true,
-      },
-    };
-    const expectedResult = {
-      isSuccess: false,
-      errorMsg: 'Passwords do not match',
       redirectFn: () => null,
     };
     const result = await onFormRegister(loginCtx, formValues);
