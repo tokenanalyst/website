@@ -6,7 +6,12 @@ export const SimpleToolTip = ({ children, dataFor, toolTip, ...rest }) => {
   return (
     <>
       {children}
-      <ReactTooltip className="customeTheme" id={dataFor} {...rest}>
+      <ReactTooltip
+        place="bottom"
+        className="customeTheme"
+        id={dataFor}
+        {...rest}
+      >
         <div id={`tooltip-${dataFor}`}>{toolTip}</div>
       </ReactTooltip>
     </>

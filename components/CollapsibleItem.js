@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { Card, Collapse, Icon } from '@blueprintjs/core';
+import { Collapse, Icon } from '@blueprintjs/core';
 
-export const CollapsibleItem = ({ header, body }) => {
-  const [isOpen, setIsOpen] = useState(false);
+export const CollapsibleItem = ({ header, body, defaultIsOpen = false }) => {
+  const [isOpen, setIsOpen] = useState(defaultIsOpen);
 
   return (
     <>

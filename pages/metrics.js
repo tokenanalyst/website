@@ -23,6 +23,7 @@ const MetricsList = ({ token, selectedIndicator, setSelectedIndicator }) => {
               <CollapsibleItem
                 key={metric.category}
                 header={metric.category}
+                defaultIsOpen={metric.isDefault}
                 body={
                   <>
                     {metric.values.map(value => (
@@ -63,6 +64,8 @@ const MetricsList = ({ token, selectedIndicator, setSelectedIndicator }) => {
           .item-row {
             padding-top: 5px;
             padding-bottom: 5px;
+            display: flex;
+            align-items: center;
           }
           .item {
             margin-left: 5px;
@@ -90,7 +93,7 @@ const MetricsList = ({ token, selectedIndicator, setSelectedIndicator }) => {
 const Metrics = () => {
   const [selectedToken, setSelectedToken] = useState('BTC');
   const [selectedIndicator, setSelectedIndicator] = useState({
-    name: 'Transactions',
+    name: 'Volume USD',
     isIntraDay: true,
   });
 

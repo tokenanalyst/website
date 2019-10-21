@@ -46,16 +46,19 @@ export const METRICS = {
   [NATIVE_TOKENS.BTC]: [
     {
       category: 'Volume',
+      isDefault: true,
       values: [
         {
           name: 'USD',
           indicator: 'Volume USD',
           isIntraDay: true,
+          info: 'volume_real * price_usd',
         },
         {
           name: 'Real',
           indicator: 'Volume Real',
           isIntraDay: true,
+          info: 'volume_gross - volume_change',
         },
         {
           name: 'Change USD',
@@ -65,6 +68,11 @@ export const METRICS = {
         {
           name: 'Change Real',
           indicator: 'Volume Change Real',
+          isIntraDay: true,
+        },
+        {
+          name: 'Gross Real',
+          indicator: 'Gross Volume Real',
           isIntraDay: true,
         },
       ],
@@ -315,12 +323,10 @@ export const METRICS = {
         {
           name: 'USD',
           indicator: 'ERC20 Volume USD',
-          isIntraDay: true,
         },
         {
           name: 'Real',
           indicator: 'ERC20 Volume',
-          isIntraDay: true,
         },
       ],
     },
@@ -330,7 +336,6 @@ export const METRICS = {
         {
           name: 'Number',
           indicator: 'Transactions',
-          isIntraDay: true,
         },
       ],
     },

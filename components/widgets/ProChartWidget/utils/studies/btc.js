@@ -20,6 +20,11 @@ export const BTC_STUDIES = [
     dataPoint: 'volume_change',
   },
   {
+    symbol: '#VOLUMEGROSSREALBTC',
+    urlSlug: 'token_volume_window_historical',
+    dataPoint: 'volume_gross',
+  },
+  {
     symbol: '#AVERAGESIZEBYTES',
     urlSlug: 'token_fees_window_historical',
     dataPoint: 'avg_size_bytes',
@@ -96,6 +101,7 @@ export const BTC_SYMBOLS = [
   { symbol: '#VOLUMEREAL' },
   { symbol: '#VOLUMECHANGEUSD' },
   { symbol: '#VOLUMECHANGEREAL' },
+  { symbol: '#VOLUMEGROSSREALBTC' },
   { symbol: '#AVERAGESIZEBYTES' },
   { symbol: '#AVERAGESATOSHIS' },
   { symbol: '#<1D' },
