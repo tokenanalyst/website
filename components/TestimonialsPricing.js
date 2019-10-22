@@ -77,8 +77,8 @@ const TESTIMONIALS = [
   },
 ];
 
-const renderLinks = plans => {
-  return plans.map(plan => {
+const renderLinks = plans =>
+  plans.map(plan => {
     return (
       <div key={plan} className="container">
         <div
@@ -133,7 +133,6 @@ const renderLinks = plans => {
       </div>
     );
   });
-};
 
 export const TestimonialsPricing = () => (
   <>
