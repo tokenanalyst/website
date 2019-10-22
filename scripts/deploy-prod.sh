@@ -2,7 +2,7 @@
 export SENTRY_ORG=tokenanalyst-3c
 export SENTRY_PROJECT=ta-website
 export SENTRY_RELEASE=$(sentry-cli releases propose-version)
-export IS_SENTRY='true'
+export IS_SOURCE_MAP='true'
 
 echo "-> Bulding bundle"
 rm -rf .next/
@@ -18,14 +18,17 @@ sentry-cli releases files $SENTRY_RELEASE upload-sourcemaps .next/ --url-prefix 
 echo "-> Deploying Sentry release $SENTRY_RELEASE"
 sentry-cli releases deploys $SENTRY_RELEASE new -e production
 
-export IS_SENTRY='false'
+export IS_SOURCE_MAP='false'
 
 echo "-> Deploying to Now"
+
 echo y | now secrets rm sentry-release
-echo y | now secrets rm is-sentry
+echo y | now secrets rm is-source-map
 now secrets add sentry-release $SENTRY_RELEASE
-now secrets add is-sentry $IS_SENTRY
+now secrets add is-source-map $IS_SOURCE_MAP
 now deploy
+
+
 
 
 
