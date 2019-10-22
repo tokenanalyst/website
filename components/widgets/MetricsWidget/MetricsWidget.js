@@ -68,11 +68,11 @@ export const MetricsWidget = () => {
           <ProChartContainer
             timeFrame="3D"
             interval="60"
-            // TVSymbols={[baseToken, quoteToken]}
-            TVSymbols={['BTC', 'USDT']}
+            TVSymbols={[baseToken, quoteToken]}
+            // TVSymbols={['TKN', 'USDT']}
             TASymbol={selectedToken}
-            // exchangeName={firstExchange}
-            exchangeName={'Binance'}
+            exchangeName={firstExchange}
+            // exchangeName={'Bittrex'}
             isIntraDay={selectedIndicator.isIntraDay}
             onChartRenderCb={tvWidget => {
               tvInstance.current = tvWidget;

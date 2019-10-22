@@ -16,7 +16,6 @@ export const ERC20_TOKENS = {
   CVC: 'CVC',
   FET: 'FET',
   GNT: 'GNT',
-  GUSD: 'GUSD',
   KNC: 'KNC',
   LINK: 'LINK',
   LOOM: 'LOOM',
