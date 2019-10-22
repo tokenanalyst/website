@@ -46,7 +46,7 @@ module.exports = userConfig => {
     fetchDataFromApi(ENDPOINTS.private.token_fees_window_historical)
   );
   ta.tokenSupplyWindowHistorical = compose(
-    fetchDataFromApi(ENDPOINTS.private.token_fees_window_historical)
+    fetchDataFromApi(ENDPOINTS.private.token_supply_window_historical)
   );
   ta.tokenUtxoAgeWindowHistorical = compose(
     fetchDataFromApi(ENDPOINTS.private.token_utxo_age_window_historical)

@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import ReactGA from 'react-ga';
 
 import { CollapsibleItem } from '../../CollapsibleItem';
-import { NATIVE_TOKENS, METRICS, TOKEN_TYPES } from '../../../constants/tokens';
+import { METRICS, TOKEN_TYPES } from '../../../constants/tokens';
 import { LoginContext } from '../../../contexts/Login';
 import { SimpleDialog } from '../../SimpleDialog';
 import { tokensDb } from '../../../services/tokensDb';
@@ -39,6 +39,7 @@ export const MetricsList = ({
   useMemo(() => {
     setSelectedIndicator({
       name: getIndicator(token),
+      isIntraDay: true,
     });
   }, [token]);
 

@@ -21,7 +21,7 @@ module.exports = async (req, res) => {
 
   const privateApi = TA({ apiKey: process.env.API_KEY });
 
-  const PARAMS = { window: '1d', format: 'json' };
+  const PARAMS = { window, format: 'json' };
 
   const params = {
     key: process.env.API_KEY,
