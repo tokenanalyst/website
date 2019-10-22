@@ -1,52 +1,54 @@
+import { API_METRICS } from '../../../../../constants/apiMetrics';
+
 export const COMMON_STUDIES = [
   {
     symbol: '#TRANSACTIONS',
-    urlSlug: 'token_count_window_historical',
+    urlSlug: API_METRICS.Transactions,
     dataPoint: 'number_of_txns',
   },
   {
     symbol: '#ACTIVESENDERS',
-    urlSlug: 'token_active_address_window_historical',
+    urlSlug: API_METRICS.Addresses,
     dataPoint: 'active_senders',
   },
   {
     symbol: '#ACTIVERECIPIENTS',
-    urlSlug: 'token_active_address_window_historical',
+    urlSlug: API_METRICS.Addresses,
     dataPoint: 'active_recipients',
   },
   {
     symbol: '#SUPPLY',
-    urlSlug: 'token_supply_window_historical',
+    urlSlug: API_METRICS.Supply,
     dataPoint: 'supply',
   },
   {
     symbol: '#NVT',
-    urlSlug: 'token_supply_window_historical',
+    urlSlug: API_METRICS.Nvt,
     dataPoint: 'supply',
   },
   {
     symbol: '#MARKETCAP',
-    urlSlug: 'token_supply_window_historical',
+    urlSlug: API_METRICS.Nvt,
     dataPoint: 'supply',
   },
   {
     symbol: '#TOTALFEESREAL',
-    urlSlug: 'token_fees_window_historical',
+    urlSlug: API_METRICS.Fees,
     dataPoint: 'total_fee',
   },
   {
     symbol: '#TOTALFEESUSD',
-    urlSlug: 'token_fees_window_historical',
+    urlSlug: API_METRICS.Fees,
     dataPoint: 'total_fee_usd',
   },
   {
     symbol: '#AVERAGEFEESREAL',
-    urlSlug: 'token_fees_window_historical',
+    urlSlug: API_METRICS.Fees,
     dataPoint: 'avg_fee',
   },
   {
     symbol: '#AVERAGEFEESUSD',
-    urlSlug: 'token_fees_window_historical',
+    urlSlug: API_METRICS.Fees,
     dataPoint: 'avg_fee_usd',
   },
 ];

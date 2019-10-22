@@ -1,12 +1,14 @@
+import { API_METRICS } from '../../../../../constants/apiMetrics';
+
 export const ERC20_STUDIES = [
   {
     symbol: '#ERC20VOLUME',
-    urlSlug: 'token_volume_window_historical',
+    urlSlug: API_METRICS.Volume,
     dataPoint: 'volume',
   },
   {
     symbol: '#ERC20VOLUMEUSD',
-    urlSlug: 'token_volume_window_historical',
+    urlSlug: API_METRICS.Volume,
     dataPoint: 'volume_usd',
   },
 ];
