@@ -22,7 +22,7 @@ export const RegistrationBenefits = () => {
       </div>
       <style jsx>{`
         .container {
-          padding-bottom: 150px;
+          padding-top: 20px;
         }
         .title {
           font-weight: bold;
