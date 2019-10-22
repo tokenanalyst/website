@@ -2,7 +2,14 @@
   "version": 2,
   "env": {
     "API_KEY": "@api-key",
-    "KAIKO_KEY": "@kaiko-key"
+    "KAIKO_KEY": "@kaiko-key",
+    "SENTRY_RELEASE": "@sentry-release",
+    "IS_SENTRY": "@is-sentry"
+  },
+  "build": {
+    "env": {
+      "SENTRY_RELEASE": "@sentry-release"
+    }
   },
   "routes": [{ "src": "/robots.txt", "dest": "/static/robots.txt" }]
 }

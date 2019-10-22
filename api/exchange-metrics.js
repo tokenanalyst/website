@@ -15,6 +15,10 @@ module.exports = async (req, res) => {
   const FORMAT = 'json';
   const PUBLIC_API_URL = 'https://api.tokenanalyst.io/analytics';
 
+  console.log(
+    `@@@@@@@@@@ metrics: process.env.SENTRY_RELEASE: ${process.env.SENTRY_RELEASE}`
+  );
+
   if (!token || !exchange || !timeWindow) {
     return res.status(400).send({ message: API_ERROR_MSG.PARAMS_MISSING });
   }
