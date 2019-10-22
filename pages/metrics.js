@@ -9,9 +9,11 @@ import { ProChartContainer } from '../components/widgets/ProChartWidget/ProChart
 import { NATIVE_TOKENS, METRICS } from '../constants/tokens';
 import { LoginContext } from '../contexts/Login';
 import { SimpleDialog } from '../components/SimpleDialog';
+import { useRouter } from 'next/router';
 
 const MetricsList = ({ token, selectedIndicator, setSelectedIndicator }) => {
   const loginCtx = useContext(LoginContext);
+  const router = useRouter();
 
   const [isRegisterDialogShown, setIsRegisterDialogShown] = useState(false);
 
@@ -19,12 +21,18 @@ const MetricsList = ({ token, selectedIndicator, setSelectedIndicator }) => {
     <>
       <div className="container">
         <SimpleDialog
-          header="Sign Up for FREE Access top this Metric and Many, Many more!"
-          subHeader="TokenAnalyst provides a World Class amount of metrics across all major tokens and blockchains. By signing up you will have access to all metrics, in both daily and hourly granularities (depending on metrics)"
+          header="Sign Up for FREE Access to this Metric and Many, Many more!"
           ctaText="Sign Up"
           isOpen={isRegisterDialogShown}
           onClose={() => setIsRegisterDialogShown(false)}
-        ></SimpleDialog>
+          onCtaClick={() => router.push('/register?metrics=true')}
+        >
+          <br />
+          TokenAnalyst provides a World Class amount of Metrics across all major
+          Tokens and Blockchains. <br />
+          By signing up you will have access to all Metrics, in both daily and
+          hourly granularities (depending on metrics).
+        </SimpleDialog>
         <div className="card">
           <Card>
             <div className="header">Fundamentals:</div>

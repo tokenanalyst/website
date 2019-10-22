@@ -98,6 +98,7 @@ export const METRICS = {
         {
           name: 'Recipients',
           indicator: 'Active Recipients',
+          requiresLogin: true,
         },
       ],
     },
@@ -116,10 +117,12 @@ export const METRICS = {
         {
           name: 'NVT',
           indicator: 'NVT',
+          requiresLogin: true,
         },
         {
           name: 'Market Cap',
           indicator: 'Market Cap',
+          requiresLogin: true,
         },
       ],
     },
@@ -137,18 +140,22 @@ export const METRICS = {
         {
           name: 'Avg. Real',
           indicator: 'Average Fees Real',
+          requiresLogin: true,
         },
         {
           name: 'Avg. USD',
           indicator: 'Average Fees USD',
+          requiresLogin: true,
         },
         {
           name: 'Avg. Size (Bytes)',
           indicator: 'Average Size in Bytes',
+          requiresLogin: true,
         },
         {
           name: 'Avg. Satoshis per Byte',
           indicator: 'Average Satoshis per Byte',
+          requiresLogin: true,
         },
       ],
     },
@@ -174,34 +181,42 @@ export const METRICS = {
         {
           name: '3 - 6 months',
           indicator: 'UTXO 3-6 months',
+          requiresLogin: true,
         },
         {
           name: '6 - 12 months',
           indicator: 'UTXO 6-12 months',
+          requiresLogin: true,
         },
         {
           name: '12 - 18 months',
           indicator: 'UTXO 12-18 months',
+          requiresLogin: true,
         },
         {
           name: '18 -  24 months',
           indicator: 'UTXO 18-24 months',
+          requiresLogin: true,
         },
         {
           name: '2 - 3 years',
           indicator: 'UTXO 2 years-3 years',
+          requiresLogin: true,
         },
         {
           name: '3 - 5 years',
           indicator: 'UTXO 3 years-5 years',
+          requiresLogin: true,
         },
         {
           name: '5 - 10 years',
           indicator: 'UTXO 5 years-10 years',
+          requiresLogin: true,
         },
         {
           name: '> 10 years',
           indicator: 'UTXO > 10 years',
+          requiresLogin: true,
         },
       ],
     },
@@ -224,21 +239,25 @@ export const METRICS = {
           name: 'External (Real)',
           indicator: 'External Volume Real',
           isIntraDay: true,
+          requiresLogin: true,
         },
         {
           name: 'External (USD)',
           indicator: 'External Volume USD',
           isIntraDay: true,
+          requiresLogin: true,
         },
         {
           name: 'Gross (Real)',
           indicator: 'Gross Volume Real',
           isIntraDay: true,
+          requiresLogin: true,
         },
         {
           name: 'Gross (USD)',
           indicator: 'Gross Volume USD',
           isIntraDay: true,
+          requiresLogin: true,
         },
       ],
     },
@@ -262,6 +281,7 @@ export const METRICS = {
         {
           name: 'Recipients',
           indicator: 'Active Recipients',
+          requiresLogin: true,
         },
       ],
     },
@@ -280,10 +300,12 @@ export const METRICS = {
         {
           name: 'NVT',
           indicator: 'NVT',
+          requiresLogin: true,
         },
         {
           name: 'Market Cap',
           indicator: 'Market Cap',
+          requiresLogin: true,
         },
       ],
     },
@@ -301,18 +323,22 @@ export const METRICS = {
         {
           name: 'Avg. Real',
           indicator: 'Average Fees Real',
+          requiresLogin: true,
         },
         {
           name: 'Avg. USD',
           indicator: 'Average Fees USD',
+          requiresLogin: true,
         },
         {
           name: 'Avg. Gas',
           indicator: 'Average Gas',
+          requiresLogin: true,
         },
         {
           name: 'Avg. Gas Price (Wei)',
           indicator: 'Average Gas Price (Wei)',
+          requiresLogin: true,
         },
       ],
     },

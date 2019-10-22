@@ -28,6 +28,7 @@ export const SimpleDialog = ({
           </div>
           <div className="header">{header}</div>
           {subHeader && <div className="sub-header">{subHeader}</div>}
+          {children}
           <div className="button">
             <Button
               className="button"
@@ -38,7 +39,6 @@ export const SimpleDialog = ({
               {ctaText}
             </Button>
           </div>
-          {children}
         </div>
         <style jsx>{`
           .container {
