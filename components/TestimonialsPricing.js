@@ -3,8 +3,8 @@ import kebabCase from 'lodash/kebabCase';
 import classNames from 'classnames';
 import css from 'styled-jsx/css';
 import { scroller } from 'react-scroll';
-import { PLAN_NAMES } from '../constants/plans';
 
+import { PLAN_NAMES } from '../constants/plans';
 import { pricingButton } from '../constants/styles/common-styled-jsx';
 
 const reviewsStyle = css`
