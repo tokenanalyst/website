@@ -1,11 +1,12 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Card } from '@blueprintjs/core';
+import { useRouter } from 'next/router';
+import ReactGA from 'react-ga';
+
 import { CollapsibleItem } from '../../CollapsibleItem';
 import { NATIVE_TOKENS, METRICS } from '../../../constants/tokens';
 import { LoginContext } from '../../../contexts/Login';
 import { SimpleDialog } from '../../SimpleDialog';
-import { useRouter } from 'next/router';
-import ReactGA from 'react-ga';
 
 export const MetricsList = ({
   token,

@@ -222,6 +222,7 @@ export const TOKENS_EXCHANGE_SUPPORT = {
   },
   [USDT_ERC20]: {
     [BINANCE]: {
+      baseToken: BTC,
       quoteToken: USDT,
     },
     [BITFINEX]: {

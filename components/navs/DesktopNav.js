@@ -42,6 +42,7 @@ export const DesktopNav = () => {
   };
 
   const tierParamString = `tier=${Cookies.get(COOKIES.tier)}`;
+  const metricsTierParamString = `tier_metrics=${Cookies.get(COOKIES.tier)}`;
 
   return (
     <>
@@ -98,7 +99,7 @@ export const DesktopNav = () => {
                   Stablecoins
                 </div>
               </Link>
-              <Link href={`/metrics?${tierParamString}`} passHref>
+              <Link href={`/metrics?${metricsTierParamString}`} passHref>
                 <div
                   className={classNames(
                     'desktop-link',

@@ -6,7 +6,7 @@ import { TokenSelect } from '../../widgets/ProChartWidget/TokenSelect';
 import { tokensDb } from '../../../services/tokensDb';
 import { TOKEN_NAMES } from '../../../constants/token-names';
 import { ProChartContainer } from '../../widgets/ProChartWidget/ProChartContainer';
-import { NATIVE_TOKENS } from '../../../constants/tokens';
+import { NATIVE_TOKENS, STABLE_TOKENS } from '../../../constants/tokens';
 import { TOKENS_EXCHANGE_SUPPORT } from '../../../constants/exchanges';
 import { MetricsList } from './MetricsList';
 
@@ -28,9 +28,17 @@ export const MetricsWidget = () => {
 
   const nativeTokens = tokensDb.getTokensList(NATIVE);
   const stableTokens = tokensDb.getTokensList(STABLE);
+
+  const filteredStableTokens = Object.keys(stableTokens).reduce(
+    (acc, curr) =>
+      [STABLE_TOKENS.OMNI, STABLE_TOKENS.USDT].indexOf(curr) > -1
+        ? acc
+        : { ...acc, [curr]: stableTokens[curr] },
+    {}
+  );
   const erc20Tokens = tokensDb.getTokensList(ERC20);
 
-  const tokensList = [nativeTokens, stableTokens, erc20Tokens];
+  const tokensList = [nativeTokens, filteredStableTokens, erc20Tokens];
 
   const supportedExchanges = TOKENS_EXCHANGE_SUPPORT[selectedToken];
   const firstExchange = Object.keys(supportedExchanges)[0];

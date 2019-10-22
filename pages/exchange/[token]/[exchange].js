@@ -60,7 +60,7 @@ const Exchange = () => {
       {!Cookies.get(COOKIES.hasSeenRegisterDialog) && (
         <DelayedDialog
           header="Need More Granularity?"
-          subHeader="Sign up now for FREE to access TokenAnalyst charts in a 1 hour granularity across ALL tokens and exchanges!"
+          subHeader="Sign up now for FREE to access TokenAnalyst charts in a 1 hour granularity across ALL tokens, exchanges and metrics!"
           timeout={25000}
           onCtaClick={() => {
             loginCtx.setPostRegisterRedirectUrl(router.asPath.split('?')[0]);
