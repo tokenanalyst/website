@@ -1,5 +1,139 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable func-names */
 /* eslint-disable object-shorthand */
+
+const BTC_INDICATORS = [
+  { title: 'Volume USD', symbol: '#VOLUMEUSD' },
+  { title: 'Volume Real', symbol: '#VOLUMEREAL' },
+  { title: 'Volume Change USD', symbol: '#VOLUMECHANGEUSD' },
+  { title: 'Volume Change Real', symbol: '#VOLUMECHANGEREAL' },
+  { title: 'Gross Volume ', symbol: '#VOLUMEGROSSREALBTC' },
+  { title: 'Average Size in Bytes', symbol: '#AVERAGESIZEBYTES' },
+  { title: 'Average Satoshis per Byte', symbol: '#AVERAGESATOSHIS' },
+  { title: 'UTXO < 1 day', symbol: '#<1D' },
+  { title: 'UTXO 1-3 months', symbol: '#1-3M' },
+  { title: 'UTXO 3-6 months', symbol: '#3-6M' },
+  { title: 'UTXO 6-12 months', symbol: '#6-12M' },
+  { title: 'UTXO 12-18 months', symbol: '#12-18M' },
+  { title: 'UTXO 18-24 months', symbol: '#18-24M' },
+  { title: 'UTXO 1 day-1 week', symbol: '#1D-1W' },
+  { title: 'UTXO 1 week-1 month', symbol: '#1W-1M' },
+  { title: 'UTXO 2 years-3 years', symbol: '#1Y-3Y' },
+  { title: 'UTXO 3 years-5 years', symbol: '#3Y-5Y' },
+  { title: 'UTXO 5 years-10 years', symbol: '#5Y-10Y' },
+  { title: 'UTXO > 10 years', symbol: '#>10Y' },
+];
+
+const ETH_INDICATORS = [
+  { title: 'Internal Volume Real', symbol: '#VOLUMEINTERNALREAL' },
+  { title: 'Internal Volume USD', symbol: '#VOLUMEINTERNALUSD' },
+  { title: 'External Volume Real', symbol: '#VOLUMEEXTERNALREAL' },
+  { title: 'External Volume USD', symbol: '#VOLUMEEXTERNALUSD' },
+  { title: 'Gross Volume Real', symbol: '#VOLUMEEXTERNALREAL' },
+  { title: 'Gross Volume USD', symbol: '#VOLUMEEXTERNALUSD' },
+  { title: 'Average Gas', symbol: '#AVERAGEGAS' },
+  { title: 'Average Gas Price (Wei)', symbol: '#AVERAGEGASPRICEWEI' },
+];
+
+const COMMON_INDICATORS = [
+  { title: 'Transactions', symbol: '#TRANSACTIONS' },
+  { title: 'Active Senders', symbol: '#ACTIVESENDERS' },
+  { title: 'Active Recipients', symbol: '#ACTIVERECIPIENTS' },
+  { title: 'Supply', symbol: '#SUPPLY' },
+  { title: 'NVT', symbol: '#NVT' },
+  { title: 'Market Cap', symbol: '#MARKETCAP' },
+  { title: 'Total Fees Real', symbol: '#TOTALFEESREAL' },
+  { title: 'Total Fees USD', symbol: '#TOTALFEESUSD' },
+  { title: 'Average Fees Real', symbol: '#AVERAGEFEESREAL' },
+  { title: 'Average Fees USD', symbol: '#AVERAGEFEESUSD' },
+];
+
+const ERC20_INDICATORS = [
+  { title: 'ERC20 Volume', symbol: '#ERC20VOLUME' },
+  { title: 'ERC20 Volume USD', symbol: '#ERC20VOLUMEUSD' },
+];
+
+const METRIC_INDICATORS = [
+  ...BTC_INDICATORS,
+  ...ETH_INDICATORS,
+  ...COMMON_INDICATORS,
+  ...ERC20_INDICATORS,
+].map(metricIndicator => ({
+  name: metricIndicator.title,
+  metainfo: {
+    _metainfoVersion: 40,
+    id: `${metricIndicator.title}@tv-basicstudies-1`,
+    scriptIdPart: '',
+    name: metricIndicator.title,
+    description: metricIndicator.title,
+    shortDescription: metricIndicator.title,
+
+    is_hidden_study: false,
+    is_price_study: false,
+    isCustomIndicator: true,
+
+    plots: [{ id: 'plot_0', type: 'line' }],
+    defaults: {
+      styles: {
+        plot_0: {
+          linestyle: 0,
+          visible: true,
+
+          // Make the line thinner
+          linewidth: 2,
+
+          // Plot type is Line
+          plottype: 2,
+
+          // Show price line
+          trackPrice: false,
+
+          transparency: 40,
+
+          color: '#3FCDAB',
+        },
+      },
+      precision: 0,
+
+      inputs: {},
+    },
+    styles: {
+      plot_0: {
+        // Output name will be displayed in the Style window
+        title: metricIndicator.title,
+        histogramBase: 0,
+      },
+    },
+    inputs: [],
+  },
+  constructor: function() {
+    this.init = function(context, inputCallback) {
+      // console.warn(context);
+      this._context = context;
+      this._input = inputCallback;
+
+      const symbol = metricIndicator.symbol;
+      this._context.new_sym(
+        symbol,
+        PineJS.Std.period(this._context),
+        PineJS.Std.period(this._context)
+      );
+    };
+
+    this.main = function(context, inputCallback) {
+      this._context = context;
+      this._input = inputCallback;
+      this._context.select_sym(1);
+
+      const inFlow = PineJS.Std.open(this._context);
+      const outFlow = PineJS.Std.close(this._context);
+
+      return [inFlow, outFlow];
+    };
+  },
+}));
+
 __customIndicators = [
   {
     name: 'Flows',
@@ -75,7 +209,7 @@ __customIndicators = [
         this._context = context;
         this._input = inputCallback;
 
-        var symbol = '#FLOWS';
+        const symbol = '#FLOWS';
         this._context.new_sym(
           symbol,
           PineJS.Std.period(this._context),
@@ -88,13 +222,14 @@ __customIndicators = [
         this._input = inputCallback;
         this._context.select_sym(1);
 
-        var inFlow = PineJS.Std.open(this._context);
-        var outFlow = PineJS.Std.close(this._context);
+        const inFlow = PineJS.Std.open(this._context);
+        const outFlow = PineJS.Std.close(this._context);
 
         return [inFlow, outFlow];
       };
     },
   },
+  ...METRIC_INDICATORS,
   {
     name: 'NetFlows',
     metainfo: {
@@ -196,7 +331,7 @@ __customIndicators = [
         this._input = inputCallback;
         // console.warn(context);
 
-        var symbol = '#FLOWS';
+        const symbol = '#FLOWS';
         this._context.new_sym(
           symbol,
           PineJS.Std.period(this._context),
@@ -210,7 +345,7 @@ __customIndicators = [
 
         this._context.select_sym(1);
 
-        var netFlowValue = PineJS.Std.volume(this._context);
+        const netFlowValue = PineJS.Std.volume(this._context);
 
         return [
           {

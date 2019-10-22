@@ -16,7 +16,6 @@ export const ERC20_TOKENS = {
   CVC: 'CVC',
   FET: 'FET',
   GNT: 'GNT',
-  GUSD: 'GUSD',
   KNC: 'KNC',
   LINK: 'LINK',
   LOOM: 'LOOM',
@@ -37,7 +36,351 @@ export const NATIVE_TOKENS = {
   ETH: 'ETH',
 };
 
+export const TOKEN_TYPES = {
+  NATIVE: 'NATIVE',
+  ERC_20: 'ERC_20',
+  STABLE: 'STABLE',
+};
+
 export const CURRENCIES = {
   USD: 'USD',
   EUR: 'EUR',
+};
+
+export const METRICS = {
+  [NATIVE_TOKENS.BTC]: [
+    {
+      category: 'Volume',
+      isDefaultCategory: true,
+      defaultIndicator: 'Volume USD',
+      values: [
+        {
+          name: 'USD',
+          indicator: 'Volume USD',
+          isIntraDay: true,
+        },
+        {
+          name: 'Real',
+          indicator: 'Volume Real',
+          isIntraDay: true,
+        },
+        {
+          name: 'Change USD',
+          indicator: 'Volume Change USD',
+          isIntraDay: true,
+          requiresLogin: true,
+        },
+        {
+          name: 'Change Real',
+          indicator: 'Volume Change Real',
+          isIntraDay: true,
+          requiresLogin: true,
+        },
+        // {
+        //   name: 'Gross Real',
+        //   indicator: 'Gross Volume Real',
+        //   isIntraDay: true,
+        //   requiresLogin: true,
+        // },
+      ],
+    },
+    {
+      category: 'Transactions',
+      values: [
+        {
+          name: 'Number',
+          indicator: 'Transactions',
+          isIntraDay: true,
+        },
+      ],
+    },
+    {
+      category: 'Addresses',
+      values: [
+        {
+          name: 'Senders',
+          indicator: 'Active Senders',
+        },
+        {
+          name: 'Recipients',
+          indicator: 'Active Recipients',
+          requiresLogin: true,
+        },
+      ],
+    },
+    {
+      category: 'Supply',
+      values: [
+        {
+          name: 'Amount',
+          indicator: 'Supply',
+        },
+      ],
+    },
+    {
+      category: 'NVT',
+      values: [
+        {
+          name: 'NVT',
+          indicator: 'NVT',
+          requiresLogin: true,
+        },
+        {
+          name: 'Market Cap',
+          indicator: 'Market Cap',
+          requiresLogin: true,
+        },
+      ],
+    },
+    {
+      category: 'Fees',
+      values: [
+        {
+          name: 'Total Real',
+          indicator: 'Total Fees Real',
+        },
+        {
+          name: 'Total USD',
+          indicator: 'Total Fees USD',
+        },
+        {
+          name: 'Avg. Real',
+          indicator: 'Average Fees Real',
+          requiresLogin: true,
+        },
+        {
+          name: 'Avg. USD',
+          indicator: 'Average Fees USD',
+          requiresLogin: true,
+        },
+        {
+          name: 'Avg. Size (Bytes)',
+          indicator: 'Average Size in Bytes',
+          requiresLogin: true,
+        },
+        {
+          name: 'Avg. Satoshis per Byte',
+          indicator: 'Average Satoshis per Byte',
+          requiresLogin: true,
+        },
+      ],
+    },
+    {
+      category: 'UTXO Age',
+      values: [
+        {
+          name: '< 1 day',
+          indicator: 'UTXO < 1 day',
+        },
+        {
+          name: '1 day - 1 week',
+          indicator: 'UTXO 1 day-1 week',
+        },
+        {
+          name: '1 week - 1 month',
+          indicator: 'UTXO 1 week-1 month',
+        },
+        {
+          name: '1 - 3 months',
+          indicator: 'UTXO 1-3 months',
+        },
+        {
+          name: '3 - 6 months',
+          indicator: 'UTXO 3-6 months',
+          requiresLogin: true,
+        },
+        {
+          name: '6 - 12 months',
+          indicator: 'UTXO 6-12 months',
+          requiresLogin: true,
+        },
+        {
+          name: '12 - 18 months',
+          indicator: 'UTXO 12-18 months',
+          requiresLogin: true,
+        },
+        {
+          name: '18 -  24 months',
+          indicator: 'UTXO 18-24 months',
+          requiresLogin: true,
+        },
+        {
+          name: '2 - 3 years',
+          indicator: 'UTXO 2 years-3 years',
+          requiresLogin: true,
+        },
+        {
+          name: '3 - 5 years',
+          indicator: 'UTXO 3 years-5 years',
+          requiresLogin: true,
+        },
+        {
+          name: '5 - 10 years',
+          indicator: 'UTXO 5 years-10 years',
+          requiresLogin: true,
+        },
+        {
+          name: '> 10 years',
+          indicator: 'UTXO > 10 years',
+          requiresLogin: true,
+        },
+      ],
+    },
+  ],
+  [NATIVE_TOKENS.ETH]: [
+    {
+      category: 'Volume',
+      isDefaultCategory: true,
+      defaultIndicator: 'Internal Volume Real',
+      values: [
+        {
+          name: 'Internal (Real)',
+          indicator: 'Internal Volume Real',
+        },
+        {
+          name: 'Internal (USD)',
+          indicator: 'Internal Volume USD',
+        },
+        {
+          name: 'External (Real)',
+          indicator: 'External Volume Real',
+          requiresLogin: true,
+        },
+        {
+          name: 'External (USD)',
+          indicator: 'External Volume USD',
+          requiresLogin: true,
+        },
+        {
+          name: 'Gross (Real)',
+          indicator: 'Gross Volume Real',
+          requiresLogin: true,
+        },
+        {
+          name: 'Gross (USD)',
+          indicator: 'Gross Volume USD',
+          requiresLogin: true,
+        },
+      ],
+    },
+    {
+      category: 'Transactions',
+      values: [
+        {
+          name: 'Number',
+          indicator: 'Transactions',
+        },
+      ],
+    },
+    {
+      category: 'Addresses',
+      values: [
+        {
+          name: 'Senders',
+          indicator: 'Active Senders',
+        },
+        {
+          name: 'Recipients',
+          indicator: 'Active Recipients',
+          requiresLogin: true,
+        },
+      ],
+    },
+    {
+      category: 'Supply',
+      values: [
+        {
+          name: 'Amount',
+          indicator: 'Supply',
+        },
+      ],
+    },
+    {
+      category: 'NVT',
+      values: [
+        {
+          name: 'NVT',
+          indicator: 'NVT',
+          requiresLogin: true,
+        },
+        {
+          name: 'Market Cap',
+          indicator: 'Market Cap',
+          requiresLogin: true,
+        },
+      ],
+    },
+    {
+      category: 'Fees',
+      values: [
+        {
+          name: 'Total Real',
+          indicator: 'Total Fees Real',
+        },
+        {
+          name: 'Total USD',
+          indicator: 'Total Fees USD',
+        },
+        {
+          name: 'Avg. Real',
+          indicator: 'Average Fees Real',
+          requiresLogin: true,
+        },
+        {
+          name: 'Avg. USD',
+          indicator: 'Average Fees USD',
+          requiresLogin: true,
+        },
+        {
+          name: 'Avg. Gas',
+          indicator: 'Average Gas',
+          requiresLogin: true,
+        },
+        {
+          name: 'Avg. Gas Price (Wei)',
+          indicator: 'Average Gas Price (Wei)',
+          requiresLogin: true,
+        },
+      ],
+    },
+  ],
+  ERC_20: [
+    {
+      category: 'Volume',
+      isDefaultCategory: true,
+      defaultIndicator: 'ERC20 Volume USD',
+      values: [
+        {
+          name: 'USD',
+          indicator: 'ERC20 Volume USD',
+        },
+        {
+          name: 'Real',
+          indicator: 'ERC20 Volume',
+        },
+      ],
+    },
+    {
+      category: 'Transactions',
+      values: [
+        {
+          name: 'Number',
+          indicator: 'Transactions',
+        },
+      ],
+    },
+    {
+      category: 'Addresses',
+      values: [
+        {
+          name: 'Senders',
+          indicator: 'Active Senders',
+        },
+        {
+          name: 'Recipients',
+          indicator: 'Active Recipients',
+        },
+      ],
+    },
+  ],
 };

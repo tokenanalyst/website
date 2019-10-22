@@ -42,6 +42,7 @@ export const DesktopNav = () => {
   };
 
   const tierParamString = `tier=${Cookies.get(COOKIES.tier)}`;
+  const metricsTierParamString = `tier_metrics=${Cookies.get(COOKIES.tier)}`;
 
   return (
     <>
@@ -96,6 +97,17 @@ export const DesktopNav = () => {
                   onFocus={collapseAllSubMenus}
                 >
                   Stablecoins
+                </div>
+              </Link>
+              <Link href={`/metrics?${metricsTierParamString}`} passHref>
+                <div
+                  className={classNames(
+                    'desktop-link',
+                    setLinkActive(asPath, '/metrics')
+                  )}
+                  onMouseOver={collapseAllSubMenus}
+                >
+                  Metrics
                 </div>
               </Link>
               <Link href="/compare" passHref>

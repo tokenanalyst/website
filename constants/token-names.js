@@ -25,5 +25,6 @@ export const TOKEN_NAMES = {
   SNT: 'Status',
   TKN: 'Monolith',
   USDT_ERC20: 'Tether',
+  USDT_OMNI: 'Tether (OMNI)',
   ZRX: '0x',
 };

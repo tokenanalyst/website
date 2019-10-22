@@ -15,8 +15,28 @@ const {
   USDC,
   TUSD,
   DAI,
+  GUSD,
 } = STABLE_TOKENS;
-const { OMG, LINK, ZIL, ZRX, REP } = ERC20_TOKENS;
+const {
+  OMG,
+  LINK,
+  ZIL,
+  ZRX,
+  REP,
+  BAT,
+  BNT,
+  CVC,
+  FET,
+  GNT,
+  KNC,
+  LOOM,
+  MANA,
+  MKR,
+  NMR,
+  RLC,
+  SNT,
+  TKN,
+} = ERC20_TOKENS;
 const { USD } = CURRENCIES;
 
 export const BINANCE = 'Binance';
@@ -96,7 +116,7 @@ export const TOKENS_EXCHANGE_SUPPORT = {
   [DAI]: {
     [BITTREX]: {
       baseToken: BTC,
-      quoteToken: USD,
+      quoteToken: USDT,
     },
   },
   [LINK]: {
@@ -170,31 +190,8 @@ export const TOKENS_EXCHANGE_SUPPORT = {
   },
   [REP]: {
     [BINANCE]: {
+      baseToken: BTC,
       quoteToken: USDT,
-    },
-    [BITFINEX]: {
-      quoteToken: USDT,
-    },
-    [BITMEX]: {
-      quoteToken: USD,
-    },
-    [BITSTAMP]: {
-      quoteToken: USD,
-    },
-    [BITTREX]: {
-      quoteToken: USDT,
-    },
-    [KUCOIN]: {
-      quoteToken: USDT,
-    },
-    [KRAKEN]: {
-      quoteToken: USD,
-    },
-    [POLONIEX]: {
-      quoteToken: USDT,
-    },
-    [OKEX]: {
-      quoteToken: USD,
     },
   },
   [TUSD]: {
@@ -202,6 +199,12 @@ export const TOKENS_EXCHANGE_SUPPORT = {
       baseToken: BTC,
       quoteToken: USD,
     },
+    [BINANCE]: {
+      baseToken: BTC,
+      quoteToken: USDT,
+    },
+  },
+  [GUSD]: {
     [BINANCE]: {
       baseToken: BTC,
       quoteToken: USDT,
@@ -219,6 +222,7 @@ export const TOKENS_EXCHANGE_SUPPORT = {
   },
   [USDT_ERC20]: {
     [BINANCE]: {
+      baseToken: BTC,
       quoteToken: USDT,
     },
     [BITFINEX]: {
@@ -308,6 +312,84 @@ export const TOKENS_EXCHANGE_SUPPORT = {
     },
     [OKEX]: {
       quoteToken: USD,
+    },
+  },
+  [BAT]: {
+    [BINANCE]: {
+      baseToken: BAT,
+      quoteToken: USDT,
+    },
+  },
+  [BNT]: {
+    [BITFINEX]: {
+      baseToken: BAT,
+      quoteToken: USD,
+    },
+  },
+  [CVC]: {
+    [BINANCE]: {
+      baseToken: CVC,
+      quoteToken: USDT,
+    },
+  },
+  [FET]: {
+    [BINANCE]: {
+      baseToken: FET,
+      quoteToken: USDT,
+    },
+  },
+  [GNT]: {
+    [BITFINEX]: {
+      baseToken: GNT,
+      quoteToken: USD,
+    },
+  },
+  [KNC]: {
+    [BITFINEX]: {
+      baseToken: KNC,
+      quoteToken: USD,
+    },
+  },
+  [LOOM]: {
+    [BITFINEX]: {
+      baseToken: LOOM,
+      quoteToken: USD,
+    },
+  },
+  [MANA]: {
+    [BITFINEX]: {
+      baseToken: MANA,
+      quoteToken: USD,
+    },
+  },
+  [MKR]: {
+    [BITFINEX]: {
+      baseToken: MANA,
+      quoteToken: USD,
+    },
+  },
+  [NMR]: {
+    [BINANCE]: {
+      baseToken: BTC,
+      quoteToken: USDT,
+    },
+  },
+  [RLC]: {
+    [BITFINEX]: {
+      baseToken: RLC,
+      quoteToken: USD,
+    },
+  },
+  [SNT]: {
+    [BITFINEX]: {
+      baseToken: SNT,
+      quoteToken: USD,
+    },
+  },
+  [TKN]: {
+    [BINANCE]: {
+      baseToken: BTC,
+      quoteToken: USDT,
     },
   },
 };

@@ -113,6 +113,72 @@ const ta = (function ta() {
 
       return flowsData();
     },
+    fetchSingleMetricProxy: async (
+      symbol,
+      timeFrame,
+      start,
+      end,
+      metric,
+      dataPoint
+    ) => {
+      const startDate = moment(start).format('YYYY-MM-DD');
+      const endDate = moment(end).format('YYYY-MM-DD');
+      let timeWindow;
+
+      timeWindow = timeFrame;
+
+      if (timeFrame === 'D') {
+        timeWindow = '1d';
+      }
+
+      if (timeFrame === '60') {
+        timeWindow = '1h';
+      }
+
+      const apiCall = async () =>
+        api.singleMetric({
+          token: symbol.toUpperCase(),
+          window: timeWindow,
+          from_date: startDate,
+          to_date: endDate,
+          metric,
+        });
+
+      const transactionsData = async () =>
+        fetchDataFromApi$(apiCall)
+          .pipe(
+            map(response => response.data),
+            map(data => {
+              const transactions = data.map(entry => {
+                return formatDate(entry, ['date', dataPoint]);
+              });
+
+              return transactions;
+            }),
+            map(flows => {
+              const flowsData = flows
+                .map(item => {
+                  const { date } = item;
+                  const time = moment.utc(date).valueOf();
+
+                  return {
+                    time,
+                    open: Number(item[dataPoint]),
+                    close: null,
+                    high: null,
+                    low: null,
+                    volume: null,
+                  };
+                })
+                .filter(item => item.time > start && item.time < end);
+
+              return flowsData;
+            })
+          )
+          .toPromise();
+
+      return transactionsData();
+    },
 
     fetchExchangeFlow: async (exchange, symbol, timeFrame, start, end) => {
       const startDate = moment(start).format('YYYY-MM-DD');

@@ -53,6 +53,11 @@ export const MobileNav = () => {
               Stablecoins
             </div>
           </Link>
+          <Link href="/metrics" passHref>
+            <div className={setLinkActive(router.pathname, '/metrics')}>
+              Metrics
+            </div>
+          </Link>
           <Link href="/compare" passHref>
             <div className={setLinkActive(router.pathname, '/compare')}>
               Compare
