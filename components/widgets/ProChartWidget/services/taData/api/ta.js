@@ -123,22 +123,22 @@ const ta = (function ta() {
     ) => {
       const startDate = moment(start).format('YYYY-MM-DD');
       const endDate = moment(end).format('YYYY-MM-DD');
-      let window;
+      let timeWindow;
 
-      window = timeFrame;
+      timeWindow = timeFrame;
 
       if (timeFrame === 'D') {
-        window = '1d';
+        timeWindow = '1d';
       }
 
       if (timeFrame === '60') {
-        window = '1h';
+        timeWindow = '1h';
       }
 
       const apiCall = async () =>
         api.singleMetric({
           token: symbol.toUpperCase(),
-          window,
+          window: timeWindow,
           from_date: startDate,
           to_date: endDate,
           metric,

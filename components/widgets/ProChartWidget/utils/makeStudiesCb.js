@@ -6,7 +6,7 @@ import { COMMON_STUDIES, COMMON_SYMBOLS } from './studies/common';
 
 const formatDate = epoch => moment(epoch).format('DD/MM/YYYY, HH:mm:ss');
 
-const METRICS_STUDIES_DATA = (ta, TAsymbol) =>
+const metricsStudiesData = (ta, TAsymbol) =>
   [...BTC_STUDIES, ...ETH_STUDIES, ...COMMON_STUDIES, ...ERC20_STUDIES].reduce(
     (acc, curr) => ({
       ...acc,
@@ -45,7 +45,7 @@ const METRICS_STUDIES_DATA = (ta, TAsymbol) =>
     {}
   );
 
-const METRICS_STUDIES_SYMBOLS = exchangeName =>
+const metricsStudiesSymbols = exchangeName =>
   [...BTC_SYMBOLS, ...ETH_SYMBOLS, ...COMMON_SYMBOLS, ...ERC20_SYMBOLS].reduce(
     (acc, curr) => ({
       ...acc,
@@ -106,7 +106,7 @@ export const makeStudiesCb = (ta, exchangeName, TAsymbol) => ({
 
       return flow;
     },
-    ...METRICS_STUDIES_DATA(ta, TAsymbol),
+    ...metricsStudiesData(ta, TAsymbol),
   },
   getSymbol: {
     '#FLOWS': () => {
@@ -129,6 +129,6 @@ export const makeStudiesCb = (ta, exchangeName, TAsymbol) => ({
 
       return symbolStub;
     },
-    ...METRICS_STUDIES_SYMBOLS(exchangeName),
+    ...metricsStudiesSymbols(exchangeName),
   },
 });

@@ -41,7 +41,6 @@ const tvData = (exchangeService, exchangeName, symbols, isIntraday) => {
       if (process.env.NODE_ENV === 'development') {
         console.log('====== resolveSymbol running');
       }
-      console.log(symbolName);
       if (exchangeService.studies.getSymbol[symbolName]) {
         const getSymbol = exchangeService.studies.getSymbol[symbolName];
 

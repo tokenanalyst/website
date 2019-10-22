@@ -36,6 +36,12 @@ export const NATIVE_TOKENS = {
   ETH: 'ETH',
 };
 
+export const TOKEN_TYPES = {
+  NATIVE: 'NATIVE',
+  ERC_20: 'ERC_20',
+  STABLE: 'STABLE',
+};
+
 export const CURRENCIES = {
   USD: 'USD',
   EUR: 'EUR',

@@ -1,12 +1,30 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useMemo } from 'react';
 import { Card } from '@blueprintjs/core';
 import { useRouter } from 'next/router';
 import ReactGA from 'react-ga';
 
 import { CollapsibleItem } from '../../CollapsibleItem';
-import { NATIVE_TOKENS, METRICS } from '../../../constants/tokens';
+import { NATIVE_TOKENS, METRICS, TOKEN_TYPES } from '../../../constants/tokens';
 import { LoginContext } from '../../../contexts/Login';
 import { SimpleDialog } from '../../SimpleDialog';
+import { tokensDb } from '../../../services/tokensDb';
+
+const getIndicator = token => {
+  return METRICS[tokensDb.isNative(token) ? token : TOKEN_TYPES.ERC_20].filter(
+    metric => metric.isDefaultCategory
+  )[0].defaultIndicator;
+};
+
+const computeMetricClass = (isLoggedIn, value, selectedIndicator) =>
+  value.requiresLogin
+    ? isLoggedIn
+      ? selectedIndicator.name === value.indicator
+        ? 'item-selected'
+        : 'item'
+      : 'item-greyed'
+    : selectedIndicator.name === value.indicator
+    ? 'item-selected'
+    : 'item';
 
 export const MetricsList = ({
   token,
@@ -18,13 +36,9 @@ export const MetricsList = ({
 
   const [isRegisterDialogShown, setIsRegisterDialogShown] = useState(false);
 
-  useEffect(() => {
+  useMemo(() => {
     setSelectedIndicator({
-      name: METRICS[
-        token === NATIVE_TOKENS.BTC || token === NATIVE_TOKENS.ETH
-          ? token
-          : 'ERC_20'
-      ].filter(metric => metric.isDefaultCategory)[0].defaultIndicator,
+      name: getIndicator(token),
     });
   }, [token]);
 
@@ -61,54 +75,46 @@ export const MetricsList = ({
         <div className="card">
           <Card>
             <div className="header">Fundamentals:</div>
-            {METRICS[
-              token === NATIVE_TOKENS.BTC || token === NATIVE_TOKENS.ETH
-                ? token
-                : 'ERC_20'
-            ].map(metric => (
-              <CollapsibleItem
-                key={metric.category}
-                header={metric.category}
-                defaultIsOpen={metric.isDefaultCategory}
-                body={
-                  <>
-                    {metric.values.map(value => (
-                      <div className="item-row">
-                        <span
-                          className={
-                            value.requiresLogin
-                              ? loginCtx.isLoggedIn
-                                ? selectedIndicator.name === value.indicator
-                                  ? 'item-selected'
-                                  : 'item'
-                                : 'item-greyed'
-                              : selectedIndicator.name === value.indicator
-                              ? 'item-selected'
-                              : 'item'
-                          }
-                          key={value.indicator}
-                          onClick={() => {
-                            ReactGA.event({
-                              category: 'User',
-                              action: `Metrics Page change data point ${value.indicator}`,
-                              label: `Metrics Page`,
-                            });
-                            loginCtx.isLoggedIn || !value.requiresLogin
-                              ? setSelectedIndicator({
-                                  name: value.indicator,
-                                  isIntraDay: value.isIntraDay,
-                                })
-                              : setIsRegisterDialogShown(true);
-                          }}
-                        >
-                          {value.name}
-                        </span>
-                      </div>
-                    ))}
-                  </>
-                }
-              />
-            ))}
+            {METRICS[tokensDb.isNative(token) ? token : TOKEN_TYPES.ERC_20].map(
+              metric => (
+                <CollapsibleItem
+                  key={metric.category}
+                  header={metric.category}
+                  defaultIsOpen={metric.isDefaultCategory}
+                  body={
+                    <>
+                      {metric.values.map(value => (
+                        <div className="item-row">
+                          <span
+                            className={computeMetricClass(
+                              loginCtx.isLoggedIn,
+                              value,
+                              selectedIndicator
+                            )}
+                            key={value.indicator}
+                            onClick={() => {
+                              ReactGA.event({
+                                category: 'User',
+                                action: `Metrics Page change data point ${value.indicator}`,
+                                label: `Metrics Page`,
+                              });
+                              loginCtx.isLoggedIn || !value.requiresLogin
+                                ? setSelectedIndicator({
+                                    name: value.indicator,
+                                    isIntraDay: value.isIntraDay,
+                                  })
+                                : setIsRegisterDialogShown(true);
+                            }}
+                          >
+                            {value.name}
+                          </span>
+                        </div>
+                      ))}
+                    </>
+                  }
+                />
+              )
+            )}
           </Card>
         </div>
       </div>

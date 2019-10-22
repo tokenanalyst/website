@@ -32,7 +32,12 @@ export const CollapsibleItem = ({ header, body, defaultIsOpen = false }) => {
   );
 };
 
+CollapsibleItem.defaultProps = {
+  defaultIsOpen: false,
+};
+
 CollapsibleItem.propTypes = {
   header: PropTypes.string,
   body: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+  defaultIsOpen: PropTypes.bool,
 };
