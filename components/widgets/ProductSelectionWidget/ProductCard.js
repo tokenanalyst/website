@@ -5,8 +5,11 @@ import ReactGA from 'react-ga';
 import Link from 'next/link';
 import kebabCase from 'lodash/kebabCase';
 import { scroller } from 'react-scroll';
-
-import { pricingButton } from '../../../constants/styles/common-styled-jsx';
+import {
+  pricingButton,
+  blinkyborder,
+} from '../../../constants/styles/common-styled-jsx';
+import classNames from 'classnames';
 
 const renderLinks = links =>
   links.map(link => {
@@ -76,7 +79,7 @@ export const ProductCard = ({
 }) => {
   return (
     <>
-      <div className={'container ' + (isActive ? `blinky-border` : ``)}>
+      <div className={classNames('container', isActive ? 'blinky-border' : '')}>
         <div className="title-container">
           <div className="title">{title}</div>
         </div>
@@ -120,6 +123,7 @@ export const ProductCard = ({
         </div>
       </div>
       <style jsx>{pricingButton}</style>
+      <style jsx>{blinkyborder}</style>
       <style jsx>
         {`
           .container {
