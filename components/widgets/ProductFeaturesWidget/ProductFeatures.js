@@ -172,7 +172,7 @@ export const ProductFeatures = ({
                   },
                 });
                 document.documentElement.scrollTop = 0;
-                return Router.push('/login');
+                return Router.push('/register');
               }
               return redirectToStripe(stripePlan, GA_GOAL_NAME[name])({
                 customerEmail: username,
