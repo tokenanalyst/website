@@ -5,9 +5,9 @@ import Link from 'next/link';
 import classNames from 'classnames';
 import { Spinner } from '@blueprintjs/core';
 
-import { pricingButton } from '../../../constants/styles/common-styled-jsx';
+import { pricingButton } from '../constants/styles/common-styled-jsx';
 
-export const ButtonFeatures = ({
+export const ButtonMarketing = ({
   url,
   isExternal,
   text,
@@ -79,7 +79,7 @@ export const ButtonFeatures = ({
   );
 };
 
-ButtonFeatures.propTypes = {
+ButtonMarketing.propTypes = {
   url: PropTypes.string,
   isExternal: PropTypes.bool,
   text: PropTypes.string.isRequired,
@@ -88,7 +88,7 @@ ButtonFeatures.propTypes = {
   onClick: PropTypes.func,
 };
 
-ButtonFeatures.defaultProps = {
+ButtonMarketing.defaultProps = {
   url: null,
   isExternal: false,
   isActive: false,

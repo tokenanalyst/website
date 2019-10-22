@@ -1,7 +1,14 @@
-import { PLAN_NAMES } from '../../../../constants/plans';
+import { PLANS, PLAN_NAMES } from '../../../../constants/plans';
 
-export const USE_CASES = [
-  {
+const { PLATFORM, PRO } = PLAN_NAMES;
+
+export const GA_GOAL_NAME = {
+  [PLATFORM]: PLATFORM,
+  [PRO]: PRO,
+};
+
+export const USE_CASES = {
+  PLATFORM: {
     title: 'Fundamental Analysis',
     plan: PLAN_NAMES.PRO,
     description: `Gain a deep understanding of network security, usage, and economics.`,
@@ -28,7 +35,7 @@ export const USE_CASES = [
       },
     ],
   },
-  {
+  PRO: {
     title: 'Quantitative Trading',
     plan: PLAN_NAMES.PRO,
     description: `Be the first to see transactions on-chain, tracking and trading on unconfirmed and confirmed transactions`,
@@ -55,7 +62,7 @@ export const USE_CASES = [
       },
     ],
   },
-  {
+  ENTERPRISE: {
     title: 'Blockchain Infrastructure',
     plan: PLAN_NAMES.ENTERPRISE,
     description: `Access secure, robust, and reliable blockchain infrastructure for multiple chains.`,
@@ -82,4 +89,11 @@ export const USE_CASES = [
       },
     ],
   },
-];
+};
+
+export const PRODUCTS = Object.keys(PLANS)
+  .filter(plan => PLANS[plan].id >= 0)
+  .map(plan => ({ ...PLANS[plan], cases: USE_CASES[plan] }))
+  .sort((a, b) => {
+    return a.cases.index - b.cases.index;
+  });

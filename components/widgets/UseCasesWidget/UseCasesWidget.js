@@ -1,19 +1,40 @@
 import React from 'react';
-import { USE_CASES } from './data/casesData';
+import { PRODUCTS, USE_CASES } from './data/casesData';
 
 import { DemoCallOut } from './DemoCallOut';
 import { TopUseCases } from './TopUseCases';
+import { ProductFeatures } from '../ProductFeaturesWidget/ProductFeatures';
+import { UseCase } from './UseCase';
 
 export const UseCasesWidget = () => {
+  console.log(PRODUCTS);
   return (
     <div className="container">
       <div className="callout-container">
         <DemoCallOut />
       </div>
       <div className="top-case-container">
-        <TopUseCases useCases={USE_CASES} />
+        <TopUseCases useCases={Object.values(USE_CASES)} />
       </div>
-      <div className="cases-container">Cases Container</div>
+      <div className="cases-container">
+        {PRODUCTS.map(product => {
+          const {
+            stripePlan,
+            cases: { buttons, description, features, plan, title, image },
+          } = product;
+          return (
+            <UseCase
+              stripePlan={stripePlan}
+              buttons={buttons}
+              features={features}
+              plan={plan}
+              title={title}
+              image={image}
+              description={description}
+            />
+          );
+        })}
+      </div>
       <style jsx>
         {`
           .container {

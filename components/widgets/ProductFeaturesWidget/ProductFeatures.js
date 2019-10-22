@@ -8,7 +8,7 @@ import Cookies from 'js-cookie';
 import Router from 'next/router';
 import { Collapse } from '@blueprintjs/core';
 
-import { ButtonFeatures } from './ButtonFeatures';
+import { ButtonMarketing } from '../../ButtonMarketing';
 import { LoginContext } from '../../../contexts/Login';
 import { STRIPE } from '../../../constants/stripe';
 import { FeatureTableDesktop } from './FeatureTableDesktop';
@@ -186,7 +186,7 @@ export const ProductFeatures = ({
 
             return (
               <div key={kebabCase(text)} className="button">
-                <ButtonFeatures
+                <ButtonMarketing
                   url={url}
                   isExternal={isExternal}
                   text={text}
