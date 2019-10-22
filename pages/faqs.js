@@ -1,6 +1,7 @@
 import { PageHeader } from '../components/PageHeader';
 import { FAQS } from '../constants/faqs';
 import Head from 'next/head';
+import { Card } from '@blueprintjs/core';
 
 import { CollapsibleItem } from '../components/CollapsibleItem';
 
@@ -13,7 +14,9 @@ const Faqs = () => {
       <PageHeader text={'FAQs'} />
       {FAQS.map(faq => (
         <div className="faq" key={faq.question}>
-          <CollapsibleItem header={faq.question} body={faq.answer} />
+          <Card>
+            <CollapsibleItem header={faq.question} body={faq.answer} />
+          </Card>
         </div>
       ))}
       <style jsx>{`
