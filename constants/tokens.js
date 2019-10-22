@@ -76,12 +76,12 @@ export const METRICS = {
           isIntraDay: true,
           requiresLogin: true,
         },
-        {
-          name: 'Gross Real',
-          indicator: 'Gross Volume Real',
-          isIntraDay: true,
-          requiresLogin: true,
-        },
+        // {
+        //   name: 'Gross Real',
+        //   indicator: 'Gross Volume Real',
+        //   isIntraDay: true,
+        //   requiresLogin: true,
+        // },
       ],
     },
     {
@@ -236,35 +236,29 @@ export const METRICS = {
         {
           name: 'Internal (Real)',
           indicator: 'Internal Volume Real',
-          isIntraDay: true,
         },
         {
           name: 'Internal (USD)',
           indicator: 'Internal Volume USD',
-          isIntraDay: true,
         },
         {
           name: 'External (Real)',
           indicator: 'External Volume Real',
-          isIntraDay: true,
           requiresLogin: true,
         },
         {
           name: 'External (USD)',
           indicator: 'External Volume USD',
-          isIntraDay: true,
           requiresLogin: true,
         },
         {
           name: 'Gross (Real)',
           indicator: 'Gross Volume Real',
-          isIntraDay: true,
           requiresLogin: true,
         },
         {
           name: 'Gross (USD)',
           indicator: 'Gross Volume USD',
-          isIntraDay: true,
           requiresLogin: true,
         },
       ],
@@ -275,7 +269,6 @@ export const METRICS = {
         {
           name: 'Number',
           indicator: 'Transactions',
-          isIntraDay: true,
         },
       ],
     },

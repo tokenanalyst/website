@@ -24,12 +24,12 @@ export const COMMON_STUDIES = [
   {
     symbol: '#NVT',
     urlSlug: API_METRICS.Nvt,
-    dataPoint: 'supply',
+    dataPoint: 'nvt',
   },
   {
     symbol: '#MARKETCAP',
     urlSlug: API_METRICS.Nvt,
-    dataPoint: 'supply',
+    dataPoint: 'marketcap_usd',
   },
   {
     symbol: '#TOTALFEESREAL',

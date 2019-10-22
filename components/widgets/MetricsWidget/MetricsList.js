@@ -39,7 +39,7 @@ export const MetricsList = ({
   useMemo(() => {
     setSelectedIndicator({
       name: getIndicator(token),
-      isIntraDay: true,
+      isIntraDay: false,
     });
   }, [token]);
 
