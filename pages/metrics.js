@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext } from 'react';
+import React, { useState, useRef, useContext, useEffect } from 'react';
 import { Card } from '@blueprintjs/core';
 
 import { TokenSelect } from '../components/widgets/ProChartWidget/TokenSelect';
@@ -16,6 +16,16 @@ const MetricsList = ({ token, selectedIndicator, setSelectedIndicator }) => {
   const router = useRouter();
 
   const [isRegisterDialogShown, setIsRegisterDialogShown] = useState(false);
+
+  useEffect(() => {
+    setSelectedIndicator({
+      name: METRICS[
+        token === NATIVE_TOKENS.BTC || token === NATIVE_TOKENS.ETH
+          ? token
+          : 'ERC_20'
+      ].filter(metric => metric.isDefaultCategory)[0].defaultIndicator,
+    });
+  }, [token]);
 
   return (
     <>
@@ -44,7 +54,7 @@ const MetricsList = ({ token, selectedIndicator, setSelectedIndicator }) => {
               <CollapsibleItem
                 key={metric.category}
                 header={metric.category}
-                defaultIsOpen={metric.isDefault}
+                defaultIsOpen={metric.isDefaultCategory}
                 body={
                   <>
                     {metric.values.map(value => (
@@ -120,6 +130,11 @@ const MetricsList = ({ token, selectedIndicator, setSelectedIndicator }) => {
             font-weight: bold;
             padding-bottom: 10px;
           }
+          @media (min-width: 1800px) {
+            .card {
+              max-height: 650px;
+            }
+          }
         `}
       </style>
     </>
@@ -127,12 +142,8 @@ const MetricsList = ({ token, selectedIndicator, setSelectedIndicator }) => {
 };
 
 const Metrics = () => {
-  const [selectedToken, setSelectedToken] = useState('BTC');
-  const [selectedIndicator, setSelectedIndicator] = useState({
-    name: 'Volume USD',
-    isIntraDay: true,
-  });
-  // const [isRegisterDialogShown, setIsRegisterDialogShown] = useState(false);
+  const [selectedToken, setSelectedToken] = useState(NATIVE_TOKENS.BTC);
+  const [selectedIndicator, setSelectedIndicator] = useState({});
 
   const tvInstance = useRef(null);
   const studies = useRef({

@@ -46,7 +46,8 @@ export const METRICS = {
   [NATIVE_TOKENS.BTC]: [
     {
       category: 'Volume',
-      isDefault: true,
+      isDefaultCategory: true,
+      defaultIndicator: 'Volume USD',
       values: [
         {
           name: 'USD',
@@ -224,6 +225,8 @@ export const METRICS = {
   [NATIVE_TOKENS.ETH]: [
     {
       category: 'Volume',
+      isDefaultCategory: true,
+      defaultIndicator: 'Internal Volume Real',
       values: [
         {
           name: 'Internal (Real)',
@@ -346,6 +349,8 @@ export const METRICS = {
   ERC_20: [
     {
       category: 'Volume',
+      isDefaultCategory: true,
+      defaultIndicator: 'ERC20 Volume USD',
       values: [
         {
           name: 'USD',
