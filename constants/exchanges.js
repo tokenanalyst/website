@@ -15,6 +15,7 @@ const {
   USDC,
   TUSD,
   DAI,
+  GUSD,
 } = STABLE_TOKENS;
 const { OMG, LINK, ZIL, ZRX, REP } = ERC20_TOKENS;
 const { USD } = CURRENCIES;
@@ -96,7 +97,7 @@ export const TOKENS_EXCHANGE_SUPPORT = {
   [DAI]: {
     [BITTREX]: {
       baseToken: BTC,
-      quoteToken: USD,
+      quoteToken: USDT,
     },
   },
   [LINK]: {
@@ -202,6 +203,12 @@ export const TOKENS_EXCHANGE_SUPPORT = {
       baseToken: BTC,
       quoteToken: USD,
     },
+    [BINANCE]: {
+      baseToken: BTC,
+      quoteToken: USDT,
+    },
+  },
+  [GUSD]: {
     [BINANCE]: {
       baseToken: BTC,
       quoteToken: USDT,
