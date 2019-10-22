@@ -1,8 +1,9 @@
 import React from 'react';
 import kebabCase from 'lodash/kebabCase';
-import Link from 'next/link';
 import classNames from 'classnames';
 import css from 'styled-jsx/css';
+import { scroller } from 'react-scroll';
+import { PLAN_NAMES } from '../constants/plans';
 
 import { pricingButton } from '../constants/styles/common-styled-jsx';
 
@@ -76,62 +77,62 @@ const TESTIMONIALS = [
   },
 ];
 
-const renderLinks = () => {
-  return (
-    <div className="container">
-      <Link href="/#">
-        <a className="link">Platform</a>
-      </Link>
-      <Link href="/#">
-        <a className="link">TokenAnalyst Pro</a>
-      </Link>
-      <Link href="/#">
-        <a className="link">Enterprise</a>
-      </Link>
-      <style jsx>
-        {`
-          .container {
-            display: flex;
-            flex-direction: column;
-            position: absolute;
-            bottom: 40px;
-            right: 20px;
-          }
-          .link {
-            background-image: url('/static/svg/pricing/arrow.svg');
-            background-repeat: no-repeat;
-            background-position: left;
-            font-family: Open Sans;
-            font-size: 15px;
-            font-weight: 700;
-            font-style: normal;
-            font-stretch: normal;
-            margin-bottom: 16px;
-          }
-          a {
-            padding-left: 25px;
-            color: #252525;
-          }
-          a:hover {
-            color: #252525;
-          }
-          a:active {
-            color: #252525;
-          }
-          a:visited {
-            color: #252525;
-          }
-          @media only screen and (max-width: 767px) {
+const renderLinks = plans => {
+  return plans.map(plan => {
+    return (
+      <div key={plan} className="container">
+        <div
+          className="link"
+          tabIndex="0"
+          role="link"
+          onKeyDown={() => {
+            scroller.scrollTo(kebabCase(plan), {
+              duration: 800,
+              delay: 0,
+              offset: -65,
+              smooth: 'easeInOutQuart',
+            });
+          }}
+          onClick={() => {
+            scroller.scrollTo(kebabCase(plan), {
+              duration: 800,
+              delay: 0,
+              offset: -60,
+              smooth: 'easeInOutQuart',
+            });
+          }}
+        >
+          {plan}
+        </div>
+        <style jsx>
+          {`
             .container {
-              display: flex;
-              flex-direction: row;
-              position: relative;
+              background-image: url('/static/svg/pricing/arrow.svg');
+              background-repeat: no-repeat;
+              background-position: left;
+              margin-bottom: 16px;
             }
-          }
-        `}
-      </style>
-    </div>
-  );
+            .link {
+              font-family: Open Sans;
+              font-size: 15px;
+              font-weight: 700;
+              font-style: normal;
+              font-stretch: normal;
+              margin-left: 25px;
+              cursor: pointer;
+            }
+            @media only screen and (max-width: 767px) {
+              .container {
+                display: flex;
+                flex-direction: row;
+                position: relative;
+              }
+            }
+          `}
+        </style>
+      </div>
+    );
+  });
 };
 
 export const TestimonialsPricing = () => (
@@ -164,7 +165,15 @@ export const TestimonialsPricing = () => (
           Request a demo
         </button>
       </div>
-      <div className="links-container">{renderLinks()}</div>
+      <div className="links-container">
+        <div className="links">
+          {renderLinks([
+            PLAN_NAMES.PLATFORM,
+            PLAN_NAMES.PRO,
+            PLAN_NAMES.ENTERPRISE,
+          ])}
+        </div>
+      </div>
     </div>
     <style jsx>{pricingButton}</style>
     <style jsx>
@@ -251,6 +260,13 @@ export const TestimonialsPricing = () => (
           background-repeat: no-repeat;
           background-position: left;
         }
+        .links {
+          display: flex;
+          flex-direction: column;
+          position: absolute;
+          bottom: 40px;
+          right: 60px;
+        }
         .link {
           background-image: url('/static/svg/pricing/arrow.svg');
           background-repeat: no-repeat;
@@ -302,7 +318,21 @@ export const TestimonialsPricing = () => (
             font-size: 20px;
           }
           .links-container {
-            display: none;
+            padding-top: 50px;
+            width: 100%;
+            height: 100%;
+            left: auto;
+            right: auto;
+            bottom: auto;
+            position: relative;
+            background-image: none;
+          }
+          .links {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            right: auto;
+            bottom: auto;
           }
           .name-container {
             font-family: Cardo;
