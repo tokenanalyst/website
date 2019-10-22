@@ -76,7 +76,7 @@ export const ProductCard = ({
 }) => {
   return (
     <>
-      <div className="container">
+      <div className={'container ' + (isActive ? `blinky-border` : ``)}>
         <div className="title-container">
           <div className="title">{title}</div>
         </div>
@@ -131,6 +131,7 @@ export const ProductCard = ({
             padding-right: 40px;
             border: solid 2px ${isActive ? `#35caab` : `#f0eeee`};
           }
+
           .title-container {
             font-family: Space Grotesk;
             font-size: 25px;
