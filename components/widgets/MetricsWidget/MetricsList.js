@@ -5,6 +5,7 @@ import { NATIVE_TOKENS, METRICS } from '../../../constants/tokens';
 import { LoginContext } from '../../../contexts/Login';
 import { SimpleDialog } from '../../SimpleDialog';
 import { useRouter } from 'next/router';
+import ReactGA from 'react-ga';
 
 export const MetricsList = ({
   token,
@@ -33,8 +34,22 @@ export const MetricsList = ({
           header="Sign Up for FREE Access to this Metric and Many, Many more!"
           ctaText="Sign Up"
           isOpen={isRegisterDialogShown}
-          onClose={() => setIsRegisterDialogShown(false)}
-          onCtaClick={() => router.push('/register?metrics=true')}
+          onClose={() => {
+            ReactGA.event({
+              category: 'User',
+              action: `Metrics Page Dialog Dismissed`,
+              label: `Funnel`,
+            });
+            setIsRegisterDialogShown(false);
+          }}
+          onCtaClick={() => {
+            ReactGA.event({
+              category: 'User',
+              action: `Metrics Page Dialog Sign Up Clicked`,
+              label: `Funnel`,
+            });
+            router.push('/register?metrics=true');
+          }}
         >
           <br />
           TokenAnalyst provides a World Class amount of Metrics across all major
@@ -71,14 +86,19 @@ export const MetricsList = ({
                               : 'item'
                           }
                           key={value.indicator}
-                          onClick={() =>
+                          onClick={() => {
+                            ReactGA.event({
+                              category: 'User',
+                              action: `Metrics Page change data point ${value.indicator}`,
+                              label: `Metrics Page`,
+                            });
                             loginCtx.isLoggedIn || !value.requiresLogin
                               ? setSelectedIndicator({
                                   name: value.indicator,
                                   isIntraDay: value.isIntraDay,
                                 })
-                              : setIsRegisterDialogShown(true)
-                          }
+                              : setIsRegisterDialogShown(true);
+                          }}
                         >
                           {value.name}
                         </span>

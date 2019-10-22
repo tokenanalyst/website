@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Card } from '@blueprintjs/core';
+import ReactGA from 'react-ga';
 
 import { TokenSelect } from '../../widgets/ProChartWidget/TokenSelect';
 import { tokensDb } from '../../../services/tokensDb';
@@ -53,7 +54,14 @@ export const MetricsWidget = () => {
               items={tokensList}
               groups={['Native coins', 'Stable tokens', 'ERC20 tokens']}
               selectedToken={selectedToken}
-              onItemSelect={newToken => setSelectedToken(newToken)}
+              onItemSelect={newToken => {
+                ReactGA.event({
+                  category: 'User',
+                  action: `Metrics Page change token ${newToken}`,
+                  label: `Metrics Page`,
+                });
+                setSelectedToken(newToken);
+              }}
             />
           </Card>
           <div className="metrics-list">
@@ -69,10 +77,8 @@ export const MetricsWidget = () => {
             timeFrame="3D"
             interval="60"
             TVSymbols={[baseToken, quoteToken]}
-            // TVSymbols={['TKN', 'USDT']}
             TASymbol={selectedToken}
             exchangeName={firstExchange}
-            // exchangeName={'Bittrex'}
             isIntraDay={selectedIndicator.isIntraDay}
             onChartRenderCb={tvWidget => {
               tvInstance.current = tvWidget;
@@ -110,6 +116,24 @@ export const MetricsWidget = () => {
           }
           .metrics-list {
             padding-top: 10px;
+          }
+          @media (min-width: 320px) and (max-width: 767px) {
+            .container {
+              flex-direction: column-reverse;
+            }
+            .lhs {
+              width: 100%;
+              margin-bottom: 150px;
+            }
+            .rhs {
+              width: 100%;
+            }
+            .title-image {
+              display: none;
+            }
+            .title-name {
+              display: none;
+            }
           }
         `}
       </style>

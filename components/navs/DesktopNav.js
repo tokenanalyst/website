@@ -98,7 +98,7 @@ export const DesktopNav = () => {
                   Stablecoins
                 </div>
               </Link>
-              <Link href="/metrics" passHref>
+              <Link href={`/metrics?${tierParamString}`} passHref>
                 <div
                   className={classNames(
                     'desktop-link',
