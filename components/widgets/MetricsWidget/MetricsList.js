@@ -33,6 +33,7 @@ export const MetricsList = ({
 }) => {
   const loginCtx = useContext(LoginContext);
   const router = useRouter();
+  console.log(loginCtx.isLoggedIn);
 
   const [isRegisterDialogShown, setIsRegisterDialogShown] = useState(false);
 
