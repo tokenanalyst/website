@@ -9,39 +9,36 @@ console.log(
   `@@@@@@@@@ process.env.IS_SOURCE_MAP: ${process.env.IS_SOURCE_MAP}`
 );
 
+// Expose Sentry release id in front-end
 const getSentryRelease = () => process.env.SENTRY_RELEASE;
 
-module.exports =
-  process.env.IS_SOURCE_MAP === 'true'
-    ? withCSS(
-        withSourceMaps({
-          webpack(config, _options) {
-            console.log('@@@@@@@@@ webpack LOCAL');
-            return config;
-          },
-          generateBuildId: async () => {
-            // For example get the latest git commit hash here
-            console.log(
-              `@@@@@@@@@ generateBuildId LOCAL: ${process.env.SENTRY_RELEASE}`
-            );
-            return process.env.SENTRY_RELEASE;
-          },
-        })
-      )
-    : withCSS({
-        env: {
-          SENTRY_RELEASE: getSentryRelease(),
-        },
+// Generate a common build id to allow matching of source maps with deployed build in Sentry
+const generateBuildId = async () => {
+  console.log(
+    `@@@@@@@@@ generateBuildId ${
+      process.env.IS_SOURCE_MAP === 'true' ? 'LOCAL' : 'REMOTE'
+    }: ${process.env.SENTRY_RELEASE}`
+  );
+  return process.env.SENTRY_RELEASE; //
+};
 
-        webpack(config, _options) {
-          console.log('@@@@@@@@@ webpack REMOTE');
-          return config;
-        },
-        generateBuildId: async () => {
-          // For example get the latest git commit hash here
-          console.log(
-            `@@@@@@@@@ generateBuildId REMOTE: ${process.env.SENTRY_RELEASE}`
-          );
-          return process.env.SENTRY_RELEASE;
-        },
-      });
+const NEXT_CONFIG = {
+  local: withCSS(
+    withSourceMaps({
+      webpack(config, _options) {
+        console.log('@@@@@@@@@ webpack LOCAL');
+        return config;
+      },
+      generateBuildId,
+    })
+  ),
+  remote: withCSS({
+    env: {
+      SENTRY_RELEASE: getSentryRelease(),
+    },
+    generateBuildId,
+  }),
+};
+
+module.exports =
+  process.env.IS_SOURCE_MAP === 'true' ? NEXT_CONFIG.local : NEXT_CONFIG.remote;
