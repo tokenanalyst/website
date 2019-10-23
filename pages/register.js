@@ -56,7 +56,6 @@ const Register = () => {
             align-items: center;
             justify-content: center;
             width: 40%;
-            padding-bottom: 300px;
           }
           .header {
             font-size: 32px;

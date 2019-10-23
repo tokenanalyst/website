@@ -54,6 +54,7 @@ export const ProChartWidget = ({
                   .chart()
                   .createStudy('NetFlows', false, true);
               }}
+              isIntraDay={true}
             />
           </div>
           <div className="kaiko">

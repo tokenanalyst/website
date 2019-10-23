@@ -11,6 +11,30 @@ export const underSubNav = css`
   }
 `;
 
+export const blinkyborder = css`
+  @-webkit-keyframes blink-2 {
+    0% {
+      border: 2px solid #eee;
+    }
+    100% {
+      border: 2px solid #35caab;
+    }
+  }
+  @keyframes blink-2 {
+    0% {
+      border: 2px solid #eee;
+    }
+    100% {
+      border: 2px solid #35caab;
+    }
+  }
+
+  .blinky-border {
+    -webkit-animation: blink-2 2s alternate-reverse infinite both;
+    animation: blink-2 2s alternate-reverse infinite both;
+  }
+`;
+
 export const pricingButton = css`
   button {
     background-color: #fff;

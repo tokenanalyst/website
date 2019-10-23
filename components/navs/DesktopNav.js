@@ -42,6 +42,7 @@ export const DesktopNav = () => {
   };
 
   const tierParamString = `tier=${Cookies.get(COOKIES.tier)}`;
+  const metricsTierParamString = `tier_metrics=${Cookies.get(COOKIES.tier)}`;
 
   return (
     <>
@@ -96,6 +97,17 @@ export const DesktopNav = () => {
                   onFocus={collapseAllSubMenus}
                 >
                   Stablecoins
+                </div>
+              </Link>
+              <Link href={`/metrics?${metricsTierParamString}`} passHref>
+                <div
+                  className={classNames(
+                    'desktop-link',
+                    setLinkActive(asPath, '/metrics')
+                  )}
+                  onMouseOver={collapseAllSubMenus}
+                >
+                  Metrics
                 </div>
               </Link>
               <Link href="/compare" passHref>
@@ -561,7 +573,7 @@ export const DesktopNav = () => {
           .container {
             font-family: Open Sans;
             color: white;
-            font-weight: bold;
+            font-weight: normal;
             position: fixed;
             background-color: black;
             z-index: 100;
@@ -584,7 +596,8 @@ export const DesktopNav = () => {
           .right-side {
             margin-right: 10px;
             display: flex;
-            padding-left: 10px;
+            margin-left: 10px;
+            border-left: 2px solid #333;
           }
           .logo-desktop {
             margin-left: 10px;
@@ -633,7 +646,7 @@ export const DesktopNav = () => {
             border-radius: 0px 0px 5px 5px;
           }
           .desktop-contact-sub-link-container {
-            width: 125px;
+            width: 200px;
             background: black;
             position: fixed;
             color: white;
@@ -641,10 +654,9 @@ export const DesktopNav = () => {
             top: 60px;
             right: ${loginCtx.isLoggedIn ? '80px' : '180px'};
             padding-left: 10px;
-            border-radius: 0px 0px 5px 5px;
           }
           .desktop-exchanges-sub-link-container {
-            width: 125px;
+            width: 200px;
             background: black;
             position: fixed;
             color: white;
@@ -652,7 +664,6 @@ export const DesktopNav = () => {
             top: 60px;
             margin-left: 200px;
             padding-left: 10px;
-            border-radius: 0px 0px 5px 5px;
           }
           .desktop-sub-link {
             padding-top: 10px;
@@ -680,7 +691,7 @@ export const DesktopNav = () => {
             color: white;
             min-width: 80px;
             text-align: center;
-            background-color: #222222;
+            background-color: #333;
             max-height: 40px;
             padding: 10px;
             border-radius: 10px;
@@ -688,7 +699,7 @@ export const DesktopNav = () => {
             margin-left: 20px;
           }
           .login-button:hover {
-            background-color: #333;
+            background-color: #444;
           }
           .signup {
             cursor: pointer;

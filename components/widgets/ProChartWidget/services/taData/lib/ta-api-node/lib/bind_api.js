@@ -41,6 +41,10 @@ module.exports = () => {
     fetchDataFromApi(ENDPOINTS.serverless.exchange_metrics)
   );
 
+  ta.singleMetric = compose(
+    fetchDataFromApi(ENDPOINTS.serverless.single_metric)
+  );
+
   // Public endpoint
   ta.allExchangeFlowsAllTokens = compose(
     fetchDataFromApi(ENDPOINTS.public.all_exchange_flows_all_tokens)
