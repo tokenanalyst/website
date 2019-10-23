@@ -10,7 +10,7 @@ export const DemoCallOut = () => {
         <p className="description">
           TokenAnalyst is used for fundamental research and analysis,
           quantitative trading, and for running enterprise-grade blockchain
-          infrastructure
+          infrastructure.
         </p>
         <div>
           <button
