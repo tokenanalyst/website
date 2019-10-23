@@ -18,7 +18,6 @@ const UseCases = () => {
           }
           @media only screen and (max-width: 768px) {
             .container {
-              width: 100%;
               margin: auto;
             }
           }

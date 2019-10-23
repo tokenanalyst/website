@@ -36,8 +36,8 @@ export const DemoCallOut = () => {
             position: relative;
           }
           .image-container {
-            top: -80px;
-            right: 140px;
+            top: -60px;
+            right: 0px;
             position: absolute;
             text-align: right;
           }

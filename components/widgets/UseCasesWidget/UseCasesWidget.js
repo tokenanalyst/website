@@ -3,11 +3,9 @@ import { PRODUCTS, USE_CASES } from './data/casesData';
 
 import { DemoCallOut } from './DemoCallOut';
 import { TopUseCases } from './TopUseCases';
-import { ProductFeatures } from '../ProductFeaturesWidget/ProductFeatures';
 import { UseCase } from './UseCase';
 
 export const UseCasesWidget = () => {
-  console.log(PRODUCTS);
   return (
     <div className="container">
       <div className="callout-container">
@@ -20,26 +18,40 @@ export const UseCasesWidget = () => {
         {PRODUCTS.map(product => {
           const {
             stripePlan,
-            cases: { buttons, description, features, plan, title, image },
+            name,
+            cases: {
+              buttons,
+              description,
+              features,
+              plan,
+              title,
+              image,
+              isReverseImagePosition,
+            },
           } = product;
           return (
-            <UseCase
-              stripePlan={stripePlan}
-              buttons={buttons}
-              features={features}
-              plan={plan}
-              title={title}
-              image={image}
-              description={description}
-            />
+            <div key={name}>
+              <UseCase
+                name={name}
+                stripePlan={stripePlan}
+                buttons={buttons}
+                features={features}
+                plan={plan}
+                title={title}
+                image={image}
+                description={description}
+                isReverseImagePosition={isReverseImagePosition}
+              />
+            </div>
           );
         })}
       </div>
       <style jsx>
         {`
           .container {
+            padding-left: 100px;
+            padding-right: 100px;
             height: 100%;
-            width: 100%;
             width: calc(1440px - 40px);
             margin: auto;
             display: flex;
@@ -58,10 +70,13 @@ export const UseCasesWidget = () => {
           }
           @media only screen and (max-width: 768px) {
             .container {
+              padding-top: 20px;
+              padding-left: 0px;
+              padding-right: 0px;
               width: 100%;
-              margin: auto;
             }
             .callout-container {
+              margin-bottom: 40px;
               width: 100%;
             }
             .callout {

@@ -123,6 +123,7 @@ const redirectToStripe = (stripePlan, product) => async stripeOptions => {
 };
 
 export const UseCase = ({
+  name,
   title,
   plan,
   features,
@@ -130,11 +131,11 @@ export const UseCase = ({
   description,
   stripePlan,
   image,
+  isReverseImagePosition,
 }) => {
   const loginCtx = useContext(LoginContext);
   const username = Cookies.get('loggedInAsUsername');
   const userId = Cookies.get('loggedInAsUserId');
-  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   return (
@@ -145,58 +146,66 @@ export const UseCase = ({
           <div className="title-image" />
         </div>
         <div className="plan">{`${plan} Plan`}</div>
-        <div className="description">{description}</div>
-        <div className="features">{renderFeatures(features)}</div>
-        <div className="buttons-container">
-          {buttons.map(button => {
-            const { url, isExternal, text, isBuy, isIntercom } = button;
 
-            const onBuyPlan = async () => {
-              setIsLoading(true);
-              if (url) {
-                const action = `Plan click ${text}`;
-                return emitProductEvent(action);
-              }
+        <div className="features-container">
+          <div>
+            <div className="description">{description}</div>
+            <div className="features">{renderFeatures(features)}</div>
+            <div className="buttons-container">
+              {buttons.map(button => {
+                const { url, isExternal, text, isBuy, isIntercom } = button;
 
-              const action = `Plan select ${plan}`;
-              emitProductEvent(action);
+                const onBuyPlan = async () => {
+                  setIsLoading(true);
+                  if (url) {
+                    const action = `Plan click ${text}`;
+                    return emitProductEvent(action);
+                  }
 
-              if (!loginCtx.isLoggedIn) {
-                loginCtx.setPaymentData({
-                  stripe: {
-                    redirectFn: redirectToStripe(
-                      stripePlan,
-                      GA_GOAL_NAME[plan]
-                    ),
-                  },
-                });
-                document.documentElement.scrollTop = 0;
-                return Router.push('/register');
-              }
-              return redirectToStripe(stripePlan, GA_GOAL_NAME[plan])({
-                customerEmail: username,
-                clientReferenceId: userId.toString(),
-              });
-            };
+                  const action = `Plan select ${plan}`;
+                  emitProductEvent(action);
 
-            const onClick = isIntercom
-              ? () => window.Intercom('show')
-              : onBuyPlan;
+                  if (!loginCtx.isLoggedIn) {
+                    loginCtx.setPaymentData({
+                      stripe: {
+                        redirectFn: redirectToStripe(
+                          stripePlan,
+                          GA_GOAL_NAME[plan]
+                        ),
+                      },
+                    });
+                    document.documentElement.scrollTop = 0;
+                    return Router.push('/register');
+                  }
+                  return redirectToStripe(stripePlan, GA_GOAL_NAME[plan])({
+                    customerEmail: username,
+                    clientReferenceId: userId.toString(),
+                  });
+                };
 
-            return (
-              <div key={kebabCase(text)} className="button">
-                <ButtonMarketing
-                  url={url}
-                  isExternal={isExternal}
-                  text={text}
-                  stripePlan={stripePlan}
-                  isActive={isBuy}
-                  onClick={onClick}
-                  isLoading={isBuy ? isLoading : false}
-                />
-              </div>
-            );
-          })}
+                const onClick = isIntercom
+                  ? () => window.Intercom('show')
+                  : onBuyPlan;
+
+                return (
+                  <div key={kebabCase(text)} className="button">
+                    <ButtonMarketing
+                      url={url}
+                      isExternal={isExternal}
+                      text={text}
+                      stripePlan={stripePlan}
+                      isActive={isBuy}
+                      onClick={onClick}
+                      isLoading={isBuy ? isLoading : false}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          <div className={isReverseImagePosition ? 'reverse-image' : 'image'}>
+            <img src={image} alt={title} />
+          </div>
         </div>
       </div>
 
@@ -205,24 +214,35 @@ export const UseCase = ({
           .container {
             background-color: #ffffff;
             padding-top: 110px;
-            background-image: url(${image});
-            background-repeat: no-repeat;
-            background-position: right;
+            position: relative;
+            margin-bottom: 100px;
           }
           .title-container {
-            font-family: Space Grotesk;
-            font-size: 30px;
-            font-weight: bold;
-            font-style: normal;
-            font-stretch: normal;
-            line-height: normal;
-            letter-spacing: 0.26px;
-            color: #000000;
-            margin-bottom: 58px;
+            margin-bottom: 13px;
             display: flex;
             flex-direction: row;
           }
+          .reverse-image {
+            left: -100px;
+            top: 230px;
+            position: absolute;
+          }
           .title {
+            font-family: Space Grotesk;
+            font-size: 30px;
+            line-height: 35px;
+            letter-spacing: 0.260601px;
+            color: #000000;
+          }
+          .plan {
+            font-size: 23px;
+            line-height: 27px;
+            letter-spacing: 0.199794px;
+
+            color: #000000;
+
+            mix-blend-mode: normal;
+            opacity: 0.36;
           }
           .title-image {
             background-image: url('/static/svg/pricing/feature_title.svg');
@@ -232,7 +252,7 @@ export const UseCase = ({
             margin-left: 40px;
           }
           .description {
-            width: 503px;
+            max-width: 550px;
             height: 164px;
             font-family: Cardo;
             font-size: 30px;
@@ -243,6 +263,11 @@ export const UseCase = ({
             letter-spacing: 0.26px;
             color: #000000;
             margin-bottom: 61px;
+            padding-top: 73px;
+          }
+          .features-container {
+            display: flex;
+            flex-direction: ${isReverseImagePosition ? 'row-reverse' : 'row'};
           }
           .features {
             font-family: Open Sans;
@@ -280,24 +305,20 @@ export const UseCase = ({
             padding-bottom: 10px;
             height: 150px;
           }
-          .image {
-            position: absolute;
-            top: 10px;
-            right: 20px;
-          }
           @media only screen and (max-width: 768px) {
             .container {
               width: 100%;
               padding: 5px;
               height: 100%;
-              padding-bottom: 20px;
+              margin-bottom: 20px;
               background-image: none;
             }
             .description {
               width: 100%;
-              height: 100%;
+              height: 100px;
               font-size: 15px;
-              margin-bottom: 20px;
+              padding-top: 20px;
+              margin-bottom: 0px;
             }
             .buttons-container {
               display: flex;
@@ -307,10 +328,10 @@ export const UseCase = ({
               padding-bottom: 10px;
             }
             .title-container {
-              margin-bottom: 20px;
+              margin-bottom: 14px;
             }
             .title {
-              font-size: 20px;
+              font-size: 25px;
               max-width: 100%;
               background-image: none;
             }
@@ -329,9 +350,14 @@ export const UseCase = ({
               display: flex;
               flex-direction: row;
               flex-wrap: wrap;
-              height: 100%;
               max-width: 100%;
               padding-bottom: 20px;
+            }
+            .image {
+              display: none;
+            }
+            .reverse-image {
+              display: none;
             }
           }
         `}
@@ -343,13 +369,16 @@ export const UseCase = ({
 UseCase.propTypes = {
   name: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  plan: PropTypes.string.isRequired,
   buttons: PropTypes.arrayOf(PropTypes.object).isRequired,
   features: PropTypes.arrayOf(PropTypes.string).isRequired,
   stripePlan: PropTypes.string,
   image: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
+  isReverseImagePosition: PropTypes.bool,
 };
 
 UseCase.defaultProps = {
   stripePlan: null,
+  isReverseImagePosition: false,
 };

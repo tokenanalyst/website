@@ -16,8 +16,6 @@ const emitProductEvent = name => {
 };
 
 export const TopUseCases = ({ useCases }) => {
-  console.log(useCases);
-
   return (
     <div className="container">
       <div className="cases">
@@ -45,6 +43,7 @@ export const TopUseCases = ({ useCases }) => {
                     scroller.scrollTo(kebabCase(title), {
                       duration: 800,
                       delay: 0,
+                      offset: -65,
                       smooth: 'easeInOutQuart',
                     });
                   }}
@@ -53,6 +52,7 @@ export const TopUseCases = ({ useCases }) => {
                     scroller.scrollTo(kebabCase(title), {
                       duration: 800,
                       delay: 0,
+                      offset: -65,
                       smooth: 'easeInOutQuart',
                     });
                   }}
@@ -138,6 +138,11 @@ export const TopUseCases = ({ useCases }) => {
               margin-top: 0px;
               margin-left: 0px;
             }
+            .cases {
+              padding-top: 0px;
+              padding-bottom: 0px;
+              background: none;
+            }
             .title {
               font-family: Space Grotesk;
               font-size: 25px;
@@ -150,25 +155,28 @@ export const TopUseCases = ({ useCases }) => {
               margin-bottom: 35px;
               max-width: 300px;
             }
-            .description {
-              font-family: Cardo;
-              font-size: 15px;
-              font-weight: normal;
-              font-style: normal;
-              font-stretch: normal;
-              line-height: normal;
-              letter-spacing: 0.26px;
-              color: #000000;
-              margin-bottom: 20px;
-              max-width: 350px;
+            .title-container {
+              padding-bottom: 0px;
             }
-            .image-container {
+            .features {
+              padding-top: 20px;
+              padding-bottom: 20px;
+            }
+            .feature-list {
+              width: 100%;
+              padding-bottom: 40px;
+            }
+            .feature {
+              max-width: calc(100% - 20%);
+            }
+            .features-container {
+              display: flex;
+              flex-direction: column;
+            }
+            .title-image {
               display: none;
             }
             .title {
-              max-width: 100%;
-            }
-            .description {
               max-width: 100%;
             }
           }
