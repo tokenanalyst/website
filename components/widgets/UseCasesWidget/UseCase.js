@@ -288,9 +288,9 @@ export const UseCase = ({
             }
             .description {
               width: 100%;
-              height: 100px;
+              height: 80px;
               font-size: 15px;
-              padding-top: 20px;
+              margin-top: 20px;
               margin-bottom: 0px;
             }
             .buttons-container {
@@ -330,6 +330,9 @@ export const UseCase = ({
               display: none;
             }
             .reverse-image {
+              display: none;
+            }
+            .reverse-image-infrastructure {
               display: none;
             }
           }
