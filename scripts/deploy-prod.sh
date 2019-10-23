@@ -24,9 +24,14 @@ echo "-> Deploying to Now"
 
 echo y | now secrets rm sentry-release
 echo y | now secrets rm is-source-map
-now secrets add sentry-release $SENTRY_RELEASE
-now secrets add is-source-map $IS_SOURCE_MAP
-now deploy
+# now secrets add sentry-release $SENTRY_RELEASE
+# now secrets add is-source-map $IS_SOURCE_MAP
+now deploy \
+  --env SENTRY_RELEASE=$SENTRY_RELEASE \
+  --env IS_SOURCE_MAP=$IS_SOURCE_MAP \
+  --build-env SENTRY_RELEASE=$SENTRY_RELEASE \
+  --build-env IS_SOURCE_MAP=$IS_SOURCE_MAP
+
 
 
 
