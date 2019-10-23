@@ -32,7 +32,7 @@ export const LoginProvider = ({ children }) => {
       Cookies.remove(COOKIES.loggedInAsUsername);
       Cookies.remove(COOKIES.loggedInAsUserId);
     }
-  });
+  }, []);
 
   const value = {
     isLoggedIn,
