@@ -49,7 +49,7 @@ const Register = () => {
             flex-direction: row;
             align-items: center;
             justify-content: space-around;
-            height: 800px;
+            height: 700px;
           }
           .contents {
             display: flex;

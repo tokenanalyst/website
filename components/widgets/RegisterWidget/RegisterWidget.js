@@ -173,7 +173,7 @@ export const RegisterWidget = () => {
             font-size: 32px;
             font-weight: bold;
             padding: 15px;
-            padding-top: 30px;
+            padding-top: 0px;
             text-align: center;
           }
           .label {
