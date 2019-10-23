@@ -32,8 +32,6 @@ module.exports = async (req, res) => {
     to_date,
   };
 
-  console.log(params);
-
   const apiFunctions = {
     [API_METRICS.Volume]: privateApi.tokenVolumeWindowHistorical,
     [API_METRICS.Transactions]: privateApi.tokenCountWindowHistorical,

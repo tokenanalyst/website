@@ -11,7 +11,7 @@ import { COOKIES } from '../../constants/cookies';
 import { PLANS } from '../../constants/plans';
 
 export const setLinkActive = (pathName, link) =>
-  pathName === link ? 'active' : '';
+  pathName.split('?')[0] === link ? 'active' : '';
 
 export const DesktopNav = () => {
   const loginCtx = useContext(LoginContext);
@@ -99,15 +99,15 @@ export const DesktopNav = () => {
                   Stablecoins
                 </div>
               </Link>
-              <Link href={`/metrics?${metricsTierParamString}`} passHref>
+              <Link href={`/insights?${metricsTierParamString}`} passHref>
                 <div
                   className={classNames(
                     'desktop-link',
-                    setLinkActive(asPath, '/metrics')
+                    setLinkActive(asPath, '/insights')
                   )}
                   onMouseOver={collapseAllSubMenus}
                 >
-                  Metrics
+                  Insights
                 </div>
               </Link>
               <Link href="/compare" passHref>
