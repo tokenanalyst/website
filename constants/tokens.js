@@ -61,7 +61,7 @@ export const METRICS = {
         },
         {
           name: 'BTC',
-          indicator: 'Volume',
+          indicator: 'Volume BTC',
           isIntraDay: true,
         },
         {

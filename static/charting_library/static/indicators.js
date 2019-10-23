@@ -5,7 +5,7 @@
 
 const BTC_INDICATORS = [
   { title: 'Volume USD', symbol: '#VOLUMEUSD' },
-  { title: 'Volume', symbol: '#VOLUMEREAL' },
+  { title: 'Volume BTC', symbol: '#VOLUMEREAL' },
   { title: 'Volume Change USD', symbol: '#VOLUMECHANGEUSD' },
   { title: 'Volume Change', symbol: '#VOLUMECHANGEREAL' },
   { title: 'Gross Volume ', symbol: '#VOLUMEGROSSREALBTC' },
