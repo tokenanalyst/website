@@ -15,9 +15,10 @@ export const SimpleButton = ({
   loading,
   onClick,
   children,
+  type,
 }) => (
   <div>
-    <Button onClick={onClick} fill={fill} loading={loading}>
+    <Button onClick={onClick} fill={fill} loading={loading} type={type}>
       {children}
     </Button>
     <style jsx>
@@ -47,10 +48,12 @@ SimpleButton.propTypes = {
   fill: PropTypes.bool,
   loading: PropTypes.bool,
   onClick: PropTypes.func.isRequired,
+  type: PropTypes.string,
 };
 
 SimpleButton.defaultProps = {
   background: NEUTRAL_GREY,
   fill: false,
   loading: false,
+  type: 'button',
 };
