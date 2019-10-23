@@ -9,9 +9,9 @@ import Router from 'next/router';
 
 import { ButtonMarketing } from '../../ButtonMarketing';
 import { LoginContext } from '../../../contexts/Login';
-import { STRIPE } from '../../../constants/stripe';
 import { GA_GOAL_NAME } from './data/casesData';
 import { PLAN_NAMES } from '../../../constants/plans';
+import { redirectToStripe } from '../../../utils';
 
 const renderFeatures = features =>
   features.map(feature => {
@@ -62,29 +62,9 @@ const emitProductEvent = action => {
   });
 };
 
-const redirectToStripe = (stripePlan, product) => async stripeOptions => {
-  const stripe = Stripe(STRIPE.apiKey);
-
-  const stripeOpt = {
-    items: [
-      {
-        plan: stripePlan,
-        quantity: 1,
-      },
-    ],
-    successUrl: `https://www.tokenanalyst.io/purchase-success${
-      product ? `?p=${product.toLowerCase()}` : ''
-    }`,
-    cancelUrl: 'https://www.tokenanalyst.io/',
-    ...stripeOptions,
-  };
-
-  await stripe.redirectToCheckout(stripeOpt);
-};
-
 // Hack on Jendrik request
 
-const setImageUseCaseStyle = (isReverseImagePosition, plan) => {
+const makeImageUseCaseStyle = (isReverseImagePosition, plan) => {
   if (plan === PLAN_NAMES[plan.toUpperCase()]) {
     return isReverseImagePosition ? 'reverse-image-infrastructure' : 'image';
   }
@@ -172,7 +152,7 @@ export const UseCase = ({
               })}
             </div>
           </div>
-          <div className={setImageUseCaseStyle(isReverseImagePosition, plan)}>
+          <div className={makeImageUseCaseStyle(isReverseImagePosition, plan)}>
             <img src={image} alt={title} />
           </div>
         </div>

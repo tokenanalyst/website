@@ -10,10 +10,10 @@ import { Collapse } from '@blueprintjs/core';
 
 import { ButtonMarketing } from '../../ButtonMarketing';
 import { LoginContext } from '../../../contexts/Login';
-import { STRIPE } from '../../../constants/stripe';
 import { FeatureTableDesktop } from './FeatureTableDesktop';
 import { FeatureTableMobile } from './FeatureTableMobile';
 import { GA_GOAL_NAME } from './data/productsData';
+import { redirectToStripe } from '../../../utils';
 
 const renderFeatures = features =>
   features.map(feature => {
@@ -102,26 +102,6 @@ const emitProductEvent = action => {
     action,
     label: `Plans`,
   });
-};
-
-const redirectToStripe = (stripePlan, product) => async stripeOptions => {
-  const stripe = Stripe(STRIPE.apiKey);
-
-  const stripeOpt = {
-    items: [
-      {
-        plan: stripePlan,
-        quantity: 1,
-      },
-    ],
-    successUrl: `https://www.tokenanalyst.io/purchase-success${
-      product ? `?p=${product.toLowerCase()}` : ''
-    }`,
-    cancelUrl: 'https://www.tokenanalyst.io/',
-    ...stripeOptions,
-  };
-
-  await stripe.redirectToCheckout(stripeOpt);
 };
 
 export const ProductFeatures = ({
