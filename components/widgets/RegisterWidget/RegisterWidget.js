@@ -87,71 +87,79 @@ export const RegisterWidget = () => {
         ) : (
           <>
             <div className="register-form">
-              <div className="optional-fields">
-                <SimpleFormGroup label="Name" labelFor="registration-name">
+              <form
+                onSubmit={async e => {
+                  e.preventDefault();
+                  await onRegister();
+                }}
+              >
+                <div className="optional-fields">
+                  <SimpleFormGroup label="Name" labelFor="registration-name">
+                    <SimpleTextInput
+                      id="registration-name"
+                      onChange={e => setFullName(e.target.value.trim())}
+                    />
+                  </SimpleFormGroup>
+                  <SimpleFormGroup
+                    label="Company"
+                    labelFor="registration-company"
+                  >
+                    <SimpleTextInput
+                      id="registration-company"
+                      onChange={e => setCompany(e.target.value.trim())}
+                    />
+                  </SimpleFormGroup>
+                </div>
+                <SimpleFormGroup
+                  label={
+                    <div>
+                      Email <span className="mandatory-field">*</span>
+                    </div>
+                  }
+                  labelFor="registration-email"
+                >
                   <SimpleTextInput
-                    id="registration-name"
-                    onChange={e => setFullName(e.target.value.trim())}
+                    id="registration-email"
+                    onChange={e => setEmail(e.target.value.trim())}
                   />
                 </SimpleFormGroup>
                 <SimpleFormGroup
-                  label="Company"
-                  labelFor="registration-company"
+                  label={
+                    <div>
+                      Password <span className="mandatory-field">*</span>
+                    </div>
+                  }
+                  labelFor="registration-password"
+                  helperText={<PasswordStrength score={password.strength} />}
                 >
                   <SimpleTextInput
-                    id="registration-company"
-                    onChange={e => setCompany(e.target.value.trim())}
+                    type={isPasswordVisible ? 'text' : 'password'}
+                    id="registration-password"
+                    onChange={onPasswordChange}
+                    rightElement={
+                      <Icon
+                        icon={isPasswordVisible ? 'eye-off' : 'eye-open'}
+                        onClick={() => setIsPasswordVisible(!isPasswordVisible)}
+                      />
+                    }
                   />
                 </SimpleFormGroup>
-              </div>
-              <SimpleFormGroup
-                label={
-                  <div>
-                    Email <span className="mandatory-field">*</span>
+                <SimpleButton
+                  background={PRIMARY_GREEN}
+                  fill
+                  onClick={onRegister}
+                  loading={isSubmitted}
+                  type="submit"
+                >
+                  Sign Up
+                </SimpleButton>
+                {errorText && <div className="error">{errorText}</div>}
+                {isRedirectedForFreeTier ? (
+                  <div className="message">
+                    Please register to access your free tier.
                   </div>
-                }
-                labelFor="registration-email"
-              >
-                <SimpleTextInput
-                  id="registration-email"
-                  onChange={e => setEmail(e.target.value.trim())}
-                />
-              </SimpleFormGroup>
-              <SimpleFormGroup
-                label={
-                  <div>
-                    Password <span className="mandatory-field">*</span>
-                  </div>
-                }
-                labelFor="registration-password"
-                helperText={<PasswordStrength score={password.strength} />}
-              >
-                <SimpleTextInput
-                  type={isPasswordVisible ? 'text' : 'password'}
-                  id="registration-password"
-                  onChange={onPasswordChange}
-                  rightElement={
-                    <Icon
-                      icon={isPasswordVisible ? 'eye-off' : 'eye-open'}
-                      onClick={() => setIsPasswordVisible(!isPasswordVisible)}
-                    />
-                  }
-                />
-              </SimpleFormGroup>
-              <SimpleButton
-                background={PRIMARY_GREEN}
-                fill
-                onClick={onRegister}
-                loading={isSubmitted}
-              >
-                Sign Up
-              </SimpleButton>
-              {errorText && <div className="error">{errorText}</div>}
-              {isRedirectedForFreeTier ? (
-                <div className="message">
-                  Please register to access your free tier.
-                </div>
-              ) : null}
+                ) : null}
+              </form>
             </div>
           </>
         )}

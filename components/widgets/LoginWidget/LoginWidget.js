@@ -63,37 +63,39 @@ export const LoginWidget = () => {
     <>
       <div className="container">
         <Card>
-          <div className="header">Email</div>
-          <input
-            type="text"
-            className="input"
-            onChange={e => setEmail(e.target.value.trim())}
-          />
-          <div className="header">Password</div>
-          <input
-            type="text"
-            className="input"
-            type="password"
-            onChange={e => setPassword(e.target.value)}
-          />
-          <div className="login-button">
-            <SimpleButton
-              background={PRIMARY_GREEN}
-              fill
-              onClick={login}
-              loading={isSubmitted}
-            >
-              Login
-            </SimpleButton>
-          </div>
-          {isError ? (
-            <div className="error">Incorrect email or password</div>
-          ) : null}
-          {isToRedirectToStripe ? (
-            <div className="message">
-              Please login to complete your purchase.
+          <form onSubmit={login}>
+            <div className="header">Email</div>
+            <input
+              type="text"
+              className="input"
+              onChange={e => setEmail(e.target.value.trim())}
+            />
+            <div className="header">Password</div>
+            <input
+              className="input"
+              type="password"
+              onChange={e => setPassword(e.target.value)}
+            />
+            <div className="login-button">
+              <SimpleButton
+                background={PRIMARY_GREEN}
+                fill
+                onClick={login}
+                loading={isSubmitted}
+                type="submit"
+              >
+                Login
+              </SimpleButton>
             </div>
-          ) : null}
+            {isError ? (
+              <div className="error">Incorrect email or password</div>
+            ) : null}
+            {isToRedirectToStripe ? (
+              <div className="message">
+                Please login to complete your purchase.
+              </div>
+            ) : null}
+          </form>
         </Card>
       </div>
       <style jsx>
