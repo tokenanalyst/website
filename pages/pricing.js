@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head';
 
 import { DemoCallOutPricing } from '../components/DemoCallOutPricing';
 import { ProductSelectionWidget } from '../components/widgets/ProductSelectionWidget';
@@ -8,6 +9,9 @@ import { TestimonialsPricing } from '../components/TestimonialsPricing';
 const Pricing = () => {
   return (
     <div className="container">
+      <Head>
+        <title>TokenAnalyst - Leading On-Chain Data Provider - Pricing</title>
+      </Head>
       <div className="callout-container">
         <div className="callout">
           <DemoCallOutPricing />
