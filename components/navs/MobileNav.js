@@ -9,7 +9,7 @@ import { LOGO_IMAGES } from '../../constants/image-paths';
 import { LoginContext } from '../../contexts/Login';
 
 export const setLinkActive = (pathName, link) =>
-  pathName === link ? 'mobile-link-active' : 'mobile-link';
+  pathName.split('?')[0] === link ? 'mobile-link-active' : 'mobile-link';
 
 export const MobileNav = () => {
   const loginCtx = useContext(LoginContext);
@@ -53,9 +53,9 @@ export const MobileNav = () => {
               Stablecoins
             </div>
           </Link>
-          <Link href="/metrics" passHref>
-            <div className={setLinkActive(router.pathname, '/metrics')}>
-              Metrics
+          <Link href="/insights" passHref>
+            <div className={setLinkActive(router.pathname, '/insights')}>
+              Insights
             </div>
           </Link>
           <Link href="/compare" passHref>
