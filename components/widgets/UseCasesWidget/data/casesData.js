@@ -43,7 +43,7 @@ export const USE_CASES = {
     image: '/static/svg/marketing/quantitative_trading.svg',
     features: [
       `50+ metrics across 70+ digital assets`,
-      `Monitor trader / hodlers behaviors`,
+      `Monitor trader / hodler behavior`,
       `Access via CSV, API, or Web Platform`,
     ],
     buttons: [
@@ -85,7 +85,7 @@ export const USE_CASES = {
         isExternal: true,
       },
       {
-        text: 'Buy Plan',
+        text: 'Get in touch',
         url: 'mailto:info@tokenanalyst.io',
         isBuy: true,
       },

@@ -6,12 +6,12 @@ import kebabCase from 'lodash/kebabCase';
 import ReactGA from 'react-ga';
 import Cookies from 'js-cookie';
 import Router from 'next/router';
-import { Collapse } from '@blueprintjs/core';
 
 import { ButtonMarketing } from '../../ButtonMarketing';
 import { LoginContext } from '../../../contexts/Login';
 import { STRIPE } from '../../../constants/stripe';
 import { GA_GOAL_NAME } from './data/casesData';
+import { PLAN_NAMES } from '../../../constants/plans';
 
 const renderFeatures = features =>
   features.map(feature => {
@@ -54,46 +54,6 @@ const renderFeatures = features =>
     );
   });
 
-const renderCollapseControl = isOpen => {
-  return (
-    <>
-      <div className="container">
-        <img
-          className="image"
-          src="/static/svg/pricing/arrow.svg"
-          alt="arrow"
-        />
-        <div className="link">Compare plans and product details</div>
-      </div>
-      <style jsx>
-        {`
-          .container {
-            position: relative;
-          }
-          .link {
-            position: absolute;
-            top: 0;
-            left: 25px;
-            font-family: Open Sans;
-            font-size: 15px;
-            font-weight: 700;
-            font-style: normal;
-            font-stretch: normal;
-            color: #222;
-            cursor: pointer;
-          }
-          .image {
-            transform: rotate(${isOpen ? '90deg' : '0deg'});
-          }
-          .image > * {
-            transform: rotate(${isOpen ? '-90deg' : '0deg'});
-          }
-        `}
-      </style>
-    </>
-  );
-};
-
 const emitProductEvent = action => {
   ReactGA.event({
     category: 'User',
@@ -120,6 +80,15 @@ const redirectToStripe = (stripePlan, product) => async stripeOptions => {
   };
 
   await stripe.redirectToCheckout(stripeOpt);
+};
+
+// Hack on Jendrik request
+
+const setImageUseCaseStyle = (isReverseImagePosition, plan) => {
+  if (plan === PLAN_NAMES[plan.toUpperCase()]) {
+    return isReverseImagePosition ? 'reverse-image-infrastructure' : 'image';
+  }
+  return isReverseImagePosition ? 'reverse-image' : 'image';
 };
 
 export const UseCase = ({
@@ -162,7 +131,7 @@ export const UseCase = ({
                     return emitProductEvent(action);
                   }
 
-                  const action = `Plan select ${plan}`;
+                  const action = `Plan select ${name}`;
                   emitProductEvent(action);
 
                   if (!loginCtx.isLoggedIn) {
@@ -177,7 +146,7 @@ export const UseCase = ({
                     document.documentElement.scrollTop = 0;
                     return Router.push('/register');
                   }
-                  return redirectToStripe(stripePlan, GA_GOAL_NAME[plan])({
+                  return redirectToStripe(stripePlan, GA_GOAL_NAME[name])({
                     customerEmail: username,
                     clientReferenceId: userId.toString(),
                   });
@@ -203,7 +172,7 @@ export const UseCase = ({
               })}
             </div>
           </div>
-          <div className={isReverseImagePosition ? 'reverse-image' : 'image'}>
+          <div className={setImageUseCaseStyle(isReverseImagePosition, plan)}>
             <img src={image} alt={title} />
           </div>
         </div>
@@ -227,6 +196,11 @@ export const UseCase = ({
             top: 230px;
             position: absolute;
           }
+          .reverse-image-infrastructure {
+            left: 0px;
+            top: 250px;
+            position: absolute;
+          }
           .title {
             font-family: Space Grotesk;
             font-size: 30px;
@@ -236,13 +210,12 @@ export const UseCase = ({
             color: #000000;
           }
           .plan {
-            font-size: 23px;
-            line-height: 27px;
-            letter-spacing: 0.199794px;
-            color: #000000;
-            mix-blend-mode: normal;
-            opacity: 0.36;
-            font-weight: 700;
+            font-family: Space Grotesk;
+            font-size: 25px;
+            line-height: 29px;
+            letter-spacing: 0.217168px;
+            color: #a9a9a9;
+            font-weight: 600;
           }
           .title-image {
             background-image: url('/static/svg/pricing/feature_title.svg');

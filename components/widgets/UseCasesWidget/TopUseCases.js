@@ -118,7 +118,7 @@ export const TopUseCases = ({ useCases }) => {
             line-height: 29px;
             letter-spacing: 0.217168px;
             color: #a9a9a9;
-            font-weight: 700;
+            font-weight: 600;
           }
           .title {
             font-family: Space Grotesk;
