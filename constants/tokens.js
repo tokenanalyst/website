@@ -60,8 +60,8 @@ export const METRICS = {
           isIntraDay: true,
         },
         {
-          name: 'Real',
-          indicator: 'Volume Real',
+          name: 'BTC',
+          indicator: 'Volume BTC',
           isIntraDay: true,
         },
         {
@@ -71,8 +71,8 @@ export const METRICS = {
           requiresLogin: true,
         },
         {
-          name: 'Change Real',
-          indicator: 'Volume Change Real',
+          name: 'Change',
+          indicator: 'Volume Change',
           isIntraDay: true,
           requiresLogin: true,
         },
@@ -136,16 +136,16 @@ export const METRICS = {
       category: 'Fees',
       values: [
         {
-          name: 'Total Real',
-          indicator: 'Total Fees Real',
+          name: 'Total',
+          indicator: 'Total Fees',
         },
         {
           name: 'Total USD',
           indicator: 'Total Fees USD',
         },
         {
-          name: 'Avg. Real',
-          indicator: 'Average Fees Real',
+          name: 'Avg.',
+          indicator: 'Average Fees',
           requiresLogin: true,
         },
         {
@@ -231,33 +231,33 @@ export const METRICS = {
     {
       category: 'Volume',
       isDefaultCategory: true,
-      defaultIndicator: 'Internal Volume Real',
+      defaultIndicator: 'Internal Volume',
       values: [
         {
-          name: 'Internal (Real)',
-          indicator: 'Internal Volume Real',
+          name: 'Internal',
+          indicator: 'Internal Volume',
         },
         {
-          name: 'Internal (USD)',
+          name: 'Internal USD',
           indicator: 'Internal Volume USD',
         },
         {
-          name: 'External (Real)',
-          indicator: 'External Volume Real',
+          name: 'External',
+          indicator: 'External Volume',
           requiresLogin: true,
         },
         {
-          name: 'External (USD)',
+          name: 'External USD',
           indicator: 'External Volume USD',
           requiresLogin: true,
         },
         {
-          name: 'Gross (Real)',
-          indicator: 'Gross Volume Real',
+          name: 'Gross',
+          indicator: 'Gross Volume',
           requiresLogin: true,
         },
         {
-          name: 'Gross (USD)',
+          name: 'Gross USD',
           indicator: 'Gross Volume USD',
           requiresLogin: true,
         },
@@ -314,16 +314,16 @@ export const METRICS = {
       category: 'Fees',
       values: [
         {
-          name: 'Total Real',
-          indicator: 'Total Fees Real',
+          name: 'Total',
+          indicator: 'Total Fees',
         },
         {
           name: 'Total USD',
           indicator: 'Total Fees USD',
         },
         {
-          name: 'Avg. Real',
-          indicator: 'Average Fees Real',
+          name: 'Avg.',
+          indicator: 'Average Fees',
           requiresLogin: true,
         },
         {
@@ -355,7 +355,7 @@ export const METRICS = {
           indicator: 'ERC20 Volume USD',
         },
         {
-          name: 'Real',
+          name: 'ERC20',
           indicator: 'ERC20 Volume',
         },
       ],

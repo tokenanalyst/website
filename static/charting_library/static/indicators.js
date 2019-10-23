@@ -5,9 +5,9 @@
 
 const BTC_INDICATORS = [
   { title: 'Volume USD', symbol: '#VOLUMEUSD' },
-  { title: 'Volume Real', symbol: '#VOLUMEREAL' },
+  { title: 'Volume BTC', symbol: '#VOLUMEREAL' },
   { title: 'Volume Change USD', symbol: '#VOLUMECHANGEUSD' },
-  { title: 'Volume Change Real', symbol: '#VOLUMECHANGEREAL' },
+  { title: 'Volume Change', symbol: '#VOLUMECHANGEREAL' },
   { title: 'Gross Volume ', symbol: '#VOLUMEGROSSREALBTC' },
   { title: 'Average Size in Bytes', symbol: '#AVERAGESIZEBYTES' },
   { title: 'Average Satoshis per Byte', symbol: '#AVERAGESATOSHIS' },
@@ -26,11 +26,11 @@ const BTC_INDICATORS = [
 ];
 
 const ETH_INDICATORS = [
-  { title: 'Internal Volume Real', symbol: '#VOLUMEINTERNALREAL' },
+  { title: 'Internal Volume', symbol: '#VOLUMEINTERNALREAL' },
   { title: 'Internal Volume USD', symbol: '#VOLUMEINTERNALUSD' },
-  { title: 'External Volume Real', symbol: '#VOLUMEEXTERNALREAL' },
+  { title: 'External Volume', symbol: '#VOLUMEEXTERNALREAL' },
   { title: 'External Volume USD', symbol: '#VOLUMEEXTERNALUSD' },
-  { title: 'Gross Volume Real', symbol: '#VOLUMEEXTERNALREAL' },
+  { title: 'Gross Volume', symbol: '#VOLUMEEXTERNALREAL' },
   { title: 'Gross Volume USD', symbol: '#VOLUMEEXTERNALUSD' },
   { title: 'Average Gas', symbol: '#AVERAGEGAS' },
   { title: 'Average Gas Price (Wei)', symbol: '#AVERAGEGASPRICEWEI' },
@@ -43,9 +43,9 @@ const COMMON_INDICATORS = [
   { title: 'Supply', symbol: '#SUPPLY' },
   { title: 'NVT', symbol: '#NVT' },
   { title: 'Market Cap', symbol: '#MARKETCAP' },
-  { title: 'Total Fees Real', symbol: '#TOTALFEESREAL' },
+  { title: 'Total Fees', symbol: '#TOTALFEESREAL' },
   { title: 'Total Fees USD', symbol: '#TOTALFEESUSD' },
-  { title: 'Average Fees Real', symbol: '#AVERAGEFEESREAL' },
+  { title: 'Average Fees', symbol: '#AVERAGEFEESREAL' },
   { title: 'Average Fees USD', symbol: '#AVERAGEFEESUSD' },
 ];
 
