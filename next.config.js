@@ -8,7 +8,7 @@ const generateBuildId = async () => {
 };
 
 const NEXT_CONFIG = {
-  local: withCSS(
+  sentry: withCSS(
     withSourceMaps({
       webpack(config, _options) {
         return config;
@@ -16,7 +16,7 @@ const NEXT_CONFIG = {
       generateBuildId,
     })
   ),
-  remote: withCSS({
+  production: withCSS({
     env: {
       SENTRY_RELEASE: process.env.SENTRY_RELEASE,
     },
@@ -25,4 +25,6 @@ const NEXT_CONFIG = {
 };
 
 module.exports =
-  process.env.IS_SOURCE_MAP === 'true' ? NEXT_CONFIG.local : NEXT_CONFIG.remote;
+  process.env.IS_SOURCE_MAP === 'true'
+    ? NEXT_CONFIG.sentry
+    : NEXT_CONFIG.production;
