@@ -12,7 +12,7 @@ echo "-> Creating Sentry release $SENTRY_RELEASE"
 sentry-cli releases new $SENTRY_RELEASE
 sentry-cli releases set-commits --auto $SENTRY_RELEASE 
 
-echo "-> Uploading sourcemap files"
+echo "-> Uploading source map files"
 sentry-cli releases files $SENTRY_RELEASE upload-sourcemaps .next/ --url-prefix '~/_next' --validate
 
 echo "-> Deploying Sentry release $SENTRY_RELEASE"
@@ -25,3 +25,5 @@ echo "-> Deploying to Now"
 now deploy \
   --build-env SENTRY_RELEASE=$SENTRY_RELEASE \
   --build-env IS_SOURCE_MAP=$IS_SOURCE_MAP $1
+
+exit $?
