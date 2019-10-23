@@ -18,12 +18,10 @@ sentry-cli releases files $SENTRY_RELEASE upload-sourcemaps .next/ --url-prefix 
 echo "-> Deploying Sentry release $SENTRY_RELEASE"
 sentry-cli releases deploys $SENTRY_RELEASE new -e production
 
-export IS_SOURCE_MAP='false'
+IS_SOURCE_MAP='false'
 
 echo "-> Deploying to Now"
 
 now deploy \
-  --env SENTRY_RELEASE=$SENTRY_RELEASE \
-  --env IS_SOURCE_MAP=$IS_SOURCE_MAP \
   --build-env SENTRY_RELEASE=$SENTRY_RELEASE \
-  --build-env IS_SOURCE_MAP=$IS_SOURCE_MAP
+  --build-env IS_SOURCE_MAP=$IS_SOURCE_MAP $1
