@@ -48,7 +48,7 @@ export const MetricsList = ({
     <>
       <div className="container">
         <SimpleDialog
-          header="Sign Up for FREE Access to this Metric and Many, Many more!"
+          header="Sign Up for FREE Access to this Insight and many more!"
           ctaText="Sign Up"
           isOpen={isRegisterDialogShown}
           onClose={() => {
@@ -69,10 +69,10 @@ export const MetricsList = ({
           }}
         >
           <br />
-          TokenAnalyst provides a World Class amount of Metrics across all major
-          Tokens and Blockchains. <br />
-          By signing up you will have access to all Metrics, in both daily and
-          hourly granularities (depending on metrics).
+          TokenAnalyst provides a World Class amount of Insights across all
+          major Tokens and Blockchains. <br />
+          By signing up you will have access to all Insights, in both daily and
+          hourly granularities (depending on specific Insights).
         </SimpleDialog>
         <div className="card">
           <Card>
