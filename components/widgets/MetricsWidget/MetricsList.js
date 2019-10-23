@@ -59,7 +59,7 @@ export const MetricsList = ({
             setIsRegisterDialogShown(false);
           }}
           onCtaClick={() => {
-            loginCtx.setPostRegisterViaMetricsRedirectUrl('/metrics');
+            loginCtx.setPostRegisterViaMetricsRedirectUrl('/insights');
             ReactGA.event({
               category: 'User',
               action: `Metrics Page Dialog Sign Up Clicked`,
