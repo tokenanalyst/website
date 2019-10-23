@@ -231,6 +231,7 @@ export const UseCase = ({
             font-family: Space Grotesk;
             font-size: 30px;
             line-height: 35px;
+            font-weight: 700;
             letter-spacing: 0.260601px;
             color: #000000;
           }
@@ -238,11 +239,10 @@ export const UseCase = ({
             font-size: 23px;
             line-height: 27px;
             letter-spacing: 0.199794px;
-
             color: #000000;
-
             mix-blend-mode: normal;
             opacity: 0.36;
+            font-weight: 700;
           }
           .title-image {
             background-image: url('/static/svg/pricing/feature_title.svg');
@@ -253,7 +253,7 @@ export const UseCase = ({
           }
           .description {
             max-width: 550px;
-            height: 164px;
+            height: 125px;
             font-family: Cardo;
             font-size: 30px;
             font-weight: normal;
@@ -263,7 +263,7 @@ export const UseCase = ({
             letter-spacing: 0.26px;
             color: #000000;
             margin-bottom: 61px;
-            padding-top: 73px;
+            margin-top: 73px;
           }
           .features-container {
             display: flex;
@@ -281,7 +281,7 @@ export const UseCase = ({
             display: flex;
             flex-direction: column;
             flex-wrap: wrap;
-            height: 200px;
+            height: 210px;
             max-width: 800px;
           }
           .text {

@@ -30,7 +30,7 @@ export const TopUseCases = ({ useCases }) => {
               <div key={kebabCase(title)} className="feature-list">
                 <div className="case-title-container">
                   <div className="case-title">{title}</div>
-                  <div className="case-plan">{plan}</div>
+                  <div className="case-plan">{`${plan} Plan`}</div>
                 </div>
                 <div className="features">
                   <FeaturesList features={features} />
@@ -110,6 +110,7 @@ export const TopUseCases = ({ useCases }) => {
             letter-spacing: 0.217168px;
             color: #000000;
             padding-bottom: 14px;
+            font-weight: 700;
           }
           .case-plan {
             font-family: Space Grotesk;
@@ -117,6 +118,7 @@ export const TopUseCases = ({ useCases }) => {
             line-height: 29px;
             letter-spacing: 0.217168px;
             color: #a9a9a9;
+            font-weight: 700;
           }
           .title {
             font-family: Space Grotesk;
