@@ -63,6 +63,11 @@ export const MobileNav = () => {
               Company
             </div>
           </Link>
+          <Link href="/use-cases" passHref>
+            <div className={setLinkActive(router.pathname, '/use-cases')}>
+              Use Cases
+            </div>
+          </Link>
           <Link href="/pricing" passHref>
             <div className={setLinkActive(router.pathname, '/pricing')}>
               Pricing

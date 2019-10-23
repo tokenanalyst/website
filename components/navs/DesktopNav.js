@@ -113,6 +113,16 @@ export const DesktopNav = () => {
             </div>
 
             <div className="links-products">
+              <Link href="/use-cases" passHref>
+                <div
+                  className={classNames(
+                    'desktop-link',
+                    setLinkActive(asPath, '/use-cases')
+                  )}
+                >
+                  Use Cases
+                </div>
+              </Link>
               <a
                 href="https://websockets.tokenanalyst.io/"
                 target="_blank"
