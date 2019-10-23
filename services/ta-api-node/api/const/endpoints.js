@@ -15,6 +15,10 @@ module.exports = {
         'token_active_address_window_historical/last',
       token_nvt_window_historical: () => 'token_nvt_window_historical/last',
       token_fees_window_historical: () => 'token_fees_window_historical/last',
+      token_supply_window_historical: () =>
+        'token_supply_window_historical/last',
+      token_utxo_age_window_historical: () =>
+        'token_utxo_age_window_historical/last',
     },
     public: {
       exchange_flows_all_tokens_v5: () =>

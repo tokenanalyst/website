@@ -8,7 +8,7 @@ const { PLATFORM, PRO, ENTERPRISE } = PLAN_NAMES;
 
 const makePrice = (product, price) => {
   const PRICE_TEXT = {
-    [PLATFORM]: `Just ${price}/month`,
+    [PLATFORM]: `Essential metrics`,
     [PRO]: `${price}/month`,
     [ENTERPRISE]: `Tailored services `,
   };

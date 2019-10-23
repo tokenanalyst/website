@@ -19,6 +19,8 @@ export const RegisterWidget = () => {
     value: null,
     strength: 0,
   });
+  const [fullName, setFullName] = useState('');
+  const [company, setCompany] = useState('');
   const [errorText, setErrorText] = useState(null);
   const [hasRegistered, setHasRegistered] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -40,6 +42,8 @@ export const RegisterWidget = () => {
     const formValues = {
       email,
       password,
+      fullName,
+      company,
     };
 
     setIsSubmitted(true);
@@ -70,7 +74,7 @@ export const RegisterWidget = () => {
               color={`rgba(${colors.primaryGreen})`}
               iconSize={48}
             />
-            <div className="success">{`Thanks for registering!`}</div>
+            <div className="success">Thanks for registering!</div>
             <br />
             <div className="success">
               An email will shortly be with you containing all your details
@@ -83,14 +87,42 @@ export const RegisterWidget = () => {
         ) : (
           <>
             <div className="register-form">
-              <SimpleFormGroup label="Email" labelFor="registration-email">
+              <div className="optional-fields">
+                <SimpleFormGroup label="Name" labelFor="registration-name">
+                  <SimpleTextInput
+                    id="registration-name"
+                    onChange={e => setFullName(e.target.value.trim())}
+                  />
+                </SimpleFormGroup>
+                <SimpleFormGroup
+                  label="Company"
+                  labelFor="registration-company"
+                >
+                  <SimpleTextInput
+                    id="registration-company"
+                    onChange={e => setCompany(e.target.value.trim())}
+                  />
+                </SimpleFormGroup>
+              </div>
+              <SimpleFormGroup
+                label={
+                  <div>
+                    Email <span className="mandatory-field">*</span>
+                  </div>
+                }
+                labelFor="registration-email"
+              >
                 <SimpleTextInput
                   id="registration-email"
                   onChange={e => setEmail(e.target.value.trim())}
                 />
               </SimpleFormGroup>
               <SimpleFormGroup
-                label="Password"
+                label={
+                  <div>
+                    Password <span className="mandatory-field">*</span>
+                  </div>
+                }
                 labelFor="registration-password"
                 helperText={<PasswordStrength score={password.strength} />}
               >
@@ -161,6 +193,9 @@ export const RegisterWidget = () => {
           .message {
             padding-top: 10px;
             text-align: center;
+          }
+          .mandatory-field {
+            opacity: 0.5;
           }
           @media only screen and (max-width: 768px) {
             .container {

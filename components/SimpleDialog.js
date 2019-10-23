@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Dialog, Button, Intent } from '@blueprintjs/core';
 
+import { pricingButton } from '../constants/styles/common-styled-jsx';
+
 export const SimpleDialog = ({
   header,
   subHeader,
@@ -28,28 +30,12 @@ export const SimpleDialog = ({
           </div>
           <div className="header">{header}</div>
           {subHeader && <div className="sub-header">{subHeader}</div>}
-          <div className="button">
-            <Button
-              className="button"
-              icon="arrow-right"
-              intent={Intent.SUCCESS}
-              onClick={onCtaClick}
-            >
-              {ctaText}
-            </Button>
-          </div>
           {children}
-          <div className="button">
-            <Button
-              className="button"
-              icon="arrow-right"
-              intent={Intent.SUCCESS}
-              onClick={onCtaClick}
-            >
-              {ctaText}
-            </Button>
-          </div>
+          <br />
+          <br />
+          <button onClick={onCtaClick}>{ctaText}</button>
         </div>
+        <style jsx>{pricingButton}</style>
         <style jsx>{`
           .container {
             padding: 20px;
@@ -61,11 +47,6 @@ export const SimpleDialog = ({
           .sub-header {
             padding-top: 10px;
             padding-bottom: 10px;
-          }
-          .button {
-            display: flex;
-            justify-content: flex-end;
-            padding: 20px;
           }
           .cross {
             display: flex;

@@ -25,6 +25,7 @@ module.exports = {
     },
     serverless: {
       exchange_metrics: () => 'exchange-metrics',
+      single_metric: () => 'single-metric',
     },
   },
 };

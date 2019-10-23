@@ -1,6 +1,6 @@
 export const PLAN_NAMES = {
   PLATFORM: 'Platform',
-  PRO: 'Pro',
+  PRO: 'Professional',
   ENTERPRISE: 'Enterprise',
   HOBBYIST: 'Hobbyist',
 };
