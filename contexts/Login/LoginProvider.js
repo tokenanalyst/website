@@ -9,6 +9,10 @@ export const LoginProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [paymentData, setPaymentData] = useState({ stripe: null });
   const [postRegisterRedirectUrl, setPostRegisterRedirectUrl] = useState(null);
+  const [
+    postRegisterViaMetricsRedirectUrl,
+    setPostRegisterViaMetricsRedirectUrl,
+  ] = useState(null);
 
   useEffect(() => {
     if (isUserCookiesValid()) {
@@ -28,16 +32,18 @@ export const LoginProvider = ({ children }) => {
       Cookies.remove(COOKIES.loggedInAsUsername);
       Cookies.remove(COOKIES.loggedInAsUserId);
     }
-  });
+  }, []);
 
   const value = {
     isLoggedIn,
     paymentData,
     intercom,
     postRegisterRedirectUrl,
+    postRegisterViaMetricsRedirectUrl,
     setIsLoggedIn,
     setPaymentData,
     setPostRegisterRedirectUrl,
+    setPostRegisterViaMetricsRedirectUrl,
   };
 
   return (

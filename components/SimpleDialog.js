@@ -63,7 +63,10 @@ export const SimpleDialog = ({
 SimpleDialog.propTypes = {
   header: PropTypes.string.isRequired,
   subHeader: PropTypes.string,
-  children: PropTypes.element,
+  children: PropTypes.oneOfType(
+    PropTypes.element,
+    PropTypes.arrayOf(PropTypes.element)
+  ),
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   ctaText: PropTypes.string.isRequired,
