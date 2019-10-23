@@ -14,7 +14,8 @@ export const Analytics = ({ children }) => {
       Router.events.on('routeChangeComplete', handleRouteChange);
 
       Sentry.init({
-        dsn: 'https://04801cfba732405cae39800a34b707ca@sentry.io/1553818',
+        dsn: 'https://e6916351cd4b4bc7aec8487b1dadd5a0@sentry.io/1786013',
+        release: process.env.SENTRY_RELEASE,
       });
 
       return () => {
