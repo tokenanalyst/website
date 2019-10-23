@@ -1,4 +1,6 @@
 export const STABLE_TOKENS = {
+  USDT_ERC20: 'USDT_ERC20',
+  USDT_OMNI: 'USDT_OMNI',
   DAI: 'DAI',
   PAX: 'PAX',
   GUSD: 'GUSD',
@@ -6,8 +8,6 @@ export const STABLE_TOKENS = {
   USDC: 'USDC',
   USDT: 'USDT',
   OMNI: 'OMNI',
-  USDT_ERC20: 'USDT_ERC20',
-  USDT_OMNI: 'USDT_OMNI',
 };
 
 export const ERC20_TOKENS = {

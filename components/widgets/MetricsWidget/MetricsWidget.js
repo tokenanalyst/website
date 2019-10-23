@@ -60,7 +60,7 @@ export const MetricsWidget = () => {
           <Card>
             <TokenSelect
               items={tokensList}
-              groups={['Native coins', 'Stable tokens', 'ERC20 tokens']}
+              groups={['Native coins', 'Stablecoins', 'ERC20 tokens']}
               selectedToken={selectedToken}
               onItemSelect={newToken => {
                 ReactGA.event({

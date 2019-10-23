@@ -97,7 +97,7 @@ export const LeftSidePanel = ({
               <TokenSelect
                 className="token-select"
                 items={tokensList}
-                groups={['Native coins', 'Stable tokens', 'ERC20 tokens']}
+                groups={['Native coins', 'Stablecoins', 'ERC20 tokens']}
                 selectedToken={selectedToken}
                 onItemSelect={newToken => {
                   ReactGA.event({
