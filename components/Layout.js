@@ -19,7 +19,7 @@ const STRUCTURED_DATA = JSON.stringify({
   url: 'https://www.tokenanalyst.io',
 });
 
-const WITHOUT_FOOTER = ['/exchange/[token]/[exchange]', '/metrics'];
+const WITHOUT_FOOTER = ['/exchange/[token]/[exchange]', '/insights'];
 
 export const Layout = ({ children }) => {
   const router = useRouter();
