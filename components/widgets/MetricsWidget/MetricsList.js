@@ -33,7 +33,6 @@ export const MetricsList = ({
 }) => {
   const loginCtx = useContext(LoginContext);
   const router = useRouter();
-  console.log(loginCtx.isLoggedIn);
 
   const [isRegisterDialogShown, setIsRegisterDialogShown] = useState(false);
 
@@ -60,6 +59,7 @@ export const MetricsList = ({
             setIsRegisterDialogShown(false);
           }}
           onCtaClick={() => {
+            loginCtx.setPostRegisterViaMetricsRedirectUrl('/metrics');
             ReactGA.event({
               category: 'User',
               action: `Metrics Page Dialog Sign Up Clicked`,
