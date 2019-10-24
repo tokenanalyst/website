@@ -41,7 +41,7 @@ export const MetricsList = ({
       name: getIndicator(token),
       isIntraDay: false,
     });
-  }, [token]);
+  }, [setSelectedIndicator, token]);
 
   return (
     <>
@@ -86,7 +86,7 @@ export const MetricsList = ({
                   body={
                     <>
                       {metric.values.map(value => (
-                        <div className="item-row">
+                        <div className="item-row" key={value}>
                           <span
                             className={computeMetricClass(
                               loginCtx.isLoggedIn,

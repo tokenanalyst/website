@@ -6,6 +6,8 @@ import { makeTVSymbols } from './utils/makeTVSymbols';
 import { ProChartContainer } from './ProChartContainer';
 import { LeftSidePanel } from './LeftSidePanel';
 
+const TV_INITIAL_DATA_RANGE = 90; // 90 days
+
 export const ProChartWidget = ({
   selectedExchange,
   selectedToken,
@@ -50,7 +52,7 @@ export const ProChartWidget = ({
                 tvInstance.current = tvWidget;
                 const now = moment().unix();
                 const ninetyDaysAgo = moment()
-                  .subtract(90, 'days')
+                  .subtract(TV_INITIAL_DATA_RANGE, 'days')
                   .unix();
                 await tvInstance.current.chart().setVisibleRange({
                   from: ninetyDaysAgo,

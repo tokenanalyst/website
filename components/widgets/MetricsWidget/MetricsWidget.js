@@ -1,14 +1,17 @@
 import React, { useState, useRef } from 'react';
 import { Card } from '@blueprintjs/core';
 import ReactGA from 'react-ga';
+import moment from 'moment';
 
-import { TokenSelect } from '../../widgets/ProChartWidget/TokenSelect';
+import { TokenSelect } from '../ProChartWidget/TokenSelect';
 import { tokensDb } from '../../../services/tokensDb';
 import { TOKEN_NAMES } from '../../../constants/token-names';
-import { ProChartContainer } from '../../widgets/ProChartWidget/ProChartContainer';
+import { ProChartContainer } from '../ProChartWidget/ProChartContainer';
 import { NATIVE_TOKENS, STABLE_TOKENS } from '../../../constants/tokens';
 import { TOKENS_EXCHANGE_SUPPORT } from '../../../constants/exchanges';
 import { MetricsList } from './MetricsList';
+
+const TV_INITIAL_DATA_RANGE = 90; // 90 days
 
 export const MetricsWidget = () => {
   const [selectedToken, setSelectedToken] = useState(NATIVE_TOKENS.BTC);
@@ -42,7 +45,7 @@ export const MetricsWidget = () => {
 
   const supportedExchanges = TOKENS_EXCHANGE_SUPPORT[selectedToken];
   const firstExchange = Object.keys(supportedExchanges)[0];
-  const quoteToken = supportedExchanges[firstExchange].quoteToken;
+  const { quoteToken } = supportedExchanges[firstExchange];
   const baseToken =
     supportedExchanges[firstExchange].baseToken || selectedToken;
 
@@ -53,6 +56,7 @@ export const MetricsWidget = () => {
           <div className="title">
             <img
               src={`/static/png/coins/${selectedToken.toLowerCase()}.png`}
+              alt={selectedToken.toLowerCase()}
               className="title-image"
             />
             <div className="title-name">{TOKEN_NAMES[selectedToken]}</div>
@@ -88,8 +92,16 @@ export const MetricsWidget = () => {
             TASymbol={selectedToken}
             exchangeName={firstExchange}
             isIntraDay={selectedIndicator.isIntraDay}
-            onChartRenderCb={tvWidget => {
+            onChartRenderCb={async tvWidget => {
               tvInstance.current = tvWidget;
+              const now = moment().unix();
+              const ninetyDaysAgo = moment()
+                .subtract(TV_INITIAL_DATA_RANGE, 'days')
+                .unix();
+              await tvInstance.current.chart().setVisibleRange({
+                from: ninetyDaysAgo,
+                to: now,
+              });
               studies.current.flows.entityId = tvInstance.current
                 .chart()
                 .createStudy(selectedIndicator.name, false, true);
