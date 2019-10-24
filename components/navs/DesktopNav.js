@@ -132,13 +132,7 @@ export const DesktopNav = () => {
               >
                 WebSocket
               </a>
-              <a
-                href="https://research.tokenanalyst.io/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Research
-              </a>
+              <a href="/blogs">Research</a>
               <Link href="/pricing" passHref>
                 <div
                   className={classNames(
