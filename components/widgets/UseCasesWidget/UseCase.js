@@ -6,12 +6,14 @@ import kebabCase from 'lodash/kebabCase';
 import ReactGA from 'react-ga';
 import Cookies from 'js-cookie';
 import Router from 'next/router';
+import { animateScroll } from 'react-scroll';
 
 import { ButtonMarketing } from '../../ButtonMarketing';
 import { LoginContext } from '../../../contexts/Login';
 import { GA_GOAL_NAME } from './data/casesData';
 import { PLAN_NAMES } from '../../../constants/plans';
 import { redirectToStripe } from '../../../utils';
+import { COOKIES } from '../../../constants/cookies';
 
 const renderFeatures = features =>
   features.map(feature => {
@@ -83,8 +85,8 @@ export const UseCase = ({
   isReverseImagePosition,
 }) => {
   const loginCtx = useContext(LoginContext);
-  const username = Cookies.get('loggedInAsUsername');
-  const userId = Cookies.get('loggedInAsUserId');
+  const username = Cookies.get(COOKIES.loggedInAsUsername);
+  const userId = Cookies.get(COOKIES.loggedInAsUserId);
   const [isLoading, setIsLoading] = useState(false);
 
   return (
@@ -107,12 +109,9 @@ export const UseCase = ({
                 const onBuyPlan = async () => {
                   setIsLoading(true);
                   if (url) {
-                    const action = `Plan click ${text}`;
-                    return emitProductEvent(action);
+                    return emitProductEvent(`Plan click ${text}`);
                   }
-
-                  const action = `Plan select ${name}`;
-                  emitProductEvent(action);
+                  emitProductEvent(`Plan click ${text}`);
 
                   if (!loginCtx.isLoggedIn) {
                     loginCtx.setPaymentData({
@@ -123,7 +122,9 @@ export const UseCase = ({
                         ),
                       },
                     });
-                    document.documentElement.scrollTop = 0;
+                    Router.events.on('routeChangeComplete', () => {
+                      animateScroll.scrollToTop({ duration: 0, delay: 0 });
+                    });
                     return Router.push('/register');
                   }
                   return redirectToStripe(stripePlan, GA_GOAL_NAME[name])({

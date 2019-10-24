@@ -29,6 +29,7 @@ export const UseCasesWidget = () => {
               isReverseImagePosition,
             },
           } = product;
+
           return (
             <div key={name}>
               <UseCase
