@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
+import moment from 'moment';
 import { makeTVSymbols } from './utils/makeTVSymbols';
 
 import { ProChartContainer } from './ProChartContainer';
@@ -45,8 +46,16 @@ export const ProChartWidget = ({
               TVSymbols={TVSymbols}
               TASymbol={selectedToken}
               exchangeName={selectedExchange}
-              onChartRenderCb={tvWidget => {
+              onChartRenderCb={async tvWidget => {
                 tvInstance.current = tvWidget;
+                const now = moment().unix();
+                const ninetyDaysAgo = moment()
+                  .subtract(90, 'days')
+                  .unix();
+                await tvInstance.current.chart().setVisibleRange({
+                  from: ninetyDaysAgo,
+                  to: now,
+                });
                 studies.current.flows.entityId = tvInstance.current
                   .chart()
                   .createStudy('Flows', false, true);
@@ -54,7 +63,7 @@ export const ProChartWidget = ({
                   .chart()
                   .createStudy('NetFlows', false, true);
               }}
-              isIntraDay={true}
+              isIntraDay
             />
           </div>
           <div className="kaiko">
