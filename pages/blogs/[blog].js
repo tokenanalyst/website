@@ -4,15 +4,10 @@ const Blog = props => {
   return (
     <div>
       <h1>{props.post.title}</h1>
+      {console.log(props.post)}
       <div dangerouslySetInnerHTML={{ __html: props.post.html }} />
       <style jsx>{`
-        #__next
-          > div
-          > div
-          > div.jsx-3665592291.page
-          > div
-          > div
-          > p:nth-child(7) {
+        p {
           color: blue;
         }
         .kg-image {
