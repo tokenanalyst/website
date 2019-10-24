@@ -42,7 +42,7 @@ export const MetricsList = ({
       isIntraDay: false,
     });
   }, [setSelectedIndicator, token]);
-  console.log(METRICS);
+
   return (
     <>
       <div className="container">
