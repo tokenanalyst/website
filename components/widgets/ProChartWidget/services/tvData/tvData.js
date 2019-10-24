@@ -158,7 +158,7 @@ const tvData = (exchangeService, exchangeName, symbols, isIntraday) => {
       const channel = `${makeTimeFrame(resolution)}:${symbols[0]}${symbols[1]}`;
 
       if (subscrition) {
-        // subscrition.unsubscribe();
+        subscrition.unsubscribe();
       }
       const exchangeTrafingPairs = exchangeService.getPairs();
 
