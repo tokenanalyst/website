@@ -8,7 +8,12 @@ export const CollapsibleItem = ({ header, body, defaultIsOpen = false }) => {
 
   return (
     <>
-      <div className="header" onClick={() => setIsOpen(!isOpen)}>
+      <div
+        className="header"
+        onClick={() => setIsOpen(!isOpen)}
+        onKeyDown={() => setIsOpen(!isOpen)}
+        role="button"
+      >
         {header}
         <Icon icon={isOpen ? 'chevron-up' : 'chevron-down'} iconSize={20} />
       </div>
@@ -37,7 +42,7 @@ CollapsibleItem.defaultProps = {
 };
 
 CollapsibleItem.propTypes = {
-  header: PropTypes.string,
-  body: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+  header: PropTypes.string.isRequired,
+  body: PropTypes.node.isRequired,
   defaultIsOpen: PropTypes.bool,
 };

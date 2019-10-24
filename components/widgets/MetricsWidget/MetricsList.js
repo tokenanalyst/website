@@ -42,7 +42,7 @@ export const MetricsList = ({
       isIntraDay: false,
     });
   }, [setSelectedIndicator, token]);
-
+  console.log(METRICS);
   return (
     <>
       <div className="container">
@@ -93,7 +93,6 @@ export const MetricsList = ({
                               value,
                               selectedIndicator
                             )}
-                            key={value.indicator}
                             onClick={() => {
                               ReactGA.event({
                                 category: 'User',
