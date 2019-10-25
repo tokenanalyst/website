@@ -117,6 +117,28 @@ const Blogs = props => {
             font-style: italic;
             color: rgba(1, 1, 1, 0.5);
           }
+          @media only screen and (max-width: 768px) {
+            .container {
+              margin-left: 10px;
+              margin-right: 10px;
+            }
+            .blog-featured {
+              flex-direction: column;
+            }
+            .image-featured {
+              width: 100%;
+            }
+            .content-featured {
+              width: 100%;
+              border-left: 0px;
+            }
+            .blog {
+              width: 100%;
+            }
+            .title {
+              max-height: 120px;
+            }
+          }
         `}</style>
       </div>
     </div>

@@ -41,6 +41,9 @@ const Blog = props => {
             margin-left: 10px;
             margin-right: 10px;
           }
+          .back-link {
+            display: none;
+          }
         }
       `}</style>
       <style jsx global>{`
