@@ -10,8 +10,8 @@ const Blogs = props => {
       <div className="blogs">
         {props.posts.map((post, index) => (
           <Link
-            href={`/blogs/${post.slug}`}
-            as={`/blogs/${post.slug}`}
+            href={`/research/[blog]`}
+            as={`/research/${post.slug}`}
             passHref
           >
             {index === 0 ? (

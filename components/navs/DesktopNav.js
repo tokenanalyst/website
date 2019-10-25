@@ -132,7 +132,7 @@ export const DesktopNav = () => {
               >
                 WebSocket
               </a>
-              <Link href="/blogs" passHref>
+              <Link href="/research" passHref>
                 <div
                   className={classNames(
                     'desktop-link',

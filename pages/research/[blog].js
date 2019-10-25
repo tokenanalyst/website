@@ -1,10 +1,22 @@
 import { getSinglePost } from '../../services/blog/client';
+import { Icon } from '@blueprintjs/core';
+import Link from 'next/link';
 
 const Blog = props => {
   return (
     <div className="container">
+      <div className="back-link">
+        <Link href="/research">
+          <a>Research</a>
+        </Link>
+        <Icon icon="chevron-right" />
+        {props.post.title}
+      </div>
       <div className="title">{props.post.title}</div>
       <div dangerouslySetInnerHTML={{ __html: props.post.html }} />
+      <Link href="/research">
+        <a>Back to Research</a>
+      </Link>
       <style jsx>{`
         .container {
           margin-left: 400px;
@@ -18,6 +30,11 @@ const Blog = props => {
           font-size: 36px;
           font-weight: bold;
           border-bottom: 0.5px solid rgba(0, 0, 0, 0.3);
+        }
+        .back-link {
+          padding-top: 10px;
+          display: flex;
+          align-items: center;
         }
         @media only screen and (max-width: 768px) {
           .container {
