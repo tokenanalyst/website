@@ -57,7 +57,7 @@ const Exchange = () => {
         </title>
       </Head>
 
-      {!Cookies.get(COOKIES.hasSeenRegisterDialog) && (
+      {!Cookies.get(COOKIES.hasSeenRegisterDialog) && !loginCtx.isLoggedIn && (
         <DelayedDialog
           header="Need More Granularity?"
           subHeader="Sign up now for FREE to access TokenAnalyst charts in a 1 hour granularity across ALL tokens, exchanges and metrics!"
