@@ -132,7 +132,16 @@ export const DesktopNav = () => {
               >
                 WebSocket
               </a>
-              <a href="/blogs">Research</a>
+              <Link href="/blogs" passHref>
+                <div
+                  className={classNames(
+                    'desktop-link',
+                    setLinkActive(asPath, '/blogs')
+                  )}
+                >
+                  Research
+                </div>
+              </Link>
               <Link href="/pricing" passHref>
                 <div
                   className={classNames(

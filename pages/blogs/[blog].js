@@ -2,22 +2,33 @@ import { getSinglePost } from '../../services/blog/client';
 
 const Blog = props => {
   return (
-    <div>
-      <h1>{props.post.title}</h1>
+    <div className="container">
+      <div className="title">{props.post.title}</div>
+      <div className="feature-image">
+        <img src={props.post.feature_image} width="800" />
+      </div>
       {console.log(props.post)}
       <div dangerouslySetInnerHTML={{ __html: props.post.html }} />
       <style jsx>{`
-        p {
-          color: blue;
+        .container {
+          margin-left: 400px;
+          margin-right: 400px;
+          font-size: 20px;
+          object-fit: contain;
         }
-        .kg-image {
-          width: 200px;
+        .feature-image {
+          text-align: center;
         }
-        .kg-card .kg-image-card {
-          width: 200px;
+        .title {
+          text-align: center;
+          padding: 20px;
+          margin: 40px;
+          font-size: 36px;
+          font-weight: bold;
+          border-bottom: 0.5px solid rgba(0, 0, 0, 0.3);
         }
-        div > figure > img {
-          width: 200px;
+        .img {
+          object-fit: cover;
         }
       `}</style>
     </div>

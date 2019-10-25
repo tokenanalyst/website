@@ -5,7 +5,7 @@ import Link from 'next/link';
 const Blogs = props => {
   return (
     <div className="container">
-      <h1 className="header">Research Blog</h1>
+      <h1 className="header">Research</h1>
       <div className="blogs">
         {props.posts.map((post, index) => (
           <Link
@@ -18,7 +18,7 @@ const Blogs = props => {
                 <div>
                   <img src={post.feature_image} width={900} />
                 </div>
-                <div>
+                <div className="content-featured">
                   <div className="title-featured" key={post.id}>
                     {post.title}
                   </div>
@@ -57,7 +57,7 @@ const Blogs = props => {
             width: 500px;
             border: 1px solid gray;
             border-radius: 10px;
-            padding: 10px;
+            padding: 20px;
             cursor: pointer;
             background-color: white;
             margin: 20px;
@@ -66,11 +66,19 @@ const Blogs = props => {
             font-weight: bold;
             font-size: 24px;
             padding-bottom: 10px;
+            color: rgba(0, 0, 0, 0.5);
           }
           .title-featured {
             font-weight: bold;
             font-size: 32px;
             padding-bottom: 10px;
+            color: rgba(0, 0, 0, 0.5);
+          }
+          .content-featured {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin: 40px;
           }
         `}</style>
       </div>
