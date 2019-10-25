@@ -23,6 +23,20 @@
 
 @font-face {
   font-family: 'Space Grotesk';
+  src: url('SpaceGrotesk-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('SpaceGrotesk-SemiBold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Space Grotesk';
   src: url('SpaceGrotesk-Bold.otf') format('opentype');
   font-weight: bold;
   font-style: normal;
