@@ -144,7 +144,7 @@ export const UseCase = ({
                       text={text}
                       stripePlan={stripePlan}
                       isActive={isBuy}
-                      onClick={onClick}
+                      onClick={isExternal ? () => {} : onClick}
                       isLoading={isBuy ? isLoading : false}
                     />
                   </div>
