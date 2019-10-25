@@ -4,20 +4,12 @@ const Blog = props => {
   return (
     <div className="container">
       <div className="title">{props.post.title}</div>
-      <div className="feature-image">
-        <img src={props.post.feature_image} width="800" />
-      </div>
-      {console.log(props.post)}
       <div dangerouslySetInnerHTML={{ __html: props.post.html }} />
       <style jsx>{`
         .container {
           margin-left: 400px;
           margin-right: 400px;
           font-size: 20px;
-          object-fit: contain;
-        }
-        .feature-image {
-          text-align: center;
         }
         .title {
           text-align: center;
@@ -27,8 +19,16 @@ const Blog = props => {
           font-weight: bold;
           border-bottom: 0.5px solid rgba(0, 0, 0, 0.3);
         }
-        .img {
-          object-fit: cover;
+        @media only screen and (max-width: 768px) {
+          .container {
+            margin-left: 10px;
+            margin-right: 10px;
+          }
+        }
+      `}</style>
+      <style jsx global>{`
+        img {
+          max-width: 100%;
         }
       `}</style>
     </div>

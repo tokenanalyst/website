@@ -1,6 +1,7 @@
 import React from 'react';
 import { getPosts } from '../../services/blog/client';
 import Link from 'next/link';
+import moment from 'moment';
 
 const Blogs = props => {
   return (
@@ -15,14 +16,17 @@ const Blogs = props => {
           >
             {index === 0 ? (
               <div className="blog-featured">
-                <div>
-                  <img src={post.feature_image} width={900} />
+                <div className="image-featured">
+                  <img src={post.feature_image} width="100%" />
                 </div>
                 <div className="content-featured">
                   <div className="title-featured" key={post.id}>
                     {post.title}
                   </div>
                   <div>{post.excerpt}</div>
+                  <div className="date">
+                    {moment(post.published_at).format('LL')}
+                  </div>
                 </div>
               </div>
             ) : (
@@ -30,8 +34,13 @@ const Blogs = props => {
                 <div className="title" key={post.id}>
                   {post.title}
                 </div>
-                <img src={post.feature_image} width={400} />
-                <div>{post.excerpt}</div>
+                <img src={post.feature_image} className="image" />
+                <div className="content">
+                  <div className="excerpt">{post.excerpt}</div>
+                  <div className="date">
+                    {moment(post.published_at).format('LL')}
+                  </div>
+                </div>
               </div>
             )}
           </Link>
@@ -45,18 +54,20 @@ const Blogs = props => {
           }
           .blog-featured {
             display: flex;
-            width: 1400px;
+            width: 100%;
             border: 1px solid gray;
             border-radius: 10px;
-            padding: 10px;
             cursor: pointer;
             background-color: white;
             margin: 20px;
           }
+          .blog-featured:hover {
+            background-color: #f0f0f0;
+          }
           .blog {
-            width: 500px;
+            width: 31.1%;
             border: 1px solid gray;
-            border-radius: 10px;
+            border-radius: 5px;
             padding: 20px;
             cursor: pointer;
             background-color: white;
@@ -66,19 +77,45 @@ const Blogs = props => {
             font-weight: bold;
             font-size: 24px;
             padding-bottom: 10px;
-            color: rgba(0, 0, 0, 0.5);
+            max-height: 80px;
+            min-height: 80px;
+            overflow: hidden;
           }
           .title-featured {
             font-weight: bold;
             font-size: 32px;
             padding-bottom: 10px;
-            color: rgba(0, 0, 0, 0.5);
+          }
+          .excerpt {
+            padding-top: 20px;
+          }
+          .image {
+            max-height: 300px;
+            max-width: 100%;
+          }
+          .blog:hover {
+            background-color: #f0f0f0;
+          }
+          .image-featured {
+            width: 50%;
+            padding: 10px;
+          }
+          .content {
+            border-top: 1px solid black;
+            margin-top: 20px;
           }
           .content-featured {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            margin: 40px;
+            padding: 20px;
+            width: 50%;
+            border-left: solid 1px black;
+          }
+          .date {
+            padding-top: 10px;
+            font-style: italic;
+            color: rgba(1, 1, 1, 0.5);
           }
         `}</style>
       </div>
