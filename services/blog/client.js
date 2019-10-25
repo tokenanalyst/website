@@ -1,9 +1,10 @@
 import GhostContentAPI from '@tryghost/content-api';
+import { GHOST_URL, GHOST_API_KEY, GHOST_VERSION } from '../../constants/ghost';
 
 const api = new GhostContentAPI({
-  url: 'https://tokenanalyst.ghost.io',
-  key: '9bfd4d6b00b7b21365b4d05822',
-  version: 'v2',
+  url: GHOST_URL,
+  key: GHOST_API_KEY,
+  version: GHOST_VERSION,
 });
 
 export async function getPosts() {
