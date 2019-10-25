@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import kebabCase from 'lodash/kebabCase';
 
@@ -41,4 +42,8 @@ export const FeaturesList = ({ features }) => {
       </div>
     );
   });
+};
+
+FeaturesList.propTypes = {
+  fetures: PropTypes.arrayOf(PropTypes.string),
 };

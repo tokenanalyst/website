@@ -16,6 +16,16 @@ const emitProductEvent = name => {
 };
 
 export const TopUseCases = ({ useCases }) => {
+  const onClick = (title, plan) => {
+    emitProductEvent(plan);
+    scroller.scrollTo(kebabCase(title), {
+      duration: 800,
+      delay: 0,
+      offset: -65,
+      smooth: 'easeInOutQuart',
+    });
+  };
+
   return (
     <div className="container">
       <div className="cases">
@@ -38,24 +48,8 @@ export const TopUseCases = ({ useCases }) => {
                 <button
                   type="button"
                   className="buttonActive"
-                  onKeyDown={() => {
-                    emitProductEvent(plan);
-                    scroller.scrollTo(kebabCase(title), {
-                      duration: 800,
-                      delay: 0,
-                      offset: -65,
-                      smooth: 'easeInOutQuart',
-                    });
-                  }}
-                  onClick={() => {
-                    emitProductEvent(plan);
-                    scroller.scrollTo(kebabCase(title), {
-                      duration: 800,
-                      delay: 0,
-                      offset: -65,
-                      smooth: 'easeInOutQuart',
-                    });
-                  }}
+                  onKeyDown={() => onClick(title, plan)}
+                  onClick={() => onClick(title, plan)}
                 >
                   See use case
                 </button>
