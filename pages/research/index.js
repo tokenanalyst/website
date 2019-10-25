@@ -1,5 +1,5 @@
 import React from 'react';
-import { getPosts } from '../../services/blog/client';
+import { getPosts } from '../../services/blog';
 import Link from 'next/link';
 import moment from 'moment';
 

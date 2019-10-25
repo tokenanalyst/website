@@ -1,4 +1,4 @@
-import { getSinglePost } from '../../services/blog/client';
+import { getSinglePost } from '../../services/blog';
 import { Icon } from '@blueprintjs/core';
 import Link from 'next/link';
 
