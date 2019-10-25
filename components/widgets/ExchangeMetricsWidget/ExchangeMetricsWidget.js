@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import numeral from 'numeral';
 import { Skeleton } from '../../Skeleton';
@@ -8,6 +9,18 @@ import { colors } from '../../../constants/styles/colors';
 import { useApi } from '../../../custom-hooks';
 import { getExchangeMetrics } from '../../../data-transformers/widgets/getExchangeMetrics';
 import { DATA_WINDOWS } from '../../../constants/filters';
+
+const setValueChangeStatus = (value, status) => {
+  if (value < 0) {
+    return status.negative;
+  }
+
+  if (value > 0) {
+    return status.positive;
+  }
+
+  return status.neutral;
+};
 
 export const ExchangeMetricsWidget = ({ token, exchange }) => {
   const [overallMetrics, setOverallMetrics] = useState(null);
@@ -69,26 +82,30 @@ export const ExchangeMetricsWidget = ({ token, exchange }) => {
                 <div className="banner-item">
                   <div>
                     <span className="flow-value">
-                      $ {numeral(overallMetrics.inflowUsdSum).format('0.0a')}
+                      {`$ ${numeral(overallMetrics.inflowUsdSum).format(
+                        '0.0a'
+                      )}`}
                     </span>
                     <img
-                      src={
-                        overallMetrics.inflowUsdSumPctChange < 0
-                          ? '/static/svg/down.svg'
-                          : overallMetrics.inflowUsdSumPctChange > 0
-                          ? '/static/svg/up.svg'
-                          : '/static/svg/nochange.svg'
-                      }
+                      src={setValueChangeStatus(
+                        overallMetrics.inflowUsdSumPctChange,
+                        {
+                          negative: '/static/svg/down.svg',
+                          positive: '/static/svg/up.svg',
+                          neutral: '/static/svg/nochange.svg',
+                        }
+                      )}
                       alt="Inflow Change"
                     />
                     <span
-                      className={
-                        overallMetrics.inflowUsdSumPctChange > 0
-                          ? 'change-positive'
-                          : overallMetrics.inflowUsdSumPctChange < 0
-                          ? 'change-negative'
-                          : 'change-neutral'
-                      }
+                      className={setValueChangeStatus(
+                        overallMetrics.inflowUsdSumPctChange,
+                        {
+                          negative: 'change-negative',
+                          positive: 'change-positive',
+                          neutral: 'change-neutral',
+                        }
+                      )}
                     >
                       {overallMetrics.inflowUsdSumPctChange &&
                         overallMetrics.inflowUsdSumPctChange.toFixed(2)}
@@ -108,26 +125,30 @@ export const ExchangeMetricsWidget = ({ token, exchange }) => {
                 <div className="banner-item">
                   <div>
                     <span className="flow-value">
-                      $ {numeral(overallMetrics.outflowUsdSum).format('0.0a')}
+                      {`$ ${numeral(overallMetrics.outflowUsdSum).format(
+                        '0.0a'
+                      )}`}
                     </span>
                     <img
-                      src={
-                        overallMetrics.outflowUsdSumPctChange < 0
-                          ? '/static/svg/down.svg'
-                          : overallMetrics.outflowUsdSumPctChange > 0
-                          ? '/static/svg/up.svg'
-                          : '/static/svg/nochange.svg'
-                      }
+                      src={setValueChangeStatus(
+                        overallMetrics.outflowUsdSumPctChange,
+                        {
+                          negative: '/static/svg/down.svg',
+                          positive: '/static/svg/up.svg',
+                          neutral: '/static/svg/nochange.svg',
+                        }
+                      )}
                       alt="Outflow Change"
                     />
                     <span
-                      className={
-                        overallMetrics.outflowUsdSumPctChange > 0
-                          ? 'change-positive'
-                          : overallMetrics.outflowUsdSumPctChange < 0
-                          ? 'change-negative'
-                          : 'change-neutral'
-                      }
+                      className={setValueChangeStatus(
+                        overallMetrics.outflowUsdSumPctChange,
+                        {
+                          negative: 'change-negative',
+                          positive: 'change-positive',
+                          neutral: 'change-neutral',
+                        }
+                      )}
                     >
                       {overallMetrics.outflowUsdSumPctChange &&
                         overallMetrics.outflowUsdSumPctChange.toFixed(2)}
@@ -285,23 +306,7 @@ export const ExchangeMetricsWidget = ({ token, exchange }) => {
   );
 };
 
-const Separator = () => (
-  <div className="separator">
-    <style jsx>
-      {`
-        .separator {
-          border: solid 0.5px rgba(151, 151, 151, 0.15);
-          margin-left: 10px;
-          margin-right: 10px;
-          margin-top: 15px;
-          margin-bottom: 15px;
-        }
-        @media only screen and (max-width: 768px) {
-          .separator {
-            visibility: hidden;
-          }
-        }
-      `}
-    </style>
-  </div>
-);
+ExchangeMetricsWidget.propTypes = {
+  token: PropTypes.string.isRequired,
+  exchange: PropTypes.string.isRequired,
+};
