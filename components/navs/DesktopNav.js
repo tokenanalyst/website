@@ -136,7 +136,7 @@ export const DesktopNav = () => {
                 <div
                   className={classNames(
                     'desktop-link',
-                    setLinkActive(asPath, '/blogs')
+                    setLinkActive(asPath, '/research')
                   )}
                 >
                   Research
