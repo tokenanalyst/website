@@ -2,7 +2,9 @@
   "version": 2,
   "env": {
     "API_KEY": "@api-key",
-    "KAIKO_KEY": "@kaiko-key"
+    "KAIKO_KEY": "@kaiko-key",
+    "MAILCHIMP_USER": "@mailchimp-user",
+    "MAILCHIMP_API_KEY": "@mailchimp-api-key"
   },
   "routes": [{ "src": "/robots.txt", "dest": "/static/robots.txt" }]
 }

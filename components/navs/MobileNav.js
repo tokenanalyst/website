@@ -83,15 +83,11 @@ export const MobileNav = () => {
               Research
             </div>
           </Link>
-          <div className="mobile-link">
-            <a
-              href="https://websockets.tokenanalyst.io/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              WebSocket
-            </a>
-          </div>
+          <Link href="/newsletter" passHref>
+            <div className={setLinkActive(router.pathname, '/newsletter')}>
+              Newsletter
+            </div>
+          </Link>
           <div className="mobile-link">
             <a
               href="https://docs.tokenanalyst.io/#/api"

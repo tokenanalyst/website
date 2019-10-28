@@ -1,6 +1,6 @@
-import { getSinglePost } from '../../services/blog';
 import { Icon } from '@blueprintjs/core';
 import Link from 'next/link';
+import { getSinglePost } from '../../services/blog';
 
 const Blog = props => {
   return (
@@ -17,47 +17,47 @@ const Blog = props => {
       <Link href="/research">
         <a>Back to Research</a>
       </Link>
-      <style jsx>{`
-        .container {
-          margin-left: 400px;
-          margin-right: 400px;
-          font-size: 20px;
-        }
-        .title {
-          text-align: center;
-          padding: 20px;
-          margin: 40px;
-          font-size: 36px;
-          font-weight: bold;
-          border-bottom: 0.5px solid rgba(0, 0, 0, 0.3);
-        }
-        .back-link {
-          padding-top: 10px;
-          display: flex;
-          align-items: center;
-        }
-        @media only screen and (max-width: 768px) {
+      <style jsx>
+        {`
           .container {
-            margin-left: 10px;
-            margin-right: 10px;
+            margin-left: 400px;
+            margin-right: 400px;
+            font-size: 20px;
+          }
+          .title {
+            text-align: center;
+            padding: 20px;
+            margin: 40px;
+            font-size: 36px;
+            font-weight: bold;
+            border-bottom: 0.5px solid rgba(0, 0, 0, 0.3);
           }
           .back-link {
-            display: none;
+            padding-top: 10px;
+            display: flex;
+            align-items: center;
           }
-        }
-      `}</style>
-      <style jsx global>{`
-        img {
-          max-width: 100%;
-        }
-      `}</style>
+          :global(.kg-image) {
+            max-width: 100%;
+          }
+          @media only screen and (max-width: 768px) {
+            .container {
+              margin-left: 10px;
+              margin-right: 10px;
+            }
+            .back-link {
+              display: none;
+            }
+          }
+        `}
+      </style>
     </div>
   );
 };
 
 Blog.getInitialProps = async params => {
   const post = await getSinglePost(params.query.blog);
-  return { post: post };
+  return { post };
 };
 
 export default Blog;
