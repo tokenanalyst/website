@@ -3,6 +3,7 @@ export const API_ERROR_MSG = {
   NO_TOKEN_PROVIDED: 'No tokens provided',
   NO_RESPONSE_FROM_API: 'No response from backend API.',
   USER_ALREADY_EXISTS: 'User already exists',
+  NO_NEWSLETTER_ID: 'No newsletter id provided',
 };
 
 export const API_ERROR_REASON = {

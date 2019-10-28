@@ -74,7 +74,9 @@ NewsletterPost.getInitialProps = async ctx => {
       ? 'https://www.tokenanalyst.io'
       : 'http://localhost:3000';
   const { id } = ctx.query;
-  const response = await axios.get(`${rootUrl}/api/newsletter-items?id=${id}`);
+  const response = await axios.get(
+    `${rootUrl}/api/newsletter-item-id?id=${id}`
+  );
 
   const { html, ...rest } = response.data;
   return {
