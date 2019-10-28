@@ -217,7 +217,7 @@ const FEATURES_CONTENT = {
         isIntercom: true,
       },
       {
-        text: 'Buy Plan',
+        text: 'Get in touch',
         url: 'mailto:info@tokenanalyst.io',
         isBuy: true,
       },

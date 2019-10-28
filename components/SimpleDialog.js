@@ -36,25 +36,27 @@ export const SimpleDialog = ({
           <button onClick={onCtaClick}>{ctaText}</button>
         </div>
         <style jsx>{pricingButton}</style>
-        <style jsx>{`
-          .container {
-            padding: 20px;
-          }
-          .header {
-            font-size: 24px;
-            font-weight: bold;
-          }
-          .sub-header {
-            padding-top: 10px;
-            padding-bottom: 10px;
-          }
-          .cross {
-            display: flex;
-            justify-content: flex-end;
-            cursor: pointer;
-            opacity: 0.3;
-          }
-        `}</style>
+        <style jsx>
+          {`
+            .container {
+              padding: 20px;
+            }
+            .header {
+              font-size: 24px;
+              font-weight: bold;
+            }
+            .sub-header {
+              padding-top: 10px;
+              padding-bottom: 10px;
+            }
+            .cross {
+              display: flex;
+              justify-content: flex-end;
+              cursor: pointer;
+              opacity: 0.3;
+            }
+          `}
+        </style>
       </>
     </Dialog>
   );
@@ -63,10 +65,7 @@ export const SimpleDialog = ({
 SimpleDialog.propTypes = {
   header: PropTypes.string.isRequired,
   subHeader: PropTypes.string,
-  children: PropTypes.oneOfType(
-    PropTypes.element,
-    PropTypes.arrayOf(PropTypes.element)
-  ),
+  children: PropTypes.node,
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   ctaText: PropTypes.string.isRequired,

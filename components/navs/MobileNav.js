@@ -68,20 +68,21 @@ export const MobileNav = () => {
               Company
             </div>
           </Link>
+          <Link href="/use-cases" passHref>
+            <div className={setLinkActive(router.pathname, '/use-cases')}>
+              Use Cases
+            </div>
+          </Link>
           <Link href="/pricing" passHref>
             <div className={setLinkActive(router.pathname, '/pricing')}>
               Pricing
             </div>
           </Link>
-          <div className="mobile-link">
-            <a
-              href="https://research.tokenanalyst.io/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+          <Link href="/research" passHref>
+            <div className={setLinkActive(router.pathname, '/research')}>
               Research
-            </a>
-          </div>
+            </div>
+          </Link>
           <div className="mobile-link">
             <a
               href="https://websockets.tokenanalyst.io/"
