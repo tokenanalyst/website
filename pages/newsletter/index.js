@@ -107,7 +107,9 @@ Newsletter.propTypes = {
 
 Newsletter.getInitialProps = async () => {
   const rootUrl =
-    process.env.NODE_ENV !== 'development' ? '' : 'http://localhost:3000';
+    process.env.NODE_ENV !== 'development'
+      ? 'https://www.tokenanalyst.io'
+      : 'http://localhost:3000';
   const response = await axios.get(`${rootUrl}/api/newsletter-items`);
   return {
     newsletterPosts: Object.values(response.data),
