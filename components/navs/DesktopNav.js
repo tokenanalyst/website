@@ -19,6 +19,7 @@ export const DesktopNav = () => {
   const { asPath } = router;
 
   const [shownItems, setShownItems] = useState({
+    research: false,
     about: false,
     contact: false,
     exchanges: false,
@@ -26,6 +27,7 @@ export const DesktopNav = () => {
 
   const collapseAllSubMenus = () => {
     setShownItems({
+      research: false,
       about: false,
       contact: false,
       exchanges: false,
@@ -135,23 +137,22 @@ export const DesktopNav = () => {
                   Use Cases
                 </div>
               </Link>
-              <a
-                href="https://websockets.tokenanalyst.io/"
-                target="_blank"
-                rel="noopener noreferrer"
+              <div
+                className={classNames(
+                  'desktop-link',
+                  setLinkActive(asPath, '/research')
+                )}
+                onMouseOver={() => {
+                  collapseAllSubMenus();
+                  setShownItems(prev => ({ ...prev, research: true }));
+                }}
+                onFocus={() => {
+                  collapseAllSubMenus();
+                  setShownItems(prev => ({ ...prev, research: true }));
+                }}
               >
-                WebSocket
-              </a>
-              <Link href="/research" passHref>
-                <div
-                  className={classNames(
-                    'desktop-link',
-                    setLinkActive(asPath, '/research')
-                  )}
-                >
-                  Research
-                </div>
-              </Link>
+                Research
+              </div>
               <Link href="/pricing" passHref>
                 <div
                   className={classNames(
@@ -268,6 +269,60 @@ export const DesktopNav = () => {
         </div>
       </div>
       <div className="desktop-sub-links-container">
+        <div
+          className="desktop-research-sub-link-container"
+          role="link"
+          onClick={collapseAllSubMenus}
+          onKeyDown={collapseAllSubMenus}
+          tabIndex="0"
+        >
+          <div className="desktop-sub-links">
+            <div
+              className="desktop-research-sub-links"
+              onMouseLeave={() => collapseSubMenuDelayed('research')}
+            >
+              <div>
+                <Link href="/research" passHref>
+                  <div
+                    onClick={() => {
+                      ReactGA.event({
+                        category: 'User',
+                        action: `Click Blog`,
+                        label: `Desktop Nav`,
+                      });
+                    }}
+                    className={classNames(
+                      'desktop-sub-link',
+                      setLinkActive(asPath, '/research')
+                    )}
+                  >
+                    Blog
+                  </div>
+                </Link>
+              </div>
+              <div>
+                <Link href="/newsletter" passHref>
+                  <div
+                    onClick={() => {
+                      ReactGA.event({
+                        category: 'User',
+                        action: `Click Newsletter`,
+                        label: `Desktop Nav`,
+                      });
+                    }}
+                    className={classNames(
+                      'desktop-sub-link',
+                      setLinkActive(asPath, '/newsletter')
+                    )}
+                  >
+                    Newsletter
+                  </div>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div
           className="desktop-contact-sub-link-container"
           role="link"
@@ -665,7 +720,17 @@ export const DesktopNav = () => {
             color: white;
             z-index: 10000;
             top: 60px;
-            right: ${loginCtx.isLoggedIn ? '80px' : '180px'};
+            right: ${loginCtx.isLoggedIn ? '0px' : '100px'};
+            padding-left: 10px;
+          }
+          .desktop-research-sub-link-container {
+            width: 200px;
+            background: black;
+            position: fixed;
+            color: white;
+            z-index: 10000;
+            top: 60px;
+            right: ${loginCtx.isLoggedIn ? '180px' : '280px'};
             padding-left: 10px;
           }
           .desktop-exchanges-sub-link-container {
@@ -696,6 +761,9 @@ export const DesktopNav = () => {
           }
           .desktop-contact-sub-links {
             display: ${shownItems.contact ? 'block' : 'none'};
+          }
+          .desktop-research-sub-links {
+            display: ${shownItems.research ? 'block' : 'none'};
           }
           .desktop-exchanges-sub-links {
             display: ${shownItems.exchanges ? 'block' : 'none'};
