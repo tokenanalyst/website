@@ -81,7 +81,7 @@ const Exchange = () => {
           )
         )
       ) : (
-        <>{router.push('/')}</>
+        <>TODO</>
       )}
     </div>
   );
