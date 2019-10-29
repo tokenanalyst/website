@@ -1,6 +1,5 @@
 import React, { useState, useContext, useMemo } from 'react';
 import { Card } from '@blueprintjs/core';
-import { useRouter } from 'next/router';
 import ReactGA from 'react-ga';
 
 import { CollapsibleItem } from '../../CollapsibleItem';

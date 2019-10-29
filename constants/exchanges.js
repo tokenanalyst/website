@@ -410,3 +410,5 @@ export const TOKENS_TV_SUPPORT = {
 export const EXCHANGE_DISPLAY_NAME = {
   Bitmex: BITMEX,
 };
+
+export const LOGGED_OUT_SUPPORTED_EXCHANGES = [BINANCE, BITFINEX, BITMEX];
