@@ -13,6 +13,7 @@ const NewsletterPost = ({ newsletterMetaData, newsletterHTML }) => {
   const {
     settings: { title },
   } = newsletterMetaData;
+
   return (
     <div className="container">
       <div className="back-link">
@@ -64,7 +65,14 @@ const NewsletterPost = ({ newsletterMetaData, newsletterHTML }) => {
 };
 
 NewsletterPost.propTypes = {
-  newsletterMetaData: PropTypes.objectOf(PropTypes.object).isRequired,
+  newsletterMetaData: PropTypes.objectOf(
+    PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.bool,
+    ])
+  ).isRequired,
   newsletterHTML: PropTypes.string.isRequired,
 };
 

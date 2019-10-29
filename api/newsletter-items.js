@@ -10,7 +10,7 @@ const auth = {
   password: MAILCHIMP_API_KEY,
 };
 
-const getCampaignsList = async () =>
+const getCampaignsList = () =>
   axios(`${API_URL}/campaigns`, {
     auth,
   });

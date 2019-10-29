@@ -13,12 +13,12 @@ const auth = {
   password: MAILCHIMP_API_KEY,
 };
 
-const getCampaignHTML = async id =>
+const getCampaignHTML = id =>
   axios(`${API_URL}/campaigns/${id}/content`, {
     auth,
   });
 
-const getCampaignMetaData = async id =>
+const getCampaignMetaData = id =>
   axios(`${API_URL}/campaigns/${id}`, {
     auth,
   });
