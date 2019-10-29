@@ -105,7 +105,9 @@ export const IoTable = ({ data, dataWindow, units }) => {
                 const { token, exchange } = rowInfo.original;
                 if (
                   loginCtx.isLoggedIn ||
-                  LOGGED_OUT_SUPPORTED_EXCHANGES.indexOf(exchange) >= 0
+                  LOGGED_OUT_SUPPORTED_EXCHANGES.map(name =>
+                    name.toUpperCase()
+                  ).indexOf(exchange.toUpperCase()) >= 0
                 ) {
                   ReactGA.event({
                     category: 'User',

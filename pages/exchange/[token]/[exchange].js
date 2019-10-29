@@ -10,6 +10,7 @@ import { COOKIES } from '../../../constants/cookies';
 import { tokensDb } from '../../../services/tokensDb';
 import { LoginContext } from '../../../contexts/Login';
 import { DelayedExchangeRegisterDialog } from '../../../components/marketing/marketing-dialogs';
+import { LOGGED_OUT_SUPPORTED_EXCHANGES } from '../../../constants/exchanges';
 
 const Exchange = () => {
   const router = useRouter();
@@ -59,23 +60,28 @@ const Exchange = () => {
       {!Cookies.get(COOKIES.hasSeenRegisterDialog) && !loginCtx.isLoggedIn && (
         <DelayedExchangeRegisterDialog />
       )}
-      {token && exchange && isTVSupported ? (
-        <>
-          <ProChartWidget
-            selectedExchange={exchange}
-            selectedToken={token}
-            tokensDb={tokensDb}
-            onChange={pushToPage}
-          />
-        </>
-      ) : (
-        token &&
-        exchange && (
+      {(token && exchange && loginCtx.isLoggedIn) ||
+      LOGGED_OUT_SUPPORTED_EXCHANGES.indexOf(exchange) >= 0 ? (
+        isTVSupported ? (
           <>
-            <ExchangeMetricsWidget token={token} exchange={exchange} />
-            <IoChartWidget token={token} exchange={exchange} />
+            <ProChartWidget
+              selectedExchange={exchange}
+              selectedToken={token}
+              tokensDb={tokensDb}
+              onChange={pushToPage}
+            />
           </>
+        ) : (
+          token &&
+          exchange && (
+            <>
+              <ExchangeMetricsWidget token={token} exchange={exchange} />
+              <IoChartWidget token={token} exchange={exchange} />
+            </>
+          )
         )
+      ) : (
+        <>{router.push('/')}</>
       )}
     </div>
   );
