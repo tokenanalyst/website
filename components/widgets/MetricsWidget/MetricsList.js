@@ -6,8 +6,8 @@ import ReactGA from 'react-ga';
 import { CollapsibleItem } from '../../CollapsibleItem';
 import { METRICS, TOKEN_TYPES } from '../../../constants/tokens';
 import { LoginContext } from '../../../contexts/Login';
-import { SimpleDialog } from '../../SimpleDialog';
 import { tokensDb } from '../../../services/tokensDb';
+import { InsightsRegisterDialog } from '../../marketing/marketing-dialogs';
 
 const getIndicator = token => {
   return METRICS[tokensDb.isNative(token) ? token : TOKEN_TYPES.ERC_20].filter(
@@ -32,7 +32,6 @@ export const MetricsList = ({
   setSelectedIndicator,
 }) => {
   const loginCtx = useContext(LoginContext);
-  const router = useRouter();
 
   const [isRegisterDialogShown, setIsRegisterDialogShown] = useState(false);
 
@@ -46,34 +45,10 @@ export const MetricsList = ({
   return (
     <>
       <div className="container">
-        <SimpleDialog
-          header="Sign Up for FREE Access to this Insight and many more!"
-          ctaText="Sign Up"
+        <InsightsRegisterDialog
           isOpen={isRegisterDialogShown}
-          onClose={() => {
-            ReactGA.event({
-              category: 'User',
-              action: `Metrics Page Dialog Dismissed`,
-              label: `Funnel`,
-            });
-            setIsRegisterDialogShown(false);
-          }}
-          onCtaClick={() => {
-            loginCtx.setPostRegisterViaMetricsRedirectUrl('/insights');
-            ReactGA.event({
-              category: 'User',
-              action: `Metrics Page Dialog Sign Up Clicked`,
-              label: `Funnel`,
-            });
-            router.push('/register?metrics=true');
-          }}
-        >
-          <br />
-          TokenAnalyst provides a World Class amount of Insights across all
-          major Tokens and Blockchains. <br />
-          By signing up you will have access to all Insights, in both daily and
-          hourly granularities (depending on specific Insights).
-        </SimpleDialog>
+          closeCb={() => setIsRegisterDialogShown(false)}
+        />
         <div className="card">
           <Card>
             <div className="header">Fundamentals:</div>
