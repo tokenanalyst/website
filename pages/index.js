@@ -8,6 +8,7 @@ import { underSubNav } from '../constants/styles/common-styled-jsx';
 import { TokenSnapshotWidget } from '../components/widgets/TokenSnapshotWidget';
 import { useApi } from '../custom-hooks';
 import { LoadingSpinner } from '../components/LoadingSpinner';
+import { filterTable } from '../components/tables/IoTable/helpers';
 
 const Exchange = () => {
   const [dataWindow, setDataWindow] = useState(DATA_WINDOWS[0]);
@@ -33,7 +34,7 @@ const Exchange = () => {
           <div className="table">
             {ioTableData ? (
               <IoTable
-                data={ioTableData}
+                data={filterTable(ioTableData)}
                 dataWindow={dataWindow}
                 units={units}
               />
