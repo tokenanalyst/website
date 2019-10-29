@@ -1,9 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import ReactTable from 'react-table';
 import { useRouter } from 'next/router';
 import ReactGA from 'react-ga';
 import '../../../node_modules/react-table/react-table.css';
 import Cookies from 'js-cookie';
+import { LoginContext } from '../../../contexts/Login';
+import { ExchangeRegisterDialog } from '../../marketing/marketing-dialogs';
+import { LOGGED_OUT_SUPPORTED_EXCHANGES } from '../../../constants/exchanges';
 
 import {
   AmountCell,
@@ -27,6 +30,8 @@ const TABLE_DATA = getIoTableData();
 
 export const IoTable = ({ data, dataWindow, units }) => {
   const router = useRouter();
+  const loginCtx = useContext(LoginContext);
+  const [isRegisterDialogShown, setIsRegisterDialogShown] = useState(false);
 
   const TIER = Cookies.get(COOKIES.tier);
 
@@ -76,99 +81,114 @@ export const IoTable = ({ data, dataWindow, units }) => {
   return (
     <div className="container">
       {data && (
-        <ReactTable
-          PreviousComponent={PreviousButton}
-          NextComponent={NextButton}
-          data={data.filter(datum => datum.window === dataWindow)}
-          columns={getColumns(units)}
-          defaultSorted={[
-            { id: TABLE_DATA.accessors[units].inflow, desc: true },
-          ]}
-          noDataText="No results"
-          className="-highlight"
-          defaultPageSize={25}
-          filterable
-          defaultFilterMethod={filterCaseInsensitive}
-          style={{ cursor: 'pointer' }}
-          getTrProps={(_, rowInfo) => ({
-            onClick: () => {
-              const { token, exchange } = rowInfo.original;
-              ReactGA.event({
-                category: 'User',
-                action: `Select IO table value ${token} ${exchange}`,
-                label: `IO table select`,
-              });
-              router.push(
-                `/exchange/[token]/[exchange]`,
-                `/exchange/${token}/${
-                  EXCHANGE_NAMES[EXCHANGE_DISPLAY_NAME[exchange] || exchange]
-                }?tier=${TIER}`
-              );
-            },
-            style: {
-              border: 'none',
-            },
-          })}
-          getProps={() => ({
-            style: {
-              border: 'none',
-            },
-          })}
-          getTdProps={() => ({
-            style: {
-              border: 'none',
-            },
-          })}
-          getTheadFilterProps={() => ({
-            onKeyUp: e =>
-              ReactGA.event({
-                category: 'User',
-                action: `Filter IO table - Chars: ${e.target.value}`,
-                label: `IO table filter`,
-              }),
-          })}
-          getTheadThProps={(state, row, column) => {
-            return {
+        <>
+          <ExchangeRegisterDialog
+            isOpen={isRegisterDialogShown}
+            closeCb={() => setIsRegisterDialogShown(false)}
+          />
+          <ReactTable
+            PreviousComponent={PreviousButton}
+            NextComponent={NextButton}
+            data={data.filter(datum => datum.window === dataWindow)}
+            columns={getColumns(units)}
+            defaultSorted={[
+              { id: TABLE_DATA.accessors[units].inflow, desc: true },
+            ]}
+            noDataText="No results"
+            className="-highlight"
+            defaultPageSize={25}
+            filterable
+            defaultFilterMethod={filterCaseInsensitive}
+            style={{ cursor: 'pointer' }}
+            getTrProps={(_, rowInfo) => ({
+              onClick: () => {
+                const { token, exchange } = rowInfo.original;
+                if (
+                  loginCtx.isLoggedIn ||
+                  LOGGED_OUT_SUPPORTED_EXCHANGES.indexOf(exchange) >= 0
+                ) {
+                  ReactGA.event({
+                    category: 'User',
+                    action: `Select IO table value ${token} ${exchange}`,
+                    label: `IO table select`,
+                  });
+                  router.push(
+                    `/exchange/[token]/[exchange]`,
+                    `/exchange/${token}/${
+                      EXCHANGE_NAMES[
+                        EXCHANGE_DISPLAY_NAME[exchange] || exchange
+                      ]
+                    }?tier=${TIER}`
+                  );
+                } else {
+                  setIsRegisterDialogShown(true);
+                }
+              },
               style: {
                 border: 'none',
               },
-              onMouseUp: () => {
+            })}
+            getProps={() => ({
+              style: {
+                border: 'none',
+              },
+            })}
+            getTdProps={() => ({
+              style: {
+                border: 'none',
+              },
+            })}
+            getTheadFilterProps={() => ({
+              onKeyUp: e =>
                 ReactGA.event({
                   category: 'User',
-                  action: `Sort IO table: ${column.id}`,
-                  label: `IO table sort`,
-                });
-              },
-            };
-          }}
-          getTheadProps={() => {
-            return {
+                  action: `Filter IO table - Chars: ${e.target.value}`,
+                  label: `IO table filter`,
+                }),
+            })}
+            getTheadThProps={(state, row, column) => {
+              return {
+                style: {
+                  border: 'none',
+                },
+                onMouseUp: () => {
+                  ReactGA.event({
+                    category: 'User',
+                    action: `Sort IO table: ${column.id}`,
+                    label: `IO table sort`,
+                  });
+                },
+              };
+            }}
+            getTheadProps={() => {
+              return {
+                style: {
+                  boxShadow: 'none',
+                  border: 'none',
+                },
+              };
+            }}
+            getTableProps={() => ({
               style: {
-                boxShadow: 'none',
                 border: 'none',
               },
-            };
-          }}
-          getTableProps={() => ({
-            style: {
-              border: 'none',
-            },
-          })}
-          getPaginationProps={() => ({
-            style: {
-              color: `black`,
-              boxShadow: 'none',
-              border: 'none',
-              textTransform: 'uppercase',
-              fontSize: '14px',
-            },
-          })}
-          getNoDataProps={() => ({
-            style: {
-              color: `rgba(${colors.primaryRed}, 1)`,
-            },
-          })}
-        />
+            })}
+            getPaginationProps={() => ({
+              style: {
+                color: `black`,
+                boxShadow: 'none',
+                border: 'none',
+                textTransform: 'uppercase',
+                fontSize: '14px',
+              },
+            })}
+            getNoDataProps={() => ({
+              style: {
+                color: `rgba(${colors.primaryRed}, 1)`,
+              },
+            })}
+          />
+        </>
       )}
 
       <style jsx>
