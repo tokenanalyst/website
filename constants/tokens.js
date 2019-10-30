@@ -314,30 +314,30 @@ export const METRICS = {
       category: 'Fees',
       values: [
         {
-          name: 'Total',
+          name: 'Total Fees',
           indicator: 'Total Fees',
         },
         {
-          name: 'Total USD',
+          name: 'Total Fees USD',
           indicator: 'Total Fees USD',
         },
         {
-          name: 'Avg.',
+          name: 'Average',
           indicator: 'Average Fees',
           requiresLogin: true,
         },
         {
-          name: 'Avg. USD',
+          name: 'Average USD',
           indicator: 'Average Fees USD',
           requiresLogin: true,
         },
         {
-          name: 'Avg. Gas',
+          name: 'Average Gas',
           indicator: 'Average Gas',
           requiresLogin: true,
         },
         {
-          name: 'Avg. Gas Price (Wei)',
+          name: 'Average Gas Price (Wei)',
           indicator: 'Average Gas Price (Wei)',
           requiresLogin: true,
         },
