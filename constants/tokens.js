@@ -136,30 +136,30 @@ export const METRICS = {
       category: 'Fees',
       values: [
         {
-          name: 'Total',
+          name: 'Total Fees',
           indicator: 'Total Fees',
         },
         {
-          name: 'Total USD',
+          name: 'Total Fees USD',
           indicator: 'Total Fees USD',
         },
         {
-          name: 'Avg.',
+          name: 'Average Fees',
           indicator: 'Average Fees',
           requiresLogin: true,
         },
         {
-          name: 'Avg. USD',
+          name: 'Average USD',
           indicator: 'Average Fees USD',
           requiresLogin: true,
         },
         {
-          name: 'Avg. Size (Bytes)',
+          name: 'Average Size (Bytes)',
           indicator: 'Average Size in Bytes',
           requiresLogin: true,
         },
         {
-          name: 'Avg. Satoshis per Byte',
+          name: 'Average Satoshis per Byte',
           indicator: 'Average Satoshis per Byte',
           requiresLogin: true,
         },
@@ -314,30 +314,30 @@ export const METRICS = {
       category: 'Fees',
       values: [
         {
-          name: 'Total',
+          name: 'Total Fees',
           indicator: 'Total Fees',
         },
         {
-          name: 'Total USD',
+          name: 'Total Fees USD',
           indicator: 'Total Fees USD',
         },
         {
-          name: 'Avg.',
+          name: 'Average',
           indicator: 'Average Fees',
           requiresLogin: true,
         },
         {
-          name: 'Avg. USD',
+          name: 'Average USD',
           indicator: 'Average Fees USD',
           requiresLogin: true,
         },
         {
-          name: 'Avg. Gas',
+          name: 'Average Gas',
           indicator: 'Average Gas',
           requiresLogin: true,
         },
         {
-          name: 'Avg. Gas Price (Wei)',
+          name: 'Average Gas Price (Wei)',
           indicator: 'Average Gas Price (Wei)',
           requiresLogin: true,
         },
