@@ -1,12 +1,15 @@
+import { useContext } from 'react';
 import { useRouter } from 'next/router';
 import ReactGA from 'react-ga';
 import Cookies from 'js-cookie';
 
 import { DelayedDialog } from '../../DelayedDialog';
 import { COOKIES } from '../../../constants/cookies';
+import { LoginContext } from '../../../contexts/Login';
 
 export const DelayedExchangeRegisterDialog = () => {
   const router = useRouter();
+  const loginCtx = useContext(LoginContext);
 
   return (
     <DelayedDialog
