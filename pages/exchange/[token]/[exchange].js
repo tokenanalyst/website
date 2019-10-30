@@ -19,6 +19,13 @@ const Exchange = () => {
   const [isTVSupported, setIsTVSupported] = useState(false);
 
   useEffect(() => {
+    if (
+      exchange &&
+      !loginCtx.isLoggedIn &&
+      LOGGED_OUT_SUPPORTED_EXCHANGES.indexOf(exchange) < 0
+    ) {
+      router.push('/');
+    }
     const exchangeSupport = tokensDb.getTokenSupportOnExchange(token, exchange);
     if (exchangeSupport) {
       setIsTVSupported(true);
@@ -61,28 +68,25 @@ const Exchange = () => {
         <DelayedExchangeRegisterDialog />
       )}
       {(token && exchange && loginCtx.isLoggedIn) ||
-      LOGGED_OUT_SUPPORTED_EXCHANGES.indexOf(exchange) >= 0 ? (
-        isTVSupported ? (
-          <>
-            <ProChartWidget
-              selectedExchange={exchange}
-              selectedToken={token}
-              tokensDb={tokensDb}
-              onChange={pushToPage}
-            />
-          </>
-        ) : (
-          token &&
-          exchange && (
+        (LOGGED_OUT_SUPPORTED_EXCHANGES.indexOf(exchange) >= 0 &&
+          (isTVSupported ? (
             <>
-              <ExchangeMetricsWidget token={token} exchange={exchange} />
-              <IoChartWidget token={token} exchange={exchange} />
+              <ProChartWidget
+                selectedExchange={exchange}
+                selectedToken={token}
+                tokensDb={tokensDb}
+                onChange={pushToPage}
+              />
             </>
-          )
-        )
-      ) : (
-        <>TODO</>
-      )}
+          ) : (
+            token &&
+            exchange && (
+              <>
+                <ExchangeMetricsWidget token={token} exchange={exchange} />
+                <IoChartWidget token={token} exchange={exchange} />
+              </>
+            )
+          )))}
     </div>
   );
 };

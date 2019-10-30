@@ -22,7 +22,7 @@ export const ExchangeRegisterDialog = ({ isOpen, closeCb }) => {
   return (
     <>
       <SimpleDialog
-        header="Sign Up for FREE Access to this Exchange and many more!"
+        header="Sign Up for FREE access to this exchange and many more!"
         ctaText="Sign Up"
         isOpen={isOpen}
         onClose={() => {
@@ -46,11 +46,12 @@ export const ExchangeRegisterDialog = ({ isOpen, closeCb }) => {
         <br />
         TokenAnalyst provides a World Class amount of Exchange Flows across all
         major exchanges. <br />
-        By signing up you will have access to all exchanges, as well as an
-        unparalleled amount of metrics across the major blockchains.
+        By signing up you will have access to all of the exchanges and tokens we
+        support as well as an unparalleled array of metrics across major
+        blockchains
         <br />
         <br />
-        Currently Supported Major Tokens:
+        Here are the exchanges we support for BTC & ETH:
         <br />
         <br />
         <table style={{ width: '100%' }}>
