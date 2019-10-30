@@ -462,14 +462,14 @@ export const DesktopNav = () => {
               <div>
                 <Link
                   href="/exchange/[token]/[exchange]"
-                  as={`/exchange/BTC/Bitstamp?${tierParamString}`}
+                  as={`/exchange/BTC/Bitfinex?${tierParamString}`}
                   passHref
                 >
                   <div
                     onClick={() => {
                       ReactGA.event({
                         category: 'User',
-                        action: `Click BTC Bitstamp`,
+                        action: `Click BTC Bitfinex`,
                         label: `Desktop Nav`,
                       });
                     }}
@@ -477,25 +477,25 @@ export const DesktopNav = () => {
                       'desktop-sub-link',
                       setLinkActive(
                         asPath,
-                        `/exchange/BTC/Bitstamp?${tierParamString}`
+                        `/exchange/BTC/Bitfinex?${tierParamString}`
                       )
                     )}
                   >
-                    BTC Bitstamp
+                    BTC Bitfinex
                   </div>
                 </Link>
               </div>
               <div>
                 <Link
                   href="/exchange/[token]/[exchange]"
-                  as={`/exchange/BTC/Huobi?${tierParamString}`}
+                  as={`/exchange/BTC/BitMEX?${tierParamString}`}
                   passHref
                 >
                   <div
                     onClick={() => {
                       ReactGA.event({
                         category: 'User',
-                        action: `Click BTC Huobi`,
+                        action: `Click BTC BitMEX`,
                         label: `Desktop Nav`,
                       });
                     }}
@@ -503,11 +503,37 @@ export const DesktopNav = () => {
                       'desktop-sub-link',
                       setLinkActive(
                         asPath,
-                        `/exchange/BTC/Huobi?${tierParamString}`
+                        `/exchange/BTC/BitMEX?${tierParamString}`
                       )
                     )}
                   >
-                    BTC Huobi
+                    BTC BitMEX
+                  </div>
+                </Link>
+              </div>
+              <div>
+                <Link
+                  href="/exchange/[token]/[exchange]"
+                  as={`/exchange/ETH/Binance?${tierParamString}`}
+                  passHref
+                >
+                  <div
+                    onClick={() => {
+                      ReactGA.event({
+                        category: 'User',
+                        action: `Click ETH Binance`,
+                        label: `Desktop Nav`,
+                      });
+                    }}
+                    className={classNames(
+                      'desktop-sub-link',
+                      setLinkActive(
+                        asPath,
+                        `/exchange/ETH/Binance?${tierParamString}`
+                      )
+                    )}
+                  >
+                    ETH Binance
                   </div>
                 </Link>
               </div>
@@ -534,55 +560,6 @@ export const DesktopNav = () => {
                     )}
                   >
                     ETH Bitfinex
-                  </div>
-                </Link>
-              </div>
-              <div>
-                <Link
-                  href="/exchange/[token]/[exchange]"
-                  as={`/exchange/ETH/Bittrex?${tierParamString}`}
-                  passHref
-                >
-                  <div
-                    onClick={() => {
-                      ReactGA.event({
-                        category: 'User',
-                        action: `Click ETH Bittrex`,
-                        label: `Desktop Nav`,
-                      });
-                    }}
-                    className={classNames(
-                      'desktop-sub-link',
-                      setLinkActive(
-                        asPath,
-                        `/exchange/ETH/Bittrex?${tierParamString}`
-                      )
-                    )}
-                  >
-                    ETH Bittrex
-                  </div>
-                </Link>
-              </div>
-              <div>
-                <Link
-                  href="/exchange/[token]/[exchange]"
-                  as="/exchange/USDT_OMNI/Kraken"
-                  passHref
-                >
-                  <div
-                    onClick={() => {
-                      ReactGA.event({
-                        category: 'User',
-                        action: `Click USDT_OMNI Kraken`,
-                        label: `Desktop Nav`,
-                      });
-                    }}
-                    className={classNames(
-                      'desktop-sub-link',
-                      setLinkActive(asPath, '/exchange/USDT/Kraken')
-                    )}
-                  >
-                    USDT Kraken
                   </div>
                 </Link>
               </div>

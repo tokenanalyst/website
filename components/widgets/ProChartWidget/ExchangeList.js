@@ -1,10 +1,13 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import ReactGA from 'react-ga';
 import { Popover, Menu, MenuItem, Button, Position } from '@blueprintjs/core';
 
 import { EXCHANGE_IMAGES } from '../../../constants/image-paths';
 import { colors } from '../../../constants/styles/colors';
+import { LOGGED_OUT_SUPPORTED_EXCHANGES } from '../../../constants/exchanges';
+import { LoginContext } from '../../../contexts/Login';
+import { ExchangeRegisterDialog } from '../../marketing/marketing-dialogs';
 
 const renderExchangeImg = exchange => {
   return (
@@ -31,6 +34,25 @@ export const ExchangeList = ({
   onChangeExchange,
   selectedExchange,
 }) => {
+  const loginCtx = useContext(LoginContext);
+  const [isRegisterDialogShown, setIsRegisterDialogShown] = useState(false);
+
+  const exchangeChangeHandler = exchangeName => {
+    if (
+      loginCtx.isLoggedIn ||
+      LOGGED_OUT_SUPPORTED_EXCHANGES.indexOf(exchangeName) >= 0
+    ) {
+      onChangeExchange(exchangeName);
+      ReactGA.event({
+        category: 'User',
+        action: `Pro Chart change exchange ${exchangeName}`,
+        label: `Pro Charts`,
+      });
+    } else {
+      setIsRegisterDialogShown(true);
+    }
+  };
+
   const renderMenuItems = () =>
     Object.keys(exchanges).map(exchange => {
       return (
@@ -38,21 +60,12 @@ export const ExchangeList = ({
           text={exchange}
           icon={renderExchangeImg(exchange)}
           onKeyDown={() => {
-            onChangeExchange(exchange);
-            ReactGA.event({
-              category: 'User',
-              action: `Pro Chart change exchange ${exchange}`,
-              label: `Pro Charts`,
-            });
+            exchangeChangeHandler(exchange);
           }}
           onClick={() => {
-            onChangeExchange(exchange);
-            ReactGA.event({
-              category: 'User',
-              action: `Pro Chart change exchange ${exchange}`,
-              label: `Pro Charts`,
-            });
+            exchangeChangeHandler(exchange);
           }}
+          key={exchange}
         />
       );
     });
@@ -60,6 +73,10 @@ export const ExchangeList = ({
   return (
     <>
       <div className="exchange-list">
+        <ExchangeRegisterDialog
+          isOpen={isRegisterDialogShown}
+          closeCb={() => setIsRegisterDialogShown(false)}
+        />
         <div className="mobile-select">
           <Popover
             minimal
@@ -83,23 +100,19 @@ export const ExchangeList = ({
               <div
                 role="link"
                 key={exchangeName}
-                className="exchange"
+                className={`${
+                  loginCtx.isLoggedIn
+                    ? 'exchange'
+                    : LOGGED_OUT_SUPPORTED_EXCHANGES.indexOf(exchangeName) >= 0
+                    ? `exchange`
+                    : `exchange-disabled`
+                }`}
                 tabIndex="0"
                 onKeyDown={() => {
-                  onChangeExchange(exchangeName);
-                  ReactGA.event({
-                    category: 'User',
-                    action: `Pro Chart change exchange ${exchangeName}`,
-                    label: `Pro Charts`,
-                  });
+                  exchangeChangeHandler(exchangeName);
                 }}
                 onClick={() => {
-                  onChangeExchange(exchangeName);
-                  ReactGA.event({
-                    category: 'User',
-                    action: `Pro Chart change exchange ${exchangeName}`,
-                    label: `Pro Charts`,
-                  });
+                  exchangeChangeHandler(exchangeName);
                 }}
               >
                 {renderExchangeImg(exchangeName)}
@@ -124,6 +137,16 @@ export const ExchangeList = ({
             cursor: pointer;
             padding-bottom: 5px;
             width: 50%;
+          }
+          .exchange-disabled {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding-bottom: 5px;
+            width: 50%;
+            color: gray;
+            font-weight: normal;
+            font-style: italic;
           }
           .exchange:hover {
             display: flex;
