@@ -63,30 +63,27 @@ const Exchange = () => {
           {`TokenAnalyst - ${exchange} - ${token} Inflows and Outflows`}
         </title>
       </Head>
-
       {!Cookies.get(COOKIES.hasSeenRegisterDialog) && !loginCtx.isLoggedIn && (
         <DelayedExchangeRegisterDialog />
       )}
-      {(token && exchange && loginCtx.isLoggedIn) ||
-        (LOGGED_OUT_SUPPORTED_EXCHANGES.indexOf(exchange) >= 0 &&
-          (isTVSupported ? (
-            <>
-              <ProChartWidget
-                selectedExchange={exchange}
-                selectedToken={token}
-                tokensDb={tokensDb}
-                onChange={pushToPage}
-              />
-            </>
-          ) : (
-            token &&
-            exchange && (
-              <>
-                <ExchangeMetricsWidget token={token} exchange={exchange} />
-                <IoChartWidget token={token} exchange={exchange} />
-              </>
-            )
-          )))}
+      {token && exchange && isTVSupported ? (
+        <>
+          <ProChartWidget
+            selectedExchange={exchange}
+            selectedToken={token}
+            tokensDb={tokensDb}
+            onChange={pushToPage}
+          />
+        </>
+      ) : (
+        token &&
+        exchange && (
+          <>
+            <ExchangeMetricsWidget token={token} exchange={exchange} />
+            <IoChartWidget token={token} exchange={exchange} />
+          </>
+        )
+      )}
     </div>
   );
 };
