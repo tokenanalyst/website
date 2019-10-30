@@ -65,6 +65,7 @@ export const ExchangeList = ({
           onClick={() => {
             exchangeChangeHandler(exchange);
           }}
+          key={exchange}
         />
       );
     });

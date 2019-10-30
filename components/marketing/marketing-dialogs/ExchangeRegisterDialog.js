@@ -51,43 +51,45 @@ export const ExchangeRegisterDialog = ({ isOpen, closeCb }) => {
         blockchains
         <br />
         <br />
-        Here are the exchanges we support for BTC & ETH:
+        Here are the additional exchanges we support for BTC & ETH:
         <br />
         <br />
         <table style={{ width: '100%' }}>
-          <tr>
-            <td></td>
-            {LOGGED_OUT_UNSUPPORTED_EXCHANGES.map(exchange => (
-              <td>
-                <img
-                  src={`/static/png/${EXCHANGE_IMAGES[exchange]}`}
-                  className="exchange"
-                />
-              </td>
-            ))}
-          </tr>
-          {FEATURED_TOKENS.map(token => (
+          <tbody>
             <tr>
-              <td>
-                <img
-                  src={`/static/png/coins/${TOKEN_IMAGES[token]}`}
-                  className="coin"
-                />
-              </td>
-              {LOGGED_OUT_UNSUPPORTED_EXCHANGES.map(exchange =>
-                TOKENS_EXCHANGE_SUPPORT[token][exchange] ? (
-                  <td>
-                    <Icon
-                      icon="tick-circle"
-                      color={`rgba(${colors.primaryGreen})`}
-                    />
-                  </td>
-                ) : (
-                  <td />
-                )
-              )}
+              <td></td>
+              {LOGGED_OUT_UNSUPPORTED_EXCHANGES.map(exchange => (
+                <td key={exchange}>
+                  <img
+                    src={`/static/png/${EXCHANGE_IMAGES[exchange]}`}
+                    className="exchange"
+                  />
+                </td>
+              ))}
             </tr>
-          ))}
+            {FEATURED_TOKENS.map(token => (
+              <tr key={token}>
+                <td>
+                  <img
+                    src={`/static/png/coins/${TOKEN_IMAGES[token]}`}
+                    className="coin"
+                  />
+                </td>
+                {LOGGED_OUT_UNSUPPORTED_EXCHANGES.map(exchange =>
+                  TOKENS_EXCHANGE_SUPPORT[token][exchange] ? (
+                    <td key={`${token}-${exchange}`}>
+                      <Icon
+                        icon="tick-circle"
+                        color={`rgba(${colors.primaryGreen})`}
+                      />
+                    </td>
+                  ) : (
+                    <td />
+                  )
+                )}
+              </tr>
+            ))}
+          </tbody>
         </table>
         <br />
         <br />
