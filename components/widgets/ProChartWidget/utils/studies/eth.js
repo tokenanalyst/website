@@ -41,6 +41,26 @@ export const ETH_STUDIES = [
     urlSlug: API_METRICS.Fees,
     dataPoint: 'avg_gas_price_wei',
   },
+  {
+    symbol: '#TOTALDAILTYUNCLECOUNT',
+    urlSlug: API_METRICS.Hashrate,
+    dataPoint: 'total_daily_uncle_count',
+  },
+  {
+    symbol: '#TOTALDAILTYUNCLEPERCENT',
+    urlSlug: API_METRICS.Hashrate,
+    dataPoint: 'total_daily_uncle_pct',
+  },
+  {
+    symbol: '#TOTALDAILTYUNCLEREWARD',
+    urlSlug: API_METRICS.Rewards,
+    dataPoint: 'miner_daily_uncle_reward',
+  },
+  {
+    symbol: '#TOTALDAILTYUNCLEREWARDUSD',
+    urlSlug: API_METRICS.Rewards,
+    dataPoint: 'miner_daily_uncle_reward_usd',
+  },
 ];
 export const ETH_SYMBOLS = [
   { symbol: '#VOLUMEINTERNALREAL' },
@@ -51,4 +71,8 @@ export const ETH_SYMBOLS = [
   { symbol: '#VOLUMEGROSSUSD' },
   { symbol: '#AVERAGEGAS' },
   { symbol: '#AVERAGEGASPRICEWEI' },
+  { symbol: '#TOTALDAILTYUNCLECOUNT' },
+  { symbol: '#TOTALDAILTYUNCLEPERCENT' },
+  { symbol: '#TOTALDAILTYUNCLEREWARD' },
+  { symbol: '#TOTALDAILTYUNCLEREWARDUSD' },
 ];

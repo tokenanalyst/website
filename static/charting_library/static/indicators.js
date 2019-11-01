@@ -34,6 +34,13 @@ const ETH_INDICATORS = [
   { title: 'Gross Volume USD', symbol: '#VOLUMEEXTERNALUSD' },
   { title: 'Average Gas', symbol: '#AVERAGEGAS' },
   { title: 'Average Gas Price (Wei)', symbol: '#AVERAGEGASPRICEWEI' },
+  { title: 'Total Daily Uncle Count', symbol: '#TOTALDAILTYUNCLECOUNT' },
+  { title: 'Total Daily Uncle Percent', symbol: '#TOTALDAILTYUNCLEPERCENT' },
+  { title: 'Total Daily Uncle Reward', symbol: '#TOTALDAILTYUNCLEREWARD' },
+  {
+    title: 'Total Daily Uncle Reward USD',
+    symbol: '#TOTALDAILTYUNCLEREWARDUSD',
+  },
 ];
 
 const COMMON_INDICATORS = [
@@ -47,6 +54,13 @@ const COMMON_INDICATORS = [
   { title: 'Total Fees USD', symbol: '#TOTALFEESUSD' },
   { title: 'Average Fees', symbol: '#AVERAGEFEESREAL' },
   { title: 'Average Fees USD', symbol: '#AVERAGEFEESUSD' },
+  { title: 'Total Daily Hashrate', symbol: '#TOTALDAILTYHASHRATE' },
+  { title: 'Total Daily Block Count', symbol: '#TOTALDAILTYBLOCKCOUNT' },
+  { title: 'Total Daily Block Reward', symbol: '#TOTALDAILTYBLOCKREWARD' },
+  {
+    title: 'Total Daily Block Reward USD',
+    symbol: '#TOTALDAILTYBLOCKREWARDUSD',
+  },
 ];
 
 const ERC20_INDICATORS = [
