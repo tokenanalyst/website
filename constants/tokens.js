@@ -226,6 +226,34 @@ export const METRICS = {
         },
       ],
     },
+    {
+      category: 'Hashrate',
+      values: [
+        {
+          name: 'Total Daily Hashrate',
+          indicator: 'Total Daily Hashrate',
+        },
+        {
+          name: 'Total Daily Block Count',
+          indicator: 'Total Daily Block Count',
+          requiresLogin: true,
+        },
+      ],
+    },
+    {
+      category: 'Rewards',
+      values: [
+        {
+          name: 'Total Daily Block Reward',
+          indicator: 'Total Daily Block Reward',
+        },
+        {
+          name: 'Total Daily Block Reward USD',
+          indicator: 'Total Daily Block Reward USD',
+          requiresLogin: true,
+        },
+      ],
+    },
   ],
   [NATIVE_TOKENS.ETH]: [
     {
@@ -339,6 +367,53 @@ export const METRICS = {
         {
           name: 'Average Gas Price (Wei)',
           indicator: 'Average Gas Price (Wei)',
+          requiresLogin: true,
+        },
+      ],
+    },
+    {
+      category: 'Hashrate',
+      values: [
+        {
+          name: 'Total Daily Hashrate',
+          indicator: 'Total Daily Hashrate',
+        },
+        {
+          name: 'Total Daily Block Count',
+          indicator: 'Total Daily Block Count',
+          requiresLogin: true,
+        },
+        {
+          name: 'Total Daily Uncle Count',
+          indicator: 'Total Daily Uncle Count',
+        },
+        {
+          name: 'Total Daily Uncle Percent',
+          indicator: 'Total Daily Uncle Percent',
+          requiresLogin: true,
+        },
+      ],
+    },
+    {
+      category: 'Rewards',
+      values: [
+        {
+          name: 'Total Daily Block Reward',
+          indicator: 'Total Daily Block Reward',
+        },
+        {
+          name: 'Total Daily Block Reward USD',
+          indicator: 'Total Daily Block Reward USD',
+          requiresLogin: true,
+        },
+        {
+          name: 'Total Daily Uncle Reward',
+          indicator: 'Total Daily Uncle Reward',
+          requiresLogin: true,
+        },
+        {
+          name: 'Total Daily Uncle Reward USD',
+          indicator: 'Total Daily Uncle Reward USD',
           requiresLogin: true,
         },
       ],

@@ -2,9 +2,10 @@ const url = require('url');
 const getUserAuth = require('./auth/getUserAuth');
 const makeUnixtimeLimit = require('./utils/makeUnixtimeLimit');
 const filterSeriesByTime = require('./utils/filterSeriesByTime');
-import { API_METRICS } from '../constants/apiMetrics';
 const TA = require('../services/ta-api-node/ta');
 const formatApiError = require('./utils/formatApiError');
+const API_METRICS = require('../constants/apiMetrics').API_METRICS;
+const NATIVE_TOKENS = require('../constants/tokens').NATIVE_TOKENS;
 
 module.exports = async (req, res) => {
   const urlParts = url.parse(req.url, true);
@@ -40,6 +41,8 @@ module.exports = async (req, res) => {
     [API_METRICS.Nvt]: privateApi.tokenNvtWindowHistorical,
     [API_METRICS.Fees]: privateApi.tokenFeesWindowHistorical,
     [API_METRICS.Utxo]: privateApi.tokenUtxoAgeWindowHistorical,
+    [API_METRICS.Hashrate]: privateApi.tokenHashrateWindowHistorical,
+    [API_METRICS.Rewards]: privateApi.tokenRewardsWindowHistorical,
   };
 
   let result;
@@ -51,5 +54,47 @@ module.exports = async (req, res) => {
     return res.status(code).send(body);
   }
 
-  res.send(filterSeriesByTime(result.data, tierTimeLimit));
+  let response_data;
+
+  if (metric === API_METRICS.Hashrate) {
+    response_data = result.data.reduce(
+      (acc, curr) =>
+        acc.find(data => data.date === curr.date) ? acc : [...acc, curr],
+      []
+    );
+  } else if (metric === API_METRICS.Rewards) {
+    response_data = result.data.reduce((acc, curr) => {
+      let entry = acc.find(data => data.date === curr.date);
+      if (entry) {
+        entry.miner_daily_block_reward =
+          entry.miner_daily_block_reward + curr.miner_daily_block_reward;
+        entry.miner_daily_block_reward_usd =
+          entry.miner_daily_block_reward_usd +
+          curr.miner_daily_block_reward_usd;
+        if (token === NATIVE_TOKENS.ETH) {
+          entry.miner_daily_uncle_reward =
+            entry.miner_daily_uncle_reward + curr.miner_daily_uncle_reward;
+          entry.miner_daily_uncle_reward_usd =
+            entry.miner_daily_uncle_reward_usd +
+            curr.miner_daily_uncle_reward_usd;
+        }
+        return acc;
+      }
+      let new_entry = {
+        date: curr.date,
+        miner_daily_block_reward: curr.miner_daily_block_reward,
+        miner_daily_block_reward_usd: curr.miner_daily_block_reward_usd,
+      };
+      if (token === NATIVE_TOKENS.ETH) {
+        (new_entry.miner_daily_uncle_reward = curr.miner_daily_uncle_reward),
+          (new_entry.miner_daily_uncle_reward_usd =
+            curr.miner_daily_uncle_reward_usd);
+      }
+      return [...acc, new_entry];
+    }, []);
+  } else {
+    response_data = result.data;
+  }
+
+  res.send(filterSeriesByTime(response_data, tierTimeLimit));
 };

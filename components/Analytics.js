@@ -4,6 +4,7 @@ import ReactGA from 'react-ga';
 import * as Sentry from '@sentry/browser';
 
 export const Analytics = ({ children }) => {
+  ReactGA.initialize('UA-113322596-1');
   useEffect(() => {
     ReactGA.initialize('UA-113322596-1');
     if (process.env.NODE_ENV !== 'development') {

@@ -6,4 +6,6 @@ export const API_METRICS = {
   Nvt: 'Nvt',
   Fees: 'Fees',
   Utxo: 'Utxo',
+  Hashrate: 'Hashrate',
+  Rewards: 'Rewards',
 };

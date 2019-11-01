@@ -96,6 +96,16 @@ export const BTC_STUDIES = [
     urlSlug: API_METRICS.Utxo,
     dataPoint: '>10y',
   },
+  {
+    symbol: '#TOTALDAILTYHASHRATE',
+    urlSlug: API_METRICS.Hashrate,
+    dataPoint: 'total_daily_hashrate',
+  },
+  {
+    symbol: '#TOTALDAILTYBLOCKCOUNT',
+    urlSlug: API_METRICS.Hashrate,
+    dataPoint: 'total_daily_block_count',
+  },
 ];
 
 export const BTC_SYMBOLS = [
@@ -118,4 +128,7 @@ export const BTC_SYMBOLS = [
   { symbol: '#3Y-5Y' },
   { symbol: '#5Y-10Y' },
   { symbol: '#>10Y' },
+  { symbol: '#5Y-10Y' },
+  { symbol: '#TOTALDAILTYHASHRATE' },
+  { symbol: '#TOTALDAILTYBLOCKCOUNT' },
 ];
