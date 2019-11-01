@@ -128,7 +128,6 @@ export const BTC_SYMBOLS = [
   { symbol: '#3Y-5Y' },
   { symbol: '#5Y-10Y' },
   { symbol: '#>10Y' },
-  { symbol: '#5Y-10Y' },
   { symbol: '#TOTALDAILTYHASHRATE' },
   { symbol: '#TOTALDAILTYBLOCKCOUNT' },
 ];
