@@ -19,25 +19,27 @@ const Newsletter = ({ newsletterPosts }) => {
             settings: { preview_text, subject_line, title },
           } = post;
           return (
-            <Link
-              href="/newsletter/[id]/[title]"
-              as={`/newsletter/${id}/${kebabCase(title)}`}
-              passHref
-              key={kebabCase(title)}
-            >
-              <div className="blog">
-                <div className="title" key={id}>
-                  {title}
-                </div>
-                <div className="content">
-                  <div className="excerpt">{subject_line}</div>
-                  {preview_text && (
-                    <div className="excerpt">{preview_text}</div>
-                  )}
-                  <div className="date">{moment(send_time).format('LL')}</div>
-                </div>
-              </div>
-            </Link>
+            <div className="blog">
+              <Link
+                href="/newsletter/[id]/[title]"
+                as={`/newsletter/${id}/${kebabCase(title)}`}
+                passHref
+                key={kebabCase(title)}
+              >
+                <a>
+                  <div className="title" key={id}>
+                    {title}
+                  </div>
+                  <div className="content">
+                    <div className="excerpt">{subject_line}</div>
+                    {preview_text && (
+                      <div className="excerpt">{preview_text}</div>
+                    )}
+                    <div className="date">{moment(send_time).format('LL')}</div>
+                  </div>
+                </a>
+              </Link>
+            </div>
           );
         })}
       </div>
@@ -82,6 +84,10 @@ const Newsletter = ({ newsletterPosts }) => {
             padding-top: 10px;
             font-style: italic;
             color: rgba(1, 1, 1, 0.5);
+          }
+          a {
+            text-decoration: none;
+            color: black;
           }
           @media only screen and (max-width: 768px) {
             .container {

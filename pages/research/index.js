@@ -9,37 +9,53 @@ const Blogs = props => {
       <h1 className="header">Research</h1>
       <div className="blogs">
         {props.posts.map((post, index) => (
-          <Link href="/research/[blog]" as={`/research/${post.slug}`} passHref>
+          <>
             {index === 0 ? (
-              <div className="blog-featured">
-                <div className="image-featured">
-                  <img src={post.feature_image} width="100%" />
-                </div>
-                <div className="content-featured">
-                  <div className="title-featured" key={post.id}>
-                    {post.title}
+              <Link
+                href="/research/[blog]"
+                as={`/research/${post.slug}`}
+                passHref
+              >
+                <a>
+                  <div className="blog-featured">
+                    <div className="image-featured">
+                      <img src={post.feature_image} width="100%" />
+                    </div>
+                    <div className="content-featured">
+                      <div className="title-featured" key={post.id}>
+                        {post.title}
+                      </div>
+                      <div>{post.excerpt}</div>
+                      <div className="date">
+                        {moment(post.published_at).format('LL')}
+                      </div>
+                    </div>
                   </div>
-                  <div>{post.excerpt}</div>
-                  <div className="date">
-                    {moment(post.published_at).format('LL')}
-                  </div>
-                </div>
-              </div>
+                </a>
+              </Link>
             ) : (
               <div className="blog">
-                <div className="title" key={post.id}>
-                  {post.title}
-                </div>
-                <img src={post.feature_image} className="image" />
-                <div className="content">
-                  <div className="excerpt">{post.excerpt}</div>
-                  <div className="date">
-                    {moment(post.published_at).format('LL')}
-                  </div>
-                </div>
+                <Link
+                  href="/research/[blog]"
+                  as={`/research/${post.slug}`}
+                  passHref
+                >
+                  <a>
+                    <div className="title" key={post.id}>
+                      {post.title}
+                    </div>
+                    <img src={post.feature_image} className="image" />
+                    <div className="content">
+                      <div className="excerpt">{post.excerpt}</div>
+                      <div className="date">
+                        {moment(post.published_at).format('LL')}
+                      </div>
+                    </div>
+                  </a>
+                </Link>
               </div>
             )}
-          </Link>
+          </>
         ))}
         <style jsx>
           {`
@@ -113,6 +129,10 @@ const Blogs = props => {
               padding-top: 10px;
               font-style: italic;
               color: rgba(1, 1, 1, 0.5);
+            }
+            a {
+              text-decoration: none;
+              color: black;
             }
             @media only screen and (max-width: 768px) {
               .container {
