@@ -63,7 +63,12 @@ export const LoginWidget = () => {
     <>
       <div className="container">
         <Card>
-          <form onSubmit={login}>
+          <form
+            onSubmit={e => {
+              e.preventDefault();
+              login();
+            }}
+          >
             <div className="header">Email</div>
             <input
               type="text"
