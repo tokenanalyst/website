@@ -58,6 +58,11 @@ const SidePanel = ({ categories, selectedCategory, onCategorySelect }) => {
           border-bottom: 2px solid rgba(${colors.primaryGreen}, 1);
           cursor: pointer;
         }
+        @media (min-width: 320px) and (max-width: 767px) {
+          .container {
+            width: 100%;
+          }
+        }
       `}</style>
     </>
   );
@@ -99,7 +104,7 @@ const Analytics = () => {
               ? charts.map(chart => (
                   <iframe
                     src={chart.url}
-                    width={SIZE_MAPPINGS[chart.type]}
+                    width={SIZE_MAPPINGS[BIG]}
                     height="500px"
                     frameBorder="0"
                   ></iframe>
@@ -125,6 +130,14 @@ const Analytics = () => {
           }
           .charts {
             width: 86%;
+          }
+          @media (min-width: 320px) and (max-width: 767px) {
+            .charts {
+              width: 100%;
+            }
+            .container {
+              flex-direction: column;
+            }
           }
         `}
       </style>
