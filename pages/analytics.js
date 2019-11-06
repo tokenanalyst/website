@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 
 import { colors } from '../constants/styles/colors';
@@ -68,6 +69,12 @@ const SidePanel = ({ categories, selectedCategory, onCategorySelect }) => {
   );
 };
 
+SidePanel.propTypes = {
+  categories: PropTypes.arrayOf(PropTypes.string).isRequired,
+  selectedCategory: PropTypes.string.isRequired,
+  onCategorySelect: PropTypes.func,
+};
+
 const Analytics = () => {
   const [charts, setCharts] = useState(null);
   const [categories, setCategories] = useState(null);
@@ -99,7 +106,6 @@ const Analytics = () => {
         )}
         {charts && (
           <div className="charts">
-            {console.log(charts)}
             {selectedCategory === 'All'
               ? charts.map(chart => (
                   <iframe
