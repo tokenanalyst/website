@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 import { colors } from '../constants/styles/colors';
 
@@ -6,49 +7,11 @@ const BIG = 'BIG';
 const MED = 'MED';
 const SML = 'SML';
 
-const ALL = 'All';
-const BITCOIN = 'Bitcoin';
-const ETHEREUM = 'Ethereum';
-const OTHER = 'Other';
-
 const SIZE_MAPPINGS = {
   [BIG]: '100%',
   [MED]: '50%',
   [SML]: '33%',
 };
-
-const CHARTS = [
-  {
-    type: BIG,
-    category: BITCOIN,
-    url: 'https://ta-plotly-dash.herokuapp.com/charts/volume',
-  },
-  {
-    type: MED,
-    category: ETHEREUM,
-    url: 'https://ta-plotly-dash.herokuapp.com/charts/volume',
-  },
-  {
-    type: SML,
-    category: OTHER,
-    url: 'https://ta-plotly-dash.herokuapp.com/charts/volume',
-  },
-  {
-    type: MED,
-    category: BITCOIN,
-    url: 'https://ta-plotly-dash.herokuapp.com/charts/volume',
-  },
-  {
-    type: SML,
-    category: BITCOIN,
-    url: 'https://ta-plotly-dash.herokuapp.com/charts/volume',
-  },
-  {
-    type: SML,
-    category: ETHEREUM,
-    url: 'https://ta-plotly-dash.herokuapp.com/charts/volume',
-  },
-];
 
 const SidePanel = ({ categories, selectedCategory, onCategorySelect }) => {
   return (
@@ -101,38 +64,56 @@ const SidePanel = ({ categories, selectedCategory, onCategorySelect }) => {
 };
 
 const Analytics = () => {
-  const [selectedCategory, setSelectedCategory] = useState('Bitcoin');
+  const [charts, setCharts] = useState(null);
+  const [categories, setCategories] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
+  useEffect(() => {
+    const getCharts = async () => {
+      const res = await axios.get('http://localhost:8050/chart-metadata');
+      setCharts(res.data.items);
+      setCategories(res.data.categories);
+      setSelectedCategory(res.data.categories[0]);
+    };
+
+    getCharts();
+  }, []);
 
   return (
     <>
       <h1>Analytics</h1>
       <div className="container">
-        <SidePanel
-          categories={[ALL, BITCOIN, ETHEREUM, OTHER]}
-          selectedCategory={selectedCategory}
-          onCategorySelect={category => setSelectedCategory(category)}
-        />
-        <div className="charts">
-          {selectedCategory === ALL
-            ? CHARTS.map(chart => (
-                <iframe
-                  src={chart.url}
-                  width={SIZE_MAPPINGS[chart.type]}
-                  height="500px"
-                  frameborder="0"
-                ></iframe>
-              ))
-            : CHARTS.filter(chart => chart.category === selectedCategory).map(
-                chart => (
+        {categories && (
+          <SidePanel
+            categories={categories}
+            selectedCategory={selectedCategory}
+            onCategorySelect={category => setSelectedCategory(category)}
+          />
+        )}
+        {charts && (
+          <div className="charts">
+            {console.log(charts)}
+            {selectedCategory === 'All'
+              ? charts.map(chart => (
                   <iframe
                     src={chart.url}
                     width={SIZE_MAPPINGS[chart.type]}
                     height="500px"
-                    frameborder="0"
+                    frameBorder="0"
                   ></iframe>
-                )
-              )}
-        </div>
+                ))
+              : charts
+                  .filter(chart => chart.category === selectedCategory)
+                  .map(chart => (
+                    <iframe
+                      src={chart.url}
+                      width={SIZE_MAPPINGS[chart.type]}
+                      height="500px"
+                      frameBorder="0"
+                    ></iframe>
+                  ))}
+          </div>
+        )}
       </div>
       <style jsx>
         {`
