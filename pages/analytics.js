@@ -82,7 +82,9 @@ const Analytics = () => {
 
   useEffect(() => {
     const getCharts = async () => {
-      const res = await axios.get('http://plotly.tokenanalyst.io/');
+      const res = await axios.get(
+        'https://ta-plotly-dash.herokuapp.com/chart-metadata'
+      );
       setCharts(res.data.items);
       setCategories(res.data.categories);
       setSelectedCategory(res.data.categories[0]);
