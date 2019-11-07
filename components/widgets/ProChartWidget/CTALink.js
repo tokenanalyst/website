@@ -17,7 +17,7 @@ export const CTALink = () => {
                 ReactGA.event({
                   category: 'User',
                   action: `Click Telegram Bot Exchange Page`,
-                  label: `Funnel`,
+                  label: `Social media`,
                 });
               }}
             />
