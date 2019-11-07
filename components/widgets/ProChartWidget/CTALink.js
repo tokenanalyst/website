@@ -2,26 +2,14 @@ import React from 'react';
 import ReactGA from 'react-ga';
 
 import { Link } from '../../Link';
+import { colors } from '../../../constants/styles/colors';
 
 export const CTALink = () => {
   const renderCTALink = () => {
     return (
       <>
         <div className="container">
-          <div className="link">
-            <Link
-              href="https://telegram.me/token_analyst_bot?startgroup=run"
-              desktopLabel="Add Telegram Bot"
-              isOpenInNewWindow
-              onClick={() => {
-                ReactGA.event({
-                  category: 'User',
-                  action: `Click Telegram Bot Exchange Page`,
-                  label: `Social media`,
-                });
-              }}
-            />
-          </div>
+          <div className="link">Add Telegram Bot</div>
           <div className="image">
             <img src="/static/svg/telegram_black.svg" alt="telegram" />
           </div>
@@ -37,6 +25,13 @@ export const CTALink = () => {
             .image {
               width: 25px;
             }
+
+            .link {
+              border-bottom-style: solid;
+              border-bottom-width: 2px;
+              border-bottom-color: rgba(${colors.primaryRed}, 1);
+              margin-bottom: 5px;
+            }
             @media (min-width: 320px) and (max-width: 767px) {
               .container {
                 justify-content: center;
@@ -51,5 +46,20 @@ export const CTALink = () => {
     );
   };
 
-  return <div className="container">{renderCTALink()}</div>;
+  return (
+    <div className="container">
+      <Link
+        href="https://telegram.me/token_analyst_bot?startgroup=run"
+        desktopLabel={renderCTALink()}
+        isOpenInNewWindow
+        onClick={() => {
+          ReactGA.event({
+            category: 'User',
+            action: `Click Telegram Bot Exchange Page`,
+            label: `Social media`,
+          });
+        }}
+      />
+    </div>
+  );
 };
