@@ -76,6 +76,9 @@
       "pre-commit": "pretty-quick --staged"
     }
   },
+  "setupFiles": [
+    "<rootDir>/setupTests.js"
+  ],
   "lint-staged": {
     "*.js": [
       "./node_modules/.bin/eslint --fix",
