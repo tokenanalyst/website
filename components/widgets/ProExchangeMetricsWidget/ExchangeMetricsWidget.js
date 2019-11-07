@@ -143,7 +143,9 @@ export const ExchangeMetricsWidget = ({ token, exchange }) => {
                       )}
                     >
                       {overallMetrics.outflowUsdSumPctChange &&
-                        overallMetrics.outflowUsdSumPctChange.toFixed(2)}
+                        Number(overallMetrics.outflowUsdSumPctChange).toFixed(
+                          2
+                        )}
                       %
                     </span>
                   </div>
