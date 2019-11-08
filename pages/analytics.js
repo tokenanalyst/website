@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 
 import { colors } from '../constants/styles/colors';
+import { CTALink } from '../components/widgets/ProChartWidget/CTALink';
 
 const BIG = 'BIG';
 const MED = 'MED';
@@ -95,7 +96,10 @@ const Analytics = () => {
 
   return (
     <>
-      <h1>Analytics</h1>
+      <div className="header">
+        <h1>Analytics</h1>
+        <CTALink />
+      </div>
       <div className="container">
         {categories && (
           <SidePanel
@@ -110,9 +114,10 @@ const Analytics = () => {
               ? charts.map(chart => (
                   <iframe
                     src={chart.url}
-                    width={SIZE_MAPPINGS[BIG]}
-                    height="500px"
+                    width={SIZE_MAPPINGS[chart.type]}
+                    height="475px"
                     frameBorder="0"
+                    className="chart"
                   ></iframe>
                 ))
               : charts
@@ -121,8 +126,9 @@ const Analytics = () => {
                     <iframe
                       src={chart.url}
                       width={SIZE_MAPPINGS[chart.type]}
-                      height="500px"
+                      height="475px"
                       frameBorder="0"
+                      className="chart"
                     ></iframe>
                   ))}
           </div>
@@ -130,12 +136,21 @@ const Analytics = () => {
       </div>
       <style jsx>
         {`
+          .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          }
           .container {
             display: flex;
             justify-content: space-between;
           }
           .charts {
             width: 86%;
+          }
+          .chart {
+            border: 1px solid black;
+            border-radius: 10px;
           }
           @media (min-width: 320px) and (max-width: 767px) {
             .charts {
