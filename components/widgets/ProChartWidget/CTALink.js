@@ -31,6 +31,7 @@ export const CTALink = () => {
               border-bottom-width: 2px;
               border-bottom-color: rgba(${colors.primaryRed}, 1);
               margin-bottom: 5px;
+              padding-right: 10px;
             }
             @media (min-width: 320px) and (max-width: 767px) {
               .container {
