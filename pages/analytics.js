@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import ReactGA from 'react-ga';
 
 import { colors } from '../constants/styles/colors';
 import { CTALink } from '../components/widgets/ProChartWidget/CTALink';
+import { ButtonMarketing } from '../components/ButtonMarketing';
+import { SimpleDialog } from '../components/SimpleDialog';
 
 const BIG = 'BIG';
 const MED = 'MED';
@@ -16,8 +20,53 @@ const SIZE_MAPPINGS = {
 };
 
 const SidePanel = ({ categories, selectedCategory, onCategorySelect }) => {
+  const router = useRouter();
+  const [isDialogShown, setIsDialogShown] = useState(false);
+
   return (
     <>
+      <SimpleDialog
+        header="See what Analytics you can create with our Pro Package!"
+        onClose={() => {
+          ReactGA.event({
+            category: 'User',
+            action: `Analytics Dialog Dismissed`,
+            label: `Funnel`,
+          });
+          setIsDialogShown(false);
+        }}
+        isOpen={isDialogShown}
+        ctaText="View Pro"
+        onCtaClick={() => {
+          ReactGA.event({
+            category: 'User',
+            action: `Analytics Dialog Upsell Clicked`,
+            label: `Funnel`,
+          });
+          window.location = '/pricing#Professional';
+        }}
+      >
+        <div className="content">
+          <div>
+            With the TokenAnalyst Pro Package you have access to all of the
+            necessary tools to create your very own Analytics and better
+            understand the Crypto market
+          </div>
+          <img src="/static/svg/marketing/man_chilling.svg" className="image" />
+        </div>
+      </SimpleDialog>
+      <style jsx>
+        {`
+          .content {
+            display: flex;
+            padding-top: 20px;
+          }
+          .image {
+            width: 250px;
+            padding-left: 30px;
+          }
+        `}
+      </style>
       <div className="container">
         <div className="header">Category:</div>
         {categories.map(category => (
@@ -32,14 +81,29 @@ const SidePanel = ({ categories, selectedCategory, onCategorySelect }) => {
             </span>
           </div>
         ))}
+        <div className="more-button">
+          <ButtonMarketing
+            text="More"
+            isExternal={false}
+            onClick={() => {
+              ReactGA.event({
+                category: 'User',
+                action: `Analytics Dialog Upsell Shown`,
+                label: `Funnel`,
+              });
+              setIsDialogShown(true);
+            }}
+          />
+        </div>
       </div>
       <style jsx>{`
         .container {
           border: 1px solid black;
           border-radius: 10px;
-          width: 12%;
+          width: 13%;
           padding: 15px;
-          max-height: 200px;
+          min-height: 600px;
+          max-height: 600px;
         }
         .header {
           font-weight: bold;
@@ -59,6 +123,9 @@ const SidePanel = ({ categories, selectedCategory, onCategorySelect }) => {
           font-weight: bold;
           border-bottom: 2px solid rgba(${colors.primaryGreen}, 1);
           cursor: pointer;
+        }
+        .more-button {
+          max-width: 10px;
         }
         @media (min-width: 320px) and (max-width: 767px) {
           .container {

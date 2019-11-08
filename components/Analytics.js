@@ -5,7 +5,6 @@ import * as Sentry from '@sentry/browser';
 
 export const Analytics = ({ children }) => {
   useEffect(() => {
-    ReactGA.initialize('UA-113322596-1');
     if (process.env.NODE_ENV !== 'development') {
       ReactGA.initialize('UA-113322596-1');
       const handleRouteChange = () => {
