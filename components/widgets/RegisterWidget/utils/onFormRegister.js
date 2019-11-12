@@ -9,7 +9,7 @@ import { API_ERROR_MSG } from '../../../../constants/apiErrors';
 export const onFormRegister = async (loginCtx, formValues) => {
   const API_BASE =
     process.env.NODE_ENV === 'development'
-      ? 'https://deb8b069-8fe4-4886-9e86-69ead8b3c28b.mock.pstmn.io'
+      ? 'http://localhost:3009'
       : 'https://api.tokenanalyst.io';
   const { email, fullName, password, company } = formValues;
 
