@@ -47,7 +47,6 @@ export const ChangePasswordWidget = () => {
             <form
               onSubmit={async e => {
                 e.preventDefault();
-                onClick();
               }}
               className="form"
             >
