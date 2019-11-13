@@ -7,7 +7,8 @@ export const login = async (
   password,
   loginCtx,
   router,
-  setIsSubmitted = () => {}
+  setIsSubmitted = () => {},
+  setIsError = () => {}
 ) => {
   try {
     setIsSubmitted(true);
@@ -37,6 +38,7 @@ export const login = async (
 
     router.push('/');
   } catch (e) {
+    setIsError(true);
     setIsSubmitted(false);
   }
 };

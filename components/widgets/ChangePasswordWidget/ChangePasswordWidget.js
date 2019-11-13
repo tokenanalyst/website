@@ -23,7 +23,7 @@ export const ChangePasswordWidget = () => {
   const onClick = async () => {
     try {
       const response = await axios.put(
-        'http://localhost:3009/auth/user/verify-email',
+        'http://localhost:3009/auth/user/update-password',
         {
           email,
           password,
@@ -40,18 +40,20 @@ export const ChangePasswordWidget = () => {
 
   return (
     <>
-      <div>
+      <div className="container">
         {router.query.verificationToken && (
           <>
+            <h1>Change Password</h1>
             <form
               onSubmit={async e => {
                 e.preventDefault();
                 onClick();
               }}
+              className="form"
             >
               <SimpleFormGroup
                 label={
-                  <div>
+                  <div className="input-title">
                     Email <span className="mandatory-field">*</span>
                   </div>
                 }
@@ -64,7 +66,7 @@ export const ChangePasswordWidget = () => {
               </SimpleFormGroup>
               <SimpleFormGroup
                 label={
-                  <div>
+                  <div className="input-title">
                     Password <span className="mandatory-field">*</span>
                   </div>
                 }
@@ -89,7 +91,7 @@ export const ChangePasswordWidget = () => {
                 loading={isSubmitted}
                 type="submit"
               >
-                Sign Up
+                Confirm
               </SimpleButton>
               {isError && (
                 <div className="error">
@@ -103,43 +105,20 @@ export const ChangePasswordWidget = () => {
       <style jsx>
         {`
           .container {
-            font-family: Open Sans;
-            flex-wrap: wrap;
-            width: 340px;
-          }
-          .title {
-            font-weight: bold;
-            font-size: 24px;
-            padding-bottom: 30px;
-          }
-          .header {
-            font-family: Space Grotesk;
-            font-size: 32px;
-            font-weight: bold;
-            padding: 15px;
-            padding-top: 0px;
             text-align: center;
           }
-          .label {
-            font-size: 16px;
-            padding-top: 10px;
-            padding-bottom: 10px;
-          }
-          .register-form {
-            margin-top: 30px;
+          .form {
+            font-family: Open Sans;
+            width: 340px;
+            display: inline-block;
           }
           .error {
             color: rgba(${colors.primaryRed});
-            padding-top: 10px;
             max-width: 300px;
             text-align: center;
           }
-          .message {
-            padding-top: 10px;
-            text-align: center;
-          }
-          .mandatory-field {
-            opacity: 0.5;
+          .input-title {
+            text-align: left;
           }
           @media only screen and (max-width: 768px) {
             .container {

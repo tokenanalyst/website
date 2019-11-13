@@ -5,7 +5,6 @@ import { ChangePasswordWidget } from '../components/widgets/ChangePasswordWidget
 const VerifyEmail = () => {
   return (
     <>
-      <h1>Change Password</h1>
       <ChangePasswordWidget />
     </>
   );
