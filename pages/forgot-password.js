@@ -8,8 +8,6 @@ import { SimpleButton } from '../components/SimpleButton';
 import { colors, PRIMARY_GREEN } from '../constants/styles/colors';
 
 const ForgotPassword = () => {
-  const router = useRouter();
-
   const [email, setEmail] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isError, setIsError] = useState(false);
