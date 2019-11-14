@@ -6,7 +6,6 @@ import { SimpleFormGroup } from '../components/SimpleFormGroup';
 import { SimpleTextInput } from '../components/SimpleTextInput';
 import { SimpleButton } from '../components/SimpleButton';
 import { colors, PRIMARY_GREEN } from '../constants/styles/colors';
-import { set } from 'react-ga';
 
 const ForgotPassword = () => {
   const router = useRouter();
