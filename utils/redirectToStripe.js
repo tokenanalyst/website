@@ -13,10 +13,10 @@ export const redirectToStripe = (
         quantity: 1,
       },
     ],
-    successUrl: `https://www.tokenanalyst.io/purchase-success${
+    successUrl: `https://website-jamesrford7.tokenanalyst.now.sh/purchase-success${
       product ? `?p=${product.toLowerCase()}` : ''
     }`,
-    cancelUrl: 'https://www.tokenanalyst.io/',
+    cancelUrl: 'https://website-jamesrford7.tokenanalyst.now.sh/',
     ...stripeOptions,
   };
 
