@@ -26,7 +26,7 @@ export const RegisterWidget = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
-  const isRedirectedForFreeTier = loginCtx.paymentData.isFreeTier;
+  // const isRedirectedForFreeTier = loginCtx.paymentData.isFreeTier;
 
   const onPasswordChange = e => {
     const passwordStrength = zxcvbn(e.target.value);
@@ -154,11 +154,11 @@ export const RegisterWidget = () => {
                   Sign Up
                 </SimpleButton>
                 {errorText && <div className="error">{errorText}</div>}
-                {isRedirectedForFreeTier ? (
+                {/* {isRedirectedForFreeTier ? (
                   <div className="message">
                     Please register to access your free tier.
                   </div>
-                ) : null}
+                ) : null} */}
               </form>
             </div>
           </>

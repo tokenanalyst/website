@@ -30,15 +30,6 @@ export const login = async (
     loginCtx.setIsLoggedIn(true);
     loginCtx.intercom.setUser(name, username);
 
-    // This will be redundant soon as we will allow purchase pre-register
-    // if (loginCtx.paymentData.stripe && loginCtx.paymentData.stripe.redirectFn) {
-    //   loginCtx.setPaymentData({ ...loginCtx.paymentData, stripe: null });
-    //   return loginCtx.paymentData.stripe.redirectFn({
-    //     customerEmail: username,
-    //     clientReferenceId: id.toString(),
-    //   });
-    // }
-
     router.push('/');
   } catch (e) {
     setIsError(true);

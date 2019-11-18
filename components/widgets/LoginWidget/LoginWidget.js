@@ -16,8 +16,6 @@ export const LoginWidget = () => {
   const [password, setPassword] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  // const isToRedirectToStripe = loginCtx.paymentData.stripe;
-
   return (
     <>
       <div className="container">
@@ -61,11 +59,6 @@ export const LoginWidget = () => {
             {isError ? (
               <div className="error">Incorrect email or password</div>
             ) : null}
-            {/* {isToRedirectToStripe ? (
-              <div className="message">
-                Please login to complete your purchase.
-              </div>
-            ) : null} */}
           </form>
         </Card>
       </div>

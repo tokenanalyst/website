@@ -142,21 +142,8 @@ export const ProductFeatures = ({
               const action = `Plan select ${name}`;
               emitProductEvent(action);
 
-              // if (!loginCtx.isLoggedIn) {
-              //   loginCtx.setPaymentData({
-              //     stripe: {
-              //       redirectFn: redirectToStripe(
-              //         stripePlan,
-              //         GA_GOAL_NAME[name]
-              //       ),
-              //     },
-              //   });
-              //   document.documentElement.scrollTop = 0;
-              //   return Router.push('/register');
-              // }
               return redirectToStripe(stripePlan, GA_GOAL_NAME[name])({
                 customerEmail: username,
-                // clientReferenceId: userId.toString(),
               });
             };
 

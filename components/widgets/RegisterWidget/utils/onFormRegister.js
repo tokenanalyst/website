@@ -56,32 +56,7 @@ export const onFormRegister = async (loginCtx, formValues) => {
 
     let redirectFn;
 
-    // if (loginCtx.paymentData.stripe && loginCtx.paymentData.stripe.redirectFn) {
-    //   loginCtx.setPaymentData({ ...loginCtx.paymentData, stripe: null });
-
-    //   redirectFn = () => {
-    //     ReactGA.event({
-    //       category: 'User',
-    //       action: `Registered to make a purchase`,
-    //       label: `Funnel`,
-    //     });
-    //     loginCtx.paymentData.stripe.redirectFn({
-    //       customerEmail: username,
-    //       clientReferenceId: id.toString(),
-    //     });
-    //   };
-    // } else
-    if (loginCtx.paymentData.isFreeTier) {
-      loginCtx.setPaymentData({ ...loginCtx.paymentData, isFreeTier: false });
-      redirectFn = () => {
-        ReactGA.event({
-          category: 'User',
-          action: `Registered to access free tier`,
-          label: `Funnel`,
-        });
-        Router.push('/free-tier-success');
-      };
-    } else if (loginCtx.postRegisterRedirectUrl) {
+    if (loginCtx.postRegisterRedirectUrl) {
       redirectFn = () => {
         ReactGA.event({
           category: 'User',
