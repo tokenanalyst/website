@@ -7,7 +7,7 @@ import { intercom, isUserCookiesValid } from './utils';
 
 export const LoginProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [paymentData, setPaymentData] = useState({ stripe: null });
+  // const [paymentData, setPaymentData] = useState({ stripe: null });
   const [postRegisterRedirectUrl, setPostRegisterRedirectUrl] = useState(null);
   const [
     postRegisterViaMetricsRedirectUrl,
@@ -36,12 +36,12 @@ export const LoginProvider = ({ children }) => {
 
   const value = {
     isLoggedIn,
-    paymentData,
+    // paymentData,
     intercom,
     postRegisterRedirectUrl,
     postRegisterViaMetricsRedirectUrl,
     setIsLoggedIn,
-    setPaymentData,
+    // setPaymentData,
     setPostRegisterRedirectUrl,
     setPostRegisterViaMetricsRedirectUrl,
   };

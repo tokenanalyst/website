@@ -17,7 +17,7 @@ const ForgotPassword = () => {
     try {
       setIsSubmitted(true);
       const response = await axios.put(
-        'http://localhost:3009/auth/user/forgot-password',
+        'https://8660bdda.ngrok.io/auth/user/forgot-password',
         {
           email,
         }

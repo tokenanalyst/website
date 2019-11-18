@@ -129,7 +129,7 @@ export const UseCase = ({
                   }
                   return redirectToStripe(stripePlan, GA_GOAL_NAME[name])({
                     customerEmail: username,
-                    clientReferenceId: userId.toString(),
+                    // clientReferenceId: userId.toString(),
                   });
                 };
 

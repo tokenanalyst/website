@@ -5,11 +5,11 @@ import React, { useContext, useState } from 'react';
 import kebabCase from 'lodash/kebabCase';
 import ReactGA from 'react-ga';
 import Cookies from 'js-cookie';
-import Router from 'next/router';
+// import Router from 'next/router';
 import { Collapse } from '@blueprintjs/core';
 
 import { ButtonMarketing } from '../../ButtonMarketing';
-import { LoginContext } from '../../../contexts/Login';
+// import { LoginContext } from '../../../contexts/Login';
 import { FeatureTableDesktop } from './FeatureTableDesktop';
 import { FeatureTableMobile } from './FeatureTableMobile';
 import { GA_GOAL_NAME } from './data/productsData';
@@ -113,9 +113,9 @@ export const ProductFeatures = ({
   stripePlan,
   image,
 }) => {
-  const loginCtx = useContext(LoginContext);
+  // const loginCtx = useContext(LoginContext);
   const username = Cookies.get('loggedInAsUsername');
-  const userId = Cookies.get('loggedInAsUserId');
+  // const userId = Cookies.get('loggedInAsUserId');
   const [isDetailsOpen, setIsDetailsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 

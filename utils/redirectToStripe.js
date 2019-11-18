@@ -4,7 +4,7 @@ export const redirectToStripe = (
   stripePlan,
   product
 ) => async stripeOptions => {
-  const stripe = Stripe(STRIPE.apiKey);
+  const stripe = Stripe(STRIPE.apiTestKey);
 
   const stripeOpt = {
     items: [

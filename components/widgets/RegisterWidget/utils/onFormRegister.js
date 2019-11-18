@@ -9,7 +9,7 @@ import { API_ERROR_MSG } from '../../../../constants/apiErrors';
 export const onFormRegister = async (loginCtx, formValues) => {
   const API_BASE =
     process.env.NODE_ENV === 'development'
-      ? 'http://localhost:3009'
+      ? 'https://8660bdda.ngrok.io'
       : 'https://api.tokenanalyst.io';
   const { email, fullName, password, company } = formValues;
 
@@ -56,21 +56,22 @@ export const onFormRegister = async (loginCtx, formValues) => {
 
     let redirectFn;
 
-    if (loginCtx.paymentData.stripe && loginCtx.paymentData.stripe.redirectFn) {
-      loginCtx.setPaymentData({ ...loginCtx.paymentData, stripe: null });
+    // if (loginCtx.paymentData.stripe && loginCtx.paymentData.stripe.redirectFn) {
+    //   loginCtx.setPaymentData({ ...loginCtx.paymentData, stripe: null });
 
-      redirectFn = () => {
-        ReactGA.event({
-          category: 'User',
-          action: `Registered to make a purchase`,
-          label: `Funnel`,
-        });
-        loginCtx.paymentData.stripe.redirectFn({
-          customerEmail: username,
-          clientReferenceId: id.toString(),
-        });
-      };
-    } else if (loginCtx.paymentData.isFreeTier) {
+    //   redirectFn = () => {
+    //     ReactGA.event({
+    //       category: 'User',
+    //       action: `Registered to make a purchase`,
+    //       label: `Funnel`,
+    //     });
+    //     loginCtx.paymentData.stripe.redirectFn({
+    //       customerEmail: username,
+    //       clientReferenceId: id.toString(),
+    //     });
+    //   };
+    // } else
+    if (loginCtx.paymentData.isFreeTier) {
       loginCtx.setPaymentData({ ...loginCtx.paymentData, isFreeTier: false });
       redirectFn = () => {
         ReactGA.event({
