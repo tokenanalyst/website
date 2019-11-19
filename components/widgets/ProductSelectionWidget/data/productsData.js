@@ -1,16 +1,9 @@
 import { PLANS } from '../../../../constants/plans';
 
 const CARD_CONTENT = {
-  PLATFORM: {
-    title: 'Platform',
-    description: `Providing key on-chain and market data into one integrated trading platform.`,
-    image: '/static/svg/pricing/platform_small.svg',
-    links: [{ text: 'Try free version', url: '/register' }],
-  },
   PRO: {
     title: 'Professional',
     description: `Access to a plethora of proprietary metrics and insights via historical data APIs and real-time WebSockets.`,
-    isPlatformInclusive: true,
     image: '/static/svg/pricing/api_websocket_small.svg',
     links: [
       {

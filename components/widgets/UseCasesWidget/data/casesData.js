@@ -1,41 +1,12 @@
 import { PLANS, PLAN_NAMES } from '../../../../constants/plans';
 
-const { PLATFORM, PRO } = PLAN_NAMES;
+const { PRO } = PLAN_NAMES;
 
 export const GA_GOAL_NAME = {
-  [PLATFORM]: PLATFORM,
   [PRO]: PRO,
 };
 
 export const USE_CASES = {
-  PLATFORM: {
-    title: 'Fundamental Analysis',
-    plan: PLAN_NAMES.PRO,
-    description: `Gain a deep understanding of network security, usage, and economics.`,
-    image: '/static/svg/marketing/fundamental_analysis.svg',
-    features: [
-      `Proprietary exchange, miner & OTC flows`,
-      `Real time significant event alerting`,
-      `Full historical data for modelling & backtesting`,
-    ],
-    buttons: [
-      {
-        text: 'Request a Demo',
-        isIntercom: true,
-      },
-      {
-        text: 'Documentation',
-        url: 'https://docs.tokenanalyst.io/#/api',
-        isExternal: true,
-      },
-      {
-        text: 'Buy Plan',
-        url: null,
-        isBuy: true,
-      },
-    ],
-    isReverseImagePosition: false,
-  },
   PRO: {
     title: 'Quantitative Trading',
     plan: PLAN_NAMES.PRO,

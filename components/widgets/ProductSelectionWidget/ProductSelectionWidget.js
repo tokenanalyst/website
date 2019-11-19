@@ -4,11 +4,10 @@ import { ProductCard } from './ProductCard';
 import { PRODUCTS } from './data/productsData';
 import { PLAN_NAMES } from '../../../constants/plans';
 
-const { PLATFORM, PRO, ENTERPRISE } = PLAN_NAMES;
+const { PRO, ENTERPRISE } = PLAN_NAMES;
 
 const makePrice = (product, price) => {
   const PRICE_TEXT = {
-    [PLATFORM]: `Essential metrics`,
     [PRO]: `${price}/month`,
     [ENTERPRISE]: `Tailored services `,
   };
@@ -24,13 +23,7 @@ export const ProductSelectionWidget = () => {
           <h2 className="products-header">Our Products</h2>
           <div className="products">
             {PRODUCTS.map(({ card, name, price }) => {
-              const {
-                title,
-                links,
-                description,
-                isPlatformInclusive,
-                image,
-              } = card;
+              const { title, links, description, image } = card;
 
               return (
                 <div className="product" key={name}>
@@ -38,7 +31,6 @@ export const ProductSelectionWidget = () => {
                     name={name}
                     description={description}
                     image={image}
-                    isPlatformInclusive={isPlatformInclusive || false}
                     links={links}
                     price={makePrice(name, price)}
                     title={title}

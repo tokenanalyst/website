@@ -1,37 +1,36 @@
 import { PLANS, PLAN_NAMES } from '../../../../constants/plans';
 
-const { PLATFORM, PRO } = PLAN_NAMES;
+const { PRO } = PLAN_NAMES;
 
 export const GA_GOAL_NAME = {
-  [PLATFORM]: PLATFORM,
   [PRO]: PRO,
 };
 
 export const FEATURES = {
-  columns: ['Platform', 'Pro', 'Enterprise'],
+  columns: ['Pro', 'Enterprise'],
   categories: [
     {
       name: 'Blockchain Fundamentals',
       items: [
         {
           name: 'On-chain Volumes & Transaction Counts',
-          entitled: [true, true, true],
+          entitled: [true, true],
         },
         {
           name: 'Network Stats (Address Growth, NVT, Fees) ',
-          entitled: [true, true, true],
+          entitled: [true, true],
         },
         {
           name: 'Supply Metrics',
-          entitled: [true, true, true],
+          entitled: [true, true],
         },
         {
           name: 'Security Metrics (hashrate & block rewards by miner)',
-          entitled: [false, true, true],
+          entitled: [true, true],
         },
         {
           name: 'Detailed UTXO Age Band Metrics',
-          entitled: [false, false, true],
+          entitled: [false, true],
         },
       ],
     },
@@ -40,35 +39,35 @@ export const FEATURES = {
       items: [
         {
           name: 'BTC & ETH Exchange inflow/outflow',
-          entitled: [true, true, true],
+          entitled: [true, true],
         },
         {
           name: 'ERC20/Stablecoin Exchange inflow/outflow',
-          entitled: [true, true, true],
+          entitled: [true, true],
         },
         {
           name: 'Significant Transactions into/out of Exchanges',
-          entitled: [false, true, true],
+          entitled: [true, true],
         },
         {
           name: 'Exchange Cluster Balances ',
-          entitled: [false, true, true],
+          entitled: [true, true],
         },
         {
           name: 'Miner Cluster Balances',
-          entitled: [false, true, true],
+          entitled: [true, true],
         },
         {
           name: 'Miner inflows/outflows',
-          entitled: [false, true, true],
+          entitled: [true, true],
         },
         {
           name: 'Miner to Exchange flows',
-          entitled: [false, false, true],
+          entitled: [false, true],
         },
         {
           name: 'DEX Order Books',
-          entitled: [false, false, true],
+          entitled: [false, true],
         },
       ],
     },
@@ -77,19 +76,19 @@ export const FEATURES = {
       items: [
         {
           name: 'Entity Labels (Miners, Exchanges, OTC Desks)',
-          entitled: [false, false, true],
+          entitled: [false, true],
         },
         {
           name: 'Smart Contract Function Calls & Events',
-          entitled: [false, false, true],
+          entitled: [false, true],
         },
         {
           name: `ETH 'Internal' Transactions`,
-          entitled: [false, false, true],
+          entitled: [false, true],
         },
         {
           name: 'Mempool Datasets',
-          entitled: [false, false, true],
+          entitled: [false, true],
         },
       ],
     },
@@ -98,23 +97,23 @@ export const FEATURES = {
       items: [
         {
           name: 'Web Platform (updated hourly)',
-          entitled: [true, true, true],
+          entitled: [true, true],
         },
         {
           name: 'API (updated hourly)',
-          entitled: [false, true, true],
+          entitled: [true, true],
         },
         {
           name: 'WebSocket (real-time)',
-          entitled: [false, true, true],
+          entitled: [true, true],
         },
         {
           name: 'Bespoke Dashboards',
-          entitled: [false, false, true],
+          entitled: [false, true],
         },
         {
           name: 'Full Transaction Level Data Transfer',
-          entitled: [false, false, true],
+          entitled: [false, true],
         },
       ],
     },
@@ -123,15 +122,15 @@ export const FEATURES = {
       items: [
         {
           name: 'Intercom Support',
-          entitled: [true, true, true],
+          entitled: [true, true],
         },
         {
           name: 'Email Support',
-          entitled: [false, true, true],
+          entitled: [true, true],
         },
         {
           name: 'Speak with a TokenAnalyst Engineer ',
-          entitled: [false, false, true],
+          entitled: [false, true],
         },
       ],
     },
@@ -139,31 +138,6 @@ export const FEATURES = {
 };
 
 const FEATURES_CONTENT = {
-  PLATFORM: {
-    title: 'Platform',
-    description: `The intelligent analyst’s toolkit with 
-    TradingView support, interactive data 
-    dashboards, and historical data across a 
-    variety of assets and exchanges.`,
-    image: '/static/svg/pricing/features_platform.svg',
-    features: [
-      `Historical Order Book & Exchange Flows`,
-      `Web Platform Access Only`,
-      `Power-User Charting Tools`,
-    ],
-    buttons: [
-      {
-        text: 'Try it out',
-        url: 'https://www.tokenanalyst.io/register',
-      },
-      {
-        text: 'Buy Plan',
-        url: null,
-        isBuy: true,
-      },
-    ],
-    index: 1,
-  },
   PRO: {
     title: 'Professional',
     description: `Our signature plan, offering proprietary 
