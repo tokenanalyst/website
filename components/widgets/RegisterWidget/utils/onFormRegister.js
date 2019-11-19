@@ -9,7 +9,7 @@ import { API_ERROR_MSG } from '../../../../constants/apiErrors';
 export const onFormRegister = async (loginCtx, formValues) => {
   const API_BASE =
     process.env.NODE_ENV === 'development'
-      ? 'https://8660bdda.ngrok.io'
+      ? 'https://deb8b069-8fe4-4886-9e86-69ead8b3c28b.mock.pstmn.io'
       : 'https://api.tokenanalyst.io';
   const { email, fullName, password, company } = formValues;
 
@@ -48,7 +48,6 @@ export const onFormRegister = async (loginCtx, formValues) => {
 
     Cookies.set(COOKIES.apiKey, apiKey);
     Cookies.set(COOKIES.loggedInAsUsername, username);
-    Cookies.set(COOKIES.loggedInAsUserId, id);
     Cookies.set(COOKIES.tier, 0);
 
     loginCtx.setIsLoggedIn(true);

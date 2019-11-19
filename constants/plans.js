@@ -64,7 +64,7 @@ export const PLANS = {
     ],
     buttonText: 'Purchase',
     tier: TIERS['2'],
-    stripePlan: 'plan_FuFaK78eUjiZ9L',
+    stripePlan: 'plan_FZwuSdyp2hRm98',
     id: 2,
     isFeatured: true,
   },

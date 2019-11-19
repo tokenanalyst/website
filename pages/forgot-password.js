@@ -17,7 +17,7 @@ const ForgotPassword = () => {
     try {
       setIsSubmitted(true);
       const response = await axios.put(
-        'https://8660bdda.ngrok.io/auth/user/forgot-password',
+        'https://api.tokenanalyst.io/auth/user/forgot-password',
         {
           email,
         }

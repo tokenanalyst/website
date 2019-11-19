@@ -211,7 +211,6 @@ export const DesktopNav = () => {
                   onClick={() => {
                     Cookies.remove(COOKIES.apiKey);
                     Cookies.remove(COOKIES.loggedInAsUsername);
-                    Cookies.remove(COOKIES.loggedInAsUserId);
                     Cookies.set(COOKIES.tier, PLANS.SIGNED_OUT.id);
                     loginCtx.setIsLoggedIn(false);
                     loginCtx.intercom.removeUser();
@@ -225,7 +224,6 @@ export const DesktopNav = () => {
                   onKeyDown={() => {
                     Cookies.remove(COOKIES.apiKey);
                     Cookies.remove(COOKIES.loggedInAsUsername);
-                    Cookies.remove(COOKIES.loggedInAsUserId);
                     Cookies.set(COOKIES.tier, PLANS.SIGNED_OUT.id);
                     loginCtx.setIsLoggedIn(false);
                     loginCtx.intercom.removeUser();

@@ -1,15 +1,12 @@
 /* eslint-disable no-undef */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import PropTypes from 'prop-types';
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import kebabCase from 'lodash/kebabCase';
 import ReactGA from 'react-ga';
 import Cookies from 'js-cookie';
-import Router from 'next/router';
-import { animateScroll } from 'react-scroll';
 
 import { ButtonMarketing } from '../../ButtonMarketing';
-import { LoginContext } from '../../../contexts/Login';
 import { GA_GOAL_NAME } from './data/casesData';
 import { PLAN_NAMES } from '../../../constants/plans';
 import { redirectToStripe } from '../../../utils';
@@ -84,9 +81,7 @@ export const UseCase = ({
   image,
   isReverseImagePosition,
 }) => {
-  const loginCtx = useContext(LoginContext);
   const username = Cookies.get(COOKIES.loggedInAsUsername);
-  const userId = Cookies.get(COOKIES.loggedInAsUserId);
   const [isLoading, setIsLoading] = useState(false);
 
   return (
@@ -113,23 +108,8 @@ export const UseCase = ({
                   }
                   emitProductEvent(`Plan click ${text}`);
 
-                  if (!loginCtx.isLoggedIn) {
-                    loginCtx.setPaymentData({
-                      stripe: {
-                        redirectFn: redirectToStripe(
-                          stripePlan,
-                          GA_GOAL_NAME[plan]
-                        ),
-                      },
-                    });
-                    Router.events.on('routeChangeComplete', () => {
-                      animateScroll.scrollToTop({ duration: 0, delay: 0 });
-                    });
-                    return Router.push('/register');
-                  }
                   return redirectToStripe(stripePlan, GA_GOAL_NAME[name])({
                     customerEmail: username,
-                    // clientReferenceId: userId.toString(),
                   });
                 };
 

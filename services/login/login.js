@@ -13,7 +13,7 @@ export const login = async (
   try {
     setIsSubmitted(true);
     const response = await axios.post(
-      'https://8660bdda.ngrok.io/auth/user/login',
+      'https://api.tokenanalyst.io/auth/user/login',
       {
         username: email,
         password,
@@ -25,7 +25,6 @@ export const login = async (
 
     Cookies.set(COOKIES.apiKey, apiKey);
     Cookies.set(COOKIES.loggedInAsUsername, username);
-    Cookies.set(COOKIES.loggedInAsUserId, id);
     Cookies.set(COOKIES.tier, profile);
     loginCtx.setIsLoggedIn(true);
     loginCtx.intercom.setUser(name, username);

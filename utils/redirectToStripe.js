@@ -4,7 +4,7 @@ export const redirectToStripe = (
   stripePlan,
   product
 ) => async stripeOptions => {
-  const stripe = Stripe(STRIPE.apiTestKey);
+  const stripe = Stripe(STRIPE.apiKey);
 
   const stripeOpt = {
     items: [
@@ -13,10 +13,10 @@ export const redirectToStripe = (
         quantity: 1,
       },
     ],
-    successUrl: `https://website-jamesrford7.tokenanalyst.now.sh/purchase-success${
+    successUrl: `https://www.tokenanalyst.io/purchase-success${
       product ? `?p=${product.toLowerCase()}` : ''
     }`,
-    cancelUrl: 'https://website-jamesrford7.tokenanalyst.now.sh/',
+    cancelUrl: 'https://www.tokenanalyst.io/',
     ...stripeOptions,
   };
 

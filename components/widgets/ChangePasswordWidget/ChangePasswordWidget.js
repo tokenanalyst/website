@@ -44,7 +44,7 @@ export const ChangePasswordWidget = () => {
       }
 
       const response = await axios.put(
-        'https://8660bdda.ngrok.io/auth/user/update-password',
+        'https://api.tokenanalyst.io/auth/user/update-password',
         {
           email,
           password: password.value,

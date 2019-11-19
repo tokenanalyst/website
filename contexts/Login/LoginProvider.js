@@ -7,7 +7,6 @@ import { intercom, isUserCookiesValid } from './utils';
 
 export const LoginProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  // const [paymentData, setPaymentData] = useState({ stripe: null });
   const [postRegisterRedirectUrl, setPostRegisterRedirectUrl] = useState(null);
   const [
     postRegisterViaMetricsRedirectUrl,
@@ -23,25 +22,21 @@ export const LoginProvider = ({ children }) => {
       setIsLoggedIn(false);
       Cookies.remove(COOKIES.apiKey);
       Cookies.remove(COOKIES.loggedInAsUsername);
-      Cookies.remove(COOKIES.loggedInAsUserId);
     }
 
     if (Cookies.get(COOKIES.tier) === undefined) {
       Cookies.set(COOKIES.tier, -1);
       Cookies.remove(COOKIES.apiKey);
       Cookies.remove(COOKIES.loggedInAsUsername);
-      Cookies.remove(COOKIES.loggedInAsUserId);
     }
   }, []);
 
   const value = {
     isLoggedIn,
-    // paymentData,
     intercom,
     postRegisterRedirectUrl,
     postRegisterViaMetricsRedirectUrl,
     setIsLoggedIn,
-    // setPaymentData,
     setPostRegisterRedirectUrl,
     setPostRegisterViaMetricsRedirectUrl,
   };
