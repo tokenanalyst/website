@@ -89,7 +89,7 @@ export const TopUseCases = ({ useCases }) => {
             flex-direction: row;
           }
           .feature-list {
-            width: 418px;
+            width: 718px;
           }
           .features {
             padding-top: 78px;

@@ -75,7 +75,6 @@ export const ProductCard = ({
   description,
   image,
   isActive,
-  isPlatformInclusive,
 }) => {
   return (
     <>
@@ -90,9 +89,6 @@ export const ProductCard = ({
         </div>
         <div className="price-container">
           <div className="price-text">{price}</div>
-          {isPlatformInclusive && (
-            <div className="price-platform">(includes Platform)</div>
-          )}
         </div>
         <div className="description">{description}</div>
         <div className="links">{renderLinks(links)}</div>
@@ -127,7 +123,7 @@ export const ProductCard = ({
       <style jsx>
         {`
           .container {
-            width: 381px;
+            width: 550px;
             height: 450px;
             background-color: #ffffff;
             padding-left: 40px;
@@ -169,17 +165,6 @@ export const ProductCard = ({
             line-height: normal;
             letter-spacing: 0.17px;
             color: #222222;
-          }
-          .price-platform {
-            opacity: 0.46;
-            font-family: Open Sans;
-            font-size: 13px;
-            font-weight: 500;
-            font-style: normal;
-            font-stretch: normal;
-            line-height: normal;
-            letter-spacing: 0.21px;
-            color: #000000;
           }
           .description {
             font-family: Open Sans;
@@ -276,11 +261,9 @@ ProductCard.propTypes = {
   description: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   isActive: PropTypes.bool,
-  isPlatformInclusive: PropTypes.bool,
 };
 
 ProductCard.defaultProps = {
   links: [],
   isActive: false,
-  isPlatformInclusive: false,
 };

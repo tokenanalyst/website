@@ -1,11 +1,10 @@
 export const PLAN_NAMES = {
-  PLATFORM: 'Platform',
   PRO: 'Professional',
   ENTERPRISE: 'Enterprise',
   HOBBYIST: 'Hobbyist',
 };
 
-const { PLATFORM, PRO, ENTERPRISE, HOBBYIST } = PLAN_NAMES;
+const { PRO, ENTERPRISE, HOBBYIST } = PLAN_NAMES;
 
 export const TIERS = {
   nologin: {
@@ -35,20 +34,6 @@ export const TIERS = {
 };
 
 export const PLANS = {
-  PLATFORM: {
-    name: PLATFORM,
-    price: '$49',
-    features: [
-      'Full Historical Data',
-      'Web Platform Access Only',
-      'Power-User Charting Tools',
-    ],
-    buttonText: 'Purchase',
-    tier: TIERS['1'],
-    stripePlan: 'plan_FvkdK0jbdCnu1d',
-    isNew: true,
-    id: 1,
-  },
   PRO: {
     name: PRO,
     price: '$799',
@@ -89,17 +74,6 @@ export const PLANS = {
 };
 
 export const TEST_PLANS = {
-  PLATFORM: {
-    name: PLATFORM,
-    price: '$50',
-    features: [
-      'Exchange Flows',
-      'Full Historical Data',
-      'Web Platform Access Only',
-    ],
-    buttonText: 'Purchase',
-    stripePlan: 'plan_FuFaK78eUjiZ9L',
-  },
   HOBBYIST: {
     name: HOBBYIST,
     price: '$99',

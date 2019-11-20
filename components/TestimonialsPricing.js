@@ -166,11 +166,7 @@ export const TestimonialsPricing = () => (
       </div>
       <div className="links-container">
         <div className="links">
-          {renderLinks([
-            PLAN_NAMES.PLATFORM,
-            PLAN_NAMES.PRO,
-            PLAN_NAMES.ENTERPRISE,
-          ])}
+          {renderLinks([PLAN_NAMES.PRO, PLAN_NAMES.ENTERPRISE])}
         </div>
       </div>
     </div>
