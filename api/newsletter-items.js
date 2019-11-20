@@ -4,6 +4,7 @@ const setResponseCache = require('./utils/setResponseCache');
 
 const API_URL = 'https://us20.api.mailchimp.com/3.0/';
 const { MAILCHIMP_USER, MAILCHIMP_API_KEY } = process.env;
+const TEST_LIST = 'Team Test';
 
 const auth = {
   username: MAILCHIMP_USER,
@@ -11,7 +12,7 @@ const auth = {
 };
 
 const getCampaignsList = () =>
-  axios(`${API_URL}/campaigns`, {
+  axios(`${API_URL}/campaigns/?count=20`, {
     auth,
   });
 
@@ -28,7 +29,9 @@ module.exports = async (req, res) => {
     return res.status(data.status).send(data);
   }
   const newsletters = mailchimpResponse.data.campaigns
-    .filter(campaign => campaign.send_time)
+    .filter(campaign => {
+      return campaign.recipients.list_name !== TEST_LIST || !campaign.send_time;
+    })
     .sort((a, b) => new Date(b.send_time) - new Date(a.send_time));
 
   setResponseCache().forEach(cacheHeader => {

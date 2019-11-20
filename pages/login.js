@@ -22,6 +22,12 @@ const Login = () => {
               <a>Sign Up</a>
             </Link>
           </div>
+          <div className="register">
+            <div>Forgotten password?</div>
+            <Link href="/forgot-password">
+              <a>Reset password</a>
+            </Link>
+          </div>
         </div>
       </div>
       <style jsx>{`

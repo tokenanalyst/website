@@ -1,13 +1,11 @@
 import React, { useState, useContext } from 'react';
-import axios from 'axios';
 import { useRouter } from 'next/router';
-import Cookies from 'js-cookie';
 import { Card } from '@blueprintjs/core';
 
 import { LoginContext } from '../../../contexts/Login';
-import { COOKIES } from '../../../constants/cookies';
 import { SimpleButton } from '../../SimpleButton';
 import { colors, PRIMARY_GREEN } from '../../../constants/styles/colors';
+import { login } from '../../../services/login/login';
 
 export const LoginWidget = () => {
   const router = useRouter();
@@ -18,47 +16,6 @@ export const LoginWidget = () => {
   const [password, setPassword] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const isToRedirectToStripe = loginCtx.paymentData.stripe;
-
-  const login = async () => {
-    try {
-      setIsSubmitted(true);
-      const response = await axios.post(
-        'https://api.tokenanalyst.io/auth/user/login',
-        {
-          username: email,
-          password,
-        }
-      );
-      const {
-        data: { apiKey, name, username, id, profile },
-      } = response;
-
-      Cookies.set(COOKIES.apiKey, apiKey);
-      Cookies.set(COOKIES.loggedInAsUsername, username);
-      Cookies.set(COOKIES.loggedInAsUserId, id);
-      Cookies.set(COOKIES.tier, profile);
-      loginCtx.setIsLoggedIn(true);
-      loginCtx.intercom.setUser(name, username);
-
-      if (
-        loginCtx.paymentData.stripe &&
-        loginCtx.paymentData.stripe.redirectFn
-      ) {
-        loginCtx.setPaymentData({ ...loginCtx.paymentData, stripe: null });
-        return loginCtx.paymentData.stripe.redirectFn({
-          customerEmail: username,
-          clientReferenceId: id.toString(),
-        });
-      }
-
-      router.push('/');
-    } catch (e) {
-      setIsSubmitted(false);
-      setIsError(true);
-    }
-  };
-
   return (
     <>
       <div className="container">
@@ -66,7 +23,14 @@ export const LoginWidget = () => {
           <form
             onSubmit={e => {
               e.preventDefault();
-              login();
+              login(
+                email,
+                password,
+                loginCtx,
+                router,
+                setIsSubmitted,
+                setIsError
+              );
             }}
           >
             <div className="header">Email</div>
@@ -94,11 +58,6 @@ export const LoginWidget = () => {
             </div>
             {isError ? (
               <div className="error">Incorrect email or password</div>
-            ) : null}
-            {isToRedirectToStripe ? (
-              <div className="message">
-                Please login to complete your purchase.
-              </div>
             ) : null}
           </form>
         </Card>

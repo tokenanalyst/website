@@ -104,7 +104,6 @@ export const MobileNav = () => {
                 // TO DO: put all auth logic into its own module
                 Cookies.remove('apiKey');
                 Cookies.remove('loggedInAsUsername');
-                Cookies.remove('loggedInAsUserId');
                 loginCtx.setIsLoggedIn(false);
                 loginCtx.intercom.removeUser();
 
