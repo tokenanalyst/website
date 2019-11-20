@@ -78,6 +78,7 @@ NewsletterPost.propTypes = {
       PropTypes.string,
       PropTypes.number,
       PropTypes.bool,
+      PropTypes.array,
     ])
   ).isRequired,
   newsletterHTML: PropTypes.string.isRequired,

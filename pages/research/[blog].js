@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import { getSinglePost } from '../../services/blog';
 
 const Blog = ({ post }) => {
-  console.log(post);
   const { title, excerpt, html } = post;
   return (
     <>
