@@ -30,7 +30,7 @@ export const Layout = ({ children }) => {
   return (
     <div className="layout">
       <Head>
-        <title>TokenAnalyst</title>
+        <title key="title">TokenAnalyst</title>
         <link rel="shortcut icon" href="/static/favicon.ico" />
         <link href="/static/fonts/fonts.css" rel="stylesheet" />
         <script src="https://js.stripe.com/v3/" />
@@ -45,6 +45,7 @@ export const Layout = ({ children }) => {
         />
 
         <meta
+          key="description"
           name="description"
           content="Access comprehensive real-time and historical blockchain data including exchange flows, volumes, and other key trading metrics."
         />
