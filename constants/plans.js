@@ -31,6 +31,12 @@ export const TIERS = {
       '1h': 87600, // 10 years
     },
   },
+  '3': {
+    timeLimits: {
+      '1d': 3650, // 10 years
+      '1h': 87600, // 10 years
+    },
+  },
 };
 
 export const PLANS = {
