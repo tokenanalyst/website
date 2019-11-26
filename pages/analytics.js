@@ -16,7 +16,7 @@ const SML = 'SML';
 const SIZE_MAPPINGS = {
   [BIG]: '100%',
   [MED]: '50%',
-  [SML]: '33%',
+  [SML]: '33.3%',
 };
 
 const SidePanel = ({ categories, selectedCategory, onCategorySelect }) => {
