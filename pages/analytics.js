@@ -20,7 +20,6 @@ const SIZE_MAPPINGS = {
 };
 
 const SidePanel = ({ categories, selectedCategory, onCategorySelect }) => {
-  const router = useRouter();
   const [isDialogShown, setIsDialogShown] = useState(false);
 
   return (
@@ -130,6 +129,7 @@ const SidePanel = ({ categories, selectedCategory, onCategorySelect }) => {
         @media (min-width: 320px) and (max-width: 767px) {
           .container {
             width: 100%;
+            display: none;
           }
         }
       `}</style>
@@ -181,7 +181,13 @@ const Analytics = () => {
               ? charts.map(chart => (
                   <iframe
                     src={chart.url}
-                    width={SIZE_MAPPINGS[chart.type]}
+                    width={
+                      window.matchMedia(
+                        '(min-width: 320px) and (max-width: 767px)'
+                      ).matches
+                        ? '100%'
+                        : SIZE_MAPPINGS[chart.type]
+                    }
                     height="475px"
                     frameBorder="0"
                     className="chart"
