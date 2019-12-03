@@ -15,7 +15,7 @@ export const LoginProvider = ({ children }) => {
 
   useEffect(() => {
     if (isUserCookiesValid()) {
-      intercom.setUser(Cookies.get(COOKIES.loggedInAsUsername));
+      intercom.setUser('', Cookies.get(COOKIES.loggedInAsUsername));
       setIsLoggedIn(true);
     } else {
       intercom.removeUser();
