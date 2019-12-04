@@ -9,6 +9,7 @@ import {
   POLONIEX,
   OKEX,
   HUOBI,
+  DERIBIT,
 } from './exchanges';
 
 export const EXCHANGE_IMAGES = {
@@ -22,6 +23,7 @@ export const EXCHANGE_IMAGES = {
   [POLONIEX]: 'poloniex.png',
   [OKEX]: 'okex.png',
   [HUOBI]: 'huobi.png',
+  [DERIBIT]: 'deribit.png',
 };
 
 export const TOKEN_IMAGES = {

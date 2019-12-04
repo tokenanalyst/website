@@ -93,9 +93,9 @@ export const ExchangeList = ({
 
         <div className="desktop-list">
           {Object.values(exchanges)
-            .filter(exchangeName => {
-              return exchangeName !== exchanges.Okex;
-            })
+            // .filter(exchangeName => {
+            //   return exchangeName !== exchanges.Okex;
+            // })
             .map(exchangeName => (
               <div
                 role="link"

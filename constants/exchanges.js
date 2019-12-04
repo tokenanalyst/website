@@ -49,6 +49,7 @@ export const KUCOIN = 'Kucoin';
 export const POLONIEX = 'Poloniex';
 export const OKEX = 'Okex';
 export const HUOBI = 'Huobi';
+export const DERIBIT = 'Deribit';
 
 export const EXCHANGE_NAMES = {
   [BINANCE]: BINANCE,
@@ -61,6 +62,7 @@ export const EXCHANGE_NAMES = {
   [POLONIEX]: POLONIEX,
   [OKEX]: OKEX,
   [HUOBI]: HUOBI,
+  [DERIBIT]: DERIBIT,
 };
 
 export const TOKENS_EXCHANGE_SUPPORT = {
@@ -91,6 +93,9 @@ export const TOKENS_EXCHANGE_SUPPORT = {
     },
     [HUOBI]: {
       quoteToken: USDT,
+    },
+    [DERIBIT]: {
+      quoteToken: USD,
     },
   },
   [ETH]: {
@@ -403,15 +408,22 @@ export const TOKENS_TV_SUPPORT = {
   [KRAKEN]: [BTC, ETH, USDT_OMNI],
   [KUCOIN]: [ETH, USDT_ERC20, USDT_OMNI],
   [POLONIEX]: [BTC, ETH, USDT_ERC20, USDT_OMNI],
-  [OKEX]: [],
+  [OKEX]: [BTC],
   [HUOBI]: [BTC, USDT_OMNI],
+  [DERIBIT]: [BTC],
 };
 
 export const EXCHANGE_DISPLAY_NAME = {
   Bitmex: BITMEX,
 };
 
-export const LOGGED_OUT_SUPPORTED_EXCHANGES = [BINANCE, BITFINEX, BITMEX];
+export const LOGGED_OUT_SUPPORTED_EXCHANGES = [
+  BINANCE,
+  BITFINEX,
+  BITMEX,
+  OKEX,
+  DERIBIT,
+];
 export const LOGGED_OUT_UNSUPPORTED_EXCHANGES = [
   BITSTAMP,
   BITTREX,

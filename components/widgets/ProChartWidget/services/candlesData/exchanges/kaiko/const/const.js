@@ -75,6 +75,10 @@ export const KAIKO_EXCHANGES_MAP = {
     code: 'huob',
     name: 'Huobi',
   },
+  deribit: {
+    code: 'drbt',
+    name: 'Deribit',
+  },
 };
 
 export const KAIKO_EXCHANGES = [
