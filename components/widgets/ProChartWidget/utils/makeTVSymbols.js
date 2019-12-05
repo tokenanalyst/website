@@ -1,4 +1,5 @@
 import { tokensDb } from '../../../../services/tokensDb';
+import { SPOT, FUTURE } from '../../../../constants/instruments';
 
 export const makeTVSymbols = (token, exchangeSupport) => {
   if (!exchangeSupport) {
@@ -6,13 +7,15 @@ export const makeTVSymbols = (token, exchangeSupport) => {
   }
 
   const { quoteToken, baseToken } = exchangeSupport;
-
-  if (exchangeSupport && tokensDb.isStable(token)) {
+  if (tokensDb.isDerivative(quoteToken)) {
+    const { BTC } = tokensDb.tokens.group.native;
+    return { class: FUTURE, pair: [BTC, quoteToken] };
+  } else if (exchangeSupport && tokensDb.isStable(token)) {
     const { BTC } = tokensDb.tokens.group.native;
     const tradingPair = [!baseToken ? BTC : baseToken, quoteToken];
 
-    return tradingPair;
+    return { class: SPOT, pair: tradingPair };
   }
 
-  return [token, quoteToken];
+  return { class: SPOT, pair: [token, quoteToken] };
 };

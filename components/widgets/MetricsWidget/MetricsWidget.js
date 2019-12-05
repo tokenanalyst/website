@@ -9,6 +9,7 @@ import { TOKEN_NAMES } from '../../../constants/token-names';
 import { ProChartContainer } from '../ProChartWidget/ProChartContainer';
 import { NATIVE_TOKENS, STABLE_TOKENS } from '../../../constants/tokens';
 import { TOKENS_EXCHANGE_SUPPORT } from '../../../constants/exchanges';
+import { SPOT } from '../../../constants/instruments';
 import { MetricsList } from './MetricsList';
 
 const TV_INITIAL_DATA_RANGE = 90; // 90 days
@@ -91,6 +92,7 @@ export const MetricsWidget = () => {
             TVSymbols={[baseToken, quoteToken]}
             TASymbol={selectedToken}
             exchangeName={firstExchange}
+            instrumentClass={SPOT}
             isIntraDay={selectedIndicator.isIntraDay}
             onChartRenderCb={async tvWidget => {
               tvInstance.current = tvWidget;

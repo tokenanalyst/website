@@ -11,6 +11,7 @@ import {
 } from './const/const';
 import { addTradingPair, makeOptions, removeTradingPair } from './utils';
 import { EXCHANGE_NAME } from '../../const';
+import { SPOT, FUTURE } from '../../../../../../../constants/instruments';
 
 const kaiko = (function kaiko() {
   let candlesData = {};
@@ -35,15 +36,27 @@ const kaiko = (function kaiko() {
       options = makeOptions({ ...DEFAULT_OPTIONS, ...opts });
     },
 
-    fetchCandles: async (pair, timeFrame, start, end, limit, exchangeName) => {
+    fetchCandles: async (
+      pair,
+      timeFrame,
+      start,
+      end,
+      limit,
+      exchangeName,
+      instrumentClass
+    ) => {
       if (!KAIKO_EXCHANGES_MAP[exchangeName.toLowerCase()]) {
         return debugError(ERROR.EXCHANGE_NOT_SUPPORTED, status.debug);
       }
-
+      console.log(pair);
       const makeCandlesUrlFn = (symbol, interval, startTime, endTime) =>
         makeCandlesRestApiUrl(status.exchange.name, restRootUrlTAProxy, {
-          instrument: `${pair[0].toLowerCase()}-${pair[1].toLowerCase()}`,
-          instrument_class: 'spot',
+          instrument:
+            // RIGHT NOW ONLY ASSUMING IS FUTURE IF NOT SPOT
+            instrumentClass === SPOT
+              ? `${pair[0].toLowerCase()}-${pair[1].toLowerCase()}`
+              : pair[1],
+          instrument_class: instrumentClass,
           interval: interval.toLowerCase(),
           start_time: moment(startTime).toISOString(),
           end_time: moment(endTime).toISOString(),

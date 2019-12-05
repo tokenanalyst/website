@@ -45,7 +45,7 @@ export const ProChartWidget = ({
             <ProChartContainer
               timeFrame="3D"
               interval="60"
-              TVSymbols={TVSymbols}
+              TVSymbols={TVSymbols.pair}
               TASymbol={selectedToken}
               exchangeName={selectedExchange}
               onChartRenderCb={async tvWidget => {
@@ -66,6 +66,7 @@ export const ProChartWidget = ({
                   .createStudy('NetFlows', false, true);
               }}
               isIntraDay
+              instrumentClass={TVSymbols.class}
             />
           </div>
           <div className="kaiko">

@@ -8,7 +8,13 @@ let subscrition;
 
 const formatDate = epoch => moment(epoch).format('DD/MM/YYYY, HH:mm:ss');
 
-const tvData = (exchangeService, exchangeName, symbols, isIntraday) => {
+const tvData = (
+  exchangeService,
+  exchangeName,
+  symbols,
+  isIntraday,
+  instrumentClass
+) => {
   const { makeTimeFrame } = config.kaiko;
 
   return {
@@ -71,7 +77,7 @@ const tvData = (exchangeService, exchangeName, symbols, isIntraday) => {
         has_empty_bars: true,
       };
 
-      if (symbols[1].match(/USD|EUR|JPY|AUD|GBP|KRW|CNY/)) {
+      if (symbols[1].match(/USD|EUR|JPY|AUD|GBP|KRW|CNY|BTCPERPETUAL/)) {
         symbolStub.pricescale = 100;
       }
 
@@ -128,7 +134,8 @@ const tvData = (exchangeService, exchangeName, symbols, isIntraday) => {
         from * 1000,
         to * 1000,
         1000,
-        symbolInfo.exchange
+        symbolInfo.exchange,
+        instrumentClass
       );
 
       if (bars.length) {
