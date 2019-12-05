@@ -48,7 +48,6 @@ const kaiko = (function kaiko() {
       if (!KAIKO_EXCHANGES_MAP[exchangeName.toLowerCase()]) {
         return debugError(ERROR.EXCHANGE_NOT_SUPPORTED, status.debug);
       }
-      console.log(pair);
       const makeCandlesUrlFn = (symbol, interval, startTime, endTime) =>
         makeCandlesRestApiUrl(status.exchange.name, restRootUrlTAProxy, {
           instrument:

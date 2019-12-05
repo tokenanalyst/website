@@ -92,41 +92,37 @@ export const ExchangeList = ({
         </div>
 
         <div className="desktop-list">
-          {Object.values(exchanges)
-            // .filter(exchangeName => {
-            //   return exchangeName !== exchanges.Okex;
-            // })
-            .map(exchangeName => (
-              <div
-                role="link"
-                key={exchangeName}
+          {Object.values(exchanges).map(exchangeName => (
+            <div
+              role="link"
+              key={exchangeName}
+              className={`${
+                loginCtx.isLoggedIn
+                  ? 'exchange'
+                  : LOGGED_OUT_SUPPORTED_EXCHANGES.indexOf(exchangeName) >= 0
+                  ? `exchange`
+                  : `exchange-disabled`
+              }`}
+              tabIndex="0"
+              onKeyDown={() => {
+                exchangeChangeHandler(exchangeName);
+              }}
+              onClick={() => {
+                exchangeChangeHandler(exchangeName);
+              }}
+            >
+              {renderExchangeImg(exchangeName)}
+              <span
                 className={`${
-                  loginCtx.isLoggedIn
-                    ? 'exchange'
-                    : LOGGED_OUT_SUPPORTED_EXCHANGES.indexOf(exchangeName) >= 0
-                    ? `exchange`
-                    : `exchange-disabled`
+                  exchangeName === selectedExchange
+                    ? 'exchange-label-selected'
+                    : 'exchange-label'
                 }`}
-                tabIndex="0"
-                onKeyDown={() => {
-                  exchangeChangeHandler(exchangeName);
-                }}
-                onClick={() => {
-                  exchangeChangeHandler(exchangeName);
-                }}
               >
-                {renderExchangeImg(exchangeName)}
-                <span
-                  className={`${
-                    exchangeName === selectedExchange
-                      ? 'exchange-label-selected'
-                      : 'exchange-label'
-                  }`}
-                >
-                  {exchanges[exchangeName]}
-                </span>
-              </div>
-            ))}
+                {exchanges[exchangeName]}
+              </span>
+            </div>
+          ))}
         </div>
       </div>
       <style jsx>
