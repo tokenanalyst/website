@@ -78,6 +78,15 @@ export const onFormRegister = async (loginCtx, formValues) => {
           `${loginCtx.postRegisterViaMetricsRedirectUrl}?registered=true`
         );
       };
+    } else if (loginCtx.postRegisterViaAnalyticsUrl) {
+      redirectFn = () => {
+        ReactGA.event({
+          category: 'User',
+          action: `Registered via Analytics`,
+          label: `Funnel`,
+        });
+        Router.push(`${loginCtx.postRegisterViaAnalyticsUrl}?registered=true`);
+      };
     } else {
       redirectFn = () => {
         ReactGA.event({

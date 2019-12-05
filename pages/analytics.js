@@ -191,7 +191,10 @@ const Analytics = () => {
                     <div
                       className="placeholder"
                       style={{ width: SIZE_MAPPINGS[chart.type] }}
-                      onClick={() => router.push('/register')}
+                      onClick={() => {
+                        loginCtx.setPostRegisterViaAnalyticsUrl('/analytics');
+                        router.push('/register');
+                      }}
                     >
                       <img
                         src={IMAGE_SOURCES[chart.type]}
