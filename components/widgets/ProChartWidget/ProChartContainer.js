@@ -30,6 +30,7 @@ export const ProChartContainer = ({
   exchangeName,
   onChartRenderCb,
   isIntraDay,
+  instrumentClass,
 }) => {
   const [isLoading, setIsLoading] = useState(true);
   const tokenAnalystService = useRef(taData(taDataArgs));
@@ -44,7 +45,8 @@ export const ProChartContainer = ({
       kaikoService.current,
       exchangeName,
       TVSymbols,
-      loginCtx.isLoggedIn && isIntraDay
+      loginCtx.isLoggedIn && isIntraDay,
+      instrumentClass
     ),
     symbol: `${TVSymbols[0]}/${TVSymbols[1]}`,
     time_frames: KAIKO_TIME_FRAMES,
@@ -105,4 +107,5 @@ ProChartContainer.propTypes = {
   interval: PropTypes.string.isRequired,
   onChartRenderCb: PropTypes.func.isRequired,
   timeFrame: PropTypes.string.isRequired,
+  instrumentClass: PropTypes.string.isRequired,
 };

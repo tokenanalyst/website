@@ -2,6 +2,7 @@ import {
   NATIVE_TOKENS,
   ERC20_TOKENS,
   STABLE_TOKENS,
+  DERIVATIVES,
 } from '../../constants/tokens';
 import {
   EXCHANGE_NAMES,
@@ -100,4 +101,5 @@ export const tokensDb = {
   isNative: token => token in nativeTokens,
   isStable: token => token in stableTokens,
   isERC20: token => token in erc20Tokens,
+  isDerivative: token => Object.keys(DERIVATIVES).indexOf(token) >= 0,
 };

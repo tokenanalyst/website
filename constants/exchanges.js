@@ -3,6 +3,7 @@ import {
   STABLE_TOKENS,
   CURRENCIES,
   ERC20_TOKENS,
+  DERIVATIVES,
 } from './tokens';
 
 const { BTC, ETH } = NATIVE_TOKENS;
@@ -38,6 +39,7 @@ const {
   TKN,
 } = ERC20_TOKENS;
 const { USD } = CURRENCIES;
+const { BTCPERPETUAL } = DERIVATIVES;
 
 export const BINANCE = 'Binance';
 export const BITFINEX = 'Bitfinex';
@@ -49,6 +51,7 @@ export const KUCOIN = 'Kucoin';
 export const POLONIEX = 'Poloniex';
 export const OKEX = 'Okex';
 export const HUOBI = 'Huobi';
+export const DERIBIT = 'Deribit';
 
 export const EXCHANGE_NAMES = {
   [BINANCE]: BINANCE,
@@ -61,6 +64,7 @@ export const EXCHANGE_NAMES = {
   [POLONIEX]: POLONIEX,
   [OKEX]: OKEX,
   [HUOBI]: HUOBI,
+  [DERIBIT]: DERIBIT,
 };
 
 export const TOKENS_EXCHANGE_SUPPORT = {
@@ -87,10 +91,13 @@ export const TOKENS_EXCHANGE_SUPPORT = {
       quoteToken: USDT,
     },
     [OKEX]: {
-      quoteToken: USD,
+      quoteToken: USDT,
     },
     [HUOBI]: {
       quoteToken: USDT,
+    },
+    [DERIBIT]: {
+      quoteToken: BTCPERPETUAL,
     },
   },
   [ETH]: {
@@ -403,8 +410,9 @@ export const TOKENS_TV_SUPPORT = {
   [KRAKEN]: [BTC, ETH, USDT_OMNI],
   [KUCOIN]: [ETH, USDT_ERC20, USDT_OMNI],
   [POLONIEX]: [BTC, ETH, USDT_ERC20, USDT_OMNI],
-  [OKEX]: [],
+  [OKEX]: [BTC],
   [HUOBI]: [BTC, USDT_OMNI],
+  [DERIBIT]: [BTC],
 };
 
 export const EXCHANGE_DISPLAY_NAME = {
@@ -419,4 +427,6 @@ export const LOGGED_OUT_UNSUPPORTED_EXCHANGES = [
   KUCOIN,
   POLONIEX,
   HUOBI,
+  OKEX,
+  DERIBIT,
 ];
