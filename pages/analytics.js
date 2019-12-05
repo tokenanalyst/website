@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import axios from 'axios';
@@ -8,6 +8,7 @@ import { colors } from '../constants/styles/colors';
 import { CTALink } from '../components/widgets/ProChartWidget/CTALink';
 import { ButtonMarketing } from '../components/ButtonMarketing';
 import { SimpleDialog } from '../components/SimpleDialog';
+import { LoginContext } from '../contexts/Login';
 
 const BIG = 'BIG';
 const MED = 'MED';
@@ -17,6 +18,12 @@ const SIZE_MAPPINGS = {
   [BIG]: '100%',
   [MED]: '50%',
   [SML]: '33.3%',
+};
+
+const IMAGE_SOURCES = {
+  [BIG]: 'static/png/blurred-chart-large.png',
+  [MED]: 'static/png/blurred-chart-medium.png',
+  [SML]: 'static/png/blurred-chart-small.png',
 };
 
 const SidePanel = ({ categories, selectedCategory, onCategorySelect }) => {
@@ -147,12 +154,11 @@ const Analytics = () => {
   const [charts, setCharts] = useState(null);
   const [categories, setCategories] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const router = useRouter();
 
   useEffect(() => {
     const getCharts = async () => {
-      const res = await axios.get(
-        'https://plotly.tokenanalyst.io/chart-metadata'
-      );
+      const res = await axios.get('http://localhost:8050/chart-metadata');
       setCharts(res.data.items);
       setCategories(res.data.categories);
       setSelectedCategory(res.data.categories[0]);
@@ -160,6 +166,8 @@ const Analytics = () => {
 
     getCharts();
   }, []);
+
+  const loginCtx = useContext(LoginContext);
 
   return (
     <>
@@ -178,21 +186,43 @@ const Analytics = () => {
         {charts && (
           <div className="charts">
             {selectedCategory === 'All'
-              ? charts.map(chart => (
-                  <iframe
-                    src={chart.url}
-                    width={
-                      window.matchMedia(
-                        '(min-width: 320px) and (max-width: 767px)'
-                      ).matches
-                        ? '100%'
-                        : SIZE_MAPPINGS[chart.type]
-                    }
-                    height="475px"
-                    frameBorder="0"
-                    className="chart"
-                  ></iframe>
-                ))
+              ? charts.map(chart =>
+                  !loginCtx.isLoggedIn && chart.behind_wall ? (
+                    <div
+                      className="placeholder"
+                      style={{ width: SIZE_MAPPINGS[chart.type] }}
+                      onClick={() => router.push('/register')}
+                    >
+                      <img
+                        src={IMAGE_SOURCES[chart.type]}
+                        className="blurred-image"
+                        width="100%"
+                        height="475px"
+                      ></img>
+                      <div className="blurred-image-text">
+                        Sign up for this Analytic and more!
+                        <img
+                          src="static/png/logo_mobile.png"
+                          className="logo"
+                        ></img>
+                      </div>
+                    </div>
+                  ) : (
+                    <iframe
+                      src={chart.url}
+                      width={
+                        window.matchMedia(
+                          '(min-width: 320px) and (max-width: 767px)'
+                        ).matches
+                          ? '100%'
+                          : SIZE_MAPPINGS[chart.type]
+                      }
+                      height="475px"
+                      frameBorder="0"
+                      className="chart"
+                    ></iframe>
+                  )
+                )
               : charts
                   .filter(chart => chart.category === selectedCategory)
                   .map(chart => (
@@ -220,10 +250,34 @@ const Analytics = () => {
           }
           .charts {
             width: 86%;
+            display: flex;
+            flex-wrap: wrap;
           }
           .chart {
             border: 1px solid black;
             border-radius: 10px;
+          }
+          .placeholder {
+            border: 1px solid black;
+            border-radius: 10px;
+            position: relative;
+            cursor: pointer;
+          }
+          .blurred-image {
+            filter: blur(4px);
+          }
+          .blurred-image-text {
+            position: absolute;
+            left: 25%;
+            top: 30%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          }
+          .logo {
+            height: 60px;
+            border-radius: 10px;
+            margin-top: 10px;
           }
           @media (min-width: 320px) and (max-width: 767px) {
             .charts {
