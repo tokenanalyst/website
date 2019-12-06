@@ -158,7 +158,9 @@ const Analytics = () => {
 
   useEffect(() => {
     const getCharts = async () => {
-      const res = await axios.get('http://localhost:8050/chart-metadata');
+      const res = await axios.get(
+        'https://plotly.tokenanalyst.io/chart-metadata'
+      );
       setCharts(res.data.items);
       setCategories(res.data.categories);
       setSelectedCategory(res.data.categories[0]);
@@ -187,7 +189,7 @@ const Analytics = () => {
           <div className="charts">
             {selectedCategory === 'All'
               ? charts.map(chart =>
-                  !loginCtx.isLoggedIn && chart.behind_wall ? (
+                  !loginCtx.isLoggedIn && chart.reg_wall ? (
                     <div
                       className="placeholder"
                       style={{ width: SIZE_MAPPINGS[chart.type] }}
@@ -200,7 +202,7 @@ const Analytics = () => {
                         src={IMAGE_SOURCES[chart.type]}
                         className="blurred-image"
                         width="100%"
-                        height="475px"
+                        height="470px"
                       ></img>
                       <div className="blurred-image-text">
                         Sign up for this Analytic and more!
