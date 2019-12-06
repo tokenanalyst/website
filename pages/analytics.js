@@ -230,15 +230,40 @@ const Analytics = () => {
                 )
               : charts
                   .filter(chart => chart.category === selectedCategory)
-                  .map(chart => (
-                    <iframe
-                      src={chart.url}
-                      width={SIZE_MAPPINGS[chart.type]}
-                      height="475px"
-                      frameBorder="0"
-                      className="chart"
-                    ></iframe>
-                  ))}
+                  .map(chart =>
+                    !loginCtx.isLoggedIn && chart.reg_wall ? (
+                      <div
+                        className="placeholder"
+                        style={{ width: SIZE_MAPPINGS[chart.type] }}
+                        onClick={() => {
+                          loginCtx.setPostRegisterViaAnalyticsUrl('/analytics');
+                          router.push('/register');
+                        }}
+                      >
+                        <img
+                          src={IMAGE_SOURCES[chart.type]}
+                          className="blurred-image"
+                          width="100%"
+                          height="470px"
+                        ></img>
+                        <div className="blurred-image-text">
+                          Sign up for this Analytic and more!
+                          <img
+                            src="static/png/logo_mobile.png"
+                            className="logo"
+                          ></img>
+                        </div>
+                      </div>
+                    ) : (
+                      <iframe
+                        src={chart.url}
+                        width={SIZE_MAPPINGS[chart.type]}
+                        height="475px"
+                        frameBorder="0"
+                        className="chart"
+                      ></iframe>
+                    )
+                  )}
           </div>
         )}
       </div>
