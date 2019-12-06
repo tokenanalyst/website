@@ -12,6 +12,10 @@ export const LoginProvider = ({ children }) => {
     postRegisterViaMetricsRedirectUrl,
     setPostRegisterViaMetricsRedirectUrl,
   ] = useState(null);
+  const [
+    postRegisterViaAnalyticsUrl,
+    setPostRegisterViaAnalyticsUrl,
+  ] = useState(null);
 
   useEffect(() => {
     if (isUserCookiesValid()) {
@@ -36,9 +40,11 @@ export const LoginProvider = ({ children }) => {
     intercom,
     postRegisterRedirectUrl,
     postRegisterViaMetricsRedirectUrl,
+    postRegisterViaAnalyticsUrl,
     setIsLoggedIn,
     setPostRegisterRedirectUrl,
     setPostRegisterViaMetricsRedirectUrl,
+    setPostRegisterViaAnalyticsUrl,
   };
 
   return (
