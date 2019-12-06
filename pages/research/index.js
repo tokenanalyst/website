@@ -78,7 +78,7 @@ const Blogs = ({ posts }) => {
               }
               .blog-featured {
                 display: flex;
-                width: 100%;
+                width: 98%;
                 border: 1px solid gray;
                 border-radius: 10px;
                 cursor: pointer;
@@ -152,6 +152,7 @@ const Blogs = ({ posts }) => {
                 }
                 .blog-featured {
                   flex-direction: column;
+                  width: 90%;
                 }
                 .image-featured {
                   width: 100%;
