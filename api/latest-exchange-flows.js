@@ -100,13 +100,18 @@ module.exports = async (req, res) => {
       );
 
       const castToNumber = data => {
-        return Object.keys(data).reduce(
-          (cur, key) => ({
+        return Object.keys(data).reduce((cur, key) => {
+          if (key === 'token' || key === 'window') {
+            return {
+              ...cur,
+              [key]: data[key],
+            };
+          }
+          return {
             ...cur,
-            [key]: Number.isNaN(tokenData[key]) ? 0 : Number(tokenData[key]),
-          }),
-          {}
-        );
+            [key]: isNaN(data[key]) ? 0 : Number(data[key]),
+          };
+        }, {});
       };
 
       const {
