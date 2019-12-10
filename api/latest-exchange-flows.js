@@ -99,6 +99,16 @@ module.exports = async (req, res) => {
         item => item.token === token && item.window === dataWindow
       );
 
+      const castToNumber = data => {
+        return Object.keys(data).reduce(
+          (cur, key) => ({
+            ...cur,
+            [key]: Number.isNaN(tokenData[key]) ? 0 : Number(tokenData[key]),
+          }),
+          {}
+        );
+      };
+
       const {
         inflow_sum,
         inflow_usd_sum,
@@ -108,7 +118,7 @@ module.exports = async (req, res) => {
         outflow_usd_sum,
         outflow_sum_pct_change,
         outflow_usd_sum_pct_change,
-      } = tokenData;
+      } = castToNumber(tokenData);
 
       ta_response[token].values[`data-window-${dataWindow}`] = {
         inflow_sum,
