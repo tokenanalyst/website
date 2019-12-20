@@ -15,7 +15,6 @@ const {
   OMNI,
   USDC,
   TUSD,
-  DAI,
   GUSD,
 } = STABLE_TOKENS;
 const {
@@ -117,12 +116,6 @@ export const TOKENS_EXCHANGE_SUPPORT = {
       quoteToken: USD,
     },
     [POLONIEX]: {
-      quoteToken: USDT,
-    },
-  },
-  [DAI]: {
-    [BITTREX]: {
-      baseToken: BTC,
       quoteToken: USDT,
     },
   },
@@ -406,7 +399,7 @@ export const TOKENS_TV_SUPPORT = {
   [BITFINEX]: [BTC, ETH, USDT_ERC20, USDT_OMNI, USDC, PAX, TUSD],
   [BITMEX]: [BTC],
   [BITSTAMP]: [BTC],
-  [BITTREX]: [BTC, USDT_ERC20, USDT_OMNI, PAX, DAI],
+  [BITTREX]: [BTC, USDT_ERC20, USDT_OMNI, PAX],
   [KRAKEN]: [BTC, ETH, USDT_OMNI],
   [KUCOIN]: [ETH, USDT_ERC20, USDT_OMNI],
   [POLONIEX]: [BTC, ETH, USDT_ERC20, USDT_OMNI],
