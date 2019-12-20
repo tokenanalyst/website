@@ -5,7 +5,7 @@ const defaultTokens = [
   NATIVE_TOKENS.BTC,
   NATIVE_TOKENS.ETH,
   STABLE_TOKENS.USDC,
-  STABLE_TOKENS.DAI,
+  STABLE_TOKENS.PAX,
 ];
 
 export const getTokens = () => {
