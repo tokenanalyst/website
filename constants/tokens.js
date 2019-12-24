@@ -335,6 +335,16 @@ export const METRICS = {
           indicator: 'Active Recipients',
           requiresLogin: true,
         },
+        {
+          name: 'New Eth Addresses',
+          indicator: 'New Eth Addresses',
+          requiresLogin: true,
+        },
+        {
+          name: 'Total Eth Addresses',
+          indicator: 'Total Eth Addresses',
+          requiresLogin: true,
+        },
       ],
     },
     {

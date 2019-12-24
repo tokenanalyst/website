@@ -44,6 +44,8 @@ const ETH_INDICATORS = [
     title: 'Total Daily Uncle Reward USD',
     symbol: '#TOTALDAILTYUNCLEREWARDUSD',
   },
+  { title: 'New Eth Addresses', symbol: '#ETHNEWADDRESS' },
+  { title: 'Total Eth Addresses', symbol: '#ETHNEWADDRESSTOTAL' },
 ];
 
 const COMMON_INDICATORS = [
