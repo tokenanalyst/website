@@ -111,6 +111,16 @@ export const BTC_STUDIES = [
     urlSlug: API_METRICS.Sopr,
     dataPoint: 'sopr',
   },
+  {
+    symbol: '#BTCNEWADDRESS',
+    urlSlug: API_METRICS.NewAddress,
+    dataPoint: 'number_of_new_addresses',
+  },
+  {
+    symbol: '#BTCNEWADDRESSTOTAL',
+    urlSlug: API_METRICS.NewAddress,
+    dataPoint: 'total_number_of_addresses',
+  },
 ];
 
 export const BTC_SYMBOLS = [
@@ -136,4 +146,6 @@ export const BTC_SYMBOLS = [
   { symbol: '#TOTALDAILTYHASHRATE' },
   { symbol: '#TOTALDAILTYBLOCKCOUNT' },
   { symbol: '#SOPR' },
+  { symbol: '#BTCNEWADDRESS' },
+  { symbol: '#BTCNEWADDRESSTOTAL' },
 ];

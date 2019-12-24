@@ -23,7 +23,9 @@ const BTC_INDICATORS = [
   { title: 'UTXO 3 years-5 years', symbol: '#3Y-5Y' },
   { title: 'UTXO 5 years-10 years', symbol: '#5Y-10Y' },
   { title: 'UTXO > 10 years', symbol: '#>10Y' },
-  { title: 'SOPR', symbol: 'SOPR' },
+  { title: 'SOPR', symbol: '#SOPR' },
+  { title: 'New Addresses', symbol: '#BTCNEWADDRESS' },
+  { title: 'Total Addresses', symbol: '#BTCNEWADDRESSTOTAL' },
 ];
 
 const ETH_INDICATORS = [

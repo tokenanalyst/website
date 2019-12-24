@@ -39,6 +39,9 @@ module.exports = userConfig => {
   ta.tokenActiveAddressWindowHistorical = compose(
     fetchDataFromApi(ENDPOINTS.private.token_active_address_window_historical)
   );
+  ta.tokenNewAddressWindowHistorical = compose(
+    fetchDataFromApi(ENDPOINTS.private.token_new_address_window_historical)
+  );
   ta.tokenNvtWindowHistorical = compose(
     fetchDataFromApi(ENDPOINTS.private.token_nvt_window_historical)
   );
