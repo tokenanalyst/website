@@ -106,6 +106,11 @@ export const BTC_STUDIES = [
     urlSlug: API_METRICS.Hashrate,
     dataPoint: 'total_daily_block_count',
   },
+  {
+    symbol: '#SOPR',
+    urlSlug: API_METRICS.Sopr,
+    dataPoint: 'sopr',
+  },
 ];
 
 export const BTC_SYMBOLS = [
@@ -130,4 +135,5 @@ export const BTC_SYMBOLS = [
   { symbol: '#>10Y' },
   { symbol: '#TOTALDAILTYHASHRATE' },
   { symbol: '#TOTALDAILTYBLOCKCOUNT' },
+  { symbol: '#SOPR' },
 ];

@@ -8,4 +8,5 @@ export const API_METRICS = {
   Utxo: 'Utxo',
   Hashrate: 'Hashrate',
   Rewards: 'Rewards',
+  Sopr: 'Sopr',
 };
