@@ -23,6 +23,7 @@ module.exports = {
         'token_miner_hashrate_window_historical/last',
       token_miner_rewards_window_historical: () =>
         'token_miner_rewards_window_historical/last',
+      token_sopr_window_historical: () => 'token_sopr_window_historical/lasts',
     },
     public: {
       exchange_flows_all_tokens_v5: () =>

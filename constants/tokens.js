@@ -258,6 +258,15 @@ export const METRICS = {
         },
       ],
     },
+    {
+      category: 'Spent Outputs Profit Ratio',
+      values: [
+        {
+          name: 'SOPR',
+          indicator: 'SOPR',
+        },
+      ],
+    },
   ],
   [NATIVE_TOKENS.ETH]: [
     {
