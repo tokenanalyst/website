@@ -110,6 +110,16 @@ export const METRICS = {
           indicator: 'Active Recipients',
           requiresLogin: true,
         },
+        {
+          name: 'New Addresses',
+          indicator: 'New Addresses',
+          requiresLogin: true,
+        },
+        {
+          name: 'Total Addresses',
+          indicator: 'Total Addresses',
+          requiresLogin: true,
+        },
       ],
     },
     {
