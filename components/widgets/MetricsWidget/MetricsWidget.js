@@ -18,6 +18,16 @@ export const MetricsWidget = () => {
   const [selectedToken, setSelectedToken] = useState(NATIVE_TOKENS.BTC);
   const [selectedIndicator, setSelectedIndicator] = useState({});
 
+  const TVOptions = {
+    disabled_features: [
+      'volume_force_overlay',
+      'header_symbol_search',
+      'header_indicators',
+      'header_compare',
+      'header_saveload',
+      'create_volume_indicator_by_default',
+    ],
+  };
   const tvInstance = useRef(null);
   const studies = useRef({
     flows: { entityId: null },
@@ -90,6 +100,7 @@ export const MetricsWidget = () => {
             timeFrame="3D"
             interval="60"
             TVSymbols={[baseToken, quoteToken]}
+            TVOptions={TVOptions}
             TASymbol={selectedToken}
             exchangeName={firstExchange}
             instrumentClass={SPOT}

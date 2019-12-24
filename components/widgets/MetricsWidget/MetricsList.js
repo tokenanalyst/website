@@ -1,6 +1,7 @@
 import React, { useState, useContext, useMemo } from 'react';
 import { Card } from '@blueprintjs/core';
 import ReactGA from 'react-ga';
+import PropTypes from 'prop-types';
 
 import { CollapsibleItem } from '../../CollapsibleItem';
 import { METRICS, TOKEN_TYPES } from '../../../constants/tokens';
@@ -60,7 +61,7 @@ export const MetricsList = ({
                   body={
                     <>
                       {metric.values.map(value => (
-                        <div className="item-row" key={value}>
+                        <div className="item-row" key={value.indicator}>
                           <span
                             className={computeMetricClass(
                               loginCtx.isLoggedIn,
@@ -140,4 +141,12 @@ export const MetricsList = ({
       </style>
     </>
   );
+};
+
+MetricsList.propTypes = {
+  token: PropTypes.string.isRequired,
+  selectedIndicator: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.string, PropTypes.bool])
+  ).isRequired,
+  setSelectedIndicator: PropTypes.func.isRequired,
 };

@@ -31,6 +31,7 @@ export const ProChartContainer = ({
   onChartRenderCb,
   isIntraDay,
   instrumentClass,
+  TVOptions,
 }) => {
   const [isLoading, setIsLoading] = useState(true);
   const tokenAnalystService = useRef(taData(taDataArgs));
@@ -51,6 +52,7 @@ export const ProChartContainer = ({
     symbol: `${TVSymbols[0]}/${TVSymbols[1]}`,
     time_frames: KAIKO_TIME_FRAMES,
     debug: false,
+    ...TVOptions,
   };
 
   tokenAnalystService.current.setToken(TASymbol);
@@ -101,11 +103,20 @@ export const ProChartContainer = ({
 };
 
 ProChartContainer.propTypes = {
-  TASymbol: PropTypes.PropTypes.string.isRequired,
+  TASymbol: PropTypes.string.isRequired,
   TVSymbols: PropTypes.arrayOf(PropTypes.string).isRequired,
+  TVOptions: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.string, PropTypes.array])
+  ),
   exchangeName: PropTypes.string.isRequired,
   interval: PropTypes.string.isRequired,
   onChartRenderCb: PropTypes.func.isRequired,
   timeFrame: PropTypes.string.isRequired,
   instrumentClass: PropTypes.string.isRequired,
+  isIntraDay: PropTypes.bool,
+};
+
+ProChartContainer.defaultProps = {
+  isIntraDay: false,
+  TVOptions: {},
 };
