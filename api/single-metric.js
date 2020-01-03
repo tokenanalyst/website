@@ -45,6 +45,8 @@ module.exports = async (req, res) => {
     [API_METRICS.Rewards]: privateApi.tokenRewardsWindowHistorical,
     [API_METRICS.Sopr]: privateApi.tokenSoprWindowHistorical,
     [API_METRICS.NewAddress]: privateApi.tokenNewAddressWindowHistorical,
+    [API_METRICS.AddressBalance]:
+      privateApi.tokenAddressBalancesWindowHistorical,
   };
 
   let result;

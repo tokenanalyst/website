@@ -3,6 +3,7 @@ export const API_METRICS = {
   Transactions: 'Transactions',
   Addresses: 'Addresses',
   NewAddress: 'NewAddress',
+  AddressBalances: 'AddressBalances',
   Supply: 'Supply',
   Nvt: 'Nvt',
   Fees: 'Fees',

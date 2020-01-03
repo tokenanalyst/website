@@ -26,6 +26,12 @@ const BTC_INDICATORS = [
   { title: 'SOPR', symbol: '#SOPR' },
   { title: 'New Addresses', symbol: '#BTCNEWADDRESS' },
   { title: 'Total Addresses', symbol: '#BTCNEWADDRESSTOTAL' },
+  { title: 'Balance > 0', symbol: '#BALANCE>0' },
+  { title: 'Balance > 1', symbol: '#BALANCE>１' },
+  { title: 'Balance > 10', symbol: '#BALANCE>10' },
+  { title: 'Balance > 100', symbol: '#BALANCE>100' },
+  { title: 'Balance > 1000', symbol: '#BALANCE>1000' },
+  { title: 'Balance > 10000', symbol: '#BALANCE>10000' },
 ];
 
 const ETH_INDICATORS = [

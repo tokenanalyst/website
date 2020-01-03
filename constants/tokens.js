@@ -123,6 +123,35 @@ export const METRICS = {
       ],
     },
     {
+      category: 'Address Balances',
+      values: [
+        {
+          name: '> 0',
+          indicator: 'Balance > 0',
+        },
+        {
+          name: '> 1',
+          indicator: 'Balance > 1',
+        },
+        {
+          name: '> 10',
+          indicator: 'Balance > 10',
+        },
+        {
+          name: '> 100',
+          indicator: 'Balance > 100',
+        },
+        {
+          name: '> 1000',
+          indicator: 'Balance > 1000',
+        },
+        {
+          name: '> 10000',
+          indicator: 'Balance > 10000',
+        },
+      ],
+    },
+    {
       category: 'Supply',
       values: [
         {
