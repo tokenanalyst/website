@@ -15,6 +15,8 @@ module.exports = {
         'token_active_address_window_historical/last',
       token_new_address_window_historical: () =>
         'token_new_address_window_historical/last',
+      token_address_balance_group_window_historical: () =>
+        'token_address_balance_group_window_historical/last',
       token_nvt_window_historical: () => 'token_nvt_window_historical/last',
       token_fees_window_historical: () => 'token_fees_window_historical/last',
       token_supply_window_historical: () =>

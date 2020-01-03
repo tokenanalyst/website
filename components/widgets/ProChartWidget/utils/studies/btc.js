@@ -121,6 +121,36 @@ export const BTC_STUDIES = [
     urlSlug: API_METRICS.NewAddress,
     dataPoint: 'total_number_of_addresses',
   },
+  {
+    symbol: '#BALANCE>0',
+    urlSlug: API_METRICS.AddressBalances,
+    dataPoint: 'balance_greater_than_0',
+  },
+  {
+    symbol: '#BALANCE>1',
+    urlSlug: API_METRICS.AddressBalances,
+    dataPoint: 'balance_greater_than_1',
+  },
+  {
+    symbol: '#BALANCE>10',
+    urlSlug: API_METRICS.AddressBalances,
+    dataPoint: 'balance_greater_than_10',
+  },
+  {
+    symbol: '#BALANCE>100',
+    urlSlug: API_METRICS.AddressBalances,
+    dataPoint: 'balance_greater_than_100',
+  },
+  {
+    symbol: '#BALANCE>1000',
+    urlSlug: API_METRICS.AddressBalances,
+    dataPoint: 'balance_greater_than_1000',
+  },
+  {
+    symbol: '#BALANCE>10000',
+    urlSlug: API_METRICS.AddressBalances,
+    dataPoint: 'balance_greater_than_10000',
+  },
 ];
 
 export const BTC_SYMBOLS = [
@@ -148,4 +178,10 @@ export const BTC_SYMBOLS = [
   { symbol: '#SOPR' },
   { symbol: '#BTCNEWADDRESS' },
   { symbol: '#BTCNEWADDRESSTOTAL' },
+  { symbol: '#BALANCE>0' },
+  { symbol: '#BALANCE>1' },
+  { symbol: '#BALANCE>10' },
+  { symbol: '#BALANCE>100' },
+  { symbol: '#BALANCE>1000' },
+  { symbol: '#BALANCE>10000' },
 ];

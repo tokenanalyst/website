@@ -42,6 +42,11 @@ module.exports = userConfig => {
   ta.tokenNewAddressWindowHistorical = compose(
     fetchDataFromApi(ENDPOINTS.private.token_new_address_window_historical)
   );
+  ta.tokenAddressBalancesWindowHistorical = compose(
+    fetchDataFromApi(
+      ENDPOINTS.private.token_address_balance_group_window_historical
+    )
+  );
   ta.tokenNvtWindowHistorical = compose(
     fetchDataFromApi(ENDPOINTS.private.token_nvt_window_historical)
   );
