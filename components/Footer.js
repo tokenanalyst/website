@@ -14,9 +14,9 @@ export const Footer = () => {
             <Link href="/about">
               <a className="item">About</a>
             </Link>
-            <Link href="/stablecoins">
+            {/* <Link href="/stablecoins">
               <a className="item">Stablecoins</a>
-            </Link>
+            </Link> */}
             <Link href="/compare">
               <a className="item">Compare</a>
             </Link>

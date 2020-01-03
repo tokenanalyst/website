@@ -48,11 +48,11 @@ export const MobileNav = () => {
               Exchange Flows
             </div>
           </Link>
-          <Link href="/stablecoins" passHref>
+          {/* <Link href="/stablecoins" passHref>
             <div className={setLinkActive(router.pathname, '/stablecoins')}>
               Stablecoins
             </div>
-          </Link>
+          </Link> */}
           <Link href="/insights" passHref>
             <div className={setLinkActive(router.pathname, '/insights')}>
               Insights

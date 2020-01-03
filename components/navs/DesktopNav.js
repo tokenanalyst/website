@@ -89,7 +89,7 @@ export const DesktopNav = () => {
                   Exchange Flows
                 </div>
               </Link>
-              <Link href="/stablecoins" passHref>
+              {/* <Link href="/stablecoins" passHref>
                 <div
                   className={classNames(
                     'desktop-link',
@@ -100,7 +100,7 @@ export const DesktopNav = () => {
                 >
                   Stablecoins
                 </div>
-              </Link>
+              </Link> */}
               <Link href={`/insights?${metricsTierParamString}`} passHref>
                 <div
                   className={classNames(
