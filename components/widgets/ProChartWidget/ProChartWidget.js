@@ -43,8 +43,8 @@ export const ProChartWidget = ({
         <div className="right-panel">
           <div className="pro-chart">
             <ProChartContainer
-              timeFrame="3D"
-              interval="60"
+              timeFrame="3M"
+              interval="D"
               TVSymbols={TVSymbols.pair}
               TASymbol={selectedToken}
               exchangeName={selectedExchange}
