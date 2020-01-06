@@ -1,4 +1,4 @@
-import { timer, from, Observable, throwError } from 'rxjs';
+import { timer, from, Observable } from 'rxjs';
 import { delayWhen, retryWhen, switchMap } from 'rxjs/operators';
 
 export const fetchCandles$ = (restApiUrl, requestOptions = {}) => {
