@@ -1,7 +1,7 @@
 import pick from 'lodash/pick';
 import merge from 'lodash/merge';
-import { map, filter, tap } from 'rxjs/operators';
-import { forkJoin } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
+import { forkJoin, of } from 'rxjs';
 import moment from 'moment';
 import { fetchDataFromApi$ } from '../lib/observables';
 import { ETH, BTC, USDT_OMNI } from './const';
@@ -107,12 +107,14 @@ const ta = (function ta() {
                 .filter(item => item.time > start && item.time < end);
 
               return flowsData;
-            })
+            }),
+            catchError(() => of([]))
           )
           .toPromise();
 
       return flowsData();
     },
+
     fetchSingleMetricProxy: async (
       symbol,
       timeFrame,
@@ -173,7 +175,8 @@ const ta = (function ta() {
                 .filter(item => item.time > start && item.time < end);
 
               return flowsData;
-            })
+            }),
+            catchError(() => of([]))
           )
           .toPromise();
 
@@ -269,7 +272,8 @@ const ta = (function ta() {
                   };
                 })
                 .filter(item => item.time > start && item.time < end);
-            })
+            }),
+            catchError(() => of([]))
           )
           .toPromise();
 
