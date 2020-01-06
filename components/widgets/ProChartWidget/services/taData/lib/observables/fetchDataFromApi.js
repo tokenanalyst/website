@@ -1,5 +1,11 @@
-import { timer, from, Observable } from 'rxjs';
-import { tap, delayWhen, retryWhen, switchMap, map } from 'rxjs/operators';
+import { Observable, iif, throwError, of } from 'rxjs';
+import {
+  retryWhen,
+  switchMap,
+  concatMap,
+  delay,
+  catchError,
+} from 'rxjs/operators';
 
 export const fetchDataFromApi$ = apiCall => {
   return Observable.create(async observer => {
@@ -8,18 +14,24 @@ export const fetchDataFromApi$ = apiCall => {
 
       if (result.status === 200) {
         observer.next(result);
-        observer.complete();
-      } else {
-        observer.error(Error(result));
+        return observer.complete();
       }
+      return observer.error(Error(result));
     } catch (e) {
-      observer.error(Error(e));
+      return observer.error(Error(e));
     }
   }).pipe(
     switchMap(response => {
       return [response];
     }),
-    retryWhen(errors => errors.pipe(delayWhen(() => timer(5000))))
+    retryWhen(errors =>
+      errors.pipe(
+        concatMap((e, i) =>
+          iif(() => i > 5, throwError(e), of(e).pipe(delay(500)))
+        )
+      )
+    ),
+    catchError(() => throwError())
   );
 };
 

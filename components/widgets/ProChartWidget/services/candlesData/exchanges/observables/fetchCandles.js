@@ -1,5 +1,11 @@
-import { timer, from, Observable } from 'rxjs';
-import { delayWhen, retryWhen, switchMap } from 'rxjs/operators';
+import { Observable, iif, throwError, of } from 'rxjs';
+import {
+  retryWhen,
+  switchMap,
+  concatMap,
+  delay,
+  catchError,
+} from 'rxjs/operators';
 
 export const fetchCandles$ = (restApiUrl, requestOptions = {}) => {
   return Observable.create(async observer => {
@@ -11,19 +17,26 @@ export const fetchCandles$ = (restApiUrl, requestOptions = {}) => {
 
         if (responseBody.data) {
           observer.next(responseBody.data);
-          observer.complete();
+          return observer.complete();
         }
       } else {
-        observer.error(Error(response.status));
+        return observer.error(Error(response.status));
       }
     } catch (e) {
-      observer.error(Error(e));
+      return observer.error(e);
     }
   }).pipe(
     switchMap(response => {
       return [response];
     }),
-    retryWhen(errors => errors.pipe(delayWhen(() => timer(5000))))
+    retryWhen(errors =>
+      errors.pipe(
+        concatMap((e, i) =>
+          iif(() => i > 5, throwError(e), of(e).pipe(delay(500)))
+        )
+      )
+    ),
+    catchError(() => of([]))
   );
 };
 
