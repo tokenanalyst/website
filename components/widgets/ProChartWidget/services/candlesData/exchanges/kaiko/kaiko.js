@@ -29,7 +29,7 @@ const kaiko = (function kaiko() {
 
   status.supportedExchanges = supportedExchanges();
 
-  const DEFAULT_OPTIONS = { format: 'tradingview', apiLimit: 100 };
+  const DEFAULT_OPTIONS = { format: 'tradingview', apiLimit: 1000 };
 
   return {
     start: (opts = {}) => {
@@ -61,6 +61,7 @@ const kaiko = (function kaiko() {
           end_time: moment(endTime).toISOString(),
           exchange: KAIKO_EXCHANGES_MAP[exchangeName.toLowerCase()].code,
           commodity: 'trades',
+          page_size: limit,
         });
 
       return fetchCandles(pair, timeFrame, start, end, limit, {
