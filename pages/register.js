@@ -23,6 +23,7 @@ const Register = () => {
     if (loginCtx.isLoggedIn) {
       Router.push('/');
     }
+    window.scrollTo(0, 0);
   }, [loginCtx.isLoggedIn]);
 
   return (
