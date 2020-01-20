@@ -11,5 +11,6 @@ export const API_METRICS = {
   Hashrate: 'Hashrate',
   HashrateBtc: 'HashrateBtc',
   Rewards: 'Rewards',
+  RewardsBtc: 'RewardsBtc',
   Sopr: 'Sopr',
 };

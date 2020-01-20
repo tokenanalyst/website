@@ -288,11 +288,11 @@ export const METRICS = {
       values: [
         {
           name: 'Total Daily Block Reward',
-          indicator: 'Total Daily Block Reward',
+          indicator: 'Total Daily Block Reward (BTC)',
         },
         {
           name: 'Total Daily Block Reward USD',
-          indicator: 'Total Daily Block Reward USD',
+          indicator: 'Total Daily Block Reward USD (BTC)',
           requiresLogin: true,
         },
       ],
@@ -461,11 +461,11 @@ export const METRICS = {
       values: [
         {
           name: 'Total Daily Block Reward',
-          indicator: 'Total Daily Block Reward',
+          indicator: 'Total Daily Block Reward (ETH)',
         },
         {
           name: 'Total Daily Block Reward USD',
-          indicator: 'Total Daily Block Reward USD',
+          indicator: 'Total Daily Block Reward USD (ETH)',
           requiresLogin: true,
         },
         {

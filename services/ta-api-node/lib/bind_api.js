@@ -68,6 +68,9 @@ module.exports = userConfig => {
   ta.tokenRewardsWindowHistorical = compose(
     fetchDataFromApi(ENDPOINTS.private.token_miner_rewards_window_historical)
   );
+  ta.tokenRewardsWindowHistoricalBtc = compose(
+    fetchDataFromApi(ENDPOINTS.private.token_rewards_window_historical)
+  );
   ta.tokenSoprWindowHistorical = compose(
     fetchDataFromApi(ENDPOINTS.private.token_sopr_window_historical)
   );

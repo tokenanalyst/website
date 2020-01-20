@@ -151,6 +151,16 @@ export const BTC_STUDIES = [
     urlSlug: API_METRICS.AddressBalances,
     dataPoint: 'balance_greater_than_10000',
   },
+  {
+    symbol: '#TOTALDAILTYBLOCKREWARDBTC',
+    urlSlug: API_METRICS.RewardsBtc,
+    dataPoint: 'block_reward',
+  },
+  {
+    symbol: '#TOTALDAILTYBLOCKREWARDUSDBTC',
+    urlSlug: API_METRICS.RewardsBtc,
+    dataPoint: 'block_reward_usd',
+  },
 ];
 
 export const BTC_SYMBOLS = [
@@ -184,4 +194,6 @@ export const BTC_SYMBOLS = [
   { symbol: '#BALANCE>100' },
   { symbol: '#BALANCE>1000' },
   { symbol: '#BALANCE>10000' },
+  { symbol: '#TOTALDAILTYBLOCKREWARDBTC' },
+  { symbol: '#TOTALDAILTYBLOCKREWARDUSDBTC' },
 ];

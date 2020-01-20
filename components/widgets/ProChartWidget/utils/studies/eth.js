@@ -72,6 +72,16 @@ export const ETH_STUDIES = [
     dataPoint: 'miner_daily_uncle_reward_usd',
   },
   {
+    symbol: '#TOTALDAILTYBLOCKREWARDETH',
+    urlSlug: API_METRICS.Rewards,
+    dataPoint: 'miner_daily_block_reward',
+  },
+  {
+    symbol: '#TOTALDAILTYBLOCKREWARDUSDETH',
+    urlSlug: API_METRICS.Rewards,
+    dataPoint: 'miner_daily_block_reward_usd',
+  },
+  {
     symbol: '#ETHNEWADDRESS',
     urlSlug: API_METRICS.NewAddress,
     dataPoint: 'number_of_new_addresses',
@@ -97,4 +107,6 @@ export const ETH_SYMBOLS = [
   { symbol: '#TOTALDAILTYUNCLEREWARDUSD' },
   { symbol: '#ETHNEWADDRESS' },
   { symbol: '#ETHNEWADDRESSTOTAL' },
+  { symbol: '#TOTALDAILTYBLOCKREWARDETH' },
+  { symbol: '#TOTALDAILTYBLOCKREWARDUSDETH' },
 ];

@@ -37,6 +37,14 @@ const BTC_INDICATORS = [
     title: 'Total Daily Block Count (BTC)',
     symbol: '#TOTALDAILTYBLOCKCOUNTBTC',
   },
+  {
+    title: 'Total Daily Block Reward (BTC)',
+    symbol: '#TOTALDAILTYBLOCKREWARDBTC',
+  },
+  {
+    title: 'Total Daily Block Reward USD (BTC)',
+    symbol: '#TOTALDAILTYBLOCKREWARDUSDBTC',
+  },
 ];
 
 const ETH_INDICATORS = [
@@ -62,6 +70,14 @@ const ETH_INDICATORS = [
     title: 'Total Daily Block Count (ETH)',
     symbol: '#TOTALDAILTYBLOCKCOUNTETH',
   },
+  {
+    title: 'Total Daily Block Reward (ETH)',
+    symbol: '#TOTALDAILTYBLOCKREWARDETH',
+  },
+  {
+    title: 'Total Daily Block Reward USD (ETH)',
+    symbol: '#TOTALDAILTYBLOCKREWARDUSDETH',
+  },
 ];
 
 const COMMON_INDICATORS = [
@@ -75,11 +91,6 @@ const COMMON_INDICATORS = [
   { title: 'Total Fees USD', symbol: '#TOTALFEESUSD' },
   { title: 'Average Fees', symbol: '#AVERAGEFEESREAL' },
   { title: 'Average Fees USD', symbol: '#AVERAGEFEESUSD' },
-  { title: 'Total Daily Block Reward', symbol: '#TOTALDAILTYBLOCKREWARD' },
-  {
-    title: 'Total Daily Block Reward USD',
-    symbol: '#TOTALDAILTYBLOCKREWARDUSD',
-  },
 ];
 
 const ERC20_INDICATORS = [
