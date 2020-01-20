@@ -16,6 +16,7 @@ const {
   USDC,
   TUSD,
   GUSD,
+  DAI,
 } = STABLE_TOKENS;
 const {
   OMG,
@@ -387,6 +388,12 @@ export const TOKENS_EXCHANGE_SUPPORT = {
     },
   },
   [TKN]: {
+    [BINANCE]: {
+      baseToken: BTC,
+      quoteToken: USDT,
+    },
+  },
+  [DAI]: {
     [BINANCE]: {
       baseToken: BTC,
       quoteToken: USDT,
