@@ -274,11 +274,11 @@ export const METRICS = {
       values: [
         {
           name: 'Total Daily Hashrate',
-          indicator: 'Total Daily Hashrate',
+          indicator: 'Total Daily Hashrate (BTC)',
         },
         {
           name: 'Total Daily Block Count',
-          indicator: 'Total Daily Block Count',
+          indicator: 'Total Daily Block Count (BTC)',
           requiresLogin: true,
         },
       ],
@@ -288,11 +288,11 @@ export const METRICS = {
       values: [
         {
           name: 'Total Daily Block Reward',
-          indicator: 'Total Daily Block Reward',
+          indicator: 'Total Daily Block Reward (BTC)',
         },
         {
           name: 'Total Daily Block Reward USD',
-          indicator: 'Total Daily Block Reward USD',
+          indicator: 'Total Daily Block Reward USD (BTC)',
           requiresLogin: true,
         },
       ],
@@ -438,11 +438,11 @@ export const METRICS = {
       values: [
         {
           name: 'Total Daily Hashrate',
-          indicator: 'Total Daily Hashrate',
+          indicator: 'Total Daily Hashrate (ETH)',
         },
         {
           name: 'Total Daily Block Count',
-          indicator: 'Total Daily Block Count',
+          indicator: 'Total Daily Block Count (ETH)',
           requiresLogin: true,
         },
         {
@@ -461,11 +461,11 @@ export const METRICS = {
       values: [
         {
           name: 'Total Daily Block Reward',
-          indicator: 'Total Daily Block Reward',
+          indicator: 'Total Daily Block Reward (ETH)',
         },
         {
           name: 'Total Daily Block Reward USD',
-          indicator: 'Total Daily Block Reward USD',
+          indicator: 'Total Daily Block Reward USD (ETH)',
           requiresLogin: true,
         },
         {

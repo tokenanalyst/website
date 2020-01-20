@@ -51,16 +51,6 @@ export const COMMON_STUDIES = [
     urlSlug: API_METRICS.Fees,
     dataPoint: 'avg_fee_usd',
   },
-  {
-    symbol: '#TOTALDAILTYBLOCKREWARD',
-    urlSlug: API_METRICS.Rewards,
-    dataPoint: 'miner_daily_block_reward',
-  },
-  {
-    symbol: '#TOTALDAILTYBLOCKREWARDUSD',
-    urlSlug: API_METRICS.Rewards,
-    dataPoint: 'miner_daily_block_reward_usd',
-  },
 ];
 
 export const COMMON_SYMBOLS = [
@@ -74,6 +64,4 @@ export const COMMON_SYMBOLS = [
   { symbol: '#TOTALFEESUSD' },
   { symbol: '#AVERAGEFEESREAL' },
   { symbol: '#AVERAGEFEESUSD' },
-  { symbol: '#TOTALDAILTYBLOCKREWARD' },
-  { symbol: '#TOTALDAILTYBLOCKREWARDUSD' },
 ];

@@ -32,6 +32,19 @@ const BTC_INDICATORS = [
   { title: 'Balance > 100', symbol: '#BALANCE>100' },
   { title: 'Balance > 1000', symbol: '#BALANCE>1000' },
   { title: 'Balance > 10000', symbol: '#BALANCE>10000' },
+  { title: 'Total Daily Hashrate (BTC)', symbol: '#TOTALDAILTYHASHRATEBTC' },
+  {
+    title: 'Total Daily Block Count (BTC)',
+    symbol: '#TOTALDAILTYBLOCKCOUNTBTC',
+  },
+  {
+    title: 'Total Daily Block Reward (BTC)',
+    symbol: '#TOTALDAILTYBLOCKREWARDBTC',
+  },
+  {
+    title: 'Total Daily Block Reward USD (BTC)',
+    symbol: '#TOTALDAILTYBLOCKREWARDUSDBTC',
+  },
 ];
 
 const ETH_INDICATORS = [
@@ -52,6 +65,19 @@ const ETH_INDICATORS = [
   },
   { title: 'New Eth Addresses', symbol: '#ETHNEWADDRESS' },
   { title: 'Total Eth Addresses', symbol: '#ETHNEWADDRESSTOTAL' },
+  { title: 'Total Daily Hashrate (ETH)', symbol: '#TOTALDAILTYHASHRATEETH' },
+  {
+    title: 'Total Daily Block Count (ETH)',
+    symbol: '#TOTALDAILTYBLOCKCOUNTETH',
+  },
+  {
+    title: 'Total Daily Block Reward (ETH)',
+    symbol: '#TOTALDAILTYBLOCKREWARDETH',
+  },
+  {
+    title: 'Total Daily Block Reward USD (ETH)',
+    symbol: '#TOTALDAILTYBLOCKREWARDUSDETH',
+  },
 ];
 
 const COMMON_INDICATORS = [
@@ -65,13 +91,6 @@ const COMMON_INDICATORS = [
   { title: 'Total Fees USD', symbol: '#TOTALFEESUSD' },
   { title: 'Average Fees', symbol: '#AVERAGEFEESREAL' },
   { title: 'Average Fees USD', symbol: '#AVERAGEFEESUSD' },
-  { title: 'Total Daily Hashrate', symbol: '#TOTALDAILTYHASHRATE' },
-  { title: 'Total Daily Block Count', symbol: '#TOTALDAILTYBLOCKCOUNT' },
-  { title: 'Total Daily Block Reward', symbol: '#TOTALDAILTYBLOCKREWARD' },
-  {
-    title: 'Total Daily Block Reward USD',
-    symbol: '#TOTALDAILTYBLOCKREWARDUSD',
-  },
 ];
 
 const ERC20_INDICATORS = [

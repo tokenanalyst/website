@@ -42,6 +42,16 @@ export const ETH_STUDIES = [
     dataPoint: 'avg_gas_price_wei',
   },
   {
+    symbol: '#TOTALDAILTYHASHRATEETH',
+    urlSlug: API_METRICS.Hashrate,
+    dataPoint: 'total_daily_hashrate',
+  },
+  {
+    symbol: '#TOTALDAILTYBLOCKCOUNTETH',
+    urlSlug: API_METRICS.Hashrate,
+    dataPoint: 'total_daily_block_count',
+  },
+  {
     symbol: '#TOTALDAILTYUNCLECOUNT',
     urlSlug: API_METRICS.Hashrate,
     dataPoint: 'total_daily_uncle_count',
@@ -60,6 +70,16 @@ export const ETH_STUDIES = [
     symbol: '#TOTALDAILTYUNCLEREWARDUSD',
     urlSlug: API_METRICS.Rewards,
     dataPoint: 'miner_daily_uncle_reward_usd',
+  },
+  {
+    symbol: '#TOTALDAILTYBLOCKREWARDETH',
+    urlSlug: API_METRICS.Rewards,
+    dataPoint: 'miner_daily_block_reward',
+  },
+  {
+    symbol: '#TOTALDAILTYBLOCKREWARDUSDETH',
+    urlSlug: API_METRICS.Rewards,
+    dataPoint: 'miner_daily_block_reward_usd',
   },
   {
     symbol: '#ETHNEWADDRESS',
@@ -87,4 +107,6 @@ export const ETH_SYMBOLS = [
   { symbol: '#TOTALDAILTYUNCLEREWARDUSD' },
   { symbol: '#ETHNEWADDRESS' },
   { symbol: '#ETHNEWADDRESSTOTAL' },
+  { symbol: '#TOTALDAILTYBLOCKREWARDETH' },
+  { symbol: '#TOTALDAILTYBLOCKREWARDUSDETH' },
 ];

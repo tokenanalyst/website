@@ -97,14 +97,14 @@ export const BTC_STUDIES = [
     dataPoint: '>10y',
   },
   {
-    symbol: '#TOTALDAILTYHASHRATE',
-    urlSlug: API_METRICS.Hashrate,
-    dataPoint: 'total_daily_hashrate',
+    symbol: '#TOTALDAILTYHASHRATEBTC',
+    urlSlug: API_METRICS.HashrateBtc,
+    dataPoint: 'hashrate',
   },
   {
-    symbol: '#TOTALDAILTYBLOCKCOUNT',
-    urlSlug: API_METRICS.Hashrate,
-    dataPoint: 'total_daily_block_count',
+    symbol: '#TOTALDAILTYBLOCKCOUNTBTC',
+    urlSlug: API_METRICS.HashrateBtc,
+    dataPoint: 'block_count',
   },
   {
     symbol: '#SOPR',
@@ -151,6 +151,16 @@ export const BTC_STUDIES = [
     urlSlug: API_METRICS.AddressBalances,
     dataPoint: 'balance_greater_than_10000',
   },
+  {
+    symbol: '#TOTALDAILTYBLOCKREWARDBTC',
+    urlSlug: API_METRICS.RewardsBtc,
+    dataPoint: 'block_reward',
+  },
+  {
+    symbol: '#TOTALDAILTYBLOCKREWARDUSDBTC',
+    urlSlug: API_METRICS.RewardsBtc,
+    dataPoint: 'block_reward_usd',
+  },
 ];
 
 export const BTC_SYMBOLS = [
@@ -173,8 +183,8 @@ export const BTC_SYMBOLS = [
   { symbol: '#3Y-5Y' },
   { symbol: '#5Y-10Y' },
   { symbol: '#>10Y' },
-  { symbol: '#TOTALDAILTYHASHRATE' },
-  { symbol: '#TOTALDAILTYBLOCKCOUNT' },
+  { symbol: '#TOTALDAILTYHASHRATEBTC' },
+  { symbol: '#TOTALDAILTYBLOCKCOUNTBTC' },
   { symbol: '#SOPR' },
   { symbol: '#BTCNEWADDRESS' },
   { symbol: '#BTCNEWADDRESSTOTAL' },
@@ -184,4 +194,6 @@ export const BTC_SYMBOLS = [
   { symbol: '#BALANCE>100' },
   { symbol: '#BALANCE>1000' },
   { symbol: '#BALANCE>10000' },
+  { symbol: '#TOTALDAILTYBLOCKREWARDBTC' },
+  { symbol: '#TOTALDAILTYBLOCKREWARDUSDBTC' },
 ];

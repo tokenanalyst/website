@@ -42,7 +42,9 @@ module.exports = async (req, res) => {
     [API_METRICS.Fees]: privateApi.tokenFeesWindowHistorical,
     [API_METRICS.Utxo]: privateApi.tokenUtxoAgeWindowHistorical,
     [API_METRICS.Hashrate]: privateApi.tokenHashrateWindowHistorical,
+    [API_METRICS.HashrateBtc]: privateApi.tokenHashrateWindowHistoricalBtc,
     [API_METRICS.Rewards]: privateApi.tokenRewardsWindowHistorical,
+    [API_METRICS.RewardsBtc]: privateApi.tokenRewardsWindowHistoricalBtc,
     [API_METRICS.Sopr]: privateApi.tokenSoprWindowHistorical,
     [API_METRICS.NewAddress]: privateApi.tokenNewAddressWindowHistorical,
     [API_METRICS.AddressBalances]:
