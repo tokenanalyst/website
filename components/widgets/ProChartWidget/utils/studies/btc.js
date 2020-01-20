@@ -99,12 +99,12 @@ export const BTC_STUDIES = [
   {
     symbol: '#TOTALDAILTYHASHRATE',
     urlSlug: API_METRICS.Hashrate,
-    dataPoint: 'total_daily_hashrate',
+    dataPoint: 'hashrate',
   },
   {
     symbol: '#TOTALDAILTYBLOCKCOUNT',
     urlSlug: API_METRICS.Hashrate,
-    dataPoint: 'total_daily_block_count',
+    dataPoint: 'block_count',
   },
   {
     symbol: '#SOPR',
