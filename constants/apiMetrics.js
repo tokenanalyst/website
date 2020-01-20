@@ -9,6 +9,7 @@ export const API_METRICS = {
   Fees: 'Fees',
   Utxo: 'Utxo',
   Hashrate: 'Hashrate',
+  HashrateBtc: 'HashrateBtc',
   Rewards: 'Rewards',
   Sopr: 'Sopr',
 };

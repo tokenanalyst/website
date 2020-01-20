@@ -42,6 +42,16 @@ export const ETH_STUDIES = [
     dataPoint: 'avg_gas_price_wei',
   },
   {
+    symbol: '#TOTALDAILTYHASHRATEETH',
+    urlSlug: API_METRICS.Hashrate,
+    dataPoint: 'total_daily_hashrate',
+  },
+  {
+    symbol: '#TOTALDAILTYBLOCKCOUNTETH',
+    urlSlug: API_METRICS.Hashrate,
+    dataPoint: 'total_daily_block_count',
+  },
+  {
     symbol: '#TOTALDAILTYUNCLECOUNT',
     urlSlug: API_METRICS.Hashrate,
     dataPoint: 'total_daily_uncle_count',

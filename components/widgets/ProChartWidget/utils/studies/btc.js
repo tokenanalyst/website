@@ -97,13 +97,13 @@ export const BTC_STUDIES = [
     dataPoint: '>10y',
   },
   {
-    symbol: '#TOTALDAILTYHASHRATE',
-    urlSlug: API_METRICS.Hashrate,
+    symbol: '#TOTALDAILTYHASHRATEBTC',
+    urlSlug: API_METRICS.HashrateBtc,
     dataPoint: 'hashrate',
   },
   {
-    symbol: '#TOTALDAILTYBLOCKCOUNT',
-    urlSlug: API_METRICS.Hashrate,
+    symbol: '#TOTALDAILTYBLOCKCOUNTBTC',
+    urlSlug: API_METRICS.HashrateBtc,
     dataPoint: 'block_count',
   },
   {
@@ -173,8 +173,8 @@ export const BTC_SYMBOLS = [
   { symbol: '#3Y-5Y' },
   { symbol: '#5Y-10Y' },
   { symbol: '#>10Y' },
-  { symbol: '#TOTALDAILTYHASHRATE' },
-  { symbol: '#TOTALDAILTYBLOCKCOUNT' },
+  { symbol: '#TOTALDAILTYHASHRATEBTC' },
+  { symbol: '#TOTALDAILTYBLOCKCOUNTBTC' },
   { symbol: '#SOPR' },
   { symbol: '#BTCNEWADDRESS' },
   { symbol: '#BTCNEWADDRESSTOTAL' },

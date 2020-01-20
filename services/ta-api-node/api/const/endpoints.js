@@ -23,6 +23,8 @@ module.exports = {
         'token_supply_window_historical/last',
       token_utxo_age_window_historical: () =>
         'token_utxo_age_window_historical/last',
+      token_miner_hashrate_window_historical: () =>
+        'token_miner_hashrate_window_historical/last',
       token_hashrate_window_historical: () =>
         'token_hashrate_window_historical/last',
       token_miner_rewards_window_historical: () =>

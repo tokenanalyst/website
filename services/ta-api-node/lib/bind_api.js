@@ -60,6 +60,9 @@ module.exports = userConfig => {
     fetchDataFromApi(ENDPOINTS.private.token_utxo_age_window_historical)
   );
   ta.tokenHashrateWindowHistorical = compose(
+    fetchDataFromApi(ENDPOINTS.private.token_miner_hashrate_window_historical)
+  );
+  ta.tokenHashrateWindowHistoricalBtc = compose(
     fetchDataFromApi(ENDPOINTS.private.token_hashrate_window_historical)
   );
   ta.tokenRewardsWindowHistorical = compose(
