@@ -12,7 +12,7 @@ const auth = {
 };
 
 const getCampaignsList = () =>
-  axios(`${API_URL}/campaigns/?count=20`, {
+  axios(`${API_URL}/campaigns/?count=100`, {
     auth,
   });
 
@@ -28,10 +28,12 @@ module.exports = async (req, res) => {
 
     return res.status(data.status).send(data);
   }
+
   const newsletters = mailchimpResponse.data.campaigns
-    .filter(campaign => {
-      return campaign.recipients.list_name !== TEST_LIST || !campaign.send_time;
-    })
+    .filter(
+      campaign =>
+        campaign.recipients.list_name !== TEST_LIST || !campaign.send_time
+    )
     .sort((a, b) => new Date(b.send_time) - new Date(a.send_time));
 
   setResponseCache().forEach(cacheHeader => {
