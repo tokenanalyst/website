@@ -50,7 +50,7 @@ export const CTALink = () => {
   return (
     <div className="container">
       <Link
-        href="https://telegram.me/token_analyst_bot?startgroup=run"
+        href="https://alerts.tokenanalyst.io/"
         desktopLabel={renderCTALink()}
         isOpenInNewWindow
         onClick={() => {
