@@ -1,16 +1,22 @@
+/* eslint-disable react/no-array-index-key */
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 
 import { TokenSnapshot } from './TokenSnapshot';
 import { getTokens } from './helpers';
 
-export const TokenSnapshotWidget = ({ units, dataWindow }) => {
+export const TokenSnapshotWidget = ({
+  units,
+  dataWindow,
+  maxItems,
+  itemsDirection,
+}) => {
   const [tokens, setTokens] = useState(null);
 
   useEffect(() => {
-    setTokens(getTokens());
-  }, []);
-
+    setTokens(getTokens().slice(0, maxItems));
+  }, [maxItems]);
+  console.log(tokens);
   return (
     <>
       {tokens && (
@@ -32,7 +38,7 @@ export const TokenSnapshotWidget = ({ units, dataWindow }) => {
         {`
           .container {
             display: flex;
-            flex-direction: row;
+            flex-direction: ${itemsDirection};
             flex-wrap: wrap;
             justify-content: space-between;
             padding: 5px;
@@ -64,4 +70,11 @@ const Separator = () => (
 TokenSnapshotWidget.propTypes = {
   dataWindow: PropTypes.string.isRequired,
   units: PropTypes.string.isRequired,
+  maxItems: PropTypes.number,
+  itemsDirection: PropTypes.oneOf(['row', 'column']),
+};
+
+TokenSnapshotWidget.defaultProps = {
+  maxItems: 4,
+  itemsDirection: 'row',
 };

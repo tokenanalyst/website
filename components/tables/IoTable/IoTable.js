@@ -1,12 +1,18 @@
+import PropTypes from 'prop-types';
 import React, { useContext, useState } from 'react';
 import ReactTable from 'react-table';
 import { useRouter } from 'next/router';
 import ReactGA from 'react-ga';
-import '../../../node_modules/react-table/react-table.css';
+// import '../../../node_modules/react-table/react-table.css';
+import './table.css';
 import Cookies from 'js-cookie';
 import { LoginContext } from '../../../contexts/Login';
 import { ExchangeRegisterDialog } from '../../marketing/marketing-dialogs';
-import { LOGGED_OUT_SUPPORTED_EXCHANGES } from '../../../constants/exchanges';
+import {
+  LOGGED_OUT_SUPPORTED_EXCHANGES,
+  EXCHANGE_NAMES,
+  EXCHANGE_DISPLAY_NAME,
+} from '../../../constants/exchanges';
 
 import {
   AmountCell,
@@ -21,14 +27,10 @@ import { filterCaseInsensitive } from '../helpers';
 import { colors } from '../../../constants/styles/colors';
 
 import { COOKIES } from '../../../constants/cookies';
-import {
-  EXCHANGE_NAMES,
-  EXCHANGE_DISPLAY_NAME,
-} from '../../../constants/exchanges';
 
 const TABLE_DATA = getIoTableData();
 
-export const IoTable = ({ data, dataWindow, units }) => {
+export const IoTable = ({ data, dataWindow, units, pageSize }) => {
   const router = useRouter();
   const loginCtx = useContext(LoginContext);
   const [isRegisterDialogShown, setIsRegisterDialogShown] = useState(false);
@@ -40,18 +42,19 @@ export const IoTable = ({ data, dataWindow, units }) => {
       Header: () => <HeaderCell value={TABLE_DATA.columnHeaders.exchange} />,
       accessor: TABLE_DATA.accessors.exchange,
       Cell: ({ value }) => <ExchangeCell value={value} />,
-      width: 150,
+      width: 100,
     },
     {
       Header: () => <HeaderCell value={TABLE_DATA.columnHeaders.token} />,
       accessor: TABLE_DATA.accessors.token,
+      width: 100,
     },
     {
       Header: () => <HeaderCell value={TABLE_DATA.columnHeaders.inflow} />,
       accessor: TABLE_DATA.accessors[units].inflow,
       Cell: ({ value }) => <AmountCell value={value} units={units} />,
       filterable: false,
-      width: 135,
+      width: 100,
     },
     {
       Header: () => (
@@ -60,13 +63,14 @@ export const IoTable = ({ data, dataWindow, units }) => {
       accessor: TABLE_DATA.accessors[units].inflowChange,
       Cell: ({ value }) => <ChangeCell value={value} />,
       filterable: false,
+      width: 100,
     },
     {
       Header: () => <HeaderCell value={TABLE_DATA.columnHeaders.outflow} />,
       accessor: TABLE_DATA.accessors[units].outflow,
       Cell: ({ value }) => <AmountCell value={value} units={units} />,
       filterable: false,
-      width: 150,
+      width: 100,
     },
     {
       Header: () => (
@@ -75,6 +79,7 @@ export const IoTable = ({ data, dataWindow, units }) => {
       accessor: TABLE_DATA.accessors[units].outflowChange,
       Cell: ({ value }) => <ChangeCell value={value} />,
       filterable: false,
+      width: 100,
     },
   ];
 
@@ -87,6 +92,7 @@ export const IoTable = ({ data, dataWindow, units }) => {
             closeCb={() => setIsRegisterDialogShown(false)}
           />
           <ReactTable
+            showPageSizeOptions={false}
             PreviousComponent={PreviousButton}
             NextComponent={NextButton}
             data={data.filter(datum => datum.window === dataWindow)}
@@ -96,7 +102,7 @@ export const IoTable = ({ data, dataWindow, units }) => {
             ]}
             noDataText="No results"
             className="-highlight"
-            defaultPageSize={25}
+            defaultPageSize={pageSize}
             filterable
             defaultFilterMethod={filterCaseInsensitive}
             style={{ cursor: 'pointer' }}
@@ -215,4 +221,15 @@ export const IoTable = ({ data, dataWindow, units }) => {
       </style>
     </div>
   );
+};
+
+IoTable.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  dataWindow: PropTypes.string.isRequired,
+  units: PropTypes.string.isRequired,
+  pageSize: PropTypes.number,
+};
+
+IoTable.defaultProps = {
+  pageSize: 25,
 };

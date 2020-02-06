@@ -63,67 +63,69 @@ export const Footer = () => {
         <div className="bottom">
           <Link href="/about">
             <div>
-              <a>© 2019 TokenAnalyst Limited</a> - Icons from the Noun Project,
+              <a>© 2020 TokenAnalyst Limited</a> - Icons from the Noun Project,
               created by Matthias Hartmann, Frühstück
             </div>
           </Link>
         </div>
       </div>
-      <style jsx>{`
-        .container {
-          border-top: 1px solid rgba(151, 151, 151, 0.15);
-          font-family: Open Sans;
-          margin-top: 20px;
-          padding: 10px;
-          padding-top: 20px;
-          opacity: 0.6;
-        }
-        .top {
-          display: flex;
-          flex-direction: row;
-          justify-content: space-around;
-          padding-top: 50px;
-          padding-bottom: 50px;
-        }
-        .bottom {
-          display: flex;
-          flex-direction: row;
-          justify-content: space-around;
-          opacity: 0.7;
-          margin-top: 10px;
-          padding-top: 10px;
-          border-top: solid 1px rgba(151, 151, 151, 0.15);
-        }
-        .section {
-          display: flex;
-          flex-direction: column;
-          align-items: left;
-          padding-right: 3%;
-        }
-        .item {
-          padding-bottom: 10px;
-        }
-        .header {
-          font-size: 18px;
-          padding-bottom: 15px;
-          font-weight: bold;
-        }
-        a {
-          text-decoration: none;
-          color: black;
-        }
-        a:hover {
-          opacity: 0.5;
-        }
-        @media only screen and (max-width: 768px) {
+      <style jsx>
+        {`
           .container {
-            margin-left: 10px;
+            border-top: 1px solid rgba(151, 151, 151, 0.15);
+            font-family: Open Sans;
+            margin-top: 20px;
+            padding: 10px;
+            padding-top: 20px;
+            opacity: 0.6;
+          }
+          .top {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            padding-top: 50px;
+            padding-bottom: 50px;
+          }
+          .bottom {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            opacity: 0.7;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: solid 1px rgba(151, 151, 151, 0.15);
           }
           .section {
-            padding-right: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+            padding-right: 3%;
           }
-        }
-      `}</style>
+          .item {
+            padding-bottom: 10px;
+          }
+          .header {
+            font-size: 18px;
+            padding-bottom: 15px;
+            font-weight: bold;
+          }
+          a {
+            text-decoration: none;
+            color: black;
+          }
+          a:hover {
+            opacity: 0.5;
+          }
+          @media only screen and (max-width: 768px) {
+            .container {
+              margin-left: 10px;
+            }
+            .section {
+              padding-right: 25px;
+            }
+          }
+        `}
+      </style>
     </>
   );
 };

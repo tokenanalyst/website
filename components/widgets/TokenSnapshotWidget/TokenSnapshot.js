@@ -192,7 +192,7 @@ export const TokenSnapshot = ({
           }
           .header {
             font-family: Space Grotesk;
-            font-size: 32px;
+            font-size: 24px;
             font-weight: bold;
             padding-bottom: 30px;
             display: flex;
