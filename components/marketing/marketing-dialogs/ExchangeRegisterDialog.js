@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import ReactGA from 'react-ga';
 import { useRouter } from 'next/router';
 import { Icon } from '@blueprintjs/core';
+import PropTypes from 'prop-types';
 
 import { SimpleDialog } from '../../SimpleDialog';
 import { LoginContext } from '../../../contexts/Login';
@@ -45,7 +46,8 @@ export const ExchangeRegisterDialog = ({ isOpen, closeCb }) => {
       >
         <br />
         TokenAnalyst provides a World Class amount of Exchange Flows across all
-        major exchanges. <br />
+        major exchanges.
+        <br />
         By signing up you will have access to all of the exchanges and tokens we
         support as well as an unparalleled array of metrics across major
         blockchains
@@ -57,11 +59,12 @@ export const ExchangeRegisterDialog = ({ isOpen, closeCb }) => {
         <table style={{ width: '100%' }}>
           <tbody>
             <tr>
-              <td></td>
+              <td />
               {LOGGED_OUT_UNSUPPORTED_EXCHANGES.map(exchange => (
                 <td key={exchange}>
                   <img
                     src={`/static/png/${EXCHANGE_IMAGES[exchange]}`}
+                    alt={`exchange-${exchange}`}
                     className="exchange"
                   />
                 </td>
@@ -72,6 +75,7 @@ export const ExchangeRegisterDialog = ({ isOpen, closeCb }) => {
                 <td>
                   <img
                     src={`/static/png/coins/${TOKEN_IMAGES[token]}`}
+                    alt={`token-${token}`}
                     className="coin"
                   />
                 </td>
@@ -84,7 +88,7 @@ export const ExchangeRegisterDialog = ({ isOpen, closeCb }) => {
                       />
                     </td>
                   ) : (
-                    <td />
+                    <td key={`${token}-${exchange}`} />
                   )
                 )}
               </tr>
@@ -116,4 +120,9 @@ export const ExchangeRegisterDialog = ({ isOpen, closeCb }) => {
       `}</style>
     </>
   );
+};
+
+ExchangeRegisterDialog.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  closeCb: PropTypes.func.isRequired,
 };
