@@ -71,17 +71,6 @@ export const DesktopNav = () => {
               </Link>
             </div>
             <div className="links-metrics">
-              <Link href="/dashboard" passHref>
-                <div
-                  className={classNames(
-                    'desktop-link',
-                    setLinkActive(asPath, '/dashboard')
-                  )}
-                  onMouseOver={collapseAllSubMenus}
-                >
-                  Dashboard
-                </div>
-              </Link>
               <Link href="/" passHref>
                 <div
                   className={classNames(
@@ -98,6 +87,17 @@ export const DesktopNav = () => {
                   }}
                 >
                   Exchange Flows
+                </div>
+              </Link>
+              <Link href="/dashboard" passHref>
+                <div
+                  className={classNames(
+                    'desktop-link',
+                    setLinkActive(asPath, '/dashboard')
+                  )}
+                  onMouseOver={collapseAllSubMenus}
+                >
+                  Dashboard
                 </div>
               </Link>
               <Link href={`/insights?${metricsTierParamString}`} passHref>

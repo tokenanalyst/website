@@ -48,11 +48,6 @@ export const ProductCard = ({ title, links, description }) => {
             padding-left: 40px;
             padding-top: 30px;
             padding-right: 40px;
-
-             {
-              /* border: solid 1px #f0eeee; */
-            }
-
             box-shadow: 0 1px 3px #f0eeee, 0 1px 2px rgba(0, 0, 0, 0.24);
           }
 
