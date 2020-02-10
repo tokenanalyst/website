@@ -1,29 +1,29 @@
 export const PRODUCTS = {
   DATA: {
-    title: 'Data explorer',
-    description: `A live on-chain data explorer with visualisations of the most fundamental on-chain metrics.`,
+    title: 'Analytics Dashboard',
+    description: `A full-suite analyst toolbox with dashboards and charts for key metrics including exchange flows and on-chain network stats.`,
     links: [
       {
-        text: 'Access Data',
-        url: '/analytics',
+        text: 'View Dashboard',
+        url: '/dashboard',
         isExternal: false,
       },
     ],
   },
   RESEARCH: {
-    title: 'Research',
-    description: `We use our proprietary data to gain unparalleled insights into what's going on in the crypto markets.`,
+    title: 'Managed Nodes',
+    description: `Complete JSON-RPC access to full nodes for multiple chains, without the hassle of set up and maintenance costs.`,
     links: [
       {
-        text: 'Use Cases',
-        url: '/use-cases',
-        isExternal: false,
+        text: 'Get Access',
+        url: 'https://infra.tokenanalyst.io/',
+        isExternal: true,
       },
     ],
   },
   API: {
-    title: 'Analytics API',
-    description: `A complete and powerful API, which you can use to get access to our on-chain data.`,
+    title: 'API & WebSockets',
+    description: `A comprehensive blockchain analytics API with over 150 different metrics covering all major cryptoassets and the fastest Bitcoin WebSocket in the world`,
     links: [
       {
         text: 'Browse API',

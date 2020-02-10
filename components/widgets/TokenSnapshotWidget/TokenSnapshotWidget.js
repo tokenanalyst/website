@@ -10,26 +10,28 @@ export const TokenSnapshotWidget = ({
   dataWindow,
   maxItems,
   itemsDirection,
+  disabled,
+  isHome,
 }) => {
   const [tokens, setTokens] = useState(null);
 
   useEffect(() => {
     setTokens(getTokens().slice(0, maxItems));
   }, [maxItems]);
-  console.log(tokens);
+
   return (
     <>
       {tokens && (
         <div className="container">
           {tokens.map((token, index) => (
-            <div key={token + index}>
+            <div key={token + index} className="token">
               <TokenSnapshot
                 initialToken={token}
                 dataWindow={dataWindow}
                 units={units}
                 position={index}
+                disabled={disabled}
               />
-              {index !== tokens.length - 1 && <Separator />}
             </div>
           ))}
         </div>
@@ -43,9 +45,17 @@ export const TokenSnapshotWidget = ({
             justify-content: space-between;
             padding: 5px;
           }
-          @media only screen and (max-width: 768px) {
+          .token {
+            display: flex;
+          }
+          @media only screen and (max-width: 1360px) {
             .container {
-              flex-direction: column;
+              flex-direction: ${isHome ? 'column' : 'row'};
+              justify-content: ${isHome ? 'flex-end' : 'space-between'};
+            }
+            .token {
+              display: flex;
+              justify-content: ${isHome ? 'flex-end' : 'space-between'};
             }
           }
         `}
@@ -54,27 +64,18 @@ export const TokenSnapshotWidget = ({
   );
 };
 
-const Separator = () => (
-  <>
-    <div className="container" />
-    <style jsx>
-      {`
-        .container {
-          border-right: 1px solid rgb(203, 203, 203, 0.3);
-        }
-      `}
-    </style>
-  </>
-);
-
 TokenSnapshotWidget.propTypes = {
   dataWindow: PropTypes.string.isRequired,
   units: PropTypes.string.isRequired,
   maxItems: PropTypes.number,
   itemsDirection: PropTypes.oneOf(['row', 'column']),
+  disabled: PropTypes.bool,
+  isHome: PropTypes.bool,
 };
 
 TokenSnapshotWidget.defaultProps = {
   maxItems: 4,
   itemsDirection: 'row',
+  disabled: false,
+  isHome: false,
 };

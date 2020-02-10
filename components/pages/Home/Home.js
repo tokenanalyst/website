@@ -8,6 +8,8 @@ import { useApi } from '../../../custom-hooks';
 import { LoadingSpinner } from '../../LoadingSpinner';
 import { filterTable } from '../../tables/IoTable/helpers';
 import { pricingButton } from '../../../constants/styles/common-styled-jsx';
+import { Products } from './Products';
+import { ButtonMarketing } from '../../ButtonMarketing';
 
 export const Home = () => {
   const dataWindow = DATA_WINDOWS[0];
@@ -28,24 +30,37 @@ export const Home = () => {
                 Enterprise-grade data and tools to understand and access
                 blockchains.
               </p>
-              <div>
-                <button
-                  className="button"
-                  type="button"
-                  onClick={() => window.Intercom('show')}
-                >
-                  Access Data
-                </button>
+              <div className="top-buttons">
+                <div className="top-button">
+                  <ButtonMarketing
+                    url="/dashboard"
+                    isExternal={false}
+                    text="View Dashboard"
+                    isActive={false}
+                    isLoading={false}
+                  />
+                </div>
+                <div className="top-button">
+                  <ButtonMarketing
+                    url="/pricing"
+                    isExternal={false}
+                    text="Subscribe now"
+                    isActive={false}
+                    isLoading={false}
+                  />
+                </div>
               </div>
             </div>
           </div>
           <div className="top-container-charts">
-            <div>
+            <div className="token-snapshot">
               <TokenSnapshotWidget
                 dataWindow={DATA_WINDOWS[0]}
                 units={units}
                 maxItems={2}
                 itemsDirection="row"
+                disabled
+                isHome
               />
             </div>
             <div className="table">
@@ -55,6 +70,9 @@ export const Home = () => {
                   dataWindow={dataWindow}
                   units={units}
                   pageSize={5}
+                  showPagination={false}
+                  showPageSizeOptions={false}
+                  compactLayout
                 />
               ) : (
                 <div className="spinner">
@@ -64,41 +82,17 @@ export const Home = () => {
             </div>
           </div>
         </div>
-        <div className="bottom-container">bottom</div>
-        <>
-          {/* <h2>At a glance</h2>
-          <TokenSnapshotWidget
-            dataWindow={dataWindow}
-            units={units}
-            maxItems={2}
-            itemsDirection="column"
-          />
-          <h2>{`${dataWindow} Inflows/Outflows`}</h2>
-          <div className="table">
-            {ioTableData ? (
-              <IoTable
-                data={filterTable(ioTableData)}
-                dataWindow={dataWindow}
-                units={units}
-                pageSize={5}
-              />
-            ) : (
-              <div className="spinner">
-                <LoadingSpinner />
-              </div>
-            )}
-          </div> */}
-        </>
+        <div className="bottom-container">
+          <Products />
+        </div>
       </div>
       <style jsx>{pricingButton}</style>
       <style jsx>
         {`
-          .table {
-            margin-left: 5px;
-            margin-right: 5px;
-          }
           .spinner {
-            height: 296px;
+             {
+              /* height: 296px; */
+            }
           }
           .top-container {
             display: flex;
@@ -108,6 +102,9 @@ export const Home = () => {
             max-width: 1400px;
             margin-right: auto;
             margin-left: auto;
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-bottom: 75px;
           }
           .top-container-slogan {
             width: 55%;
@@ -115,13 +112,17 @@ export const Home = () => {
           .top-container-charts {
             display: flex;
             flex-direction: column;
-            width: 45%;
+            width: 50%;
+            min-height: 600px;
             margin-top: 30px;
           }
           .bottom-container {
-            margin-top: 100px;
-            background-color: #80808059;
-            height: 600px;
+            max-width: 1400px;
+            margin-top: 50px;
+            height: 100%;
+            margin-right: auto;
+            margin-left: auto;
+            background-color: #e8e8e8;
           }
           .title {
             font-family: Space Grotesk;
@@ -146,12 +147,26 @@ export const Home = () => {
             margin-bottom: 125px;
             max-width: 320px;
           }
-          @media only screen and (max-width: 768px) {
+          .table {
+            margin-top: 50px;
+            height: 250px;
+          }
+          .token-snapshot {
+            height: 310px;
+          }
+          .top-buttons {
+            display: flex;
+          }
+          .top-button {
+            margin-right: 20px;
+          }
+          @media only screen and (max-width: 1360px) {
             .table {
-              margin-left: 5px;
-              margin-right: 5px;
+              display: none;
             }
-            .section-header {
+          }
+          @media only screen and (max-width: 768px) {
+            .token-snapshot {
               display: none;
             }
           }

@@ -1,5 +1,1 @@
-import { IoTable } from './IoTable';
-
-export {
-    IoTable
-};
+export * from './IoTable';

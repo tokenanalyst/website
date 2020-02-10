@@ -3,14 +3,13 @@ import React from 'react';
 import { ProductCard } from './ProductCard';
 import { PRODUCTS } from './data/productsData';
 
-export const Services = () => {
+export const Products = () => {
   return (
     <>
       <div className="container">
         <div className="product-container">
-          <h2 className="products-header">Our Products</h2>
           <div className="products">
-            {Object.keys(PRODUCTS).map(({ title, description, links }) => {
+            {Object.values(PRODUCTS).map(({ title, description, links }) => {
               return (
                 <div className="product" key={title}>
                   <ProductCard
@@ -29,31 +28,17 @@ export const Services = () => {
           .container {
             display: flex;
             flex-direction: column;
-            padding-bottom: 77px;
+            padding-bottom: 100px;
+            padding-top: 100px;
           }
           .products {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
           }
-          .product {
-            margin-right: 50px;
-          }
           .product-container {
-            margin-left: 100px;
-            margin-right: 100px;
-          }
-          .products-header {
-            padding-top: 10px;
-            padding-bottom: 10px;
-            font-family: Space Grotesk;
-            font-size: 30px;
-            font-weight: bold;
-            font-style: normal;
-            font-stretch: normal;
-            line-height: normal;
-            letter-spacing: 0.26px;
-            color: #000000;
+            margin-left: 50px;
+            margin-right: 50px;
           }
           @media only screen and (max-width: 768px) {
             .container {
@@ -71,18 +56,6 @@ export const Services = () => {
             .product-container {
               margin-left: 0px;
               margin-right: 0px;
-            }
-            .products-header {
-              padding-top: 0px;
-              padding-bottom: 0px;
-              font-family: Space Grotesk;
-              font-size: 20px;
-              font-weight: bold;
-              font-style: normal;
-              font-stretch: normal;
-              line-height: normal;
-              letter-spacing: 0.26px;
-              color: #000000;
             }
           }
         `}

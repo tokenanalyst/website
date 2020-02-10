@@ -46,6 +46,7 @@ export const TokenSnapshot = ({
   dataWindow,
   units,
   position,
+  disabled,
 }) => {
   const [apiResponse, setApiResponse] = useState(null);
   const [snapshotToken, setSnapshotToken] = useState(initialToken);
@@ -72,35 +73,37 @@ export const TokenSnapshot = ({
         <div className="container">
           <div className="header">
             {TOKEN_NAMES[snapshotToken]}
-            <Popover
-              target={
-                <div className="chevron">
-                  <Icon icon="chevron-down" iconSize={24} />
-                </div>
-              }
-              content={
-                <div className="radio-group">
-                  <RadioGroup
-                    selectedValue={snapshotToken}
-                    onChange={e => {
-                      setApiResponse(null);
-                      ReactGA.event({
-                        category: 'User',
-                        action: `At a glance change ${e.target.value}`,
-                        label: `At a glance`,
-                      });
-                      updateToken(e.target.value, position);
-                      setSnapshotToken(e.target.value);
-                    }}
-                  >
-                    {TOKEN_OPTIONS.map(token => (
-                      <Radio label={token} value={token} key={token} />
-                    ))}
-                  </RadioGroup>
-                </div>
-              }
-              position={Position.BOTTOM}
-            />
+            {!disabled && (
+              <Popover
+                target={
+                  <div className="chevron">
+                    <Icon icon="chevron-down" iconSize={24} />
+                  </div>
+                }
+                content={
+                  <div className="radio-group">
+                    <RadioGroup
+                      selectedValue={snapshotToken}
+                      onChange={e => {
+                        setApiResponse(null);
+                        ReactGA.event({
+                          category: 'User',
+                          action: `At a glance change ${e.target.value}`,
+                          label: `At a glance`,
+                        });
+                        updateToken(e.target.value, position);
+                        setSnapshotToken(e.target.value);
+                      }}
+                    >
+                      {TOKEN_OPTIONS.map(token => (
+                        <Radio label={token} value={token} key={token} />
+                      ))}
+                    </RadioGroup>
+                  </div>
+                }
+                position={Position.BOTTOM}
+              />
+            )}
           </div>
           <div className="top-row">
             <span className="token-value">
@@ -325,8 +328,13 @@ export const TokenSnapshot = ({
 };
 
 TokenSnapshot.propTypes = {
+  disabled: PropTypes.bool,
   initialToken: PropTypes.string.isRequired,
   dataWindow: PropTypes.string.isRequired,
   units: PropTypes.string.isRequired,
   position: PropTypes.number.isRequired,
+};
+
+TokenSnapshot.defaultProps = {
+  disabled: false,
 };

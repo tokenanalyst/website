@@ -43,6 +43,11 @@ export const MobileNav = () => {
           className="mobile-sub-links-container"
           onClick={() => setIsVisible(false)}
         >
+          <Link href="/dashboard" passHref>
+            <div className={setLinkActive(router.pathname, '/dashboard')}>
+              Dashboard
+            </div>
+          </Link>
           <Link href="/" passHref>
             <div className={setLinkActive(router.pathname, '/')}>
               Exchange Flows
