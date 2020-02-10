@@ -180,7 +180,26 @@ export const Home = () => {
             }
           }
           @media only screen and (max-width: 768px) {
+            .top-container {
+              padding-bottom: 75px;
+              margin-top: 25px;
+              width: 100%;
+            }
+            .title {
+              font-size: 40px;
+            }
+            .description {
+              margin-bottom: 50px;
+              font-size: 26px;
+            }
             .token-snapshot {
+              display: none;
+            }
+            .bottom-container {
+              margin-top: 0px;
+              background-color: transparent;
+            }
+            .top-container-charts {
               display: none;
             }
           }

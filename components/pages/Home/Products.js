@@ -36,12 +36,9 @@ export const Products = () => {
             flex-direction: row;
             justify-content: space-between;
           }
-          .product-container {
-            margin-left: 50px;
-            margin-right: 50px;
-          }
           @media only screen and (max-width: 768px) {
             .container {
+              padding-top: 0px;
               padding-bottom: 20px;
             }
             .products {
