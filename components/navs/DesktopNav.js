@@ -726,7 +726,7 @@ export const DesktopNav = () => {
             color: white;
             z-index: 10000;
             top: 60px;
-            margin-left: 300px;
+            margin-left: 200px;
             padding-left: 10px;
           }
           .desktop-sub-link {

@@ -52,8 +52,8 @@ export const Home = () => {
                     url="/pricing"
                     isExternal={false}
                     text="Subscribe now"
-                    isActive={false}
-                    isLoading={false}
+                    isActive
+                    isLoading
                     onClick={() =>
                       emitProductEvent(
                         'Top Subscribe Button',
@@ -96,7 +96,9 @@ export const Home = () => {
           </div>
         </div>
         <div className="bottom-container">
-          <Products />
+          <div className="products">
+            <Products />
+          </div>
         </div>
       </div>
       <style jsx>{pricingButton}</style>
@@ -125,12 +127,16 @@ export const Home = () => {
             margin-top: 30px;
           }
           .bottom-container {
-            max-width: 1400px;
             margin-top: 50px;
             height: 100%;
             margin-right: auto;
             margin-left: auto;
             background-color: #e8e8e8;
+          }
+          .products {
+            max-width: 1400px;
+            margin-right: auto;
+            margin-left: auto;
           }
           .title {
             font-family: Space Grotesk;
