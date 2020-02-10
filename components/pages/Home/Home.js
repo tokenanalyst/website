@@ -10,6 +10,7 @@ import { filterTable } from '../../tables/IoTable/helpers';
 import { pricingButton } from '../../../constants/styles/common-styled-jsx';
 import { Products } from './Products';
 import { ButtonMarketing } from '../../ButtonMarketing';
+import { emitProductEvent } from './utils/emitProductEvent';
 
 export const Home = () => {
   const dataWindow = DATA_WINDOWS[0];
@@ -38,6 +39,12 @@ export const Home = () => {
                     text="View Dashboard"
                     isActive={false}
                     isLoading={false}
+                    onClick={() =>
+                      emitProductEvent(
+                        'Top Dashboard Button',
+                        'home-top-button-dashboard'
+                      )
+                    }
                   />
                 </div>
                 <div className="top-button">
@@ -47,6 +54,12 @@ export const Home = () => {
                     text="Subscribe now"
                     isActive={false}
                     isLoading={false}
+                    onClick={() =>
+                      emitProductEvent(
+                        'Top Subscribe Button',
+                        'home-top-button-subscribe'
+                      )
+                    }
                   />
                 </div>
               </div>
@@ -75,7 +88,7 @@ export const Home = () => {
                   compactLayout
                 />
               ) : (
-                <div className="spinner">
+                <div>
                   <LoadingSpinner />
                 </div>
               )}
@@ -89,11 +102,6 @@ export const Home = () => {
       <style jsx>{pricingButton}</style>
       <style jsx>
         {`
-          .spinner {
-             {
-              /* height: 296px; */
-            }
-          }
           .top-container {
             display: flex;
             flex-direction: row;

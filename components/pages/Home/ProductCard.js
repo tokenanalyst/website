@@ -1,20 +1,11 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import PropTypes from 'prop-types';
 import React from 'react';
-import ReactGA from 'react-ga';
 import kebabCase from 'lodash/kebabCase';
 
 import { pricingButton } from '../../../constants/styles/common-styled-jsx';
 import { ButtonMarketing } from '../../ButtonMarketing';
-
-const emitProductEvent = name => {
-  ReactGA.event({
-    category: 'User',
-    action: `View Plan ${name}`,
-    label: `New Plans`,
-  });
-  // window.Intercom('show');
-};
+import { emitProductEvent } from './utils/emitProductEvent';
 
 export const ProductCard = ({ title, links, description }) => {
   return (
@@ -27,7 +18,7 @@ export const ProductCard = ({ title, links, description }) => {
         <div className="button-container">
           <div>
             {links.map(link => {
-              const { url, isExternal, text } = link;
+              const { url, isExternal, text, tracking } = link;
 
               return (
                 <div key={kebabCase(text)}>
@@ -37,6 +28,9 @@ export const ProductCard = ({ title, links, description }) => {
                     text={text}
                     isActive
                     isLoading={false}
+                    onClick={() => {
+                      emitProductEvent(text, tracking);
+                    }}
                   />
                 </div>
               );
