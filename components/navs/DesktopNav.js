@@ -89,18 +89,17 @@ export const DesktopNav = () => {
                   Exchange Flows
                 </div>
               </Link>
-              {/* <Link href="/stablecoins" passHref>
+              <Link href="/dashboard" passHref>
                 <div
                   className={classNames(
                     'desktop-link',
-                    setLinkActive(asPath, '/stablecoins')
+                    setLinkActive(asPath, '/dashboard')
                   )}
                   onMouseOver={collapseAllSubMenus}
-                  onFocus={collapseAllSubMenus}
                 >
-                  Stablecoins
+                  Dashboard
                 </div>
-              </Link> */}
+              </Link>
               <Link href={`/insights?${metricsTierParamString}`} passHref>
                 <div
                   className={classNames(

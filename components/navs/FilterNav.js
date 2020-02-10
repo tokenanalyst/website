@@ -1,5 +1,5 @@
 import ReactGA from 'react-ga';
-
+import React from 'react';
 import { DATA_WINDOWS, UNITS } from '../../constants/filters';
 
 export const FilterNav = ({ dataWindow, setDataWindow, units, setUnits }) => {
@@ -52,46 +52,48 @@ export const FilterNav = ({ dataWindow, setDataWindow, units, setUnits }) => {
           </span>
         ))}
       </div>
-      <style jsx>{`
-        .container {
-          font-family: Open Sans;
-          padding: 11px;
-          border-bottom: 1px solid rgb(203, 203, 203);
-          position: fixed;
-          top: 60px;
-          width: 100%;
-          height: 40px;
-          background-color: #ffffff;
-          z-index: 10;
-          display: flex;
-          justify-content: space-between;
-          margin-left: -10px;
-        }
-        .options {
-          display: flex;
-          justify-content: space-evenly;
-          padding-top: 0px;
-          padding-bottom: 10px;
-          width: 100%;
-        }
-        .option {
-          font-weight: bold;
-          padding-left: 5px;
-          padding-right: 5px;
-          cursor: pointer;
-        }
-        .option-active {
-          opacity: 1;
-        }
-        .option-inactive {
-          opacity: 0.2;
-        }
-        @media only screen and (max-width: 600px) {
-          .option {
-            cursor: auto;
+      <style jsx>
+        {`
+          .container {
+            font-family: Open Sans;
+            padding: 11px;
+            border-bottom: 1px solid rgb(203, 203, 203);
+            position: fixed;
+            top: 60px;
+            width: 100%;
+            height: 40px;
+            background-color: #ffffff;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            margin-left: -10px;
           }
-        }
-      `}</style>
+          .options {
+            display: flex;
+            justify-content: space-evenly;
+            padding-top: 0px;
+            padding-bottom: 10px;
+            width: 100%;
+          }
+          .option {
+            font-weight: bold;
+            padding-left: 5px;
+            padding-right: 5px;
+            cursor: pointer;
+          }
+          .option-active {
+            opacity: 1;
+          }
+          .option-inactive {
+            opacity: 0.2;
+          }
+          @media only screen and (max-width: 600px) {
+            .option {
+              cursor: auto;
+            }
+          }
+        `}
+      </style>
     </div>
   );
 };
@@ -99,10 +101,12 @@ export const FilterNav = ({ dataWindow, setDataWindow, units, setUnits }) => {
 const Separator = () => (
   <>
     <div className="separator" />
-    <style jsx>{`
-      .separator {
-        border-right: 1px solid rgb(203, 203, 203);
-      }
-    `}</style>
+    <style jsx>
+      {`
+        .separator {
+          border-right: 1px solid rgb(203, 203, 203);
+        }
+      `}
+    </style>
   </>
 );

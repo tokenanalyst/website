@@ -15,12 +15,12 @@ export const getTokens = () => {
       JSON.stringify({ ...defaultTokens })
     );
     return Object.values(defaultTokens);
-  } else {
-    const tokens = JSON.parse(
-      window.localStorage.getItem(APP_STORAGE_KEYS.tokenSnapshot)
-    );
-    return Object.values(tokens);
   }
+  const tokens = JSON.parse(
+    window.localStorage.getItem(APP_STORAGE_KEYS.tokenSnapshot)
+  );
+
+  return Object.values(tokens);
 };
 
 export const updateToken = (token, position) => {

@@ -1,82 +1,41 @@
+import './table.css';
+import PropTypes from 'prop-types';
 import React, { useContext, useState } from 'react';
 import ReactTable from 'react-table';
 import { useRouter } from 'next/router';
 import ReactGA from 'react-ga';
-import '../../../node_modules/react-table/react-table.css';
+
 import Cookies from 'js-cookie';
 import { LoginContext } from '../../../contexts/Login';
 import { ExchangeRegisterDialog } from '../../marketing/marketing-dialogs';
-import { LOGGED_OUT_SUPPORTED_EXCHANGES } from '../../../constants/exchanges';
-
 import {
-  AmountCell,
-  ChangeCell,
-  ExchangeCell,
-  HeaderCell,
-  NextButton,
-  PreviousButton,
-} from './renderers';
-import { getIoTableData } from '../../../data-transformers/tables';
-import { filterCaseInsensitive } from '../helpers';
-import { colors } from '../../../constants/styles/colors';
-
-import { COOKIES } from '../../../constants/cookies';
-import {
+  LOGGED_OUT_SUPPORTED_EXCHANGES,
   EXCHANGE_NAMES,
   EXCHANGE_DISPLAY_NAME,
 } from '../../../constants/exchanges';
 
+import { NextButton, PreviousButton } from './renderers';
+import { getIoTableData } from '../../../data-transformers/tables';
+import { filterCaseInsensitive } from '../helpers';
+import { makeColumns } from './helpers';
+import { colors } from '../../../constants/styles/colors';
+import { COOKIES } from '../../../constants/cookies';
+
 const TABLE_DATA = getIoTableData();
 
-export const IoTable = ({ data, dataWindow, units }) => {
+export const IoTable = ({
+  data,
+  dataWindow,
+  units,
+  pageSize,
+  showPagination,
+  showPageSizeOptions,
+  compactLayout,
+}) => {
   const router = useRouter();
   const loginCtx = useContext(LoginContext);
   const [isRegisterDialogShown, setIsRegisterDialogShown] = useState(false);
-
   const TIER = Cookies.get(COOKIES.tier);
-
-  const getColumns = units => [
-    {
-      Header: () => <HeaderCell value={TABLE_DATA.columnHeaders.exchange} />,
-      accessor: TABLE_DATA.accessors.exchange,
-      Cell: ({ value }) => <ExchangeCell value={value} />,
-      width: 150,
-    },
-    {
-      Header: () => <HeaderCell value={TABLE_DATA.columnHeaders.token} />,
-      accessor: TABLE_DATA.accessors.token,
-    },
-    {
-      Header: () => <HeaderCell value={TABLE_DATA.columnHeaders.inflow} />,
-      accessor: TABLE_DATA.accessors[units].inflow,
-      Cell: ({ value }) => <AmountCell value={value} units={units} />,
-      filterable: false,
-      width: 135,
-    },
-    {
-      Header: () => (
-        <HeaderCell value={TABLE_DATA.columnHeaders.inflowChange} />
-      ),
-      accessor: TABLE_DATA.accessors[units].inflowChange,
-      Cell: ({ value }) => <ChangeCell value={value} />,
-      filterable: false,
-    },
-    {
-      Header: () => <HeaderCell value={TABLE_DATA.columnHeaders.outflow} />,
-      accessor: TABLE_DATA.accessors[units].outflow,
-      Cell: ({ value }) => <AmountCell value={value} units={units} />,
-      filterable: false,
-      width: 150,
-    },
-    {
-      Header: () => (
-        <HeaderCell value={TABLE_DATA.columnHeaders.outflowChange} />
-      ),
-      accessor: TABLE_DATA.accessors[units].outflowChange,
-      Cell: ({ value }) => <ChangeCell value={value} />,
-      filterable: false,
-    },
-  ];
 
   return (
     <div className="container">
@@ -87,16 +46,18 @@ export const IoTable = ({ data, dataWindow, units }) => {
             closeCb={() => setIsRegisterDialogShown(false)}
           />
           <ReactTable
+            showPagination={showPagination}
+            showPageSizeOptions={showPageSizeOptions}
             PreviousComponent={PreviousButton}
             NextComponent={NextButton}
             data={data.filter(datum => datum.window === dataWindow)}
-            columns={getColumns(units)}
+            columns={makeColumns(units, compactLayout)}
             defaultSorted={[
               { id: TABLE_DATA.accessors[units].inflow, desc: true },
             ]}
             noDataText="No results"
             className="-highlight"
-            defaultPageSize={25}
+            defaultPageSize={pageSize}
             filterable
             defaultFilterMethod={filterCaseInsensitive}
             style={{ cursor: 'pointer' }}
@@ -215,4 +176,21 @@ export const IoTable = ({ data, dataWindow, units }) => {
       </style>
     </div>
   );
+};
+
+IoTable.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  dataWindow: PropTypes.string.isRequired,
+  units: PropTypes.string.isRequired,
+  pageSize: PropTypes.number,
+  showPagination: PropTypes.bool,
+  showPageSizeOptions: PropTypes.bool,
+  compactLayout: PropTypes.bool,
+};
+
+IoTable.defaultProps = {
+  pageSize: 25,
+  showPagination: true,
+  showPageSizeOptions: true,
+  compactLayout: false,
 };

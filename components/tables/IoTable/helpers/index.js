@@ -1,3 +1,2 @@
-import { filterTable } from './filterTable';
-
-export { filterTable };
+export * from './filterTable';
+export * from './makeColumns';
