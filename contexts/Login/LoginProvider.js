@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 
@@ -19,7 +20,9 @@ export const LoginProvider = ({ children }) => {
 
   useEffect(() => {
     if (isUserCookiesValid()) {
-      intercom.setUser('', Cookies.get(COOKIES.loggedInAsUsername));
+      const username = Cookies.get(COOKIES.loggedInAsUsername);
+      const userId = Cookies.get(COOKIES.userId);
+      intercom.setUser('', username, userId);
       setIsLoggedIn(true);
     } else {
       intercom.removeUser();
@@ -50,4 +53,8 @@ export const LoginProvider = ({ children }) => {
   return (
     <LoginContext.Provider value={value}>{children}</LoginContext.Provider>
   );
+};
+
+LoginProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };

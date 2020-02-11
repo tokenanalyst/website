@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie';
-import { COOKIES } from '../../constants/cookies';
 import axios from 'axios';
+import { COOKIES } from '../../constants/cookies';
 
 export const login = async (
   email,
@@ -23,11 +23,12 @@ export const login = async (
       data: { apiKey, name, username, id, profile },
     } = response;
 
+    Cookies.set(COOKIES.userId, id);
     Cookies.set(COOKIES.apiKey, apiKey);
     Cookies.set(COOKIES.loggedInAsUsername, username);
     Cookies.set(COOKIES.tier, profile);
     loginCtx.setIsLoggedIn(true);
-    loginCtx.intercom.setUser(name, username);
+    loginCtx.intercom.setUser(name, username, id);
 
     router.push('/');
   } catch (e) {

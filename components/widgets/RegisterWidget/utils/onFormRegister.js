@@ -46,12 +46,16 @@ export const onFormRegister = async (loginCtx, formValues) => {
       data: { apiKey, name, username, id },
     } = response;
 
+    Cookies.set(COOKIES.userId, id);
     Cookies.set(COOKIES.apiKey, apiKey);
     Cookies.set(COOKIES.loggedInAsUsername, username);
     Cookies.set(COOKIES.tier, 0);
 
     loginCtx.setIsLoggedIn(true);
-    loginCtx.intercom.setUser(name, username);
+    const userMeta = {
+      'Registered at': new Date().getTime() / 1000,
+    };
+    loginCtx.intercom.setUser(name, username, id, userMeta);
 
     let redirectFn;
 
