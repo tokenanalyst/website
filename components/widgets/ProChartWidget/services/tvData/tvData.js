@@ -45,7 +45,7 @@ const tvData = (
       onResolveErrorCallback
     ) => {
       if (process.env.NODE_ENV === 'development') {
-        console.log('====== resolveSymbol running');
+        console.log(`====== resolveSymbol running -> ${symbolName}`);
       }
       if (exchangeService.studies.getSymbol[symbolName]) {
         const getSymbol = exchangeService.studies.getSymbol[symbolName];
@@ -98,7 +98,6 @@ const tvData = (
       if (process.env.NODE_ENV === 'development') {
         console.log('===== getBars running');
       }
-      const [baseSymbol, quoteSymbol] = symbolInfo.name.split('/');
 
       if (exchangeService.studies.getData[symbolInfo.name]) {
         const getTAData = exchangeService.studies.getData[symbolInfo.name];
@@ -109,6 +108,8 @@ const tvData = (
         }
         return onHistoryCallback([], { noData: true });
       }
+
+      const [baseSymbol, quoteSymbol] = symbolInfo.name.split('/');
 
       if (process.env.NODE_ENV === 'development') {
         console.log(

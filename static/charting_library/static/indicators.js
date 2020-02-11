@@ -27,7 +27,7 @@ const BTC_INDICATORS = [
   { title: 'New Addresses', symbol: '#BTCNEWADDRESS' },
   { title: 'Total Addresses', symbol: '#BTCNEWADDRESSTOTAL' },
   { title: 'Balance > 0', symbol: '#BALANCE>0' },
-  { title: 'Balance > 1', symbol: '#BALANCE>１' },
+  { title: 'Balance > 1', symbol: '#BALANCE>1' },
   { title: 'Balance > 10', symbol: '#BALANCE>10' },
   { title: 'Balance > 100', symbol: '#BALANCE>100' },
   { title: 'Balance > 1000', symbol: '#BALANCE>1000' },
@@ -153,11 +153,10 @@ const METRIC_INDICATORS = [
   },
   constructor: function() {
     this.init = function(context, inputCallback) {
-      // console.warn(context);
       this._context = context;
       this._input = inputCallback;
 
-      const symbol = metricIndicator.symbol;
+      const { symbol } = metricIndicator;
       this._context.new_sym(
         symbol,
         PineJS.Std.period(this._context),
@@ -249,7 +248,6 @@ __customIndicators = [
 
     constructor: function() {
       this.init = function(context, inputCallback) {
-        // console.warn(context);
         this._context = context;
         this._input = inputCallback;
 

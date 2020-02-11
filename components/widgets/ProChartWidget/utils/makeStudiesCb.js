@@ -15,7 +15,7 @@ const metricsStudiesData = (ta, TAsymbol) =>
           console.log(
             `Requesting bars from ${formatDate(from * 1000)} to ${formatDate(
               to * 1000
-            )} for ${curr.symbol}`
+            )} for ${curr.symbol} and datapoint ${curr.dataPoint}`
           );
         }
         const flow = await ta.fetchSingleMetricProxy(
@@ -35,7 +35,7 @@ const metricsStudiesData = (ta, TAsymbol) =>
           console.log(
             `Received bars from ${formatDate(flow[0].time)} to ${formatDate(
               flow[flow.length - 1].time
-            )} for ${curr.symbol}`
+            )} for ${curr.symbol} and datapoint ${curr.dataPoint}`
           );
         }
 
