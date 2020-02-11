@@ -1,3 +1,7 @@
+/* eslint-disable react/jsx-wrap-multilines */
+/* eslint-disable no-unused-expressions */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, useContext, useMemo } from 'react';
 import { Card } from '@blueprintjs/core';
 import ReactGA from 'react-ga';
@@ -25,6 +29,9 @@ const computeMetricClass = (isLoggedIn, value, selectedIndicator) =>
     : selectedIndicator.name === value.indicator
     ? 'item-selected'
     : 'item';
+
+const isFreeMetric = (isLoggedIn, requiresLogin) =>
+  isLoggedIn || !requiresLogin;
 
 export const MetricsList = ({
   token,
@@ -74,7 +81,10 @@ export const MetricsList = ({
                                 action: `Metrics Page change data point ${value.indicator}`,
                                 label: `Metrics Page`,
                               });
-                              loginCtx.isLoggedIn || !value.requiresLogin
+                              isFreeMetric(
+                                loginCtx.isLoggedIn,
+                                value.requiresLogin
+                              )
                                 ? setSelectedIndicator({
                                     name: value.indicator,
                                     isIntraDay: value.isIntraDay,
