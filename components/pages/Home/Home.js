@@ -11,6 +11,7 @@ import { pricingButton } from '../../../constants/styles/common-styled-jsx';
 import { Products } from './Products';
 import { ButtonMarketing } from '../../ButtonMarketing';
 import { emitProductEvent } from './utils/emitProductEvent';
+import { Featured } from './Featured';
 
 export const Home = () => {
   const dataWindow = DATA_WINDOWS[0];
@@ -23,7 +24,7 @@ export const Home = () => {
         <title>TokenAnalyst - Latest On-Chain Flows</title>
       </Head>
       <div className="under-sub-nav">
-        <div className="top-container">
+        <div className="home-top-container">
           <div className="top-container-slogan">
             <div className="slogan">
               <h1 className="title">Blockchain Market Intelligence</h1>
@@ -95,16 +96,21 @@ export const Home = () => {
             </div>
           </div>
         </div>
-        <div className="bottom-container">
+        <div className="home-products-container">
           <div className="products">
             <Products />
+          </div>
+        </div>
+        <div className="home-featured-container">
+          <div className="featured">
+            <Featured />
           </div>
         </div>
       </div>
       <style jsx>{pricingButton}</style>
       <style jsx>
         {`
-          .top-container {
+          .home-top-container {
             display: flex;
             flex-direction: row;
             width: 100%;
@@ -126,7 +132,7 @@ export const Home = () => {
             min-height: 600px;
             margin-top: 30px;
           }
-          .bottom-container {
+          .home-products-container {
             margin-top: 50px;
             height: 100%;
             margin-right: auto;
@@ -134,6 +140,11 @@ export const Home = () => {
             background-color: #e8e8e8;
           }
           .products {
+            max-width: 1400px;
+            margin-right: auto;
+            margin-left: auto;
+          }
+          .featured {
             max-width: 1400px;
             margin-right: auto;
             margin-left: auto;
@@ -180,7 +191,7 @@ export const Home = () => {
             }
           }
           @media only screen and (max-width: 768px) {
-            .top-container {
+            .home-top-container {
               padding-bottom: 75px;
               margin-top: 25px;
               width: 100%;
@@ -195,7 +206,7 @@ export const Home = () => {
             .token-snapshot {
               display: none;
             }
-            .bottom-container {
+            .home-products-container {
               margin-top: 0px;
               background-color: transparent;
             }
