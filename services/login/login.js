@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie';
-import { COOKIES } from '../../constants/cookies';
 import axios from 'axios';
+import { COOKIES } from '../../constants/cookies';
 
 export const login = async (
   email,

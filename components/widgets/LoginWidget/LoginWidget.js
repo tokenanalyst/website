@@ -49,7 +49,7 @@ export const LoginWidget = () => {
               <SimpleButton
                 background={PRIMARY_GREEN}
                 fill
-                onClick={login}
+                onClick={() => null}
                 loading={isSubmitted}
                 type="submit"
               >
