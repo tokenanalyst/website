@@ -1,11 +1,13 @@
+/* eslint-disable camelcase */
 import { INTERCOM_APP_ID } from '../../../constants/intercom';
 
-const setUser = (name = '', email = '') => {
+const setUser = (name = '', email = '', user_id, meta = {}) => {
   window.Intercom('boot', {
     app_id: INTERCOM_APP_ID,
     name,
     email,
-    created_at: new Date().getTime() / 1000,
+    user_id,
+    ...meta,
   });
 };
 
