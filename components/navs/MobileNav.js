@@ -58,11 +58,6 @@ export const MobileNav = () => {
               Insights
             </div>
           </Link>
-          <Link href="/compare" passHref>
-            <div className={setLinkActive(router.pathname, '/compare')}>
-              Compare
-            </div>
-          </Link>
           <Link href="/about" passHref>
             <div className={setLinkActive(router.pathname, '/about')}>
               Company

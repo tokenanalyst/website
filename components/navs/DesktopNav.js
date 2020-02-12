@@ -111,18 +111,6 @@ export const DesktopNav = () => {
                   Insights
                 </div>
               </Link>
-              <Link href="/compare" passHref>
-                <div
-                  className={classNames(
-                    'desktop-link',
-                    setLinkActive(asPath, '/compare')
-                  )}
-                  onMouseOver={collapseAllSubMenus}
-                  onFocus={collapseAllSubMenus}
-                >
-                  Compare
-                </div>
-              </Link>
               <Link href="/analytics" passHref>
                 <div
                   className={classNames(
