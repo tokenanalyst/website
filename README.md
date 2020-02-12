@@ -21,10 +21,10 @@ Install and use node version 10.14.1:
   `KAIKO_KEY=<Your Kaiko Key>`
   This file is already excluded by git but just to be sure - NEVER COMMIT YOUR KEY
 
-## Development
+## Local development
 
 - `now dev`
 
-## Deployment
+## Production deployment
 
-- `now deploy`
+- `now --prod`
