@@ -1,15 +1,15 @@
 import React from 'react';
 import Head from 'next/head';
 
-import { IoTable } from '../../tables/IoTable';
-import { DATA_WINDOWS, UNITS } from '../../../constants/filters';
-import { TokenSnapshotWidget } from '../../widgets/TokenSnapshotWidget';
-import { useApi } from '../../../custom-hooks';
-import { LoadingSpinner } from '../../LoadingSpinner';
-import { filterTable } from '../../tables/IoTable/helpers';
-import { pricingButton } from '../../../constants/styles/common-styled-jsx';
+import { IoTable } from '../../../tables/IoTable';
+import { DATA_WINDOWS, UNITS } from '../../../../constants/filters';
+import { TokenSnapshotWidget } from '../../../widgets/TokenSnapshotWidget';
+import { useApi } from '../../../../custom-hooks';
+import { LoadingSpinner } from '../../../LoadingSpinner';
+import { filterTable } from '../../../tables/IoTable/helpers';
+import { pricingButton } from '../../../../constants/styles/common-styled-jsx';
 import { Products } from './Products';
-import { ButtonMarketing } from '../../ButtonMarketing';
+import { ButtonMarketing } from '../../../ButtonMarketing';
 import { emitProductEvent } from './utils/emitProductEvent';
 import { Featured } from './Featured';
 

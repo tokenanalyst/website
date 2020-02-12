@@ -5,7 +5,7 @@ import Cookies from 'js-cookie';
 
 import { ExchangeMetricsWidget } from '../../../components/widgets/ExchangeMetricsWidget';
 import { IoChartWidget } from '../../../components/widgets/IoChartWidget';
-import { ProChartWidget } from '../../../components/widgets/ProChartWidget';
+import { ExchangeFlows } from '../../../components/atomic/pages/ExchangeFlows';
 import { COOKIES } from '../../../constants/cookies';
 import { tokensDb } from '../../../services/tokensDb';
 import { LoginContext } from '../../../contexts/Login';
@@ -30,7 +30,7 @@ const Exchange = () => {
     if (exchangeSupport) {
       setIsTVSupported(true);
     }
-  }, [token, exchange]);
+  }, [token, exchange, loginCtx.isLoggedIn, router]);
 
   const pushToPage = (newToken, newExchange) => {
     const exchangeSupport = tokensDb.getTokenSupportOnExchange(
@@ -68,7 +68,7 @@ const Exchange = () => {
       )}
       {token && exchange && isTVSupported ? (
         <>
-          <ProChartWidget
+          <ExchangeFlows
             selectedExchange={exchange}
             selectedToken={token}
             tokensDb={tokensDb}

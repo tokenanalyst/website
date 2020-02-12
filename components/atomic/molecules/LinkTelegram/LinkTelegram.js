@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactGA from 'react-ga';
 
-import { Link } from '../../Link';
-import { colors } from '../../../constants/styles/colors';
+import { Link } from '../../../Link';
+import { colors } from '../../../../constants/styles/colors';
 
-export const CTALink = () => {
+export const LinkTelegram = () => {
   const renderCTALink = () => {
     return (
       <>

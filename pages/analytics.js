@@ -5,7 +5,7 @@ import axios from 'axios';
 import ReactGA from 'react-ga';
 
 import { colors } from '../constants/styles/colors';
-import { CTALink } from '../components/widgets/ProChartWidget/CTALink';
+import { LinkTelegram } from '../components/widgets/ProChartWidget/LinkTelegram';
 import { ButtonMarketing } from '../components/ButtonMarketing';
 import { SimpleDialog } from '../components/SimpleDialog';
 import { LoginContext } from '../contexts/Login';
@@ -175,7 +175,7 @@ const Analytics = () => {
     <>
       <div className="header">
         <h1>Analytics</h1>
-        <CTALink />
+        <LinkTelegram />
       </div>
       <div className="container">
         {categories && (

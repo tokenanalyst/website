@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import kebabCase from 'lodash/kebabCase';
 
-import { pricingButton } from '../../../constants/styles/common-styled-jsx';
-import { ButtonMarketing } from '../../ButtonMarketing';
+import { pricingButton } from '../../../../constants/styles/common-styled-jsx';
+import { ButtonMarketing } from '../../../ButtonMarketing';
 import { emitProductEvent } from './utils/emitProductEvent';
 
 export const ProductCard = ({ title, links, description }) => {

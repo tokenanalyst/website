@@ -8,7 +8,7 @@ import { LeftSidePanel } from './LeftSidePanel';
 
 const TV_INITIAL_DATA_RANGE = 90; // 90 days
 
-export const ProChartWidget = ({
+export const ExchangeFlows = ({
   selectedExchange,
   selectedToken,
   tokensDb,
@@ -135,7 +135,7 @@ export const ProChartWidget = ({
   );
 };
 
-ProChartWidget.propTypes = {
+ExchangeFlows.propTypes = {
   onChange: PropTypes.func.isRequired,
   selectedExchange: PropTypes.string.isRequired,
   selectedToken: PropTypes.string.isRequired,
