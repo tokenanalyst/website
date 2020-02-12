@@ -55,7 +55,7 @@ export const MobileNav = () => {
           </Link>
           <Link href="/insights" passHref>
             <div className={setLinkActive(router.pathname, '/insights')}>
-              Insights
+              Network Stats
             </div>
           </Link>
           <Link href="/about" passHref>

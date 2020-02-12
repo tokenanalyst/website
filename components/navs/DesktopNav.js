@@ -108,7 +108,7 @@ export const DesktopNav = () => {
                   )}
                   onMouseOver={collapseAllSubMenus}
                 >
-                  Insights
+                  Network Stats
                 </div>
               </Link>
               <Link href="/analytics" passHref>
