@@ -29,19 +29,6 @@ export const StudiesList = ({ studies, onSelectStudy }) => {
           isOpen={isRegisterDialogShown}
           closeCb={() => setIsRegisterDialogShown(false)}
         />
-        {/* <div className="mobile-select">
-          <Popover
-            minimal
-            content={<Menu>{renderMenuItems()}</Menu>}
-            position={Position.BOTTOM_LEFT}
-          >
-            <Button
-              rightIcon="double-caret-vertical"
-              text={selectedExchange}
-              icon={<ImgExchange exchange={selectedExchange} />}
-            />
-          </Popover>
-        </div> */}
 
         <div className="desktop-list">
           {Object.keys(studies).map(study => (
@@ -71,10 +58,8 @@ export const StudiesList = ({ studies, onSelectStudy }) => {
           }
           @media (max-width: 767px) {
             .desktop-list {
-              display: none;
-            }
-            .mobile-select {
-              display: inline-block;
+              display: flex;
+              justify-content: space-between;
             }
           }
         `}

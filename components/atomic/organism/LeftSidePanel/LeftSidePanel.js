@@ -45,7 +45,6 @@ export const LeftSidePanel = ({
           <div className="controls">
             <div className="control">
               <TokenSelect
-                className="token-select"
                 items={tokensList}
                 groups={['Native coins', 'Stablecoins', 'ERC20 tokens']}
                 selectedToken={selectedToken}
@@ -65,7 +64,6 @@ export const LeftSidePanel = ({
           <div className="controls">
             <div className="control">
               <StudiesList studies={studies} onSelectStudy={onSelectStudy} />
-              {/* {renderStudies(studies)} */}
             </div>
           </div>
         </SimpleBox>
@@ -121,7 +119,9 @@ export const LeftSidePanel = ({
           }
           @media (min-width: 320px) and (max-width: 767px) {
             .control {
-              margin: auto;
+               {
+                /* margin: auto; */
+              }
             }
             .controls {
               flex-direction: column;

@@ -68,11 +68,13 @@ export const ExchangeList = ({
             minimal
             content={<Menu>{renderMenuItems()}</Menu>}
             position={Position.BOTTOM_LEFT}
+            fill
           >
             <Button
               rightIcon="double-caret-vertical"
               text={selectedExchange}
               icon={<ImgExchange exchange={selectedExchange} />}
+              fill
             />
           </Popover>
         </div>
@@ -155,6 +157,7 @@ export const ExchangeList = ({
             }
             .mobile-select {
               display: inline-block;
+              width: 100%;
             }
           }
         `}

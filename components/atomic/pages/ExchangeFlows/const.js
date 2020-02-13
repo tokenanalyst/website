@@ -17,7 +17,7 @@ export const TV_STUDIES = {
     name: 'Balances',
     tvName: 'Balances',
     isCustomStudy: true,
-    isActive: true,
+    isActive: false,
   },
   flows: {
     entityId: null,
@@ -31,7 +31,7 @@ export const TV_STUDIES = {
     name: 'NetFlows',
     tvName: 'NetFlows',
     isCustomStudy: true,
-    isActive: true,
+    isActive: false,
   },
   volume: {
     entityId: true,
