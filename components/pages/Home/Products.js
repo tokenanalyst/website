@@ -29,7 +29,7 @@ export const Products = () => {
             display: flex;
             flex-direction: column;
             padding-bottom: 100px;
-            padding-top: 100px;
+            padding-top: 75px;
           }
           .products {
             display: flex;
