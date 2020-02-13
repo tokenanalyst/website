@@ -7,11 +7,11 @@ import { Card } from '@blueprintjs/core';
 import ReactGA from 'react-ga';
 import PropTypes from 'prop-types';
 
-import { CollapsibleItem } from '../../CollapsibleItem';
-import { METRICS, TOKEN_TYPES } from '../../../constants/tokens';
-import { LoginContext } from '../../../contexts/Login';
-import { tokensDb } from '../../../services/tokensDb';
-import { InsightsRegisterDialog } from '../../marketing/marketing-dialogs';
+import { CollapsibleItem } from '../../../CollapsibleItem';
+import { METRICS, TOKEN_TYPES } from '../../../../constants/tokens';
+import { LoginContext } from '../../../../contexts/Login';
+import { tokensDb } from '../../../../services/tokensDb';
+import { InsightsRegisterDialog } from '../../../marketing/marketing-dialogs';
 
 const getIndicator = token => {
   return METRICS[tokensDb.isNative(token) ? token : TOKEN_TYPES.ERC_20].filter(
@@ -19,16 +19,29 @@ const getIndicator = token => {
   )[0].defaultIndicator;
 };
 
-const computeMetricClass = (isLoggedIn, value, selectedIndicator) =>
-  value.requiresLogin
-    ? isLoggedIn
-      ? selectedIndicator.name === value.indicator
+// const computeMetricClass2 = (isLoggedIn, value, selectedIndicator) =>
+//   value.requiresLogin
+//     ? isLoggedIn
+//       ? selectedIndicator.name === value.indicator
+//         ? 'item-selected'
+//         : 'item'
+//       : 'item-greyed'
+//     : selectedIndicator.name === value.indicator
+//     ? 'item-selected'
+//     : 'item';
+
+const computeMetricClass = (isLoggedIn, value, selectedIndicator) => {
+  if (value.requiresLogin) {
+    if (isLoggedIn) {
+      return selectedIndicator.name === value.indicator
         ? 'item-selected'
-        : 'item'
-      : 'item-greyed'
-    : selectedIndicator.name === value.indicator
-    ? 'item-selected'
-    : 'item';
+        : 'item';
+    }
+    return 'item-greyed';
+  }
+
+  return selectedIndicator.name === value.indicator ? 'item-selected' : 'item';
+};
 
 const isFreeMetric = (isLoggedIn, requiresLogin) =>
   isLoggedIn || !requiresLogin;

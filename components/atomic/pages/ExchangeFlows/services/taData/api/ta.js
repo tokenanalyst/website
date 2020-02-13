@@ -121,11 +121,13 @@ const ta = (function ta() {
       start,
       end,
       metric,
-      dataPoint
+      dataPoint,
+      exchange
     ) => {
       const startDate = moment(start).format('YYYY-MM-DD');
       const endDate = moment(end).format('YYYY-MM-DD');
       let timeWindow;
+      console.warn(exchange, dataPoint);
 
       timeWindow = timeFrame;
 
@@ -144,6 +146,7 @@ const ta = (function ta() {
           from_date: startDate,
           to_date: endDate,
           metric,
+          exchange,
         });
 
       const transactionsData = async () =>
@@ -157,8 +160,8 @@ const ta = (function ta() {
 
               return transactions;
             }),
-            map(flows => {
-              const flowsData = flows
+            map(data => {
+              const metricData = data
                 .map(item => {
                   const { date } = item;
                   const time = moment.utc(date).valueOf();
@@ -174,7 +177,7 @@ const ta = (function ta() {
                 })
                 .filter(item => item.time > start && item.time < end);
 
-              return flowsData;
+              return metricData;
             }),
             catchError(() => of([]))
           )

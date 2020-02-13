@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
 import { Button } from '@blueprintjs/core';
 import { Select } from '@blueprintjs/select';
-import { TokenSelectMenuItems } from './TokenSelectMenuItems';
+import { TokenSelectMenuItems } from '../../atoms/TokenSelectMenuItems/TokenSelectMenuItems';
 import { TokenIcon } from '../../../TokenIcon';
 
 const createList = (listItems, groups) => ({

@@ -1,5 +1,47 @@
 export const KAIKO = 'kaiko';
 
+export const TV_OPTIONS = {
+  disabled_features: [
+    'volume_force_overlay',
+    'header_symbol_search',
+    'header_indicators',
+    'header_compare',
+    'header_saveload',
+    'create_volume_indicator_by_default',
+  ],
+};
+
+export const TV_STUDIES = {
+  balances: {
+    entityId: null,
+    name: 'Balances',
+    tvName: 'Balances',
+    isCustomStudy: true,
+    isActive: true,
+  },
+  flows: {
+    entityId: null,
+    name: 'Flows',
+    tvName: 'Flows',
+    isCustomStudy: true,
+    isActive: true,
+  },
+  netFlows: {
+    entityId: null,
+    name: 'NetFlows',
+    tvName: 'NetFlows',
+    isCustomStudy: true,
+    isActive: true,
+  },
+  volume: {
+    entityId: true,
+    name: 'Volume',
+    tvName: 'Volume',
+    isCustomStudy: false,
+    isActive: true,
+  },
+};
+
 export const TRADINVIEW_DEFAULT_OPTIONS = {
   debug: false,
   container_id: 'tv_chart_container',

@@ -13,4 +13,5 @@ export const API_METRICS = {
   Rewards: 'Rewards',
   RewardsBtc: 'RewardsBtc',
   Sopr: 'Sopr',
+  ExchangeBalance: 'ExchangeBalance',
 };

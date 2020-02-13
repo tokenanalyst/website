@@ -3,18 +3,18 @@ import { Card } from '@blueprintjs/core';
 import ReactGA from 'react-ga';
 import moment from 'moment';
 
-import { TokenSelect } from '../ProChartWidget/TokenSelect';
-import { tokensDb } from '../../../services/tokensDb';
-import { TOKEN_NAMES } from '../../../constants/token-names';
-import { ProChartContainer } from '../ProChartWidget/ProChartContainer';
-import { NATIVE_TOKENS, STABLE_TOKENS } from '../../../constants/tokens';
-import { TOKENS_EXCHANGE_SUPPORT } from '../../../constants/exchanges';
-import { SPOT } from '../../../constants/instruments';
+import { TokenSelect } from '../../organism/TokenSelect/TokenSelect';
+import { tokensDb } from '../../../../services/tokensDb';
+import { TOKEN_NAMES } from '../../../../constants/token-names';
+import { ProChartContainer } from '../ExchangeFlows/ProChartContainer';
+import { NATIVE_TOKENS, STABLE_TOKENS } from '../../../../constants/tokens';
+import { TOKENS_EXCHANGE_SUPPORT } from '../../../../constants/exchanges';
+import { SPOT } from '../../../../constants/instruments';
 import { MetricsList } from './MetricsList';
 
 const TV_INITIAL_DATA_RANGE = 90; // 90 days
 
-export const MetricsWidget = () => {
+export const MetricsPage = () => {
   const [selectedToken, setSelectedToken] = useState(NATIVE_TOKENS.BTC);
   const [selectedIndicator, setSelectedIndicator] = useState({});
 

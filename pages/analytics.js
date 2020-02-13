@@ -5,7 +5,7 @@ import axios from 'axios';
 import ReactGA from 'react-ga';
 
 import { colors } from '../constants/styles/colors';
-import { LinkTelegram } from '../components/widgets/ProChartWidget/LinkTelegram';
+import { LinkTelegram } from '../components/atomic/molecules/LinkTelegram';
 import { ButtonMarketing } from '../components/ButtonMarketing';
 import { SimpleDialog } from '../components/SimpleDialog';
 import { LoginContext } from '../contexts/Login';
@@ -102,44 +102,46 @@ const SidePanel = ({ categories, selectedCategory, onCategorySelect }) => {
           />
         </div>
       </div>
-      <style jsx>{`
-        .container {
-          border: 1px solid black;
-          border-radius: 10px;
-          width: 13%;
-          padding: 15px;
-          min-height: 600px;
-          max-height: 600px;
-        }
-        .header {
-          font-weight: bold;
-          padding-bottom: 10px;
-        }
-        .row {
-          padding-top: 10px;
-          padding-bottom: 10px;
-        }
-        .item {
-          margin-left: 20px;
-          font-weight: bold;
-          cursor: pointer;
-        }
-        .item-selected {
-          margin-left: 20px;
-          font-weight: bold;
-          border-bottom: 2px solid rgba(${colors.primaryGreen}, 1);
-          cursor: pointer;
-        }
-        .more-button {
-          max-width: 10px;
-        }
-        @media (min-width: 320px) and (max-width: 767px) {
+      <style jsx>
+        {`
           .container {
-            width: 100%;
-            display: none;
+            border: 1px solid black;
+            border-radius: 10px;
+            width: 13%;
+            padding: 15px;
+            min-height: 600px;
+            max-height: 600px;
           }
-        }
-      `}</style>
+          .header {
+            font-weight: bold;
+            padding-bottom: 10px;
+          }
+          .row {
+            padding-top: 10px;
+            padding-bottom: 10px;
+          }
+          .item {
+            margin-left: 20px;
+            font-weight: bold;
+            cursor: pointer;
+          }
+          .item-selected {
+            margin-left: 20px;
+            font-weight: bold;
+            border-bottom: 2px solid rgba(${colors.primaryGreen}, 1);
+            cursor: pointer;
+          }
+          .more-button {
+            max-width: 10px;
+          }
+          @media (min-width: 320px) and (max-width: 767px) {
+            .container {
+              width: 100%;
+              display: none;
+            }
+          }
+        `}
+      </style>
     </>
   );
 };
@@ -203,13 +205,13 @@ const Analytics = () => {
                         className="blurred-image"
                         width="100%"
                         height="470px"
-                      ></img>
+                      />
                       <div className="blurred-image-text">
                         Sign up for this Analytic and more!
                         <img
                           src="static/png/logo_mobile.png"
                           className="logo"
-                        ></img>
+                        />
                       </div>
                     </div>
                   ) : (
@@ -225,7 +227,7 @@ const Analytics = () => {
                       height="475px"
                       frameBorder="0"
                       className="chart"
-                    ></iframe>
+                    />
                   )
                 )
               : charts
@@ -245,13 +247,13 @@ const Analytics = () => {
                           className="blurred-image"
                           width="100%"
                           height="470px"
-                        ></img>
+                        />
                         <div className="blurred-image-text">
                           Sign up for this Analytic and more!
                           <img
                             src="static/png/logo_mobile.png"
                             className="logo"
-                          ></img>
+                          />
                         </div>
                       </div>
                     ) : (
@@ -261,7 +263,7 @@ const Analytics = () => {
                         height="475px"
                         frameBorder="0"
                         className="chart"
-                      ></iframe>
+                      />
                     )
                   )}
           </div>

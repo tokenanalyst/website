@@ -3,6 +3,7 @@ import { BTC_STUDIES, BTC_SYMBOLS } from './studies/btc';
 import { ETH_STUDIES, ETH_SYMBOLS } from './studies/eth';
 import { ERC20_STUDIES, ERC20_SYMBOLS } from './studies/erc20';
 import { COMMON_STUDIES, COMMON_SYMBOLS } from './studies/common';
+import { API_METRICS } from '../../../../../constants/apiMetrics';
 
 const formatDate = epoch => moment(epoch).format('DD/MM/YYYY, HH:mm:ss');
 
@@ -18,7 +19,7 @@ const metricsStudiesData = (ta, TAsymbol) =>
             )} for ${curr.symbol} and datapoint ${curr.dataPoint}`
           );
         }
-        const flow = await ta.fetchSingleMetricProxy(
+        const data = await ta.fetchSingleMetricProxy(
           TAsymbol,
           resolution,
           from * 1000,
@@ -27,19 +28,19 @@ const metricsStudiesData = (ta, TAsymbol) =>
           curr.dataPoint
         );
 
-        if (!flow.length) {
+        if (!data.length) {
           return [];
         }
 
         if (process.env.NODE_ENV === 'development') {
           console.log(
-            `Received bars from ${formatDate(flow[0].time)} to ${formatDate(
-              flow[flow.length - 1].time
+            `Received bars from ${formatDate(data[0].time)} to ${formatDate(
+              data[data.length - 1].time
             )} for ${curr.symbol} and datapoint ${curr.dataPoint}`
           );
         }
 
-        return flow;
+        return data;
       },
     }),
     {}
@@ -106,6 +107,39 @@ export const makeStudiesCb = (ta, exchangeName, TAsymbol) => ({
 
       return flow;
     },
+    '#BALANCES': async (from, to, resolution) => {
+      if (process.env.NODE_ENV === 'development') {
+        console.log(
+          `Requesting bars from ${formatDate(from * 1000)} to ${formatDate(
+            to * 1000
+          )} for #BALANCES`
+        );
+      }
+
+      const data = await ta.fetchSingleMetricProxy(
+        TAsymbol,
+        resolution,
+        from * 1000,
+        to * 1000,
+        API_METRICS.ExchangeBalance,
+        'balance',
+        exchangeName
+      );
+
+      if (!data.length) {
+        return [];
+      }
+
+      if (process.env.NODE_ENV === 'development') {
+        console.log(
+          `Received bars from ${formatDate(data[0].time)} to ${formatDate(
+            data[data.length - 1].time
+          )} for #BALANCES`
+        );
+      }
+
+      return data;
+    },
     ...metricsStudiesData(ta, TAsymbol),
   },
   getSymbol: {
@@ -121,6 +155,26 @@ export const makeStudiesCb = (ta, exchangeName, TAsymbol) => ({
         session: '24x7',
         supported_resolutions: ['60', '1D'],
         ticker: '#FLOWS',
+        timezone: `${Intl.DateTimeFormat().resolvedOptions().timeZone}`,
+        type: 'crypto',
+        volume_precision: 1,
+        has_empty_bars: true,
+      };
+
+      return symbolStub;
+    },
+    '#BALANCES': () => {
+      const symbolStub = {
+        data_status: 'streaming',
+        description: '',
+        exchange: exchangeName,
+        has_intraday: false,
+        minmov: 1,
+        name: '#BALANCES',
+        pricescale: 100000000,
+        session: '24x7',
+        supported_resolutions: ['60', '1D'],
+        ticker: '#BALANCES',
         timezone: `${Intl.DateTimeFormat().resolvedOptions().timeZone}`,
         type: 'crypto',
         volume_precision: 1,

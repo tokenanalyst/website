@@ -5,7 +5,7 @@ import Cookies from 'js-cookie';
 
 import { ExchangeMetricsWidget } from '../../../components/widgets/ExchangeMetricsWidget';
 import { IoChartWidget } from '../../../components/widgets/IoChartWidget';
-import { ExchangeFlows } from '../../../components/atomic/pages/ExchangeFlows';
+import { ExchangeFlowsPage } from '../../../components/atomic/pages/ExchangeFlows';
 import { COOKIES } from '../../../constants/cookies';
 import { tokensDb } from '../../../services/tokensDb';
 import { LoginContext } from '../../../contexts/Login';
@@ -68,11 +68,11 @@ const Exchange = () => {
       )}
       {token && exchange && isTVSupported ? (
         <>
-          <ExchangeFlows
+          <ExchangeFlowsPage
             selectedExchange={exchange}
             selectedToken={token}
             tokensDb={tokensDb}
-            onChange={pushToPage}
+            onChangeToken={pushToPage}
           />
         </>
       ) : (

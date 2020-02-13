@@ -1,24 +1,30 @@
 import PropTypes from 'prop-types';
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import moment from 'moment';
+import isEqual from 'lodash/isEqual';
 import { makeTVSymbols } from './utils/makeTVSymbols';
 
 import { ProChartContainer } from './ProChartContainer';
-import { LeftSidePanel } from './LeftSidePanel';
+import { LeftSidePanel } from '../../organism/LeftSidePanel/LeftSidePanel';
+import { TV_STUDIES, TV_OPTIONS } from './const';
 
 const TV_INITIAL_DATA_RANGE = 90; // 90 days
 
-export const ExchangeFlows = ({
+const propsAreEqual = (prevProps, nextProps) =>
+  isEqual(prevProps.TVSymbols, nextProps.TVSymbols);
+
+const MemoProChartContainer = React.memo(ProChartContainer, propsAreEqual);
+
+export const ExchangeFlowsPage = ({
   selectedExchange,
   selectedToken,
   tokensDb,
-  onChange,
+  onChangeToken,
 }) => {
   const tvInstance = useRef(null);
-  const studies = useRef({
-    flows: { entityId: null },
-    transactions: { entityId: null },
-  });
+  const [tvStudies, setTvStudies] = useState(
+    JSON.parse(window.localStorage.getItem('ta_studies')) || TV_STUDIES
+  );
 
   const exchangeSupport = tokensDb.getTokenSupportOnExchange(
     selectedToken,
@@ -26,6 +32,45 @@ export const ExchangeFlows = ({
   );
 
   const TVSymbols = makeTVSymbols(selectedToken, exchangeSupport);
+
+  const onSelectStudy = study => {
+    const updatedStudies = { ...tvStudies };
+
+    if (tvInstance.current) {
+      if (updatedStudies[study].isActive) {
+        tvInstance.current.chart().removeEntity(updatedStudies[study].entityId);
+        updatedStudies[study].entityId = null;
+      } else {
+        updatedStudies[study].entityId = tvInstance.current
+          .chart()
+          .createStudy(updatedStudies[study].tvName, false, true);
+      }
+      updatedStudies[study].isActive = !updatedStudies[study].isActive;
+      setTvStudies(updatedStudies);
+      window.localStorage.setItem('ta_studies', JSON.stringify(updatedStudies));
+    }
+  };
+
+  const onChartRender = async tvWidget => {
+    tvInstance.current = tvWidget;
+    const now = moment().unix();
+    const ninetyDaysAgo = moment()
+      .subtract(TV_INITIAL_DATA_RANGE, 'days')
+      .unix();
+    await tvInstance.current.chart().setVisibleRange({
+      from: ninetyDaysAgo,
+      to: now,
+    });
+
+    Object.keys(tvStudies).map(study => {
+      if (tvStudies[study].isActive) {
+        tvStudies[study].entityId = tvInstance.current
+          .chart()
+          .createStudy(tvStudies[study].tvName, false, true);
+      }
+    });
+    setTvStudies({ ...tvStudies });
+  };
 
   return (
     <>
@@ -35,36 +80,23 @@ export const ExchangeFlows = ({
             <LeftSidePanel
               selectedExchange={selectedExchange}
               selectedToken={selectedToken}
+              studies={tvStudies}
               tokensDb={tokensDb}
-              onChange={onChange}
+              onChangeToken={onChangeToken}
+              onSelectStudy={onSelectStudy}
             />
           </div>
         </div>
         <div className="right-panel">
           <div className="pro-chart">
-            <ProChartContainer
+            <MemoProChartContainer
               timeFrame="3M"
               interval="D"
               TVSymbols={TVSymbols.pair}
               TASymbol={selectedToken}
+              TVOptions={TV_OPTIONS}
               exchangeName={selectedExchange}
-              onChartRenderCb={async tvWidget => {
-                tvInstance.current = tvWidget;
-                const now = moment().unix();
-                const ninetyDaysAgo = moment()
-                  .subtract(TV_INITIAL_DATA_RANGE, 'days')
-                  .unix();
-                await tvInstance.current.chart().setVisibleRange({
-                  from: ninetyDaysAgo,
-                  to: now,
-                });
-                studies.current.flows.entityId = tvInstance.current
-                  .chart()
-                  .createStudy('Flows', false, true);
-                studies.current.transactions.entityId = tvInstance.current
-                  .chart()
-                  .createStudy('NetFlows', false, true);
-              }}
+              onChartRenderCb={onChartRender}
               isIntraDay
               instrumentClass={TVSymbols.class}
             />
@@ -135,8 +167,8 @@ export const ExchangeFlows = ({
   );
 };
 
-ExchangeFlows.propTypes = {
-  onChange: PropTypes.func.isRequired,
+ExchangeFlowsPage.propTypes = {
+  onChangeToken: PropTypes.func.isRequired,
   selectedExchange: PropTypes.string.isRequired,
   selectedToken: PropTypes.string.isRequired,
   tokensDb: PropTypes.objectOf(

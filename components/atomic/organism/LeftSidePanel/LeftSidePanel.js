@@ -2,26 +2,20 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ReactGA from 'react-ga';
 
-import { ItemRenderer, MultiSelect } from '@blueprintjs/select';
-import { MenuItem, Menu } from '@blueprintjs/core';
-import css from 'styled-jsx/css';
-import { TokenSelect } from './TokenSelect';
-import { ExchangeList } from './ExchangeList';
+import { TokenSelect } from '../TokenSelect/TokenSelect';
+import { ExchangeList } from '../../molecules/ExchangeList';
 import { ExchangeMetricsWidget } from '../../../widgets/ProExchangeMetricsWidget';
 import { LinkTelegram } from '../../molecules/LinkTelegram/LinkTelegram';
 import { SimpleBox } from '../../molecules/SimpleBox';
-
-const { className, styles } = css.resolve`
-  a {
-    color: green;
-  }
-`;
+import { StudiesList } from '../../molecules/StudiesList/StudiesList';
 
 export const LeftSidePanel = ({
   selectedExchange,
   selectedToken,
   tokensDb,
-  onChange,
+  onChangeToken,
+  onSelectStudy,
+  studies,
 }) => {
   const {
     tokens: {
@@ -34,22 +28,6 @@ export const LeftSidePanel = ({
   const erc20Tokens = tokensDb.getTokensList(ERC20, selectedExchange);
 
   const tokensList = [nativeTokens, stableTokens, erc20Tokens];
-
-  const renderExchange = (metric, { modifiers, handleClick }) => {
-    if (!modifiers.matchesPredicate) {
-      return null;
-    }
-    return (
-      <MenuItem
-        active={modifiers.active}
-        key={metric.name}
-        label={metric.name}
-        onClick={handleClick}
-        text={`${metric.name}`}
-        shouldDismissPopover={false}
-      />
-    );
-  };
 
   return (
     <div className="container">
@@ -77,7 +55,7 @@ export const LeftSidePanel = ({
                     action: `Pro Chart change token ${newToken}`,
                     label: `Pro Charts`,
                   });
-                  onChange(newToken, selectedExchange);
+                  onChangeToken(newToken, selectedExchange);
                 }}
               />
             </div>
@@ -86,39 +64,8 @@ export const LeftSidePanel = ({
         <SimpleBox title="METRIC">
           <div className="controls">
             <div className="control">
-              {/* <MultiSelect
-                // createNewItemFromQuery={maybeCreateNewItemFromQuery}
-                // createNewItemRenderer={maybeCreateNewItemRenderer}
-                // initialContent={initialContent}
-                itemRenderer={renderExchange}
-                // itemsEqual={areFilmsEqual}
-                // we may customize the default filmSelectProps.items by
-                // adding newly created items to the list, so pass our own
-                items={[
-                  { name: 'Price' },
-                  { name: 'Volume' },
-                  { name: 'Flows' },
-                ]}
-                noResults={<MenuItem disabled text="No results." />}
-                onItemSelect={() => null}
-                // onItemsPaste={this.handleFilmsPaste}
-                popoverProps={{ minimal: true }}
-                tagRenderer={exchange => exchange.name}
-                // tagInputProps={{
-                //   tagProps: getTagProps,
-                //   onRemove: this.handleTagRemove,
-                //   rightElement: clearButton,
-                // }}
-                // selectedItems={this.state.films}
-                fill
-                placeholder="Select..."
-              /> */}
-              <Menu>
-                <MenuItem text="Price" active />
-                <MenuItem text="Volume" active />
-                <MenuItem text="Flows" />
-                <MenuItem text="Balances" className={className} />
-              </Menu>
+              <StudiesList studies={studies} onSelectStudy={onSelectStudy} />
+              {/* {renderStudies(studies)} */}
             </div>
           </div>
         </SimpleBox>
@@ -130,7 +77,7 @@ export const LeftSidePanel = ({
                   selectedExchange={selectedExchange}
                   exchanges={tokensDb.getExchangesList()}
                   onChangeExchange={newExchange => {
-                    onChange(selectedToken, newExchange);
+                    onChangeToken(selectedToken, newExchange);
                   }}
                 />
               </div>
@@ -138,7 +85,6 @@ export const LeftSidePanel = ({
           </div>
         </SimpleBox>
       </div>
-      {styles}
       <style jsx>
         {`
           .metrics {
@@ -194,10 +140,12 @@ export const LeftSidePanel = ({
 };
 
 LeftSidePanel.propTypes = {
-  onChange: PropTypes.func.isRequired,
+  onChangeToken: PropTypes.func.isRequired,
+  onSelectStudy: PropTypes.func.isRequired,
   selectedExchange: PropTypes.string.isRequired,
   selectedToken: PropTypes.string.isRequired,
   tokensDb: PropTypes.objectOf(
     PropTypes.oneOfType([PropTypes.func, PropTypes.object])
   ).isRequired,
+  studies: PropTypes.objectOf(PropTypes.object).isRequired,
 };

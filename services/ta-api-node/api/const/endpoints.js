@@ -32,6 +32,8 @@ module.exports = {
       token_miner_rewards_window_historical: () =>
         'token_miner_rewards_window_historical/last',
       token_sopr_window_historical: () => 'token_sopr_window_historical/last',
+      exchange_balance_window_historical: () =>
+        'exchange_balance_window_historical/last',
     },
     public: {
       exchange_flows_all_tokens_v5: () =>
