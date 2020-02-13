@@ -97,6 +97,23 @@ export const Home = () => {
           </div>
         </div>
         <div className="home-products-container">
+          <div className="products-description">
+            <div className="products-description-title">
+              Blockchain Data products
+            </div>
+            <div className="products-description-text">
+              <p>
+                Transparent and actionable tools and data for Bitcoin, Ethereum
+                and Stablecoins.
+              </p>
+              <p>
+                We provide data analysis tools for the Bitcoin and Ethereum
+                blockchains. Institutional and professional traders get access
+                to real-time and historical data on transactions, exchange flows
+                and miners actvities.
+              </p>
+            </div>
+          </div>
           <div className="products">
             <Products />
           </div>
@@ -185,12 +202,62 @@ export const Home = () => {
           .top-button {
             margin-right: 20px;
           }
+          .products-description {
+            display: flex;
+            flex-direction: column;
+            width: 1440px;
+            margin: auto;
+            padding-left: 20px;
+            padding-right: 20px;
+          }
+          .products-description-title {
+            font-family: Space Grotesk;
+            font-weight: 700;
+            font-family: Cardo;
+            font-size: 30px;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            -webkit-letter-spacing: 0.26px;
+            -moz-letter-spacing: 0.26px;
+            -ms-letter-spacing: 0.26px;
+            letter-spacing: 0.26px;
+            color: #000000;
+            margin-bottom: 20px;
+            margin-top: 50px;
+          }
+          .products-description-text p {
+            font-size: 20px;
+            font-family: Open Sans;
+            font-weight: 500;
+            font-style: normal;
+            font-stretch: normal;
+            line-height: normal;
+            -webkit-letter-spacing: 0.13px;
+            -moz-letter-spacing: 0.13px;
+            -ms-letter-spacing: 0.13px;
+            letter-spacing: 0.13px;
+          }
+
           @media only screen and (max-width: 1360px) {
             .table {
               display: none;
             }
           }
           @media only screen and (max-width: 768px) {
+            .products-description {
+              width: 100%;
+              padding-left: 0px;
+              padding-right: 0px;
+              padding-bottom: 20px;
+            }
+            .products-description-title {
+              margin-top: 0px;
+              font-size: 20px;
+            }
+            .products-description-text p {
+              font-size: 16px;
+            }
             .home-top-container {
               padding-bottom: 75px;
               margin-top: 25px;
