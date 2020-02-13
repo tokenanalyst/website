@@ -12,6 +12,13 @@ export const colors = {
   [NEUTRAL_YELLOW]: `205, 171, 63`,
 };
 
+export const colorsHex = {
+  [PRIMARY_RED]: `#fa4e0f0`,
+  [PRIMARY_GREEN]: `#3fcdab`,
+  [NEUTRAL_GREY]: `#E8E8E8`,
+  [NEUTRAL_YELLOW]: `#cdab3f`,
+};
+
 export const Intent = {
   DANGER: BPIntent.DANGER,
   NONE: BPIntent.NONE,

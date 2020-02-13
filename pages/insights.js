@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { MetricsWidget } from '../components/widgets/MetricsWidget';
+import { MetricsPage } from '../components/atomic/pages/Metrics';
 
 const Metrics = () => {
-  return <MetricsWidget />;
+  return <MetricsPage />;
 };
 
 export default Metrics;

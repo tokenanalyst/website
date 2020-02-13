@@ -4,15 +4,14 @@ const makeUnixtimeLimit = require('./utils/makeUnixtimeLimit');
 const filterSeriesByTime = require('./utils/filterSeriesByTime');
 const TA = require('../services/ta-api-node/ta');
 const formatApiError = require('./utils/formatApiError');
-const API_METRICS = require('../constants/apiMetrics').API_METRICS;
-const NATIVE_TOKENS = require('../constants/tokens').NATIVE_TOKENS;
+const { API_METRICS } = require('../constants/apiMetrics');
+const { NATIVE_TOKENS } = require('../constants/tokens');
 
 module.exports = async (req, res) => {
   const urlParts = url.parse(req.url, true);
   const {
-    query: { metric, token, window, from_date, to_date },
+    query: { metric, token, window, from_date, to_date, exchange },
   } = urlParts;
-
   const { userData } = await getUserAuth(req.cookies.apiKey);
 
   const tierTimeLimit = makeUnixtimeLimit(
@@ -24,7 +23,7 @@ module.exports = async (req, res) => {
 
   const PARAMS = { window, format: 'json' };
 
-  const params = {
+  let params = {
     key: process.env.API_KEY,
     format: PARAMS.format,
     token,
@@ -32,6 +31,10 @@ module.exports = async (req, res) => {
     from_date,
     to_date,
   };
+
+  if (exchange) {
+    params = { ...params, exchange: exchange.toLowerCase() };
+  }
 
   const apiFunctions = {
     [API_METRICS.Volume]: privateApi.tokenVolumeWindowHistorical,
@@ -49,6 +52,7 @@ module.exports = async (req, res) => {
     [API_METRICS.NewAddress]: privateApi.tokenNewAddressWindowHistorical,
     [API_METRICS.AddressBalances]:
       privateApi.tokenAddressBalancesWindowHistorical,
+    [API_METRICS.ExchangeBalance]: privateApi.exchangeBalanceWindowHistorical,
   };
 
   let result;
@@ -70,23 +74,18 @@ module.exports = async (req, res) => {
     );
   } else if (metric === API_METRICS.Rewards) {
     response_data = result.data.reduce((acc, curr) => {
-      let entry = acc.find(data => data.date === curr.date);
+      const entry = acc.find(data => data.date === curr.date);
       if (entry) {
-        entry.miner_daily_block_reward =
-          entry.miner_daily_block_reward + curr.miner_daily_block_reward;
-        entry.miner_daily_block_reward_usd =
-          entry.miner_daily_block_reward_usd +
-          curr.miner_daily_block_reward_usd;
+        entry.miner_daily_block_reward += curr.miner_daily_block_reward;
+        entry.miner_daily_block_reward_usd += curr.miner_daily_block_reward_usd;
         if (token === NATIVE_TOKENS.ETH) {
-          entry.miner_daily_uncle_reward =
-            entry.miner_daily_uncle_reward + curr.miner_daily_uncle_reward;
-          entry.miner_daily_uncle_reward_usd =
-            entry.miner_daily_uncle_reward_usd +
+          entry.miner_daily_uncle_reward += curr.miner_daily_uncle_reward;
+          entry.miner_daily_uncle_reward_usd +=
             curr.miner_daily_uncle_reward_usd;
         }
         return acc;
       }
-      let new_entry = {
+      const new_entry = {
         date: curr.date,
         miner_daily_block_reward: curr.miner_daily_block_reward,
         miner_daily_block_reward_usd: curr.miner_daily_block_reward_usd,

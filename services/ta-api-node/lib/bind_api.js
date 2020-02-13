@@ -74,6 +74,9 @@ module.exports = userConfig => {
   ta.tokenSoprWindowHistorical = compose(
     fetchDataFromApi(ENDPOINTS.private.token_sopr_window_historical)
   );
+  ta.exchangeBalanceWindowHistorical = compose(
+    fetchDataFromApi(ENDPOINTS.private.exchange_balance_window_historical)
+  );
 
   // Public endpoints
   ta.allExchangeFlowsAllTokensV5 = compose(

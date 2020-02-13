@@ -77,7 +77,7 @@ export const Link = ({
 Link.propTypes = {
   href: PropTypes.string.isRequired,
   isOpenInNewWindow: PropTypes.bool,
-  desktopLabel: PropTypes.string.isRequired,
+  desktopLabel: PropTypes.node.isRequired,
   mobileLabel: PropTypes.string,
   onClick: PropTypes.func,
 };

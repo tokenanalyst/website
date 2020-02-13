@@ -178,6 +178,81 @@ const METRIC_INDICATORS = [
 }));
 
 __customIndicators = [
+  ...METRIC_INDICATORS,
+  {
+    name: 'Balances',
+    metainfo: {
+      _metainfoVersion: 40,
+      id: 'Balances@tv-basicstudies-1',
+      scriptIdPart: '',
+      name: 'Balances',
+      description: 'Balances',
+      shortDescription: 'Balances',
+
+      is_hidden_study: false,
+      is_price_study: false,
+      isCustomIndicator: true,
+
+      plots: [{ id: 'plot_0', type: 'line' }],
+      defaults: {
+        styles: {
+          plot_0: {
+            linestyle: 0,
+            visible: true,
+
+            // Make the line thinner
+            linewidth: 2,
+
+            // Plot type is Line
+            plottype: 2,
+
+            // Show price line
+            trackPrice: false,
+
+            transparency: 40,
+
+            color: '#3FCDAB',
+          },
+        },
+        precision: 0,
+
+        inputs: {},
+      },
+      styles: {
+        plot_0: {
+          // Output name will be displayed in the Style window
+          title: 'Balances',
+          histogramBase: 0,
+        },
+      },
+      inputs: [],
+    },
+
+    constructor: function() {
+      this.init = function(context, inputCallback) {
+        this._context = context;
+        this._input = inputCallback;
+
+        const symbol = '#BALANCES';
+        this._context.new_sym(
+          symbol,
+          PineJS.Std.period(this._context),
+          PineJS.Std.period(this._context)
+        );
+      };
+
+      this.main = function(context, inputCallback) {
+        this._context = context;
+        this._input = inputCallback;
+        this._context.select_sym(1);
+
+        const inFlow = PineJS.Std.open(this._context);
+        const outFlow = PineJS.Std.close(this._context);
+
+        return [inFlow, outFlow];
+      };
+    },
+  },
   {
     name: 'Flows',
     metainfo: {
@@ -271,7 +346,6 @@ __customIndicators = [
       };
     },
   },
-  ...METRIC_INDICATORS,
   {
     name: 'NetFlows',
     metainfo: {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home } from '../components/pages/Home';
+import { Home } from '../components/atomic/pages/Home';
 
 const HomePage = () => {
   return <Home />;
