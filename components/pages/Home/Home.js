@@ -211,6 +211,7 @@ export const Home = () => {
             padding-right: 20px;
           }
           .products-description-title {
+            font-family: Space Grotesk;
             font-weight: 700;
             font-family: Cardo;
             font-size: 30px;
@@ -244,6 +245,19 @@ export const Home = () => {
             }
           }
           @media only screen and (max-width: 768px) {
+            .products-description {
+              width: 100%;
+              padding-left: 0px;
+              padding-right: 0px;
+              padding-bottom: 20px;
+            }
+            .products-description-title {
+              margin-top: 0px;
+              font-size: 20px;
+            }
+            .products-description-text p {
+              font-size: 16px;
+            }
             .home-top-container {
               padding-bottom: 75px;
               margin-top: 25px;
