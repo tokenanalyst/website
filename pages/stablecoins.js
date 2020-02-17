@@ -16,7 +16,10 @@ import { Link } from '../components/Link';
 
 // lightweight-charts must not be imported on the server (Bang!)
 const SimpleChart = dynamic(
-  () => import('../components/charts/SimpleChart').then(mod => mod.SimpleChart),
+  () =>
+    import('../components/atomic/organism/SimpleChart').then(
+      mod => mod.SimpleChart
+    ),
   {
     ssr: false,
   }
@@ -64,7 +67,7 @@ const StableCoins = () => {
           <title>TokenAnalyst - Stablecoins</title>
         </Head>
         <PageHeader
-          text={'Stablecoins'}
+          text="Stablecoins"
           rightElement={
             <Link
               href="/pricing"
@@ -84,7 +87,7 @@ const StableCoins = () => {
       <div className="container">
         <div className="charts">
           <div className="chart">
-            <PageSection text={'Volumes'} />
+            <PageSection text="Volumes" />
             {volumeChartData ? (
               <SimpleChart
                 dataSet={volumeChartData}
@@ -112,7 +115,7 @@ const StableCoins = () => {
             )}
           </div>
           <div className="chart">
-            <PageSection text={'Transactions'} />
+            <PageSection text="Transactions" />
             {transactionsChartData ? (
               <SimpleChart
                 dataSet={transactionsChartData}
@@ -143,7 +146,7 @@ const StableCoins = () => {
           </div>
         </div>
         <div className="table">
-          <PageSection text={'24 hr stats'} />
+          <PageSection text="24 hr stats" />
           {tableData ? (
             <StableCoinTable tableData={tableData} />
           ) : (
@@ -152,44 +155,46 @@ const StableCoins = () => {
         </div>
       </div>
       <div />
-      <style jsx>{`
-        .container {
-          font-family: Work Sans;
-        }
-        .charts {
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          padding: 13px;
-        }
-        .chart {
-          display: flex;
-          flex-direction: column;
-          padding-bottom: 20px;
-        }
-        .table-section-header {
-          font-size: 22px;
-          font-weight: bold;
-          opacity: 0.4;
-          padding-bottom: 20px;
-          padding-left: 30px;
-        }
-        .table {
-          padding: 13px;
-        }
-        @media (min-width: 1400px) and (max-width: 1799px) {
-        }
-        @media (min-width: 768px) and (max-width: 1399px) {
-          .charts {
-            flex-direction: column;
+      <style jsx>
+        {`
+          .container {
+            font-family: Work Sans;
           }
-        }
-        @media (min-width: 320px) and (max-width: 767px) {
           .charts {
-            flex-direction: column;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 13px;
           }
-        }
-      `}</style>
+          .chart {
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 20px;
+          }
+          .table-section-header {
+            font-size: 22px;
+            font-weight: bold;
+            opacity: 0.4;
+            padding-bottom: 20px;
+            padding-left: 30px;
+          }
+          .table {
+            padding: 13px;
+          }
+          @media (min-width: 1400px) and (max-width: 1799px) {
+          }
+          @media (min-width: 768px) and (max-width: 1399px) {
+            .charts {
+              flex-direction: column;
+            }
+          }
+          @media (min-width: 320px) and (max-width: 767px) {
+            .charts {
+              flex-direction: column;
+            }
+          }
+        `}
+      </style>
     </>
   );
 };
