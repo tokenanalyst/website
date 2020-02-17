@@ -16,6 +16,8 @@ const ta = (function ta() {
 
     if (item.hour) {
       timePoint = { ...item, date: `${item.date} ${item.hour}` };
+    } else {
+      timePoint = { ...item, date: `${item.date} 23:59:59` };
     }
     return pick(timePoint, itemKeys);
   };
@@ -105,7 +107,6 @@ const ta = (function ta() {
                   };
                 })
                 .filter(item => item.time > start && item.time < end);
-
               return flowsData;
             }),
             catchError(() => of([]))
@@ -127,7 +128,6 @@ const ta = (function ta() {
       const startDate = moment(start).format('YYYY-MM-DD');
       const endDate = moment(end).format('YYYY-MM-DD');
       let timeWindow;
-      console.warn(exchange, dataPoint);
 
       timeWindow = timeFrame;
 

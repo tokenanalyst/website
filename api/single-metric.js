@@ -100,6 +100,7 @@ module.exports = async (req, res) => {
   } else {
     response_data = result.data;
   }
+  const filteredData = filterSeriesByTime(response_data, tierTimeLimit);
 
-  res.send(filterSeriesByTime(response_data, tierTimeLimit));
+  res.send(filteredData);
 };
