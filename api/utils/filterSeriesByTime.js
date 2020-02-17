@@ -14,7 +14,7 @@ module.exports = (series, timeRange) => {
       return `${item.date} ${item.hour}`;
     }
 
-    return item.date;
+    return `${item.date} 23:59:59`;
   };
 
   if (timeRange < moment.utc(formatDate(series[0]))) {

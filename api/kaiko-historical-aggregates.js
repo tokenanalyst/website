@@ -1,8 +1,8 @@
 const axios = require('axios');
 const url = require('url');
+const moment = require('moment');
 
 const getUserAuth = require('./auth/getUserAuth');
-
 const makeUnixtimeLimit = require('./utils/makeUnixtimeLimit');
 const filterSeriesByTime = require('./utils/filterSeriesByTime');
 
@@ -49,11 +49,14 @@ module.exports = async (req, res) => {
     });
 
     const { data } = apiResult.data;
+    const filteredData = filterSeriesByTime(data, tierTimeLimit);
 
-    return res.send({ data: filterSeriesByTime(data, tierTimeLimit) });
+    return res.send({ data: filteredData });
   } catch (e) {
+    const resStatus = e.response ? e.response.status : 500;
+
     return res
-      .status(e.response.status)
+      .status(resStatus)
       .send({ error: e.response.statusText, reason: e.response.data.message });
   }
 };
