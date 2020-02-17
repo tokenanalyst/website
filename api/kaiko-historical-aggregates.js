@@ -1,6 +1,5 @@
 const axios = require('axios');
 const url = require('url');
-const moment = require('moment');
 
 const getUserAuth = require('./auth/getUserAuth');
 const makeUnixtimeLimit = require('./utils/makeUnixtimeLimit');
