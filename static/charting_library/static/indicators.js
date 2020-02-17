@@ -204,7 +204,7 @@ __customIndicators = [
             linewidth: 2,
 
             // Plot type is Line
-            plottype: 2,
+            plottype: 8,
 
             // Show price line
             trackPrice: false,
