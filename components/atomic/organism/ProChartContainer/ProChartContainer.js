@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import React, { useState, useRef, useEffect, useContext } from 'react';
 import dynamic from 'next/dynamic';
 
-import tvData from '../../pages/ExchangeFlows/services/tvData';
-import taData from '../../pages/ExchangeFlows/services/taData';
+import tvData from '../../../../services/tvData';
+import taData from '../../../../services/taData';
 import {
   TRADINVIEW_DEFAULT_OPTIONS,
   KAIKO_TIME_FRAMES,
   KAIKO,
 } from '../../pages/ExchangeFlows/const';
-import candlesData from '../../pages/ExchangeFlows/services/candlesData';
+import candlesData from '../../../../services/candlesData';
 import { makeStudiesCb } from '../../pages/ExchangeFlows/utils';
 import { LoginContext } from '../../../../contexts/Login';
 

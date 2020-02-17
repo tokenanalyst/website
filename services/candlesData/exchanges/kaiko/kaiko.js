@@ -10,7 +10,7 @@ import {
 } from './const/const';
 import { addTradingPair, makeOptions, removeTradingPair } from './utils';
 import { EXCHANGE_NAME } from '../../const';
-import { SPOT, FUTURE } from '../../../../../../../../constants/instruments';
+import { SPOT } from '../../../../constants/instruments';
 
 const kaiko = (function kaiko() {
   let candlesData = {};
