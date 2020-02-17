@@ -40,8 +40,9 @@ module.exports = async (req, res) => {
     const {
       response: { data },
     } = err;
+    const { status, detail } = data;
 
-    return res.status(data.status).send(data);
+    return res.status(status).send(detail);
   }
   const [htmlData, metaData] = mailchimpResponse;
   const html = sanitizeHTML(htmlData.data.html);
