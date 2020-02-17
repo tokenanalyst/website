@@ -4,16 +4,17 @@ import { Icon } from '@blueprintjs/core';
 import PropTypes from 'prop-types';
 import ReactGA from 'react-ga';
 
-import { ChartControls } from '../../charts/ChartControls';
+import { ChartControls } from '../../atomic/molecules/ChartControls';
 import { CHART_TYPES, CHART_MODES } from '../../../constants/chartTypes';
-import { Link } from '../../../components/Link';
-import { LoadingSpinner } from '../../../components/LoadingSpinner';
+import { Link } from '../../Link';
+import { LoadingSpinner } from '../../LoadingSpinner';
 import { getExchangeDataSet } from '../../../data-transformers/charts/getExchangeDataSet';
 import { TIME_WINDOWS } from '../../../constants/filters';
 import { useApi } from '../../../custom-hooks';
 
 const SimpleChart = dynamic(
-  () => import('../../charts/SimpleChart').then(mod => mod.SimpleChart),
+  () =>
+    import('../../atomic/organism/SimpleChart').then(mod => mod.SimpleChart),
   {
     ssr: false,
   }
@@ -41,17 +42,18 @@ const GRAPH_SIZE = {
 };
 
 const TOOL_TIP = {
-  ['1h']: {
+  '1h': {
     message: (
       <div>
         Hourly data. All times are in UTC.
         <br />
         The displayed hour in the data is the start of the hour
-        <br /> for which the data is aggregated. <br />
+        <br /> for which the data is aggregated.
+        <br />
       </div>
     ),
   },
-  ['1d']: {
+  '1d': {
     message: (
       <div>
         Daily data. All times are in UTC.
@@ -81,7 +83,7 @@ export const IoChartWidget = ({ token, exchange, formatter }) => {
     } else {
       setDataSet(null);
     }
-  }, [token, apiResponse]);
+  }, [token, apiResponse, timeWindow]);
 
   return (
     <>
@@ -93,7 +95,7 @@ export const IoChartWidget = ({ token, exchange, formatter }) => {
               <div className="header-info">
                 <div>
                   <SimpleToolTip
-                    dataFor={'header-tooltip'}
+                    dataFor="header-tooltip"
                     toolTip={
                       TOOL_TIP[timeWindow] && TOOL_TIP[timeWindow].message
                     }
@@ -169,58 +171,60 @@ export const IoChartWidget = ({ token, exchange, formatter }) => {
       ) : (
         <LoadingSpinner />
       )}
-      <style jsx>{`
-        .widget-container {
-          display: flex;
-          flex-direction: row;
-          justify-content: space-around;
-          padding: 10px;
-        }
-        .chart {
-          min-width: ${GRAPH_SIZE.width.desktopLarge}px;
-        }
-        .header {
-          position: relative;
-          font-size: 18px;
-          font-weight: bold;
-          padding-bottom: 20px;
-          padding-top: 20px;
-          text-align: center;
-          width: 100%;
-        }
-        .header-info {
-          position: absolute;
-          right: 0;
-          top: 0;
-        }
-        .pricing-link {
-          padding-top: 30px;
-          text-align: center;
-        }
-        @media (min-width: 1400px) and (max-width: 1799px) {
-          .chart {
-            min-width: ${GRAPH_SIZE.width.desktop}px;
-          }
-        }
-        @media (min-width: 768px) and (max-width: 1399px) {
+      <style jsx>
+        {`
           .widget-container {
-            flex-direction: column;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            padding: 10px;
           }
           .chart {
-            min-width: ${GRAPH_SIZE.width.tablet}px;
-            min-height: ${GRAPH_SIZE.width.mobile}px;
+            min-width: ${GRAPH_SIZE.width.desktopLarge}px;
           }
-        }
-        @media (min-width: 320px) and (max-width: 767px) {
-          .widget-container {
-            flex-direction: column;
+          .header {
+            position: relative;
+            font-size: 18px;
+            font-weight: bold;
+            padding-bottom: 20px;
+            padding-top: 20px;
+            text-align: center;
+            width: 100%;
           }
-          .chart {
-            min-width: ${GRAPH_SIZE.width.mobile}px;
-            min-height: ${GRAPH_SIZE.height.mobile}px;
+          .header-info {
+            position: absolute;
+            right: 0;
+            top: 0;
           }
-        }
-      `}</style>
+          .pricing-link {
+            padding-top: 30px;
+            text-align: center;
+          }
+          @media (min-width: 1400px) and (max-width: 1799px) {
+            .chart {
+              min-width: ${GRAPH_SIZE.width.desktop}px;
+            }
+          }
+          @media (min-width: 768px) and (max-width: 1399px) {
+            .widget-container {
+              flex-direction: column;
+            }
+            .chart {
+              min-width: ${GRAPH_SIZE.width.tablet}px;
+              min-height: ${GRAPH_SIZE.width.mobile}px;
+            }
+          }
+          @media (min-width: 320px) and (max-width: 767px) {
+            .widget-container {
+              flex-direction: column;
+            }
+            .chart {
+              min-width: ${GRAPH_SIZE.width.mobile}px;
+              min-height: ${GRAPH_SIZE.height.mobile}px;
+            }
+          }
+        `}
+      </style>
     </>
   );
 };

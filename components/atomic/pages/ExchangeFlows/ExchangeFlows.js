@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 import React, { useRef, useState } from 'react';
 import moment from 'moment';
 import isEqual from 'lodash/isEqual';
-import { makeTVSymbols } from './utils/makeTVSymbols';
+import { makeTVSymbols } from '../../../../utils/makeTVSymbols';
 
-import { ProChartContainer } from './ProChartContainer';
+import { ProChartContainer } from '../../organism/ProChartContainer';
 import { LeftSidePanel } from '../../organism/LeftSidePanel/LeftSidePanel';
 import { TV_STUDIES, TV_OPTIONS } from './const';
 

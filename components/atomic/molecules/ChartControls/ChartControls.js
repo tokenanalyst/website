@@ -3,17 +3,17 @@ import React from 'react';
 import { Icon, HTMLSelect, Card } from '@blueprintjs/core';
 import ReactGA from 'react-ga';
 
-import { Skeleton } from '../../Skeleton';
-import { CHART_TYPES } from '../../../constants/chartTypes';
+import { Skeleton } from '../../../Skeleton';
+import { CHART_TYPES } from '../../../../constants/chartTypes';
 import {
   STABLE_TOKENS,
   NATIVE_TOKENS,
   ERC20_TOKENS,
-} from '../../../constants/tokens';
-import { TOKEN_NAMES } from '../../../constants/token-names';
-import { TOKEN_IMAGES } from '../../../constants/image-paths';
-import { colors } from '../../../constants/styles/colors';
-import { TIME_WINDOWS } from '../../../constants/filters';
+} from '../../../../constants/tokens';
+import { TOKEN_NAMES } from '../../../../constants/token-names';
+import { TOKEN_IMAGES } from '../../../../constants/image-paths';
+import { colors } from '../../../../constants/styles/colors';
+import { TIME_WINDOWS } from '../../../../constants/filters';
 
 const CHART_DISPLAY = [
   {

@@ -3,7 +3,7 @@ import { BTC_STUDIES, BTC_SYMBOLS } from './studies/btc';
 import { ETH_STUDIES, ETH_SYMBOLS } from './studies/eth';
 import { ERC20_STUDIES, ERC20_SYMBOLS } from './studies/erc20';
 import { COMMON_STUDIES, COMMON_SYMBOLS } from './studies/common';
-import { API_METRICS } from '../../../../../constants/apiMetrics';
+import { API_METRICS } from '../constants/apiMetrics';
 
 const formatDate = epoch => moment(epoch).format('DD/MM/YYYY, HH:mm:ss');
 
