@@ -1,5 +1,5 @@
-import { tokensDb } from '../../../../../services/tokensDb';
-import { SPOT, FUTURE } from '../../../../../constants/instruments';
+import { tokensDb } from '../services/tokensDb';
+import { SPOT, FUTURE } from '../constants/instruments';
 
 export const makeTVSymbols = (token, exchangeSupport) => {
   if (!exchangeSupport) {

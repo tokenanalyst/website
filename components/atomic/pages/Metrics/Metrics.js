@@ -6,7 +6,7 @@ import moment from 'moment';
 import { TokenSelect } from '../../organism/TokenSelect/TokenSelect';
 import { tokensDb } from '../../../../services/tokensDb';
 import { TOKEN_NAMES } from '../../../../constants/token-names';
-import { ProChartContainer } from '../ExchangeFlows/ProChartContainer';
+import { ProChartContainer } from '../../organism/ProChartContainer';
 import { NATIVE_TOKENS, STABLE_TOKENS } from '../../../../constants/tokens';
 import { TOKENS_EXCHANGE_SUPPORT } from '../../../../constants/exchanges';
 import { SPOT } from '../../../../constants/instruments';

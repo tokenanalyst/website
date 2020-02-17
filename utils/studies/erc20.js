@@ -1,4 +1,4 @@
-import { API_METRICS } from '../../../../../../constants/apiMetrics';
+import { API_METRICS } from '../../constants/apiMetrics';
 
 export const ERC20_STUDIES = [
   {

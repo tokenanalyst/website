@@ -1,1 +1,1 @@
-export * from './makeStudiesCb';
+export * from '../../../../../utils/makeStudiesCb';

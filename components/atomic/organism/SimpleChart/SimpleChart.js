@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { createChart } from 'lightweight-charts';
 import numeral from 'numeral';
 
-import { CHART_TYPES } from '../../../constants/chartTypes';
-import { LoadingSpinner } from '../../LoadingSpinner';
+import { CHART_TYPES } from '../../../../constants/chartTypes';
+import { LoadingSpinner } from '../../../LoadingSpinner';
 
 const FORMATTERS = {
   price: value => numeral(value).format('$0,0.00'),
@@ -31,8 +31,8 @@ export const SimpleChart = ({
 
   useEffect(() => {
     const chart = createChart(chartRef.current, {
-      height: height,
-      width: width,
+      height,
+      width,
       localization: {
         priceFormatter: window.matchMedia('(max-width: 768px)').matches
           ? FORMATTERS.truncated
@@ -85,7 +85,7 @@ export const SimpleChart = ({
     });
 
     return () => chart.remove();
-  }, [dataSet, seriesType, mode]);
+  }, [dataSet, seriesType, mode, height, width]);
 
   return (
     <div className="container" ref={chartRef}>
@@ -108,45 +108,47 @@ export const SimpleChart = ({
       <div className="spinner">
         <LoadingSpinner />
       </div>
-      <style jsx>{`
-        .container {
-          font-family: Open Sans;
-          position: relative;
-          opacity: ${isLoading ? 0.2 : 1};
-        }
-        .tooltip {
-          position: absolute;
-          top: 0;
-          left: 0;
-          z-index: 10;
-          font-weight: normal;
-          line-height: 20px;
-          font-size: 14px;
-          padding: 10px;
-          min-width: 35%;
-        }
-        .value {
-          text-align: right;
-          padding-left: 5px;
-        }
-        .spinner {
-          position: absolute;
-          top: 20%;
-          left: 38%;
-          z-index: 10;
-          display: ${isLoading ? 'block' : 'none'};
-        }
-        @media only screen and (max-width: 768px) {
+      <style jsx>
+        {`
           .container {
-            padding-bottom: 20px;
-            width: 275px;
+            font-family: Open Sans;
+            position: relative;
+            opacity: ${isLoading ? 0.2 : 1};
+          }
+          .tooltip {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            font-weight: normal;
+            line-height: 20px;
+            font-size: 14px;
+            padding: 10px;
+            min-width: 35%;
+          }
+          .value {
+            text-align: right;
+            padding-left: 5px;
           }
           .spinner {
-            top: 10%;
-            left: 18%;
+            position: absolute;
+            top: 20%;
+            left: 38%;
+            z-index: 10;
+            display: ${isLoading ? 'block' : 'none'};
           }
-        }
-      `}</style>
+          @media only screen and (max-width: 768px) {
+            .container {
+              padding-bottom: 20px;
+              width: 275px;
+            }
+            .spinner {
+              top: 10%;
+              left: 18%;
+            }
+          }
+        `}
+      </style>
     </div>
   );
 };
