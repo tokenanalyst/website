@@ -1,15 +1,15 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Icon, Intent } from '@blueprintjs/core';
+import { Icon } from '@blueprintjs/core';
 import { IconNames } from '@blueprintjs/icons';
 
-import { colors, colorsHex } from '../../../../constants/styles/colors';
+import { colorsHex } from '../../../../constants/styles/colors';
 
 export const SimpleMenuItem = ({ text, selected }) => {
   return (
     <div className="container">
-      <div className="">{text}</div>
-      <div className="">
+      <div>{text}</div>
+      <div>
         <Icon
           icon={IconNames.SYMBOL_CIRCLE}
           color={selected ? colorsHex.primaryGreen : colorsHex.neutralGrey}
@@ -23,13 +23,10 @@ export const SimpleMenuItem = ({ text, selected }) => {
           .container {
             display: flex;
             justify-content: space-between;
+            width: 100%;
           }
           .container:hover {
             opacity: 0.5;
-          }
-          .item-selected {
-            border-bottom: 2px solid rgba(${colors.primaryGreen}, 1);
-            display: inline-block;
           }
         `}
       </style>

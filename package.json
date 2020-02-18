@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@blueprintjs/core": "^3.18.0",
+    "@blueprintjs/icons": "^3.13.0",
     "@blueprintjs/select": "^3.10.0",
     "@sentry/browser": "^5.7.1",
     "@sentry/node": "^5.7.1",

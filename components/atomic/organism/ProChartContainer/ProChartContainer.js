@@ -11,7 +11,7 @@ import {
   KAIKO,
 } from '../../pages/ExchangeFlows/const';
 import candlesData from '../../../../services/candlesData';
-import { makeStudiesCb } from '../../pages/ExchangeFlows/utils';
+import { makeStudiesCb } from '../../../../utils/makeStudiesCb';
 import { LoginContext } from '../../../../contexts/Login';
 
 const ProChart = dynamic(() => import('../ProChart').then(mod => mod.default), {

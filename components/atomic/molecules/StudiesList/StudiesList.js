@@ -1,26 +1,12 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
-import { Popover, Menu, MenuItem, Button, Position } from '@blueprintjs/core';
 
 import { ExchangeRegisterDialog } from '../../../marketing/marketing-dialogs';
-import { ImgExchange } from '../../atoms/ImgExchange';
 import { SimpleMenuItem } from '../../atoms/SimpleMenuItem';
+import { SimpleToolTip } from '../../../SimpleToolTip';
 
 export const StudiesList = ({ studies, onSelectStudy }) => {
   const [isRegisterDialogShown, setIsRegisterDialogShown] = useState(false);
-
-  const renderMenuItems = () =>
-    Object.keys(studies).map(exchange => {
-      return (
-        <MenuItem
-          text={exchange}
-          icon={<ImgExchange exchange={exchange} />}
-          onKeyDown={() => {}}
-          onClick={() => {}}
-          key={exchange}
-        />
-      );
-    });
 
   return (
     <>
@@ -29,22 +15,41 @@ export const StudiesList = ({ studies, onSelectStudy }) => {
           isOpen={isRegisterDialogShown}
           closeCb={() => setIsRegisterDialogShown(false)}
         />
-
         <div className="desktop-list">
           {Object.keys(studies).map(study => (
             <div
-              className="study"
               role="link"
               key={study}
               tabIndex="0"
               onKeyDown={() => onSelectStudy(study)}
               onClick={() => onSelectStudy(study)}
             >
-              <SimpleMenuItem
-                key={`${studies[study].name}`}
-                selected={!!studies[study].isActive}
-                text={studies[study].name}
-              />
+              <SimpleToolTip
+                dataFor={`metric-tooltip-${study}`}
+                disable={!!studies[study].isSupported}
+                toolTip={
+                  studies[study].isSupported
+                    ? 'Supported'
+                    : 'Metric not supported'
+                }
+                type="dark"
+                effect="solid"
+                place="right"
+              >
+                <div
+                  data-tip
+                  data-for={`metric-tooltip-${study}`}
+                  className={
+                    studies[study].isSupported ? 'study' : 'study-not-supported'
+                  }
+                >
+                  <SimpleMenuItem
+                    key={`${studies[study].name}`}
+                    selected={!!studies[study].isActive}
+                    text={studies[study].name}
+                  />
+                </div>
+              </SimpleToolTip>
             </div>
           ))}
         </div>
@@ -54,6 +59,11 @@ export const StudiesList = ({ studies, onSelectStudy }) => {
           .study {
             height: 25px;
             cursor: pointer;
+            align-items: center;
+          }
+          .study-not-supported {
+            height: 25px;
+            opacity: 0.2;
             align-items: center;
           }
           @media (max-width: 767px) {

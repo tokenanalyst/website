@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import ReactGA from 'react-ga';
+import isEqual from 'lodash/isEqual';
 
 import { TokenSelect } from '../TokenSelect/TokenSelect';
 import { ExchangeList } from '../../molecules/ExchangeList';
@@ -9,13 +10,19 @@ import { LinkTelegram } from '../../molecules/LinkTelegram/LinkTelegram';
 import { SimpleBox } from '../../molecules/SimpleBox';
 import { StudiesList } from '../../molecules/StudiesList/StudiesList';
 
+// const propsAreEqual = (prevProps, nextProps) => {
+//   return isEqual(prevProps.studies, nextProps.studies);
+// };
+
+// const MemoStudiesList = React.memo(StudiesList, propsAreEqual);
+
 export const LeftSidePanel = ({
-  selectedExchange,
-  selectedToken,
-  tokensDb,
   onChangeToken,
   onSelectStudy,
+  selectedExchange,
+  selectedToken,
   studies,
+  tokensDb,
 }) => {
   const {
     tokens: {

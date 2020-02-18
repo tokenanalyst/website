@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 import {
   NATIVE_TOKENS,
   ERC20_TOKENS,
@@ -102,4 +104,13 @@ export const tokensDb = {
   isStable: token => token in stableTokens,
   isERC20: token => token in erc20Tokens,
   isDerivative: token => Object.keys(DERIVATIVES).indexOf(token) >= 0,
+  getMetricSupportOnExchange: async () => {
+    try {
+      const response = await axios.get(`/api/data-api-config`);
+
+      return response.data.metricsSupport;
+    } catch (err) {
+      return {};
+    }
+  },
 };
