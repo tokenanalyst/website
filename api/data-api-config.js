@@ -50,18 +50,12 @@ module.exports = async (req, res) => {
     return res.status(status).send(body);
   }
 
-  const missingCatalogueSupport = {
-    exchange_balance_window_historical: {
-      usdt_erc20: ['binance', 'bittrex', 'bitfinex', 'kucoin', 'poloniex'],
-      usdc: ['binance', 'bitfinex'],
-    },
-  };
-
   const withMissingCatalogueEntries = {
     ...resBody,
     exchange_balance_window_historical: {
       ...resBody.exchange_balance_window_historical,
-      ...missingCatalogueSupport.exchange_balance_window_historical,
+      usdt_erc20: ['binance', 'bittrex', 'bitfinex', 'kucoin', 'poloniex'],
+      usdc: ['binance', 'bitfinex'],
     },
   };
 
