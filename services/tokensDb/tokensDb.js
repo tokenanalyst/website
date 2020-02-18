@@ -11,7 +11,6 @@ import {
   TOKENS_EXCHANGE_SUPPORT,
   TOKENS_TV_SUPPORT,
 } from '../../constants/exchanges';
-import { API_URL } from '../../constants/url';
 
 const NATIVE = 'native';
 const STABLE = 'stable';
@@ -107,7 +106,7 @@ export const tokensDb = {
   isDerivative: token => Object.keys(DERIVATIVES).indexOf(token) >= 0,
   getMetricSupportOnExchange: async () => {
     try {
-      const response = await axios.get(`${API_URL}/api/data-api-config`);
+      const response = await axios.get(`/api/data-api-config`);
 
       return response.data.metricsSupport;
     } catch (err) {
