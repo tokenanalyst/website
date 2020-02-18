@@ -18,6 +18,8 @@ export const TV_STUDIES = {
     tvName: 'Balances',
     isCustomStudy: true,
     isActive: false,
+    isSupported: false,
+    taEndpoint: 'exchange_balance_window_historical',
   },
   flows: {
     entityId: null,
@@ -25,6 +27,8 @@ export const TV_STUDIES = {
     tvName: 'Flows',
     isCustomStudy: true,
     isActive: true,
+    isSupported: true,
+    taEndpoint: 'exchange_flow_window_historical',
   },
   netFlows: {
     entityId: null,
@@ -32,6 +36,8 @@ export const TV_STUDIES = {
     tvName: 'NetFlows',
     isCustomStudy: true,
     isActive: false,
+    isSupported: true,
+    taEndpoint: 'exchange_flow_window_historical',
   },
   volume: {
     entityId: true,
@@ -39,6 +45,7 @@ export const TV_STUDIES = {
     tvName: 'Volume',
     isCustomStudy: false,
     isActive: true,
+    isSupported: true,
   },
 };
 

@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Cookies from 'js-cookie';
+import isEqual from 'lodash/isEqual';
 
 import { ExchangeMetricsWidget } from '../../../components/widgets/ExchangeMetricsWidget';
 import { IoChartWidget } from '../../../components/widgets/IoChartWidget';
@@ -11,6 +12,20 @@ import { tokensDb } from '../../../services/tokensDb';
 import { LoginContext } from '../../../contexts/Login';
 import { DelayedExchangeRegisterDialog } from '../../../components/marketing/marketing-dialogs';
 import { LOGGED_OUT_SUPPORTED_EXCHANGES } from '../../../constants/exchanges';
+
+// const propsAreEqual = (prevProps, nextProps) => {
+//   // console.log(prevProps.TASymbol, nextProps.TASymbol);
+//   if (isEqual(prevProps.selectedExchange, nextProps.selectedExchange)) {
+//     return true;
+//   }
+//   if (isEqual(prevProps.selectedToken, nextProps.selectedToken)) {
+//     return true;
+//   }
+//   console.log('rerender ExchangeFlowsPage');
+//   return false;
+// };
+
+// const MemoExchangeFlowsPage = React.memo(ExchangeFlowsPage, propsAreEqual);
 
 const Exchange = () => {
   const router = useRouter();
