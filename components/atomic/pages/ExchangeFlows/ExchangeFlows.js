@@ -17,8 +17,8 @@ const TV_INITIAL_DATA_RANGE = 90; // 90 days
 
 const propsAreEqual = (prevProps, nextProps) => {
   return (
-    isEqual(prevProps.TASymbol, nextProps.TASymbol) ||
-    isEqual(prevProps.selectedExchange, nextProps.selectedExchange)
+    isEqual(prevProps.TASymbol, nextProps.TASymbol) &&
+    isEqual(prevProps.exchangeName, nextProps.exchangeName)
   );
 };
 
@@ -153,6 +153,7 @@ export const ExchangeFlowsPage = ({
     setIsChartReady(true);
   };
 
+  console.log(selectedExchange);
   return (
     <>
       <div className="container">
