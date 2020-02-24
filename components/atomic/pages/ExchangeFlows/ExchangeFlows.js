@@ -153,7 +153,6 @@ export const ExchangeFlowsPage = ({
     setIsChartReady(true);
   };
 
-  console.log(selectedExchange);
   return (
     <>
       <div className="container">
