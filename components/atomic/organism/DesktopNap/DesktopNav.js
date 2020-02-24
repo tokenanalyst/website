@@ -5,10 +5,10 @@ import { useRouter } from 'next/router';
 import classNames from 'classnames';
 import ReactGA from 'react-ga';
 
-import { LoginContext } from '../../contexts/Login';
-import { LOGO_IMAGES } from '../../constants/image-paths';
-import { COOKIES } from '../../constants/cookies';
-import { PLANS } from '../../constants/plans';
+import { LoginContext } from '../../../../contexts/Login';
+import { LOGO_IMAGES } from '../../../../constants/image-paths';
+import { COOKIES } from '../../../../constants/cookies';
+import { PLANS } from '../../../../constants/plans';
 
 export const setLinkActive = (pathName, link) =>
   pathName.split('?')[0] === link ? 'active' : '';

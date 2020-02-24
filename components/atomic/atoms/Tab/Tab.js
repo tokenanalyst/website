@@ -9,7 +9,9 @@ export const Tab = ({ text, link, selected }) => {
       <div className="tab">
         <span className="text">
           <Link href={link}>
-            <span className={classNames(selected ? 'selected' : '')}>
+            <span
+              className={classNames(selected ? 'selected' : 'not-selected')}
+            >
               {text}
             </span>
           </Link>
@@ -30,6 +32,16 @@ export const Tab = ({ text, link, selected }) => {
           .selected {
             border-bottom: 2px solid rgb(63, 205, 171);
             opacity: 1;
+          }
+          .not-selected::after {
+            display: block;
+            content: '';
+            border-bottom: 2px solid rgb(63, 205, 171);
+            transform: scaleX(0);
+            transition: transform 250ms ease-in-out;
+          }
+          .not-selected:hover:after {
+            transform: scaleX(1);
           }
           .tab {
             margin-right: 40px;

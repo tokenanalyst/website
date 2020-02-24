@@ -1,6 +1,6 @@
 import ReactGA from 'react-ga';
 import React from 'react';
-import { DATA_WINDOWS, UNITS } from '../../constants/filters';
+import { DATA_WINDOWS, UNITS } from '../../../../constants/filters';
 
 export const FilterNav = ({ dataWindow, setDataWindow, units, setUnits }) => {
   return (
