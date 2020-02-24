@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+
+import { AnalyticsNav } from './atomic/molecules/AnalyticsNav';
 import { Nav } from './navs';
 import { Newsletter } from './Newsletter';
 import { CookieBanner } from './CookieBanner';
@@ -21,11 +23,45 @@ const STRUCTURED_DATA = JSON.stringify({
 
 const WITHOUT_FOOTER = ['/exchange/[token]/[exchange]', '/insights'];
 
+const WITH_DASHBOARD_TABS = [
+  '/dashboard',
+  '/exchange/[token]/[exchange]',
+  '/insights',
+  '/analytics',
+];
+
+const tabs = [
+  {
+    text: 'Dashboard',
+    route: '/dashboard',
+    link: '/dashboard',
+  },
+  {
+    text: 'Exchange Flows',
+    route: '/exchange/[token]/[exchange]',
+    link: '/exchange/BTC/Binance',
+  },
+  {
+    text: 'Network Stats',
+    route: '/insights',
+    link: '/insights',
+  },
+  {
+    text: 'Analytics',
+    route: '/analytics',
+    link: '/analytics',
+  },
+];
+
 export const Layout = ({ children }) => {
   const router = useRouter();
   const { route } = router;
 
-  const isWithFooter = () => !WITHOUT_FOOTER.includes(route);
+  const isWithFooter = !WITHOUT_FOOTER.includes(route);
+
+  const isWithDashboardTabs = WITH_DASHBOARD_TABS.includes(route);
+  console.log(route);
+  console.log(isWithDashboardTabs);
 
   return (
     <div className="layout">
@@ -84,8 +120,16 @@ export const Layout = ({ children }) => {
       <Nav />
       <Newsletter />
       <CookieBanner />
-      <div className="page">{children}</div>
-      {isWithFooter() && <Footer />}
+      <div className="page">
+        {isWithDashboardTabs && (
+          <div>
+            <AnalyticsNav tabs={tabs} />
+          </div>
+        )}
+
+        <div>{children}</div>
+      </div>
+      {isWithFooter && <Footer />}
       <style jsx>
         {`
           .page {

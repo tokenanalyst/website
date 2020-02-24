@@ -57,9 +57,8 @@ export const FilterNav = ({ dataWindow, setDataWindow, units, setUnits }) => {
           .container {
             font-family: Open Sans;
             padding: 11px;
-            border-bottom: 1px solid rgb(203, 203, 203);
+            border-bottom: 1px solid rgba(151, 151, 151, 0.15);
             position: fixed;
-            top: 60px;
             width: 100%;
             height: 40px;
             background-color: #ffffff;
