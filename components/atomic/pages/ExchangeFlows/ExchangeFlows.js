@@ -16,7 +16,10 @@ import {
 const TV_INITIAL_DATA_RANGE = 90; // 90 days
 
 const propsAreEqual = (prevProps, nextProps) => {
-  return isEqual(prevProps.TASymbol, nextProps.TASymbol);
+  return (
+    isEqual(prevProps.TASymbol, nextProps.TASymbol) &&
+    isEqual(prevProps.exchangeName, nextProps.exchangeName)
+  );
 };
 
 const MemoProChartContainer = React.memo(ProChartContainer, propsAreEqual);
