@@ -3,7 +3,7 @@ import React from 'react';
 import Head from 'next/head';
 import { Card } from '@blueprintjs/core';
 
-import { PageHeader } from '../components/PageHeader';
+import { PageHeader } from '../components/atomic/molecules/PageHeader';
 import { FAQS } from '../constants/faqs';
 import { CollapsibleItem } from '../components/CollapsibleItem';
 

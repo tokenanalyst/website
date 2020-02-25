@@ -3,18 +3,25 @@ import React from 'react';
 import classNames from 'classnames';
 import Link from 'next/link';
 
-export const Tab = ({ text, link, selected }) => {
+export const TabMobile = ({ text, link, selected, onClick, disabled }) => {
   return (
     <>
       <div className="tab">
         <span className="text">
-          <Link href={link}>
-            <span
-              className={classNames(selected ? 'selected' : 'not-selected')}
-            >
-              {text}
-            </span>
-          </Link>
+          {!disabled ? (
+            <Link href={link} passHref>
+              <span
+                onClick={() => onClick(text)}
+                onKeyDown={() => onClick(text)}
+                role="button"
+                tabIndex={0}
+              >
+                {text}
+              </span>
+            </Link>
+          ) : (
+            <span>{text}</span>
+          )}
         </span>
       </div>
       <style jsx>
@@ -29,21 +36,6 @@ export const Tab = ({ text, link, selected }) => {
           .link {
             cursor: pointer;
           }
-          .selected {
-            border-bottom: 2px solid rgb(63, 205, 171);
-            opacity: 1;
-          }
-          .not-selected::after {
-            display: block;
-            content: '';
-            border-bottom: 2px solid rgb(63, 205, 171);
-            transform: scaleX(0);
-            transition: transform 250ms ease-in-out;
-            opacity: ${selected ? 1 : 0.5};
-          }
-          .not-selected:hover:after {
-            transform: scaleX(1);
-          }
           .tab {
             margin-right: 40px;
             font-family: Open Sans;
@@ -55,12 +47,16 @@ export const Tab = ({ text, link, selected }) => {
   );
 };
 
-Tab.propTypes = {
+TabMobile.propTypes = {
   text: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
   selected: PropTypes.bool,
+  disabled: PropTypes.bool,
 };
 
-Tab.defaultProps = {
+TabMobile.defaultProps = {
   selected: false,
+  disabled: false,
+  onClick: () => {},
 };
