@@ -2,6 +2,10 @@
   "name": "website",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=10.0.0",
+    "npm": ">=6.0.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -75,7 +79,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "git-branch-is -r \"^((?!master).)*$\" && pretty-quick --staged"
+      "pre-commit": "git-branch-is -r \"^((?!master).)*$\" && lint-staged && pretty-quick --staged"
     }
   },
   "setupFiles": [
@@ -83,7 +87,7 @@
   ],
   "lint-staged": {
     "*.js": [
-      "./node_modules/.bin/eslint --fix",
+      "./node_modules/.bin/eslint --ignore-path .gitignore --ignore-pattern 'static/**' --fix .",
       "git add"
     ]
   }
