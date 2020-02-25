@@ -9,8 +9,8 @@ import { LoginContext } from '../../../contexts/Login';
 import { login } from '../../../services/login/login';
 import { SimpleFormGroup } from '../../SimpleFormGroup';
 import { SimpleTextInput } from '../../SimpleTextInput';
-import { PasswordStrength } from '../../../components/widgets/RegisterWidget/PasswordStrength';
-import { SimpleButton } from '../../SimpleButton';
+import { PasswordStrength } from '../RegisterWidget/PasswordStrength';
+import { SimpleButton } from '../../atomic/molecules/SimpleButton';
 
 export const ChangePasswordWidget = () => {
   const router = useRouter();
