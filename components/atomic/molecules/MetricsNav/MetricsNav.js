@@ -25,16 +25,16 @@ export const MetricsNav = ({ tabs }) => {
       <style jsx>
         {`
           .tabs {
-            margin-top: 15px;
+            margin-top: 10px;
             margin-right: -10px;
             margin-left: -10px;
-            padding-bottom: 15px;
+            padding-bottom: 10px;
             border-bottom: 1px solid rgba(151, 151, 151, 0.15);
           }
           .container {
             display: flex;
-            margin-right: 20px;
-            margin-left: 20px;
+            margin-right: 10px;
+            margin-left: 10px;
           }
         `}
       </style>

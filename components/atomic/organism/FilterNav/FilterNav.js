@@ -66,6 +66,7 @@ export const FilterNav = ({ dataWindow, setDataWindow, units, setUnits }) => {
             display: flex;
             justify-content: space-between;
             margin-left: -10px;
+            margin-top: 1px;
           }
           .options {
             display: flex;

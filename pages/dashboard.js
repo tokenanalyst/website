@@ -27,24 +27,22 @@ const Exchange = () => {
         setUnits={setUnits}
       />
       <div className="under-sub-nav">
-        <>
-          <h2>At a glance</h2>
-          <TokenSnapshotWidget dataWindow={dataWindow} units={units} />
-          <h2>{`${dataWindow} Inflows/Outflows`}</h2>
-          <div className="table">
-            {ioTableData ? (
-              <IoTable
-                data={filterTable(ioTableData)}
-                dataWindow={dataWindow}
-                units={units}
-              />
-            ) : (
-              <div className="spinner">
-                <LoadingSpinner />
-              </div>
-            )}
-          </div>
-        </>
+        <h2>At a glance</h2>
+        <TokenSnapshotWidget dataWindow={dataWindow} units={units} />
+        <h2>{`${dataWindow} Inflows/Outflows`}</h2>
+        <div className="table">
+          {ioTableData ? (
+            <IoTable
+              data={filterTable(ioTableData)}
+              dataWindow={dataWindow}
+              units={units}
+            />
+          ) : (
+            <div className="spinner">
+              <LoadingSpinner />
+            </div>
+          )}
+        </div>
       </div>
       <style jsx>{underSubNav}</style>
       <style jsx>

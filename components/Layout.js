@@ -126,12 +126,12 @@ export const Layout = ({ children }) => {
       <CookieBanner />
       <div className="page">
         {isWithDashboardTabs && (
-          <div>
+          <div className="metrics-nav">
             <MetricsNav tabs={tabs} />
           </div>
         )}
 
-        <div>{children}</div>
+        <div className="main-content">{children}</div>
       </div>
       {isWithFooter && <Footer />}
       <style jsx>
@@ -141,6 +141,15 @@ export const Layout = ({ children }) => {
             margin-right: 10px;
             padding-top: 60px;
             min-height: 700px;
+          }
+          .metrics-nav {
+            position: fixed;
+            background-color: white;
+            z-index: 1;
+            width: 100%;
+          }
+          .main-content {
+            padding-top: ${isWithDashboardTabs ? '40px' : '0px'};
           }
         `}
       </style>

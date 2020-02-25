@@ -24,7 +24,7 @@ export const Tab = ({ text, link, selected }) => {
             text-transform: uppercase;
             font-weight: 700;
             cursor: pointer;
-            opacity: ${selected ? 1 : 0.5};
+            opacity: ${selected ? 1 : 0.2};
           }
           .link {
             cursor: pointer;
@@ -39,6 +39,7 @@ export const Tab = ({ text, link, selected }) => {
             border-bottom: 2px solid rgb(63, 205, 171);
             transform: scaleX(0);
             transition: transform 250ms ease-in-out;
+            opacity: ${selected ? 1 : 0.5};
           }
           .not-selected:hover:after {
             transform: scaleX(1);
