@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import classNames from 'classnames';
 import Link from 'next/link';
 
 export const TabMobile = ({ text, link, selected, onClick, disabled }) => {

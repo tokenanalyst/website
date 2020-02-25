@@ -46,18 +46,6 @@ const ProChart = ({ kaikoService, tradingViewOptions, onChartRenderCb }) => {
           default:
         }
       });
-
-      tvWidget.headerReady().then(() => {
-        // const saveChartButton = tvWidget.createButton();
-        // saveChartButton.setAttribute('title', 'Save chart');
-        // saveChartButton.classList.add('apply-common-tooltip');
-        // saveChartButton.addEventListener('click', () =>
-        //   tvWidget.save(graphStatus => {
-        //     console.log(graphStatus);
-        //   })
-        // );
-        // saveChartButton.innerHTML = 'Save chart';
-      });
     });
     return () => {
       if (tvWidget !== null) {
