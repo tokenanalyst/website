@@ -154,7 +154,7 @@ export const Home = () => {
             height: 100%;
             margin-right: auto;
             margin-left: auto;
-            background-color: #e8e8e8;
+            background-color: #f2f2f2;
           }
           .products {
             max-width: 1400px;
@@ -213,7 +213,6 @@ export const Home = () => {
           .products-description-title {
             font-family: Space Grotesk;
             font-weight: 700;
-            font-family: Cardo;
             font-size: 30px;
             font-style: normal;
             font-stretch: normal;
