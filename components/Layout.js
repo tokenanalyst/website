@@ -60,8 +60,6 @@ export const Layout = ({ children }) => {
   const isWithFooter = !WITHOUT_FOOTER.includes(route);
 
   const isWithDashboardTabs = WITH_DASHBOARD_TABS.includes(route);
-  console.log(route);
-  console.log(isWithDashboardTabs);
 
   return (
     <div className="layout">
@@ -121,12 +119,6 @@ export const Layout = ({ children }) => {
       <Newsletter />
       <CookieBanner />
       <div className="page">
-        {isWithDashboardTabs && (
-          <div>
-            <AnalyticsNav tabs={tabs} />
-          </div>
-        )}
-
         <div>{children}</div>
       </div>
       {isWithFooter && <Footer />}
