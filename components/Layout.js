@@ -5,7 +5,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Cookies from 'js-cookie';
 
-import { AnalyticsNav } from './atomic/molecules/AnalyticsNav';
+import { MetricsNav } from './atomic/molecules/MetricsNav';
 import { Nav } from './atomic/molecules/Nav';
 import { Newsletter } from './Newsletter';
 import { CookieBanner } from './CookieBanner';
@@ -127,7 +127,7 @@ export const Layout = ({ children }) => {
       <div className="page">
         {isWithDashboardTabs && (
           <div>
-            <AnalyticsNav tabs={tabs} />
+            <MetricsNav tabs={tabs} />
           </div>
         )}
 

@@ -7,7 +7,7 @@ import {
   PRIMARY_RED,
   PRIMARY_GREEN,
   NEUTRAL_GREY,
-} from '../constants/styles/colors';
+} from '../../../../constants/styles/colors';
 
 export const SimpleButton = ({
   background,

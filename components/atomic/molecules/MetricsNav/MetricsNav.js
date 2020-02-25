@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 
 import { Tab } from '../../atoms/Tab';
 
-export const AnalyticsNav = ({ tabs }) => {
+export const MetricsNav = ({ tabs }) => {
   const router = useRouter();
   const { route } = router;
 
@@ -33,8 +33,8 @@ export const AnalyticsNav = ({ tabs }) => {
           }
           .container {
             display: flex;
-            margin-right: 10px;
-            margin-left: 10px;
+            margin-right: 20px;
+            margin-left: 20px;
           }
         `}
       </style>
@@ -42,8 +42,8 @@ export const AnalyticsNav = ({ tabs }) => {
   );
 };
 
-AnalyticsNav.propTypes = {
+MetricsNav.propTypes = {
   tabs: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
-AnalyticsNav.defaultProps = {};
+MetricsNav.defaultProps = {};
