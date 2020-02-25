@@ -133,7 +133,7 @@ export const Featured = () => {
           }
           .title {
             font-family: Space Grotesk;
-            font-size: 40px;
+            font-size: 30px;
             font-weight: bold;
             font-style: normal;
             font-stretch: normal;
@@ -143,7 +143,7 @@ export const Featured = () => {
             -ms-letter-spacing: -0.31px;
             letter-spacing: -0.31px;
             color: #000000;
-            max-width: 210px;
+            max-width: 160px;
             margin-bottom: 50px;
             border-bottom-style: solid;
             border-bottom-width: 2px;
