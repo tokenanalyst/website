@@ -71,7 +71,7 @@ export const DesktopNav = () => {
               </Link>
             </div>
             <div className="links-metrics">
-              <Link href="/" passHref>
+              {/* <Link href="/" passHref>
                 <div
                   className={classNames(
                     'desktop-link',
@@ -88,7 +88,7 @@ export const DesktopNav = () => {
                 >
                   Exchange Flows
                 </div>
-              </Link>
+              </Link> */}
               <Link href="/dashboard" passHref>
                 <div
                   className={classNames(
@@ -97,10 +97,10 @@ export const DesktopNav = () => {
                   )}
                   onMouseOver={collapseAllSubMenus}
                 >
-                  Dashboard
+                  Data Explorer
                 </div>
               </Link>
-              <Link href={`/insights?${metricsTierParamString}`} passHref>
+              {/* <Link href={`/insights?${metricsTierParamString}`} passHref>
                 <div
                   className={classNames(
                     'desktop-link',
@@ -110,8 +110,8 @@ export const DesktopNav = () => {
                 >
                   Network Stats
                 </div>
-              </Link>
-              <Link href="/analytics" passHref>
+              </Link> */}
+              {/* <Link href="/analytics" passHref>
                 <div
                   className={classNames(
                     'desktop-link',
@@ -122,7 +122,7 @@ export const DesktopNav = () => {
                 >
                   Analytics
                 </div>
-              </Link>
+              </Link> */}
             </div>
 
             <div className="links-products">
@@ -421,7 +421,7 @@ export const DesktopNav = () => {
             </div>
           </div>
         </div>
-        <div
+        {/* <div
           className="desktop-exchanges-sub-link-container"
           onClick={collapseAllSubMenus}
         >
@@ -608,7 +608,7 @@ export const DesktopNav = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
       <style jsx>
         {`

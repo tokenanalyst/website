@@ -1,17 +1,23 @@
+/* eslint-disable no-restricted-imports */
 import PropTypes from 'prop-types';
 import React from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import Cookies from 'js-cookie';
 
 import { AnalyticsNav } from './atomic/molecules/AnalyticsNav';
-import { Nav } from './navs';
+import { Nav } from './atomic/molecules/Nav';
 import { Newsletter } from './Newsletter';
 import { CookieBanner } from './CookieBanner';
 import { Footer } from './Footer';
+import { COOKIES } from '../constants/cookies';
 
 import '../node_modules/normalize.css/normalize.css';
 import '../node_modules/@blueprintjs/core/lib/css/blueprint.css';
 import '../node_modules/@blueprintjs/select/lib/css/blueprint-select.css';
+
+const tierParamString = `tier=${Cookies.get(COOKIES.tier)}`;
+const metricsTierParamString = `tier_metrics=${Cookies.get(COOKIES.tier)}`;
 
 const STRUCTURED_DATA = JSON.stringify({
   '@context': 'http://schema.org',
@@ -39,12 +45,12 @@ const tabs = [
   {
     text: 'Exchange Flows',
     route: '/exchange/[token]/[exchange]',
-    link: '/exchange/BTC/Binance',
+    link: `/exchange/BTC/Binance?${tierParamString}`,
   },
   {
     text: 'Network Stats',
     route: '/insights',
-    link: '/insights',
+    link: `/insights?${metricsTierParamString}`,
   },
   {
     text: 'Analytics',
@@ -60,8 +66,6 @@ export const Layout = ({ children }) => {
   const isWithFooter = !WITHOUT_FOOTER.includes(route);
 
   const isWithDashboardTabs = WITH_DASHBOARD_TABS.includes(route);
-  console.log(route);
-  console.log(isWithDashboardTabs);
 
   return (
     <div className="layout">

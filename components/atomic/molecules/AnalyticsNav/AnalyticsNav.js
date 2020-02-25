@@ -7,7 +7,6 @@ import { Tab } from '../../atoms/Tab';
 export const AnalyticsNav = ({ tabs }) => {
   const router = useRouter();
   const { route } = router;
-  console.log(route);
 
   return (
     <>

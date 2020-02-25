@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Head from 'next/head';
 
 import { IoTable } from '../components/tables/IoTable';
-import { FilterNav } from '../components/navs';
+import { FilterNav } from '../components/atomic/organism/FilterNav';
 import { DATA_WINDOWS, UNITS } from '../constants/filters';
 import { underSubNav } from '../constants/styles/common-styled-jsx';
 import { TokenSnapshotWidget } from '../components/widgets/TokenSnapshotWidget';
