@@ -4,7 +4,6 @@ import React from 'react';
 import { EXCHANGE_IMAGES } from '../../../../constants/image-paths';
 
 export const ImgExchange = ({ exchange, disabled, size }) => {
-  console.log(size);
   return (
     <div>
       <img
