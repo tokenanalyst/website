@@ -58,34 +58,43 @@ const Exchange = () => {
   };
 
   return (
-    <div>
+    <>
       <Head>
         <title>
           {`TokenAnalyst - ${exchange} - ${token} Inflows and Outflows`}
         </title>
       </Head>
-      {!Cookies.get(COOKIES.hasSeenRegisterDialog) && !loginCtx.isLoggedIn && (
-        <DelayedExchangeRegisterDialog />
-      )}
-      {token && exchange && isTVSupported ? (
-        <>
-          <ExchangeFlowsPage
-            selectedExchange={exchange}
-            selectedToken={token}
-            tokensDb={tokensDb}
-            onChangeToken={pushToPage}
-          />
-        </>
-      ) : (
-        token &&
-        exchange && (
+      <div className="container">
+        {!Cookies.get(COOKIES.hasSeenRegisterDialog) &&
+          !loginCtx.isLoggedIn && <DelayedExchangeRegisterDialog />}
+        {token && exchange && isTVSupported ? (
           <>
-            <ExchangeMetricsWidget token={token} exchange={exchange} />
-            <IoChartWidget token={token} exchange={exchange} />
+            <ExchangeFlowsPage
+              selectedExchange={exchange}
+              selectedToken={token}
+              tokensDb={tokensDb}
+              onChangeToken={pushToPage}
+            />
           </>
-        )
-      )}
-    </div>
+        ) : (
+          token &&
+          exchange && (
+            <>
+              <ExchangeMetricsWidget token={token} exchange={exchange} />
+              <IoChartWidget token={token} exchange={exchange} />
+            </>
+          )
+        )}
+      </div>
+      <style jsx>
+        {`
+          .container {
+            margin-right: 10px;
+            margin-left: 10px;
+          }
+        `}
+      </style>
+    </>
   );
 };
 

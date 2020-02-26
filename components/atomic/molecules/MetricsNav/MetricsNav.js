@@ -62,7 +62,7 @@ export const MetricsNav = ({ tabs }) => {
                 const { text, link } = tab;
 
                 return (
-                  <div className="mobile-menu-item">
+                  <div className="mobile-menu-item" key={text}>
                     <TabMobile
                       key={text}
                       text={text}

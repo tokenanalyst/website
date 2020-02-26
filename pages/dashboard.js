@@ -20,33 +20,39 @@ const Exchange = () => {
       <Head>
         <title>TokenAnalyst - Latest On-Chain Flows</title>
       </Head>
-      <FilterNav
-        dataWindow={dataWindow}
-        setDataWindow={setDataWindow}
-        units={units}
-        setUnits={setUnits}
-      />
-      <div className="under-sub-nav">
-        <h2>At a glance</h2>
-        <TokenSnapshotWidget dataWindow={dataWindow} units={units} />
-        <h2>{`${dataWindow} Inflows/Outflows`}</h2>
-        <div className="table">
-          {ioTableData ? (
-            <IoTable
-              data={filterTable(ioTableData)}
-              dataWindow={dataWindow}
-              units={units}
-            />
-          ) : (
-            <div className="spinner">
-              <LoadingSpinner />
-            </div>
-          )}
+      <div className="container">
+        <FilterNav
+          dataWindow={dataWindow}
+          setDataWindow={setDataWindow}
+          units={units}
+          setUnits={setUnits}
+        />
+        <div className="under-sub-nav">
+          <h2>At a glance</h2>
+          <TokenSnapshotWidget dataWindow={dataWindow} units={units} />
+          <h2>{`${dataWindow} Inflows/Outflows`}</h2>
+          <div className="table">
+            {ioTableData ? (
+              <IoTable
+                data={filterTable(ioTableData)}
+                dataWindow={dataWindow}
+                units={units}
+              />
+            ) : (
+              <div className="spinner">
+                <LoadingSpinner />
+              </div>
+            )}
+          </div>
         </div>
       </div>
       <style jsx>{underSubNav}</style>
       <style jsx>
         {`
+          .container {
+            margin-right: 10px;
+            margin-left: 10px;
+          }
           .table {
             margin-left: 5px;
             margin-right: 5px;
