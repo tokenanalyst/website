@@ -31,9 +31,7 @@ const Exchange = () => {
         </div>
 
         <div className="under-sub-nav">
-          <h2>At a glance</h2>
-          <TokenSnapshotWidget dataWindow={dataWindow} units={units} />
-          <h2>{`${dataWindow} Inflows/Outflows`}</h2>
+          <h2>{`${dataWindow} Exchanges Inflows/Outflows`}</h2>
           <div className="table">
             {ioTableData ? (
               <IoTable
