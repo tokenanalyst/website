@@ -88,8 +88,8 @@ export const MetricsNav = ({ tabs }) => {
           }
           .container-desktop {
             display: flex;
-            margin-right: 10px;
-            margin-left: 10px;
+            margin-right: 20px;
+            margin-left: 20px;
           }
           .container-mobile {
             display: none;

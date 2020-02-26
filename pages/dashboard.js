@@ -21,12 +21,15 @@ const Exchange = () => {
         <title>TokenAnalyst - Latest On-Chain Flows</title>
       </Head>
       <div className="container">
-        <FilterNav
-          dataWindow={dataWindow}
-          setDataWindow={setDataWindow}
-          units={units}
-          setUnits={setUnits}
-        />
+        <div className="filter-nav">
+          <FilterNav
+            dataWindow={dataWindow}
+            setDataWindow={setDataWindow}
+            units={units}
+            setUnits={setUnits}
+          />
+        </div>
+
         <div className="under-sub-nav">
           <h2>At a glance</h2>
           <TokenSnapshotWidget dataWindow={dataWindow} units={units} />
@@ -52,6 +55,10 @@ const Exchange = () => {
           .container {
             margin-right: 10px;
             margin-left: 10px;
+          }
+          .filter-nav {
+            margin-right: -10px;
+            margin-left: -10px;
           }
           .table {
             margin-left: 5px;

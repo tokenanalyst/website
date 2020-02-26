@@ -143,8 +143,6 @@ export const Layout = ({ children }) => {
             min-height: 700px;
           }
           .metrics-nav {
-            margin-left: 10px;
-            margin-right: 10px;
             position: fixed;
             background-color: white;
             z-index: 1;
