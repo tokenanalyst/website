@@ -46,12 +46,25 @@ export const BITFINEX = 'Bitfinex';
 export const BITMEX = 'BitMEX';
 export const BITSTAMP = 'Bitstamp';
 export const BITTREX = 'Bittrex';
+export const DERIBIT = 'Deribit';
+export const HUOBI = 'Huobi';
 export const KRAKEN = 'Kraken';
 export const KUCOIN = 'Kucoin';
-export const POLONIEX = 'Poloniex';
 export const OKEX = 'Okex';
-export const HUOBI = 'Huobi';
-export const DERIBIT = 'Deribit';
+export const POLONIEX = 'Poloniex';
+
+export const ANTPOOL = 'antpool';
+export const BTCTOP = 'btc-top';
+export const BTCCOM = 'btc-com';
+export const BITFURY = 'bitfury';
+export const F2POOL = 'f2pool';
+export const HUOBI_POOL = 'huobi-pool';
+export const POOLIN = 'poolin';
+export const SLUSHPOOL = 'slushpool';
+export const VIABTC = 'viabtc';
+export const ONE_THASH_AND_58COIN = '1thash&58coin';
+export const OTHERS = 'others';
+export const UNKNOWN = 'unknown';
 
 export const EXCHANGE_NAMES = {
   [BINANCE]: BINANCE,
@@ -59,12 +72,45 @@ export const EXCHANGE_NAMES = {
   [BITMEX]: BITMEX,
   [BITSTAMP]: BITSTAMP,
   [BITTREX]: BITTREX,
+  [DERIBIT]: DERIBIT,
+  [HUOBI]: HUOBI,
   [KRAKEN]: KRAKEN,
   [KUCOIN]: KUCOIN,
-  [POLONIEX]: POLONIEX,
   [OKEX]: OKEX,
-  [HUOBI]: HUOBI,
-  [DERIBIT]: DERIBIT,
+  [POLONIEX]: POLONIEX,
+};
+
+export const MINER_NAMES = {
+  [ANTPOOL]: ANTPOOL,
+  [BTCTOP]: BTCTOP,
+  [BTCCOM]: BTCCOM,
+  [BITFURY]: BITFURY,
+  [F2POOL]: F2POOL,
+  [HUOBI_POOL]: HUOBI_POOL,
+  [POOLIN]: POOLIN,
+  [SLUSHPOOL]: SLUSHPOOL,
+  [VIABTC]: VIABTC,
+  [ONE_THASH_AND_58COIN]: ONE_THASH_AND_58COIN,
+  [OTHERS]: OTHERS,
+  [UNKNOWN]: UNKNOWN,
+};
+
+export const TOKENS_MINER_SUPPORT = {
+  [BTC]: {
+    [ANTPOOL]: {},
+    [BTCTOP]: {},
+    [BTCCOM]: {},
+    [BITFURY]: {},
+    [F2POOL]: {},
+    [HUOBI_POOL]: {},
+    [POOLIN]: {},
+    [SLUSHPOOL]: {},
+    [VIABTC]: {},
+    [ONE_THASH_AND_58COIN]: {},
+    [OTHERS]: {},
+    [UNKNOWN]: {},
+  },
+  [ETH]: {},
 };
 
 export const TOKENS_EXCHANGE_SUPPORT = {
@@ -429,4 +475,17 @@ export const LOGGED_OUT_UNSUPPORTED_EXCHANGES = [
   HUOBI,
   OKEX,
   DERIBIT,
+];
+
+export const LOGGED_OUT_SUPPORTED_MINERS = [ANTPOOL, BTCTOP, BTCCOM];
+export const LOGGED_OUT_UNSUPPORTED_MINER = [
+  BITFURY,
+  F2POOL,
+  HUOBI_POOL,
+  POOLIN,
+  SLUSHPOOL,
+  VIABTC,
+  ONE_THASH_AND_58COIN,
+  OTHERS,
+  UNKNOWN,
 ];

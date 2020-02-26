@@ -6,7 +6,7 @@ import cloneDeep from 'lodash/cloneDeep';
 import { makeTVSymbols } from '../../../../utils/makeTVSymbols';
 
 import { ProChartContainer } from '../../organism/ProChartContainer';
-import { LeftSidePanel } from '../../organism/LeftSidePanel/LeftSidePanel';
+import { LeftSidePanelExchanges } from '../../organism/LeftSidePanelExchanges/LeftSidePanelExchanges';
 import { TV_STUDIES, TV_OPTIONS } from './const';
 import {
   setLocalMetricsConfig,
@@ -14,6 +14,8 @@ import {
 } from '../../../../utils';
 
 const TV_INITIAL_DATA_RANGE = 90; // 90 days
+
+const LOCAL_STOREAGE_KEY = 'ta_exchange_studies';
 
 const propsAreEqual = (prevProps, nextProps) => {
   return (
@@ -32,12 +34,12 @@ export const ExchangeFlowsPage = ({
 }) => {
   const tvInstance = useRef(null);
   const [tvStudies, setTvStudies] = useState(() =>
-    getLocalMetricsConfig(selectedToken, TV_STUDIES)
+    getLocalMetricsConfig(selectedToken, TV_STUDIES, LOCAL_STOREAGE_KEY)
   );
   const [isChartReady, setIsChartReady] = useState(false);
   const [isMetricSupportReady, setIsMetricSupporReady] = useState(false);
 
-  const exchangeSupport = tokensDb.getTokenSupportOnExchange(
+  const exchangeSupport = tokensDb.getTokenSupportForExchange(
     selectedToken,
     selectedExchange
   );
@@ -45,12 +47,12 @@ export const ExchangeFlowsPage = ({
   const TVSymbols = makeTVSymbols(selectedToken, exchangeSupport);
 
   useEffect(() => {
-    getLocalMetricsConfig(selectedToken, TV_STUDIES);
+    getLocalMetricsConfig(selectedToken, TV_STUDIES, LOCAL_STOREAGE_KEY);
   }, [selectedToken]);
 
   useEffect(() => {
     const getSupportedMetrics = async () => {
-      const supported = await tokensDb.getMetricSupportOnExchange();
+      const supported = await tokensDb.getMetricSupportForExchange();
 
       setTvStudies(studies => {
         const updatedStudies = Object.keys(studies).reduce((acc, study) => {
@@ -77,7 +79,11 @@ export const ExchangeFlowsPage = ({
           };
         }, {});
 
-        setLocalMetricsConfig(selectedToken, updatedStudies);
+        setLocalMetricsConfig(
+          selectedToken,
+          updatedStudies,
+          LOCAL_STOREAGE_KEY
+        );
 
         return updatedStudies;
       });
@@ -142,7 +148,7 @@ export const ExchangeFlowsPage = ({
         }
       }
 
-      setLocalMetricsConfig(selectedToken, updatedStudies);
+      setLocalMetricsConfig(selectedToken, updatedStudies, LOCAL_STOREAGE_KEY);
       return updatedStudies;
     };
     setTvStudies(studies => updateStudy(studies));
@@ -158,7 +164,7 @@ export const ExchangeFlowsPage = ({
       <div className="container">
         <div className="left-panel">
           <div className="controls-card">
-            <LeftSidePanel
+            <LeftSidePanelExchanges
               selectedExchange={selectedExchange}
               selectedToken={selectedToken}
               studies={tvStudies}

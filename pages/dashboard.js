@@ -5,7 +5,6 @@ import { IoTable } from '../components/tables/IoTable';
 import { FilterNav } from '../components/atomic/organism/FilterNav';
 import { DATA_WINDOWS, UNITS } from '../constants/filters';
 import { underSubNav } from '../constants/styles/common-styled-jsx';
-import { TokenSnapshotWidget } from '../components/widgets/TokenSnapshotWidget';
 import { useApi } from '../custom-hooks';
 import { LoadingSpinner } from '../components/LoadingSpinner';
 import { filterTable } from '../components/tables/IoTable/helpers';

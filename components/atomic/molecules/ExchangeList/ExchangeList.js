@@ -4,15 +4,15 @@ import ReactGA from 'react-ga';
 import { Popover, Menu, MenuItem, Button, Position } from '@blueprintjs/core';
 
 import { colors } from '../../../../constants/styles/colors';
-import { LOGGED_OUT_SUPPORTED_EXCHANGES } from '../../../../constants/exchanges';
 import { LoginContext } from '../../../../contexts/Login';
 import { ExchangeRegisterDialog } from '../../../marketing/marketing-dialogs';
 import { ImgExchange } from '../../atoms/ImgExchange';
+import { isLoginRequiredToAccessEntity } from '../../../../utils';
 
 export const ExchangeList = ({
-  exchanges,
+  entities,
   onChangeExchange,
-  selectedExchange,
+  selectedEntity,
 }) => {
   const loginCtx = useContext(LoginContext);
   const [isRegisterDialogShown, setIsRegisterDialogShown] = useState(false);
@@ -20,14 +20,11 @@ export const ExchangeList = ({
   const isExchangeDisabled = exchange => {
     return loginCtx.isLoggedIn
       ? false
-      : !(LOGGED_OUT_SUPPORTED_EXCHANGES.indexOf(exchange) >= 0);
+      : isLoginRequiredToAccessEntity(exchange);
   };
 
   const exchangeChangeHandler = exchangeName => {
-    if (
-      loginCtx.isLoggedIn ||
-      LOGGED_OUT_SUPPORTED_EXCHANGES.indexOf(exchangeName) >= 0
-    ) {
+    if (loginCtx.isLoggedIn || !isLoginRequiredToAccessEntity(exchangeName)) {
       onChangeExchange(exchangeName);
       ReactGA.event({
         category: 'User',
@@ -40,7 +37,7 @@ export const ExchangeList = ({
   };
 
   const renderMenuItems = () =>
-    Object.keys(exchanges).map(exchange => {
+    Object.keys(entities).map(exchange => {
       return (
         <MenuItem
           text={exchange}
@@ -72,15 +69,15 @@ export const ExchangeList = ({
           >
             <Button
               rightIcon="double-caret-vertical"
-              text={selectedExchange}
-              icon={<ImgExchange exchange={selectedExchange} />}
+              text={selectedEntity}
+              icon={<ImgExchange exchange={selectedEntity} />}
               fill
             />
           </Popover>
         </div>
 
         <div className="desktop-list">
-          {Object.values(exchanges).map(exchangeName => (
+          {Object.values(entities).map(exchangeName => (
             <div
               role="link"
               key={exchangeName}
@@ -105,12 +102,12 @@ export const ExchangeList = ({
               </div>
               <div
                 className={`${
-                  exchangeName === selectedExchange
+                  exchangeName === selectedEntity
                     ? 'exchange-label-selected'
                     : 'exchange-label'
                 }`}
               >
-                {exchanges[exchangeName]}
+                {entities[exchangeName]}
               </div>
             </div>
           ))}
@@ -163,9 +160,9 @@ export const ExchangeList = ({
 };
 
 ExchangeList.propTypes = {
-  exchanges: PropTypes.objectOf(
+  entities: PropTypes.objectOf(
     PropTypes.oneOfType([PropTypes.object, PropTypes.string])
   ).isRequired,
   onChangeExchange: PropTypes.func.isRequired,
-  selectedExchange: PropTypes.string.isRequired,
+  selectedEntity: PropTypes.string.isRequired,
 };

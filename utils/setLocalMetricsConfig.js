@@ -1,21 +1,21 @@
 import { clearEntityId } from './clearEntityId';
 
-export const setLocalMetricsConfig = (selectedToken, config) => {
-  const currConfig = window.localStorage.getItem('ta_studies');
+export const setLocalMetricsConfig = (key, config, storageKey) => {
+  const currConfig = window.localStorage.getItem(storageKey);
   if (currConfig) {
     return window.localStorage.setItem(
-      'ta_studies',
+      storageKey,
       JSON.stringify({
         ...JSON.parse(currConfig),
-        [selectedToken]: clearEntityId(config),
+        [key]: clearEntityId(config),
       })
     );
   }
 
   window.localStorage.setItem(
-    'ta_studies',
+    storageKey,
     JSON.stringify({
-      [selectedToken]: clearEntityId(config),
+      [key]: clearEntityId(config),
     })
   );
 };
