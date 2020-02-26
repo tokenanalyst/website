@@ -11,7 +11,7 @@ const Faqs = () => {
   return (
     <>
       <Head>
-        <title>TokenAnalyst - Frequently Asked Questions</title>
+        <title key="title">TokenAnalyst - Frequently Asked Questions</title>
       </Head>
       <PageHeader text="FAQs" />
       {FAQS.map(faq => (

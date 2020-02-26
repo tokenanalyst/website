@@ -9,7 +9,7 @@ const Login = () => {
     <>
       <div className="container">
         <Head>
-          <title>TokenAnalyst - Login</title>
+          <title key="title">TokenAnalyst - Login</title>
         </Head>
         <h1>Login</h1>
         <div className="contents">
@@ -30,37 +30,39 @@ const Login = () => {
           </div>
         </div>
       </div>
-      <style jsx>{`
-        .container {
-          font-family: Open Sans;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-        }
-        .contents {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          font-family: Space Grotesk;
-        }
-        h1 {
-          font-family: Space Grotesk;
-          font-size: 32px;
-          font-weight: bold;
-          padding: 15px;
-          text-align: center;
-        }
-        .register {
-          font-family: Open Sans;
-          padding-bottom: 10px;
-          text-align: center;
-        }
-        @media only screen and (max-width: 768px) {
-          .contents {
+      <style jsx>
+        {`
+          .container {
+            font-family: Open Sans;
+            display: flex;
             flex-direction: column;
+            justify-content: center;
           }
-        }
-      `}</style>
+          .contents {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: Space Grotesk;
+          }
+          h1 {
+            font-family: Space Grotesk;
+            font-size: 32px;
+            font-weight: bold;
+            padding: 15px;
+            text-align: center;
+          }
+          .register {
+            font-family: Open Sans;
+            padding-bottom: 10px;
+            text-align: center;
+          }
+          @media only screen and (max-width: 768px) {
+            .contents {
+              flex-direction: column;
+            }
+          }
+        `}
+      </style>
     </>
   );
 };

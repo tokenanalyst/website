@@ -18,7 +18,7 @@ const Exchange = () => {
   return (
     <>
       <Head>
-        <title>TokenAnalyst - Latest On-Chain Flows</title>
+        <title key="title">TokenAnalyst - Latest On-Chain Flows</title>
       </Head>
       <div className="container">
         <div className="filter-nav">

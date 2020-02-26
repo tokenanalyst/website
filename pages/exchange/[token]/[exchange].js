@@ -2,7 +2,6 @@ import React, { useEffect, useState, useContext } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Cookies from 'js-cookie';
-import isEqual from 'lodash/isEqual';
 
 import { ExchangeMetricsWidget } from '../../../components/widgets/ExchangeMetricsWidget';
 import { IoChartWidget } from '../../../components/widgets/IoChartWidget';
@@ -60,9 +59,7 @@ const Exchange = () => {
   return (
     <>
       <Head>
-        <title>
-          {`TokenAnalyst - ${exchange} - ${token} Inflows and Outflows`}
-        </title>
+        <title key="title">TokenAnalyst - Inflows and Outflows</title>
       </Head>
       <div className="container">
         {!Cookies.get(COOKIES.hasSeenRegisterDialog) &&
