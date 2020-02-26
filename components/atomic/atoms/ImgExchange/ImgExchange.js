@@ -3,7 +3,8 @@ import React from 'react';
 
 import { EXCHANGE_IMAGES } from '../../../../constants/image-paths';
 
-export const ImgExchange = ({ exchange, disabled }) => {
+export const ImgExchange = ({ exchange, disabled, size }) => {
+  console.log(size);
   return (
     <div>
       <img
@@ -14,8 +15,8 @@ export const ImgExchange = ({ exchange, disabled }) => {
       <style jsx>
         {`
           .exchange-image {
-            width: 24px;
-            height: 24px;
+            width: ${size.toString()}px;
+            height: ${size.toString()}px;
             filter: grayscale(${disabled ? '100%' : '0%'});
           }
         `}
@@ -27,8 +28,10 @@ export const ImgExchange = ({ exchange, disabled }) => {
 ImgExchange.propTypes = {
   exchange: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
+  size: PropTypes.number,
 };
 
 ImgExchange.defaultProps = {
+  size: 22,
   disabled: false,
 };

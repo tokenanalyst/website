@@ -97,7 +97,7 @@ export const ExchangeList = ({
                 exchangeChangeHandler(exchangeName);
               }}
             >
-              <div className="exchange-img">
+              <div>
                 <ImgExchange
                   exchange={exchangeName}
                   disabled={isExchangeDisabled(exchangeName)}
@@ -133,10 +133,6 @@ export const ExchangeList = ({
             display: flex;
             cursor: pointer;
             opacity: 0.5;
-          }
-          .exchange-image {
-            width: 24px;
-            height: 24px;
           }
           .exchange-label {
             margin-left: 15px;
