@@ -5,8 +5,8 @@ import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
 import ReactGA from 'react-ga';
 
-import { LOGO_IMAGES } from '../../constants/image-paths';
-import { LoginContext } from '../../contexts/Login';
+import { LOGO_IMAGES } from '../../../../constants/image-paths';
+import { LoginContext } from '../../../../contexts/Login';
 
 export const setLinkActive = (pathName, link) =>
   pathName.split('?')[0] === link ? 'mobile-link-active' : 'mobile-link';

@@ -46,9 +46,7 @@ module.exports = async (req, res) => {
       return { ...acc, [name]: metricSupport };
     }, {});
   } catch (err) {
-    console.log(err.message);
     const { status, body } = formatApiError(err);
-    console.log(body);
     return res.status(status).send(body);
   }
 

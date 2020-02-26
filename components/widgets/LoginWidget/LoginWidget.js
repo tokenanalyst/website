@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { Card } from '@blueprintjs/core';
 
 import { LoginContext } from '../../../contexts/Login';
-import { SimpleButton } from '../../SimpleButton';
+import { SimpleButton } from '../../atomic/molecules/SimpleButton';
 import { colors, PRIMARY_GREEN } from '../../../constants/styles/colors';
 import { login } from '../../../services/login/login';
 

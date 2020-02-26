@@ -1,17 +1,23 @@
+/* eslint-disable no-restricted-imports */
 import PropTypes from 'prop-types';
 import React from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import Cookies from 'js-cookie';
 
-import { AnalyticsNav } from './atomic/molecules/AnalyticsNav';
-import { Nav } from './navs';
+import { MetricsNav } from './atomic/molecules/MetricsNav';
+import { Nav } from './atomic/molecules/Nav';
 import { Newsletter } from './Newsletter';
 import { CookieBanner } from './CookieBanner';
 import { Footer } from './Footer';
+import { COOKIES } from '../constants/cookies';
 
 import '../node_modules/normalize.css/normalize.css';
 import '../node_modules/@blueprintjs/core/lib/css/blueprint.css';
 import '../node_modules/@blueprintjs/select/lib/css/blueprint-select.css';
+
+const tierParamString = `tier=${Cookies.get(COOKIES.tier)}`;
+const metricsTierParamString = `tier_metrics=${Cookies.get(COOKIES.tier)}`;
 
 const STRUCTURED_DATA = JSON.stringify({
   '@context': 'http://schema.org',
@@ -39,12 +45,12 @@ const tabs = [
   {
     text: 'Exchange Flows',
     route: '/exchange/[token]/[exchange]',
-    link: '/exchange/BTC/Binance',
+    link: `/exchange/BTC/Binance?${tierParamString}`,
   },
   {
     text: 'Network Stats',
     route: '/insights',
-    link: '/insights',
+    link: `/insights?${metricsTierParamString}`,
   },
   {
     text: 'Analytics',
@@ -119,7 +125,13 @@ export const Layout = ({ children }) => {
       <Newsletter />
       <CookieBanner />
       <div className="page">
-        <div>{children}</div>
+        {isWithDashboardTabs && (
+          <div className="metrics-nav">
+            <MetricsNav tabs={tabs} />
+          </div>
+        )}
+
+        <div className="main-content">{children}</div>
       </div>
       {isWithFooter && <Footer />}
       <style jsx>
@@ -129,6 +141,17 @@ export const Layout = ({ children }) => {
             margin-right: 10px;
             padding-top: 60px;
             min-height: 700px;
+          }
+          .metrics-nav {
+            margin-left: 10px;
+            margin-right: 10px;
+            position: fixed;
+            background-color: white;
+            z-index: 1;
+            width: 100%;
+          }
+          .main-content {
+            padding-top: ${isWithDashboardTabs ? '40px' : '0px'};
           }
         `}
       </style>

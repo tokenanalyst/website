@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import { SimpleFormGroup } from '../components/SimpleFormGroup';
 import { SimpleTextInput } from '../components/SimpleTextInput';
-import { SimpleButton } from '../components/SimpleButton';
+import { SimpleButton } from '../components/atomic/molecules/SimpleButton';
 import { colors, PRIMARY_GREEN } from '../constants/styles/colors';
 
 const ForgotPassword = () => {

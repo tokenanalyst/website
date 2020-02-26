@@ -3,13 +3,15 @@ import React from 'react';
 import classNames from 'classnames';
 import Link from 'next/link';
 
-export const Tab = ({ text, link, selected }) => {
+export const TabDesktop = ({ text, link, selected }) => {
   return (
     <>
       <div className="tab">
         <span className="text">
-          <Link href={link}>
-            <span className={classNames(selected ? 'selected' : '')}>
+          <Link href={link} passHref>
+            <span
+              className={classNames(selected ? 'selected' : 'not-selected')}
+            >
               {text}
             </span>
           </Link>
@@ -22,7 +24,7 @@ export const Tab = ({ text, link, selected }) => {
             text-transform: uppercase;
             font-weight: 700;
             cursor: pointer;
-            opacity: ${selected ? 1 : 0.5};
+            opacity: ${selected ? 1 : 0.2};
           }
           .link {
             cursor: pointer;
@@ -30,6 +32,16 @@ export const Tab = ({ text, link, selected }) => {
           .selected {
             border-bottom: 2px solid rgb(63, 205, 171);
             opacity: 1;
+          }
+          .not-selected::after {
+            display: block;
+            content: '';
+            border-bottom: 2px solid rgb(63, 205, 171);
+            transform: scaleX(0);
+            transition: transform 250ms ease-in-out;
+          }
+          .not-selected:hover:after {
+            transform: scaleX(1);
           }
           .tab {
             margin-right: 40px;
@@ -42,12 +54,12 @@ export const Tab = ({ text, link, selected }) => {
   );
 };
 
-Tab.propTypes = {
+TabDesktop.propTypes = {
   text: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
   selected: PropTypes.bool,
 };
 
-Tab.defaultProps = {
+TabDesktop.defaultProps = {
   selected: false,
 };

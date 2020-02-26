@@ -1,6 +1,6 @@
 import ReactGA from 'react-ga';
 import React from 'react';
-import { DATA_WINDOWS, UNITS } from '../../constants/filters';
+import { DATA_WINDOWS, UNITS } from '../../../../constants/filters';
 
 export const FilterNav = ({ dataWindow, setDataWindow, units, setUnits }) => {
   return (
@@ -66,6 +66,7 @@ export const FilterNav = ({ dataWindow, setDataWindow, units, setUnits }) => {
             display: flex;
             justify-content: space-between;
             margin-left: -10px;
+            margin-top: 1px;
           }
           .options {
             display: flex;

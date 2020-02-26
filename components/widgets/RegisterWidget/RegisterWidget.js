@@ -9,7 +9,7 @@ import { SimpleFormGroup } from '../../SimpleFormGroup';
 import { SimpleTextInput } from '../../SimpleTextInput';
 import { onFormRegister } from './utils/onFormRegister';
 import { PasswordStrength } from './PasswordStrength';
-import { SimpleButton } from '../../SimpleButton';
+import { SimpleButton } from '../../atomic/molecules/SimpleButton';
 
 export const RegisterWidget = () => {
   const loginCtx = useContext(LoginContext);

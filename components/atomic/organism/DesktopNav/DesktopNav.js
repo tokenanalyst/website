@@ -5,10 +5,10 @@ import { useRouter } from 'next/router';
 import classNames from 'classnames';
 import ReactGA from 'react-ga';
 
-import { LoginContext } from '../../contexts/Login';
-import { LOGO_IMAGES } from '../../constants/image-paths';
-import { COOKIES } from '../../constants/cookies';
-import { PLANS } from '../../constants/plans';
+import { LoginContext } from '../../../../contexts/Login';
+import { LOGO_IMAGES } from '../../../../constants/image-paths';
+import { COOKIES } from '../../../../constants/cookies';
+import { PLANS } from '../../../../constants/plans';
 
 export const setLinkActive = (pathName, link) =>
   pathName.split('?')[0] === link ? 'active' : '';
@@ -43,9 +43,6 @@ export const DesktopNav = () => {
     }, 500);
   };
 
-  const tierParamString = `tier=${Cookies.get(COOKIES.tier)}`;
-  const metricsTierParamString = `tier_metrics=${Cookies.get(COOKIES.tier)}`;
-
   return (
     <>
       <div className="container">
@@ -71,24 +68,6 @@ export const DesktopNav = () => {
               </Link>
             </div>
             <div className="links-metrics">
-              <Link href="/" passHref>
-                <div
-                  className={classNames(
-                    'desktop-link',
-                    setLinkActive(asPath, '/')
-                  )}
-                  onMouseOver={() => {
-                    collapseAllSubMenus();
-                    setShownItems(prev => ({ ...prev, exchanges: true }));
-                  }}
-                  onFocus={() => {
-                    collapseAllSubMenus();
-                    setShownItems(prev => ({ ...prev, exchanges: true }));
-                  }}
-                >
-                  Exchange Flows
-                </div>
-              </Link>
               <Link href="/dashboard" passHref>
                 <div
                   className={classNames(
@@ -97,30 +76,7 @@ export const DesktopNav = () => {
                   )}
                   onMouseOver={collapseAllSubMenus}
                 >
-                  Dashboard
-                </div>
-              </Link>
-              <Link href={`/insights?${metricsTierParamString}`} passHref>
-                <div
-                  className={classNames(
-                    'desktop-link',
-                    setLinkActive(asPath, '/insights')
-                  )}
-                  onMouseOver={collapseAllSubMenus}
-                >
-                  Network Stats
-                </div>
-              </Link>
-              <Link href="/analytics" passHref>
-                <div
-                  className={classNames(
-                    'desktop-link',
-                    setLinkActive(asPath, '/analytics')
-                  )}
-                  onMouseOver={collapseAllSubMenus}
-                  onFocus={collapseAllSubMenus}
-                >
-                  Analytics
+                  Data Explorer
                 </div>
               </Link>
             </div>
@@ -421,194 +377,6 @@ export const DesktopNav = () => {
             </div>
           </div>
         </div>
-        <div
-          className="desktop-exchanges-sub-link-container"
-          onClick={collapseAllSubMenus}
-        >
-          <div className="desktop-sub-links">
-            <div
-              className="desktop-exchanges-sub-links"
-              onMouseLeave={() => collapseSubMenuDelayed('exchanges')}
-            >
-              <div>
-                <Link
-                  href="/exchange/[token]/[exchange]"
-                  as={`/exchange/BTC/Binance?${tierParamString}`}
-                  passHref
-                >
-                  <div
-                    onClick={() => {
-                      ReactGA.event({
-                        category: 'User',
-                        action: `Click BTC Binance`,
-                        label: `Desktop Nav`,
-                      });
-                    }}
-                    className={classNames(
-                      'desktop-sub-link',
-                      setLinkActive(
-                        asPath,
-                        `/exchange/BTC/Binance?${tierParamString}`
-                      )
-                    )}
-                  >
-                    BTC Binance
-                  </div>
-                </Link>
-              </div>
-              <div>
-                <Link
-                  href="/exchange/[token]/[exchange]"
-                  as={`/exchange/BTC/Bitfinex?${tierParamString}`}
-                  passHref
-                >
-                  <div
-                    onClick={() => {
-                      ReactGA.event({
-                        category: 'User',
-                        action: `Click BTC Bitfinex`,
-                        label: `Desktop Nav`,
-                      });
-                    }}
-                    className={classNames(
-                      'desktop-sub-link',
-                      setLinkActive(
-                        asPath,
-                        `/exchange/BTC/Bitfinex?${tierParamString}`
-                      )
-                    )}
-                  >
-                    BTC Bitfinex
-                  </div>
-                </Link>
-              </div>
-              <div>
-                <Link
-                  href="/exchange/[token]/[exchange]"
-                  as={`/exchange/BTC/BitMEX?${tierParamString}`}
-                  passHref
-                >
-                  <div
-                    onClick={() => {
-                      ReactGA.event({
-                        category: 'User',
-                        action: `Click BTC BitMEX`,
-                        label: `Desktop Nav`,
-                      });
-                    }}
-                    className={classNames(
-                      'desktop-sub-link',
-                      setLinkActive(
-                        asPath,
-                        `/exchange/BTC/BitMEX?${tierParamString}`
-                      )
-                    )}
-                  >
-                    BTC BitMEX
-                  </div>
-                </Link>
-              </div>
-              <div>
-                <Link
-                  href="/exchange/[token]/[exchange]"
-                  as={`/exchange/ETH/Binance?${tierParamString}`}
-                  passHref
-                >
-                  <div
-                    onClick={() => {
-                      ReactGA.event({
-                        category: 'User',
-                        action: `Click ETH Binance`,
-                        label: `Desktop Nav`,
-                      });
-                    }}
-                    className={classNames(
-                      'desktop-sub-link',
-                      setLinkActive(
-                        asPath,
-                        `/exchange/ETH/Binance?${tierParamString}`
-                      )
-                    )}
-                  >
-                    ETH Binance
-                  </div>
-                </Link>
-              </div>
-              <div>
-                <Link
-                  href="/exchange/[token]/[exchange]"
-                  as={`/exchange/ETH/Bitfinex?${tierParamString}`}
-                  passHref
-                >
-                  <div
-                    onClick={() => {
-                      ReactGA.event({
-                        category: 'User',
-                        action: `Click ETH Bitfinex`,
-                        label: `Desktop Nav`,
-                      });
-                    }}
-                    className={classNames(
-                      'desktop-sub-link',
-                      setLinkActive(
-                        asPath,
-                        `/exchange/ETH/Bitfinex?${tierParamString}`
-                      )
-                    )}
-                  >
-                    ETH Bitfinex
-                  </div>
-                </Link>
-              </div>
-              <div>
-                <Link
-                  href="/exchange/[token]/[exchange]"
-                  as="/exchange/USDC/Binance"
-                  passHref
-                >
-                  <div
-                    onClick={() => {
-                      ReactGA.event({
-                        category: 'User',
-                        action: `Click USDC Binance`,
-                        label: `Desktop Nav`,
-                      });
-                    }}
-                    className={classNames(
-                      'desktop-sub-link',
-                      setLinkActive(asPath, '/exchange/USDC/Binance')
-                    )}
-                  >
-                    USDC Binance
-                  </div>
-                </Link>
-              </div>
-              <div>
-                <Link
-                  href="/exchange/[token]/[exchange]"
-                  as="/exchange/TUSD/Binance"
-                  passHref
-                >
-                  <div
-                    onClick={() => {
-                      ReactGA.event({
-                        category: 'User',
-                        action: `Click TUSD Binance`,
-                        label: `Desktop Nav`,
-                      });
-                    }}
-                    className={classNames(
-                      'desktop-sub-link',
-                      setLinkActive(asPath, '/exchange/TUSD/Binance')
-                    )}
-                  >
-                    TUSD Binance
-                  </div>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
       <style jsx>
         {`
@@ -707,16 +475,6 @@ export const DesktopNav = () => {
             right: ${loginCtx.isLoggedIn ? '180px' : '280px'};
             padding-left: 10px;
           }
-          .desktop-exchanges-sub-link-container {
-            width: 200px;
-            background: black;
-            position: fixed;
-            color: white;
-            z-index: 10000;
-            top: 60px;
-            margin-left: 200px;
-            padding-left: 10px;
-          }
           .desktop-sub-link {
             padding-top: 10px;
             padding-bottom: 10px;
@@ -738,9 +496,6 @@ export const DesktopNav = () => {
           }
           .desktop-research-sub-links {
             display: ${shownItems.research ? 'block' : 'none'};
-          }
-          .desktop-exchanges-sub-links {
-            display: ${shownItems.exchanges ? 'block' : 'none'};
           }
           .login-button {
             color: white;

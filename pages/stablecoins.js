@@ -10,8 +10,8 @@ import {
 import { useApi } from '../custom-hooks';
 import { StableCoinTable } from '../components/tables/StableCoinTable';
 import { LoadingSpinner } from '../components/LoadingSpinner';
-import { PageHeader } from '../components/PageHeader';
-import { PageSection } from '../components/PageSection';
+import { PageHeader } from '../components/atomic/molecules/PageHeader';
+import { PageSection } from '../components/atomic/molecules/PageSection';
 import { Link } from '../components/Link';
 
 // lightweight-charts must not be imported on the server (Bang!)
