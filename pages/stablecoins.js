@@ -64,7 +64,7 @@ const StableCoins = () => {
     <>
       <div>
         <Head>
-          <title>TokenAnalyst - Stablecoins</title>
+          <title key="title">TokenAnalyst - Stablecoins</title>
         </Head>
         <PageHeader
           text="Stablecoins"

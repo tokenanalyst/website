@@ -21,7 +21,7 @@ export const Home = () => {
   return (
     <>
       <Head>
-        <title>TokenAnalyst - Latest On-Chain Flows</title>
+        <title key="title">TokenAnalyst - Latest On-Chain Flows</title>
       </Head>
       <div className="under-sub-nav">
         <div className="home-top-container">

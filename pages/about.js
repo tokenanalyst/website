@@ -6,7 +6,7 @@ const About = () => {
     <>
       <div className="container">
         <Head>
-          <title>TokenAnalyst - Company</title>
+          <title key="title">TokenAnalyst - Company</title>
         </Head>
         <h1>
           TokenAnalyst is on a mission to bring transparency to the

@@ -29,7 +29,7 @@ const Register = () => {
   return (
     <>
       <Head>
-        <title>TokenAnalyst - Register</title>
+        <title key="title">TokenAnalyst - Register</title>
       </Head>
 
       {!loginCtx.isLoggedIn && (
