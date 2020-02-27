@@ -4,15 +4,15 @@ import ReactGA from 'react-ga';
 import { Popover, Menu, MenuItem, Button, Position } from '@blueprintjs/core';
 
 import { colors } from '../../../../constants/styles/colors';
+import { LOGGED_OUT_SUPPORTED_EXCHANGES } from '../../../../constants/exchanges';
 import { LoginContext } from '../../../../contexts/Login';
 import { ExchangeRegisterDialog } from '../../../marketing/marketing-dialogs';
-import { ImgExchange } from '../../atoms/ImgExchange';
-import { isLoginRequiredToAccessEntity } from '../../../../utils';
+import { ImgEntity } from '../../atoms/ImgEntity';
 
-export const ExchangeList = ({
+export const EntityList = ({
   entities,
   onChangeExchange,
-  selectedEntity,
+  selectedExchange,
 }) => {
   const loginCtx = useContext(LoginContext);
   const [isRegisterDialogShown, setIsRegisterDialogShown] = useState(false);
@@ -20,15 +20,18 @@ export const ExchangeList = ({
   const isExchangeDisabled = exchange => {
     return loginCtx.isLoggedIn
       ? false
-      : isLoginRequiredToAccessEntity(exchange);
+      : !(LOGGED_OUT_SUPPORTED_EXCHANGES.indexOf(exchange) >= 0);
   };
 
-  const exchangeChangeHandler = exchangeName => {
-    if (loginCtx.isLoggedIn || !isLoginRequiredToAccessEntity(exchangeName)) {
-      onChangeExchange(exchangeName);
+  const exchangeChangeHandler = entityName => {
+    if (
+      loginCtx.isLoggedIn ||
+      LOGGED_OUT_SUPPORTED_EXCHANGES.indexOf(entityName) >= 0
+    ) {
+      onChangeExchange(entityName);
       ReactGA.event({
         category: 'User',
-        action: `Pro Chart change exchange ${exchangeName}`,
+        action: `Pro Chart change exchange ${entityName}`,
         label: `Pro Charts`,
       });
     } else {
@@ -37,25 +40,25 @@ export const ExchangeList = ({
   };
 
   const renderMenuItems = () =>
-    Object.keys(entities).map(exchange => {
+    Object.keys(entities).map(entity => {
       return (
         <MenuItem
-          text={exchange}
-          icon={<ImgExchange exchange={exchange} />}
+          text={entity}
+          icon={<ImgEntity entity={entity} />}
           onKeyDown={() => {
-            exchangeChangeHandler(exchange);
+            exchangeChangeHandler(entity);
           }}
           onClick={() => {
-            exchangeChangeHandler(exchange);
+            exchangeChangeHandler(entity);
           }}
-          key={exchange}
+          key={entity}
         />
       );
     });
 
   return (
     <>
-      <div className="exchange-list">
+      <div className="entities-list">
         <ExchangeRegisterDialog
           isOpen={isRegisterDialogShown}
           closeCb={() => setIsRegisterDialogShown(false)}
@@ -69,45 +72,45 @@ export const ExchangeList = ({
           >
             <Button
               rightIcon="double-caret-vertical"
-              text={selectedEntity}
-              icon={<ImgExchange exchange={selectedEntity} />}
+              text={selectedExchange}
+              icon={<ImgEntity exchange={selectedExchange} />}
               fill
             />
           </Popover>
         </div>
 
         <div className="desktop-list">
-          {Object.values(entities).map(exchangeName => (
+          {Object.values(entities).map(entityName => (
             <div
               role="link"
-              key={exchangeName}
+              key={entityName}
               className={`${
-                isExchangeDisabled(exchangeName)
-                  ? `exchange-disabled`
-                  : `exchange`
+                isExchangeDisabled(entityName)
+                  ? `entity-disabled`
+                  : `entity-enabled`
               }`}
               tabIndex="0"
               onKeyDown={() => {
-                exchangeChangeHandler(exchangeName);
+                exchangeChangeHandler(entityName);
               }}
               onClick={() => {
-                exchangeChangeHandler(exchangeName);
+                exchangeChangeHandler(entityName);
               }}
             >
-              <div>
-                <ImgExchange
-                  exchange={exchangeName}
-                  disabled={isExchangeDisabled(exchangeName)}
+              <div className="entity-img">
+                <ImgEntity
+                  entity={entityName}
+                  disabled={isExchangeDisabled(entityName)}
                 />
               </div>
               <div
                 className={`${
-                  exchangeName === selectedEntity
-                    ? 'exchange-label-selected'
-                    : 'exchange-label'
+                  entityName === selectedExchange
+                    ? 'entity-label-selected'
+                    : 'entity-label'
                 }`}
               >
-                {entities[exchangeName]}
+                {entities[entityName]}
               </div>
             </div>
           ))}
@@ -115,33 +118,37 @@ export const ExchangeList = ({
       </div>
       <style jsx>
         {`
-          .exchange {
+          .entity-enabled {
             display: flex;
             cursor: pointer;
             align-items: center;
           }
-          .exchange-disabled {
+          .entity-disabled {
             display: flex;
             cursor: pointer;
             color: gray;
             align-items: center;
           }
-          .exchange:hover {
+          .entity-enabled:hover {
             display: flex;
             cursor: pointer;
             opacity: 0.5;
           }
-          .exchange-label {
+          .exchange-image {
+            width: 24px;
+            height: 24px;
+          }
+          .entity-label {
             margin-left: 15px;
           }
-          .exchange-label-selected {
+          .entity-label-selected {
             margin-left: 15px;
             border-bottom: 2px solid rgba(${colors.primaryGreen}, 1);
           }
           .mobile-select {
             display: none;
           }
-          .exchange-img {
+          .entity-img {
             margin: 2px;
           }
           @media (max-width: 767px) {
@@ -159,10 +166,10 @@ export const ExchangeList = ({
   );
 };
 
-ExchangeList.propTypes = {
+EntityList.propTypes = {
   entities: PropTypes.objectOf(
     PropTypes.oneOfType([PropTypes.object, PropTypes.string])
   ).isRequired,
   onChangeExchange: PropTypes.func.isRequired,
-  selectedEntity: PropTypes.string.isRequired,
+  selectedExchange: PropTypes.string.isRequired,
 };

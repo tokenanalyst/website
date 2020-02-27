@@ -3,7 +3,7 @@ import React from 'react';
 import ReactGA from 'react-ga';
 
 import { TokenSelect } from '../TokenSelect/TokenSelect';
-import { ExchangeList } from '../../molecules/ExchangeList';
+import { EntityList } from '../../molecules/EntityList';
 import { ExchangeMetricsWidget } from '../../../widgets/ProExchangeMetricsWidget';
 import { LinkTelegram } from '../../molecules/LinkTelegram/LinkTelegram';
 import { SimpleBox } from '../../molecules/SimpleBox';
@@ -67,13 +67,13 @@ export const LeftSidePanelMiners = ({
           <div className="controls">
             <div className="control">
               <div className="exchanges">
-                {/* <ExchangeList
-                  selectedExchange={selectedExchange}
-                  exchanges={tokensDb.getExchangesList()}
+                <EntityList
+                  selectedExchange={selectedMiner}
+                  entities={tokensDb.getMinersList()}
                   onChangeExchange={newExchange => {
                     onChangeToken(selectedToken, newExchange);
                   }}
-                /> */}
+                />
               </div>
             </div>
           </div>

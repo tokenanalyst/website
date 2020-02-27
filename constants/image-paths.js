@@ -26,6 +26,8 @@ export const EXCHANGE_IMAGES = {
   [DERIBIT]: 'deribit.png',
 };
 
+export const MINER_IMAGES = {};
+
 export const TOKEN_IMAGES = {
   USDT: 'usdt.png',
   DAI: 'dai.png',

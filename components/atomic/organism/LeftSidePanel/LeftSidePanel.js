@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import ReactGA from 'react-ga';
+import isEqual from 'lodash/isEqual';
 
 import { TokenSelect } from '../TokenSelect/TokenSelect';
 import { EntityList } from '../../molecules/EntityList';
@@ -9,7 +10,13 @@ import { LinkTelegram } from '../../molecules/LinkTelegram/LinkTelegram';
 import { SimpleBox } from '../../molecules/SimpleBox';
 import { StudiesList } from '../../molecules/StudiesList/StudiesList';
 
-export const LeftSidePanelExchanges = ({
+// const propsAreEqual = (prevProps, nextProps) => {
+//   return isEqual(prevProps.studies, nextProps.studies);
+// };
+
+// const MemoStudiesList = React.memo(StudiesList, propsAreEqual);
+
+export const LeftSidePanel = ({
   onChangeToken,
   onSelectStudy,
   selectedExchange,
@@ -72,7 +79,7 @@ export const LeftSidePanelExchanges = ({
             <div className="control">
               <div className="exchanges">
                 <EntityList
-                  selectedEntity={selectedExchange}
+                  selectedExchange={selectedExchange}
                   entities={tokensDb.getExchangesList()}
                   onChangeExchange={newExchange => {
                     onChangeToken(selectedToken, newExchange);
@@ -139,7 +146,7 @@ export const LeftSidePanelExchanges = ({
   );
 };
 
-LeftSidePanelExchanges.propTypes = {
+LeftSidePanel.propTypes = {
   onChangeToken: PropTypes.func.isRequired,
   onSelectStudy: PropTypes.func.isRequired,
   selectedExchange: PropTypes.string.isRequired,
