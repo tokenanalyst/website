@@ -3,9 +3,6 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Cookies from 'js-cookie';
 
-import { ExchangeMetricsWidget } from '../../../components/widgets/ExchangeMetricsWidget';
-import { IoChartWidget } from '../../../components/widgets/IoChartWidget';
-import { ExchangeFlowsPage } from '../../../components/atomic/pages/ExchangeFlows';
 import { COOKIES } from '../../../constants/cookies';
 import { tokensDb } from '../../../services/tokensDb';
 import { LoginContext } from '../../../contexts/Login';
@@ -19,11 +16,24 @@ import { MinerStatsPage } from '../../../components/atomic/pages/MinerStats';
 const isLoginRequiredToAccessExchange = exchange =>
   LOGGED_OUT_SUPPORTED_EXCHANGES.indexOf(exchange) < 0;
 
+const TIER = `tier=${Cookies.get(COOKIES.tier)}`;
+
 const Miner = () => {
   const router = useRouter();
   const loginCtx = useContext(LoginContext);
   const { token, miner } = router.query;
   const [isTVSupported, setIsTVSupported] = useState(false);
+  const [selectedMiner, setSelectedMiner] = useState(miner);
+  const [supportedMiners, setsupportedMiners] = useState();
+
+  useEffect(() => {
+    setSelectedMiner(miner);
+  }, [miner]);
+
+  useEffect(() => {
+    const miners = tokensDb.getMinersList(token);
+    setsupportedMiners(miners);
+  }, [token]);
 
   // useEffect(() => {
   //   if (
@@ -38,30 +48,27 @@ const Miner = () => {
   //     setIsTVSupported(true);
   //   }
   // }, [token, exchange, loginCtx.isLoggedIn, router]);
+  // tokensDb.getMetricSupportForEntity().then(result => {
+  //   console.log(result);
+  // });
 
-  // const pushToPage = (newToken, newExchange) => {
-  //   const exchangeSupport = tokensDb.getTokenSupportForExchange(
-  //     newToken,
-  //     newExchange
-  //   );
+  const pushToPage = (newToken, newMiner) => {
+    const miners = tokensDb.getMinersList(newToken);
 
-  //   if (exchangeSupport) {
-  //     return router.push(
-  //       `/exchange/[token]/[exchange]`,
-  //       `/exchange/${newToken}/${newExchange}?tier=${Cookies.get(COOKIES.tier)}`
-  //     );
-  //   }
-  //   const tokensList = tokensDb.getTokensList('all', newExchange);
+    if (selectedMiner !== newMiner) {
+      return router.push(
+        `/miner/[token]/[miner]`,
+        `/miner/${token}/${newMiner}?${TIER}`
+      );
+    }
 
-  //   const defaultToken = Object.keys(tokensList)[0];
-
-  //   return router.push(
-  //     `/exchange/[token]/[exchange]`,
-  //     `/exchange/${defaultToken}/${newExchange}?tier=${Cookies.get(
-  //       COOKIES.tier
-  //     )}`
-  //   );
-  // };
+    if (newToken !== token) {
+      return router.push(
+        `/miner/[token]/[miner]`,
+        `/miner/${newToken}/${Object.keys(miners)[0]}?${TIER}`
+      );
+    }
+  };
 
   return (
     <>
@@ -77,8 +84,9 @@ const Miner = () => {
               selectedMiner={miner}
               selectedExchange={BINANCE}
               selectedToken={token}
+              supportedMiners={supportedMiners}
               tokensDb={tokensDb}
-              // onChangeToken={pushToPage}
+              onChangeToken={pushToPage}
             />
           </>
         ) : (

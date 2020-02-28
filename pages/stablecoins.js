@@ -7,7 +7,7 @@ import {
   getStablecoinVolumeDataSet,
   getStablecoinTransactionsDataSet,
 } from '../data-transformers/charts';
-import { useApi } from '../custom-hooks';
+import { useApi } from '../hooks';
 import { StableCoinTable } from '../components/tables/StableCoinTable';
 import { LoadingSpinner } from '../components/LoadingSpinner';
 import { PageHeader } from '../components/atomic/molecules/PageHeader';

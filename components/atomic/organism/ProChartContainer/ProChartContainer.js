@@ -33,6 +33,7 @@ export const ProChartContainer = ({
   isIntraDay,
   instrumentClass,
   TVOptions,
+  minerName,
 }) => {
   const [isLoading, setIsLoading] = useState(true);
   const tokenAnalystService = useRef(taData(taDataArgs));
@@ -63,12 +64,13 @@ export const ProChartContainer = ({
     kaikoService.current.studies = makeStudiesCb(
       tokenAnalystService.current,
       exchangeName,
+      minerName,
       TASymbol
     );
     kaikoService.current.ta = tokenAnalystService.current;
 
     setIsLoading(false);
-  }, [kaikoService, exchangeName, TVSymbols, TASymbol]);
+  }, [kaikoService, exchangeName, TVSymbols, TASymbol, minerName]);
 
   return (
     <>
@@ -110,6 +112,7 @@ ProChartContainer.propTypes = {
     PropTypes.oneOfType([PropTypes.string, PropTypes.array])
   ),
   exchangeName: PropTypes.string.isRequired,
+  minerName: PropTypes.string,
   interval: PropTypes.string.isRequired,
   onChartRenderCb: PropTypes.func.isRequired,
   timeFrame: PropTypes.string.isRequired,
@@ -120,4 +123,5 @@ ProChartContainer.propTypes = {
 ProChartContainer.defaultProps = {
   isIntraDay: false,
   TVOptions: {},
+  minerName: null,
 };

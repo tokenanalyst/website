@@ -7,15 +7,17 @@ import { makeTVSymbols } from '../../../../utils/makeTVSymbols';
 
 import { ProChartContainer } from '../../organism/ProChartContainer';
 import { LeftSidePanelExchanges } from '../../organism/LeftSidePanelExchanges/LeftSidePanelExchanges';
-import { TV_STUDIES, TV_OPTIONS } from './const';
+import { EXCHANGE_STUDIES, TV_OPTIONS } from './const';
 import {
   setLocalMetricsConfig,
   getLocalMetricsConfig,
 } from '../../../../utils';
+import { APP_STORAGE_KEYS } from '../../../../constants';
+import { KaikoLogo } from '../../atoms/KaikoLogo';
 
 const TV_INITIAL_DATA_RANGE = 90; // 90 days
 
-const LOCAL_STOREAGE_KEY = 'ta_exchange_studies';
+const LOCAL_STORAGE_KEY = APP_STORAGE_KEYS.exchangeFlows;
 
 const propsAreEqual = (prevProps, nextProps) => {
   return (
@@ -34,10 +36,10 @@ export const ExchangeFlowsPage = ({
 }) => {
   const tvInstance = useRef(null);
   const [tvStudies, setTvStudies] = useState(() =>
-    getLocalMetricsConfig(selectedToken, TV_STUDIES, LOCAL_STOREAGE_KEY)
+    getLocalMetricsConfig(selectedToken, EXCHANGE_STUDIES, LOCAL_STORAGE_KEY)
   );
   const [isChartReady, setIsChartReady] = useState(false);
-  const [isMetricSupportReady, setIsMetricSupporReady] = useState(false);
+  const [isMetricSupportReady, setIsMetricSupportReady] = useState(false);
 
   const exchangeSupport = tokensDb.getTokenSupportForExchange(
     selectedToken,
@@ -47,12 +49,12 @@ export const ExchangeFlowsPage = ({
   const TVSymbols = makeTVSymbols(selectedToken, exchangeSupport);
 
   useEffect(() => {
-    getLocalMetricsConfig(selectedToken, TV_STUDIES, LOCAL_STOREAGE_KEY);
+    getLocalMetricsConfig(selectedToken, EXCHANGE_STUDIES, LOCAL_STORAGE_KEY);
   }, [selectedToken]);
 
   useEffect(() => {
     const getSupportedMetrics = async () => {
-      const supported = await tokensDb.getMetricSupportForExchange();
+      const supported = await tokensDb.getMetricSupportForEntity();
 
       setTvStudies(studies => {
         const updatedStudies = Object.keys(studies).reduce((acc, study) => {
@@ -79,17 +81,13 @@ export const ExchangeFlowsPage = ({
           };
         }, {});
 
-        setLocalMetricsConfig(
-          selectedToken,
-          updatedStudies,
-          LOCAL_STOREAGE_KEY
-        );
+        setLocalMetricsConfig(selectedToken, updatedStudies, LOCAL_STORAGE_KEY);
 
         return updatedStudies;
       });
     };
     getSupportedMetrics();
-    setIsMetricSupporReady(true);
+    setIsMetricSupportReady(true);
   }, [selectedToken, tokensDb, selectedExchange]);
 
   useEffect(() => {
@@ -104,12 +102,11 @@ export const ExchangeFlowsPage = ({
       });
 
       Object.keys(tvStudies).forEach(study => {
-        const { isActive, isSupported, tvName } = tvStudies[study];
-
+        const { isActive, isSupported, tvIndicatorName } = tvStudies[study];
         if (isActive && isSupported) {
           tvStudies[study].entityId = tvInstance.current
             .chart()
-            .createStudy(tvName, false, true);
+            .createStudy(tvIndicatorName, false, true);
         }
       });
       setTvStudies({ ...tvStudies });
@@ -140,7 +137,7 @@ export const ExchangeFlowsPage = ({
               study
             ].entityId = tvInstance.current
               .chart()
-              .createStudy(updatedStudies[study].tvName, false, true);
+              .createStudy(updatedStudies[study].tvIndicatorName, false, true);
           }
           updatedStudies[study].isActive = !updatedStudies[study].isActive;
         } catch (err) {
@@ -148,7 +145,7 @@ export const ExchangeFlowsPage = ({
         }
       }
 
-      setLocalMetricsConfig(selectedToken, updatedStudies, LOCAL_STOREAGE_KEY);
+      setLocalMetricsConfig(selectedToken, updatedStudies, LOCAL_STORAGE_KEY);
       return updatedStudies;
     };
     setTvStudies(studies => updateStudy(studies));
@@ -189,15 +186,7 @@ export const ExchangeFlowsPage = ({
             />
           </div>
           <div className="kaiko">
-            Order book data by
-            <a
-              href="https://www.kaiko.com/?rfsn=3222089.6abb9f&utm_source=refersion&utm_medium=affiliate&utm_campaign=3222089.6abb9f"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="kaiko-link"
-            >
-              Kaiko
-            </a>
+            <KaikoLogo />
           </div>
         </div>
         <div />
@@ -225,9 +214,6 @@ export const ExchangeFlowsPage = ({
             padding-top: 5px;
             padding-bottom: 5px;
             text-align: right;
-          }
-          .kaiko-link {
-            padding-left: 3px;
           }
 
           @media (min-width: 768px) and (max-width: 1440px) {

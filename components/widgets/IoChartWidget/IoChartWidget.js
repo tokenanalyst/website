@@ -10,7 +10,7 @@ import { Link } from '../../Link';
 import { LoadingSpinner } from '../../LoadingSpinner';
 import { getExchangeDataSet } from '../../../data-transformers/charts/getExchangeDataSet';
 import { TIME_WINDOWS } from '../../../constants/filters';
-import { useApi } from '../../../custom-hooks';
+import { useApi } from '../../../hooks';
 
 const SimpleChart = dynamic(
   () =>

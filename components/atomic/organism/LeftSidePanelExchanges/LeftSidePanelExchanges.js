@@ -77,6 +77,7 @@ export const LeftSidePanelExchanges = ({
                   onChangeExchange={newExchange => {
                     onChangeToken(selectedToken, newExchange);
                   }}
+                  isExchange
                 />
               </div>
             </div>
@@ -86,7 +87,8 @@ export const LeftSidePanelExchanges = ({
       <style jsx>
         {`
           .metrics {
-            padding-bottom: 10px;
+            padding-top: 5px;
+            padding-bottom: 15px;
           }
           .controls {
             flex-direction: column;
@@ -118,10 +120,8 @@ export const LeftSidePanelExchanges = ({
             padding-bottom: 10px;
           }
           @media (min-width: 320px) and (max-width: 767px) {
-            .control {
-               {
-                /* margin: auto; */
-              }
+            .metrics {
+              padding-bottom: 10px;
             }
             .controls {
               flex-direction: column;

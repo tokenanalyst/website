@@ -11,11 +11,11 @@ export const TV_OPTIONS = {
   ],
 };
 
-export const TV_STUDIES = {
+export const EXCHANGE_STUDIES = {
   balances: {
     entityId: null,
     name: 'Balances',
-    tvName: 'Balances',
+    tvIndicatorName: 'Balances',
     isCustomStudy: true,
     isActive: false,
     isSupported: false,
@@ -24,7 +24,7 @@ export const TV_STUDIES = {
   flows: {
     entityId: null,
     name: 'Flows',
-    tvName: 'Flows',
+    tvIndicatorName: 'Flows',
     isCustomStudy: true,
     isActive: true,
     isSupported: true,
@@ -33,7 +33,7 @@ export const TV_STUDIES = {
   netFlows: {
     entityId: null,
     name: 'NetFlows',
-    tvName: 'NetFlows',
+    tvIndicatorName: 'NetFlows',
     isCustomStudy: true,
     isActive: false,
     isSupported: true,
@@ -42,10 +42,49 @@ export const TV_STUDIES = {
   volume: {
     entityId: true,
     name: 'Volume',
-    tvName: 'Volume',
+    tvIndicatorName: 'Volume',
     isCustomStudy: false,
     isActive: true,
     isSupported: true,
+  },
+};
+
+export const MINER_STUDIES = {
+  hashrate: {
+    entityId: null,
+    name: 'Hashrate',
+    tvIndicatorName: 'Hashrate',
+    isCustomStudy: true,
+    isActive: false,
+    isSupported: false,
+    taEndpoint: 'token_miner_hashrate_window_historical',
+  },
+  rewards: {
+    entityId: null,
+    name: 'Rewards',
+    tvIndicatorName: 'Rewards',
+    isCustomStudy: true,
+    isActive: false,
+    isSupported: false,
+    taEndpoint: 'token_miner_rewards_window_historical',
+  },
+  // flows: {
+  //   entityId: null,
+  //   name: 'Flows',
+  //   tvIndicatorName: 'Miner Flows',
+  //   isCustomStudy: true,
+  //   isActive: false,
+  //   isSupported: false,
+  //   taEndpoint: 'miner_flow_window_historical',
+  // },
+  balances: {
+    entityId: null,
+    name: 'Balances',
+    tvIndicatorName: 'Miner Balances',
+    isCustomStudy: true,
+    isActive: false,
+    isSupported: false,
+    taEndpoint: 'miner_balance_window_historical',
   },
 };
 

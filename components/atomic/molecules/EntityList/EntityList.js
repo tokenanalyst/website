@@ -4,15 +4,18 @@ import ReactGA from 'react-ga';
 import { Popover, Menu, MenuItem, Button, Position } from '@blueprintjs/core';
 
 import { colors } from '../../../../constants/styles/colors';
-import { LOGGED_OUT_SUPPORTED_EXCHANGES } from '../../../../constants/exchanges';
+import { isLoginRequiredToAccessEntity } from '../../../../utils';
 import { LoginContext } from '../../../../contexts/Login';
 import { ExchangeRegisterDialog } from '../../../marketing/marketing-dialogs';
 import { ImgEntity } from '../../atoms/ImgEntity';
+import { MINNER_FORMATTED_NAMES } from '../../../../constants';
 
 export const EntityList = ({
   entities,
   onChangeExchange,
-  selectedExchange,
+  selectedEntity,
+  isMiner,
+  isExchange,
 }) => {
   const loginCtx = useContext(LoginContext);
   const [isRegisterDialogShown, setIsRegisterDialogShown] = useState(false);
@@ -20,14 +23,11 @@ export const EntityList = ({
   const isExchangeDisabled = exchange => {
     return loginCtx.isLoggedIn
       ? false
-      : !(LOGGED_OUT_SUPPORTED_EXCHANGES.indexOf(exchange) >= 0);
+      : isLoginRequiredToAccessEntity(exchange);
   };
 
   const exchangeChangeHandler = entityName => {
-    if (
-      loginCtx.isLoggedIn ||
-      LOGGED_OUT_SUPPORTED_EXCHANGES.indexOf(entityName) >= 0
-    ) {
+    if (loginCtx.isLoggedIn || !isLoginRequiredToAccessEntity(entityName)) {
       onChangeExchange(entityName);
       ReactGA.event({
         category: 'User',
@@ -38,7 +38,6 @@ export const EntityList = ({
       setIsRegisterDialogShown(true);
     }
   };
-
   const renderMenuItems = () =>
     Object.keys(entities).map(entity => {
       return (
@@ -72,58 +71,65 @@ export const EntityList = ({
           >
             <Button
               rightIcon="double-caret-vertical"
-              text={selectedExchange}
-              icon={<ImgEntity exchange={selectedExchange} />}
+              text={selectedEntity}
+              icon={<ImgEntity entity={selectedEntity} />}
               fill
             />
           </Popover>
         </div>
 
         <div className="desktop-list">
-          {Object.values(entities).map(entityName => (
-            <div
-              role="link"
-              key={entityName}
-              className={`${
-                isExchangeDisabled(entityName)
-                  ? `entity-disabled`
-                  : `entity-enabled`
-              }`}
-              tabIndex="0"
-              onKeyDown={() => {
-                exchangeChangeHandler(entityName);
-              }}
-              onClick={() => {
-                exchangeChangeHandler(entityName);
-              }}
-            >
-              <div className="entity-img">
-                <ImgEntity
-                  entity={entityName}
-                  disabled={isExchangeDisabled(entityName)}
-                />
-              </div>
+          {Object.values(entities).map(entityName => {
+            return (
               <div
+                role="link"
+                key={entityName}
                 className={`${
-                  entityName === selectedExchange
-                    ? 'entity-label-selected'
-                    : 'entity-label'
+                  isExchangeDisabled(entityName)
+                    ? `entity-disabled`
+                    : `entity-enabled`
                 }`}
+                tabIndex="0"
+                onKeyDown={() => {
+                  exchangeChangeHandler(entityName);
+                }}
+                onClick={() => {
+                  exchangeChangeHandler(entityName);
+                }}
               >
-                {entities[entityName]}
+                {isExchange && (
+                  <div className="entity-img">
+                    <ImgEntity
+                      entity={entityName}
+                      disabled={isExchangeDisabled(entityName)}
+                    />
+                  </div>
+                )}
+
+                <div
+                  className={`${
+                    entityName === selectedEntity
+                      ? 'entity-label-selected'
+                      : 'entity-label'
+                  }`}
+                >
+                  {MINNER_FORMATTED_NAMES[entityName] || entities[entityName]}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
       <style jsx>
         {`
           .entity-enabled {
+            height: 25px;
             display: flex;
             cursor: pointer;
             align-items: center;
           }
           .entity-disabled {
+            height: 25px;
             display: flex;
             cursor: pointer;
             color: gray;
@@ -134,22 +140,16 @@ export const EntityList = ({
             cursor: pointer;
             opacity: 0.5;
           }
-          .exchange-image {
-            width: 24px;
-            height: 24px;
+          .entity-img {
+            margin-right: 15px;
           }
           .entity-label {
-            margin-left: 15px;
           }
           .entity-label-selected {
-            margin-left: 15px;
             border-bottom: 2px solid rgba(${colors.primaryGreen}, 1);
           }
           .mobile-select {
             display: none;
-          }
-          .entity-img {
-            margin: 2px;
           }
           @media (max-width: 767px) {
             .desktop-list {
@@ -171,5 +171,12 @@ EntityList.propTypes = {
     PropTypes.oneOfType([PropTypes.object, PropTypes.string])
   ).isRequired,
   onChangeExchange: PropTypes.func.isRequired,
-  selectedExchange: PropTypes.string.isRequired,
+  selectedEntity: PropTypes.string.isRequired,
+  isMiner: PropTypes.bool,
+  isExchange: PropTypes.bool,
+};
+
+EntityList.defaultProps = {
+  isMiner: false,
+  isExchange: false,
 };

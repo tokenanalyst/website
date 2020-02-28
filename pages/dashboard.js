@@ -5,7 +5,7 @@ import { IoTable } from '../components/tables/IoTable';
 import { FilterNav } from '../components/atomic/organism/FilterNav';
 import { DATA_WINDOWS, UNITS } from '../constants/filters';
 import { underSubNav } from '../constants/styles/common-styled-jsx';
-import { useApi } from '../custom-hooks';
+import { useApi } from '../hooks';
 import { LoadingSpinner } from '../components/LoadingSpinner';
 import { filterTable } from '../components/tables/IoTable/helpers';
 
@@ -30,9 +30,7 @@ const Exchange = () => {
         </div>
 
         <div className="under-sub-nav">
-          <h2>At a glance</h2>
-          <TokenSnapshotWidget dataWindow={dataWindow} units={units} />
-          <h2>{`${dataWindow} Inflows/Outflows`}</h2>
+          <h2>{`${dataWindow} Exchanges Inflows/Outflows`}</h2>
           <div className="table">
             {ioTableData ? (
               <IoTable

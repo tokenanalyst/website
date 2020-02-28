@@ -5,14 +5,13 @@ import {
   ERC20_TOKENS,
   STABLE_TOKENS,
   DERIVATIVES,
-} from '../../constants/tokens';
-import {
   EXCHANGE_NAMES,
   MINER_NAMES,
   TOKENS_EXCHANGE_SUPPORT,
   TOKENS_MINER_SUPPORT,
   TOKENS_TV_SUPPORT,
-} from '../../constants/exchanges';
+} from '../../constants';
+import { getMinersList } from './utils';
 
 const NATIVE = 'native';
 const STABLE = 'stable';
@@ -80,7 +79,7 @@ const filterByMiner = (tokens, minerName) => {
 export const tokensDb = {
   tokens: {
     group: {
-      all: [...NATIVE, ...STABLE, ...ERC20],
+      all: { ...NATIVE_TOKENS, ...STABLE_TOKENS, ...ERC20_TOKENS },
       [NATIVE]: { ...NATIVE_TOKENS },
       [STABLE]: { ...STABLE_TOKENS },
       [ERC20]: { ...ERC20_TOKENS },
@@ -130,25 +129,25 @@ export const tokensDb = {
 
     return null;
   },
-  getTokenSupportForMiner: (token, exchange) => {
-    if (!(token && exchange)) {
+  getTokenSupportForMiner: (token, miner) => {
+    if (!(token && miner)) {
       return null;
     }
     const { minerSupport } = tokensList[token.toUpperCase()];
 
-    if (minerSupport && minerSupport[exchange]) {
-      return minerSupport[exchange];
+    if (minerSupport && minerSupport[miner]) {
+      return minerSupport[miner];
     }
 
     return null;
   },
   getExchangesList: () => EXCHANGE_NAMES,
-  getMinersList: () => MINER_NAMES,
+  getMinersList: token => getMinersList(token),
   isNative: token => token in nativeTokens,
   isStable: token => token in stableTokens,
   isERC20: token => token in erc20Tokens,
   isDerivative: token => Object.keys(DERIVATIVES).indexOf(token) >= 0,
-  getMetricSupportForExchange: async () => {
+  getMetricSupportForEntity: async () => {
     try {
       const response = await axios.get(`/api/data-api-config`);
 

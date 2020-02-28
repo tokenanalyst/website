@@ -4,43 +4,37 @@ import ReactGA from 'react-ga';
 
 import { TokenSelect } from '../TokenSelect/TokenSelect';
 import { EntityList } from '../../molecules/EntityList';
-import { ExchangeMetricsWidget } from '../../../widgets/ProExchangeMetricsWidget';
 import { LinkTelegram } from '../../molecules/LinkTelegram/LinkTelegram';
 import { SimpleBox } from '../../molecules/SimpleBox';
 import { StudiesList } from '../../molecules/StudiesList/StudiesList';
+import { EntityLogo } from '../../molecules/EntityLogo';
+import { MINNER_FORMATTED_NAMES } from '../../../../constants';
 
 export const LeftSidePanelMiners = ({
   onChangeToken,
   onSelectStudy,
   selectedMiner,
   selectedToken,
+  supportedMiners,
+  tokensList,
   studies,
-  tokensDb,
 }) => {
-  const {
-    tokens: {
-      groupName: { NATIVE, STABLE, ERC20 },
-    },
-  } = tokensDb;
-
-  const nativeTokens = tokensDb.getTokensList(NATIVE, selectedMiner);
-  const stableTokens = tokensDb.getTokensList(STABLE, selectedMiner);
-  const erc20Tokens = tokensDb.getTokensList(ERC20, selectedMiner);
-
-  console.log(nativeTokens, stableTokens, erc20Tokens);
-
-  const tokensList = [nativeTokens, stableTokens, erc20Tokens];
-
   return (
     <div className="container">
       <div className="cat">
         <LinkTelegram />
       </div>
+      <div className="metrics">
+        <EntityLogo
+          tokenSymbol={selectedToken}
+          entityName={MINNER_FORMATTED_NAMES[selectedMiner] || selectedMiner}
+        />
+      </div>
       <div className="controls-container">
         <SimpleBox title="TOKEN">
           <div className="controls">
             <div className="control">
-              {/* <TokenSelect
+              <TokenSelect
                 items={tokensList}
                 groups={['Native coins', 'Stablecoins', 'ERC20 tokens']}
                 selectedToken={selectedToken}
@@ -52,7 +46,7 @@ export const LeftSidePanelMiners = ({
                   });
                   onChangeToken(newToken, selectedMiner);
                 }}
-              /> */}
+              />
             </div>
           </div>
         </SimpleBox>
@@ -66,13 +60,14 @@ export const LeftSidePanelMiners = ({
         <SimpleBox title="MINER">
           <div className="controls">
             <div className="control">
-              <div className="exchanges">
+              <div className="entities">
                 <EntityList
-                  selectedExchange={selectedMiner}
-                  entities={tokensDb.getMinersList()}
+                  selectedEntity={selectedMiner}
+                  entities={supportedMiners}
                   onChangeExchange={newExchange => {
                     onChangeToken(selectedToken, newExchange);
                   }}
+                  isMiner
                 />
               </div>
             </div>
@@ -82,7 +77,8 @@ export const LeftSidePanelMiners = ({
       <style jsx>
         {`
           .metrics {
-            padding-bottom: 10px;
+            padding-top: 5px;
+            padding-bottom: 15px;
           }
           .controls {
             flex-direction: column;
@@ -104,7 +100,7 @@ export const LeftSidePanelMiners = ({
           .legend-flows {
             padding-left: 8px;
           }
-          .exchanges {
+          .entities {
             display: flex;
             flex-direction: column;
             width: 100%;
@@ -114,10 +110,8 @@ export const LeftSidePanelMiners = ({
             padding-bottom: 10px;
           }
           @media (min-width: 320px) and (max-width: 767px) {
-            .control {
-               {
-                /* margin: auto; */
-              }
+            .metrics {
+              padding-bottom: 10px;
             }
             .controls {
               flex-direction: column;
@@ -140,8 +134,7 @@ LeftSidePanelMiners.propTypes = {
   onSelectStudy: PropTypes.func.isRequired,
   selectedMiner: PropTypes.string.isRequired,
   selectedToken: PropTypes.string.isRequired,
-  tokensDb: PropTypes.objectOf(
-    PropTypes.oneOfType([PropTypes.func, PropTypes.object])
-  ).isRequired,
+  tokensList: PropTypes.arrayOf(PropTypes.object).isRequired,
+  supportedMiners: PropTypes.objectOf(PropTypes.string).isRequired,
   studies: PropTypes.objectOf(PropTypes.object).isRequired,
 };
