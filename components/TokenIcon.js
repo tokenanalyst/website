@@ -3,6 +3,8 @@ import React from 'react';
 import { TOKEN_IMAGES } from '../constants/image-paths';
 
 export const TokenIcon = ({ token, size, hasText, onClick }) => {
+  const fileName = TOKEN_IMAGES[token.toUpperCase()];
+
   return (
     <>
       <div
@@ -13,12 +15,14 @@ export const TokenIcon = ({ token, size, hasText, onClick }) => {
       >
         <div size={size}>
           <img
-            src={`/static/png/coins/${TOKEN_IMAGES[token]}`}
+            src={`/static/png/coins/${fileName}`}
             className="token-icon"
             alt={`Token ${token}`}
           />
         </div>
-        {hasText && <div className="text">{token.replace('_', ' ')}</div>}
+        {hasText && (
+          <div className="text">{token.replace('_', ' ').toUpperCase()}</div>
+        )}
       </div>
       <style jsx>
         {`
