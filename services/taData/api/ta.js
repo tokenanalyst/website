@@ -9,7 +9,7 @@ import { ETH, BTC, USDT_OMNI } from './const';
 const ta = (function ta() {
   let tokenMetrics;
 
-  let api;
+  let taApi;
 
   const formatDate = (item, itemKeys) => {
     let timePoint = item;
@@ -39,7 +39,7 @@ const ta = (function ta() {
       }
 
       const flowsApiCall = async () =>
-        api.exchangeMetrics({
+        taApi.exchangeMetrics({
           token: symbol.toUpperCase(),
           exchange: exchange.toLowerCase(),
           timeWindow: window,
@@ -123,7 +123,7 @@ const ta = (function ta() {
       end,
       metric,
       dataPoint,
-      exchange
+      optParams = {}
     ) => {
       const startDate = moment(start).format('YYYY-MM-DD');
       const endDate = moment(end).format('YYYY-MM-DD');
@@ -140,13 +140,13 @@ const ta = (function ta() {
       }
 
       const apiCall = async () =>
-        api.singleMetric({
+        taApi.singleMetric({
           token: symbol.toUpperCase(),
           window: timeWindow,
           from_date: startDate,
           to_date: endDate,
           metric,
-          exchange,
+          ...optParams,
         });
 
       const transactionsData = async () =>
@@ -204,7 +204,7 @@ const ta = (function ta() {
 
       const fetchFromTA = async flowDirection => {
         if ([ETH, BTC, USDT_OMNI].includes(symbol.toUpperCase())) {
-          const result = await api.exchangeFlowWindowHistorical({
+          const result = await taApi.exchangeFlowWindowHistorical({
             format: 'json',
             token: symbol.toLowerCase(),
             direction: flowDirection,
@@ -216,7 +216,7 @@ const ta = (function ta() {
           return result;
         }
 
-        return api.erc20ExchangesFlowWindowHistorical({
+        return taApi.erc20ExchangesFlowWindowHistorical({
           format: 'json',
           token: symbol.toLowerCase(),
           direction: flowDirection,
@@ -290,7 +290,7 @@ const ta = (function ta() {
     getToken: () => tokenMetrics,
 
     setApi: taInstance => {
-      api = taInstance;
+      taApi = taInstance;
     },
   };
 })();

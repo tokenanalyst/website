@@ -1,3 +1,3 @@
-import { toSingleValueChartData } from "./toSingleValueChartData";
+import { toSingleValueChartData } from './toSingleValueChartData';
 
 export { toSingleValueChartData };

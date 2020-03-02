@@ -1,87 +1,85 @@
-import { getCompareDataSet } from "./getCompareDataSet";
-import { toSingleValueChartData } from "./mappers/toSingleValueChartData";
-import { TEST_TOKEN } from "./__fixtures__/responses";
+import { getCompareDataSet } from './getCompareDataSet';
+import { toSingleValueChartData } from './mappers/toSingleValueChartData';
+import { TEST_TOKEN } from './__fixtures__/responses';
 
-const nonNativeTokenSymbol = "TEST_TOKEN";
+const nonNativeTokenSymbol = 'TEST_TOKEN';
 
-const mockColor = "red";
+const mockColor = 'red';
 
 const nonNativeTokenResponse = {
-  [nonNativeTokenSymbol]: TEST_TOKEN
+  [nonNativeTokenSymbol]: TEST_TOKEN,
 };
 
-
-
-describe("getCompareDataSet function", () => {
-  it("returns dataSet for non native tokens success", () => {
-    const token = "TEST_TOKEN";
+describe('getCompareDataSet function', () => {
+  it('returns dataSet for non native tokens success', () => {
+    const token = 'TEST_TOKEN';
     const expectedDataSet = [
       {
-        dataPoint: "Volume (USD)",
+        dataPoint: 'Volume (USD)',
         title: `${nonNativeTokenSymbol} Volume (USD)`,
         chartValues: toSingleValueChartData(
           TEST_TOKEN.volume,
-          "date",
-          "volume_usd"
+          'date',
+          'volume_usd'
         ),
         visible: true,
-        solidColor: mockColor
+        solidColor: mockColor,
       },
       {
         dataPoint: `Volume (${nonNativeTokenSymbol})`,
         title: `${nonNativeTokenSymbol} Volume`,
         chartValues: toSingleValueChartData(
           TEST_TOKEN.volume,
-          "date",
-          "volume"
+          'date',
+          'volume'
         ),
         visible: false,
-        solidColor: mockColor
+        solidColor: mockColor,
       },
       {
-        dataPoint: "TXN Count",
+        dataPoint: 'TXN Count',
         title: `${nonNativeTokenSymbol} TXN Count`,
         chartValues: toSingleValueChartData(
           TEST_TOKEN.count,
-          "date",
-          "number_of_txns"
+          'date',
+          'number_of_txns'
         ),
         visible: false,
-        solidColor: mockColor
+        solidColor: mockColor,
       },
       {
-        dataPoint: "Active Senders",
+        dataPoint: 'Active Senders',
         title: `${nonNativeTokenSymbol} Active Senders`,
         chartValues: toSingleValueChartData(
           TEST_TOKEN.address,
-          "date",
-          "active_senders"
+          'date',
+          'active_senders'
         ),
         visible: false,
-        solidColor: mockColor
+        solidColor: mockColor,
       },
       {
-        dataPoint: "Active Recipients",
+        dataPoint: 'Active Recipients',
         title: `${nonNativeTokenSymbol} Active Recipients`,
         chartValues: toSingleValueChartData(
           TEST_TOKEN.address,
-          "date",
-          "active_recipients"
+          'date',
+          'active_recipients'
         ),
         visible: false,
-        solidColor: mockColor
+        solidColor: mockColor,
       },
       {
-        dataPoint: "Price",
+        dataPoint: 'Price',
         title: `${nonNativeTokenSymbol} Price`,
         chartValues: toSingleValueChartData(
           TEST_TOKEN.volume,
-          "date",
-          "price_usd"
+          'date',
+          'price_usd'
         ),
         visible: false,
-        solidColor: mockColor
-      }
+        solidColor: mockColor,
+      },
     ];
     const dateSet = getCompareDataSet(
       nonNativeTokenResponse[token],

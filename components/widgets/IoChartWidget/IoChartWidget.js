@@ -7,10 +7,10 @@ import ReactGA from 'react-ga';
 import { ChartControls } from '../../atomic/molecules/ChartControls';
 import { CHART_TYPES, CHART_MODES } from '../../../constants/chartTypes';
 import { Link } from '../../Link';
-import { LoadingSpinner } from '../../LoadingSpinner';
+import { LoadingSpinner } from '../../atomic/atoms/LoadSpinner/LoadingSpinner';
 import { getExchangeDataSet } from '../../../data-transformers/charts/getExchangeDataSet';
 import { TIME_WINDOWS } from '../../../constants/filters';
-import { useApi } from '../../../custom-hooks';
+import { useApi } from '../../../hooks';
 
 const SimpleChart = dynamic(
   () =>
@@ -91,7 +91,8 @@ export const IoChartWidget = ({ token, exchange, formatter }) => {
         <div className="widget-container">
           <div className="chart-area">
             <div className="header">
-              Inflow / Outflow <Icon icon="chart" color="gray" />
+              Inflow / Outflow
+              <Icon icon="chart" color="gray" />
               <div className="header-info">
                 <div>
                   <SimpleToolTip

@@ -22,34 +22,36 @@ const PurchaseSuccess = () => {
           <div className="home-button">Home</div>
         </Link>
       </div>
-      <style jsx>{`
-        .container {
-          font-family: Space Grotesk;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          padding: 20px;
-        }
-        h1 {
-          font-weight: bold;
-          font-size: 24px;
-          padding-bottom: 30px;
-        }
-        .issues {
-          padding-bottom: 30px;
-        }
-        .home-button {
-          margin-top: 30px;
-          color: white;
-          min-width: 60px;
-          text-align: center;
-          background-color: rgba(${colors.primaryGreen});
-          max-height: 40px;
-          cursor: pointer;
-          padding: 10px;
-          border-radius: 20px;
-        }
-      `}</style>
+      <style jsx>
+        {`
+          .container {
+            font-family: Space Grotesk;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+          }
+          h1 {
+            font-weight: bold;
+            font-size: 24px;
+            padding-bottom: 30px;
+          }
+          .issues {
+            padding-bottom: 30px;
+          }
+          .home-button {
+            margin-top: 30px;
+            color: white;
+            min-width: 60px;
+            text-align: center;
+            background-color: rgba(${colors.primaryGreen});
+            max-height: 40px;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 20px;
+          }
+        `}
+      </style>
     </>
   );
 };

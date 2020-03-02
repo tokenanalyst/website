@@ -1,3 +1,3 @@
-import { LoginWidget } from "./LoginWidget";
+import { LoginWidget } from './LoginWidget';
 
 export { LoginWidget };

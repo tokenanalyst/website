@@ -3,16 +3,31 @@ const axios = require('axios');
 const setResponseCache = require('./utils/setResponseCache');
 const formatApiError = require('./utils/formatApiError');
 
-const mapTokensToExchanges = endpoints =>
-  endpoints.reduce((acc, curr) => {
+const mapTokensToEntity = endpoints => {
+  const uniqueMap = {};
+
+  return endpoints.reduce((acc, curr) => {
     const {
-      parameters: { token, exchange },
+      parameters: { token, exchange, miner },
     } = curr;
-    if (!acc[token]) {
-      return { ...acc, [token]: [exchange] };
+    const entity = exchange || miner;
+
+    if (!uniqueMap[token]) {
+      uniqueMap[token] = {};
     }
-    return { ...acc, [token]: [...acc[token], exchange] };
+
+    if (uniqueMap[token][entity]) {
+      return acc;
+    }
+
+    uniqueMap[token][entity] = true;
+
+    if (!acc[token]) {
+      return { ...acc, [token]: [entity] };
+    }
+    return { ...acc, [token]: [...acc[token], entity] };
   }, {});
+};
 
 const makeArrayOfEndpoints = jobs =>
   jobs.reduce((acc, curr) => {
@@ -26,11 +41,27 @@ module.exports = async (req, res) => {
   const EXCHANGE_FLOW_METRICS =
     'https://api.tokenanalyst.io/catalog/data/exchange_flow_window_historical';
 
+  const MINER_HASHRATE_METRICS =
+    'https://api.tokenanalyst.io/catalog/data/token_miner_hashrate_window_historical';
+
+  const MINER_REWARDS_METRICS =
+    'https://api.tokenanalyst.io/catalog/data/token_miner_rewards_window_historical';
+
+  const MINER_FLOW_METRICS =
+    'https://api.tokenanalyst.io/catalog/data/miner_flow_window_historical';
+
+  const MINER_BALANCES_METRICS =
+    'https://api.tokenanalyst.io/catalog/data/miner_balance_window_historical';
+
   let resBody;
 
   const reqArray = [
     axios(EXCHANGE_BALANCE_METRICS),
     axios(EXCHANGE_FLOW_METRICS),
+    axios(MINER_HASHRATE_METRICS),
+    axios(MINER_REWARDS_METRICS),
+    axios(MINER_FLOW_METRICS),
+    axios(MINER_BALANCES_METRICS),
   ];
 
   try {
@@ -41,7 +72,7 @@ module.exports = async (req, res) => {
         data: { jobs, name },
       } = curr;
       const endpoints = makeArrayOfEndpoints(jobs);
-      const metricSupport = mapTokensToExchanges(endpoints);
+      const metricSupport = mapTokensToEntity(endpoints);
 
       return { ...acc, [name]: metricSupport };
     }, {});

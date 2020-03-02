@@ -1,3 +1,3 @@
-import { filterCaseInsensitive } from "./filterCaseInsensitive";
+import { filterCaseInsensitive } from './filterCaseInsensitive';
 
 export { filterCaseInsensitive };

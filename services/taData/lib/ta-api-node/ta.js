@@ -2,7 +2,7 @@ const defaultConfig = require('./config');
 const bind = require('./lib/bind_api');
 
 module.exports = (userConfig = {}) => {
-  let ta = bind();
+  const ta = bind();
 
   ta.config = { ...defaultConfig, ...userConfig };
 

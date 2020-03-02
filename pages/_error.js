@@ -30,30 +30,32 @@ class Error extends React.Component {
             </Link>
           </div>
         )}
-        <style jsx>{`
-          .container {
-            font-family: Space Grotesk;
-            font-size: 18px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding-top: 30px;
-          }
-          .message {
-            padding-top: 10px;
-          }
-          .button {
-            color: white;
-            width: 120px;
-            text-align: center;
-            background-color: rgba(${colors.primaryGreen});
-            max-height: 40px;
-            padding: 10px;
-            border-radius: 10px;
-            cursor: pointer;
-            margin-top: 20px;
-          }
-        `}</style>
+        <style jsx>
+          {`
+            .container {
+              font-family: Space Grotesk;
+              font-size: 18px;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              padding-top: 30px;
+            }
+            .message {
+              padding-top: 10px;
+            }
+            .button {
+              color: white;
+              width: 120px;
+              text-align: center;
+              background-color: rgba(${colors.primaryGreen});
+              max-height: 40px;
+              padding: 10px;
+              border-radius: 10px;
+              cursor: pointer;
+              margin-top: 20px;
+            }
+          `}
+        </style>
       </>
     );
     // return <p>{this.props.statusCode === 404 ? `Page not found` : "Broken"}</p>;

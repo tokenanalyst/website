@@ -14,4 +14,8 @@ export const API_METRICS = {
   RewardsBtc: 'RewardsBtc',
   Sopr: 'Sopr',
   ExchangeBalance: 'ExchangeBalance',
+  MinerHashrate: 'MinerHashrate',
+  MinerRewards: 'MinerRewards',
+  MinerFlow: 'MinerFlow',
+  MinerBalances: 'MinerBalances',
 };

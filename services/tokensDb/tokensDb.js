@@ -5,12 +5,13 @@ import {
   ERC20_TOKENS,
   STABLE_TOKENS,
   DERIVATIVES,
-} from '../../constants/tokens';
-import {
   EXCHANGE_NAMES,
+  MINER_NAMES,
   TOKENS_EXCHANGE_SUPPORT,
+  TOKENS_MINER_SUPPORT,
   TOKENS_TV_SUPPORT,
-} from '../../constants/exchanges';
+} from '../../constants';
+import { getMinersList } from './utils';
 
 const NATIVE = 'native';
 const STABLE = 'stable';
@@ -23,6 +24,7 @@ const makeList = (tokenList, tokenType) => {
         symbol: token,
         tokenType,
         exchangeSupport: TOKENS_EXCHANGE_SUPPORT[token],
+        minerSupport: TOKENS_MINER_SUPPORT[token],
       },
     };
 
@@ -59,10 +61,25 @@ const filterByExchange = (tokens, exchangeName) => {
   }, {});
 };
 
+const filterByMiner = (tokens, minerName) => {
+  if (!minerName) {
+    return tokens;
+  }
+
+  return Object.keys(tokens).reduce((acc, token) => {
+    if (
+      !(TOKENS_MINER_SUPPORT[token] && TOKENS_MINER_SUPPORT[token][minerName])
+    ) {
+      return acc;
+    }
+    return { ...acc, [token]: tokens[token] };
+  }, {});
+};
+
 export const tokensDb = {
   tokens: {
     group: {
-      all: [...NATIVE, ...STABLE, ...ERC20],
+      all: { ...NATIVE_TOKENS, ...STABLE_TOKENS, ...ERC20_TOKENS },
       [NATIVE]: { ...NATIVE_TOKENS },
       [STABLE]: { ...STABLE_TOKENS },
       [ERC20]: { ...ERC20_TOKENS },
@@ -73,21 +90,34 @@ export const tokensDb = {
       ERC20,
     },
   },
-  getTokensList: (tokenType, exchange) => {
-    if (tokenType === NATIVE) {
-      return filterByExchange(nativeTokens, exchange);
+  getTokensList: (tokenType, entity) => {
+    let filterFn;
+
+    if (EXCHANGE_NAMES[entity]) {
+      filterFn = filterByExchange;
     }
-    if (tokenType === STABLE) {
-      return filterByExchange(stableTokens, exchange);
-    }
-    if (tokenType === ERC20) {
-      return filterByExchange(erc20Tokens, exchange);
+    if (MINER_NAMES[entity]) {
+      filterFn = filterByMiner;
     }
 
-    return filterByExchange(tokensList, exchange);
+    if (!filterFn) {
+      return {};
+    }
+
+    if (tokenType === NATIVE) {
+      return filterFn(nativeTokens, entity);
+    }
+    if (tokenType === STABLE) {
+      return filterFn(stableTokens, entity);
+    }
+    if (tokenType === ERC20) {
+      return filterFn(erc20Tokens, entity);
+    }
+
+    return filterFn(tokensList, entity);
   },
   getTokenDetails: token => getTokenDetails(token),
-  getTokenSupportOnExchange: (token, exchange) => {
+  getTokenSupportForExchange: (token, exchange) => {
     if (!(token && exchange)) {
       return null;
     }
@@ -99,12 +129,25 @@ export const tokensDb = {
 
     return null;
   },
+  getTokenSupportForMiner: (token, miner) => {
+    if (!(token && miner)) {
+      return null;
+    }
+    const { minerSupport } = tokensList[token.toUpperCase()];
+
+    if (minerSupport && minerSupport[miner]) {
+      return minerSupport[miner];
+    }
+
+    return null;
+  },
   getExchangesList: () => EXCHANGE_NAMES,
+  getMinersList: token => getMinersList(token),
   isNative: token => token in nativeTokens,
   isStable: token => token in stableTokens,
   isERC20: token => token in erc20Tokens,
   isDerivative: token => Object.keys(DERIVATIVES).indexOf(token) >= 0,
-  getMetricSupportOnExchange: async () => {
+  getMetricSupportForEntity: async () => {
     try {
       const response = await axios.get(`/api/data-api-config`);
 

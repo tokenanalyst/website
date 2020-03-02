@@ -1,18 +1,20 @@
 module.exports = {
   ENDPOINTS: {
     private: {
-      token_volume_window_historical: () =>
-        'token_volume_window_historical/last',
-      token_count_window_historical: () => 'token_count_window_historical/last',
       exchange_flow_historical: () => 'exchange_flow_historical/last',
       exchange_flow_window_historical: () =>
         'exchange_flow_window_historical/last',
+      exchange_balance_window_historical: () =>
+        'exchange_balance_window_historical/last',
       erc20_exchanges_flow_window_historical: () =>
         'erc20_exchanges_flow_window_historical/last',
+      miner_balance_window_historical: () =>
+        'miner_balance_window_historical/last',
       token_price_usd_window_historical: () =>
         'token_price_usd_window_historical/last',
       token_active_address_window_historical: () =>
         'token_active_address_window_historical/last',
+      token_count_window_historical: () => 'token_count_window_historical/last',
       token_new_address_window_historical: () =>
         'token_new_address_window_historical/last',
       token_address_balance_group_window_historical: () =>
@@ -25,15 +27,16 @@ module.exports = {
         'token_utxo_age_window_historical/last',
       token_miner_hashrate_window_historical: () =>
         'token_miner_hashrate_window_historical/last',
+      token_miner_rewards_window_historical: () =>
+        'token_miner_rewards_window_historical/last',
       token_hashrate_window_historical: () =>
         'token_hashrate_window_historical/last',
       token_rewards_window_historical: () =>
         'token_rewards_window_historical/last',
-      token_miner_rewards_window_historical: () =>
-        'token_miner_rewards_window_historical/last',
       token_sopr_window_historical: () => 'token_sopr_window_historical/last',
-      exchange_balance_window_historical: () =>
-        'exchange_balance_window_historical/last',
+      token_volume_window_historical: () =>
+        'token_volume_window_historical/last',
+      miner_flow_window_historical: () => 'miner_flow_window_historical',
     },
     public: {
       exchange_flows_all_tokens_v5: () =>

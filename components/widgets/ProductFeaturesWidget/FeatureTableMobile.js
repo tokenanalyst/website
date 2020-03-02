@@ -46,43 +46,45 @@ export const FeatureTableMobile = () => {
           ))}
         </tbody>
       </table>
-      <style jsx>{`
-        .container {
-          font-family: Open Sans;
-          line-height: 24px;
-          margin-left: 10px;
-          margin-right: 10px;
-        }
-        .button-container {
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          margin-bottom: 20px;
-        }
-        .button {
-          color: black;
-          max-height: 20px;
-        }
-        .button-selected {
-          color: black;
-          max-height: 20px;
-          border-bottom: 2px solid rgba(${colors.primaryGreen});
-          font-weight: bold;
-        }
-        .row-header {
-          font-weight: bold;
-          padding-top: 10px;
-          padding-bottom: 5px;
-          border-bottom: solid 1px rgba(151, 151, 151, 0.15);
-        }
-        .feature-name {
-        }
-        @media only screen and (min-width: 769px) {
+      <style jsx>
+        {`
           .container {
-            display: none;
+            font-family: Open Sans;
+            line-height: 24px;
+            margin-left: 10px;
+            margin-right: 10px;
           }
-        }
-      `}</style>
+          .button-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin-bottom: 20px;
+          }
+          .button {
+            color: black;
+            max-height: 20px;
+          }
+          .button-selected {
+            color: black;
+            max-height: 20px;
+            border-bottom: 2px solid rgba(${colors.primaryGreen});
+            font-weight: bold;
+          }
+          .row-header {
+            font-weight: bold;
+            padding-top: 10px;
+            padding-bottom: 5px;
+            border-bottom: solid 1px rgba(151, 151, 151, 0.15);
+          }
+          .feature-name {
+          }
+          @media only screen and (min-width: 769px) {
+            .container {
+              display: none;
+            }
+          }
+        `}
+      </style>
     </div>
   );
 };

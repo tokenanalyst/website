@@ -20,7 +20,7 @@ export const DelayedDialog = ({
       onDisplay();
     }, timeout);
     return () => clearTimeout(timeoutHandle);
-  }, []);
+  }, [onDisplay, timeout]);
 
   return (
     <SimpleDialog

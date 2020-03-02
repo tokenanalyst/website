@@ -79,7 +79,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "git-branch-is -r \"^((?!master).)*$\" && lint-staged && pretty-quick --staged"
+      "pre-commit": "git-branch-is -r \"^((?!master).)*$\" && lint-staged"
     }
   },
   "setupFiles": [
@@ -87,8 +87,8 @@
   ],
   "lint-staged": {
     "*.js": [
-      "./node_modules/.bin/eslint --ignore-path .gitignore --ignore-pattern 'static/**' --fix .",
-      "git add"
+      "eslint --fix",
+      "pretty-quick --staged"
     ]
   }
 }

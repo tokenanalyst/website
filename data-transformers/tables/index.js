@@ -1,4 +1,3 @@
-import { getIoTableData } from "./getIoTableData";
-import { getStableCoinTableData } from "./getStableCoinTableData";
+import { getIoTableData } from './getIoTableData';
 
-export { getIoTableData, getStableCoinTableData };
+export { getIoTableData };

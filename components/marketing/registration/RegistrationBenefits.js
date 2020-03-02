@@ -20,38 +20,40 @@ export const RegistrationBenefits = () => {
 
         <img src="/static/svg/marketing/man-with-chart.svg" className="image" />
       </div>
-      <style jsx>{`
-        .container {
-          padding-top: 20px;
-        }
-        .title {
-          font-weight: bold;
-          font-size: 20px;
-          padding-bottom: 20px;
-        }
-        .benefit {
-          padding-top: 10px;
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-        }
-        .benefit-text {
-          padding-left: 10px;
-        }
-        .image {
-          padding-top: 10px;
-          height: 300px;
-        }
-        @media only screen and (max-width: 768px) {
+      <style jsx>
+        {`
           .container {
-            padding-bottom: 0px;
+            padding-top: 20px;
+          }
+          .title {
+            font-weight: bold;
+            font-size: 20px;
+            padding-bottom: 20px;
+          }
+          .benefit {
+            padding-top: 10px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+          }
+          .benefit-text {
+            padding-left: 10px;
           }
           .image {
             padding-top: 10px;
-            height: 200px;
+            height: 300px;
           }
-        }
-      `}</style>
+          @media only screen and (max-width: 768px) {
+            .container {
+              padding-bottom: 0px;
+            }
+            .image {
+              padding-top: 10px;
+              height: 200px;
+            }
+          }
+        `}
+      </style>
     </>
   );
 };

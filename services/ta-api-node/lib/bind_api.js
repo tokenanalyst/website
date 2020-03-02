@@ -59,16 +59,18 @@ module.exports = userConfig => {
   ta.tokenUtxoAgeWindowHistorical = compose(
     fetchDataFromApi(ENDPOINTS.private.token_utxo_age_window_historical)
   );
-  ta.tokenHashrateWindowHistorical = compose(
+
+  ta.tokenMinerHashrateWindowHistorical = compose(
     fetchDataFromApi(ENDPOINTS.private.token_miner_hashrate_window_historical)
   );
-  ta.tokenHashrateWindowHistoricalBtc = compose(
+  ta.tokenMinerRewardsWindowHistorical = compose(
+    fetchDataFromApi(ENDPOINTS.private.token_miner_rewards_window_historical)
+  );
+
+  ta.tokenHashrateWindowHistorical = compose(
     fetchDataFromApi(ENDPOINTS.private.token_hashrate_window_historical)
   );
   ta.tokenRewardsWindowHistorical = compose(
-    fetchDataFromApi(ENDPOINTS.private.token_miner_rewards_window_historical)
-  );
-  ta.tokenRewardsWindowHistoricalBtc = compose(
     fetchDataFromApi(ENDPOINTS.private.token_rewards_window_historical)
   );
   ta.tokenSoprWindowHistorical = compose(
@@ -76,6 +78,15 @@ module.exports = userConfig => {
   );
   ta.exchangeBalanceWindowHistorical = compose(
     fetchDataFromApi(ENDPOINTS.private.exchange_balance_window_historical)
+  );
+  ta.minerBalanceWindowHistorical = compose(
+    fetchDataFromApi(ENDPOINTS.private.miner_balance_window_historical)
+  );
+  ta.minerBalanceWindowHistorical = compose(
+    fetchDataFromApi(ENDPOINTS.private.miner_balance_window_historical)
+  );
+  ta.minerFlowWindowHistorical = compose(
+    fetchDataFromApi(ENDPOINTS.private.miner_flow_window_historical)
   );
 
   // Public endpoints

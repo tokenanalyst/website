@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const url = require('url');
 const getUserAuth = require('./auth/getUserAuth');
 const makeUnixtimeLimit = require('./utils/makeUnixtimeLimit');
@@ -10,7 +11,7 @@ const { NATIVE_TOKENS } = require('../constants/tokens');
 module.exports = async (req, res) => {
   const urlParts = url.parse(req.url, true);
   const {
-    query: { metric, token, window, from_date, to_date, exchange },
+    query: { metric, token, window, from_date, to_date, exchange, miner },
   } = urlParts;
   const { userData } = await getUserAuth(req.cookies.apiKey);
 
@@ -36,6 +37,10 @@ module.exports = async (req, res) => {
     params = { ...params, exchange: exchange.toLowerCase() };
   }
 
+  if (miner) {
+    params = { ...params, miner: miner.toLowerCase() };
+  }
+
   const apiFunctions = {
     [API_METRICS.Volume]: privateApi.tokenVolumeWindowHistorical,
     [API_METRICS.Transactions]: privateApi.tokenCountWindowHistorical,
@@ -44,15 +49,19 @@ module.exports = async (req, res) => {
     [API_METRICS.Nvt]: privateApi.tokenNvtWindowHistorical,
     [API_METRICS.Fees]: privateApi.tokenFeesWindowHistorical,
     [API_METRICS.Utxo]: privateApi.tokenUtxoAgeWindowHistorical,
-    [API_METRICS.Hashrate]: privateApi.tokenHashrateWindowHistorical,
-    [API_METRICS.HashrateBtc]: privateApi.tokenHashrateWindowHistoricalBtc,
-    [API_METRICS.Rewards]: privateApi.tokenRewardsWindowHistorical,
-    [API_METRICS.RewardsBtc]: privateApi.tokenRewardsWindowHistoricalBtc,
+    [API_METRICS.Hashrate]: privateApi.tokenMinerHashrateWindowHistorical,
+    [API_METRICS.HashrateBtc]: privateApi.tokenHashrateWindowHistorical,
+    [API_METRICS.Rewards]: privateApi.tokenMinerRewardsWindowHistorical,
+    [API_METRICS.RewardsBtc]: privateApi.tokenRewardsWindowHistorical,
     [API_METRICS.Sopr]: privateApi.tokenSoprWindowHistorical,
     [API_METRICS.NewAddress]: privateApi.tokenNewAddressWindowHistorical,
     [API_METRICS.AddressBalances]:
       privateApi.tokenAddressBalancesWindowHistorical,
     [API_METRICS.ExchangeBalance]: privateApi.exchangeBalanceWindowHistorical,
+    [API_METRICS.MinerHashrate]: privateApi.tokenMinerHashrateWindowHistorical,
+    [API_METRICS.MinerRewards]: privateApi.tokenMinerRewardsWindowHistorical,
+    [API_METRICS.MinerFlow]: privateApi.minerFlowWindowHistorical,
+    [API_METRICS.MinerBalances]: privateApi.minerBalanceWindowHistorical,
   };
 
   let result;
@@ -64,16 +73,16 @@ module.exports = async (req, res) => {
     return res.status(code).send(body);
   }
 
-  let response_data;
+  let responseData;
 
   if (metric === API_METRICS.Hashrate) {
-    response_data = result.data.reduce(
+    responseData = result.data.reduce(
       (acc, curr) =>
         acc.find(data => data.date === curr.date) ? acc : [...acc, curr],
       []
     );
   } else if (metric === API_METRICS.Rewards) {
-    response_data = result.data.reduce((acc, curr) => {
+    responseData = result.data.reduce((acc, curr) => {
       const entry = acc.find(data => data.date === curr.date);
       if (entry) {
         entry.miner_daily_block_reward += curr.miner_daily_block_reward;
@@ -85,22 +94,22 @@ module.exports = async (req, res) => {
         }
         return acc;
       }
-      const new_entry = {
+      const newEntry = {
         date: curr.date,
         miner_daily_block_reward: curr.miner_daily_block_reward,
         miner_daily_block_reward_usd: curr.miner_daily_block_reward_usd,
       };
       if (token === NATIVE_TOKENS.ETH) {
-        (new_entry.miner_daily_uncle_reward = curr.miner_daily_uncle_reward),
-          (new_entry.miner_daily_uncle_reward_usd =
-            curr.miner_daily_uncle_reward_usd);
+        newEntry.miner_daily_uncle_reward = curr.miner_daily_uncle_reward;
+        newEntry.miner_daily_uncle_reward_usd =
+          curr.miner_daily_uncle_reward_usd;
       }
-      return [...acc, new_entry];
+      return [...acc, newEntry];
     }, []);
   } else {
-    response_data = result.data;
+    responseData = result.data;
   }
-  const filteredData = filterSeriesByTime(response_data, tierTimeLimit);
+  const filteredData = filterSeriesByTime(responseData, tierTimeLimit);
 
-  res.send(filteredData);
+  return res.send(filteredData);
 };

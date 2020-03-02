@@ -1,3 +1,3 @@
-import { ExchangeMetricsWidget } from "./ExchangeMetricsWidget";
+import { ExchangeMetricsWidget } from './ExchangeMetricsWidget';
 
 export { ExchangeMetricsWidget };

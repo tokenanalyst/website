@@ -46,12 +46,12 @@ export const BITFINEX = 'Bitfinex';
 export const BITMEX = 'BitMEX';
 export const BITSTAMP = 'Bitstamp';
 export const BITTREX = 'Bittrex';
+export const DERIBIT = 'Deribit';
+export const HUOBI = 'Huobi';
 export const KRAKEN = 'Kraken';
 export const KUCOIN = 'Kucoin';
-export const POLONIEX = 'Poloniex';
 export const OKEX = 'Okex';
-export const HUOBI = 'Huobi';
-export const DERIBIT = 'Deribit';
+export const POLONIEX = 'Poloniex';
 
 export const EXCHANGE_NAMES = {
   [BINANCE]: BINANCE,
@@ -59,12 +59,12 @@ export const EXCHANGE_NAMES = {
   [BITMEX]: BITMEX,
   [BITSTAMP]: BITSTAMP,
   [BITTREX]: BITTREX,
+  [DERIBIT]: DERIBIT,
+  [HUOBI]: HUOBI,
   [KRAKEN]: KRAKEN,
   [KUCOIN]: KUCOIN,
-  [POLONIEX]: POLONIEX,
   [OKEX]: OKEX,
-  [HUOBI]: HUOBI,
-  [DERIBIT]: DERIBIT,
+  [POLONIEX]: POLONIEX,
 };
 
 export const TOKENS_EXCHANGE_SUPPORT = {

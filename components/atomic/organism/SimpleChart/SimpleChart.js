@@ -3,7 +3,7 @@ import { createChart } from 'lightweight-charts';
 import numeral from 'numeral';
 
 import { CHART_TYPES } from '../../../../constants/chartTypes';
-import { LoadingSpinner } from '../../../LoadingSpinner';
+import { LoadingSpinner } from '../../atoms/LoadSpinner/LoadingSpinner';
 
 const FORMATTERS = {
   price: value => numeral(value).format('$0,0.00'),

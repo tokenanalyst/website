@@ -1,4 +1,5 @@
-import { useContext } from 'react';
+/* eslint-disable react/jsx-curly-newline */
+import React, { useContext } from 'react';
 import { useRouter } from 'next/router';
 import ReactGA from 'react-ga';
 import Cookies from 'js-cookie';

@@ -98,7 +98,14 @@ const ERC20_INDICATORS = [
   { title: 'ERC20 Volume USD', symbol: '#ERC20VOLUMEUSD' },
 ];
 
-const METRIC_INDICATORS = [
+const MINER_INDICATORS = [
+  { title: 'Hashrate', symbol: '#MINER_HASHRATE' },
+  { title: 'Rewards', symbol: '#MINER_REWARD' },
+  { title: 'Miner Flows', symbol: '#MINER_FLOWS' },
+  { title: 'Miner Balances', symbol: '#MINER_BALANCES', plotType: 8 },
+];
+
+const METRICS = [
   ...BTC_INDICATORS,
   ...ETH_INDICATORS,
   ...COMMON_INDICATORS,
@@ -125,7 +132,7 @@ const METRIC_INDICATORS = [
           visible: true,
 
           // Make the line thinner
-          linewidth: 2,
+          linewidth: 3,
 
           // Plot type is Line
           plottype: 2,
@@ -177,8 +184,83 @@ const METRIC_INDICATORS = [
   },
 }));
 
+const MINER = [...MINER_INDICATORS].map(metricIndicator => ({
+  name: metricIndicator.title,
+  metainfo: {
+    _metainfoVersion: 40,
+    id: `${metricIndicator.title}@tv-basicstudies-1`,
+    scriptIdPart: '',
+    name: metricIndicator.title,
+    description: metricIndicator.title,
+    shortDescription: metricIndicator.title,
+
+    is_hidden_study: false,
+    is_price_study: false,
+    isCustomIndicator: true,
+
+    plots: [{ id: 'plot_0', type: 'line' }],
+    defaults: {
+      styles: {
+        plot_0: {
+          linestyle: 0,
+          visible: true,
+
+          // Make the line thinner
+          linewidth: 3,
+
+          // Plot type is Line
+          plottype: metricIndicator.plotType || 2,
+
+          // Show price line
+          trackPrice: false,
+
+          transparency: 40,
+
+          color: '#3FCDAB',
+        },
+      },
+      precision: 0,
+
+      inputs: {},
+    },
+    styles: {
+      plot_0: {
+        // Output name will be displayed in the Style window
+        title: metricIndicator.title,
+        histogramBase: 0,
+      },
+    },
+    inputs: [],
+  },
+  constructor: function() {
+    this.init = function(context, inputCallback) {
+      this._context = context;
+      this._input = inputCallback;
+
+      const { symbol } = metricIndicator;
+      this._context.new_sym(
+        symbol,
+        PineJS.Std.period(this._context),
+        PineJS.Std.period(this._context)
+      );
+    };
+
+    this.main = function(context, inputCallback) {
+      this._context = context;
+      this._input = inputCallback;
+      this._context.select_sym(1);
+
+      const inFlow = PineJS.Std.open(this._context);
+      const outFlow = PineJS.Std.close(this._context);
+
+      return [inFlow, outFlow];
+    };
+  },
+}));
+
 __customIndicators = [
-  ...METRIC_INDICATORS,
+  ...METRICS,
+  ...MINER,
   {
     name: 'Balances',
     metainfo: {
@@ -201,7 +283,7 @@ __customIndicators = [
             visible: true,
 
             // Make the line thinner
-            linewidth: 2,
+            linewidth: 3,
 
             // Plot type is Line
             plottype: 8,
@@ -275,7 +357,7 @@ __customIndicators = [
             visible: true,
 
             // Make the line thinner
-            linewidth: 2,
+            linewidth: 3,
 
             // Plot type is Line
             plottype: 2,

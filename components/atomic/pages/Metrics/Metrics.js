@@ -11,6 +11,7 @@ import { NATIVE_TOKENS, STABLE_TOKENS } from '../../../../constants/tokens';
 import { TOKENS_EXCHANGE_SUPPORT } from '../../../../constants/exchanges';
 import { SPOT } from '../../../../constants/instruments';
 import { MetricsList } from './MetricsList';
+import { EntityLogo } from '../../molecules/EntityLogo';
 
 const TV_INITIAL_DATA_RANGE = 90; // 90 days
 
@@ -65,12 +66,17 @@ export const MetricsPage = () => {
       <div className="container">
         <div className="lhs">
           <div className="title">
-            <img
+            {/* <img
               src={`/static/png/coins/${selectedToken.toLowerCase()}.png`}
               alt={selectedToken.toLowerCase()}
               className="title-image"
             />
-            <div className="title-name">{TOKEN_NAMES[selectedToken]}</div>
+            <div className="title-name">{TOKEN_NAMES[selectedToken]}</div> */}
+
+            <EntityLogo
+              tokenSymbol={selectedToken}
+              entityName={TOKEN_NAMES[selectedToken]}
+            />
           </div>
           <Card>
             <TokenSelect
@@ -128,16 +134,15 @@ export const MetricsPage = () => {
             display: flex;
           }
           .lhs {
-            width: 15%;
             padding-right: 10px;
+            width: 250px;
           }
           .rhs {
             width: 85%;
           }
           .title {
-            display: flex;
-            align-items: center;
-            padding: 20px;
+            padding-top: 10px;
+            padding-bottom: 10px;
           }
           .title-image {
             width: 60px;

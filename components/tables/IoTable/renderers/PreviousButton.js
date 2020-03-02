@@ -1,5 +1,5 @@
-import PropTypes from "prop-types";
-import { Icon } from "@blueprintjs/core";
+import PropTypes from 'prop-types';
+import { Icon } from '@blueprintjs/core';
 
 export const PreviousButton = ({ onClick, disabled }) => {
   return (
@@ -12,42 +12,44 @@ export const PreviousButton = ({ onClick, disabled }) => {
           PREVIOUS
         </div>
       </div>
-      <style jsx>{`
-        .container {
-          display: flex;
-          align-items: center;
-          height: 100%;
-          width: 100px;
-          opacity: ${disabled ? 0.1 : 1}
-        }
-        .text {
-          color: black;
-          font-size: 14px;
-        }
-        .text:hover {
-          text-decoration: underline;
-        }
-        .icon {
-          padding-right: 20px;
-        }
-        @media only screen and (max-width: 768px) {
+      <style jsx>
+        {`
           .container {
-          display: flex;
-          align-items: center;
-          height: 100%;
-          width: 20px;
-          opacity: ${disabled ? 0.1 : 1}
-        }
-          .text {
-            display: none;
+            display: flex;
+            align-items: center;
+            height: 100%;
+            width: 100px;
+            opacity: ${disabled ? 0.1 : 1};
           }
-        }
-      `}</style>
+          .text {
+            color: black;
+            font-size: 14px;
+          }
+          .text:hover {
+            text-decoration: underline;
+          }
+          .icon {
+            padding-right: 20px;
+          }
+          @media only screen and (max-width: 768px) {
+            .container {
+              display: flex;
+              align-items: center;
+              height: 100%;
+              width: 20px;
+              opacity: ${disabled ? 0.1 : 1};
+            }
+            .text {
+              display: none;
+            }
+          }
+        `}
+      </style>
     </>
   );
 };
 
 PreviousButton.propTypes = {
   onClick: PropTypes.func.isRequired,
-  disabled: PropTypes.bool.isRequired
+  disabled: PropTypes.bool.isRequired,
 };

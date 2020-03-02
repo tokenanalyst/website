@@ -27,11 +27,16 @@ const STRUCTURED_DATA = JSON.stringify({
   url: 'https://www.tokenanalyst.io',
 });
 
-const WITHOUT_FOOTER = ['/exchange/[token]/[exchange]', '/insights'];
+const WITHOUT_FOOTER = [
+  '/exchange/[token]/[exchange]',
+  '/miner/[token]/[miner]',
+  '/insights',
+];
 
 const WITH_DASHBOARD_TABS = [
   '/dashboard',
   '/exchange/[token]/[exchange]',
+  '/miner/[token]/[miner]',
   '/insights',
   '/analytics',
 ];
@@ -46,6 +51,11 @@ const tabs = [
     text: 'Exchange Flows',
     route: '/exchange/[token]/[exchange]',
     link: `/exchange/BTC/Binance?${tierParamString}`,
+  },
+  {
+    text: 'Miner Stats',
+    route: '/miner/[token]/[miner]',
+    link: `/miner/BTC/antpool?${tierParamString}`,
   },
   {
     text: 'Network Stats',

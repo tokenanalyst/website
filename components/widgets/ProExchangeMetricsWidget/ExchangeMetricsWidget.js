@@ -5,9 +5,10 @@ import { Skeleton } from '../../Skeleton';
 
 import { EXCHANGE_NAMES } from '../../../constants/exchanges';
 import { colors } from '../../../constants/styles/colors';
-import { useApi } from '../../../custom-hooks';
+import { useApi } from '../../../hooks';
 import { getExchangeMetrics } from '../../../data-transformers/widgets/getExchangeMetrics';
 import { DATA_WINDOWS } from '../../../constants/filters';
+import { EntityLogo } from '../../atomic/molecules/EntityLogo';
 
 const setValueChangeStatus = (value, status) => {
   if (value < 0) {
@@ -49,21 +50,15 @@ export const ExchangeMetricsWidget = ({ token, exchange }) => {
   }, [apiResponse, token]);
 
   return (
-    <div>
+    <>
       <div className="banner-container">
         <Skeleton isSkeleton={!token}>
           <div className="banner-logo-container">
             {token && (
-              <>
-                <div className="banner-header">
-                  <span className="banner-header-symbol">
-                    {token.replace('_', ' ')}
-                  </span>
-                  <span className="banner-header-exchange-name">
-                    {EXCHANGE_NAMES[exchange]}
-                  </span>
-                </div>
-              </>
+              <EntityLogo
+                tokenSymbol={token}
+                entityName={EXCHANGE_NAMES[exchange]}
+              />
             )}
           </div>
         </Skeleton>
@@ -176,16 +171,7 @@ export const ExchangeMetricsWidget = ({ token, exchange }) => {
           .banner-logo-img-container {
             padding-left: 10px;
           }
-          .banner-header-symbol {
-            font-weight: 700;
-          }
-          .banner-header-exchange-name {
-            padding-left: 10px;
-            opacity: 0.4;
-          }
           .banner-container {
-            padding-top: 5px;
-            padding-bottom: 5px;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
@@ -199,10 +185,6 @@ export const ExchangeMetricsWidget = ({ token, exchange }) => {
             font-family: Open Sans;
             display: flex;
             flex-direction: column;
-          }
-          .banner-header {
-            font-size: 32px;
-            font-weight: bold;
           }
           .flow-value {
             font-size: 24px;
@@ -240,9 +222,6 @@ export const ExchangeMetricsWidget = ({ token, exchange }) => {
               justify-content: space-around;
               align-items: center;
             }
-            .banner-header {
-              padding-left: 0px;
-            }
             .banner-banner-logo-img {
               width: 40px;
               height: 40px;
@@ -254,19 +233,9 @@ export const ExchangeMetricsWidget = ({ token, exchange }) => {
             .banner-banner-header {
               flex: 1;
             }
-            .banner-header-symbol {
-              font-weight: 700;
-              flex: 1;
-            }
-            .banner-header-exchange-name {
-              flex: 1;
-              padding-left: 10px;
-              opacity: 0.4;
-            }
             .banner-container {
               flex-direction: column;
               border-bottom: none;
-              padding-bottom: 10px;
             }
             .banner-metric-container {
               height: 60px;
@@ -288,7 +257,7 @@ export const ExchangeMetricsWidget = ({ token, exchange }) => {
           }
         `}
       </style>
-    </div>
+    </>
   );
 };
 

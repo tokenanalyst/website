@@ -1,6 +1,10 @@
-export const getLocalMetricsConfig = (selectedToken, defaultConfig) => {
+export const getLocalMetricsConfig = (
+  selectedToken,
+  defaultConfig,
+  storageKey
+) => {
   const localMetricsConfig = JSON.parse(
-    window.localStorage.getItem('ta_studies')
+    window.localStorage.getItem(storageKey)
   );
 
   return localMetricsConfig && localMetricsConfig[selectedToken]

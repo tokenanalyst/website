@@ -5,12 +5,12 @@
  *
  * This way we get a regular looking API on top of functional code
  */
-const partial = require("lodash/partial");
-const { ENDPOINTS } = require("../api/const/endpoints");
-const fetchDataFromApi = require("../api/fetchDataFromApi");
+const partial = require('lodash/partial');
+const { ENDPOINTS } = require('../api/const/endpoints');
+const fetchDataFromApi = require('../api/fetchDataFromApi');
 
 module.exports = () => {
-  let ta = {};
+  const ta = {};
 
   const compose = funk => {
     return partial(funk, ta);

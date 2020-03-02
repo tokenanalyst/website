@@ -10,7 +10,7 @@ import { COOKIES } from '../../../constants/cookies';
 import { tokensDb } from '../../../services/tokensDb';
 import { LoginContext } from '../../../contexts/Login';
 import { DelayedExchangeRegisterDialog } from '../../../components/marketing/marketing-dialogs';
-import { LOGGED_OUT_SUPPORTED_EXCHANGES } from '../../../constants/exchanges';
+import { isLoginRequiredToAccessEntity } from '../../../utils';
 
 const Exchange = () => {
   const router = useRouter();
@@ -22,18 +22,21 @@ const Exchange = () => {
     if (
       exchange &&
       !loginCtx.isLoggedIn &&
-      LOGGED_OUT_SUPPORTED_EXCHANGES.indexOf(exchange) < 0
+      isLoginRequiredToAccessEntity(exchange)
     ) {
       router.push('/');
     }
-    const exchangeSupport = tokensDb.getTokenSupportOnExchange(token, exchange);
+    const exchangeSupport = tokensDb.getTokenSupportForExchange(
+      token,
+      exchange
+    );
     if (exchangeSupport) {
       setIsTVSupported(true);
     }
   }, [token, exchange, loginCtx.isLoggedIn, router]);
 
   const pushToPage = (newToken, newExchange) => {
-    const exchangeSupport = tokensDb.getTokenSupportOnExchange(
+    const exchangeSupport = tokensDb.getTokenSupportForExchange(
       newToken,
       newExchange
     );

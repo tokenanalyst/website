@@ -1,4 +1,4 @@
-import { getExchangeMetrics } from "./getExchangeMetrics";
-import { getStablecoinMetrics } from "./getStablecoinMetrics";
+import { getExchangeMetrics } from './getExchangeMetrics';
+import { getStablecoinMetrics } from './getStablecoinMetrics';
 
 export { getExchangeMetrics, getStablecoinMetrics };
