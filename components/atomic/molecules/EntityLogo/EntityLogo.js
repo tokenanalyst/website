@@ -6,10 +6,10 @@ export const EntityLogo = ({ tokenSymbol, entityName }) => {
     <>
       <div className="banner-logo-container">
         <div className="banner-header">
-          <span className="banner-header-symbol">
+          <div className="banner-header-symbol">
             {tokenSymbol.replace('_', ' ').toUpperCase()}
-          </span>
-          <span className="banner-header-exchange-name">{entityName}</span>
+          </div>
+          <div className="banner-header-exchange-name">{entityName}</div>
         </div>
       </div>
       <style jsx>
@@ -23,6 +23,8 @@ export const EntityLogo = ({ tokenSymbol, entityName }) => {
           .banner-header {
             font-size: 32px;
             font-weight: bold;
+            display: flex;
+            flex-direction: row;
           }
           .banner-header-symbol {
             font-weight: 700;
@@ -30,6 +32,10 @@ export const EntityLogo = ({ tokenSymbol, entityName }) => {
           .banner-header-exchange-name {
             padding-left: 10px;
             opacity: 0.4;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 250px;
           }
           @media only screen and (max-width: 768px) {
             .banner-logo-container {

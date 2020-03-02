@@ -141,6 +141,7 @@ export const ExchangeFlowsPage = ({
           }
           updatedStudies[study].isActive = !updatedStudies[study].isActive;
         } catch (err) {
+          // eslint-disable-next-line no-console
           console.log('Study not ready.');
         }
       }
@@ -200,6 +201,9 @@ export const ExchangeFlowsPage = ({
           }
           .controls-card {
           }
+          .left-panel {
+            width: 250px;
+          }
           .right-panel {
             width: 100%;
             margin-left: 10px;
@@ -225,6 +229,9 @@ export const ExchangeFlowsPage = ({
           @media (min-width: 320px) and (max-width: 767px) {
             .container {
               flex-direction: column;
+            }
+            .left-panel {
+              width: 100%;
             }
             .pro-chart {
               padding-top: 5px;

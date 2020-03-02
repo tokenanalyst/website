@@ -59,9 +59,9 @@ const Miner = () => {
         `/miner/${newToken}/${Object.keys(miners)[0]}?${TIER}`
       );
     }
-  };
 
-  console.log(supportedMiners);
+    return null;
+  };
 
   return (
     <>
@@ -104,10 +104,7 @@ const Miner = () => {
             height: calc(100vh - 130px);
           }
           .loading-spinner {
-            /* margin-top: auto; */
-            /* margin-bottom: auto; */
             height: 100%;
-            /* margin: auto; */
             display: flex;
             justify-content: center;
             align-items: center;

@@ -18,7 +18,6 @@ import { APP_STORAGE_KEYS } from '../../../../constants';
 const LOCAL_STORAGE_KEY = APP_STORAGE_KEYS.minerStats;
 
 const propsAreEqual = (prevProps, nextProps) => {
-  console.log(prevProps.minerName, nextProps.minerName);
   return (
     isEqual(prevProps.TASymbol, nextProps.TASymbol) &&
     isEqual(prevProps.minerName, nextProps.minerName)
@@ -100,6 +99,7 @@ export const MinerStatsPage = ({
           }
           updatedStudies[study].isActive = !updatedStudies[study].isActive;
         } catch (err) {
+          // eslint-disable-next-line no-console
           console.log('Study not ready.');
         }
       }
@@ -167,7 +167,7 @@ export const MinerStatsPage = ({
             margin-left: 10px;
           }
           .left-panel {
-            min-width: 200px;
+            width: 250px;
           }
           .cat-link {
             padding-bottom: 10px;

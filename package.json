@@ -79,7 +79,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "git-branch-is -r \"^((?!master).)*$\" && lint-staged && pretty-quick --staged"
+      "pre-commit": "git-branch-is -r \"^((?!master).)*$\" && lint-staged"
     }
   },
   "setupFiles": [

@@ -8,8 +8,6 @@ module.exports = (endpoint, restRootUrl, queryParams) => {
   } else {
     separator = '?';
   }
-  console.log(
-    `${restRootUrl}/${endpoint}${separator}${makeQuery(queryParams)}`
-  );
+
   return `${restRootUrl}/${endpoint}${separator}${makeQuery(queryParams)}`;
 };
