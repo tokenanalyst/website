@@ -16,12 +16,12 @@ const makeEntitiesList = entities => {
     const icons = {
       others: {
         helpText:
-          'Miner addresses that we have identified but are not supported have a miner name of others.',
+          'All other mining entities we have labelled (grouped into one category due to their relatively smaller size)',
         icon: <Icon icon="help" />,
       },
       unknown: {
         helpText:
-          'Miner addresses that are unlabelled have a miner name of unknown.',
+          'Miner addresses that we haven’t labelled yet but have received block rewards',
         icon: <Icon icon="help" />,
       },
     };

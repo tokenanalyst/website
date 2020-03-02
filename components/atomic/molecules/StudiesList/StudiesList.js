@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
-import { ExchangeRegisterDialog } from '../../../marketing/marketing-dialogs';
+import { ExchangeRegisterDialog } from '../../organism/ExchangeRegisterDialog';
 import { SimpleMenuItem } from '../../atoms/SimpleMenuItem';
 import { SimpleToolTip } from '../../../SimpleToolTip';
 
@@ -13,7 +13,7 @@ export const StudiesList = ({ studies, onSelectStudy }) => {
       <div className="studies-list">
         <ExchangeRegisterDialog
           isOpen={isRegisterDialogShown}
-          closeCb={() => setIsRegisterDialogShown(false)}
+          onClose={() => setIsRegisterDialogShown(false)}
         />
         <div className="desktop-list">
           {Object.keys(studies).map(study => (

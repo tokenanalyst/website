@@ -9,7 +9,7 @@ import { ExchangeFlowsPage } from '../../../components/atomic/pages/ExchangeFlow
 import { COOKIES } from '../../../constants/cookies';
 import { tokensDb } from '../../../services/tokensDb';
 import { LoginContext } from '../../../contexts/Login';
-import { DelayedExchangeRegisterDialog } from '../../../components/marketing/marketing-dialogs';
+import { DelayedExchangeRegisterDialog } from '../../../components/atomic/organism/DelayedExchangeRegisterDialog';
 import { isLoginRequiredToAccessEntity } from '../../../utils';
 
 const Exchange = () => {

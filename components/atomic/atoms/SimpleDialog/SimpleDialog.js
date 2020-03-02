@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Dialog, Button, Intent } from '@blueprintjs/core';
+import { Dialog } from '@blueprintjs/core';
 
-import { pricingButton } from '../constants/styles/common-styled-jsx';
+import { ButtonMarketing } from '../../../ButtonMarketing';
 
 export const SimpleDialog = ({
   header,
@@ -16,30 +16,32 @@ export const SimpleDialog = ({
   return (
     <Dialog
       isOpen={isOpen}
+      title={header}
+      onClose={() => onClose()}
       style={{
         minWidth: '300px',
         width: '45%',
         backgroundColor: 'white',
-        marginTop: '80px',
       }}
     >
       <>
         <div className="container">
-          <div className="cross" onClick={() => onClose()}>
-            <img src="/static/svg/cross.svg" />
-          </div>
-          <div className="header">{header}</div>
           {subHeader && <div className="sub-header">{subHeader}</div>}
           {children}
-          <br />
-          <br />
-          <button onClick={onCtaClick}>{ctaText}</button>
+
+          <div className="button-container">
+            <ButtonMarketing onClick={onCtaClick} text={ctaText} />
+          </div>
         </div>
-        <style jsx>{pricingButton}</style>
         <style jsx>
           {`
             .container {
               padding: 20px;
+            }
+            .button-container {
+              display: flex;
+              margin-top: 40px;
+              justify-content: center;
             }
             .header {
               font-size: 24px;
@@ -64,7 +66,7 @@ export const SimpleDialog = ({
 
 SimpleDialog.propTypes = {
   header: PropTypes.string.isRequired,
-  subHeader: PropTypes.string,
+  subHeader: PropTypes.node,
   children: PropTypes.node,
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
