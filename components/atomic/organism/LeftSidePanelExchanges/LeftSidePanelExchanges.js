@@ -9,6 +9,15 @@ import { LinkTelegram } from '../../molecules/LinkTelegram/LinkTelegram';
 import { SimpleBox } from '../../molecules/SimpleBox';
 import { StudiesList } from '../../molecules/StudiesList/StudiesList';
 
+const makeEntitiesList = entities => {
+  return Object.values(entities).reduce((acc, entity) => {
+    return [
+      ...acc,
+      { value: entity, label: entity, incon: null, helpText: null },
+    ];
+  }, []);
+};
+
 export const LeftSidePanelExchanges = ({
   onChangeToken,
   onSelectStudy,
@@ -73,11 +82,11 @@ export const LeftSidePanelExchanges = ({
               <div className="exchanges">
                 <EntityList
                   selectedEntity={selectedExchange}
-                  entities={tokensDb.getExchangesList()}
+                  entities={makeEntitiesList(tokensDb.getExchangesList())}
                   onChangeExchange={newExchange => {
                     onChangeToken(selectedToken, newExchange);
                   }}
-                  isExchange
+                  entityType="exchange"
                 />
               </div>
             </div>

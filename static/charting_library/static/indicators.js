@@ -132,7 +132,7 @@ const METRICS = [
           visible: true,
 
           // Make the line thinner
-          linewidth: 2,
+          linewidth: 3,
 
           // Plot type is Line
           plottype: 2,
@@ -206,7 +206,7 @@ const MINER = [...MINER_INDICATORS].map(metricIndicator => ({
           visible: true,
 
           // Make the line thinner
-          linewidth: 2,
+          linewidth: 3,
 
           // Plot type is Line
           plottype: metricIndicator.plotType || 2,
@@ -283,7 +283,7 @@ __customIndicators = [
             visible: true,
 
             // Make the line thinner
-            linewidth: 2,
+            linewidth: 3,
 
             // Plot type is Line
             plottype: 8,
@@ -357,7 +357,7 @@ __customIndicators = [
             visible: true,
 
             // Make the line thinner
-            linewidth: 2,
+            linewidth: 3,
 
             // Plot type is Line
             plottype: 2,

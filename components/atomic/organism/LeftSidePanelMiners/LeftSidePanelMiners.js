@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import ReactGA from 'react-ga';
+import { Icon } from '@blueprintjs/core';
 
 import { TokenSelect } from '../TokenSelect/TokenSelect';
 import { EntityList } from '../../molecules/EntityList';
@@ -9,6 +10,35 @@ import { SimpleBox } from '../../molecules/SimpleBox';
 import { StudiesList } from '../../molecules/StudiesList/StudiesList';
 import { EntityLogo } from '../../molecules/EntityLogo';
 import { MINNER_FORMATTED_NAMES } from '../../../../constants';
+
+const makeEntitiesList = entities => {
+  return Object.values(entities).reduce((acc, entity) => {
+    const icons = {
+      others: {
+        helpText:
+          'Miner addresses that we have identified but are not supported have a miner name of others.',
+        icon: <Icon icon="help" />,
+      },
+      unknown: {
+        helpText:
+          'Miner addresses that are unlabelled have a miner name of unknown.',
+        icon: <Icon icon="help" />,
+      },
+    };
+    const icon = icons[entity] ? icons[entity].icon : null;
+    const helpText = icons[entity] ? icons[entity].helpText : null;
+
+    return [
+      ...acc,
+      {
+        value: entity,
+        label: MINNER_FORMATTED_NAMES[entity] || entity,
+        icon,
+        helpText,
+      },
+    ];
+  }, []);
+};
 
 export const LeftSidePanelMiners = ({
   onChangeToken,
@@ -63,7 +93,7 @@ export const LeftSidePanelMiners = ({
               <div className="entities">
                 <EntityList
                   selectedEntity={selectedMiner}
-                  entities={supportedMiners}
+                  entities={makeEntitiesList(supportedMiners)}
                   onChangeExchange={newExchange => {
                     onChangeToken(selectedToken, newExchange);
                   }}

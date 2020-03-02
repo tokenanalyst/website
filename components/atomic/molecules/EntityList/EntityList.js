@@ -3,27 +3,25 @@ import React, { useContext, useState } from 'react';
 import ReactGA from 'react-ga';
 import { Popover, Menu, MenuItem, Button, Position } from '@blueprintjs/core';
 
+import classNames from 'classnames';
 import { colors } from '../../../../constants/styles/colors';
 import { isLoginRequiredToAccessEntity } from '../../../../utils';
 import { LoginContext } from '../../../../contexts/Login';
 import { ExchangeRegisterDialog } from '../../../marketing/marketing-dialogs';
 import { ImgEntity } from '../../atoms/ImgEntity';
-import { MINNER_FORMATTED_NAMES } from '../../../../constants';
+import { SimpleToolTip } from '../../../SimpleToolTip';
 
 export const EntityList = ({
   entities,
   onChangeExchange,
   selectedEntity,
-  isMiner,
-  isExchange,
+  entityType,
 }) => {
   const loginCtx = useContext(LoginContext);
   const [isRegisterDialogShown, setIsRegisterDialogShown] = useState(false);
 
-  const isExchangeDisabled = exchange => {
-    return loginCtx.isLoggedIn
-      ? false
-      : isLoginRequiredToAccessEntity(exchange);
+  const isExchangeDisabled = entity => {
+    return loginCtx.isLoggedIn ? false : isLoginRequiredToAccessEntity(entity);
   };
 
   const exchangeChangeHandler = entityName => {
@@ -31,7 +29,7 @@ export const EntityList = ({
       onChangeExchange(entityName);
       ReactGA.event({
         category: 'User',
-        action: `Pro Chart change exchange ${entityName}`,
+        action: `Pro Chart change entity ${entityName}`,
         label: `Pro Charts`,
       });
     } else {
@@ -39,18 +37,20 @@ export const EntityList = ({
     }
   };
   const renderMenuItems = () =>
-    Object.keys(entities).map(entity => {
+    entities.map(entity => {
+      const { label, value } = entity;
+
       return (
         <MenuItem
-          text={entity}
-          icon={<ImgEntity entity={entity} />}
+          text={entity.label}
+          icon={<ImgEntity entity={label} />}
           onKeyDown={() => {
-            exchangeChangeHandler(entity);
+            exchangeChangeHandler(value);
           }}
           onClick={() => {
-            exchangeChangeHandler(entity);
+            exchangeChangeHandler(value);
           }}
-          key={entity}
+          key={value}
         />
       );
     });
@@ -79,49 +79,86 @@ export const EntityList = ({
         </div>
 
         <div className="desktop-list">
-          {Object.values(entities).map(entityName => {
+          {entities.map(entity => {
+            const { value, label, icon, helpText } = entity;
             return (
-              <div
-                role="link"
-                key={entityName}
-                className={`${
-                  isExchangeDisabled(entityName)
-                    ? `entity-disabled`
-                    : `entity-enabled`
-                }`}
-                tabIndex="0"
-                onKeyDown={() => {
-                  exchangeChangeHandler(entityName);
-                }}
-                onClick={() => {
-                  exchangeChangeHandler(entityName);
-                }}
+              <SimpleToolTip
+                dataFor={value}
+                disable={!helpText}
+                toolTip={helpText}
+                type="dark"
+                effect="solid"
+                place="right"
               >
-                {isExchange && (
-                  <div className="entity-img">
-                    <ImgEntity
-                      entity={entityName}
-                      disabled={isExchangeDisabled(entityName)}
-                    />
-                  </div>
-                )}
-
                 <div
-                  className={`${
-                    entityName === selectedEntity
-                      ? 'entity-label-selected'
-                      : 'entity-label'
-                  }`}
+                  role="link"
+                  data-tip
+                  data-for={value}
+                  key={value}
+                  className={classNames(
+                    'entity',
+                    `${
+                      isExchangeDisabled(value)
+                        ? `entity-disabled`
+                        : `entity-enabled`
+                    }`
+                  )}
+                  tabIndex="0"
+                  onKeyDown={() => {
+                    exchangeChangeHandler(value);
+                  }}
+                  onClick={() => {
+                    exchangeChangeHandler(value);
+                  }}
                 >
-                  {MINNER_FORMATTED_NAMES[entityName] || entities[entityName]}
+                  {entityType === 'exchange' && (
+                    <div className="entity-img">
+                      <ImgEntity
+                        entity={value}
+                        disabled={isExchangeDisabled(value)}
+                      />
+                    </div>
+                  )}
+
+                  <div className="entity-text">
+                    <div
+                      className={`${
+                        value === selectedEntity
+                          ? 'entity-label-selected'
+                          : 'entity-label'
+                      }`}
+                    >
+                      {label}
+                    </div>
+
+                    <div
+                      className={`${
+                        value === selectedEntity
+                          ? 'entity-label-selected'
+                          : 'entity-label'
+                      }`}
+                    >
+                      {icon || <div />}
+                    </div>
+                  </div>
                 </div>
-              </div>
+              </SimpleToolTip>
             );
           })}
         </div>
       </div>
       <style jsx>
         {`
+          .entity {
+            display: flex;
+            flex-direction: row;
+          }
+          .entity-text {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
+          }
           .entity-enabled {
             height: 25px;
             display: flex;
@@ -167,16 +204,14 @@ export const EntityList = ({
 };
 
 EntityList.propTypes = {
-  entities: PropTypes.objectOf(
+  entities: PropTypes.arrayOf(
     PropTypes.oneOfType([PropTypes.object, PropTypes.string])
   ).isRequired,
   onChangeExchange: PropTypes.func.isRequired,
   selectedEntity: PropTypes.string.isRequired,
-  isMiner: PropTypes.bool,
-  isExchange: PropTypes.bool,
+  entityType: PropTypes.string,
 };
 
 EntityList.defaultProps = {
-  isMiner: false,
-  isExchange: false,
+  entityType: undefined,
 };
