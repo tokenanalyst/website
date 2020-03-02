@@ -1,5 +1,6 @@
 // const {makeRestApiUrl} = require("./makeApiUrl");
 const makeQuery = require('./makeQuery');
+
 const queryParams = { test1: 'test1', test2: 'test2', test3: 'test3' };
 const stringQuery = 'test1=test1&test2=test2&test3=test3';
 

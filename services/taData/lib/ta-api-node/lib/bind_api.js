@@ -10,7 +10,7 @@ const { ENDPOINTS } = require('../api/const/endpoints');
 const fetchDataFromApi = require('../api/fetchDataFromApi');
 
 module.exports = () => {
-  let ta = {};
+  const ta = {};
 
   const compose = funk => {
     return partial(funk, ta);

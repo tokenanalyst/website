@@ -1,12 +1,12 @@
-const makeQuery = require("./makeQuery");
+const makeQuery = require('./makeQuery');
 
 module.exports = (endpoint, restRootUrl, queryParams) => {
   let separator;
 
-  if (endpoint[endpoint.length - 1] === "&") {
-    separator = "";
+  if (endpoint[endpoint.length - 1] === '&') {
+    separator = '';
   } else {
-    separator = "?";
+    separator = '?';
   }
 
   return `${restRootUrl}/${endpoint}${separator}${makeQuery(queryParams)}`;

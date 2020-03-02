@@ -7,24 +7,26 @@ import { COOKIES } from '../../../constants/cookies';
 import { tokensDb } from '../../../services/tokensDb';
 import { LoginContext } from '../../../contexts/Login';
 import { DelayedExchangeRegisterDialog } from '../../../components/marketing/marketing-dialogs';
-import {
-  LOGGED_OUT_SUPPORTED_EXCHANGES,
-  BINANCE,
-} from '../../../constants/exchanges';
+import { BINANCE } from '../../../constants/exchanges';
 import { MinerStatsPage } from '../../../components/atomic/pages/MinerStats';
+import { isLoginRequiredToAccessEntity } from '../../../utils';
+import { LoadingSpinner } from '../../../components/atomic/atoms/LoadSpinner';
 
-const isLoginRequiredToAccessExchange = exchange =>
-  LOGGED_OUT_SUPPORTED_EXCHANGES.indexOf(exchange) < 0;
-
-const TIER = `tier=${Cookies.get(COOKIES.tier)}`;
+const TIER = `tier=${Cookies.get(COOKIES.tier) || '-1'}`;
 
 const Miner = () => {
   const router = useRouter();
   const loginCtx = useContext(LoginContext);
   const { token, miner } = router.query;
-  const [isTVSupported, setIsTVSupported] = useState(false);
   const [selectedMiner, setSelectedMiner] = useState(miner);
   const [supportedMiners, setsupportedMiners] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (supportedMiners && Object.keys(supportedMiners).length) {
+      setIsLoading(false);
+    }
+  }, [supportedMiners]);
 
   useEffect(() => {
     setSelectedMiner(miner);
@@ -35,22 +37,11 @@ const Miner = () => {
     setsupportedMiners(miners);
   }, [token]);
 
-  // useEffect(() => {
-  //   if (
-  //     exchange &&
-  //     !loginCtx.isLoggedIn &&
-  //     LOGGED_OUT_SUPPORTED_EXCHANGES.indexOf(exchange) < 0
-  //   ) {
-  //     router.push('/');
-  //   }
-  //   const exchangeSupport = tokensDb.getTokenSupportForExchange(token, exchange);
-  //   if (exchangeSupport) {
-  //     setIsTVSupported(true);
-  //   }
-  // }, [token, exchange, loginCtx.isLoggedIn, router]);
-  // tokensDb.getMetricSupportForEntity().then(result => {
-  //   console.log(result);
-  // });
+  useEffect(() => {
+    if (miner && !loginCtx.isLoggedIn && isLoginRequiredToAccessEntity(miner)) {
+      router.push('/');
+    }
+  }, [token, miner, loginCtx.isLoggedIn, router]);
 
   const pushToPage = (newToken, newMiner) => {
     const miners = tokensDb.getMinersList(newToken);
@@ -70,6 +61,8 @@ const Miner = () => {
     }
   };
 
+  console.log(supportedMiners);
+
   return (
     <>
       <Head>
@@ -78,7 +71,14 @@ const Miner = () => {
       <div className="container">
         {!Cookies.get(COOKIES.hasSeenRegisterDialog) &&
           !loginCtx.isLoggedIn && <DelayedExchangeRegisterDialog />}
-        {token && miner ? (
+
+        {isLoading && (
+          <div className="loading-spinner">
+            <LoadingSpinner />
+          </div>
+        )}
+
+        {token && supportedMiners && supportedMiners[miner] ? (
           <>
             <MinerStatsPage
               selectedMiner={miner}
@@ -101,6 +101,16 @@ const Miner = () => {
           .container {
             margin-right: 10px;
             margin-left: 10px;
+            height: calc(100vh - 130px);
+          }
+          .loading-spinner {
+            /* margin-top: auto; */
+            /* margin-bottom: auto; */
+            height: 100%;
+            /* margin: auto; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
           }
         `}
       </style>

@@ -5,11 +5,11 @@ import ReactGA from 'react-ga';
 import Link from 'next/link';
 import kebabCase from 'lodash/kebabCase';
 import { scroller } from 'react-scroll';
+import classNames from 'classnames';
 import {
   pricingButton,
   blinkyborder,
 } from '../../../constants/styles/common-styled-jsx';
-import classNames from 'classnames';
 
 const renderLinks = links =>
   links.map(link => {

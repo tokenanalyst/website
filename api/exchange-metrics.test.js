@@ -1,5 +1,5 @@
-import exchangeMetrics from './exchange-metrics';
 import url from 'url';
+import exchangeMetrics from './exchange-metrics';
 import { API_ERROR_MSG } from '../constants/apiErrors';
 import isAuthorised from './auth/isAuthorised';
 import TA from './utils/ta-api-node/ta';

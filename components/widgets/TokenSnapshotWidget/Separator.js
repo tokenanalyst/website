@@ -1,25 +1,27 @@
-import React from "react";
+import React from 'react';
 
 export const Separator = () => (
   <div className="separator">
-    <style jsx>{`
-      .separator {
-        border-right: solid 1px rgba(151,151,151,0.15);
-        margin-left: 20px;
-        margin-right: 15px;
-        margin-top: 10px;
-        margin-bottom: 10px;
-      }
-      @media only screen and (max-width: 768px) {
+    <style jsx>
+      {`
         .separator {
-          border-right: solid 1px rgba(151,151,151,0.15);
+          border-right: solid 1px rgba(151, 151, 151, 0.15);
           margin-left: 20px;
           margin-right: 15px;
-          margin-top: 5px;
-          margin-bottom: 5px;
-          visibility: hidden;
+          margin-top: 10px;
+          margin-bottom: 10px;
         }
-      }
-    `}</style>
+        @media only screen and (max-width: 768px) {
+          .separator {
+            border-right: solid 1px rgba(151, 151, 151, 0.15);
+            margin-left: 20px;
+            margin-right: 15px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            visibility: hidden;
+          }
+        }
+      `}
+    </style>
   </div>
 );

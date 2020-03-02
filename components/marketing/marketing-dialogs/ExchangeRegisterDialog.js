@@ -105,19 +105,21 @@ export const ExchangeRegisterDialog = ({ isOpen, closeCb }) => {
           docs.
         </a>
       </SimpleDialog>
-      <style jsx>{`
-        .exchange {
-          width: 30px;
-          height: 30px;
-        }
-        .coin {
-          width: 30px;
-          height: 30px;
-        }
-        td {
-          text-align: center;
-        }
-      `}</style>
+      <style jsx>
+        {`
+          .exchange {
+            width: 30px;
+            height: 30px;
+          }
+          .coin {
+            width: 30px;
+            height: 30px;
+          }
+          td {
+            text-align: center;
+          }
+        `}
+      </style>
     </>
   );
 };

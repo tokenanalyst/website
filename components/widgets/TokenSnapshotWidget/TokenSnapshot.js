@@ -8,7 +8,7 @@ import { Popover, Icon, RadioGroup, Radio, Position } from '@blueprintjs/core';
 import ReactGA from 'react-ga';
 
 import { colors } from '../../../constants/styles/colors';
-import { LoadingSpinner } from '../../LoadingSpinner';
+import { LoadingSpinner } from '../../atomic/atoms/LoadSpinner';
 import { CURRENCIES } from '../../../constants/tokens';
 import { tokensDb } from '../../../services/tokensDb';
 import { TOKEN_NAMES } from '../../../constants/token-names';

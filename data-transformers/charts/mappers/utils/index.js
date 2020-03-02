@@ -1,1 +1,1 @@
-export * from "./getUTCDate";
+export * from './getUTCDate';

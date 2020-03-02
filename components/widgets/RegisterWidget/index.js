@@ -1,3 +1,3 @@
-import { RegisterWidget } from "./RegisterWidget";
+import { RegisterWidget } from './RegisterWidget';
 
 export { RegisterWidget };

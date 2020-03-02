@@ -39,7 +39,7 @@ module.exports = async (req, res) => {
   if (miner) {
     params = { ...params, miner: miner.toLowerCase() };
   }
-
+  console.log('run single-metric');
   const apiFunctions = {
     [API_METRICS.Volume]: privateApi.tokenVolumeWindowHistorical,
     [API_METRICS.Transactions]: privateApi.tokenCountWindowHistorical,

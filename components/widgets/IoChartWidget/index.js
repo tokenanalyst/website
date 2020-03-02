@@ -1,3 +1,3 @@
-import { IoChartWidget } from "./IoChartWidget";
+import { IoChartWidget } from './IoChartWidget';
 
 export { IoChartWidget };

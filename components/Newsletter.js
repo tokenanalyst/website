@@ -82,98 +82,100 @@ export const Newsletter = () => {
           )}
         </div>
       </div>
-      <style jsx>{`
-        .container {
-          font-family: Space Grotesk;
-          position: fixed;
-          bottom: 0px;
-          height: 224px;
-          background-color: white;
-          width: 100%;
-          z-index: 10000;
-          border-top: solid 3px rgba(151, 151, 151, 0.15);
-          padding: 20px;
-          display: ${isShown ? 'block' : 'none'};
-        }
-        .top {
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          align-items: center;
-        }
-        .header {
-          font-size: 24px;
-          font-weight: bold;
-          border-bottom: 3px solid rgba(${colors.primaryGreen});
-          margin-bottom: 10px;
-        }
-        .close {
-          margin-right: 40px;
-          cursor: pointer;
-          opacity: 0.3;
-        }
-        .input {
-          display: flex;
-          flex-direction: row;
-          padding-top: 20px;
-          align-items: center;
-        }
-        .field {
-          width: 150px;
-          height: 24px;
-        }
-        .field-header {
-          font-weight: bold;
-          opacity: 0.4;
-          padding-bottom: 5px;
-        }
-        .field-input {
-          opacity: 0.5;
-          font-style: italic;
-          padding: 10px;
-          min-width: 300px;
-          box-shadow: inset 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-        }
-        .button {
-          color: white;
-          min-width: 135px;
-          text-align: center;
-          background-color: rgba(${colors.primaryGreen});
-          max-height: 40px;
-          padding: 10px;
-          border-radius: 10px;
-          cursor: pointer;
-          margin-top: 10px;
-        }
-        .icon {
-          height: 28;
-          width: 28;
-        }
-        @media only screen and (max-width: 768px) {
+      <style jsx>
+        {`
           .container {
-            height: 225px;
+            font-family: Space Grotesk;
+            position: fixed;
+            bottom: 0px;
+            height: 224px;
+            background-color: white;
+            width: 100%;
+            z-index: 10000;
+            border-top: solid 3px rgba(151, 151, 151, 0.15);
+            padding: 20px;
+            display: ${isShown ? 'block' : 'none'};
           }
           .top {
-            padding-bottom: 10px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
           }
-          .body {
-            max-width: 270px;
-            padding-top: 20px;
-            display: none;
+          .header {
+            font-size: 24px;
+            font-weight: bold;
+            border-bottom: 3px solid rgba(${colors.primaryGreen});
+            margin-bottom: 10px;
+          }
+          .close {
+            margin-right: 40px;
+            cursor: pointer;
+            opacity: 0.3;
           }
           .input {
-            justify-content: space-between;
-            margin-right: 40px;
+            display: flex;
+            flex-direction: row;
+            padding-top: 20px;
+            align-items: center;
           }
-          .shadow {
-            height: 4px;
-            border-bottom: solid 1px rgba(151, 151, 151, 0.15);
-            box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.05);
-            margin-left: -20px;
-            margin-right: -20px;
+          .field {
+            width: 150px;
+            height: 24px;
           }
-        }
-      `}</style>
+          .field-header {
+            font-weight: bold;
+            opacity: 0.4;
+            padding-bottom: 5px;
+          }
+          .field-input {
+            opacity: 0.5;
+            font-style: italic;
+            padding: 10px;
+            min-width: 300px;
+            box-shadow: inset 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+          }
+          .button {
+            color: white;
+            min-width: 135px;
+            text-align: center;
+            background-color: rgba(${colors.primaryGreen});
+            max-height: 40px;
+            padding: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+          }
+          .icon {
+            height: 28;
+            width: 28;
+          }
+          @media only screen and (max-width: 768px) {
+            .container {
+              height: 225px;
+            }
+            .top {
+              padding-bottom: 10px;
+            }
+            .body {
+              max-width: 270px;
+              padding-top: 20px;
+              display: none;
+            }
+            .input {
+              justify-content: space-between;
+              margin-right: 40px;
+            }
+            .shadow {
+              height: 4px;
+              border-bottom: solid 1px rgba(151, 151, 151, 0.15);
+              box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.05);
+              margin-left: -20px;
+              margin-right: -20px;
+            }
+          }
+        `}
+      </style>
     </>
   );
 };

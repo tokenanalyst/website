@@ -6,7 +6,7 @@ import { FilterNav } from '../components/atomic/organism/FilterNav';
 import { DATA_WINDOWS, UNITS } from '../constants/filters';
 import { underSubNav } from '../constants/styles/common-styled-jsx';
 import { useApi } from '../hooks';
-import { LoadingSpinner } from '../components/LoadingSpinner';
+import { LoadingSpinner } from '../components/atomic/atoms/LoadSpinner';
 import { filterTable } from '../components/tables/IoTable/helpers';
 
 const Exchange = () => {

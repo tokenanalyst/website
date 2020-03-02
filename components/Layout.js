@@ -27,7 +27,11 @@ const STRUCTURED_DATA = JSON.stringify({
   url: 'https://www.tokenanalyst.io',
 });
 
-const WITHOUT_FOOTER = ['/exchange/[token]/[exchange]', '/insights'];
+const WITHOUT_FOOTER = [
+  '/exchange/[token]/[exchange]',
+  '/miner/[token]/[miner]',
+  '/insights',
+];
 
 const WITH_DASHBOARD_TABS = [
   '/dashboard',

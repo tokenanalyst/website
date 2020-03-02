@@ -18,9 +18,10 @@ import { APP_STORAGE_KEYS } from '../../../../constants';
 const LOCAL_STORAGE_KEY = APP_STORAGE_KEYS.minerStats;
 
 const propsAreEqual = (prevProps, nextProps) => {
+  console.log(prevProps.minerName, nextProps.minerName);
   return (
     isEqual(prevProps.TASymbol, nextProps.TASymbol) &&
-    isEqual(prevProps.selectedMiner, nextProps.selectedMiner)
+    isEqual(prevProps.minerName, nextProps.minerName)
   );
 };
 

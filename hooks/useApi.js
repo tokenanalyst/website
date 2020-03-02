@@ -20,7 +20,7 @@ export const useApi = (url, dependencies) => {
 
       getApiResult();
     }
-  }, dependencies || []);
+  }, [dependencies, url]);
 
   return data;
 };

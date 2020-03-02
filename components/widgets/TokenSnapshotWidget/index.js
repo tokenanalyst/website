@@ -1,3 +1,3 @@
-import { TokenSnapshotWidget } from "./TokenSnapshotWidget";
+import { TokenSnapshotWidget } from './TokenSnapshotWidget';
 
 export { TokenSnapshotWidget };
