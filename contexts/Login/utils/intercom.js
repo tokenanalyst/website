@@ -14,10 +14,12 @@ const setUser = (name = '', email = '', user_id, meta = {}) => {
 };
 
 const removeUser = () => {
-  window.Intercom('shutdown');
-  window.Intercom('boot', {
-    app_id: INTERCOM_APP_ID,
-  });
+  if (process.env.NODE_ENV === 'production') {
+    window.Intercom('shutdown');
+    window.Intercom('boot', {
+      app_id: INTERCOM_APP_ID,
+    });
+  }
 };
 
 export const intercom = {
