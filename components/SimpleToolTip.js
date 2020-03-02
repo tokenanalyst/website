@@ -19,5 +19,9 @@ export const SimpleToolTip = ({ children, dataFor, toolTip, ...rest }) => {
 SimpleToolTip.propTypes = {
   children: PropTypes.node.isRequired,
   dataFor: PropTypes.string.isRequired,
-  toolTip: PropTypes.node.isRequired,
+  toolTip: PropTypes.node,
+};
+
+SimpleToolTip.defaultProps = {
+  toolTip: null,
 };

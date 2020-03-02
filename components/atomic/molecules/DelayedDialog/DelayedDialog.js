@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { SimpleDialog } from './SimpleDialog';
+import { SimpleDialog } from '../../atoms/SimpleDialog/SimpleDialog';
 
 export const DelayedDialog = ({
   header,
@@ -26,7 +26,6 @@ export const DelayedDialog = ({
     <SimpleDialog
       header={header}
       subHeader={subHeader}
-      children={children}
       isOpen={isShown}
       onClose={() => {
         onClose();
@@ -34,13 +33,15 @@ export const DelayedDialog = ({
       }}
       ctaText={ctaText}
       onCtaClick={onCtaClick}
-    />
+    >
+      {children}
+    </SimpleDialog>
   );
 };
 
 DelayedDialog.propTypes = {
   header: PropTypes.string.isRequired,
-  subHeader: PropTypes.string,
+  subHeader: PropTypes.node,
   children: PropTypes.element,
   timeout: PropTypes.number.isRequired,
   onClose: PropTypes.func,

@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import { colors } from '../../../../constants/styles/colors';
 import { isLoginRequiredToAccessEntity } from '../../../../utils';
 import { LoginContext } from '../../../../contexts/Login';
-import { ExchangeRegisterDialog } from '../../../marketing/marketing-dialogs';
+import { ExchangeRegisterDialog } from '../../organism/ExchangeRegisterDialog';
 import { ImgEntity } from '../../atoms/ImgEntity';
 import { SimpleToolTip } from '../../../SimpleToolTip';
 
@@ -60,7 +60,7 @@ export const EntityList = ({
       <div className="entities-list">
         <ExchangeRegisterDialog
           isOpen={isRegisterDialogShown}
-          closeCb={() => setIsRegisterDialogShown(false)}
+          onClose={() => setIsRegisterDialogShown(false)}
         />
         <div className="mobile-select">
           <Popover
@@ -90,6 +90,7 @@ export const EntityList = ({
                 type="dark"
                 effect="solid"
                 place="right"
+                key={value}
               >
                 <div
                   role="link"

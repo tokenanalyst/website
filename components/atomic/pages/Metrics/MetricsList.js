@@ -11,24 +11,13 @@ import { CollapsibleItem } from '../../../CollapsibleItem';
 import { METRICS, TOKEN_TYPES } from '../../../../constants/tokens';
 import { LoginContext } from '../../../../contexts/Login';
 import { tokensDb } from '../../../../services/tokensDb';
-import { InsightsRegisterDialog } from '../../../marketing/marketing-dialogs';
+import { InsightsRegisterDialog } from '../../organism/InsightsRegisterDialog';
 
 const getIndicator = token => {
   return METRICS[tokensDb.isNative(token) ? token : TOKEN_TYPES.ERC_20].filter(
     metric => metric.isDefaultCategory
   )[0].defaultIndicator;
 };
-
-// const computeMetricClass2 = (isLoggedIn, value, selectedIndicator) =>
-//   value.requiresLogin
-//     ? isLoggedIn
-//       ? selectedIndicator.name === value.indicator
-//         ? 'item-selected'
-//         : 'item'
-//       : 'item-greyed'
-//     : selectedIndicator.name === value.indicator
-//     ? 'item-selected'
-//     : 'item';
 
 const computeMetricClass = (isLoggedIn, value, selectedIndicator) => {
   if (value.requiresLogin) {
@@ -67,7 +56,7 @@ export const MetricsList = ({
       <div className="container">
         <InsightsRegisterDialog
           isOpen={isRegisterDialogShown}
-          closeCb={() => setIsRegisterDialogShown(false)}
+          onClose={() => setIsRegisterDialogShown(false)}
         />
         <div className="card">
           <Card>

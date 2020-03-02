@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-restricted-imports
 import './table.css';
 import PropTypes from 'prop-types';
 import React, { useContext, useState } from 'react';
@@ -7,7 +8,7 @@ import ReactGA from 'react-ga';
 
 import Cookies from 'js-cookie';
 import { LoginContext } from '../../../contexts/Login';
-import { ExchangeRegisterDialog } from '../../marketing/marketing-dialogs';
+import { ExchangeRegisterDialog } from '../../atomic/organism/ExchangeRegisterDialog';
 import {
   LOGGED_OUT_SUPPORTED_EXCHANGES,
   EXCHANGE_NAMES,
@@ -43,7 +44,7 @@ export const IoTable = ({
         <>
           <ExchangeRegisterDialog
             isOpen={isRegisterDialogShown}
-            closeCb={() => setIsRegisterDialogShown(false)}
+            onClose={() => setIsRegisterDialogShown(false)}
           />
           <ReactTable
             showPagination={showPagination}

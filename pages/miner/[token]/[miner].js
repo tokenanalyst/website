@@ -6,7 +6,7 @@ import Cookies from 'js-cookie';
 import { COOKIES } from '../../../constants/cookies';
 import { tokensDb } from '../../../services/tokensDb';
 import { LoginContext } from '../../../contexts/Login';
-import { DelayedExchangeRegisterDialog } from '../../../components/marketing/marketing-dialogs';
+import { DelayedExchangeRegisterDialog } from '../../../components/atomic/organism/DelayedExchangeRegisterDialog';
 import { BINANCE } from '../../../constants/exchanges';
 import { MinerStatsPage } from '../../../components/atomic/pages/MinerStats';
 import { isLoginRequiredToAccessEntity } from '../../../utils';
@@ -69,6 +69,7 @@ const Miner = () => {
         <title key="title">TokenAnalyst - Miners statistics</title>
       </Head>
       <div className="container">
+        <DelayedExchangeRegisterDialog />
         {!Cookies.get(COOKIES.hasSeenRegisterDialog) &&
           !loginCtx.isLoggedIn && <DelayedExchangeRegisterDialog />}
 
