@@ -7,7 +7,7 @@ import ReactGA from 'react-ga';
 import { colors } from '../../../../constants/styles/colors';
 import { LinkTelegram } from '../../molecules/LinkTelegram';
 import { ButtonMarketing } from '../../../ButtonMarketing';
-import { SimpleDialog } from '../../../SimpleDialog';
+import { SimpleDialog } from '../../atoms/SimpleDialog';
 import { LoginContext } from '../../../../contexts/Login';
 
 const BIG = 'BIG';
@@ -58,7 +58,11 @@ const SidePanel = ({ categories, selectedCategory, onCategorySelect }) => {
             necessary tools to create your very own Analytics and better
             understand the Crypto market
           </div>
-          <img src="/static/svg/marketing/man_chilling.svg" className="image" />
+          <img
+            src="/static/svg/marketing/man_chilling.svg"
+            className="image"
+            alt="man chilling"
+          />
         </div>
       </SimpleDialog>
       <style jsx>
@@ -82,6 +86,9 @@ const SidePanel = ({ categories, selectedCategory, onCategorySelect }) => {
                 category === selectedCategory ? 'item-selected' : 'item'
               }
               onClick={() => onCategorySelect(category)}
+              onKeyDown={() => onCategorySelect(category)}
+              role="button"
+              tabIndex={0}
             >
               {category}
             </span>
@@ -152,6 +159,10 @@ SidePanel.propTypes = {
   onCategorySelect: PropTypes.func,
 };
 
+SidePanel.defaultProps = {
+  onCategorySelect: () => {},
+};
+
 export const Analytics = () => {
   const [charts, setCharts] = useState(null);
   const [categories, setCategories] = useState(null);
@@ -199,23 +210,32 @@ export const Analytics = () => {
                         loginCtx.setPostRegisterViaAnalyticsUrl('/analytics');
                         router.push('/register');
                       }}
+                      onKeyDown={() => {
+                        loginCtx.setPostRegisterViaAnalyticsUrl('/analytics');
+                        router.push('/register');
+                      }}
+                      role="button"
+                      tabIndex={0}
                     >
                       <img
                         src={IMAGE_SOURCES[chart.type]}
                         className="blurred-image"
                         width="100%"
                         height="470px"
+                        alt="blurred bgr"
                       />
                       <div className="blurred-image-text">
                         Sign up for this Analytic and more!
                         <img
                           src="static/png/logo_mobile.png"
                           className="logo"
+                          alt="TokenAnalyst logo"
                         />
                       </div>
                     </div>
                   ) : (
                     <iframe
+                      title="analytics-charts"
                       src={chart.url}
                       width={
                         window.matchMedia(
@@ -241,23 +261,32 @@ export const Analytics = () => {
                           loginCtx.setPostRegisterViaAnalyticsUrl('/analytics');
                           router.push('/register');
                         }}
+                        onKeyDown={() => {
+                          loginCtx.setPostRegisterViaAnalyticsUrl('/analytics');
+                          router.push('/register');
+                        }}
+                        role="button"
+                        tabIndex={0}
                       >
                         <img
                           src={IMAGE_SOURCES[chart.type]}
                           className="blurred-image"
                           width="100%"
                           height="470px"
+                          alt="blurred-bgr"
                         />
                         <div className="blurred-image-text">
                           Sign up for this Analytic and more!
                           <img
                             src="static/png/logo_mobile.png"
+                            alt="TokenAnalyst logo"
                             className="logo"
                           />
                         </div>
                       </div>
                     ) : (
                       <iframe
+                        title="analytics-charts"
                         src={chart.url}
                         width={SIZE_MAPPINGS[chart.type]}
                         height="475px"
