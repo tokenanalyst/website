@@ -37,8 +37,6 @@ export const StudiesList = ({ studies, onSelectStudy }) => {
                 place="right"
               >
                 <div
-                  data-tip
-                  data-for={`metric-tooltip-${study}`}
                   className={
                     studies[study].isSupported ? 'study' : 'study-not-supported'
                   }

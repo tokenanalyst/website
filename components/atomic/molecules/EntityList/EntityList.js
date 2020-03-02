@@ -81,6 +81,7 @@ export const EntityList = ({
         <div className="desktop-list">
           {entities.map(entity => {
             const { value, label, icon, helpText } = entity;
+
             return (
               <SimpleToolTip
                 dataFor={value}
@@ -92,8 +93,6 @@ export const EntityList = ({
               >
                 <div
                   role="link"
-                  data-tip
-                  data-for={value}
                   key={value}
                   className={classNames(
                     'entity',
@@ -131,15 +130,7 @@ export const EntityList = ({
                       {label}
                     </div>
 
-                    <div
-                      className={`${
-                        value === selectedEntity
-                          ? 'entity-label-selected'
-                          : 'entity-label'
-                      }`}
-                    >
-                      {icon || <div />}
-                    </div>
+                    <div>{icon || <div />}</div>
                   </div>
                 </div>
               </SimpleToolTip>
