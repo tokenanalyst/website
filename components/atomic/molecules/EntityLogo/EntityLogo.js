@@ -36,6 +36,7 @@ export const EntityLogo = ({ tokenSymbol, entityName }) => {
             overflow: hidden;
             text-overflow: ellipsis;
             width: 250px;
+            display: flex;
           }
           @media only screen and (max-width: 768px) {
             .banner-logo-container {
