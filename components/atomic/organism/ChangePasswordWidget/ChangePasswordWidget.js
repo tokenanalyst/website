@@ -5,13 +5,13 @@ import axios from 'axios';
 import { Icon } from '@blueprintjs/core';
 import zxcvbn from 'zxcvbn';
 
-import { colors, PRIMARY_GREEN } from '../../../constants/styles/colors';
-import { LoginContext } from '../../../contexts/Login';
-import { login } from '../../../services/login/login';
-import { SimpleFormGroup } from '../../SimpleFormGroup';
-import { SimpleTextInput } from '../../SimpleTextInput';
-import { PasswordStrength } from '../RegisterWidget/PasswordStrength';
-import { SimpleButton } from '../../atomic/molecules/SimpleButton';
+import { colors, PRIMARY_GREEN } from '../../../../constants/styles/colors';
+import { LoginContext } from '../../../../contexts/Login';
+import { login } from '../../../../services/login/login';
+import { SimpleFormGroup } from '../../../SimpleFormGroup';
+import { SimpleTextInput } from '../../../SimpleTextInput';
+import { PasswordStrength } from '../../../widgets/RegisterWidget/PasswordStrength';
+import { SimpleButton } from '../../molecules/SimpleButton';
 
 export const ChangePasswordWidget = () => {
   const router = useRouter();

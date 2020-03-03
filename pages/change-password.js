@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ChangePasswordWidget } from '../components/widgets/ChangePasswordWidget/ChangePasswordWidget';
+import { ChangePasswordWidget } from '../components/atomic/organism/ChangePasswordWidget';
 
 const VerifyEmail = () => {
   return (
