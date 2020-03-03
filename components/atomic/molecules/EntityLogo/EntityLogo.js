@@ -7,7 +7,7 @@ export const EntityLogo = ({ tokenSymbol, entityName }) => {
       <div className="banner-logo-container">
         <div className="banner-header">
           <div className="banner-header-symbol">
-            {tokenSymbol.replace('_', ' ').toUpperCase()}
+            {tokenSymbol.split('_')[0].toUpperCase()}
           </div>
           <div className="banner-header-entity-name">{entityName}</div>
         </div>
