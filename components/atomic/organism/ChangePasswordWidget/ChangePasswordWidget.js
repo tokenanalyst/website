@@ -10,7 +10,7 @@ import { LoginContext } from '../../../../contexts/Login';
 import { login } from '../../../../services/login/login';
 import { SimpleFormGroup } from '../../../SimpleFormGroup';
 import { SimpleTextInput } from '../../../SimpleTextInput';
-import { PasswordStrength } from '../../../widgets/RegisterWidget/PasswordStrength';
+import { PasswordStrength } from '../RegisterWidget/PasswordStrength';
 import { SimpleButton } from '../../molecules/SimpleButton';
 
 export const ChangePasswordWidget = () => {

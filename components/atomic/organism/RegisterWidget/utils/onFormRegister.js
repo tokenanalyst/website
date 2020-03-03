@@ -3,8 +3,8 @@ import Cookies from 'js-cookie';
 import ReactGA from 'react-ga';
 import Router from 'next/router';
 
-import { COOKIES } from '../../../../constants/cookies';
-import { API_ERROR_MSG } from '../../../../constants/apiErrors';
+import { COOKIES } from '../../../../../constants/cookies';
+import { API_ERROR_MSG } from '../../../../../constants/apiErrors';
 
 export const onFormRegister = async (loginCtx, formValues) => {
   const API_BASE =

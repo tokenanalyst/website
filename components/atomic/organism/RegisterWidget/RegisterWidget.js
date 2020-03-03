@@ -1,15 +1,16 @@
+/* eslint-disable react/jsx-wrap-multilines */
 import React, { useState, useContext } from 'react';
 import { Icon } from '@blueprintjs/core';
 import Link from 'next/link';
 import zxcvbn from 'zxcvbn';
 
-import { LoginContext } from '../../../contexts/Login';
-import { colors, PRIMARY_GREEN } from '../../../constants/styles/colors';
-import { SimpleFormGroup } from '../../SimpleFormGroup';
-import { SimpleTextInput } from '../../SimpleTextInput';
+import { LoginContext } from '../../../../contexts/Login';
+import { colors, PRIMARY_GREEN } from '../../../../constants/styles/colors';
+import { SimpleFormGroup } from '../../../SimpleFormGroup';
+import { SimpleTextInput } from '../../../SimpleTextInput';
 import { onFormRegister } from './utils/onFormRegister';
 import { PasswordStrength } from './PasswordStrength';
-import { SimpleButton } from '../../atomic/molecules/SimpleButton';
+import { SimpleButton } from '../../molecules/SimpleButton';
 
 export const RegisterWidget = () => {
   const loginCtx = useContext(LoginContext);
@@ -53,7 +54,9 @@ export const RegisterWidget = () => {
     if (isSuccess) {
       setErrorText(null);
       setHasRegistered(true);
-      redirectFn && redirectFn();
+      if (redirectFn) {
+        redirectFn();
+      }
     } else {
       setErrorText(errorMsg);
       setIsSubmitted(false);
@@ -111,7 +114,8 @@ export const RegisterWidget = () => {
                 <SimpleFormGroup
                   label={
                     <div>
-                      Email <span className="mandatory-field">*</span>
+                      Email&nbsp;&nbsp;
+                      <span className="mandatory-field">*</span>
                     </div>
                   }
                   labelFor="registration-email"
@@ -124,7 +128,8 @@ export const RegisterWidget = () => {
                 <SimpleFormGroup
                   label={
                     <div>
-                      Password <span className="mandatory-field">*</span>
+                      Password&nbsp;&nbsp;
+                      <span className="mandatory-field">*</span>
                     </div>
                   }
                   labelFor="registration-password"
@@ -152,11 +157,6 @@ export const RegisterWidget = () => {
                   Sign Up
                 </SimpleButton>
                 {errorText && <div className="error">{errorText}</div>}
-                {/* {isRedirectedForFreeTier ? (
-                  <div className="message">
-                    Please register to access your free tier.
-                  </div>
-                ) : null} */}
               </form>
             </div>
           </>

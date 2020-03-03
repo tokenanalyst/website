@@ -4,8 +4,8 @@ import Cookies from 'js-cookie';
 import Router from 'next/router';
 import ReactGA from 'react-ga';
 
-import { COOKIES } from '../../../../constants/cookies';
-import { API_ERROR_MSG } from '../../../../constants/apiErrors';
+import { COOKIES } from '../../../../../constants/cookies';
+import { API_ERROR_MSG } from '../../../../../constants/apiErrors';
 import { onFormRegister } from './onFormRegister';
 
 jest.mock('axios');

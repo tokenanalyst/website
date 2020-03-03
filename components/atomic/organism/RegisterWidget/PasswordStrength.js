@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { SimpleProgressBar } from '../../SimpleProgressBar';
-import { Intent } from '../../../constants/styles/colors';
+import { SimpleProgressBar } from '../../../SimpleProgressBar';
+import { Intent } from '../../../../constants/styles/colors';
 
 export const PasswordStrength = ({ score }) => {
   // TODO: agree on a common set of colors
