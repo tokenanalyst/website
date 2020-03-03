@@ -202,7 +202,7 @@ export const ExchangeFlowsPage = ({
           .controls-card {
           }
           .left-panel {
-            width: 250px;
+            width: 300px;
           }
           .right-panel {
             width: 100%;

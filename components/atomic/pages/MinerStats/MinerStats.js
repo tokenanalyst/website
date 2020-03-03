@@ -167,7 +167,7 @@ export const MinerStatsPage = ({
             margin-left: 10px;
           }
           .left-panel {
-            width: 250px;
+            width: 300px;
           }
           .cat-link {
             padding-bottom: 10px;
