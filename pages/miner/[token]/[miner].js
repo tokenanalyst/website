@@ -69,7 +69,6 @@ const Miner = () => {
         <title key="title">TokenAnalyst - Miners statistics</title>
       </Head>
       <div className="container">
-        <DelayedExchangeRegisterDialog />
         {!Cookies.get(COOKIES.hasSeenRegisterDialog) &&
           !loginCtx.isLoggedIn && <DelayedExchangeRegisterDialog />}
 
