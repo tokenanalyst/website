@@ -161,7 +161,7 @@ export const ExchangeFlowsPage = ({
     <>
       <div className="container">
         <div className="left-panel">
-          <div className="controls-card">
+          <div className="controls-box">
             <LeftSidePanelExchanges
               selectedExchange={selectedExchange}
               selectedToken={selectedToken}
@@ -199,7 +199,7 @@ export const ExchangeFlowsPage = ({
             flex-direction: row;
             justify-content: space-between;
           }
-          .controls-card {
+          .controls-box {
           }
           .left-panel {
             width: 300px;
@@ -221,7 +221,7 @@ export const ExchangeFlowsPage = ({
           }
 
           @media (min-width: 768px) and (max-width: 1440px) {
-            .controls-card {
+            .controls-box {
             }
             .pro-chart {
             }
@@ -237,7 +237,7 @@ export const ExchangeFlowsPage = ({
               padding-top: 5px;
               width: 100%;
             }
-            .controls-card {
+            .controls-box {
               width: 100%;
             }
           }

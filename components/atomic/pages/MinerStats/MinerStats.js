@@ -119,7 +119,7 @@ export const MinerStatsPage = ({
     <>
       <div className="container">
         <div className="left-panel">
-          <div className="controls-card">
+          <div className="controls-box">
             <LeftSidePanelMiners
               selectedMiner={selectedMiner}
               selectedToken={selectedToken}
@@ -160,7 +160,7 @@ export const MinerStatsPage = ({
             flex-direction: row;
             justify-content: space-between;
           }
-          .controls-card {
+          .controls-box {
           }
           .right-panel {
             width: 100%;
@@ -182,7 +182,7 @@ export const MinerStatsPage = ({
           }
 
           @media (min-width: 768px) and (max-width: 1440px) {
-            .controls-card {
+            .controls-box {
             }
             .pro-chart {
             }
@@ -198,7 +198,7 @@ export const MinerStatsPage = ({
               padding-top: 5px;
               width: 100%;
             }
-            .controls-card {
+            .controls-box {
               width: 100%;
             }
           }
