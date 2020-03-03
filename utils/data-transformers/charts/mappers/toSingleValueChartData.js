@@ -1,4 +1,4 @@
-import { TIME_WINDOWS } from '../../../constants/filters';
+import { TIME_WINDOWS } from '../../../../constants/filters';
 import { getUTCDate } from './utils/getUTCDate';
 
 export const toSingleValueChartData = (

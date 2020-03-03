@@ -1,8 +1,9 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
 
-import { LoginWidget } from '../components/widgets/LoginWidget';
+import { LoginWidget } from '../components/atomic/organism/LoginWidget';
 
 const Login = () => {
   return (

@@ -1,6 +1,18 @@
 import { toSingleValueChartData } from './mappers';
 
-import { NATIVE_TOKENS } from '../../constants/tokens';
+import { NATIVE_TOKENS } from '../../../constants/tokens';
+
+const selectKey = (token, keys) => {
+  if (token === NATIVE_TOKENS.BTC) {
+    return keys[0];
+  }
+
+  if (token === NATIVE_TOKENS.ETH) {
+    return keys[1];
+  }
+
+  return keys[2];
+};
 
 export const getCompareDataSet = (response, token, color) => {
   const tokenData = response;
@@ -11,11 +23,7 @@ export const getCompareDataSet = (response, token, color) => {
       chartValues: toSingleValueChartData(
         tokenData.volume,
         'date',
-        token === NATIVE_TOKENS.BTC
-          ? 'volume_real_usd'
-          : token === NATIVE_TOKENS.ETH
-          ? 'volume_gross_usd'
-          : 'volume_usd'
+        selectKey(token, ['volume_real_usd', 'volume_gross_usd', 'volume_usd'])
       ),
       visible: true,
       solidColor: color,
@@ -26,11 +34,7 @@ export const getCompareDataSet = (response, token, color) => {
       chartValues: toSingleValueChartData(
         tokenData.volume,
         'date',
-        token === NATIVE_TOKENS.BTC
-          ? 'volume_real'
-          : token === NATIVE_TOKENS.ETH
-          ? 'volume_gross'
-          : 'volume'
+        selectKey(token, ['volume_real', 'volume_gross', 'volume'])
       ),
       visible: false,
       solidColor: color,

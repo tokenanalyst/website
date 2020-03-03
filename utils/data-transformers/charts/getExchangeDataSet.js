@@ -1,8 +1,8 @@
 import { toSingleValueChartData } from './mappers';
 
-import { NATIVE_TOKENS, CURRENCIES } from '../../constants/tokens';
-import { CHART_TYPES } from '../../constants/chartTypes';
-import { TIME_WINDOWS } from '../../constants/filters';
+import { NATIVE_TOKENS, CURRENCIES } from '../../../constants/tokens';
+import { CHART_TYPES } from '../../../constants/chartTypes';
+import { TIME_WINDOWS } from '../../../constants/filters';
 
 const formatTokenSymbol = rawSymbol => rawSymbol.replace('_', ' ');
 

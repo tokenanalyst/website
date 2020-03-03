@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-wrap-multilines */
 import React, { useState, useContext } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
@@ -76,7 +77,8 @@ export const ChangePasswordWidget = () => {
               <SimpleFormGroup
                 label={
                   <div className="input-title">
-                    Email <span className="mandatory-field">*</span>
+                    Email
+                    <span className="mandatory-field">*</span>
                   </div>
                 }
                 labelFor="registration-email"
@@ -89,7 +91,8 @@ export const ChangePasswordWidget = () => {
               <SimpleFormGroup
                 label={
                   <div className="input-title">
-                    Password <span className="mandatory-field">*</span>
+                    Password
+                    <span className="mandatory-field">*</span>
                   </div>
                 }
                 labelFor="registration-password"

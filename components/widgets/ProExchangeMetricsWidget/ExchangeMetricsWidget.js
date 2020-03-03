@@ -6,7 +6,7 @@ import { Skeleton } from '../../Skeleton';
 import { EXCHANGE_NAMES } from '../../../constants/exchanges';
 import { colors } from '../../../constants/styles/colors';
 import { useApi } from '../../../hooks';
-import { getExchangeMetrics } from '../../../data-transformers/widgets/getExchangeMetrics';
+import { getExchangeMetrics } from '../../../utils/data-transformers/widgets/getExchangeMetrics';
 import { DATA_WINDOWS } from '../../../constants/filters';
 import { EntityLogo } from '../../atomic/molecules/EntityLogo';
 
