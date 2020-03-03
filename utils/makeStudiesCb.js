@@ -88,7 +88,6 @@ const minerStudiesData = (ta, TAsymbol, minerName) =>
             )} for ${curr.symbol} and datapoint ${curr.dataPoint}`
           );
         }
-        console.warn('minerStudiesData', minerName);
         const data = await ta.fetchSingleMetricProxy(
           TAsymbol,
           resolution,
