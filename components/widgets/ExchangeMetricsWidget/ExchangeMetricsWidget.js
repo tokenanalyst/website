@@ -47,6 +47,8 @@ export const ExchangeMetricsWidget = ({ token, exchange }) => {
         )
       );
     }
+
+    return () => {};
   }, [apiResponse, token]);
 
   return (
@@ -57,16 +59,16 @@ export const ExchangeMetricsWidget = ({ token, exchange }) => {
             {token && (
               <>
                 <div className="banner-header">
-                  <span className="banner-banner-header-symbol">
+                  <span className="banner-header-symbol">
                     {token.replace('_', ' ')}
                   </span>
-                  <span className="banner-banner-header-exchange-name">
+                  <span className="banner-header-exchange-name">
                     {EXCHANGE_NAMES[exchange]}
                   </span>
                 </div>
                 <div className="banner-logo-img-container">
                   <img
-                    className="banner-banner-logo-img"
+                    className="banner-logo-img"
                     src={`/static/png/${EXCHANGE_IMAGES[exchange]}`}
                     alt={`Exchange ${EXCHANGE_IMAGES[exchange]}`}
                   />
@@ -177,17 +179,17 @@ export const ExchangeMetricsWidget = ({ token, exchange }) => {
             width: 300px;
           }
 
-          .banner-banner-logo-img {
+          .banner-logo-img {
             width: 40px;
             height: 40px;
           }
           .banner-logo-img-container {
             padding-left: 10px;
           }
-          .banner-banner-header-symbol {
+          .banner-header-symbol {
             font-weight: 700;
           }
-          .banner-banner-header-exchange-name {
+          .banner-header-exchange-name {
             padding-left: 10px;
             opacity: 0.4;
           }
@@ -256,7 +258,7 @@ export const ExchangeMetricsWidget = ({ token, exchange }) => {
             .banner-header {
               padding-left: 0px;
             }
-            .banner-banner-logo-img {
+            .banner-logo-img {
               width: 40px;
               height: 40px;
             }
@@ -267,11 +269,11 @@ export const ExchangeMetricsWidget = ({ token, exchange }) => {
             .banner-banner-header {
               flex: 1;
             }
-            .banner-banner-header-symbol {
+            .banner-header-symbol {
               font-weight: 700;
               flex: 1;
             }
-            .banner-banner-header-exchange-name {
+            .banner-header-exchange-name {
               flex: 1;
               padding-left: 10px;
               opacity: 0.4;

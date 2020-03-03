@@ -9,7 +9,7 @@ export const EntityLogo = ({ tokenSymbol, entityName }) => {
           <div className="banner-header-symbol">
             {tokenSymbol.replace('_', ' ').toUpperCase()}
           </div>
-          <div className="banner-header-exchange-name">{entityName}</div>
+          <div className="banner-header-entity-name">{entityName}</div>
         </div>
       </div>
       <style jsx>
@@ -29,14 +29,13 @@ export const EntityLogo = ({ tokenSymbol, entityName }) => {
           .banner-header-symbol {
             font-weight: 700;
           }
-          .banner-header-exchange-name {
+          .banner-header-entity-name {
             padding-left: 10px;
             opacity: 0.4;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            width: 250px;
-            display: flex;
+            width: 200px;
           }
           @media only screen and (max-width: 768px) {
             .banner-logo-container {
@@ -54,7 +53,7 @@ export const EntityLogo = ({ tokenSymbol, entityName }) => {
               font-weight: 700;
               flex: 1;
             }
-            .banner-header-exchange-name {
+            .banner-header-entity-name {
               flex: 1;
               padding-left: 10px;
               opacity: 0.4;
