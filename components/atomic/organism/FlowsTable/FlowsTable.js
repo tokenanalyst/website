@@ -17,7 +17,7 @@ import {
 
 import { NextButton, PreviousButton } from './renderers';
 import { getIoTableData } from '../../../../data-transformers/tables';
-import { filterCaseInsensitive } from '../../../tables/helpers';
+import { filterCaseInsensitive } from '../../../../utils';
 import { makeColumns } from './helpers';
 import { colors } from '../../../../constants/styles/colors';
 import { COOKIES } from '../../../../constants/cookies';
