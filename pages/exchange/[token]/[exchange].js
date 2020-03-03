@@ -3,8 +3,6 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Cookies from 'js-cookie';
 
-import { ExchangeMetricsWidget } from '../../../components/widgets/ExchangeMetricsWidget';
-import { IoChartWidget } from '../../../components/widgets/IoChartWidget';
 import { ExchangeFlowsPage } from '../../../components/atomic/pages/ExchangeFlows';
 import { COOKIES } from '../../../constants/cookies';
 import { tokensDb } from '../../../services/tokensDb';
@@ -79,10 +77,7 @@ const Exchange = () => {
         ) : (
           token &&
           exchange && (
-            <>
-              <ExchangeMetricsWidget token={token} exchange={exchange} />
-              <IoChartWidget token={token} exchange={exchange} />
-            </>
+            <div>This combination of token and miner is not supported.</div>
           )
         )}
       </div>
