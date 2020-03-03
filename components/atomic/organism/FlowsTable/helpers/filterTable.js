@@ -1,4 +1,4 @@
-import { FILTERED_IO_ROWS } from '../../../../constants/filteredExchanges';
+import { FILTERED_IO_ROWS } from '../../../../../constants/filteredExchanges';
 
 export const filterTable = data =>
   FILTERED_IO_ROWS.reduce(

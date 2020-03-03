@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types';
+import React from 'react';
 import { Icon } from '@blueprintjs/core';
-import { EXCHANGE_IMAGES } from '../../../../constants/image-paths';
+import { EXCHANGE_IMAGES } from '../../../../../constants/image-paths';
 import {
   EXCHANGE_NAMES,
   EXCHANGE_DISPLAY_NAME,
-} from '../../../../constants/exchanges';
+} from '../../../../../constants/exchanges';
 
-import { colors } from '../../../../constants/styles/colors';
+import { colors } from '../../../../../constants/styles/colors';
 
 export const ExchangeCell = ({ value }) => (
   <span

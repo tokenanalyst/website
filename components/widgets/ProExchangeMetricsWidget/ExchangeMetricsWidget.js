@@ -47,6 +47,8 @@ export const ExchangeMetricsWidget = ({ token, exchange }) => {
         )
       );
     }
+
+    return () => {};
   }, [apiResponse, token]);
 
   return (

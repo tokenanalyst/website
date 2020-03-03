@@ -45,6 +45,7 @@ export const LeftSidePanelExchanges = ({
       </div>
       <div className="metrics">
         <ExchangeMetricsWidget
+          key={`metrics${selectedToken}${selectedExchange}`}
           token={selectedToken}
           exchange={selectedExchange}
         />

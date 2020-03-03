@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import Head from 'next/head';
 
-import { IoTable } from '../components/tables/IoTable';
+import { FlowsTable } from '../components/atomic/organism/FlowsTable';
 import { FilterNav } from '../components/atomic/organism/FilterNav';
 import { DATA_WINDOWS, UNITS } from '../constants/filters';
 import { underSubNav } from '../constants/styles/common-styled-jsx';
 import { useApi } from '../hooks';
 import { LoadingSpinner } from '../components/atomic/atoms/LoadSpinner';
-import { filterTable } from '../components/tables/IoTable/helpers';
+import { filterTable } from '../components/atomic/organism/FlowsTable/helpers';
 
 const Exchange = () => {
   const [dataWindow, setDataWindow] = useState(DATA_WINDOWS[0]);
@@ -33,7 +33,7 @@ const Exchange = () => {
           <h2>{`${dataWindow} Exchanges Inflows/Outflows`}</h2>
           <div className="table">
             {ioTableData ? (
-              <IoTable
+              <FlowsTable
                 data={filterTable(ioTableData)}
                 dataWindow={dataWindow}
                 units={units}

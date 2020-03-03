@@ -1,3 +1,6 @@
+import PropTypes from 'prop-types';
+import React from 'react';
+
 import numeral from 'numeral';
 
 export const AmountCell = ({ value, units }) => (
@@ -6,3 +9,8 @@ export const AmountCell = ({ value, units }) => (
     {numeral(value).format('0,0') || '0'}
   </div>
 );
+
+AmountCell.propTypes = {
+  value: PropTypes.number.isRequired,
+  units: PropTypes.string.isRequired,
+};
