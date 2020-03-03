@@ -31,6 +31,7 @@ const MemoProChartContainer = React.memo(ProChartContainer, propsAreEqual);
 export const ExchangeFlowsPage = ({
   selectedExchange,
   selectedToken,
+  supportedExchanges,
   tokensDb,
   onChangeToken,
 }) => {
@@ -167,6 +168,7 @@ export const ExchangeFlowsPage = ({
               selectedToken={selectedToken}
               studies={tvStudies}
               tokensDb={tokensDb}
+              supportedExchanges={supportedExchanges}
               onChangeToken={onChangeToken}
               onSelectStudy={onSelectStudy}
             />
@@ -251,6 +253,7 @@ ExchangeFlowsPage.propTypes = {
   onChangeToken: PropTypes.func.isRequired,
   selectedExchange: PropTypes.string.isRequired,
   selectedToken: PropTypes.string.isRequired,
+  supportedExchanges: PropTypes.objectOf(PropTypes.string).isRequired,
   tokensDb: PropTypes.objectOf(
     PropTypes.oneOfType([PropTypes.func, PropTypes.object])
   ).isRequired,

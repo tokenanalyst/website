@@ -23,6 +23,7 @@ export const LeftSidePanelExchanges = ({
   onSelectStudy,
   selectedExchange,
   selectedToken,
+  supportedExchanges,
   studies,
   tokensDb,
 }) => {
@@ -83,7 +84,7 @@ export const LeftSidePanelExchanges = ({
               <div className="exchanges">
                 <EntityList
                   selectedEntity={selectedExchange}
-                  entities={makeEntitiesList(tokensDb.getExchangesList())}
+                  entities={makeEntitiesList(supportedExchanges)}
                   onChangeExchange={newExchange => {
                     onChangeToken(selectedToken, newExchange);
                   }}
@@ -157,5 +158,6 @@ LeftSidePanelExchanges.propTypes = {
   tokensDb: PropTypes.objectOf(
     PropTypes.oneOfType([PropTypes.func, PropTypes.object])
   ).isRequired,
+  supportedExchanges: PropTypes.objectOf(PropTypes.string).isRequired,
   studies: PropTypes.objectOf(PropTypes.object).isRequired,
 };

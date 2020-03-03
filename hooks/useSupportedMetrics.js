@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { setLocalMetricsConfig, getLocalMetricsConfig } from '../utils';
+import { tokensDb } from '../services/tokensDb';
 
 export const useSupportedMetrics = (
   selectedToken,
   selectedEntity,
-  tokensDb,
   localStorageParams
 ) => {
   const { defaultConfig, storageKey } = localStorageParams;
@@ -49,13 +49,7 @@ export const useSupportedMetrics = (
     };
     getSupportedMetrics();
     setIsMetricSupportReady(true);
-  }, [
-    selectedEntity,
-    selectedToken,
-    setIsMetricSupportReady,
-    storageKey,
-    tokensDb,
-  ]);
+  }, [selectedEntity, selectedToken, setIsMetricSupportReady, storageKey]);
 
   return [tvStudies, setTvStudies, isMetricSupportReady];
 };

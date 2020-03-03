@@ -9,7 +9,7 @@ import { LinkTelegram } from '../../molecules/LinkTelegram/LinkTelegram';
 import { SimpleBox } from '../../molecules/SimpleBox';
 import { StudiesList } from '../../molecules/StudiesList/StudiesList';
 import { EntityLogo } from '../../molecules/EntityLogo';
-import { MINNER_FORMATTED_NAMES } from '../../../../constants';
+import { MINER_FORMATTED_NAMES } from '../../../../constants';
 
 const makeEntitiesList = entities => {
   return Object.values(entities).reduce((acc, entity) => {
@@ -32,7 +32,7 @@ const makeEntitiesList = entities => {
       ...acc,
       {
         value: entity,
-        label: MINNER_FORMATTED_NAMES[entity] || entity,
+        label: MINER_FORMATTED_NAMES[entity] || entity,
         icon,
         helpText,
       },
@@ -57,7 +57,7 @@ export const LeftSidePanelMiners = ({
       <div className="metrics">
         <EntityLogo
           tokenSymbol={selectedToken}
-          entityName={MINNER_FORMATTED_NAMES[selectedMiner] || selectedMiner}
+          entityName={MINER_FORMATTED_NAMES[selectedMiner] || selectedMiner}
         />
       </div>
       <div className="controls-container">

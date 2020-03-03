@@ -14,6 +14,7 @@ import {
 import { KaikoLogo } from '../../atoms/KaikoLogo';
 import { useSupportedMetrics, useActivateStudies } from '../../../../hooks';
 import { APP_STORAGE_KEYS } from '../../../../constants';
+import { tokensDb } from '../../../../services/tokensDb';
 
 const LOCAL_STORAGE_KEY = APP_STORAGE_KEYS.minerStats;
 
@@ -31,7 +32,6 @@ export const MinerStatsPage = ({
   selectedExchange,
   selectedToken,
   supportedMiners,
-  tokensDb,
   onChangeToken,
 }) => {
   const {
@@ -56,7 +56,6 @@ export const MinerStatsPage = ({
   const [tvStudies, setTvStudies, isMetricSupportReady] = useSupportedMetrics(
     selectedToken,
     selectedMiner,
-    tokensDb,
     localStorageParams
   );
 
@@ -124,7 +123,6 @@ export const MinerStatsPage = ({
               selectedMiner={selectedMiner}
               selectedToken={selectedToken}
               studies={tvStudies}
-              tokensDb={tokensDb}
               supportedMiners={supportedMiners}
               onChangeToken={onChangeToken}
               onSelectStudy={onSelectStudy}
@@ -214,7 +212,4 @@ MinerStatsPage.propTypes = {
   selectedMiner: PropTypes.string.isRequired,
   selectedToken: PropTypes.string.isRequired,
   supportedMiners: PropTypes.objectOf(PropTypes.string).isRequired,
-  tokensDb: PropTypes.objectOf(
-    PropTypes.oneOfType([PropTypes.func, PropTypes.object])
-  ).isRequired,
 };

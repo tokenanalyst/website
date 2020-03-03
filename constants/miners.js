@@ -53,7 +53,7 @@ export const MINER_NAMES = {
   [UNKNOWN]: UNKNOWN,
 };
 
-export const MINNER_FORMATTED_NAMES = {
+export const MINER_FORMATTED_NAMES = {
   [ANTPOOL]: 'Antpool',
   [BITFURY]: 'BitFury',
   [BIT_CLUB_POOL]: 'BitClubPool',
