@@ -8,7 +8,7 @@ import { RegistrationBenefits } from '../components/atomic/molecules/Registratio
 
 const RegisterWidget = dynamic(
   () =>
-    import('../components/widgets/RegisterWidget').then(
+    import('../components/atomic/organism/RegisterWidget').then(
       mod => mod.RegisterWidget
     ),
   {
