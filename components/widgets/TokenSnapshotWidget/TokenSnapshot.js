@@ -13,7 +13,7 @@ import { CURRENCIES } from '../../../constants/tokens';
 import { tokensDb } from '../../../services/tokensDb';
 import { TOKEN_NAMES } from '../../../constants/token-names';
 import { updateToken } from './helpers';
-import { getTokenSnapshotData } from '../../../data-transformers/widgets/getTokenSnapshot';
+import { getTokenSnapshotData } from '../../../utils/data-transformers/widgets/getTokenSnapshot';
 
 const NATIVE_TOKENS = tokensDb.tokens.group.native;
 const STABLE_TOKENS = tokensDb.tokens.group.stable;
@@ -131,7 +131,7 @@ export const TokenSnapshot = ({
           </div>
           <div className="shadow" />
           {data.flows.map((flow, index) => (
-            <div className="section" key={index}>
+            <div className="section" key={flow.label}>
               <>
                 <div className="sparkline-row">
                   <div className="sparkline-header">{flow.label}</div>

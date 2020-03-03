@@ -4,11 +4,11 @@ import dynamic from 'next/dynamic';
 import Head from 'next/head';
 
 import { LoginContext } from '../contexts/Login';
-import { RegistrationBenefits } from '../components/marketing/registration';
+import { RegistrationBenefits } from '../components/atomic/molecules/RegistrationBenefits';
 
 const RegisterWidget = dynamic(
   () =>
-    import('../components/widgets/RegisterWidget').then(
+    import('../components/atomic/organism/RegisterWidget').then(
       mod => mod.RegisterWidget
     ),
   {

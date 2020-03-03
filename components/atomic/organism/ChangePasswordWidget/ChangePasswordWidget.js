@@ -1,16 +1,17 @@
+/* eslint-disable react/jsx-wrap-multilines */
 import React, { useState, useContext } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import { Icon } from '@blueprintjs/core';
 import zxcvbn from 'zxcvbn';
 
-import { colors, PRIMARY_GREEN } from '../../../constants/styles/colors';
-import { LoginContext } from '../../../contexts/Login';
-import { login } from '../../../services/login/login';
-import { SimpleFormGroup } from '../../SimpleFormGroup';
-import { SimpleTextInput } from '../../SimpleTextInput';
+import { colors, PRIMARY_GREEN } from '../../../../constants/styles/colors';
+import { LoginContext } from '../../../../contexts/Login';
+import { login } from '../../../../services/login/login';
+import { SimpleFormGroup } from '../../../SimpleFormGroup';
+import { SimpleTextInput } from '../../../SimpleTextInput';
 import { PasswordStrength } from '../RegisterWidget/PasswordStrength';
-import { SimpleButton } from '../../atomic/molecules/SimpleButton';
+import { SimpleButton } from '../../molecules/SimpleButton';
 
 export const ChangePasswordWidget = () => {
   const router = useRouter();
@@ -76,7 +77,8 @@ export const ChangePasswordWidget = () => {
               <SimpleFormGroup
                 label={
                   <div className="input-title">
-                    Email <span className="mandatory-field">*</span>
+                    Email
+                    <span className="mandatory-field">*</span>
                   </div>
                 }
                 labelFor="registration-email"
@@ -89,7 +91,8 @@ export const ChangePasswordWidget = () => {
               <SimpleFormGroup
                 label={
                   <div className="input-title">
-                    Password <span className="mandatory-field">*</span>
+                    Password
+                    <span className="mandatory-field">*</span>
                   </div>
                 }
                 labelFor="registration-password"

@@ -1,5 +1,5 @@
-import { DATA_WINDOWS } from '../../constants/filters';
-import { CURRENCIES } from '../../constants/tokens';
+import { DATA_WINDOWS } from '../../../constants/filters';
+import { CURRENCIES } from '../../../constants/tokens';
 
 const getSparklineWindow = (tokenData, dataWindow, flow) => {
   const { hours, days } = tokenData;

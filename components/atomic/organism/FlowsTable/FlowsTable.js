@@ -16,8 +16,8 @@ import {
 } from '../../../../constants/exchanges';
 
 import { NextButton, PreviousButton } from './renderers';
-import { getIoTableData } from '../../../../data-transformers/tables';
-import { filterCaseInsensitive } from '../../../tables/helpers';
+import { getIoTableData } from '../../../../utils/data-transformers/tables';
+import { filterCaseInsensitive } from '../../../../utils';
 import { makeColumns } from './helpers';
 import { colors } from '../../../../constants/styles/colors';
 import { COOKIES } from '../../../../constants/cookies';
