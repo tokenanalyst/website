@@ -8,9 +8,11 @@ import timePeriods from './timePeriods';
 const fetchCandles = async (pair, timeFrame, start, end, limit, opts) => {
   const { status, options, makeCandlesUrlFn, requestOptions } = opts;
 
-  console.warn(
-    `${status.exchange.name} fetchCandles(${pair}, ${timeFrame}, ${start}, ${end}, ${limit})`
-  );
+  if (process.env.NODE_ENV === 'development') {
+    console.warn(
+      `${status.exchange.name} fetchCandles(${pair}, ${timeFrame}, ${start}, ${end}, ${limit})`
+    );
+  }
 
   // Set to max 1000, because Binance has the lowest limit among exchanges: 1000.
   // TO DO: add condition to set custom limit.
