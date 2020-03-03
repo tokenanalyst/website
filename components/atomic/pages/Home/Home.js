@@ -1,12 +1,14 @@
+/* eslint-disable react/jsx-curly-newline */
+
 import React from 'react';
 import Head from 'next/head';
 
-import { IoTable } from '../../../tables/IoTable';
+import { FlowsTable } from '../../organism/FlowsTable';
 import { DATA_WINDOWS, UNITS } from '../../../../constants/filters';
 import { TokenSnapshotWidget } from '../../../widgets/TokenSnapshotWidget';
 import { useApi } from '../../../../hooks';
 import { LoadingSpinner } from '../../atoms/LoadSpinner';
-import { filterTable } from '../../../tables/IoTable/helpers';
+import { filterTable } from '../../organism/FlowsTable/helpers';
 import { pricingButton } from '../../../../constants/styles/common-styled-jsx';
 import { Products } from './Products';
 import { ButtonMarketing } from '../../../ButtonMarketing';
@@ -39,13 +41,13 @@ export const Home = () => {
                     isExternal={false}
                     text="View Dashboard"
                     isActive={false}
-                    isLoading={false}
                     onClick={() =>
                       emitProductEvent(
                         'Top Dashboard Button',
                         'home-top-button-dashboard'
                       )
                     }
+                    isLoading={false}
                   />
                 </div>
                 <div className="top-button">
@@ -79,7 +81,7 @@ export const Home = () => {
             </div>
             <div className="table">
               {ioTableData ? (
-                <IoTable
+                <FlowsTable
                   data={filterTable(ioTableData)}
                   dataWindow={dataWindow}
                   units={units}

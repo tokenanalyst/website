@@ -1,8 +1,10 @@
+/* eslint-disable react/prop-types */
+// eslint-disable-next-line no-restricted-imports
 import '../table.css';
 import React from 'react';
 
 import { AmountCell, ChangeCell, ExchangeCell, HeaderCell } from '../renderers';
-import { getIoTableData } from '../../../../data-transformers/tables';
+import { getIoTableData } from '../../../../../data-transformers/tables';
 
 const TABLE_DATA = getIoTableData();
 const standardStyle = {

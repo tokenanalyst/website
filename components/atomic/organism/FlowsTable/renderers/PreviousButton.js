@@ -1,14 +1,27 @@
 import PropTypes from 'prop-types';
+import React from 'react';
 import { Icon } from '@blueprintjs/core';
 
 export const PreviousButton = ({ onClick, disabled }) => {
   return (
     <>
       <div className="container">
-        <div className="icon" onClick={disabled ? () => null : onClick}>
+        <div
+          role="button"
+          tabIndex={0}
+          className="icon"
+          onClick={disabled ? () => null : onClick}
+          onKeyDown={disabled ? () => null : onClick}
+        >
           <Icon icon="chevron-left" iconSize={18} />
         </div>
-        <div className="text" onClick={disabled ? () => null : onClick}>
+        <div
+          role="button"
+          tabIndex={0}
+          className="text"
+          onClick={disabled ? () => null : onClick}
+          onKeyDown={disabled ? () => null : onClick}
+        >
           PREVIOUS
         </div>
       </div>

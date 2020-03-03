@@ -7,24 +7,24 @@ import { useRouter } from 'next/router';
 import ReactGA from 'react-ga';
 
 import Cookies from 'js-cookie';
-import { LoginContext } from '../../../contexts/Login';
-import { ExchangeRegisterDialog } from '../../atomic/organism/ExchangeRegisterDialog';
+import { LoginContext } from '../../../../contexts/Login';
+import { ExchangeRegisterDialog } from '../ExchangeRegisterDialog';
 import {
   LOGGED_OUT_SUPPORTED_EXCHANGES,
   EXCHANGE_NAMES,
   EXCHANGE_DISPLAY_NAME,
-} from '../../../constants/exchanges';
+} from '../../../../constants/exchanges';
 
 import { NextButton, PreviousButton } from './renderers';
-import { getIoTableData } from '../../../data-transformers/tables';
-import { filterCaseInsensitive } from '../helpers';
+import { getIoTableData } from '../../../../data-transformers/tables';
+import { filterCaseInsensitive } from '../../../tables/helpers';
 import { makeColumns } from './helpers';
-import { colors } from '../../../constants/styles/colors';
-import { COOKIES } from '../../../constants/cookies';
+import { colors } from '../../../../constants/styles/colors';
+import { COOKIES } from '../../../../constants/cookies';
 
 const TABLE_DATA = getIoTableData();
 
-export const IoTable = ({
+export const FlowsTable = ({
   data,
   dataWindow,
   units,
@@ -179,7 +179,7 @@ export const IoTable = ({
   );
 };
 
-IoTable.propTypes = {
+FlowsTable.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   dataWindow: PropTypes.string.isRequired,
   units: PropTypes.string.isRequired,
@@ -189,7 +189,7 @@ IoTable.propTypes = {
   compactLayout: PropTypes.bool,
 };
 
-IoTable.defaultProps = {
+FlowsTable.defaultProps = {
   pageSize: 25,
   showPagination: true,
   showPageSizeOptions: true,
