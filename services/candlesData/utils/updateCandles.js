@@ -45,11 +45,9 @@ const updateCandles = (update, candlesData, formatFn) => {
     const [i, isNew] = isLastNthDataPoint(2);
 
     if (isNew) {
-      // console.log(`${pair} => NEW point`)
       candles.unshift(entry);
       meta = { ...meta, isNewCandle: true, isUpdateCandle: false };
     } else {
-      // console.log(`${pair} => UPDATE point ${i}`)
       candles[candles.length - i] = entry;
       let isUpdateCandle = false;
       if (i === 0) {
