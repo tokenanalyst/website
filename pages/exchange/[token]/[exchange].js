@@ -3,18 +3,30 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Cookies from 'js-cookie';
 
-import { ExchangeFlowsPage } from '../../../components/atomic/pages/ExchangeFlows';
 import { COOKIES } from '../../../constants/cookies';
 import { tokensDb } from '../../../services/tokensDb';
 import { LoginContext } from '../../../contexts/Login';
 import { DelayedExchangeRegisterDialog } from '../../../components/atomic/organism/DelayedExchangeRegisterDialog';
+import { ExchangeFlowsPage } from '../../../components/atomic/pages/ExchangeFlows';
 import { isLoginRequiredToAccessEntity } from '../../../utils';
+import { LoadingSpinner } from '../../../components/atomic/atoms/LoadSpinner';
 
 const Exchange = () => {
   const router = useRouter();
   const loginCtx = useContext(LoginContext);
   const { token, exchange } = router.query;
-  const [isTVSupported, setIsTVSupported] = useState(false);
+  const supportedExchanges = tokensDb.getExchangesList();
+  const [
+    isTokenSupportedForExchange,
+    setIsTokenSupportedForExchange,
+  ] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (token && exchange && supportedExchanges) {
+      setIsLoading(false);
+    }
+  }, [exchange, supportedExchanges, token]);
 
   useEffect(() => {
     if (
@@ -29,7 +41,7 @@ const Exchange = () => {
       exchange
     );
     if (exchangeSupport) {
-      setIsTVSupported(true);
+      setIsTokenSupportedForExchange(true);
     }
   }, [token, exchange, loginCtx.isLoggedIn, router]);
 
@@ -65,11 +77,22 @@ const Exchange = () => {
       <div className="container">
         {!Cookies.get(COOKIES.hasSeenRegisterDialog) &&
           !loginCtx.isLoggedIn && <DelayedExchangeRegisterDialog />}
-        {token && exchange && isTVSupported ? (
+
+        {isLoading && (
+          <div className="loading-spinner">
+            <LoadingSpinner />
+          </div>
+        )}
+
+        {token &&
+        exchange &&
+        supportedExchanges &&
+        isTokenSupportedForExchange ? (
           <>
             <ExchangeFlowsPage
               selectedExchange={exchange}
               selectedToken={token}
+              supportedExchanges={supportedExchanges}
               tokensDb={tokensDb}
               onChangeToken={pushToPage}
             />
@@ -86,6 +109,13 @@ const Exchange = () => {
           .container {
             margin-right: 10px;
             margin-left: 10px;
+            height: calc(100vh - 130px);
+          }
+          .loading-spinner {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
           }
         `}
       </style>

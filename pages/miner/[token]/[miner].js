@@ -85,7 +85,6 @@ const Miner = () => {
               selectedExchange={BINANCE}
               selectedToken={token}
               supportedMiners={supportedMiners}
-              tokensDb={tokensDb}
               onChangeToken={pushToPage}
             />
           </>
