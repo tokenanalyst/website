@@ -13,12 +13,20 @@ export const RegistrationBenefits = () => {
         <div className="title">Immediate free access to:</div>
         {BENEFITS.map(benefit => (
           <div className="benefit" key={benefit}>
-            <img src="/static/svg/marketing/checkbox.svg" height="30px" />
+            <img
+              src="/static/svg/marketing/checkbox.svg"
+              height="30px"
+              alt="checkbox"
+            />
             <div className="benefit-text">{benefit}</div>
           </div>
         ))}
 
-        <img src="/static/svg/marketing/man-with-chart.svg" className="image" />
+        <img
+          src="/static/svg/marketing/man-with-chart.svg"
+          className="image"
+          alt="man-with-chart"
+        />
       </div>
       <style jsx>
         {`
