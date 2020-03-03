@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useRef, useEffect } from 'react';
 import isEqual from 'lodash/isEqual';
-import cloneDeep from 'lodash/cloneDeep';
 import { makeTVSymbols } from '../../../../utils/makeTVSymbols';
 
 import { ProChartContainer } from '../../organism/ProChartContainer';
@@ -10,6 +9,7 @@ import { MINER_STUDIES, TV_OPTIONS } from './const';
 import {
   setLocalMetricsConfig,
   getLocalMetricsConfig,
+  updateStudies,
 } from '../../../../utils';
 import { KaikoLogo } from '../../atoms/KaikoLogo';
 import { useSupportedMetrics, useActivateStudies } from '../../../../hooks';
@@ -34,6 +34,8 @@ export const MinerStatsPage = ({
   supportedMiners,
   onChangeToken,
 }) => {
+  const tvInstance = useRef(null);
+
   const {
     tokens: {
       group: {
@@ -41,17 +43,18 @@ export const MinerStatsPage = ({
       },
     },
   } = tokensDb;
+
   const localStorageParams = {
     defaultConfig: MINER_STUDIES,
     storageKey: LOCAL_STORAGE_KEY,
   };
+
   const exchangeSupport = tokensDb.getTokenSupportForExchange(
     selectedToken,
     selectedExchange
   );
-  const TVSymbols = makeTVSymbols(selectedToken, exchangeSupport);
 
-  const tvInstance = useRef(null);
+  const TVSymbols = makeTVSymbols(selectedToken, exchangeSupport);
 
   const [tvStudies, setTvStudies, isMetricSupportReady] = useSupportedMetrics(
     selectedToken,
@@ -67,6 +70,7 @@ export const MinerStatsPage = ({
   );
 
   const btcDetails = tokensDb.getTokenDetails(BTC);
+
   const ethDetails = tokensDb.getTokenDetails(ETH);
 
   const tokensList = [{ BTC: btcDetails, ETH: ethDetails }, {}, {}];
@@ -76,37 +80,11 @@ export const MinerStatsPage = ({
   }, [selectedToken]);
 
   const onSelectStudy = study => {
-    const updateStudy = studies => {
-      const updatedStudies = cloneDeep(studies);
-
-      if (tvInstance.current) {
-        try {
-          if (
-            updatedStudies[study].isActive &&
-            updatedStudies[study].entityId
-          ) {
-            tvInstance.current
-              .chart()
-              .removeEntity(updatedStudies[study].entityId);
-            updatedStudies[study].entityId = null;
-          } else {
-            updatedStudies[
-              study
-            ].entityId = tvInstance.current
-              .chart()
-              .createStudy(updatedStudies[study].tvIndicatorName, false, true);
-          }
-          updatedStudies[study].isActive = !updatedStudies[study].isActive;
-        } catch (err) {
-          // eslint-disable-next-line no-console
-          console.log('Study not ready.');
-        }
-      }
-
+    setTvStudies(studies => {
+      const updatedStudies = updateStudies(study, studies, tvInstance.current);
       setLocalMetricsConfig(selectedToken, updatedStudies, LOCAL_STORAGE_KEY);
       return updatedStudies;
-    };
-    setTvStudies(studies => updateStudy(studies));
+    });
   };
 
   const onChartRender = async tvWidget => {

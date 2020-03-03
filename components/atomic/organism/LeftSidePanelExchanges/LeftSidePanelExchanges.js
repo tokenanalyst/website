@@ -25,20 +25,8 @@ export const LeftSidePanelExchanges = ({
   selectedToken,
   supportedExchanges,
   studies,
-  tokensDb,
+  tokensList,
 }) => {
-  const {
-    tokens: {
-      groupName: { NATIVE, STABLE, ERC20 },
-    },
-  } = tokensDb;
-
-  const nativeTokens = tokensDb.getTokensList(NATIVE, selectedExchange);
-  const stableTokens = tokensDb.getTokensList(STABLE, selectedExchange);
-  const erc20Tokens = tokensDb.getTokensList(ERC20, selectedExchange);
-
-  const tokensList = [nativeTokens, stableTokens, erc20Tokens];
-
   return (
     <div className="container">
       <div className="cat">
@@ -155,9 +143,7 @@ LeftSidePanelExchanges.propTypes = {
   onSelectStudy: PropTypes.func.isRequired,
   selectedExchange: PropTypes.string.isRequired,
   selectedToken: PropTypes.string.isRequired,
-  tokensDb: PropTypes.objectOf(
-    PropTypes.oneOfType([PropTypes.func, PropTypes.object])
-  ).isRequired,
+  tokensList: PropTypes.arrayOf(PropTypes.object).isRequired,
   supportedExchanges: PropTypes.objectOf(PropTypes.string).isRequired,
   studies: PropTypes.objectOf(PropTypes.object).isRequired,
 };

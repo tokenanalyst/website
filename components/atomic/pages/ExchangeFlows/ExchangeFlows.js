@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types';
-import React, { useRef, useState, useEffect } from 'react';
-import moment from 'moment';
+import React, { useRef, useEffect } from 'react';
 import isEqual from 'lodash/isEqual';
-import cloneDeep from 'lodash/cloneDeep';
 import { makeTVSymbols } from '../../../../utils/makeTVSymbols';
 
 import { ProChartContainer } from '../../organism/ProChartContainer';
@@ -11,11 +9,12 @@ import { EXCHANGE_STUDIES, TV_OPTIONS } from './const';
 import {
   setLocalMetricsConfig,
   getLocalMetricsConfig,
+  updateStudies,
 } from '../../../../utils';
 import { APP_STORAGE_KEYS } from '../../../../constants';
 import { KaikoLogo } from '../../atoms/KaikoLogo';
-
-const TV_INITIAL_DATA_RANGE = 90; // 90 days
+import { useSupportedMetrics, useActivateStudies } from '../../../../hooks';
+import { tokensDb } from '../../../../services/tokensDb';
 
 const LOCAL_STORAGE_KEY = APP_STORAGE_KEYS.exchangeFlows;
 
@@ -32,15 +31,20 @@ export const ExchangeFlowsPage = ({
   selectedExchange,
   selectedToken,
   supportedExchanges,
-  tokensDb,
   onChangeToken,
 }) => {
   const tvInstance = useRef(null);
-  const [tvStudies, setTvStudies] = useState(() =>
-    getLocalMetricsConfig(selectedToken, EXCHANGE_STUDIES, LOCAL_STORAGE_KEY)
-  );
-  const [isChartReady, setIsChartReady] = useState(false);
-  const [isMetricSupportReady, setIsMetricSupportReady] = useState(false);
+
+  const {
+    tokens: {
+      groupName: { NATIVE, STABLE, ERC20 },
+    },
+  } = tokensDb;
+
+  const localStorageParams = {
+    defaultConfig: EXCHANGE_STUDIES,
+    storageKey: LOCAL_STORAGE_KEY,
+  };
 
   const exchangeSupport = tokensDb.getTokenSupportForExchange(
     selectedToken,
@@ -49,108 +53,35 @@ export const ExchangeFlowsPage = ({
 
   const TVSymbols = makeTVSymbols(selectedToken, exchangeSupport);
 
+  const [tvStudies, setTvStudies, isMetricSupportReady] = useSupportedMetrics(
+    selectedToken,
+    selectedExchange,
+    localStorageParams
+  );
+
+  const [setIsChartReady] = useActivateStudies(
+    tvStudies,
+    tvInstance,
+    setTvStudies,
+    isMetricSupportReady
+  );
+
+  const nativeTokens = tokensDb.getTokensList(NATIVE, selectedExchange);
+  const stableTokens = tokensDb.getTokensList(STABLE, selectedExchange);
+  const erc20Tokens = tokensDb.getTokensList(ERC20, selectedExchange);
+
+  const tokensList = [nativeTokens, stableTokens, erc20Tokens];
+
   useEffect(() => {
     getLocalMetricsConfig(selectedToken, EXCHANGE_STUDIES, LOCAL_STORAGE_KEY);
   }, [selectedToken]);
 
-  useEffect(() => {
-    const getSupportedMetrics = async () => {
-      const supported = await tokensDb.getMetricSupportForEntity();
-
-      setTvStudies(studies => {
-        const updatedStudies = Object.keys(studies).reduce((acc, study) => {
-          if (study === 'volume') {
-            return { ...acc, [study]: { ...studies[study] } };
-          }
-
-          const { taEndpoint } = studies[study];
-
-          let isSupported = false;
-
-          if (supported[taEndpoint][selectedToken.toLowerCase()]) {
-            isSupported = supported[taEndpoint][
-              selectedToken.toLowerCase()
-            ].includes(selectedExchange.toLowerCase());
-          }
-
-          return {
-            ...acc,
-            [study]: {
-              ...studies[study],
-              isSupported,
-            },
-          };
-        }, {});
-
-        setLocalMetricsConfig(selectedToken, updatedStudies, LOCAL_STORAGE_KEY);
-
-        return updatedStudies;
-      });
-    };
-    getSupportedMetrics();
-    setIsMetricSupportReady(true);
-  }, [selectedToken, tokensDb, selectedExchange]);
-
-  useEffect(() => {
-    const activateStudies = async () => {
-      const now = moment().unix();
-      const ninetyDaysAgo = moment()
-        .subtract(TV_INITIAL_DATA_RANGE, 'days')
-        .unix();
-      await tvInstance.current.chart().setVisibleRange({
-        from: ninetyDaysAgo,
-        to: now,
-      });
-
-      Object.keys(tvStudies).forEach(study => {
-        const { isActive, isSupported, tvIndicatorName } = tvStudies[study];
-        if (isActive && isSupported) {
-          tvStudies[study].entityId = tvInstance.current
-            .chart()
-            .createStudy(tvIndicatorName, false, true);
-        }
-      });
-      setTvStudies({ ...tvStudies });
-    };
-
-    if (isChartReady && isMetricSupportReady) {
-      activateStudies();
-      setIsChartReady(false);
-    }
-  }, [tvStudies, isChartReady, isMetricSupportReady]);
-
   const onSelectStudy = study => {
-    const updateStudy = studies => {
-      const updatedStudies = cloneDeep(studies);
-
-      if (tvInstance.current) {
-        try {
-          if (
-            updatedStudies[study].isActive &&
-            updatedStudies[study].entityId
-          ) {
-            tvInstance.current
-              .chart()
-              .removeEntity(updatedStudies[study].entityId);
-            updatedStudies[study].entityId = null;
-          } else {
-            updatedStudies[
-              study
-            ].entityId = tvInstance.current
-              .chart()
-              .createStudy(updatedStudies[study].tvIndicatorName, false, true);
-          }
-          updatedStudies[study].isActive = !updatedStudies[study].isActive;
-        } catch (err) {
-          // eslint-disable-next-line no-console
-          console.log('Study not ready.');
-        }
-      }
-
+    setTvStudies(studies => {
+      const updatedStudies = updateStudies(study, studies, tvInstance.current);
       setLocalMetricsConfig(selectedToken, updatedStudies, LOCAL_STORAGE_KEY);
       return updatedStudies;
-    };
-    setTvStudies(studies => updateStudy(studies));
+    });
   };
 
   const onChartRender = async tvWidget => {
@@ -167,7 +98,7 @@ export const ExchangeFlowsPage = ({
               selectedExchange={selectedExchange}
               selectedToken={selectedToken}
               studies={tvStudies}
-              tokensDb={tokensDb}
+              tokensList={tokensList}
               supportedExchanges={supportedExchanges}
               onChangeToken={onChangeToken}
               onSelectStudy={onSelectStudy}
@@ -254,7 +185,4 @@ ExchangeFlowsPage.propTypes = {
   selectedExchange: PropTypes.string.isRequired,
   selectedToken: PropTypes.string.isRequired,
   supportedExchanges: PropTypes.objectOf(PropTypes.string).isRequired,
-  tokensDb: PropTypes.objectOf(
-    PropTypes.oneOfType([PropTypes.func, PropTypes.object])
-  ).isRequired,
 };
