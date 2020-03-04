@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import numeral from 'numeral';
 import PropTypes from 'prop-types';
-import { Skeleton } from '../../Skeleton';
 
-import { EXCHANGE_NAMES } from '../../../constants/exchanges';
-import { colors } from '../../../constants/styles/colors';
-import { useApi } from '../../../hooks';
-import { getExchangeMetrics } from '../../../utils/data-transformers/widgets/getExchangeMetrics';
-import { DATA_WINDOWS } from '../../../constants/filters';
-import { EntityLogo } from '../../atomic/molecules/EntityLogo';
+import { Skeleton } from '../../../Skeleton';
+import { EXCHANGE_NAMES } from '../../../../constants/exchanges';
+import { colors } from '../../../../constants/styles/colors';
+import { useApi } from '../../../../hooks';
+import { getExchangeMetrics } from '../../../../utils/data-transformers/widgets/getExchangeMetrics';
+import { DATA_WINDOWS } from '../../../../constants/filters';
+import { EntityLogo } from '../../molecules/EntityLogo';
 
 const setValueChangeStatus = (value, status) => {
   if (value < 0) {
@@ -22,9 +22,8 @@ const setValueChangeStatus = (value, status) => {
   return status.neutral;
 };
 
-export const ExchangeMetricsWidget = ({ token, exchange }) => {
+const ExchangeMetricsWidgetComponent = ({ token, exchange }) => {
   const [overallMetrics, setOverallMetrics] = useState(null);
-
   const apiResponse = useApi(
     `/api/exchange-flows?token=${token}&exchange=${exchange}&timeWindow=1d`,
     [token, exchange]
@@ -263,7 +262,9 @@ export const ExchangeMetricsWidget = ({ token, exchange }) => {
   );
 };
 
-ExchangeMetricsWidget.propTypes = {
+ExchangeMetricsWidgetComponent.propTypes = {
   token: PropTypes.string.isRequired,
   exchange: PropTypes.string.isRequired,
 };
+
+export const ExchangeMetricsWidget = React.memo(ExchangeMetricsWidgetComponent);

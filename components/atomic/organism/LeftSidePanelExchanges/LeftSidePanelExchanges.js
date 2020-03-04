@@ -4,7 +4,7 @@ import ReactGA from 'react-ga';
 
 import { TokenSelect } from '../TokenSelect/TokenSelect';
 import { EntityList } from '../../molecules/EntityList';
-import { ExchangeMetricsWidget } from '../../../widgets/ProExchangeMetricsWidget';
+import { ExchangeMetricsWidget } from '../ExchangeMetricsWidget';
 import { LinkTelegram } from '../../molecules/LinkTelegram/LinkTelegram';
 import { SimpleBox } from '../../molecules/SimpleBox';
 import { StudiesList } from '../../molecules/StudiesList/StudiesList';
