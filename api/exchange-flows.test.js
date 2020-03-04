@@ -1,11 +1,11 @@
 /* global mocksClear */
 import url from 'url';
+import TA from 'ta-api-node';
 import exchangeMetrics from './exchange-flows';
 import { API_ERROR_MSG } from '../constants/apiErrors';
 import getUserAuth from './auth/getUserAuth';
-import TA from './utils/ta-api-node/ta';
 
-jest.mock('./utils/ta-api-node/ta');
+jest.mock('ta-api-node');
 jest.mock('./auth/getUserAuth');
 jest.mock('url');
 
