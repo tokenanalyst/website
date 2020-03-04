@@ -1,9 +1,10 @@
 /* eslint-disable camelcase */
 const url = require('url');
+const TA = require('ta-api-node');
+
 const getUserAuth = require('./auth/getUserAuth');
 const makeUnixtimeLimit = require('./utils/makeUnixtimeLimit');
 const filterSeriesByTime = require('./utils/filterSeriesByTime');
-const TA = require('../services/ta-api-node/ta');
 const formatApiError = require('./utils/formatApiError');
 const { API_METRICS } = require('../constants/apiMetrics');
 const { NATIVE_TOKENS } = require('../constants/tokens');
@@ -56,7 +57,7 @@ module.exports = async (req, res) => {
     [API_METRICS.Sopr]: privateApi.tokenSoprWindowHistorical,
     [API_METRICS.NewAddress]: privateApi.tokenNewAddressWindowHistorical,
     [API_METRICS.AddressBalances]:
-      privateApi.tokenAddressBalancesWindowHistorical,
+      privateApi.tokenAddressBalanceGroupWindowHistorical,
     [API_METRICS.ExchangeBalance]: privateApi.exchangeBalanceWindowHistorical,
     [API_METRICS.MinerHashrate]: privateApi.tokenMinerHashrateWindowHistorical,
     [API_METRICS.MinerRewards]: privateApi.tokenMinerRewardsWindowHistorical,

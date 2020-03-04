@@ -50,6 +50,7 @@
     "react-table": "^6.10.0",
     "react-tooltip": "^3.11.1",
     "rxjs": "^6.5.3",
+    "ta-api-node": "^0.1.7",
     "updeep": "^1.2.0",
     "ws": "^7.1.2",
     "zxcvbn": "^4.4.2"

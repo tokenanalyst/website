@@ -1,4 +1,4 @@
-const TA = require('../services/ta-api-node/ta');
+const TA = require('ta-api-node');
 
 const setResponseCache = require('./utils/setResponseCache');
 const formatApiError = require('./utils/formatApiError');
@@ -9,12 +9,16 @@ module.exports = async (_, res) => {
 
   const publicApi = TA({
     apiUrl: PUBLIC_API_URL,
+    extend: {
+      last: 'last',
+    },
   });
 
   let exchangeFlows;
 
   try {
-    exchangeFlows = await publicApi.exchangeFlowsAllTokensV5({
+    exchangeFlows = await publicApi.last({
+      job: 'exchange_flows_all_tokens_v5',
       format: FORMAT,
     });
   } catch (err) {
