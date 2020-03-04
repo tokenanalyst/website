@@ -20,7 +20,8 @@ export const useApi = (url, dependencies) => {
 
       getApiResult();
     }
-  }, [dependencies, url]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, dependencies || []);
 
   return data;
 };
