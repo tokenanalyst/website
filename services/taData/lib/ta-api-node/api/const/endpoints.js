@@ -24,7 +24,7 @@ module.exports = {
         `last?job=${token}_miner_rewards_30day_v5&`,
     },
     serverless: {
-      exchange_metrics: () => 'exchange-metrics',
+      exchange_flows: () => 'exchange-flows',
       single_metric: () => 'single-metric',
     },
   },

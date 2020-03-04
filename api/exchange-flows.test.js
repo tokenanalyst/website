@@ -1,14 +1,12 @@
+/* global mocksClear */
 import url from 'url';
-import exchangeMetrics from './exchange-metrics';
+import exchangeMetrics from './exchange-flows';
 import { API_ERROR_MSG } from '../constants/apiErrors';
-import isAuthorised from './auth/isAuthorised';
+import getUserAuth from './auth/getUserAuth';
 import TA from './utils/ta-api-node/ta';
-import { ETH as ETHUsdPrice } from './__fixtures__/token_price_usd_window_historical';
-import { mockExchangeFlowsAllTokens } from './__fixtures__/exchange_flows_all_tokens_v5';
-import { ETH as ETHFlows } from './__fixtures__/exchange_flow_window_historical';
 
 jest.mock('./utils/ta-api-node/ta');
-jest.mock('./auth/isAuthorised');
+jest.mock('./auth/getUserAuth');
 jest.mock('url');
 
 const tokenPriceUsdWindowHistorical = jest.fn();
@@ -38,7 +36,7 @@ mockResponse.status = jest.fn().mockReturnValue(mockResponse);
 mockResponse.json = jest.fn().mockReturnValue(mockResponse);
 mockResponse.send = data => data;
 
-describe('exchange-metrics api', () => {
+describe('exchange-flows api', () => {
   beforeEach(() => {
     mocksClear([
       url.parse,
@@ -59,7 +57,7 @@ describe('exchange-metrics api', () => {
     const expectedResponse = { message: API_ERROR_MSG.PARAMS_MISSING };
     const response = await exchangeMetrics(mockRequest, mockResponse);
     expect(url.parse).toHaveBeenCalledWith(mockRequest.url, true);
-    expect(isAuthorised).not.toHaveBeenCalled();
+    expect(getUserAuth).not.toHaveBeenCalled();
     expect(response).toEqual(expectedResponse);
   });
 
@@ -76,7 +74,7 @@ describe('exchange-metrics api', () => {
     await exchangeMetrics(mockRequest, mockResponse);
     expect(url.parse).toHaveBeenCalledWith(mockRequest.url, true);
     expect(mockResponse.status).toHaveBeenCalledWith(400);
-    expect(isAuthorised).toHaveBeenCalled();
-    expect(isAuthorised).toHaveBeenCalledWith(mockRequest.cookies.apiKey);
+    expect(getUserAuth).toHaveBeenCalled();
+    expect(getUserAuth).toHaveBeenCalledWith(mockRequest.cookies.apiKey);
   });
 });

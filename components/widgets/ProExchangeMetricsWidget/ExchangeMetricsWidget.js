@@ -26,7 +26,7 @@ export const ExchangeMetricsWidget = ({ token, exchange }) => {
   const [overallMetrics, setOverallMetrics] = useState(null);
 
   const apiResponse = useApi(
-    `/api/exchange-metrics?token=${token}&exchange=${exchange}&timeWindow=1d`,
+    `/api/exchange-flows?token=${token}&exchange=${exchange}&timeWindow=1d`,
     [token, exchange]
   );
 

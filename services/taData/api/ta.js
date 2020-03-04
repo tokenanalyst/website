@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import pick from 'lodash/pick';
 import merge from 'lodash/merge';
 import { map, catchError } from 'rxjs/operators';
@@ -39,7 +40,7 @@ const ta = (function ta() {
       }
 
       const flowsApiCall = async () =>
-        taApi.exchangeMetrics({
+        taApi.exchangeFlows({
           token: symbol.toUpperCase(),
           exchange: exchange.toLowerCase(),
           timeWindow: window,
@@ -47,7 +48,7 @@ const ta = (function ta() {
           to_date: endDate,
         });
 
-      const flowsData = async () =>
+      const flowsDataPromise = async () =>
         fetchDataFromApi$(flowsApiCall)
           .pipe(
             map(response => response.data.ta_response),
@@ -113,7 +114,7 @@ const ta = (function ta() {
           )
           .toPromise();
 
-      return flowsData();
+      return flowsDataPromise();
     },
 
     fetchSingleMetricProxy: async (

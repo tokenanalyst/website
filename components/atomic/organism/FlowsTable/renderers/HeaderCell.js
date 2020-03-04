@@ -6,5 +6,5 @@ export const HeaderCell = ({ value }) => (
 );
 
 HeaderCell.propTypes = {
-  value: PropTypes.number.isRequired,
+  value: PropTypes.string.isRequired,
 };

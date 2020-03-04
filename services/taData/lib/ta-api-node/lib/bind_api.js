@@ -37,8 +37,8 @@ module.exports = () => {
   );
 
   // Serverless endpoint
-  ta.exchangeMetrics = compose(
-    fetchDataFromApi(ENDPOINTS.serverless.exchange_metrics)
+  ta.exchangeFlows = compose(
+    fetchDataFromApi(ENDPOINTS.serverless.exchange_flows)
   );
 
   ta.singleMetric = compose(

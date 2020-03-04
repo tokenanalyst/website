@@ -1,8 +1,9 @@
+/* eslint-disable camelcase */
 const url = require('url');
+const TA = require('ta-api-node');
 
 const { API_ERROR_MSG } = require('../constants/apiErrors');
 const getUserAuth = require('./auth/getUserAuth');
-const TA = require('./utils/ta-api-node/ta');
 const makeNetFlowSeries = require('./utils/makeNetFlowSeries');
 const makeUnixtimeLimit = require('./utils/makeUnixtimeLimit');
 const filterSeriesByTime = require('./utils/filterSeriesByTime');
@@ -30,6 +31,9 @@ module.exports = async (req, res) => {
 
   const publicApi = TA({
     apiUrl: PUBLIC_API_URL,
+    extend: {
+      last: 'last',
+    },
   });
 
   const baseParams = {
@@ -43,7 +47,8 @@ module.exports = async (req, res) => {
     makeCallParams(baseParams, null, from_date, to_date)
   );
 
-  const exchangeFlowsAllTokensRequest = publicApi.exchangeFlowsAllTokens({
+  const exchangeFlowsAllTokensRequest = publicApi.last({
+    job: 'exchange_flows_all_tokens_v5',
     format: FORMAT,
   });
 
