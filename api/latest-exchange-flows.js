@@ -1,10 +1,11 @@
+/* eslint-disable camelcase */
 const url = require('url');
+const TA = require('ta-api-node');
 
 const { API_ERROR_MSG } = require('../constants/apiErrors');
 const { DATA_WINDOWS } = require('../constants/filters');
 const formatApiError = require('./utils/formatApiError');
 const setResponseCache = require('./utils/setResponseCache');
-const TA = require('../services/ta-api-node/ta');
 
 module.exports = async (req, res) => {
   const urlParts = url.parse(req.url, true);
@@ -19,10 +20,17 @@ module.exports = async (req, res) => {
 
   const publicApi = TA({
     apiUrl: PUBLIC_API_URL,
+    extend: {
+      last: 'last',
+    },
   });
 
   const latestPriceRequests = tokens.map(token =>
-    publicApi.latestPriceV5({ token, format: FORMAT })
+    publicApi.last({
+      token,
+      job: `${token}_latest_price_v5`,
+      format: FORMAT,
+    })
   );
 
   const latestPriceResponses = await Promise.all(latestPriceRequests).catch(
@@ -32,17 +40,20 @@ module.exports = async (req, res) => {
     }
   );
 
-  const exchangeFlows30DayAllTokensRequest = publicApi.exchangeFlowsAllTokens30Day(
-    { format: FORMAT }
-  );
+  const exchangeFlows30DayAllTokensRequest = publicApi.last({
+    job: 'exchange_flows_all_tokens_30day_v5',
+    format: FORMAT,
+  });
 
-  const allExchangeFlowsAllTokensRequest = publicApi.allExchangeFlowsAllTokensV5(
-    { format: FORMAT }
-  );
+  const allExchangeFlowsAllTokensRequest = publicApi.last({
+    job: 'all_exchange_flows_all_tokens_v5',
+    format: FORMAT,
+  });
 
-  const allExchangeFlows24hAllTokensRequest = publicApi.exchangeFlowsAllTokens48hV5(
-    { format: FORMAT }
-  );
+  const allExchangeFlows24hAllTokensRequest = publicApi.last({
+    job: 'exchange_flows_all_tokens_48h_v5',
+    format: FORMAT,
+  });
 
   const [
     exchangeFlows30DayAllTokensResponse,
@@ -109,7 +120,7 @@ module.exports = async (req, res) => {
           }
           return {
             ...cur,
-            [key]: isNaN(data[key]) ? 0 : Number(data[key]),
+            [key]: Number.isNaN(data[key]) ? 0 : Number(data[key]),
           };
         }, {});
       };
