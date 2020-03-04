@@ -20,7 +20,7 @@ const ProChart = dynamic(() => import('../ProChart').then(mod => mod.default), {
 
 const taDataArgs =
   process.env.NODE_ENV !== 'development'
-    ? {}
+    ? { apiUrl: '/api' }
     : { apiUrl: 'http://localhost:3000/api' };
 
 export const ProChartContainer = ({
