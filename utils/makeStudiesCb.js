@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import moment from 'moment';
 import { BTC_STUDIES, BTC_SYMBOLS } from './studies/btc';
 import { ETH_STUDIES, ETH_SYMBOLS } from './studies/eth';
@@ -77,7 +78,7 @@ const metricsStudiesSymbols = exchangeName =>
   );
 
 const minerStudiesData = (ta, TAsymbol, minerName) =>
-  [...MINER_STUDIES].reduce(
+  MINER_STUDIES.reduce(
     (acc, curr) => ({
       ...acc,
       [curr.symbol]: async (from, to, resolution) => {
@@ -117,7 +118,7 @@ const minerStudiesData = (ta, TAsymbol, minerName) =>
   );
 
 const minerStudiesSymbols = exchangeName =>
-  [...MINER_SYMBOLS].reduce(
+  MINER_SYMBOLS.reduce(
     (acc, curr) => ({
       ...acc,
       [curr.symbol]: () => {
@@ -148,22 +149,18 @@ export const makeStudiesCb = (ta, exchangeName, minerName, TAsymbol) => ({
   getData: {
     ...metricsStudiesData(ta, TAsymbol, exchangeName),
     ...minerStudiesData(ta, TAsymbol, minerName),
-    '#FLOWS': async (from, to, resolution) => {
+    '#MINER_FLOWS': async (from, to, resolution) => {
       if (process.env.NODE_ENV === 'development') {
         console.log(
           `Requesting bars from ${formatDate(from * 1000)} to ${formatDate(
             to * 1000
-          )} for #FLOWS`
+          )} for #MINER_FLOWS`
         );
       }
 
-      const flow = await ta.fetchFromTAProxy(
-        exchangeName,
-        TAsymbol,
-        resolution,
-        from * 1000,
-        to * 1000
-      );
+      const flow = await ta
+        .flowsFor('miner')
+        .fetch(minerName, TAsymbol, resolution, from * 1000, to * 1000);
 
       if (!flow.length) {
         return [];
@@ -173,18 +170,45 @@ export const makeStudiesCb = (ta, exchangeName, minerName, TAsymbol) => ({
         console.log(
           `Received bars from ${formatDate(flow[0].time)} to ${formatDate(
             flow[flow.length - 1].time
-          )} for #FLOWS`
+          )} for #MINER_FLOWS`
         );
       }
 
       return flow;
     },
-    '#BALANCES': async (from, to, resolution) => {
+    '#EXCHANGE_FLOWS': async (from, to, resolution) => {
       if (process.env.NODE_ENV === 'development') {
         console.log(
           `Requesting bars from ${formatDate(from * 1000)} to ${formatDate(
             to * 1000
-          )} for #BALANCES`
+          )} for #EXCHANGE_FLOWS`
+        );
+      }
+
+      const flow = await ta
+        .flowsFor('exchange')
+        .fetch(exchangeName, TAsymbol, resolution, from * 1000, to * 1000);
+
+      if (!flow.length) {
+        return [];
+      }
+
+      if (process.env.NODE_ENV === 'development') {
+        console.log(
+          `Received bars from ${formatDate(flow[0].time)} to ${formatDate(
+            flow[flow.length - 1].time
+          )} for #EXCHANGE_FLOWS`
+        );
+      }
+
+      return flow;
+    },
+    '#EXCHANGE_BALANCES': async (from, to, resolution) => {
+      if (process.env.NODE_ENV === 'development') {
+        console.log(
+          `Requesting bars from ${formatDate(from * 1000)} to ${formatDate(
+            to * 1000
+          )} for #EXCHANGE_BALANCES`
         );
       }
 
@@ -206,7 +230,7 @@ export const makeStudiesCb = (ta, exchangeName, minerName, TAsymbol) => ({
         console.log(
           `Received bars from ${formatDate(data[0].time)} to ${formatDate(
             data[data.length - 1].time
-          )} for #BALANCES`
+          )} for #EXCHANGE_BALANCES`
         );
       }
 
@@ -216,18 +240,18 @@ export const makeStudiesCb = (ta, exchangeName, minerName, TAsymbol) => ({
   getSymbol: {
     ...metricsStudiesSymbols(exchangeName),
     ...minerStudiesSymbols(exchangeName),
-    '#FLOWS': () => {
+    '#MINER_FLOWS': () => {
       const symbolStub = {
         data_status: 'streaming',
         description: '',
         exchange: exchangeName,
         has_intraday: false,
         minmov: 1,
-        name: '#FLOWS',
+        name: '#MINER_FLOWS',
         pricescale: 100000000,
         session: '24x7',
         supported_resolutions: ['60', '1D'],
-        ticker: '#FLOWS',
+        ticker: '#MINER_FLOWS',
         timezone: `${Intl.DateTimeFormat().resolvedOptions().timeZone}`,
         type: 'crypto',
         volume_precision: 1,
@@ -236,18 +260,38 @@ export const makeStudiesCb = (ta, exchangeName, minerName, TAsymbol) => ({
 
       return symbolStub;
     },
-    '#BALANCES': () => {
+    '#EXCHANGE_FLOWS': () => {
       const symbolStub = {
         data_status: 'streaming',
         description: '',
         exchange: exchangeName,
         has_intraday: false,
         minmov: 1,
-        name: '#BALANCES',
+        name: '#EXCHANGE_FLOWS',
         pricescale: 100000000,
         session: '24x7',
         supported_resolutions: ['60', '1D'],
-        ticker: '#BALANCES',
+        ticker: '#EXCHANGE_FLOWS',
+        timezone: `${Intl.DateTimeFormat().resolvedOptions().timeZone}`,
+        type: 'crypto',
+        volume_precision: 1,
+        has_empty_bars: true,
+      };
+
+      return symbolStub;
+    },
+    '#EXCHANGE_BALANCES': () => {
+      const symbolStub = {
+        data_status: 'streaming',
+        description: '',
+        exchange: exchangeName,
+        has_intraday: false,
+        minmov: 1,
+        name: '#EXCHANGE_BALANCES',
+        pricescale: 100000000,
+        session: '24x7',
+        supported_resolutions: ['60', '1D'],
+        ticker: '#EXCHANGE_BALANCES',
         timezone: `${Intl.DateTimeFormat().resolvedOptions().timeZone}`,
         type: 'crypto',
         volume_precision: 1,

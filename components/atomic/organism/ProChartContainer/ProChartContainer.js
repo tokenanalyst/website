@@ -9,7 +9,7 @@ import {
   TRADINVIEW_DEFAULT_OPTIONS,
   KAIKO_TIME_FRAMES,
   KAIKO,
-} from '../../pages/ExchangeFlows/const';
+} from '../../pages/ExchangeStats/const';
 import candlesData from '../../../../services/candlesData';
 import { makeStudiesCb } from '../../../../utils/makeStudiesCb';
 import { LoginContext } from '../../../../contexts/Login';

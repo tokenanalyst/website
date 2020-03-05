@@ -27,7 +27,7 @@ const propsAreEqual = (prevProps, nextProps) => {
 
 const MemoProChartContainer = React.memo(ProChartContainer, propsAreEqual);
 
-export const ExchangeFlowsPage = ({
+export const ExchangeStatsPage = ({
   selectedExchange,
   selectedToken,
   supportedExchanges,
@@ -180,7 +180,7 @@ export const ExchangeFlowsPage = ({
   );
 };
 
-ExchangeFlowsPage.propTypes = {
+ExchangeStatsPage.propTypes = {
   onChangeToken: PropTypes.func.isRequired,
   selectedExchange: PropTypes.string.isRequired,
   selectedToken: PropTypes.string.isRequired,

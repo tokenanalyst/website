@@ -7,7 +7,7 @@ import { COOKIES } from '../../../constants/cookies';
 import { tokensDb } from '../../../services/tokensDb';
 import { LoginContext } from '../../../contexts/Login';
 import { DelayedExchangeRegisterDialog } from '../../../components/atomic/organism/DelayedExchangeRegisterDialog';
-import { ExchangeFlowsPage } from '../../../components/atomic/pages/ExchangeFlows';
+import { ExchangeStatsPage } from '../../../components/atomic/pages/ExchangeStats';
 import { isLoginRequiredToAccessEntity } from '../../../utils';
 import { LoadingSpinner } from '../../../components/atomic/atoms/LoadSpinner';
 
@@ -89,7 +89,7 @@ const Exchange = () => {
         supportedExchanges &&
         isTokenSupportedForExchange ? (
           <>
-            <ExchangeFlowsPage
+            <ExchangeStatsPage
               selectedExchange={exchange}
               selectedToken={token}
               supportedExchanges={supportedExchanges}

@@ -15,7 +15,7 @@ export const EXCHANGE_STUDIES = {
   balances: {
     entityId: null,
     name: 'Balances',
-    tvIndicatorName: 'Balances',
+    tvIndicatorName: 'Exchange Balances',
     isCustomStudy: true,
     isActive: false,
     isSupported: false,
@@ -24,7 +24,7 @@ export const EXCHANGE_STUDIES = {
   flows: {
     entityId: null,
     name: 'Flows',
-    tvIndicatorName: 'Flows',
+    tvIndicatorName: 'Exchange Flows',
     isCustomStudy: true,
     isActive: true,
     isSupported: true,
@@ -33,7 +33,7 @@ export const EXCHANGE_STUDIES = {
   netFlows: {
     entityId: null,
     name: 'NetFlows',
-    tvIndicatorName: 'NetFlows',
+    tvIndicatorName: 'Exchange NetFlows',
     isCustomStudy: true,
     isActive: false,
     isSupported: true,
