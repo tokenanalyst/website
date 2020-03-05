@@ -8,7 +8,10 @@ import { tokensDb } from '../../../../services/tokensDb';
 import { TOKEN_NAMES } from '../../../../constants/token-names';
 import { ProChartContainer } from '../../organism/ProChartContainer';
 import { NATIVE_TOKENS, STABLE_TOKENS } from '../../../../constants/tokens';
-import { TOKENS_EXCHANGE_SUPPORT } from '../../../../constants/exchanges';
+import {
+  TOKENS_EXCHANGE_SUPPORT,
+  BITSTAMP,
+} from '../../../../constants/exchanges';
 import { SPOT } from '../../../../constants/instruments';
 import { MetricsList } from './MetricsList';
 import { EntityLogo } from '../../molecules/EntityLogo';
@@ -56,23 +59,16 @@ export const MetricsPage = () => {
   const tokensList = [nativeTokens, filteredStableTokens, erc20Tokens];
 
   const supportedExchanges = TOKENS_EXCHANGE_SUPPORT[selectedToken];
-  const firstExchange = Object.keys(supportedExchanges)[0];
-  const { quoteToken } = supportedExchanges[firstExchange];
-  const baseToken =
-    supportedExchanges[firstExchange].baseToken || selectedToken;
+  console.log(supportedExchanges);
+  const exchangeName = BITSTAMP;
+  const { quoteToken } = supportedExchanges[exchangeName];
+  const baseToken = supportedExchanges[exchangeName].baseToken || selectedToken;
 
   return (
     <>
       <div className="container">
         <div className="lhs">
           <div className="title">
-            {/* <img
-              src={`/static/png/coins/${selectedToken.toLowerCase()}.png`}
-              alt={selectedToken.toLowerCase()}
-              className="title-image"
-            />
-            <div className="title-name">{TOKEN_NAMES[selectedToken]}</div> */}
-
             <EntityLogo
               tokenSymbol={selectedToken}
               entityName={TOKEN_NAMES[selectedToken]}
@@ -108,7 +104,7 @@ export const MetricsPage = () => {
             TVSymbols={[baseToken, quoteToken]}
             TVOptions={TVOptions}
             TASymbol={selectedToken}
-            exchangeName={firstExchange}
+            exchangeName={exchangeName}
             instrumentClass={SPOT}
             isIntraDay={selectedIndicator.isIntraDay}
             onChartRenderCb={async tvWidget => {

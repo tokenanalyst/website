@@ -7,7 +7,7 @@ import { COOKIES } from '../../../constants/cookies';
 import { tokensDb } from '../../../services/tokensDb';
 import { LoginContext } from '../../../contexts/Login';
 import { DelayedExchangeRegisterDialog } from '../../../components/atomic/organism/DelayedExchangeRegisterDialog';
-import { BINANCE } from '../../../constants/exchanges';
+import { BITSTAMP } from '../../../constants/exchanges';
 import { MinerStatsPage } from '../../../components/atomic/pages/MinerStats';
 import { isLoginRequiredToAccessEntity } from '../../../utils';
 import { LoadingSpinner } from '../../../components/atomic/atoms/LoadSpinner';
@@ -82,7 +82,7 @@ const Miner = () => {
           <>
             <MinerStatsPage
               selectedMiner={miner}
-              selectedExchange={BINANCE}
+              selectedExchange={BITSTAMP}
               selectedToken={token}
               supportedMiners={supportedMiners}
               onChangeToken={pushToPage}
