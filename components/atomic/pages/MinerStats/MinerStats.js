@@ -116,7 +116,7 @@ export const MinerStatsPage = ({
               TVSymbols={TVSymbols.pair}
               TASymbol={selectedToken}
               TVOptions={TV_OPTIONS}
-              exchangeName="binance"
+              exchangeName={selectedExchange}
               onChartRenderCb={onChartRender}
               isIntraDay
               instrumentClass={TVSymbols.class}
