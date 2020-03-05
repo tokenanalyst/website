@@ -100,7 +100,14 @@ const Exchange = () => {
         ) : (
           token &&
           exchange && (
-            <div>This combination of token and miner is not supported.</div>
+            <div className="no-support">
+              <div>
+                <p>
+                  This combination of token and exchange is not currently
+                  supported.
+                </p>
+              </div>
+            </div>
           )
         )}
       </div>
@@ -116,6 +123,13 @@ const Exchange = () => {
             display: flex;
             justify-content: center;
             align-items: center;
+          }
+          .no-support {
+            display: flex;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
           }
         `}
       </style>

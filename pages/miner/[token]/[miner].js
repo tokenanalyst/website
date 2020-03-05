@@ -91,7 +91,14 @@ const Miner = () => {
         ) : (
           token &&
           miner && (
-            <div>This combination of token and miner is not supported.</div>
+            <div className="no-support">
+              <div>
+                <p>
+                  This combination of token and miner is not currently
+                  supported.
+                </p>
+              </div>
+            </div>
           )
         )}
       </div>
@@ -107,6 +114,13 @@ const Miner = () => {
             display: flex;
             justify-content: center;
             align-items: center;
+          }
+          .no-support {
+            display: flex;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
           }
         `}
       </style>

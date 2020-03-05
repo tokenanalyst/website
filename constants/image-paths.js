@@ -10,6 +10,7 @@ import {
   OKEX,
   HUOBI,
   DERIBIT,
+  GEMINI,
 } from './exchanges';
 
 export const EXCHANGE_IMAGES = {
@@ -24,6 +25,7 @@ export const EXCHANGE_IMAGES = {
   [OKEX]: 'okex.png',
   [HUOBI]: 'huobi.png',
   [DERIBIT]: 'deribit.png',
+  [GEMINI]: 'gemini.png',
 };
 
 export const MINER_IMAGES = {};

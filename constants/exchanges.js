@@ -52,6 +52,7 @@ export const KRAKEN = 'Kraken';
 export const KUCOIN = 'Kucoin';
 export const OKEX = 'Okex';
 export const POLONIEX = 'Poloniex';
+export const GEMINI = 'Gemini';
 
 export const EXCHANGE_NAMES = {
   [BINANCE]: BINANCE,
@@ -65,6 +66,7 @@ export const EXCHANGE_NAMES = {
   [KUCOIN]: KUCOIN,
   [OKEX]: OKEX,
   [POLONIEX]: POLONIEX,
+  [GEMINI]: GEMINI,
 };
 
 export const TOKENS_EXCHANGE_SUPPORT = {
@@ -110,6 +112,9 @@ export const TOKENS_EXCHANGE_SUPPORT = {
     [BITTREX]: {
       quoteToken: USDT,
     },
+    [BITSTAMP]: {
+      quoteToken: USD,
+    },
     [KUCOIN]: {
       quoteToken: USDT,
     },
@@ -118,6 +123,15 @@ export const TOKENS_EXCHANGE_SUPPORT = {
     },
     [POLONIEX]: {
       quoteToken: USDT,
+    },
+    [OKEX]: {
+      quoteToken: USDT,
+    },
+    [HUOBI]: {
+      quoteToken: USDT,
+    },
+    [GEMINI]: {
+      quoteToken: USD,
     },
   },
   [LINK]: {
@@ -405,14 +419,15 @@ export const TOKENS_TV_SUPPORT = {
   [BINANCE]: [BTC, ETH, OMG, ZRX, USDT_ERC20, USDC, PAX, TUSD],
   [BITFINEX]: [BTC, ETH, USDT_ERC20, USDT_OMNI, USDC, PAX, TUSD],
   [BITMEX]: [BTC],
-  [BITSTAMP]: [BTC],
+  [BITSTAMP]: [BTC, ETH],
   [BITTREX]: [BTC, USDT_ERC20, USDT_OMNI, PAX],
   [KRAKEN]: [BTC, ETH, USDT_OMNI],
   [KUCOIN]: [ETH, USDT_ERC20, USDT_OMNI],
   [POLONIEX]: [BTC, ETH, USDT_ERC20, USDT_OMNI],
-  [OKEX]: [BTC],
-  [HUOBI]: [BTC, USDT_OMNI],
+  [OKEX]: [BTC, ETH],
+  [HUOBI]: [BTC, ETH, USDT_OMNI],
   [DERIBIT]: [BTC],
+  [GEMINI]: [ETH],
 };
 
 export const EXCHANGE_DISPLAY_NAME = {
@@ -429,4 +444,5 @@ export const LOGGED_OUT_UNSUPPORTED_EXCHANGES = [
   HUOBI,
   OKEX,
   DERIBIT,
+  GEMINI,
 ];

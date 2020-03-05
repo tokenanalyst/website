@@ -4,7 +4,7 @@ export const restRootUrl =
 
 export const restRootUrlTAProxy =
   process.env.NODE_ENV !== 'development'
-    ? 'https://www.tokenanalyst.io/api'
+    ? '/api'
     : `http://localhost:${process.env.PORT || 3000}/api`;
 
 export const TIME_FRAMES = {
@@ -78,6 +78,10 @@ export const KAIKO_EXCHANGES_MAP = {
   deribit: {
     code: 'drbt',
     name: 'Deribit',
+  },
+  gemini: {
+    code: 'gmni',
+    name: 'Gemini',
   },
 };
 
