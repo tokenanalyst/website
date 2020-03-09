@@ -36,10 +36,12 @@ module.exports = async (req, res) => {
     },
   });
 
+  console.log(exchange);
+
   const baseParams = {
     format: FORMAT,
     token,
-    exchange,
+    exchange: encodeURIComponent(exchange),
     window: timeWindow,
   };
 
@@ -77,10 +79,10 @@ module.exports = async (req, res) => {
   let responseErr;
 
   [
-    inFlowApiReq,
-    outFlowApiReq,
-    exchangeFlowsAllTokensRequest,
-    priceApiRequest,
+    inFlowApiRes,
+    outFlowApiRes,
+    publicApiResponse,
+    tokenPriceApiResponse,
   ].forEach(response => {
     if (response.status !== 200) {
       responseErr = response;
