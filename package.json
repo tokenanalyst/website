@@ -50,7 +50,7 @@
     "react-table": "^6.10.0",
     "react-tooltip": "^3.11.1",
     "rxjs": "^6.5.3",
-    "ta-api-node": "^0.1.7",
+    "ta-api-node": "^0.1.9",
     "updeep": "^1.2.0",
     "ws": "^7.1.2",
     "zxcvbn": "^4.4.2"
@@ -63,11 +63,13 @@
     "eslint": "^6.1.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-prettier": "^6.3.0",
+    "eslint-plugin-cypress": "^2.10.3",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.16.0",
     "eslint-plugin-react-hooks": "^1.7.0",
+    "git-branch-is": "^3.1.0",
     "husky": "^3.0.5",
     "jest": "^24.9.0",
     "jest-extended": "^0.11.2",
@@ -75,8 +77,7 @@
     "mock-socket": "^9.0.0",
     "prettier": "1.18.2",
     "pretty-quick": "^1.11.1",
-    "react-test-renderer": "16.4.2",
-    "git-branch-is": "^3.1.0"
+    "react-test-renderer": "16.4.2"
   },
   "husky": {
     "hooks": {

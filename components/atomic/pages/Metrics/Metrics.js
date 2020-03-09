@@ -59,7 +59,6 @@ export const MetricsPage = () => {
   const tokensList = [nativeTokens, filteredStableTokens, erc20Tokens];
 
   const supportedExchanges = TOKENS_EXCHANGE_SUPPORT[selectedToken];
-  console.log(supportedExchanges);
   const exchangeName = BITSTAMP;
   const { quoteToken } = supportedExchanges[exchangeName];
   const baseToken = supportedExchanges[exchangeName].baseToken || selectedToken;

@@ -99,11 +99,30 @@ const ERC20_INDICATORS = [
 ];
 
 const MINER_INDICATORS = [
-  { title: 'Hashrate', symbol: '#MINER_HASHRATE' },
-  { title: 'Rewards', symbol: '#MINER_REWARD' },
-  { title: 'Miner Flows', symbol: '#MINER_FLOWS' },
-  { title: 'Miner Balances', symbol: '#MINER_BALANCES', plotType: 8 },
+  {
+    title: 'Hashrate',
+    symbol: '#MINER_HASHRATE',
+    shortDescription: 'Hashrate',
+  },
+  { title: 'Rewards', symbol: '#MINER_REWARD', shortDescription: 'Rewards' },
+  {
+    title: 'Miner Balances',
+    symbol: '#MINER_BALANCES',
+    shortDescription: 'Balances',
+    plotType: 8,
+  },
 ];
+
+const EXCHANGE_INDICATORS = [
+  {
+    title: 'Exchange Balances',
+    symbol: '#EXCHANGE_BALANCES',
+    shortDescription: 'Balances',
+    plotType: 8,
+  },
+];
+
+// Metrics indicators
 
 const METRICS = [
   ...BTC_INDICATORS,
@@ -184,16 +203,17 @@ const METRICS = [
   },
 }));
 
-const MINER = [...MINER_INDICATORS].map(metricIndicator => ({
+// Miner indicators
+
+const MINER = MINER_INDICATORS.map(metricIndicator => ({
   name: metricIndicator.title,
   metainfo: {
     _metainfoVersion: 40,
     id: `${metricIndicator.title}@tv-basicstudies-1`,
-    scriptIdPart: '',
     name: metricIndicator.title,
     description: metricIndicator.title,
-    shortDescription: metricIndicator.title,
-
+    shortDescription: metricIndicator.shortDescription,
+    scriptIdPart: '',
     is_hidden_study: false,
     is_price_study: false,
     isCustomIndicator: true,
@@ -238,6 +258,83 @@ const MINER = [...MINER_INDICATORS].map(metricIndicator => ({
       this._input = inputCallback;
 
       const { symbol } = metricIndicator;
+
+      this._context.new_sym(
+        symbol,
+        PineJS.Std.period(this._context),
+        PineJS.Std.period(this._context)
+      );
+    };
+
+    this.main = function(context, inputCallback) {
+      this._context = context;
+      this._input = inputCallback;
+      this._context.select_sym(1);
+
+      const inFlow = PineJS.Std.open(this._context);
+      const outFlow = PineJS.Std.close(this._context);
+
+      return [inFlow, outFlow];
+    };
+  },
+}));
+
+// Exchange indicators
+
+const EXCHANGE = EXCHANGE_INDICATORS.map(exchangeIndicator => ({
+  name: exchangeIndicator.title,
+  metainfo: {
+    _metainfoVersion: 40,
+    id: `${exchangeIndicator.title}@tv-basicstudies-1`,
+    name: exchangeIndicator.title,
+    description: exchangeIndicator.title,
+    shortDescription: exchangeIndicator.shortDescription,
+    scriptIdPart: '',
+    is_hidden_study: false,
+    is_price_study: false,
+    isCustomIndicator: true,
+
+    plots: [{ id: 'plot_0', type: 'line' }],
+    defaults: {
+      styles: {
+        plot_0: {
+          linestyle: 0,
+          visible: true,
+
+          // Make the line thinner
+          linewidth: 3,
+
+          // Plot type is Line
+          plottype: exchangeIndicator.plotType || 2,
+
+          // Show price line
+          trackPrice: false,
+
+          transparency: 40,
+
+          color: '#3FCDAB',
+        },
+      },
+      precision: 0,
+
+      inputs: {},
+    },
+    styles: {
+      plot_0: {
+        // Output name will be displayed in the Style window
+        title: exchangeIndicator.title,
+        histogramBase: 0,
+      },
+    },
+    inputs: [],
+  },
+  constructor: function() {
+    this.init = function(context, inputCallback) {
+      this._context = context;
+      this._input = inputCallback;
+
+      const { symbol } = exchangeIndicator;
+
       this._context.new_sym(
         symbol,
         PineJS.Std.period(this._context),
@@ -261,88 +358,15 @@ const MINER = [...MINER_INDICATORS].map(metricIndicator => ({
 __customIndicators = [
   ...METRICS,
   ...MINER,
+  ...EXCHANGE,
   {
-    name: 'Balances',
+    name: 'Exchange Flows',
     metainfo: {
       _metainfoVersion: 40,
-      id: 'Balances@tv-basicstudies-1',
+      id: 'Exchange Flows@tv-basicstudies-1',
       scriptIdPart: '',
-      name: 'Balances',
-      description: 'Balances',
-      shortDescription: 'Balances',
-
-      is_hidden_study: false,
-      is_price_study: false,
-      isCustomIndicator: true,
-
-      plots: [{ id: 'plot_0', type: 'line' }],
-      defaults: {
-        styles: {
-          plot_0: {
-            linestyle: 0,
-            visible: true,
-
-            // Make the line thinner
-            linewidth: 3,
-
-            // Plot type is Line
-            plottype: 8,
-
-            // Show price line
-            trackPrice: false,
-
-            transparency: 40,
-
-            color: '#3FCDAB',
-          },
-        },
-        precision: 0,
-
-        inputs: {},
-      },
-      styles: {
-        plot_0: {
-          // Output name will be displayed in the Style window
-          title: 'Balances',
-          histogramBase: 0,
-        },
-      },
-      inputs: [],
-    },
-
-    constructor: function() {
-      this.init = function(context, inputCallback) {
-        this._context = context;
-        this._input = inputCallback;
-
-        const symbol = '#BALANCES';
-        this._context.new_sym(
-          symbol,
-          PineJS.Std.period(this._context),
-          PineJS.Std.period(this._context)
-        );
-      };
-
-      this.main = function(context, inputCallback) {
-        this._context = context;
-        this._input = inputCallback;
-        this._context.select_sym(1);
-
-        const inFlow = PineJS.Std.open(this._context);
-        const outFlow = PineJS.Std.close(this._context);
-
-        return [inFlow, outFlow];
-      };
-    },
-  },
-  {
-    name: 'Flows',
-    metainfo: {
-      _metainfoVersion: 40,
-      id: 'Flows@tv-basicstudies-1',
-      scriptIdPart: '',
-      name: 'Flows',
-      description: 'Flows',
+      name: 'Exchange Flows',
+      description: 'Exchange Flows',
       shortDescription: 'In/Out Flows',
 
       is_hidden_study: false,
@@ -408,7 +432,7 @@ __customIndicators = [
         this._context = context;
         this._input = inputCallback;
 
-        const symbol = '#FLOWS';
+        const symbol = '#EXCHANGE_FLOWS';
         this._context.new_sym(
           symbol,
           PineJS.Std.period(this._context),
@@ -429,13 +453,231 @@ __customIndicators = [
     },
   },
   {
-    name: 'NetFlows',
+    name: 'Miner Flows',
     metainfo: {
       _metainfoVersion: 40,
-      id: 'NetFlows@tv-basicstudies-1',
+      id: 'Miner Flows@tv-basicstudies-1',
       scriptIdPart: '',
-      name: 'NetFlows',
-      description: 'NetFlows',
+      name: 'Miner Flows',
+      description: 'Miner Flows',
+      shortDescription: 'In/Out Flows',
+
+      is_hidden_study: false,
+      is_price_study: false,
+      isCustomIndicator: true,
+
+      plots: [{ id: 'plot_0', type: 'line' }, { id: 'plot_1', type: 'line' }],
+      defaults: {
+        styles: {
+          plot_0: {
+            linestyle: 0,
+            visible: true,
+
+            // Make the line thinner
+            linewidth: 3,
+
+            // Plot type is Line
+            plottype: 2,
+
+            // Show price line
+            trackPrice: false,
+
+            transparency: 40,
+
+            color: '#3FCDAB',
+          },
+          plot_1: {
+            linestyle: 0,
+            visible: true,
+
+            // Make the line thinner
+            linewidth: 2,
+
+            // Plot type is Line
+            plottype: 2,
+
+            // Show price line
+            trackPrice: false,
+
+            transparency: 40,
+
+            color: '#FD5996',
+          },
+        },
+
+        // Precision is set to one digit, e.g. 777.7
+        precision: 0,
+
+        inputs: {},
+      },
+      styles: {
+        plot_0: {
+          // Output name will be displayed in the Style window
+          title: 'Flows value',
+          histogramBase: 0,
+        },
+      },
+      inputs: [],
+    },
+
+    constructor: function() {
+      this.init = function(context, inputCallback) {
+        this._context = context;
+        this._input = inputCallback;
+
+        const symbol = '#MINER_FLOWS';
+        this._context.new_sym(
+          symbol,
+          PineJS.Std.period(this._context),
+          PineJS.Std.period(this._context)
+        );
+      };
+
+      this.main = function(context, inputCallback) {
+        this._context = context;
+        this._input = inputCallback;
+        this._context.select_sym(1);
+
+        const inFlow = PineJS.Std.open(this._context);
+        const outFlow = PineJS.Std.close(this._context);
+
+        return [inFlow, outFlow];
+      };
+    },
+  },
+  {
+    name: 'Miner NetFlows',
+    metainfo: {
+      _metainfoVersion: 40,
+      id: 'Miner NetFlows@tv-basicstudies-1',
+      scriptIdPart: '',
+      name: 'Miner NetFlows',
+      description: 'Miner NetFlows',
+      shortDescription: 'Net Flows',
+
+      is_hidden_study: false,
+      is_price_study: false,
+      isCustomIndicator: true,
+
+      plots: [
+        { id: 'plot_0', type: 'line' },
+        {
+          id: 'plot_1',
+          palette: 'palette_0',
+          target: 'plot_0',
+          type: 'colorer',
+        },
+      ],
+
+      palettes: {
+        palette_0: {
+          colors: {
+            0: {
+              name: 'Color 0',
+            },
+            1: {
+              name: 'Color 1',
+            },
+          },
+          valToIndex: {
+            100: 0,
+            200: 1,
+          },
+        },
+      },
+
+      defaults: {
+        styles: {
+          plot_0: {
+            linestyle: 0,
+            visible: true,
+
+            // Make the line thinner
+            linewidth: 4,
+
+            // Plot type is Line
+            plottype: 5,
+
+            // Show price line
+            trackPrice: false,
+
+            transparency: 40,
+
+            // Set the plotted line color to dark red
+            color: '#3FCDAB',
+          },
+        },
+
+        // Precision is set to one digit, e.g. 777.7
+        precision: 0,
+
+        palettes: {
+          palette_0: {
+            colors: {
+              0: {
+                color: '#3FCDAB',
+                width: 1,
+                style: 1,
+              },
+              1: {
+                color: '#FD5996',
+                width: 1,
+                style: 1,
+              },
+            },
+          },
+        },
+
+        inputs: {},
+      },
+      styles: {
+        plot_0: {
+          // Output name will be displayed in the Style window
+          title: 'Net Flows value',
+          histogramBase: 0,
+        },
+      },
+      inputs: [],
+    },
+
+    constructor: function() {
+      this.init = function(context, inputCallback) {
+        this._context = context;
+        this._input = inputCallback;
+
+        const symbol = '#MINER_FLOWS';
+        this._context.new_sym(
+          symbol,
+          PineJS.Std.period(this._context),
+          PineJS.Std.period(this._context)
+        );
+      };
+
+      this.main = function(context, inputCallback) {
+        this._context = context;
+        this._input = inputCallback;
+
+        this._context.select_sym(1);
+
+        const netFlowValue = PineJS.Std.volume(this._context);
+
+        return [
+          {
+            value: netFlowValue,
+          },
+          netFlowValue < 0 ? 200 : 100,
+        ];
+      };
+    },
+  },
+  {
+    name: 'Exchange NetFlows',
+    metainfo: {
+      _metainfoVersion: 40,
+      id: 'Exchange NetFlows@tv-basicstudies-1',
+      scriptIdPart: '',
+      name: 'Exchange NetFlows',
+      description: 'Exchange NetFlows',
       shortDescription: 'Net Flows',
 
       is_hidden_study: false,
@@ -529,7 +771,7 @@ __customIndicators = [
         this._input = inputCallback;
         // console.warn(context);
 
-        const symbol = '#FLOWS';
+        const symbol = '#EXCHANGE_FLOWS';
         this._context.new_sym(
           symbol,
           PineJS.Std.period(this._context),
