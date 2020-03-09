@@ -39,7 +39,7 @@ module.exports = async (req, res) => {
   }
 
   if (miner) {
-    params = { ...params, miner: miner.toLowerCase() };
+    params = { ...params, miner: encodeURIComponent(miner.toLowerCase()) };
   }
 
   const apiFunctions = {

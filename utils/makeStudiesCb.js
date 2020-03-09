@@ -89,6 +89,7 @@ const minerStudiesData = (ta, TAsymbol, minerName) =>
             )} for ${curr.symbol} and datapoint ${curr.dataPoint}`
           );
         }
+
         const data = await ta.fetchSingleMetricProxy(
           TAsymbol,
           resolution,
@@ -96,7 +97,7 @@ const minerStudiesData = (ta, TAsymbol, minerName) =>
           to * 1000,
           curr.urlSlug,
           curr.dataPoint,
-          { miner: minerName }
+          { miner: encodeURIComponent(minerName) }
         );
 
         if (!data.length) {
@@ -160,7 +161,13 @@ export const makeStudiesCb = (ta, exchangeName, minerName, TAsymbol) => ({
 
       const flow = await ta
         .flowsFor('miner')
-        .fetch(minerName, TAsymbol, resolution, from * 1000, to * 1000);
+        .fetch(
+          encodeURIComponent(minerName),
+          TAsymbol,
+          resolution,
+          from * 1000,
+          to * 1000
+        );
 
       if (!flow.length) {
         return [];
@@ -187,7 +194,13 @@ export const makeStudiesCb = (ta, exchangeName, minerName, TAsymbol) => ({
 
       const flow = await ta
         .flowsFor('exchange')
-        .fetch(exchangeName, TAsymbol, resolution, from * 1000, to * 1000);
+        .fetch(
+          encodeURIComponent(exchangeName),
+          TAsymbol,
+          resolution,
+          from * 1000,
+          to * 1000
+        );
 
       if (!flow.length) {
         return [];
@@ -219,7 +232,7 @@ export const makeStudiesCb = (ta, exchangeName, minerName, TAsymbol) => ({
         to * 1000,
         API_METRICS.ExchangeBalance,
         'balance',
-        { exchange: exchangeName }
+        { exchange: encodeURIComponent(exchangeName) }
       );
 
       if (!data.length) {

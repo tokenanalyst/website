@@ -31,7 +31,7 @@ module.exports = async (req, res) => {
   const baseParams = {
     format: FORMAT,
     token,
-    miner,
+    miner: encodeURIComponent(miner),
     window: timeWindow,
   };
 
