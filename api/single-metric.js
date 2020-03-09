@@ -65,25 +65,31 @@ module.exports = async (req, res) => {
     [API_METRICS.MinerBalances]: privateApi.minerBalanceWindowHistorical,
   };
 
-  let result;
+  let response;
 
   try {
-    result = await apiFunctions[metric](params);
+    response = await apiFunctions[metric](params);
   } catch (err) {
-    const { code, body } = formatApiError(err);
-    return res.status(code).send(body);
+    const { status, body } = formatApiError(err);
+    return res.status(status).send(body);
+  }
+
+  if (response.status !== 200) {
+    const { status, body } = formatApiError(response);
+
+    return res.status(status).send(body);
   }
 
   let responseData;
 
   if (metric === API_METRICS.Hashrate) {
-    responseData = result.data.reduce(
+    responseData = response.data.reduce(
       (acc, curr) =>
         acc.find(data => data.date === curr.date) ? acc : [...acc, curr],
       []
     );
   } else if (metric === API_METRICS.Rewards) {
-    responseData = result.data.reduce((acc, curr) => {
+    responseData = response.data.reduce((acc, curr) => {
       const entry = acc.find(data => data.date === curr.date);
       if (entry) {
         entry.miner_daily_block_reward += curr.miner_daily_block_reward;
@@ -108,7 +114,7 @@ module.exports = async (req, res) => {
       return [...acc, newEntry];
     }, []);
   } else {
-    responseData = result.data;
+    responseData = response.data;
   }
   const filteredData = filterSeriesByTime(responseData, tierTimeLimit);
 

@@ -70,9 +70,28 @@ module.exports = async (req, res) => {
     exchangeFlowsAllTokensRequest,
     priceApiRequest,
   ]).catch(err => {
-    const { code, body } = formatApiError(err);
-    return res.status(code).send(body);
+    const { status, body } = formatApiError(err);
+    return res.status(status).send(body);
   });
+
+  let responseErr;
+
+  [
+    inFlowApiReq,
+    outFlowApiReq,
+    exchangeFlowsAllTokensRequest,
+    priceApiRequest,
+  ].forEach(response => {
+    if (response.status !== 200) {
+      responseErr = response;
+    }
+  });
+
+  if (responseErr) {
+    const { status, body } = formatApiError(responseErr);
+
+    return res.status(status).send(body);
+  }
 
   const inFlow = inFlowApiRes.data;
   const outFlow = outFlowApiRes.data;
