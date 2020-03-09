@@ -1,5 +1,5 @@
 import { NATIVE_TOKENS, STABLE_TOKENS } from '../../../../constants/tokens';
-import { APP_STORAGE_KEYS } from '../../../../constants/appStore';
+import { APP_STORAGE_KEYS } from '../../../../constants/localStorage';
 
 const defaultTokens = [
   NATIVE_TOKENS.BTC,
