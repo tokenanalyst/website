@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactGA from 'react-ga';
 
-import { Link } from '../../../Link';
+import { Link } from '../../atoms/Link';
 import { colors } from '../../../../constants/styles/colors';
 
 export const LinkTelegram = () => {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactGA from 'react-ga';
 
-import { colors } from '../constants/styles/colors';
+import { colors } from '../../../../constants/styles/colors';
 
 export const CookieBanner = () => {
   const [isShown, setIsShown] = useState(false);
@@ -27,7 +27,13 @@ export const CookieBanner = () => {
       <div className="container">
         <div className="top">
           <span className="header">Cookies</span>
-          <span className="close" onClick={dismiss}>
+          <span
+            className="close"
+            onClick={dismiss}
+            role="button"
+            tabIndex={0}
+            onKeyDown={dismiss}
+          >
             <img
               src="/static/svg/cross.svg"
               className="icon"

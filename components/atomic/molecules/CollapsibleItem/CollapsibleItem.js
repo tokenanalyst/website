@@ -13,6 +13,7 @@ export const CollapsibleItem = ({ header, body, defaultIsOpen = false }) => {
         onClick={() => setIsOpen(!isOpen)}
         onKeyDown={() => setIsOpen(!isOpen)}
         role="button"
+        tabIndex={0}
       >
         {header}
         <Icon icon={isOpen ? 'chevron-up' : 'chevron-down'} iconSize={20} />
