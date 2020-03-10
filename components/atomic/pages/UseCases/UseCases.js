@@ -5,7 +5,7 @@ import { DemoCallOut } from './DemoCallOut';
 import { TopUseCases } from './TopUseCases';
 import { UseCase } from './UseCase';
 
-export const UseCasesWidget = () => {
+export const UseCasesPage = () => {
   return (
     <div className="container">
       <div className="callout-container">

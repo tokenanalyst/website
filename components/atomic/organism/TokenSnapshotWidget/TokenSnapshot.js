@@ -7,13 +7,13 @@ import axios from 'axios';
 import { Popover, Icon, RadioGroup, Radio, Position } from '@blueprintjs/core';
 import ReactGA from 'react-ga';
 
-import { colors } from '../../../constants/styles/colors';
-import { LoadingSpinner } from '../../atomic/atoms/LoadSpinner';
-import { CURRENCIES } from '../../../constants/tokens';
-import { tokensDb } from '../../../services/tokensDb';
-import { TOKEN_NAMES } from '../../../constants/token-names';
+import { colors } from '../../../../constants/styles/colors';
+import { LoadingSpinner } from '../../atoms/LoadSpinner';
+import { CURRENCIES } from '../../../../constants/tokens';
+import { tokensDb } from '../../../../services/tokensDb';
+import { TOKEN_NAMES } from '../../../../constants/token-names';
 import { updateToken } from './helpers';
-import { getTokenSnapshotData } from '../../../utils/data-transformers/widgets/getTokenSnapshot';
+import { getTokenSnapshotData } from '../../../../utils/data-transformers/widgets/getTokenSnapshot';
 
 const NATIVE_TOKENS = tokensDb.tokens.group.native;
 const STABLE_TOKENS = tokensDb.tokens.group.stable;

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Icon } from '@blueprintjs/core';
 
 import { FEATURES } from './data/productsData';
-import { colors } from '../../../constants/styles/colors';
+import { colors } from '../../../../constants/styles/colors';
 
 export const FeatureTableMobile = () => {
   const [displayedTab, setDisplayedTab] = useState(0);
@@ -12,9 +12,12 @@ export const FeatureTableMobile = () => {
       <div className="button-container">
         {FEATURES.columns.map((column, index) => (
           <span
+            tabIndex={0}
             key={column}
+            role="button"
             className={index === displayedTab ? 'button-selected' : 'button'}
             onClick={() => setDisplayedTab(index)}
+            onKeyDown={() => setDisplayedTab(index)}
           >
             {column}
           </span>

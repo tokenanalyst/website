@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ProductCard } from './ProductCard';
 import { PRODUCTS } from './data/productsData';
-import { PLAN_NAMES } from '../../../constants/plans';
+import { PLAN_NAMES } from '../../../../constants/plans';
 
 const { PRO, ENTERPRISE } = PLAN_NAMES;
 

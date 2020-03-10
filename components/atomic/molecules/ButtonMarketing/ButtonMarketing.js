@@ -5,7 +5,7 @@ import Link from 'next/link';
 import classNames from 'classnames';
 import { Spinner } from '@blueprintjs/core';
 
-import { pricingButton } from '../constants/styles/common-styled-jsx';
+import { pricingButton } from '../../../../constants/styles/common-styled-jsx';
 
 export const ButtonMarketing = ({
   url,

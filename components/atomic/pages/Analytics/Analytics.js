@@ -6,7 +6,7 @@ import ReactGA from 'react-ga';
 
 import { colors } from '../../../../constants/styles/colors';
 import { LinkTelegram } from '../../molecules/LinkTelegram';
-import { ButtonMarketing } from '../../../ButtonMarketing';
+import { ButtonMarketing } from '../../molecules/ButtonMarketing';
 import { SimpleDialog } from '../../atoms/SimpleDialog';
 import { LoginContext } from '../../../../contexts/Login';
 

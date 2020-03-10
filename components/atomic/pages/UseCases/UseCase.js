@@ -5,13 +5,12 @@ import React, { useState } from 'react';
 import kebabCase from 'lodash/kebabCase';
 import ReactGA from 'react-ga';
 import Cookies from 'js-cookie';
-import { Collapse } from '@blueprintjs/core';
 
-import { ButtonMarketing } from '../../ButtonMarketing';
-import { FeatureTableDesktop } from './FeatureTableDesktop';
-import { FeatureTableMobile } from './FeatureTableMobile';
-import { GA_GOAL_NAME } from './data/productsData';
-import { redirectToStripe } from '../../../utils';
+import { ButtonMarketing } from '../../molecules/ButtonMarketing';
+import { GA_GOAL_NAME } from './data/casesData';
+import { PLAN_NAMES } from '../../../../constants/plans';
+import { redirectToStripe } from '../../../../utils';
+import { COOKIES } from '../../../../constants/cookies';
 
 const renderFeatures = features =>
   features.map(feature => {
@@ -54,46 +53,6 @@ const renderFeatures = features =>
     );
   });
 
-const renderCollapseControl = isOpen => {
-  return (
-    <>
-      <div className="container">
-        <img
-          className="image"
-          src="/static/svg/pricing/arrow.svg"
-          alt="arrow"
-        />
-        <div className="link">Compare plans and product details</div>
-      </div>
-      <style jsx>
-        {`
-          .container {
-            position: relative;
-          }
-          .link {
-            position: absolute;
-            top: 0;
-            left: 25px;
-            font-family: Open Sans;
-            font-size: 15px;
-            font-weight: 700;
-            font-style: normal;
-            font-stretch: normal;
-            color: #222;
-            cursor: pointer;
-          }
-          .image {
-            transform: rotate(${isOpen ? '90deg' : '0deg'});
-          }
-          .image > * {
-            transform: rotate(${isOpen ? '-90deg' : '0deg'});
-          }
-        `}
-      </style>
-    </>
-  );
-};
-
 const emitProductEvent = action => {
   ReactGA.event({
     category: 'User',
@@ -102,17 +61,27 @@ const emitProductEvent = action => {
   });
 };
 
-export const ProductFeatures = ({
+// Hack on Jendrik request
+
+const makeImageUseCaseStyle = (isReverseImagePosition, plan) => {
+  if (plan === PLAN_NAMES[plan.toUpperCase()]) {
+    return isReverseImagePosition ? 'reverse-image-infrastructure' : 'image';
+  }
+  return isReverseImagePosition ? 'reverse-image' : 'image';
+};
+
+export const UseCase = ({
   name,
   title,
+  plan,
   features,
   buttons,
   description,
   stripePlan,
   image,
+  isReverseImagePosition,
 }) => {
-  const username = Cookies.get('loggedInAsUsername');
-  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
+  const username = Cookies.get(COOKIES.loggedInAsUsername);
   const [isLoading, setIsLoading] = useState(false);
 
   return (
@@ -122,87 +91,92 @@ export const ProductFeatures = ({
           <div className="title">{title}</div>
           <div className="title-image" />
         </div>
-        <div className="description">{description}</div>
-        <div className="features">{renderFeatures(features)}</div>
-        <div className="buttons-container">
-          {buttons.map(button => {
-            const { url, isExternal, text, isBuy, isIntercom } = button;
+        <div className="plan">{`${plan} Plan`}</div>
 
-            const onBuyPlan = async () => {
-              setIsLoading(true);
-              if (url) {
-                const action = `Plan click ${text}`;
-                return emitProductEvent(action);
-              }
+        <div className="features-container">
+          <div>
+            <div className="description">{description}</div>
+            <div className="features">{renderFeatures(features)}</div>
+            <div className="buttons-container">
+              {buttons.map(button => {
+                const { url, isExternal, text, isBuy, isIntercom } = button;
 
-              const action = `Plan select ${name}`;
-              emitProductEvent(action);
+                const onBuyPlan = async () => {
+                  setIsLoading(true);
+                  if (url) {
+                    return emitProductEvent(`Plan click ${text}`);
+                  }
+                  emitProductEvent(`Plan click ${text}`);
 
-              return redirectToStripe(stripePlan, GA_GOAL_NAME[name])({
-                customerEmail: username,
-              });
-            };
+                  return redirectToStripe(stripePlan, GA_GOAL_NAME[name])({
+                    customerEmail: username,
+                  });
+                };
 
-            const onClick = isIntercom
-              ? () => window.Intercom('show')
-              : onBuyPlan;
+                const onClick = isIntercom
+                  ? () => window.Intercom('show')
+                  : onBuyPlan;
 
-            return (
-              <div key={kebabCase(text)} className="button">
-                <ButtonMarketing
-                  url={url}
-                  isExternal={isExternal}
-                  text={text}
-                  stripePlan={stripePlan}
-                  isActive={isBuy}
-                  onClick={onClick}
-                  isLoading={isBuy ? isLoading : false}
-                />
-              </div>
-            );
-          })}
-        </div>
-      </div>
-      <div className="fetures-details">
-        <div style={{ width: '100%', height: '100%', margin: 0 }}>
-          <div
-            onClick={() => setIsDetailsOpen(!isDetailsOpen)}
-            role="button"
-            onKeyDown={() => setIsDetailsOpen(!isDetailsOpen)}
-            tabIndex="-1"
-          >
-            {renderCollapseControl(isDetailsOpen)}
+                return (
+                  <div key={kebabCase(text)} className="button">
+                    <ButtonMarketing
+                      url={url}
+                      isExternal={isExternal}
+                      text={text}
+                      stripePlan={stripePlan}
+                      isActive={isBuy}
+                      onClick={isExternal ? () => {} : onClick}
+                      isLoading={isBuy ? isLoading : false}
+                    />
+                  </div>
+                );
+              })}
+            </div>
           </div>
-          <Collapse isOpen={isDetailsOpen}>
-            <div className="features-collapse" />
-            <FeatureTableDesktop />
-            <FeatureTableMobile />
-          </Collapse>
+          <div className={makeImageUseCaseStyle(isReverseImagePosition, plan)}>
+            <img src={image} alt={title} />
+          </div>
         </div>
       </div>
+
       <style jsx>
         {`
           .container {
             background-color: #ffffff;
             padding-top: 110px;
-            background-image: url(${image});
-            background-repeat: no-repeat;
-            background-position: right;
+            position: relative;
+            margin-bottom: 100px;
           }
           .title-container {
-            font-family: Space Grotesk;
-            font-size: 30px;
-            font-weight: bold;
-            font-style: normal;
-            font-stretch: normal;
-            line-height: normal;
-            letter-spacing: 0.26px;
-            color: #000000;
-            margin-bottom: 58px;
+            margin-bottom: 13px;
             display: flex;
             flex-direction: row;
           }
+          .reverse-image {
+            left: -100px;
+            top: 230px;
+            position: absolute;
+          }
+          .reverse-image-infrastructure {
+            left: 0px;
+            top: 250px;
+            position: absolute;
+          }
           .title {
+            font-family: Space Grotesk;
+            font-size: 30px;
+            line-height: 35px;
+            font-weight: 700;
+            letter-spacing: 0.260601px;
+            color: #000000;
+          }
+          .plan {
+            font-family: Space Grotesk;
+            font-size: 25px;
+            line-height: 29px;
+            letter-spacing: 0.217168px;
+            color: #a9a9a9;
+            font-weight: 600;
           }
           .title-image {
             background-image: url('/static/svg/pricing/feature_title.svg');
@@ -212,8 +186,8 @@ export const ProductFeatures = ({
             margin-left: 40px;
           }
           .description {
-            width: 503px;
-            height: 164px;
+            max-width: 550px;
+            height: 125px;
             font-family: Cardo;
             font-size: 30px;
             font-weight: normal;
@@ -223,6 +197,11 @@ export const ProductFeatures = ({
             letter-spacing: 0.26px;
             color: #000000;
             margin-bottom: 61px;
+            margin-top: 73px;
+          }
+          .features-container {
+            display: flex;
+            flex-direction: ${isReverseImagePosition ? 'row-reverse' : 'row'};
           }
           .features {
             font-family: Open Sans;
@@ -236,7 +215,7 @@ export const ProductFeatures = ({
             display: flex;
             flex-direction: column;
             flex-wrap: wrap;
-            height: 200px;
+            height: 210px;
             max-width: 800px;
           }
           .text {
@@ -260,30 +239,20 @@ export const ProductFeatures = ({
             padding-bottom: 10px;
             height: 150px;
           }
-          .image {
-            position: absolute;
-            top: 10px;
-            right: 20px;
-          }
-          .fetures-details {
-            padding-top: 55px;
-          }
-          .features-collapse {
-            padding-bottom: 20px;
-          }
           @media only screen and (max-width: 768px) {
             .container {
               width: 100%;
               padding: 5px;
               height: 100%;
-              padding-bottom: 20px;
+              margin-bottom: 20px;
               background-image: none;
             }
             .description {
               width: 100%;
-              height: 100%;
+              height: 80px;
               font-size: 15px;
-              margin-bottom: 20px;
+              margin-top: 20px;
+              margin-bottom: 0px;
             }
             .buttons-container {
               display: flex;
@@ -293,10 +262,10 @@ export const ProductFeatures = ({
               padding-bottom: 10px;
             }
             .title-container {
-              margin-bottom: 20px;
+              margin-bottom: 14px;
             }
             .title {
-              font-size: 20px;
+              font-size: 25px;
               max-width: 100%;
               background-image: none;
             }
@@ -315,12 +284,17 @@ export const ProductFeatures = ({
               display: flex;
               flex-direction: row;
               flex-wrap: wrap;
-              height: 100%;
               max-width: 100%;
               padding-bottom: 20px;
             }
-            .fetures-details {
-              padding-top: 0px;
+            .image {
+              display: none;
+            }
+            .reverse-image {
+              display: none;
+            }
+            .reverse-image-infrastructure {
+              display: none;
             }
           }
         `}
@@ -329,16 +303,19 @@ export const ProductFeatures = ({
   );
 };
 
-ProductFeatures.propTypes = {
+UseCase.propTypes = {
   name: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  plan: PropTypes.string.isRequired,
   buttons: PropTypes.arrayOf(PropTypes.object).isRequired,
   features: PropTypes.arrayOf(PropTypes.string).isRequired,
   stripePlan: PropTypes.string,
   image: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
+  isReverseImagePosition: PropTypes.bool,
 };
 
-ProductFeatures.defaultProps = {
+UseCase.defaultProps = {
   stripePlan: null,
+  isReverseImagePosition: false,
 };

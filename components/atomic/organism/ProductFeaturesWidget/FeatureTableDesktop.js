@@ -2,7 +2,7 @@ import React from 'react';
 import { Icon } from '@blueprintjs/core';
 
 import { FEATURES } from './data/productsData';
-import { colors } from '../../../constants/styles/colors';
+import { colors } from '../../../../constants/styles/colors';
 
 export const FeatureTableDesktop = () => {
   return (
@@ -23,8 +23,8 @@ export const FeatureTableDesktop = () => {
                 <React.Fragment key={item.name}>
                   <tr>
                     <td className="feature">{item.name}</td>
-                    {item.entitled.map((e, index) => (
-                      <td key={index} className="feature">
+                    {item.entitled.map(e => (
+                      <td key={item.name} className="feature">
                         <Icon
                           icon={e ? 'tick' : 'cross'}
                           color={
