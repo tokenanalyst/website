@@ -7,7 +7,7 @@ import { Card } from '@blueprintjs/core';
 import ReactGA from 'react-ga';
 import PropTypes from 'prop-types';
 
-import { CollapsibleItem } from '../../../CollapsibleItem';
+import { CollapsibleItem } from '../../molecules/CollapsibleItem';
 import { METRICS, TOKEN_TYPES } from '../../../../constants/tokens';
 import { LoginContext } from '../../../../contexts/Login';
 import { tokensDb } from '../../../../services/tokensDb';

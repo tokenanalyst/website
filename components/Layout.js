@@ -8,7 +8,7 @@ import Cookies from 'js-cookie';
 import { MetricsNav } from './atomic/molecules/MetricsNav';
 import { Nav } from './atomic/molecules/Nav';
 import { Newsletter } from './Newsletter';
-import { CookieBanner } from './CookieBanner';
+import { CookieBanner } from './atomic/organism/CookieBanner';
 import { Footer } from './Footer';
 import { COOKIES } from '../constants/cookies';
 

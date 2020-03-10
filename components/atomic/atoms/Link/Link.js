@@ -1,8 +1,9 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import PropTypes from 'prop-types';
 import NextLink from 'next/link';
 
-import { colors } from '../constants/styles/colors';
+import { colors } from '../../../../constants/styles/colors';
 
 export const Link = ({
   href,
@@ -13,7 +14,13 @@ export const Link = ({
 }) => {
   return (
     <>
-      <span className="desktop" onClick={onClick} onKeyDown={onClick}>
+      <span
+        className="desktop"
+        onClick={onClick}
+        onKeyDown={onClick}
+        role="link"
+        tabIndex={0}
+      >
         <NextLink href={href}>
           {isOpenInNewWindow ? (
             <a target="_blank" rel="noopener noreferrer">
