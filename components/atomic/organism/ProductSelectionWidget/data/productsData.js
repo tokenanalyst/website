@@ -1,4 +1,4 @@
-import { PLANS } from '../../../../constants/plans';
+import { PLANS } from '../../../../../constants/plans';
 
 const CARD_CONTENT = {
   PRO: {

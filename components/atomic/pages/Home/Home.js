@@ -5,13 +5,13 @@ import Head from 'next/head';
 
 import { FlowsTable } from '../../organism/FlowsTable';
 import { DATA_WINDOWS, UNITS } from '../../../../constants/filters';
-import { TokenSnapshotWidget } from '../../../widgets/TokenSnapshotWidget';
+import { TokenSnapshotWidget } from '../../organism/TokenSnapshotWidget';
 import { useApi } from '../../../../hooks';
 import { LoadingSpinner } from '../../atoms/LoadSpinner';
 import { filterTable } from '../../organism/FlowsTable/helpers';
 import { pricingButton } from '../../../../constants/styles/common-styled-jsx';
 import { Products } from './Products';
-import { ButtonMarketing } from '../../../ButtonMarketing';
+import { ButtonMarketing } from '../../molecules/ButtonMarketing';
 import { emitProductEvent } from './utils/emitProductEvent';
 import { Featured } from './Featured';
 

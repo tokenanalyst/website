@@ -51,6 +51,7 @@
     "react-table": "^6.10.0",
     "react-tooltip": "^3.11.1",
     "rxjs": "^6.5.3",
+    "styled-jsx": "^3.2.4",
     "ta-api-node": "^0.1.9",
     "updeep": "^1.2.0",
     "ws": "^7.1.2",

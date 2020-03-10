@@ -1,4 +1,4 @@
-import { PLANS, PLAN_NAMES } from '../../../../constants/plans';
+import { PLANS, PLAN_NAMES } from '../../../../../constants/plans';
 
 const { PRO } = PLAN_NAMES;
 

@@ -9,7 +9,7 @@ import classNames from 'classnames';
 import {
   pricingButton,
   blinkyborder,
-} from '../../../constants/styles/common-styled-jsx';
+} from '../../../../constants/styles/common-styled-jsx';
 
 const renderLinks = links =>
   links.map(link => {

@@ -1,14 +1,16 @@
 import React from 'react';
 
-import { pricingButton } from '../constants/styles/common-styled-jsx';
+import { pricingButton } from '../../../../constants/styles/common-styled-jsx';
 
-export const DemoCallOutPricing = () => {
+export const DemoCallOut = () => {
   return (
     <div className="container">
       <div className="slogan">
-        <h1 className="title">Blockchain Market Intelligence</h1>
+        <h1 className="title">Use Cases</h1>
         <p className="description">
-          Enterprise-grade data and tools to understand and access blockchains.
+          TokenAnalyst is used for fundamental research and analysis,
+          quantitative trading, and for running enterprise-grade blockchain
+          infrastructure.
         </p>
         <div>
           <button
@@ -22,7 +24,7 @@ export const DemoCallOutPricing = () => {
       </div>
       <div className="image-container">
         <img
-          src="/static/svg/pricing/pricing_callout.svg"
+          src="/static/svg/usecases/callout.svg"
           alt="Blockchain Intelligence"
           className="intelligence-img"
         />
@@ -34,17 +36,21 @@ export const DemoCallOutPricing = () => {
             position: relative;
           }
           .image-container {
-            top: -20px;
-            right: 25px;
+            top: -60px;
+            right: 0px;
             position: absolute;
             text-align: right;
           }
           .intelligence-img {
-            height: 550px;
-            width: 651px;
           }
           .slogan {
-            margin-top: 100px;
+            margin-top: 149px;
+          }
+          h1 {
+            margin-top: 0px;
+            margin-bottom: 35px;
+            margin-left: 0px;
+            margin-right: 0px;
           }
           .title {
             font-family: Space Grotesk;
@@ -55,7 +61,6 @@ export const DemoCallOutPricing = () => {
             line-height: 1.11;
             letter-spacing: -0.31px;
             color: #000000;
-            margin-bottom: 35px;
             max-width: 300px;
           }
           .description {
@@ -67,21 +72,8 @@ export const DemoCallOutPricing = () => {
             line-height: normal;
             letter-spacing: 0.26px;
             color: #000000;
-            margin-bottom: 50px;
-            max-width: 320px;
-          }
-          a {
-            color: #222;
-          }
-          a:hover {
-            color: #222;
-            text-decoration: none;
-          }
-          a:active {
-            color: #222;
-          }
-          a:visited {
-            color: #222;
+            margin-bottom: 74px;
+            max-width: 450px;
           }
           @media only screen and (max-width: 768px) {
             .slogan {

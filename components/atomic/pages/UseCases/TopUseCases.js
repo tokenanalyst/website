@@ -4,7 +4,7 @@ import kebabCase from 'lodash/kebabCase';
 import { scroller } from 'react-scroll';
 import ReactGA from 'react-ga';
 
-import { pricingButton } from '../../../constants/styles/common-styled-jsx';
+import { pricingButton } from '../../../../constants/styles/common-styled-jsx';
 import { FeaturesList } from './FeaturesList';
 
 const emitProductEvent = name => {
