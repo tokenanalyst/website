@@ -1,4 +1,5 @@
 export const API_ERROR_MSG = {
+  WRONG_PARAMETERS: 'Wrong parameters combination',
   PARAMS_MISSING: 'Token, exchange and timeWindow are required',
   NO_TOKEN_PROVIDED: 'No tokens provided',
   NO_RESPONSE_FROM_API: 'No response from backend API.',
