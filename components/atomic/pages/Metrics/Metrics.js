@@ -7,10 +7,15 @@ import { TokenSelect } from '../../organism/TokenSelect/TokenSelect';
 import { tokensDb } from '../../../../services/tokensDb';
 import { TOKEN_NAMES } from '../../../../constants/token-names';
 import { ProChartContainer } from '../../organism/ProChartContainer';
-import { NATIVE_TOKENS, STABLE_TOKENS } from '../../../../constants/tokens';
+import {
+  NATIVE_TOKENS,
+  STABLE_TOKENS,
+  CURRENCIES,
+} from '../../../../constants/tokens';
 import {
   TOKENS_EXCHANGE_SUPPORT,
   BITSTAMP,
+  BINANCE,
 } from '../../../../constants/exchanges';
 import { SPOT } from '../../../../constants/instruments';
 import { MetricsList } from './MetricsList';
@@ -58,10 +63,32 @@ export const MetricsPage = () => {
 
   const tokensList = [nativeTokens, filteredStableTokens, erc20Tokens];
 
-  const supportedExchanges = TOKENS_EXCHANGE_SUPPORT[selectedToken];
-  const exchangeName = BITSTAMP;
-  const { quoteToken } = supportedExchanges[exchangeName];
-  const baseToken = supportedExchanges[exchangeName].baseToken || selectedToken;
+  let exchangeName;
+
+  let quoteToken;
+
+  let baseToken;
+
+  if (
+    selectedToken === NATIVE_TOKENS.BTC ||
+    selectedToken === NATIVE_TOKENS.ETH
+  ) {
+    exchangeName = BITSTAMP;
+    quoteToken = CURRENCIES.USD;
+    baseToken = selectedToken;
+  } else {
+    exchangeName = BINANCE;
+    const supportedExchange = Object.keys(
+      TOKENS_EXCHANGE_SUPPORT[selectedToken]
+    )[0];
+
+    const tokenSupport =
+      TOKENS_EXCHANGE_SUPPORT[selectedToken][supportedExchange];
+
+    quoteToken = tokenSupport.quoteToken;
+    baseToken = tokenSupport.baseToken || selectedToken;
+    exchangeName = supportedExchange;
+  }
 
   return (
     <>
