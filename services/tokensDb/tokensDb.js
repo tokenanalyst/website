@@ -91,17 +91,10 @@ export const tokensDb = {
     },
   },
   getTokensList: (tokenType, entity) => {
-    let filterFn;
+    let filterFn = filterByExchange;
 
-    if (EXCHANGE_NAMES[entity]) {
-      filterFn = filterByExchange;
-    }
     if (MINER_NAMES[entity]) {
       filterFn = filterByMiner;
-    }
-
-    if (!filterFn) {
-      return {};
     }
 
     if (tokenType === NATIVE) {
