@@ -14,6 +14,7 @@ export const LoadingSpinner = ({ height, width, color }) => {
         {`
           .spinner {
             height: 100%;
+            width: 100%;
             padding: 50px;
             display: flex;
             justify-content: center;

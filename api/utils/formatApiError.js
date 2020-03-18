@@ -36,7 +36,7 @@ module.exports = (error, errorMsg = API_ERROR_REASON.BACKEND_API_ERROR) => {
       },
     };
   }
-  // console.log(error);
+
   return {
     status: 500,
     body: {

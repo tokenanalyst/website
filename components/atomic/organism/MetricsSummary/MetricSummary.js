@@ -1,52 +1,77 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import numeral from 'numeral';
+import takeRight from 'lodash/takeRight';
 
-import {
-  MetricSummaryChart,
-  mockData,
-} from '../../molecules/MetricSummaryChart';
+import { MetricSummaryChart } from '../../molecules/MetricSummaryChart';
 import { ValueVariation } from '../../atoms/ValueVariation';
 import { styledBorder } from '../../../../constants/styles/common-styled-jsx';
 
-export const MetricSummary = ({ token, entities }) => {
+const latestPoints = {
+  '30d': (data, metric) => takeRight(data.days[metric], 30),
+  '7d': (data, metric) => takeRight(data.days[metric], 7),
+  '24h': (data, metric) => takeRight(data.hours[metric], 24),
+};
+
+export const MetricSummary = ({
+  token,
+  entities,
+  value,
+  variation,
+  dataWindow,
+}) => {
   return (
     <div className="metric-summary-container">
       <div className="metric-summary-header">
         <div className="metric-summary-title-container">{token}</div>
         <div className="metric-summary-value-container">
           <div className="metric-summary-value">
-            {`$ ${numeral('1000').format('0,0')}`}
+            {`$ ${numeral(value).format('0,0')}`}
           </div>
           <div className="metric-summary-variation">
-            <ValueVariation variation={-0.5} />
+            <ValueVariation variation={variation} />
           </div>
         </div>
       </div>
       <div className="metrics-summary">
         {entities.map(entity => {
-          const { name } = entity;
+          const { name, data } = entity;
           return (
             <div key={name} className="metric-summary-charts">
               <div className="metric-summary-entity">{name}</div>
               <div>
                 <MetricSummaryChart
                   label="Balance"
-                  variation={-0.7}
-                  amount="$1,200"
-                  data={mockData.ETH.sparklines.hours.outflow}
+                  variation={
+                    data.values[`data-window-${dataWindow}`]
+                      .balance_pct_change || 0
+                  }
+                  amount={numeral(
+                    data.values[`data-window-${dataWindow}`].balance_latest
+                  ).format('0,0')}
+                  data={latestPoints[dataWindow](data.sparklines, 'balance')}
                 />
                 <MetricSummaryChart
                   label="Inflow"
-                  variation={0.5}
-                  amount="$1,000"
-                  data={mockData.ETH.sparklines.hours.inflow}
+                  variation={
+                    data.values[`data-window-${dataWindow}`]
+                      .inflow_usd_sum_pct_change || 0
+                  }
+                  amount={numeral(
+                    data.values[`data-window-${dataWindow}`].inflow_usd_sum
+                  ).format('$0,0')}
+                  data={latestPoints[dataWindow](data.sparklines, 'inflow')}
                 />
                 <MetricSummaryChart
                   label="Outflow"
-                  variation={-0.5}
-                  amount="$1,500"
-                  data={mockData.ETH.sparklines.hours.outflow}
+                  variation={
+                    data.values[`data-window-${dataWindow}`]
+                      .outflow_usd_sum_pct_change || 0
+                  }
+                  amount={numeral(
+                    data.values[`data-window-${dataWindow}`].outflow_usd_sum
+                  ).format('$0,0')}
+                  data={latestPoints[dataWindow](data.sparklines, 'outflow')}
                 />
               </div>
             </div>
@@ -122,6 +147,9 @@ export const MetricSummary = ({ token, entities }) => {
 
 MetricSummary.propTypes = {
   token: PropTypes.string.isRequired,
+  value: PropTypes.number.isRequired,
+  variation: PropTypes.number.isRequired,
+  dataWindow: PropTypes.string.isRequired,
   entities: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 

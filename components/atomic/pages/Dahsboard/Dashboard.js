@@ -10,30 +10,29 @@ import { useApi } from '../../../../hooks';
 import { LoadingSpinner } from '../../atoms/LoadSpinner';
 import { filterTable } from '../../organism/FlowsTable/helpers';
 import { MetricSummary } from '../../organism/MetricsSummary';
-
-const SHOW_TABLE = false;
+import { useGetSummary } from '../../../../hooks/useGetSummary';
 
 export const DahsboardPage = () => {
   const [dataWindow, setDataWindow] = useState(DATA_WINDOWS[0]);
   const [units, setUnits] = useState(UNITS[0]);
   const ioTableData = useApi('/api/exchange-io');
+  const [summary] = useGetSummary({});
 
   const ENTITIES_BTC = [
     {
       name: 'Exchanges',
-      data: {},
+      data: summary.exchangeBTC,
       link: '/exchange/BTC/Binance',
     },
-    { name: 'Miners', data: {}, link: '/miner/BTC/antpool' },
+    { name: 'Miners', data: summary.minerBTC, link: '/miner/BTC/antpool' },
   ];
 
   const ENTITIES_ETH = [
     {
       name: 'Exchanges',
-      data: {},
-      link: '/exchange/BTC/Binance',
+      data: summary.exchangeETH,
+      link: '/exchange/ETH/Binance',
     },
-    { name: 'Miners', data: {}, link: '/miner/BTC/antpool' },
   ];
 
   return (
@@ -52,13 +51,37 @@ export const DahsboardPage = () => {
         </div>
         <div className="metrics-summary">
           <div className="metrics-summary-container">
-            <MetricSummary token="Bitcoin" entities={ENTITIES_BTC} />
+            {Object.keys(summary).length !== 0 ? (
+              <MetricSummary
+                token="Bitcoin"
+                entities={ENTITIES_BTC}
+                value={ENTITIES_BTC[0].data.token.price}
+                variation={ENTITIES_BTC[0].data.token.price_pct_change}
+                dataWindow={dataWindow}
+              />
+            ) : (
+              <div className="spinner">
+                <LoadingSpinner />
+              </div>
+            )}
           </div>
           <div className="separator" />
           <div
             className={classNames('metrics-summary-container', 'with-padding')}
           >
-            <MetricSummary token="Ethereum" entities={ENTITIES_ETH} />
+            {Object.keys(summary).length !== 0 ? (
+              <MetricSummary
+                token="Ethereum"
+                entities={ENTITIES_ETH}
+                value={ENTITIES_ETH[0].data.token.price}
+                variation={ENTITIES_ETH[0].data.token.price_pct_change}
+                dataWindow={dataWindow}
+              />
+            ) : (
+              <div className="spinner">
+                <LoadingSpinner />
+              </div>
+            )}
           </div>
 
           {/* <div className="separator" />
@@ -67,7 +90,7 @@ export const DahsboardPage = () => {
         <div className="under-sub-nav">
           <h2>{`${dataWindow} Exchanges Inflows/Outflows`}</h2>
           <div className="table">
-            {ioTableData && SHOW_TABLE ? (
+            {ioTableData ? (
               <FlowsTable
                 data={filterTable(ioTableData)}
                 dataWindow={dataWindow}
@@ -97,6 +120,7 @@ export const DahsboardPage = () => {
           }
           .metrics-summary-container {
             display: flex;
+            height: 450px;
             width: 100%;
           }
           .with-padding {
@@ -119,7 +143,10 @@ export const DahsboardPage = () => {
             padding-left: 10px;
           }
           .spinner {
-            height: 296px;
+            display: flex;
+            height: 100%;
+            width: 100%;
+            align-items: center;
           }
           @media only screen and (max-width: 768px) {
             .table {
