@@ -16,7 +16,7 @@ module.exports = (period, dataPoints, direction) => {
     dataSet[dataSet.length - 1][`${direction}_usd`]
   )
     .dividedBy(dataSet[0][`${direction}_usd`])
-    .times(100)
+    .multipliedBy(100)
     .minus(100);
 
   const { sum, usd_sum } = dataSet.reduce(

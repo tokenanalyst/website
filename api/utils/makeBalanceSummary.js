@@ -1,23 +1,21 @@
 /* eslint-disable camelcase */
 const BigNumber = require('bignumber.js');
+const takeRight = require('lodash/takeRight');
 
 module.exports = (period, dataPoints) => {
-  const balance_latest = dataPoints[dataPoints.length - 1].balance;
-  const balance_usd_latest = dataPoints[dataPoints.length - 1].balance_usd;
-  const firstPointIndex =
-    period >= dataPoints.length ? 0 : dataPoints.length - 1 - period;
+  const dataSet = takeRight(dataPoints, period);
+  const balance_latest = dataSet[dataSet.length - 1].balance;
+  const balance_usd_latest = dataSet[dataSet.length - 1].balance_usd;
 
-  const balance_pct_change = new BigNumber(
-    dataPoints[dataPoints.length - 1].balance
-  )
-    .dividedBy(dataPoints[firstPointIndex].balance)
+  const balance_pct_change = new BigNumber(dataSet[dataSet.length - 1].balance)
+    .dividedBy(dataSet[0].balance)
     .multipliedBy(100)
     .minus(100);
 
   const balance_usd_pct_change = new BigNumber(
-    dataPoints[dataPoints.length - 1].balance_usd
+    dataSet[dataSet.length - 1].balance_usd
   )
-    .dividedBy(dataPoints[firstPointIndex].balance_usd)
+    .dividedBy(dataSet[0].balance_usd)
     .multipliedBy(100)
     .minus(100);
 
