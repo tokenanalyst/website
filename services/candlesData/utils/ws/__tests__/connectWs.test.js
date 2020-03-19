@@ -1,4 +1,3 @@
-/* global stfy */
 import { WebSocket, Server } from 'mock-socket';
 import reconnectWs from '../reconnectWs';
 import connectWs from '../connectWs';
@@ -52,7 +51,7 @@ describe('connectWs function', () => {
         const msg = JSON.parse(data);
         if (msg.event === 'subscribe') {
           socket.send(
-            stfy({
+            JSON.stringify({
               event: 'subscribed',
               channel: msg.channel,
               chanId,
@@ -63,7 +62,7 @@ describe('connectWs function', () => {
         }
         if (msg.event === 'unsubscribe') {
           socket.send(
-            stfy({
+            JSON.stringify({
               event: 'unsubscribed',
               status: 'OK',
               chanId: msg.chanId,
@@ -74,14 +73,14 @@ describe('connectWs function', () => {
     });
     ws = connectWs(wsUrl, connOpts);
     ws.send(
-      stfy({
+      JSON.stringify({
         event: 'subscribe',
         channel: 'ticker',
         symbol: 'tETHUSD',
       })
     );
     ws.send(
-      stfy({
+      JSON.stringify({
         event: 'subscribe',
         channel: 'ticker',
         symbol: 'tNECETH',
@@ -90,7 +89,7 @@ describe('connectWs function', () => {
     jest.runTimersToTime(100);
     expect(Object.keys(ws.subs).length).toBe(2);
     ws.send(
-      stfy({
+      JSON.stringify({
         event: 'unsubscribe',
         chanId: Object.keys(ws.subs)[0],
       })
@@ -99,7 +98,7 @@ describe('connectWs function', () => {
     expect(Object.keys(ws.subs).length).toBe(1);
     jest.runTimersToTime(100);
     ws.send(
-      stfy({
+      JSON.stringify({
         event: 'unsubscribe',
         chanId: Object.keys(ws.subs)[0],
       })
@@ -118,7 +117,7 @@ describe('connectWs function', () => {
         const msg = JSON.parse(data);
         if (msg.event === 'ping') {
           socket.send(
-            stfy({
+            JSON.stringify({
               event: 'pong',
               ts: '123',
             })
@@ -128,7 +127,7 @@ describe('connectWs function', () => {
     });
     ws = connectWs(wsUrl, connOpts);
     ws.send(
-      stfy({
+      JSON.stringify({
         event: 'ping',
       })
     );

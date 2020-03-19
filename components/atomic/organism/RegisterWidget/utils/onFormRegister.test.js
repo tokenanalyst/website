@@ -3,6 +3,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import Router from 'next/router';
 import ReactGA from 'react-ga';
+import MockDate from 'mockdate';
 
 import { COOKIES } from '../../../../../constants/cookies';
 import { API_ERROR_MSG } from '../../../../../constants/apiErrors';
@@ -28,14 +29,18 @@ const username = 'testUserName';
 const id = 'testId';
 const tier = 0;
 
+const mockTime = 1434319925000;
+
+MockDate.set(mockTime);
+
 const expectCookies = () => {
-  expect(Cookies.set).toHaveBeenNthCalledWith(1, COOKIES.apiKey, apiKey);
+  expect(Cookies.set).toHaveBeenNthCalledWith(1, COOKIES.userId, id);
+  expect(Cookies.set).toHaveBeenNthCalledWith(2, COOKIES.apiKey, apiKey);
   expect(Cookies.set).toHaveBeenNthCalledWith(
-    2,
+    3,
     COOKIES.loggedInAsUsername,
     username
   );
-  expect(Cookies.set).toHaveBeenNthCalledWith(3, COOKIES.loggedInAsUserId, id);
   expect(Cookies.set).toHaveBeenNthCalledWith(4, COOKIES.tier, tier);
 };
 
@@ -137,21 +142,15 @@ describe('onFormRegister function', () => {
     expect(result.errorMsg).toEqual(expectedResult.errorMsg);
     expect(result.redirectFn).toBeInstanceOf(Function);
     result.redirectFn();
-    expect(loginCtx.paymentData.stripe.redirectFn).toHaveBeenCalledWith({
-      customerEmail: username,
-      clientReferenceId: id.toString(),
-    });
     expectCookies();
     expect(loginCtx.setIsLoggedIn).toHaveBeenCalledWith(true);
-    expect(loginCtx.intercom.setUser).toHaveBeenCalledWith(name, username);
+    expect(loginCtx.intercom.setUser).toHaveBeenCalledWith(name, username, id, {
+      'Registered at': mockTime / 1000,
+    });
     expect(ReactGA.event).toHaveBeenCalledWith({
       category: 'User',
-      action: `Registered to make a purchase`,
+      action: `Registered organically`,
       label: `Funnel`,
-    });
-    expect(loginCtx.setPaymentData).toHaveBeenCalledWith({
-      ...loginCtx.paymentData,
-      stripe: null,
     });
   });
 
@@ -188,19 +187,17 @@ describe('onFormRegister function', () => {
     expect(result.errorMsg).toEqual(expectedResult.errorMsg);
     expect(result.redirectFn).toBeInstanceOf(Function);
     result.redirectFn();
-    expect(Router.push).toHaveBeenCalledWith('/free-tier-success');
+    expect(Router.push).toHaveBeenCalledWith('/?registered=true');
 
     expectCookies();
     expect(loginCtx.setIsLoggedIn).toHaveBeenCalledWith(true);
-    expect(loginCtx.intercom.setUser).toHaveBeenCalledWith(name, username);
+    expect(loginCtx.intercom.setUser).toHaveBeenCalledWith(name, username, id, {
+      'Registered at': mockTime / 1000,
+    });
     expect(ReactGA.event).toHaveBeenCalledWith({
       category: 'User',
-      action: `Registered to access free tier`,
+      action: `Registered organically`,
       label: `Funnel`,
-    });
-    expect(loginCtx.setPaymentData).toHaveBeenCalledWith({
-      ...loginCtx.paymentData,
-      isFreeTier: false,
     });
   });
   it('should redirect to exchange if user registered via Exchange page CTA', async () => {
@@ -243,7 +240,9 @@ describe('onFormRegister function', () => {
 
     expectCookies();
     expect(loginCtx.setIsLoggedIn).toHaveBeenCalledWith(true);
-    expect(loginCtx.intercom.setUser).toHaveBeenCalledWith(name, username);
+    expect(loginCtx.intercom.setUser).toHaveBeenCalledWith(name, username, id, {
+      'Registered at': mockTime / 1000,
+    });
     expect(ReactGA.event).toHaveBeenCalledWith({
       category: 'User',
       action: `Registered via Exchange Page CTA`,
