@@ -19,7 +19,13 @@ const setValueChangeStatus = (value, status) => {
   return status.neutral;
 };
 
-export const MetricSummaryChart = ({ label, data, variation, amount }) => {
+export const MetricSummaryChart = ({
+  label,
+  data,
+  variation,
+  amount,
+  isCurrent,
+}) => {
   return (
     <>
       {data ? (
@@ -43,7 +49,11 @@ export const MetricSummaryChart = ({ label, data, variation, amount }) => {
             </div>
 
             <div className="last-row">
-              <MetricSummaryValues variation={variation} amount={amount} />
+              <MetricSummaryValues
+                variation={variation}
+                amount={amount}
+                isCurrent={isCurrent}
+              />
             </div>
           </div>
         </div>
@@ -167,6 +177,9 @@ MetricSummaryChart.propTypes = {
   data: PropTypes.arrayOf(PropTypes.number).isRequired,
   variation: PropTypes.number.isRequired,
   amount: PropTypes.string.isRequired,
+  isCurrent: PropTypes.bool,
 };
 
-MetricSummaryChart.defaultProps = {};
+MetricSummaryChart.defaultProps = {
+  isCurrent: false,
+};

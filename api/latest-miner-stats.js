@@ -50,6 +50,9 @@ module.exports = async (req, res) => {
     }
   }
 
+  console.log(balancesHoursData);
+  console.log(balancesDaysData);
+
   const ta_response = {};
 
   const publicApi = TA({
@@ -110,15 +113,13 @@ module.exports = async (req, res) => {
 
     DATA_WINDOWS.forEach(dataWindow => {
       ta_response[token].values[`data-window-${dataWindow}`] = {
-        ...(dataWindow === '24h' && balancesHoursData
+        ...(dataWindow === '24h'
           ? balancesHoursData.summary[dataWindow]
           : balancesDaysData.summary[dataWindow]),
-
-        ...(dataWindow === '24h' && flowsHoursData
+        ...(dataWindow === '24h'
           ? flowsHoursData.inflow.summary[dataWindow]
           : flowsDaysData.inflow.summary[dataWindow]),
-
-        ...(dataWindow === '24h' && flowsHoursData
+        ...(dataWindow === '24h'
           ? flowsHoursData.outflow.summary[dataWindow]
           : flowsDaysData.outflow.summary[dataWindow]),
       };

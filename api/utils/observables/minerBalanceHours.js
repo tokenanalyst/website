@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-const TA = require('ta-api-node');
+const TA = require('ta-api-node/src/ta');
 const { defer, merge } = require('rxjs');
 const { map, reduce } = require('rxjs/operators');
 const moment = require('moment');
@@ -7,7 +7,7 @@ const moment = require('moment');
 const { TOKENS_MINER_SUPPORT } = require('../../../constants/miners');
 const makeBalanceSummary = require('../makeBalanceSummary');
 
-const privateApi = TA({ apiKey: process.env.API_KEY });
+const privateApi = TA({ apiKey: process.env.API_KEY, debug: true });
 
 const balanceHoursReq = (days, token, window) =>
   Object.keys(TOKENS_MINER_SUPPORT[token])
@@ -20,8 +20,8 @@ const balanceHoursReq = (days, token, window) =>
         token,
         window,
         format: 'json',
-        from_hour: thirtyDaysAgo.format('YYYY-MM-DD'),
-        to_hour: now.format('YYYY-MM-DD'),
+        from_date: thirtyDaysAgo.format('YYYY-MM-DD'),
+        to_date: now.format('YYYY-MM-DD'),
       };
       return defer(() => privateApi.minerBalanceWindowHistorical(params));
     });
@@ -32,6 +32,7 @@ module.exports = (hours, token) =>
       if (res.status !== 200) {
         throw res;
       }
+      // console.log(res.data);
       return res.data;
     }),
     map(val => {
@@ -41,16 +42,16 @@ module.exports = (hours, token) =>
     }),
     reduce((acc, val) => {
       Object.values(val).forEach(point => {
-        const { hour, balance, balance_usd } = point;
-        if (!acc[hour]) {
-          acc[hour] = { hour };
-          acc[hour].balance = 0;
-          acc[hour].balance_usd = 0;
+        const { datetime, balance, balance_usd } = point;
+        if (!acc[datetime]) {
+          acc[datetime] = { datetime };
+          acc[datetime].balance = 0;
+          acc[datetime].balance_usd = 0;
         }
-        acc[hour] = {
-          ...acc[hour],
-          balance: acc[hour].balance + balance,
-          balance_usd: acc[hour].balance_usd + balance_usd,
+        acc[datetime] = {
+          ...acc[datetime],
+          balance: acc[datetime].balance + balance,
+          balance_usd: acc[datetime].balance_usd + balance_usd,
         };
       });
       return acc;

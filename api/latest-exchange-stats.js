@@ -191,7 +191,7 @@ module.exports = async (req, res) => {
         outflow_usd_sum,
         outflow_sum_pct_change,
         outflow_usd_sum_pct_change,
-        ...(dataWindow === '24h' && balancesHoursData && balancesDaysData
+        ...(dataWindow === '24h'
           ? balancesHoursData.summary[dataWindow]
           : balancesDaysData.summary[dataWindow]),
       };

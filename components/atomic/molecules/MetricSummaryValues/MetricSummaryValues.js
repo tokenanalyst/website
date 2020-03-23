@@ -5,12 +5,30 @@ import React from 'react';
 import { ValueVariation } from '../../atoms/ValueVariation';
 import { colors } from '../../../../constants/styles/colors';
 
-export const MetricSummaryValues = ({ variation, amount }) => {
+const renderCurrentLabel = () => {
+  return (
+    <>
+      <span className="current">&nbsp;&nbsp;(current)</span>
+      <style jsx>
+        {`
+          .current {
+            opacity: 0.4;
+          }
+        `}
+      </style>
+    </>
+  );
+};
+
+export const MetricSummaryValues = ({ variation, amount, isCurrent }) => {
   return (
     <>
       <div className="value-container">
         <ValueVariation variation={variation} />
-        <div className="value">{amount}</div>
+        <div className="value">
+          {amount}
+          {isCurrent && renderCurrentLabel()}
+        </div>
       </div>
 
       <style jsx>
@@ -49,6 +67,9 @@ export const MetricSummaryValues = ({ variation, amount }) => {
 MetricSummaryValues.propTypes = {
   variation: PropTypes.number.isRequired,
   amount: PropTypes.string.isRequired,
+  isCurrent: PropTypes.bool,
 };
 
-MetricSummaryValues.defaultProps = {};
+MetricSummaryValues.defaultProps = {
+  isCurrent: false,
+};

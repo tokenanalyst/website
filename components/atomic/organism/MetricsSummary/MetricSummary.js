@@ -43,19 +43,19 @@ export const MetricSummary = ({
                 <MetricSummaryChart
                   label="Balance"
                   variation={
-                    data.values[`data-window-${dataWindow}`]
-                      .balance_pct_change || 0
+                    data.values[`data-window-${dataWindow}`].balance_pct_change
                   }
                   amount={numeral(
-                    data.values[`data-window-${dataWindow}`].balance_latest
-                  ).format('0,0')}
+                    data.values[`data-window-${dataWindow}`].balance_usd_latest
+                  ).format('$0,0')}
                   data={latestPoints[dataWindow](data.sparklines, 'balance')}
+                  isCurrent
                 />
                 <MetricSummaryChart
                   label="Inflow"
                   variation={
                     data.values[`data-window-${dataWindow}`]
-                      .inflow_usd_sum_pct_change || 0
+                      .inflow_usd_sum_pct_change
                   }
                   amount={numeral(
                     data.values[`data-window-${dataWindow}`].inflow_usd_sum
@@ -66,7 +66,7 @@ export const MetricSummary = ({
                   label="Outflow"
                   variation={
                     data.values[`data-window-${dataWindow}`]
-                      .outflow_usd_sum_pct_change || 0
+                      .outflow_usd_sum_pct_change
                   }
                   amount={numeral(
                     data.values[`data-window-${dataWindow}`].outflow_usd_sum
