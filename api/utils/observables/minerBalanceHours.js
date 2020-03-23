@@ -7,7 +7,7 @@ const moment = require('moment');
 const { TOKENS_MINER_SUPPORT } = require('../../../constants/miners');
 const makeBalanceSummary = require('../makeBalanceSummary');
 
-const privateApi = TA({ apiKey: process.env.API_KEY, debug: true });
+const privateApi = TA({ apiKey: process.env.API_KEY });
 
 const balanceHoursReq = (days, token, window) =>
   Object.keys(TOKENS_MINER_SUPPORT[token])
