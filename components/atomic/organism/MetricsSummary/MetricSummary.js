@@ -194,6 +194,12 @@ export const MetricSummary = ({
             .metric-summary-charts {
               width: 100%;
             }
+            .cta {
+              top: 50%;
+              left: 50%;
+              width: 100%;
+              text-align: center;
+            }
           }
         `}
       </style>

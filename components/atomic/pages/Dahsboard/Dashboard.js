@@ -171,6 +171,12 @@ export const DahsboardPage = () => {
             .with-padding {
               padding-left: 0px;
             }
+            .spinner {
+              display: flex;
+              height: 50%;
+              width: 100%;
+              align-items: center;
+            }
           }
         `}
       </style>
