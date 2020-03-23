@@ -127,6 +127,7 @@ export const MetricSummary = ({
           .metric-summary-charts {
             position: relative;
             width: 50%;
+            padding-right: 15px;
           }
           .disabled {
             opacity: 0.1;
