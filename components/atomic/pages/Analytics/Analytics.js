@@ -3,12 +3,14 @@ import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import ReactGA from 'react-ga';
+import Cookies from 'js-cookie';
 
 import { colors } from '../../../../constants/styles/colors';
 import { LinkTelegram } from '../../molecules/LinkTelegram';
 import { ButtonMarketing } from '../../molecules/ButtonMarketing';
 import { SimpleDialog } from '../../atoms/SimpleDialog';
 import { LoginContext } from '../../../../contexts/Login';
+import { COOKIES } from '../../../../constants/cookies';
 
 const BIG = 'BIG';
 const MED = 'MED';
@@ -28,6 +30,7 @@ const IMAGE_SOURCES = {
 
 const SidePanel = ({ categories, selectedCategory, onCategorySelect }) => {
   const [isDialogShown, setIsDialogShown] = useState(false);
+  const isProUser = () => Cookies.get(COOKIES.tier) < 1;
 
   return (
     <>
@@ -80,7 +83,7 @@ const SidePanel = ({ categories, selectedCategory, onCategorySelect }) => {
       <div className="container">
         <div className="header">Category:</div>
         {categories.map(category => (
-          <div className="row">
+          <div className="row" key={category}>
             <span
               className={
                 category === selectedCategory ? 'item-selected' : 'item'
@@ -94,20 +97,22 @@ const SidePanel = ({ categories, selectedCategory, onCategorySelect }) => {
             </span>
           </div>
         ))}
-        <div className="more-button">
-          <ButtonMarketing
-            text="More"
-            isExternal={false}
-            onClick={() => {
-              ReactGA.event({
-                category: 'User',
-                action: `Analytics Dialog Upsell Shown`,
-                label: `Funnel`,
-              });
-              setIsDialogShown(true);
-            }}
-          />
-        </div>
+        {isProUser() && (
+          <div className="more-button">
+            <ButtonMarketing
+              text="More"
+              isExternal={false}
+              onClick={() => {
+                ReactGA.event({
+                  category: 'User',
+                  action: `Analytics Dialog Upsell Shown`,
+                  label: `Funnel`,
+                });
+                setIsDialogShown(true);
+              }}
+            />
+          </div>
+        )}
       </div>
       <style jsx>
         {`
@@ -155,11 +160,12 @@ const SidePanel = ({ categories, selectedCategory, onCategorySelect }) => {
 
 SidePanel.propTypes = {
   categories: PropTypes.arrayOf(PropTypes.string).isRequired,
-  selectedCategory: PropTypes.string.isRequired,
+  selectedCategory: PropTypes.string,
   onCategorySelect: PropTypes.func,
 };
 
 SidePanel.defaultProps = {
+  selectedCategory: null,
   onCategorySelect: () => {},
 };
 
@@ -235,6 +241,7 @@ export const Analytics = () => {
                     </div>
                   ) : (
                     <iframe
+                      key={chart.url}
                       title="analytics-charts"
                       src={chart.url}
                       width={
