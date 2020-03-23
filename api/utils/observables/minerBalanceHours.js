@@ -32,7 +32,6 @@ module.exports = (hours, token) =>
       if (res.status !== 200) {
         throw res;
       }
-      // console.log(res.data);
       return res.data;
     }),
     map(val => {

@@ -14,8 +14,6 @@ const formatApiError = require('./utils/formatApiError');
 const setResponseCache = require('./utils/setResponseCache');
 
 module.exports = async (req, res) => {
-  console.log('#### RUN MINER ####');
-
   const urlParts = url.parse(req.url, true);
   const tokens = urlParts.query.tokens && urlParts.query.tokens.split(',');
 
@@ -49,9 +47,6 @@ module.exports = async (req, res) => {
       return res.status(status).send(body);
     }
   }
-
-  console.log(balancesHoursData);
-  console.log(balancesDaysData);
 
   const ta_response = {};
 

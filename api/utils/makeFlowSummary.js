@@ -26,25 +26,7 @@ module.exports = (period, dataPoints, direction) => {
     }),
     { sum: new BigNumber(0), usd_sum: new BigNumber(0) }
   );
-  console.log(sum_pct_change.toNumber());
-  console.log(sum_pct_change.isNaN());
-  console.log(
-    sum_pct_change.isNaN() || !sum_pct_change.isFinite()
-      ? 0
-      : sum_pct_change.toNumber()
-  );
-  console.log({
-    [`${direction}_sum`]: sum.toNumber(),
-    [`${direction}_usd_sum`]: usd_sum.toNumber(),
-    [`${direction}_latest`]: latest,
-    [`${direction}_usd_latest`]: usd_latest,
-    [`${direction}_sum_pct_change`]: sum_pct_change.isNaN()
-      ? 0
-      : sum_pct_change.toNumber(),
-    [`${direction}_usd_sum_pct_change`]: usd_sum_pct_change.isNaN()
-      ? 0
-      : usd_sum_pct_change.toNumber(),
-  });
+
   return {
     [`${direction}_sum`]: sum.toNumber(),
     [`${direction}_usd_sum`]: usd_sum.toNumber(),

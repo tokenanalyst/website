@@ -2,7 +2,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import numeral from 'numeral';
 import takeRight from 'lodash/takeRight';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
+import classNames from 'classnames';
 import { MetricSummaryChart } from '../../molecules/MetricSummaryChart';
 import { ValueVariation } from '../../atoms/ValueVariation';
 import { styledBorder } from '../../../../constants/styles/common-styled-jsx';
@@ -20,6 +23,12 @@ export const MetricSummary = ({
   variation,
   dataWindow,
 }) => {
+  const router = useRouter();
+
+  const onCTAClick = e => {
+    e.preventDefault();
+    router.push('/pricing');
+  };
   return (
     <div className="metric-summary-container">
       <div className="metric-summary-header">
@@ -35,11 +44,31 @@ export const MetricSummary = ({
       </div>
       <div className="metrics-summary">
         {entities.map(entity => {
-          const { name, data } = entity;
+          const { name, data, isDisabled } = entity;
           return (
-            <div key={name} className="metric-summary-charts">
-              <div className="metric-summary-entity">{name}</div>
-              <div>
+            <div
+              key={name}
+              className="metric-summary-charts"
+              onClick={!isDisabled ? () => {} : onCTAClick}
+              onKeyDown={!isDisabled ? () => {} : onCTAClick}
+              role="button"
+              tabIndex={0}
+            >
+              {isDisabled && (
+                <Link href="/pricing">
+                  <div className="cta">Get more data</div>
+                </Link>
+              )}
+
+              <div
+                className={classNames(
+                  'metric-summary-entity',
+                  isDisabled && 'disabled'
+                )}
+              >
+                {name}
+              </div>
+              <div className={classNames(isDisabled && 'disabled')}>
                 <MetricSummaryChart
                   label="Balance"
                   variation={
@@ -84,6 +113,7 @@ export const MetricSummary = ({
           .metrics-summary {
             display: flex;
             width: 100%;
+            padding-right: 10px;
           }
           .metric-summary-container {
             font-family: Open Sans;
@@ -95,7 +125,24 @@ export const MetricSummary = ({
             margin-right: 15px;
           }
           .metric-summary-charts {
+            position: relative;
             width: 50%;
+          }
+          .disabled {
+            opacity: 0.1;
+            cursor: pointer;
+          }
+          .cta {
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: Space Grotesk;
+            font-size: 24px;
+            font-weight: bold;
+            color: rgba(250, 78, 150);
+            z-index: 1;
+            cursor: pointer;
           }
           .entity-name {
             font-family: Open Sans;
@@ -138,6 +185,15 @@ export const MetricSummary = ({
           }
 
           @media only screen and (max-width: 768px) {
+            .metrics-summary {
+              flex-direction: column;
+            }
+            .metric-summary-value-container {
+              width: 100%;
+            }
+            .metric-summary-charts {
+              width: 100%;
+            }
           }
         `}
       </style>

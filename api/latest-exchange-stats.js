@@ -17,8 +17,6 @@ const formatApiError = require('./utils/formatApiError');
 const setResponseCache = require('./utils/setResponseCache');
 
 module.exports = async (req, res) => {
-  console.log('#### RUN EXCHANGE ####');
-
   const urlParts = url.parse(req.url, true);
   const tokensParam = urlParts.query.tokens;
   const tokens = urlParts.query.tokens && tokensParam.split(',');

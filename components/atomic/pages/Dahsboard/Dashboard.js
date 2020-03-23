@@ -33,6 +33,12 @@ export const DahsboardPage = () => {
       data: summary.exchangeETH,
       link: '/exchange/ETH/Binance',
     },
+    {
+      name: 'Miners',
+      data: summary.minerBTC,
+      link: '/miner/BTC/antpool',
+      isDisabled: true,
+    },
   ];
 
   return (
@@ -155,6 +161,15 @@ export const DahsboardPage = () => {
             }
             .section-header {
               display: none;
+            }
+            .metrics-summary {
+              flex-direction: column;
+            }
+            .metrics-summary-container {
+              height: 900px;
+            }
+            .with-padding {
+              padding-left: 0px;
             }
           }
         `}
