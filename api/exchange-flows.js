@@ -36,8 +36,6 @@ module.exports = async (req, res) => {
     },
   });
 
-  console.log(exchange);
-
   const baseParams = {
     format: FORMAT,
     token,

@@ -53,8 +53,9 @@ export const TokenSnapshot = ({
 
   useEffect(() => {
     const getData = async () => {
+      await axios.get(`/api/latest-miner-stats?tokens=${snapshotToken}`);
       const result = await axios.get(
-        `/api/latest-exchange-flows?tokens=${snapshotToken}`
+        `/api/latest-exchange-stats?tokens=${snapshotToken}`
       );
       setApiResponse(result.data);
     };

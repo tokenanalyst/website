@@ -3,6 +3,8 @@ import React from 'react';
 import classNames from 'classnames';
 import Link from 'next/link';
 
+import { styledBorder } from '../../../../constants/styles/common-styled-jsx';
+
 export const TabDesktop = ({ text, link, selected }) => {
   return (
     <>
@@ -10,13 +12,16 @@ export const TabDesktop = ({ text, link, selected }) => {
         <span className="text">
           <Link href={link} passHref>
             <span
-              className={classNames(selected ? 'selected' : 'not-selected')}
+              className={classNames(
+                selected ? 'bottom-selected' : 'bottom-not-selected'
+              )}
             >
               {text}
             </span>
           </Link>
         </span>
       </div>
+      <style jsx>{styledBorder}</style>
       <style jsx>
         {`
           .text {
@@ -28,20 +33,6 @@ export const TabDesktop = ({ text, link, selected }) => {
           }
           .link {
             cursor: pointer;
-          }
-          .selected {
-            border-bottom: 2px solid rgb(63, 205, 171);
-            opacity: 1;
-          }
-          .not-selected::after {
-            display: block;
-            content: '';
-            border-bottom: 2px solid rgb(63, 205, 171);
-            transform: scaleX(0);
-            transition: transform 250ms ease-in-out;
-          }
-          .not-selected:hover:after {
-            transform: scaleX(1);
           }
           .tab {
             margin-right: 40px;

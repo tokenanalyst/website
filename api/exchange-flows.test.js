@@ -38,13 +38,7 @@ mockResponse.send = data => data;
 
 describe('exchange-flows api', () => {
   beforeEach(() => {
-    mocksClear([
-      url.parse,
-      mockResponse.status,
-      mockResponse.json,
-      mockResponse.send,
-      TA,
-    ]);
+    mocksClear([url.parse, mockResponse.status, mockResponse.json, TA]);
   });
 
   it('should return a 400 if no token or exchange is provided', async () => {
@@ -59,22 +53,5 @@ describe('exchange-flows api', () => {
     expect(url.parse).toHaveBeenCalledWith(mockRequest.url, true);
     expect(getUserAuth).not.toHaveBeenCalled();
     expect(response).toEqual(expectedResponse);
-  });
-
-  it("should check that the user's apiKey is valid", async () => {
-    mockRequest = {
-      ...mockRequest,
-      url: {
-        query: { timeWindow: '1d' },
-      },
-      cookies: {
-        apiKey: '123',
-      },
-    };
-    await exchangeMetrics(mockRequest, mockResponse);
-    expect(url.parse).toHaveBeenCalledWith(mockRequest.url, true);
-    expect(mockResponse.status).toHaveBeenCalledWith(400);
-    expect(getUserAuth).toHaveBeenCalled();
-    expect(getUserAuth).toHaveBeenCalledWith(mockRequest.cookies.apiKey);
   });
 });

@@ -1,4 +1,4 @@
-import { formatApiError } from './formatApiError';
+import formatApiError from './formatApiError';
 import { API_ERROR_MSG, API_ERROR_REASON } from '../../constants/apiErrors';
 
 describe('formatApiError function', () => {
@@ -55,6 +55,17 @@ describe('formatApiError function', () => {
       },
     };
     let formattedResponse = formatApiError(mockError);
+    expect(formattedResponse).toEqual(expectedResponse);
+
+    mockError = { status: 400, data: {} };
+    expectedResponse = {
+      status: 400,
+      body: {
+        message: {},
+        reason: API_ERROR_REASON.BACKEND_API_ERROR,
+      },
+    };
+    formattedResponse = formatApiError(mockError);
     expect(formattedResponse).toEqual(expectedResponse);
 
     mockError = {};
