@@ -113,7 +113,9 @@ export const LeftSidePanelMetrics = ({
 LeftSidePanelMetrics.propTypes = {
   onChangeToken: PropTypes.func.isRequired,
   tokenName: PropTypes.string.isRequired,
-  selectedIndicator: PropTypes.string.isRequired,
+  selectedIndicator: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.string, PropTypes.bool])
+  ).isRequired,
   selectedToken: PropTypes.string.isRequired,
   tokensList: PropTypes.arrayOf(PropTypes.object).isRequired,
   setSelectedIndicator: PropTypes.func.isRequired,

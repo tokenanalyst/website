@@ -3,7 +3,7 @@ import { Icon } from '@blueprintjs/core';
 import axios from 'axios';
 import ReactGA from 'react-ga';
 
-import { colors } from '../constants/styles/colors';
+import { colors } from '../../../../constants/styles/colors';
 
 export const Newsletter = () => {
   const [isShown, setIsShown] = useState(false);
@@ -43,7 +43,13 @@ export const Newsletter = () => {
       <div className="container">
         <div className="top">
           <span className="header">Newsletter</span>
-          <span className="close" onClick={dismiss}>
+          <span
+            className="close"
+            onClick={dismiss}
+            role="button"
+            onKeyDown={dismiss}
+            tabIndex={0}
+          >
             <img
               src="/static/svg/cross.svg"
               className="icon"
@@ -74,7 +80,13 @@ export const Newsletter = () => {
                   onChange={e => setEmail(e.target.value)}
                   placeholder="famoustrader@bitmex.org"
                 />
-                <div className="button" onClick={register}>
+                <div
+                  className="button"
+                  onClick={register}
+                  role="button"
+                  onKeyDown={register}
+                  tabIndex={0}
+                >
                   Sign up
                 </div>
               </div>
