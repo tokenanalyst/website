@@ -39,7 +39,7 @@ module.exports = async (req, res) => {
   const baseParams = {
     format: FORMAT,
     token,
-    exchange,
+    exchange: encodeURIComponent(exchange),
     window: timeWindow,
   };
 
@@ -52,40 +52,56 @@ module.exports = async (req, res) => {
     format: FORMAT,
   });
 
-  const inFlowApiRequest = privateApi.exchangeFlowWindowHistorical(
+  const inFlowApiReq = privateApi.exchangeFlowWindowHistorical(
     makeCallParams(baseParams, 'inflow', from_date, to_date)
   );
-  const outFlowApiRequest = privateApi.exchangeFlowWindowHistorical(
+  const outFlowApiReq = privateApi.exchangeFlowWindowHistorical(
     makeCallParams(baseParams, 'outflow', from_date, to_date)
   );
 
   const [
-    inflowTxnCountApiResponse,
-    outflowTxnCountApiResponse,
+    inFlowApiRes,
+    outFlowApiRes,
     publicApiResponse,
     tokenPriceApiResponse,
   ] = await Promise.all([
-    inFlowApiRequest,
-    outFlowApiRequest,
+    inFlowApiReq,
+    outFlowApiReq,
     exchangeFlowsAllTokensRequest,
     priceApiRequest,
   ]).catch(err => {
-    const { code, body } = formatApiError(err);
-    return res.status(code).send(body);
+    const { status, body } = formatApiError(err);
+    return res.status(status).send(body);
   });
 
-  const inFlow = inflowTxnCountApiResponse.data;
-  const outFlow = outflowTxnCountApiResponse.data;
+  let responseErr;
+
+  [
+    inFlowApiRes,
+    outFlowApiRes,
+    publicApiResponse,
+    tokenPriceApiResponse,
+  ].forEach(response => {
+    if (response.status !== 200) {
+      responseErr = response;
+    }
+  });
+
+  if (responseErr) {
+    const { status, body } = formatApiError(responseErr);
+
+    return res.status(status).send(body);
+  }
+
+  const inFlow = inFlowApiRes.data;
+  const outFlow = outFlowApiRes.data;
 
   const netflow = makeNetFlowSeries(inFlow, outFlow, from_date, to_date);
 
   return res.send({
     ta_response: {
-      inflow: filterSeriesByTime(inflowTxnCountApiResponse.data, tierTimeLimit),
-      outflow: filterSeriesByTime(
-        outflowTxnCountApiResponse.data,
-        tierTimeLimit
-      ),
+      inflow: filterSeriesByTime(inFlowApiRes.data, tierTimeLimit),
+      outflow: filterSeriesByTime(outFlowApiRes.data, tierTimeLimit),
       netflow: filterSeriesByTime(netflow, tierTimeLimit),
       overall: publicApiResponse.data.filter(
         item =>

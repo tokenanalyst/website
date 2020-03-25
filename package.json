@@ -29,13 +29,16 @@
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-source-maps": "0.0.4-canary.1",
     "axios": "^0.19.0",
+    "bignumber.js": "^9.0.0",
     "classnames": "^2.2.6",
     "cypress": "^4.1.0",
     "dompurify": "^2.0.7",
+    "hashids": "^2.2.1",
     "js-cookie": "^2.2.1",
     "jsdom": "^15.2.0",
     "lightweight-charts": "^1.1.0",
     "lodash": "^4.17.15",
+    "mockdate": "^2.0.5",
     "moment": "^2.24.0",
     "next": "9.0.3",
     "node-sass": "4.12.0",
@@ -52,7 +55,8 @@
     "react-table": "^6.10.0",
     "react-tooltip": "^3.11.1",
     "rxjs": "^6.5.3",
-    "ta-api-node": "^0.1.7",
+    "styled-jsx": "^3.2.4",
+    "ta-api-node": "^0.1.9",
     "updeep": "^1.2.0",
     "ws": "^7.1.2",
     "zxcvbn": "^4.4.2"
@@ -72,7 +76,7 @@
     "eslint-plugin-react": "^7.16.0",
     "eslint-plugin-react-hooks": "^1.7.0",
     "git-branch-is": "^3.1.0",
-    "husky": "^3.0.5",
+    "husky": "^3.1.0",
     "jest": "^24.9.0",
     "jest-extended": "^0.11.2",
     "lint-staged": "^9.4.0",
@@ -92,7 +96,7 @@
   "lint-staged": {
     "*.js": [
       "eslint --fix",
-      "pretty-quick --staged"
+      "pretty-quick --staged && echo 'run hook'"
     ]
   }
 }

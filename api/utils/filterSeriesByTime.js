@@ -18,7 +18,6 @@ module.exports = (series, timeRange) => {
   };
 
   if (timeRange < moment.utc(formatDate(series[0]))) {
-    // console.log(series[0]);
     return series;
   }
 

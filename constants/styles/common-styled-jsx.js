@@ -1,5 +1,22 @@
 import css from 'styled-jsx/css';
 
+export const styledBorder = css`
+  .bottom-selected {
+    border-bottom: 2px solid rgb(63, 205, 171);
+    opacity: 1;
+  }
+  .bottom-not-selected::after {
+    display: block;
+    content: '';
+    border-bottom: 2px solid rgb(63, 205, 171);
+    transform: scaleX(0);
+    transition: transform 250ms ease-in-out;
+  }
+  .bottom-not-selected:hover:after {
+    transform: scaleX(1);
+  }
+`;
+
 export const underSubNav = css`
   .under-sub-nav {
     padding-top: 60px;

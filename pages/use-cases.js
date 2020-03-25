@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { UseCasesWidget } from '../components/widgets/UseCasesWidget';
+import { UseCasesPage } from '../components/atomic/pages/UseCases';
 
 const UseCases = () => {
   return (
     <div className="container">
-      <UseCasesWidget />
+      <UseCasesPage />
       <style jsx>
         {`
           .container {

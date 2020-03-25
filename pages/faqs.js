@@ -5,7 +5,7 @@ import { Card } from '@blueprintjs/core';
 
 import { PageHeader } from '../components/atomic/molecules/PageHeader';
 import { FAQS } from '../constants/faqs';
-import { CollapsibleItem } from '../components/CollapsibleItem';
+import { CollapsibleItem } from '../components/atomic/molecules/CollapsibleItem';
 
 const Faqs = () => {
   return (

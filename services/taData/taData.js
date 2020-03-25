@@ -6,6 +6,7 @@ let instance;
 
 const serverlessApi = {
   exchange_flows: 'exchange-flows',
+  miner_flows: 'miner-flows',
   single_metric: 'single-metric',
 };
 

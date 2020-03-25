@@ -1,4 +1,4 @@
-import { setResponseCache } from './setResponseCache';
+import setResponseCache from './setResponseCache';
 
 describe('setResponseCache function', () => {
   it('should return default headers', () => {

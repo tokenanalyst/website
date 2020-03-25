@@ -11,7 +11,6 @@ export const fetchDataFromApi$ = apiCall => {
   return Observable.create(async observer => {
     try {
       const result = await apiCall();
-
       if (result.status === 200) {
         observer.next(result);
         return observer.complete();

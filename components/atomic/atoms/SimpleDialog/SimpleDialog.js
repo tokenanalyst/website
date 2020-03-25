@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Dialog } from '@blueprintjs/core';
 
-import { ButtonMarketing } from '../../../ButtonMarketing';
+import { ButtonMarketing } from '../../molecules/ButtonMarketing';
 
 export const SimpleDialog = ({
   header,

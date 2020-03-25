@@ -21,8 +21,14 @@ export const StudiesList = ({ studies, onSelectStudy }) => {
               role="link"
               key={study}
               tabIndex="0"
-              onKeyDown={() => onSelectStudy(study)}
-              onClick={() => onSelectStudy(study)}
+              onKeyDown={() => {
+                if (studies[study].isSupported) return onSelectStudy(study);
+                return null;
+              }}
+              onClick={() => {
+                if (studies[study].isSupported) return onSelectStudy(study);
+                return null;
+              }}
             >
               <SimpleToolTip
                 dataFor={`metric-tooltip-${study}`}

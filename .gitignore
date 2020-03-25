@@ -29,3 +29,4 @@ yarn-error.log*
 components/widgets/ProChartWidget/const/secrets.js
 
 .now
+.huskyrc
