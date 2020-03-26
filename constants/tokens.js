@@ -47,10 +47,6 @@ export const CURRENCIES = {
   EUR: 'EUR',
 };
 
-export const DERIVATIVES = {
-  BTCPERPETUAL: 'BTCPERPETUAL',
-};
-
 export const METRICS = {
   [NATIVE_TOKENS.BTC]: [
     {

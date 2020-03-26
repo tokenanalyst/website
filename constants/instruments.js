@@ -1,2 +1,2 @@
 export const SPOT = 'spot';
-export const FUTURE = 'future';
+export const FUTURE = 'perpetual-future';

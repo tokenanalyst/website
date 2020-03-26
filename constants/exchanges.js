@@ -3,7 +3,6 @@ import {
   STABLE_TOKENS,
   CURRENCIES,
   ERC20_TOKENS,
-  DERIVATIVES,
 } from './tokens';
 
 const { BTC, ETH } = NATIVE_TOKENS;
@@ -39,7 +38,6 @@ const {
   TKN,
 } = ERC20_TOKENS;
 const { USD } = CURRENCIES;
-const { BTCPERPETUAL } = DERIVATIVES;
 
 export const BINANCE = 'Binance';
 export const BITFINEX = 'Bitfinex';
@@ -99,7 +97,8 @@ export const TOKENS_EXCHANGE_SUPPORT = {
       quoteToken: USDT,
     },
     [DERIBIT]: {
-      quoteToken: BTCPERPETUAL,
+      quoteToken: USD,
+      isFuture: true,
     },
   },
   [ETH]: {
