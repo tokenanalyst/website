@@ -6,8 +6,9 @@ export const makeTVSymbols = (token, exchangeSupport) => {
     return null;
   }
 
-  const { quoteToken, baseToken } = exchangeSupport;
-  if (tokensDb.isDerivative(quoteToken)) {
+  const { quoteToken, baseToken, isFuture } = exchangeSupport;
+
+  if (isFuture) {
     const { BTC } = tokensDb.tokens.group.native;
     return { class: FUTURE, pair: [BTC, quoteToken] };
   }

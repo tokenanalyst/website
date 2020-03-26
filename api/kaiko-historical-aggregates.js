@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const axios = require('axios');
 const url = require('url');
 
@@ -38,6 +39,7 @@ module.exports = async (req, res) => {
   let apiResult;
 
   const kaikoCall = `${KAIKO_BASE_URL}/${commodity}.${DATA_VERSION}/exchanges/${exchange}/${instrument_class}/${instrument}/aggregations/ohlcv?interval=${interval}&start_time=${start_time}&end_time=${end_time}&page_size=${page_size}`;
+
   try {
     apiResult = await axios.get(kaikoCall, {
       headers: {

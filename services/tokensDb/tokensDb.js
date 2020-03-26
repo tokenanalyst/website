@@ -4,7 +4,6 @@ import {
   NATIVE_TOKENS,
   ERC20_TOKENS,
   STABLE_TOKENS,
-  DERIVATIVES,
   EXCHANGE_NAMES,
   MINER_NAMES,
   TOKENS_EXCHANGE_SUPPORT,
@@ -139,7 +138,6 @@ export const tokensDb = {
   isNative: token => token in nativeTokens,
   isStable: token => token in stableTokens,
   isERC20: token => token in erc20Tokens,
-  isDerivative: token => Object.keys(DERIVATIVES).indexOf(token) >= 0,
   getMetricSupportForEntity: async () => {
     try {
       const response = await axios.get(`/api/data-api-config`);
