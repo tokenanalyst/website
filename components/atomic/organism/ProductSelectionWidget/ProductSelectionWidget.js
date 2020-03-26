@@ -26,7 +26,7 @@ export const ProductSelectionWidget = () => {
               const { title, links, description, image } = card;
 
               return (
-                <div className="product" key={name}>
+                <div className="product-selection-card" key={name}>
                   <ProductCard
                     name={name}
                     description={description}
@@ -54,7 +54,7 @@ export const ProductSelectionWidget = () => {
             flex-direction: row;
             justify-content: space-between;
           }
-          .product {
+          .product-selection-card {
             margin-right: 50px;
           }
           .product-container {
