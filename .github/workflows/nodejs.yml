@@ -23,8 +23,16 @@ jobs:
         env:
           CI: true
 
+  cypress-run:
+    runs-on: ubuntu-16.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      # Install NPM dependencies, cache them correctly
+      # and run all Cypress tests
       - name: Cypress run
         uses: cypress-io/github-action@v1
         with:
+          build: npm run build
           start: npm start
-          wait-on: http://localhost:3030
+          wait-on: http://localhost:3000
