@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable jsx-a11y/anchor-has-content */
 import React from 'react';
 
 import { ProductFeatures } from './ProductFeatures';
@@ -13,7 +15,7 @@ export const ProductFeaturesWidget = () => {
               const { buttons, description, features, image, title } = details;
 
               return (
-                <div className="product" key={name}>
+                <div className="product-feature" key={name}>
                   <a name={name} />
                   <ProductFeatures
                     name={name}
@@ -42,7 +44,7 @@ export const ProductFeaturesWidget = () => {
             flex-direction: column;
             justify-content: space-between;
           }
-          .product {
+          .product-feature {
           }
           .products-container {
             margin-left: 100px;

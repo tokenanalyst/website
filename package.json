@@ -15,7 +15,8 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage --colors",
-    "prettify": "prettier --trailing-comma es5 --single-quote --write **/*.js"
+    "prettify": "prettier --trailing-comma es5 --single-quote --write **/*.js",
+    "cypress": "node_modules/.bin/cypress open"
   },
   "dependencies": {
     "@blueprintjs/core": "^3.18.0",
@@ -64,6 +65,7 @@
     "@sentry/cli": "^1.48.0",
     "babel-eslint": "^10.0.3",
     "babel-jest": "24.1.0",
+    "cypress": "^4.2.0",
     "eslint": "^6.1.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-prettier": "^6.3.0",
@@ -93,7 +95,6 @@
   ],
   "lint-staged": {
     "*.js": [
-      "eslint --fix",
       "pretty-quick --staged && echo 'run hook'"
     ]
   }

@@ -31,7 +31,13 @@ export const Link = ({
           )}
         </NextLink>
       </span>
-      <span className="mobile" onClick={onClick} onKeyDown={onClick}>
+      <span
+        className="mobile"
+        onClick={onClick}
+        onKeyDown={onClick}
+        role="link"
+        tabIndex={0}
+      >
         <NextLink href={href}>
           {isOpenInNewWindow ? (
             <a target="_blank" rel="noopener noreferrer">
