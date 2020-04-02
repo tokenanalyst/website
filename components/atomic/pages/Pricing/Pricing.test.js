@@ -11,7 +11,6 @@ describe('Pricing component', () => {
   it('simulates click events', () => {
     const wrapper = mount(<PricingPage />);
     wrapper.find('button').forEach(button => {
-      console.log(button.text());
       if (button.text() === 'Buy Plan') {
         button.simulate('click');
         expect(redirectToStripe).toHaveBeenCalledWith(
