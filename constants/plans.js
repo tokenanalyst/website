@@ -64,7 +64,7 @@ export const PLANS_PROD = {
     price: '',
     features: [
       'Complete Data Access',
-      'World’s Fastest Bitcoin Websocket',
+      'World’s fastest bitcoin data',
       'Custom Metrics Such as Miner to Exchange Flows',
       'Transaction Level Flow Data for Modeling & Backtesting',
       'Slack/Telegram Engineering Support',
@@ -104,7 +104,7 @@ export const PLANS_DEV = {
     price: '',
     features: [
       'Complete Data Access',
-      'World’s Fastest Bitcoin Websocket',
+      'World’s fastest bitcoin data',
       'Custom Metrics Such as Miner to Exchange Flows',
       'Transaction Level Flow Data for Modeling & Backtesting',
       'Slack/Telegram Engineering Support',
