@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-one-expression-per-line */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import Link from 'next/link';
 
@@ -27,7 +29,7 @@ export const Footer = () => {
               <a className="item">Historical Data</a>
             </Link>
             <Link href="/pricing">
-              <a className="item">Websocket and API</a>
+              <a className="item">API</a>
             </Link>
           </div>
           <div className="section">

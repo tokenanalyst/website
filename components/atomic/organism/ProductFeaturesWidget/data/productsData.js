@@ -104,7 +104,7 @@ export const FEATURES = {
           entitled: [true, true],
         },
         {
-          name: 'WebSocket (real-time)',
+          name: 'World’s fastest bitcoin data',
           entitled: [true, true],
         },
         {
@@ -142,8 +142,7 @@ const FEATURES_CONTENT = {
     title: 'Professional',
     description: `Our signature plan, offering proprietary 
     historical and real-time metrics across 
-    a wide-array of assets via API 
-    and WebSocket.`,
+    a wide-array of assets via REST API.`,
     image: '/static/svg/pricing/features_pro.svg',
     features: [
       `Full Historical Data + Real-Time Updates`,
@@ -181,7 +180,7 @@ const FEATURES_CONTENT = {
       `Complete Data Access`,
       `Customized Metrics`,
       `Transaction Data for Modeling & Backtesting`,
-      `World’s Fastest Bitcoin Websocket`,
+      `World’s fastest bitcoin data`,
       `Raw Transaction, Block-level Data`,
       `Personal Support from TokenAnalyst`,
     ],

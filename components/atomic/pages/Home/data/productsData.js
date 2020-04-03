@@ -24,8 +24,8 @@ export const PRODUCTS = {
     ],
   },
   API: {
-    title: 'API & WebSockets',
-    description: `A comprehensive blockchain analytics API with over 150 different metrics covering all major cryptoassets and the fastest Bitcoin WebSocket in the world`,
+    title: 'API',
+    description: `A comprehensive blockchain analytics API with over 150 different metrics covering all major cryptoassets and the fastest bitcoin data in the world`,
     links: [
       {
         text: 'Browse API',
