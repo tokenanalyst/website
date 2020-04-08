@@ -11,13 +11,7 @@ export const DemoCallOutPricing = () => {
           Enterprise-grade data and tools to understand and access blockchains.
         </p>
         <div>
-          <button
-            className="button"
-            type="button"
-            onClick={() => window.Intercom('show')}
-          >
-            Request a demo
-          </button>
+         
         </div>
       </div>
       <div className="image-container">

@@ -61,12 +61,7 @@ const tabs = [
     text: 'Network Stats',
     route: '/insights',
     link: `/insights?${metricsTierParamString}`,
-  },
-  {
-    text: 'Analytics',
-    route: '/analytics',
-    link: '/analytics',
-  },
+  }
 ];
 
 export const Layout = ({ children }) => {
@@ -84,7 +79,6 @@ export const Layout = ({ children }) => {
         <link rel="shortcut icon" href="/static/favicon.ico" />
         <link href="/static/fonts/fonts.css" rel="stylesheet" />
         <script src="https://js.stripe.com/v3/" />
-        <script src="/static/js/intercom.js" />
         <script src="/static/js/hotjar.js" />
 
         <script type="application/ld+json">{STRUCTURED_DATA}</script>
