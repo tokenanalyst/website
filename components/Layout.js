@@ -61,6 +61,11 @@ const tabs = [
     text: 'Network Stats',
     route: '/insights',
     link: `/insights?${metricsTierParamString}`,
+  },
+  {
+    text: '',
+    route: '/analytics',
+    link: '/analytics',
   }
 ];
 
