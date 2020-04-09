@@ -12,6 +12,7 @@ import { isLoginRequiredToAccessEntity } from '../../../utils';
 import { LoadingSpinner } from '../../../components/atomic/atoms/LoadSpinner';
 
 const Exchange = () => {
+
   const router = useRouter();
   const loginCtx = useContext(LoginContext);
   const { token, exchange } = router.query;
