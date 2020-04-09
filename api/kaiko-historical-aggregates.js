@@ -40,8 +40,6 @@ module.exports = async (req, res) => {
 
   const kaikoCall = `${KAIKO_BASE_URL}/${commodity}.${DATA_VERSION}/exchanges/${exchange}/${instrument_class}/${instrument}/aggregations/ohlcv?interval=${interval}&start_time=${start_time}&end_time=${end_time}&page_size=${page_size}`;
 
-  console.log(kaikoCall)
-
   try {
     apiResult = await axios.get(kaikoCall, {
       headers: {
@@ -52,9 +50,7 @@ module.exports = async (req, res) => {
     });
 
     const { data } = apiResult.data;
-    console.log(data)
 
-    console.log(tierTimeLimit)
     const filteredData = filterSeriesByTime(data, tierTimeLimit);
 
     return res.send({ data: filteredData });
