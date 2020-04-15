@@ -14,7 +14,7 @@ export const useApi = (url, dependencies) => {
       setData(null);
 
       const getApiResult = async () => {
-        const apiResult = await axios.get(url);
+        const apiResult = await axios.get("http://tokenanalyst.github.io/static_data"+url);
         setData(apiResult.data.ta_response);
       };
 
