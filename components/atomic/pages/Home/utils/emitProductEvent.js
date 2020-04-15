@@ -6,5 +6,5 @@ export const emitProductEvent = (name, tracking) => {
     action: `Home Button ${name}`,
     label: `New Home`,
   });
-  window.Intercom('trackEvent', tracking);
+  //window.Intercom('trackEvent', tracking);
 };
