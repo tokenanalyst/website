@@ -124,44 +124,7 @@ export const ProductFeatures = ({
         </div>
         <div className="description">{description}</div>
         <div className="features">{renderFeatures(features)}</div>
-        <div className="buttons-container">
-          {buttons.map(button => {
-            const { url, isExternal, text, isBuy, isIntercom } = button;
-
-            const onBuyPlan = async () => {
-              setIsLoading(true);
-              if (url) {
-                const action = `Plan click ${text}`;
-                return emitProductEvent(action);
-              }
-
-              const action = `Plan select ${name}`;
-              emitProductEvent(action);
-
-              return redirectToStripe(stripePlan, GA_GOAL_NAME[name])({
-                customerEmail: username,
-              });
-            };
-
-            const onClick = isIntercom
-              ? () => window.Intercom('show')
-              : onBuyPlan;
-
-            return (
-              <div key={kebabCase(text)} className="button">
-                <ButtonMarketing
-                  url={url}
-                  isExternal={isExternal}
-                  text={text}
-                  stripePlan={stripePlan}
-                  isActive={isBuy}
-                  onClick={onClick}
-                  isLoading={isBuy ? isLoading : false}
-                />
-              </div>
-            );
-          })}
-        </div>
+      
       </div>
       <div className="fetures-details">
         <div style={{ width: '100%', height: '100%', margin: 0 }}>

@@ -12,23 +12,12 @@ const generateBuildId = async () => {
 };
 
 const NEXT_CONFIG = {
-  sentry: withCSS(
-    withSourceMaps({
-      webpack(config, _options) {
-        return config;
-      },
-      generateBuildId,
-    })
-  ),
   production: withCSS({
-    env: {
-      SENTRY_RELEASE: process.env.SENTRY_RELEASE,
-    },
-    generateBuildId,
-  }),
+    exportPathMap: function() {
+    return {
+      '/': { page: '/' }
+    };
+  }})
 };
 
-module.exports =
-  process.env.IS_SOURCE_MAP === 'true'
-    ? NEXT_CONFIG.sentry
-    : NEXT_CONFIG.production;
+module.exports = NEXT_CONFIG.production;

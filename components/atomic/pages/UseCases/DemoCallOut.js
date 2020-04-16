@@ -16,7 +16,6 @@ export const DemoCallOut = () => {
           <button
             className="button"
             type="button"
-            onClick={() => window.Intercom('show')}
           >
             Request a demo
           </button>

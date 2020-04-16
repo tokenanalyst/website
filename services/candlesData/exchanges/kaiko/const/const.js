@@ -5,7 +5,7 @@ export const restRootUrl =
 export const restRootUrlTAProxy =
   process.env.NODE_ENV !== 'development'
     ? '/api'
-    : `http://localhost:${process.env.PORT || 3000}/api`;
+    : `http://test:${process.env.PORT || 3000}/api`;
 
 export const TIME_FRAMES = {
   '1m': '1m',

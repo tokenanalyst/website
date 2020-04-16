@@ -155,15 +155,6 @@ export const TestimonialsPricing = () => (
           );
         })}
       </div>
-      <div className="button-container">
-        <button
-          className={classNames('button', 'buttonActive')}
-          type="button"
-          onClick={() => window.Intercom('show')}
-        >
-          Request a demo
-        </button>
-      </div>
       <div className="links-container">
         <div className="links">
           {renderLinks([PLAN_NAMES.PRO, PLAN_NAMES.ENTERPRISE])}

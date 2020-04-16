@@ -90,8 +90,6 @@ export const DahsboardPage = () => {
             )}
           </div>
 
-          {/* <div className="separator" />
-          <MetricSummary token="Stablecoins" entities={ENTITIES_STABLE} /> */}
         </div>
         <div className="under-sub-nav">
           <h2>{`${dataWindow} Exchanges Inflows/Outflows`}</h2>
