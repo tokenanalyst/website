@@ -4,6 +4,7 @@ import { Icon } from '@blueprintjs/core';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
 import ReactGA from 'react-ga';
+import classNames from 'classnames'
 
 import { LOGO_IMAGES } from '../../../../constants/image-paths';
 import { LoginContext } from '../../../../contexts/Login';
@@ -14,6 +15,7 @@ export const setLinkActive = (pathName, link) =>
 export const MobileNav = () => {
   const loginCtx = useContext(LoginContext);
   const router = useRouter();
+  const { asPath } = router;
 
   const [isVisible, setIsVisible] = useState(false);
 
@@ -73,11 +75,15 @@ export const MobileNav = () => {
               Pricing
             </div>
           </Link>
-          <Link href="/research" passHref>
-            <div className={setLinkActive(router.pathname, '/research')}>
+        
+          <a href="https://medium.com/tokenanalyst"   className={classNames(
+                      'desktop-sub-link',
+                      setLinkActive(asPath, '/tokenanalyst'))}>
+                  <div>
               Research
             </div>
-          </Link>
+            </a>
+
           <Link href="/newsletter" passHref>
             <div className={setLinkActive(router.pathname, '/newsletter')}>
               Newsletter
