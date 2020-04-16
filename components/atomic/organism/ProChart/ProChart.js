@@ -11,6 +11,8 @@ const ProChart = ({ kaikoService, tradingViewOptions, onChartRenderCb }) => {
     tvWidget.onChartReady(() => {
       const chart = tvWidget.chart();
 
+      // 19 january to 16 april
+      chart.setVisibleRange({from: 1579392000, to: 1586995200})
       onChartRenderCb(tvWidget);
 
       // Fired when the intervall is changed. We then set the time range shown on screen,
