@@ -19,8 +19,8 @@ export const useActivateStudies = (
         .subtract(TV_INITIAL_DATA_RANGE, 'days')
         .unix();
       await tvInstance.current.chart().setVisibleRange({
-        from: ninetyDaysAgo,
-        to: now,
+        from: 1579392000,
+        to: 1586995200,
       });
 
       const updatedTvStudies = cloneDeep(tvStudies);
