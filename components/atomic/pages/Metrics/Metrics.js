@@ -120,8 +120,8 @@ export const MetricsPage = () => {
                   .subtract(TV_INITIAL_DATA_RANGE, 'days')
                   .unix();
                 await tvInstance.current.chart().setVisibleRange({
-                  from: ninetyDaysAgo,
-                  to: now,
+                  from: 1583020800,
+                  to: 1585699200,
                 });
                 studies.current.flows.entityId = tvInstance.current
                   .chart()

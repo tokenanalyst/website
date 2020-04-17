@@ -161,7 +161,7 @@ export const Layout = ({ children }) => {
           .page {
             margin-left: 10px;
             margin-right: 10px;
-            padding-top: 80px;
+            padding-top: 110px;
             min-height: 700px;
           }
           .metrics-nav {

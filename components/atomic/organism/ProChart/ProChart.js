@@ -11,8 +11,8 @@ const ProChart = ({ kaikoService, tradingViewOptions, onChartRenderCb }) => {
     tvWidget.onChartReady(() => {
       const chart = tvWidget.chart();
       chart.setVisibleRange({
-        from: 1579392000,
-        to: 1586995200,
+        from: 1583020800,
+        to: 1585699200,
       });
       onChartRenderCb(tvWidget);
 
@@ -25,24 +25,24 @@ const ProChart = ({ kaikoService, tradingViewOptions, onChartRenderCb }) => {
           case '2h': {
             const twoHoursBefore = now.subtract(2, 'hours').valueOf();
             chart.setVisibleRange({
-              from: 1579392000,
-              to: 1586995200,
+              from: 1583020800,
+              to: 1585699200,
             });
             break;
           }
           case '6h': {
             const sixHoursBefore = now.subtract(6, 'hours').valueOf();
             chart.setVisibleRange({
-              from: 1579392000,
-              to: 1586995200,
+              from: 1583020800,
+              to: 1585699200,
             });
             break;
           }
           case '1d': {
             const oneDayBefore = now.subtract(1, 'days').valueOf();
             chart.setVisibleRange({
-         from: 1579392000,
-        to: 1586995200,
+         from: 1583020800,
+        to: 1585699200,
             });
             break;
           }
