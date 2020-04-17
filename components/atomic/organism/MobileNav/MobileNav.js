@@ -76,19 +76,18 @@ export const MobileNav = () => {
             </div>
           </Link>
         
-          <a href="https://medium.com/tokenanalyst"   className={classNames(
-                      'desktop-sub-link',
-                      setLinkActive(asPath, '/tokenanalyst'))}>
-                  <div>
+          <a href="https://medium.com/tokenanalyst">   
+                  <div className={setLinkActive(router.pathname, '/dashboard')}>
               Research
             </div>
             </a>
 
-          <Link href="/newsletter" passHref>
-            <div className={setLinkActive(router.pathname, '/newsletter')}>
+        <a href="https://github.com/tokenanalyst/tokenanalyst.github.io/tree/master/newsletters">
+            <div className={setLinkActive(router.pathname, '/dashboard')}>
               Newsletter
             </div>
-          </Link>
+            </a>
+          
           <div className="mobile-link">
             <a
               href="https://docs.tokenanalyst.io/#/api"
