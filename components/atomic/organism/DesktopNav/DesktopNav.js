@@ -369,6 +369,7 @@ export const DesktopNav = () => {
             font-weight: normal;
             position: fixed;
             background-color: black;
+            margin-top: 50px;
             z-index: 100;
             width: 100%;
           }
@@ -378,6 +379,7 @@ export const DesktopNav = () => {
             justify-content: space-between;
             align-items: center;
             padding-left: 10px;
+       
             height: 60px;
           }
           .left-side {
