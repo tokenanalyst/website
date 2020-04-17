@@ -138,6 +138,7 @@ export const MobileNav = () => {
           .container {
             position: fixed;
             background-color: black;
+            margin-top: 50px;
             z-index: 100;
             width: 100%;
           }
