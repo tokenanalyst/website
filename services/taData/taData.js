@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-named-default
-import { default as taApiClient } from 'ta-api-node';
+import { default as taApiClient } from '../../ta-api-node/ta';
 import ta from './api';
 
 let instance;
