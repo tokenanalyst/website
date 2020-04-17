@@ -190,7 +190,7 @@ export const DesktopNav = () => {
               </>
             ) : (
               <div className="not-logged-in">
-                <Link href="/register" passHref>
+                <Link href="/#" passHref>
                   <div
                     onMouseOver={() => {
                       collapseAllSubMenus();
@@ -203,7 +203,7 @@ export const DesktopNav = () => {
                     Sign Up
                   </div>
                 </Link>
-                <Link href="/login" passHref>
+                <Link href="/#" passHref>
                   <div
                     className="login-button"
                     onMouseOver={() => {
@@ -234,7 +234,7 @@ export const DesktopNav = () => {
               className="desktop-research-sub-links"
               onMouseLeave={() => collapseSubMenuDelayed('research')}
             >
-              <div>
+             
                 <a href="https://medium.com/tokenanalyst"   className={classNames(
                       'desktop-sub-link',
                       setLinkActive(asPath, '/tokenanalyst'))}>
@@ -244,26 +244,17 @@ export const DesktopNav = () => {
                     Blog
                   </div>
                   </a>
-              </div>
-              <div>
-                <Link href="/newsletter" passHref>
-                  <div
-                    onClick={() => {
-                      ReactGA.event({
-                        category: 'User',
-                        action: `Click Newsletter`,
-                        label: `Desktop Nav`,
-                      });
-                    }}
-                    className={classNames(
+            
+        
+           
+                <a href="https://github.com/tokenanalyst/tokenanalyst.github.io/tree/master/newsletters"   className={classNames(
                       'desktop-sub-link',
-                      setLinkActive(asPath, '/newsletter')
-                    )}
-                  >
+                      setLinkActive(asPath, '/tokenanalyst'))}>
+                  <div>
                     Newsletter
                   </div>
-                </Link>
-              </div>
+                </a>
+       
             </div>
           </div>
         </div>
@@ -378,6 +369,7 @@ export const DesktopNav = () => {
             font-weight: normal;
             position: fixed;
             background-color: black;
+            margin-top: 50px;
             z-index: 100;
             width: 100%;
           }
@@ -387,6 +379,7 @@ export const DesktopNav = () => {
             justify-content: space-between;
             align-items: center;
             padding-left: 10px;
+       
             height: 60px;
           }
           .left-side {

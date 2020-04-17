@@ -130,6 +130,7 @@ export const Layout = ({ children }) => {
           content="8zKrdD_6inTAzST2ucgyNW3NMZfGfkAKBz8Qky16lko"
         />
       </Head>
+      <div className="not-active-banner">This website is not active anymore. We will inform you about our circumstances soon.</div>
       <Nav />
       <Newsletter />
       <CookieBanner />
@@ -145,10 +146,22 @@ export const Layout = ({ children }) => {
       {isWithFooter && <Footer />}
       <style jsx>
         {`
+        .not-active-banner {
+          text-align: center;
+          font-weight: bold;
+          height: 50px;
+          width: 100%;
+          padding-top: 15px;
+          paddding-bottom: 15px;
+          background-color: white;
+          position: fixed;
+          z-index: 2;
+      
+        }
           .page {
             margin-left: 10px;
             margin-right: 10px;
-            padding-top: 60px;
+            padding-top: 80px;
             min-height: 700px;
           }
           .metrics-nav {
