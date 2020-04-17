@@ -234,7 +234,7 @@ export const DesktopNav = () => {
               className="desktop-research-sub-links"
               onMouseLeave={() => collapseSubMenuDelayed('research')}
             >
-              <div>
+             
                 <a href="https://medium.com/tokenanalyst"   className={classNames(
                       'desktop-sub-link',
                       setLinkActive(asPath, '/tokenanalyst'))}>
@@ -244,26 +244,17 @@ export const DesktopNav = () => {
                     Blog
                   </div>
                   </a>
-              </div>
-              <div>
-                <Link href="/newsletter" passHref>
-                  <div
-                    onClick={() => {
-                      ReactGA.event({
-                        category: 'User',
-                        action: `Click Newsletter`,
-                        label: `Desktop Nav`,
-                      });
-                    }}
-                    className={classNames(
+            
+        
+           
+                <a href="https://github.com/tokenanalyst/tokenanalyst.github.io/tree/master/newsletters"   className={classNames(
                       'desktop-sub-link',
-                      setLinkActive(asPath, '/newsletter')
-                    )}
-                  >
+                      setLinkActive(asPath, '/tokenanalyst'))}>
+                  <div>
                     Newsletter
                   </div>
-                </Link>
-              </div>
+                </a>
+       
             </div>
           </div>
         </div>
