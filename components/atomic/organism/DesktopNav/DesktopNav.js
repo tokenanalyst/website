@@ -190,7 +190,7 @@ export const DesktopNav = () => {
               </>
             ) : (
               <div className="not-logged-in">
-                <Link href="/register" passHref>
+                <Link href="/#" passHref>
                   <div
                     onMouseOver={() => {
                       collapseAllSubMenus();
@@ -203,7 +203,7 @@ export const DesktopNav = () => {
                     Sign Up
                   </div>
                 </Link>
-                <Link href="/login" passHref>
+                <Link href="/#" passHref>
                   <div
                     className="login-button"
                     onMouseOver={() => {
