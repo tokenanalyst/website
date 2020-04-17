@@ -118,10 +118,10 @@ export const MobileNav = () => {
             </div>
           ) : (
             <>
-              <Link href="/register" passHref>
+              <Link href="/#" passHref>
                 <div className="mobile-link">Sign Up</div>
               </Link>
-              <Link href="/login" passHref>
+              <Link href="/#" passHref>
                 <div className="mobile-link">Login</div>
               </Link>
             </>
