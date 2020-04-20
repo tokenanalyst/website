@@ -1,12 +1,12 @@
 const excludedKeys = [
   //kaiko
-  "start_time",
-  "end_time",
-  "page_size",
+  'start_time',
+  'end_time',
+  'page_size',
   //exchange flows
-  "from_date",
-  "to_date"
-]
+  'from_date',
+  'to_date'
+];
 
 module.exports = params => {
   if (!params) {
@@ -17,8 +17,8 @@ module.exports = params => {
     .filter(k => !excludedKeys.includes(k))
     .sort()
     .reduce(
-    (acc, param) => (params[param] ? `${acc}${param}=${params[param]}&` : acc),
-    ''
-  );
+      (acc, param) => (params[param] ? `${acc}${param.toLowerCase()}=${params[param].toLowerCase()}&` : acc),
+      ''
+    );
   return `${query.slice(0, -1)}`;
 };

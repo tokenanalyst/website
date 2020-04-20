@@ -25,7 +25,7 @@ const setValueChangeStatus = (value, status) => {
 const ExchangeMetricsWidgetComponent = ({ token, exchange }) => {
   const [overallMetrics, setOverallMetrics] = useState(null);
   const apiResponse = useApi(
-    `/api/exchange-flows_token_${token}_exchange_${exchange}_timeWindow_1d`,
+    `/api/exchange-flows_token_${token}_exchange_${exchange}_timeWindow_1d`.toLowerCase(),
     [token, exchange]
   );
 
