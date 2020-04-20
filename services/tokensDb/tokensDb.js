@@ -140,7 +140,7 @@ export const tokensDb = {
   isERC20: token => token in erc20Tokens,
   getMetricSupportForEntity: async () => {
     try {
-      const response = await axios.get(`https://www.tokenanalyst.io/static_data/api/data-api-config`);
+      const response = await axios.get(`https://tokenanalyst.github.io/static_data/api/data-api-config`);
 
       return response.data.metricsSupport;
     } catch (err) {

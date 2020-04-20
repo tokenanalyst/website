@@ -2,7 +2,7 @@ export const wsRootUrl = 'wss://eu.market-ws.kaiko.io/v2/rpc';
 export const restRootUrl =
   'https://eu.market-api.kaiko.io/v1/data/trades.v1/exchanges';
 
-export const restRootUrlTAProxy = "https://www.tokenanalyst.io/static_data/api"
+export const restRootUrlTAProxy = "https://tokenanalyst.github.io/static_data/api"
   // process.env.NODE_ENV !== 'development'
   //   ? '/api'
   //   : `http://test:${process.env.PORT || 3000}/api`;
