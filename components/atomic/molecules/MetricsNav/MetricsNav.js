@@ -20,11 +20,13 @@ export const MetricsNav = ({ tabs }) => {
           {tabs.map(tab => {
             const isSelected = tab.route.includes(route);
             const { text, link } = tab;
+            const routePath = tab.route;
 
             return (
               <TabDesktop
                 key={text}
                 text={text}
+                route={routePath}
                 link={link}
                 selected={isSelected}
               />

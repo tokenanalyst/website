@@ -5,12 +5,12 @@ import Link from 'next/link';
 
 import { styledBorder } from '../../../../constants/styles/common-styled-jsx';
 
-export const TabDesktop = ({ text, link, selected }) => {
+export const TabDesktop = ({ text, route, link, selected }) => {
   return (
     <>
       <div className="tab">
         <span className="text">
-          <Link href={link} passHref>
+          <Link href={route} as={link} passHref>
             <span
               className={classNames(
                 selected ? 'bottom-selected' : 'bottom-not-selected'
