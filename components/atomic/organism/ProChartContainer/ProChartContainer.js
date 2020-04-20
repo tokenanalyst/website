@@ -18,7 +18,7 @@ const ProChart = dynamic(() => import('../ProChart').then(mod => mod.default), {
   ssr: false,
 });
 
-const taDataArgs = { apiUrl: "https://tokenanalyst.github.io/static_data/api" }
+const taDataArgs = { apiUrl: "https://www.tokenanalyst.io/static_data/api" }
   // process.env.NODE_ENV !== 'development'
   //   ? { apiUrl: '/api' }
   //   : { apiUrl: 'http://www.tokenanalyst.io/api' };
