@@ -4,7 +4,7 @@ export const PRODUCTS = {
     description: `A full-suite analyst toolbox with dashboards and charts for key metrics including exchange flows and on-chain network stats.`,
     links: [
       {
-        text: 'View Dashboard',
+        text: 'View Demo',
         url: '/dashboard',
         isExternal: false,
         tracking: 'home-bottom-button-dashboard',

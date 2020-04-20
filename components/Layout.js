@@ -130,7 +130,7 @@ export const Layout = ({ children }) => {
           content="8zKrdD_6inTAzST2ucgyNW3NMZfGfkAKBz8Qky16lko"
         />
       </Head>
-      <div className="not-active-banner">This website is not active anymore. We will inform you about our circumstances soon.</div>
+      <div className="not-active-banner"><span className="marker">Attention:</span> The data on this site does not refresh anymore</div>
       <Nav />
       <Newsletter />
       <CookieBanner />
@@ -157,6 +157,13 @@ export const Layout = ({ children }) => {
           position: fixed;
           z-index: 2;
       
+        }
+        .marker { 
+          padding: 5px;
+          border-radius: 5px;
+          background-color: black;
+          color: white;
+
         }
           .page {
             margin-left: 10px;

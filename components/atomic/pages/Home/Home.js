@@ -39,7 +39,7 @@ export const Home = () => {
                   <ButtonMarketing
                     url="/dashboard"
                     isExternal={false}
-                    text="View Dashboard"
+                    text="View Demo"
                     isActive={false}
                     onClick={() =>
                       emitProductEvent(
