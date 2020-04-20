@@ -53,9 +53,9 @@ export const TokenSnapshot = ({
 
   useEffect(() => {
     const getData = async () => {
-      await axios.get(`https://tokenanalyst.github.io/static_data/api/latest-miner-stats_tokens_${snapshotToken}`);
+      await axios.get(`https://tokenanalyst.github.io/static_data/api/latest-miner-stats_tokens_${snapshotToken}`.toLowerCase());
       const result = await axios.get(
-        `https://tokenanalyst.github.io/static_data/api/latest-exchange-stats_tokens_${snapshotToken}`
+        `https://tokenanalyst.github.io/static_data/api/latest-exchange-stats_tokens_${snapshotToken}`.toLowerCase()
       );
       setApiResponse(result.data);
     };

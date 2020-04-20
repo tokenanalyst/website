@@ -8,9 +8,9 @@ export const useGetSummary = () => {
 
   useEffect(() => {
     const apiCalls = [
-      axios.get(`https://tokenanalyst.github.io/static_data/api/latest-miner-stats_tokens_${NATIVE_TOKENS.BTC}`),
-      axios.get(`https://tokenanalyst.github.io/static_data/api/latest-exchange-stats_tokens_${NATIVE_TOKENS.ETH}`),
-      axios.get(`https://tokenanalyst.github.io/static_data/api/latest-exchange-stats_tokens_${NATIVE_TOKENS.BTC}`),
+      axios.get(`https://tokenanalyst.github.io/static_data/api/latest-miner-stats_tokens_${NATIVE_TOKENS.BTC}`.toLowerCase()),
+      axios.get(`https://tokenanalyst.github.io/static_data/api/latest-exchange-stats_tokens_${NATIVE_TOKENS.ETH}`.toLowerCase()),
+      axios.get(`https://tokenanalyst.github.io/static_data/api/latest-exchange-stats_tokens_${NATIVE_TOKENS.BTC}`.toLowerCase()),
     ];
 
     Promise.all(apiCalls).then(res => {

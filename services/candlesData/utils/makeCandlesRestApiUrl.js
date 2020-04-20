@@ -3,22 +3,22 @@ import { EXCHANGE_NAME, ERROR } from '../const';
 
 const excludedKeys = [
   //kaiko
-  "start_time",
-  "end_time",
-  "page_size",
+  'start_time',
+  'end_time',
+  'page_size',
   //exchange flows
-  "from_date",
-  "to_date"
-]
+  'from_date',
+  'to_date'
+];
 
 export const makeQuery = (params = {}) => {
   const query = Object.keys(params)
     .filter(k => !excludedKeys.includes(k))
     .sort()
     .reduce(
-    (acc, param) => `${acc}${param}=${params[param]}&`,
-    ''
-  );
+      (acc, param) => `${acc}${param.toLowerCase()}=${params[param].toLowerCase()}&`,
+      ''
+    );
 
   return `${query.slice(0, -1)}`;
 };
